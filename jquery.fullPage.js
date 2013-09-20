@@ -1,3 +1,11 @@
+/**
+ * fullPage 1.0
+ * https://github.com/alvarotrigo/fullPage.js
+ * MIT licensed
+ *
+ * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ */
+
 (function($) {
 	$.fn.fullpage = function(options) {
 
@@ -315,9 +323,3 @@
 
 	};
 })(jQuery);
-
-$(document).ready(function() {
-	$.fn.fullpage({
-		slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-	});
-});
