@@ -42,22 +42,22 @@ body, html {
 }
 
 .controlArrow{
-    width:20px;
-    height:20px;
     position:absolute;
     top:50%;
     cursor:pointer;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
 }
 
 .controlArrow.prev{
-   content:"<";
-   background:#fff;    
-   left:0;
+	left:15px;
+	width: 0px;
+	border-width: 38.5px 34px 38.5px 0;
+	border-color: transparent #fff transparent transparent;
 }
-.controlArrow.next{
-   content :">";    
-   background:#fff;    
-   right:0;
-}
-
+.controlArrow.next{  
+	right:15px;
+	border-width: 38.5px 0 38.5px 34px;
+	border-color: transparent transparent transparent #fff;
 }
