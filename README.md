@@ -27,9 +27,9 @@ Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 ```html
 <div class="section active"> WHATEVER</div>
-<div class="slide">WHATEVER</div>
-<div class="slide"><WHATEVER</div>
-<div class="slide">WHATEVER</div>
+<div class="section">WHATEVER</div>
+<div class="section"><WHATEVER</div>
+<div class="section">WHATEVER</div>
 ```
 
 In order to create a landscape slider within a section, each slide will be difined with another `div`:
