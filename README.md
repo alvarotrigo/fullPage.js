@@ -56,6 +56,8 @@ $(document).ready(function() {
 
 - `resize`: (default `true`) Whether you want to resize the text when the window is resized. 
 
+- `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
+
 - `slidesColor`:(default `none`) Define the CSS `background-color` property for each section: 
 Example: 
 ```javascript
@@ -63,7 +65,6 @@ $.fn.fullpage({
     slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
-- `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical scrolling.
 It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of its transitions.
