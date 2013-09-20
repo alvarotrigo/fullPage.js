@@ -28,7 +28,7 @@ The active section by default will be the first section, which is taken as the h
 ```html
 <div class="section active"> WHATEVER</div>
 <div class="section">WHATEVER</div>
-<div class="section"><WHATEVER</div>
+<div class="section">WHATEVER</div>
 <div class="section">WHATEVER</div>
 ```
 
