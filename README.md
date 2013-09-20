@@ -40,7 +40,7 @@ In order to create a landscape slider within a section, each slide will be difin
 ````
 The class `active` will be requiered to specify which slide is the one to show in the first place.
 
-You can see an example of the HTML structure in the [`example.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/example.html).
+You can see a full example of the HTML structure in the [`example.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/example.html).
 
 ###Initialization 
 Then, you will only need to call the plugin inside `$(document).ready` function:
