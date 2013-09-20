@@ -1,0 +1,63 @@
+body, html {
+    margin:0;
+    padding:0;
+}
+#superContainer {
+    height:100%;
+    position:relative;
+}
+.section{
+    position: relative;
+}
+.slide {
+    float: left;
+}
+.slide, .slidesContainer {
+    height: 100%;
+    display: block;
+}
+.slides {
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.section.table{
+	display:table;
+	width:100%;
+}
+.tableCell{
+	display:table-cell;
+	vertical-align: middle;
+	width:100%;
+}
+.slidesContainer {
+    float: left;
+    position: relative;
+}
+.section {
+    background: #ccc;
+}
+
+.controlArrow{
+    width:20px;
+    height:20px;
+    position:absolute;
+    top:50%;
+    cursor:pointer;
+}
+
+.controlArrow.prev{
+   content:"<";
+   background:#fff;    
+   left:0;
+}
+.controlArrow.next{
+   content :">";    
+   background:#fff;    
+   right:0;
+}
+
+}
