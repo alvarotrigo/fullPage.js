@@ -12,7 +12,7 @@ Let's make of this a great plugin to make the world easier!
 As you can see in the `example.html` file, you will need to include the javascript and css files 
 of the plugin as well as jQuery library and the jQuery UI library in case you want to use easing effects. (active by default)
 
-Incuding files:
+###Incuding files:
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
 
@@ -22,6 +22,27 @@ Incuding files:
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
+###Required HTML structure
+Each section will be defined with a `div` containing the `section` class.
+The active section by default will be the first section, which is taken as the home page.
+```html
+<div class="section active"> WHATEVER</div>
+```
+
+In order to create a landscape slider within a section, each slide will be difined with another `div`:
+```html
+<div class="section active">
+	<div class="slide active"> Slide 1 </div>
+	<div class="slide"> Slide 2 </div>
+	<div class="slide"> Slide 2 </div>
+	<div class="slide"> Slide 4 </div>
+</div>
+````
+The class `active` will be requiered to specify which slide is the one to show in the first place.
+
+You can see an example of the HTML structure in the [`example.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/example.html).
+
+###Initialization 
 Then, you will only need to call the plugin inside `$(document).ready` function:
 
 ```javascript
@@ -31,7 +52,7 @@ $(document).ready(function() {
 ```
 
 ## Options
-- `verticalCentered`: (default `true`) Whether you want to center vertically the content within sections.
+- `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
 - `resize`: (default `true`) Whether you want to resize the text when the window is resized. 
 
@@ -42,13 +63,12 @@ $.fn.fullpage({
     slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
-- `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.(vertical and horizontal)
+- `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical scrolling.
 It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of its transitions.
 
 Other library could be used instead.
-
 
 
 ## License
