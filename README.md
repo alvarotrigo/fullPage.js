@@ -32,11 +32,14 @@ $(document).ready(function() {
 
 ## Options
 ###verticalCentered (default `true`)
+
 Setting `true` or `false` defines whether you want to center vertically the content inside each section or not.
+
 -----
 
 ###resize (default `true`)
 Setting `true` or `false` defines whether you want to resize the text in the website when the window is resized. 
+
 -----
 
 ###slidesColor (default `none`)
@@ -47,10 +50,12 @@ $.fn.fullpage({
     slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
+
 -----
 
 ###scrollingSpeed (default `700`)
 Defines the speed in miliseconds for the scrolling transitions. (both vertical and horizontal)
+
 -----
 
 ###easing (default `easeInQuart`)
@@ -58,6 +63,7 @@ Defines the transition effect to use for the vertical scrolling transitions.
 It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of its transitions.
 
 Other library could be used instead.
+
 -----
 
 
