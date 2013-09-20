@@ -37,7 +37,7 @@ In order to create a landscape slider within a section, each slide will be difin
 <div class="section active">
 	<div class="slide active"> Slide 1 </div>
 	<div class="slide"> Slide 2 </div>
-	<div class="slide"> Slide 2 </div>
+	<div class="slide"> Slide  </div>
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
