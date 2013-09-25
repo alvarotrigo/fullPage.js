@@ -79,7 +79,7 @@
 			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
 			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
 		} else
-			sq.attachEvent("onmousewheel", MouseWheelHandler);
+			sq.attachEvent("onmousewheel", MouseWheelHandler());
 
 		function MouseWheelHandler() {
 			return function(e) {
