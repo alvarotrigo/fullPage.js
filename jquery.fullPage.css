@@ -37,10 +37,6 @@ body, html {
     float: left;
     position: relative;
 }
-.section {
-    background: #ccc;
-}
-
 .controlArrow{
     position:absolute;
     top:50%;
