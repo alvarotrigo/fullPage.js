@@ -47,7 +47,9 @@
 
 			$(this).css('height', windowsHeight + 'px');
 			
-			$(this).css('background-color', options.slidesColor[index]);
+			if(typeof options.slidesColor[index] != 'undefined'){
+				$(this).css('background-color', options.slidesColor[index]);
+			}			
 
 			// if there's any slide
 			if (numSlides > 0) {
@@ -88,8 +90,6 @@
 				var delta = Math.max(-1, Math.min(1,
 						(e.wheelDelta || -e.detail)));
 
-				//console.log(delta);
-
 				if (!isMoving) { //if theres any #
 					//scrolling down?
 					if (delta < 0) {
@@ -109,8 +109,6 @@
 		function moveSlideUp() {
 			var prev = $('.section.active').prev();
 			if (prev.length > 0) {
-				console.log(prev.attr('id'));
-
 				prev.addClass('active').siblings().removeClass('active');
 				scrollPage(prev);
 			}
@@ -119,7 +117,6 @@
 		function moveSlideDown() {
 			var next = $('.section.active').next();
 			if (next.length > 0) {
-				console.log(next.attr('id'));
 				next.addClass('active').siblings().removeClass('active');
 				scrollPage(next);
 			}
