@@ -21,8 +21,7 @@
 			'easing': 'easeInQuart'
 		}, options);
 
-		var isTablet = false;
-
+		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/); 
 
 		var windowsWidtdh = $(window).width();
 		var windowsHeight = $(window).height();
@@ -341,20 +340,6 @@
 				$("body").css("font-size", '100%');
 			}
 		}
-
-		if (!isTablet) {
-			var resizeId;
-
-			//when resizing the site, we adjust the heights of the sections
-			$(window).resize(function() {
-
-				//in order to call the functions only when the resize is finished
-				//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-				clearTimeout(resizeId);
-				resizeId = setTimeout(doneResizing, 500);
-			});
-		}
-
 
 	};
 })(jQuery);
