@@ -134,7 +134,11 @@
 			//more than once if the page is scrolling
 			isMoving = true;
 
-			location.hash = element.data('anchor');
+			if(typeof element.data('anchor') != 'undefined'){
+				location.hash = element.data('anchor');
+			}else{
+				location.hash = '';
+			}
 			
 			dest = $(element).position();
 			dtop = dest != null ? dest.top : null;
@@ -160,6 +164,17 @@
 			}
 		}
 
+		//detecting any change on the URL to scroll to the given anchor link
+		//(a way to detect back history button as we play with the hashes on the URL)
+		$(window).on('hashchange',function(){
+			var value =  window.location.hash.replace('#', '');
+			var element = $('[data-anchor="'+value+'"]');
+			
+			element.addClass('active').siblings().removeClass('active');
+			scrollPage(element);
+		});
+			
+		
 		/**
 		 * Sliding with arrow keys, both, vertical and horizontal
 		 */
