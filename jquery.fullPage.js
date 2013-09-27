@@ -16,6 +16,7 @@
 			"verticalCentered" : true,
 			'resize' : true,
 			'slidesColor' : [],
+			'anchors':[],
 			'scrollingSpeed': 700,
 			'easing': 'easeInQuart'
 		}, options);
@@ -49,7 +50,11 @@
 			
 			if(typeof options.slidesColor[index] != 'undefined'){
 				$(this).css('background-color', options.slidesColor[index]);
-			}			
+			}	
+
+			if(typeof options.anchors[index] != 'undefined'){			
+				$(this).attr('data-anchor', options.anchors[index]);
+			}
 
 			// if there's any slide
 			if (numSlides > 0) {
@@ -66,6 +71,8 @@
 					$(this).css('width', slideWidth + '%');
 				});
 			}
+		}).promise().done(function(){
+			scrollToAnchor();
 		});
 
 		/**
@@ -127,14 +134,30 @@
 			//more than once if the page is scrolling
 			isMoving = true;
 
+			location.hash = element.data('anchor');
+			
 			dest = $(element).position();
 			dtop = dest != null ? dest.top : null;
-
+	
 			$('#superContainer').animate({
 				top : -dtop
 			}, options.scrollingSpeed, options.easing, function() {
 				isMoving = false;
 			});
+		}
+		
+		function scrollToAnchor(){
+			//getting the anchor link in the URL and deleting the `#`
+			var value =  window.location.hash.replace('#', '');
+						
+			if(value){  //if theres any #
+			
+				var element = $('[data-anchor="'+value+'"]');
+				
+				element.addClass('active').siblings().removeClass('active');
+				//updating the array positions...
+				scrollPage(element);
+			}
 		}
 
 		/**
@@ -143,6 +166,7 @@
 		$(document).keydown(function(e) {
 			//Moving the mian page with the keyboard arrows
 			if (!isMoving) {
+			console.log(e.which);
 				switch (e.which) {
 				//up
 				case 38:
@@ -151,7 +175,9 @@
 
 				//down
 				case 40:
+				console.log('going down');
 					moveSlideDown();
+					
 					break;
 
 				//left
