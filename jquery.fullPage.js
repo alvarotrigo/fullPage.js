@@ -181,7 +181,6 @@
 		$(document).keydown(function(e) {
 			//Moving the mian page with the keyboard arrows
 			if (!isMoving) {
-			console.log(e.which);
 				switch (e.which) {
 				//up
 				case 38:
@@ -190,9 +189,7 @@
 
 				//down
 				case 40:
-				console.log('going down');
 					moveSlideDown();
-					
 					break;
 
 				//left
