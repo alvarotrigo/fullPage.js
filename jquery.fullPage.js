@@ -8,7 +8,7 @@
 
 (function($) {
 	$.fn.fullpage = function(options) {
-
+	
 		var that = this;
 
 		// Create some defaults, extending them with any options that were provided
@@ -18,7 +18,12 @@
 			'slidesColor' : [],
 			'anchors':[],
 			'scrollingSpeed': 700,
-			'easing': 'easeInQuart'
+			'easing': 'easeInQuart',
+			'menu': false,
+			'navigation': false,
+			'navigationPosition': 'right',
+			'navigationColor': '#000',
+			'controlArrowColor': '#fff'
 		}, options);
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/); 
@@ -26,6 +31,8 @@
 		var windowsWidtdh = $(window).width();
 		var windowsHeight = $(window).height();
 		var isMoving = false;
+		
+		var lastScrolledDestiny;
 		
 		if (!isTablet) {
 			$('html, body').css({
@@ -41,6 +48,22 @@
 
 		$('body').wrapInner('<div id="superContainer" />');
 
+		
+		//creating the navigation dots 
+		if(options.navigation){
+			$('body').append('<div id="fullPage-nav"><ul></ul></div>');	
+			var nav = $('#fullPage-nav');
+
+			nav.css('color', options.navigationColor);
+	
+	
+			if(options.navigationPosition == 'right'){
+				nav.css('right', '17px');
+			}else{
+				nav.css('left', '17px');
+			}
+		}
+		
 		$('.section').each(function(index) {
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
@@ -54,6 +77,10 @@
 			if(typeof options.anchors[index] != 'undefined'){			
 				$(this).attr('data-anchor', options.anchors[index]);
 			}
+			
+			if(options.navigation){
+				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>')
+			}
 
 			// if there's any slide
 			if (numSlides > 0) {
@@ -65,11 +92,17 @@
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
 				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
+				$('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+				$('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
 
+				
 				slides.each(function() {
 					$(this).css('width', slideWidth + '%');
 				});
 			}
+			
+
+			
 		}).promise().done(function(){
 			scrollToAnchor();
 		});
@@ -99,12 +132,12 @@
 				if (!isMoving) { //if theres any #
 					//scrolling down?
 					if (delta < 0) {
-						moveSlideDown();
+						$.fn.fullpage.moveSlideDown();
 					}
 
 					//scrolling up?
 					else {
-						moveSlideUp();
+						$.fn.fullpage.moveSlideUp();
 					}
 				}
 
@@ -112,22 +145,39 @@
 			}
 		}
 
-		function moveSlideUp() {
-			var prev = $('.section.active').prev();
+		$.fn.fullpage.moveSlideUp = function(){
+			var prev = $('.section.active').prev('.section');
 			if (prev.length > 0) {
 				prev.addClass('active').siblings().removeClass('active');
 				scrollPage(prev);
 			}
 		}
 
-		function moveSlideDown() {
-			var next = $('.section.active').next();
+		$.fn.fullpage.moveSlideDown = function (){
+			var next = $('.section.active').next('.section');
 			if (next.length > 0) {
 				next.addClass('active').siblings().removeClass('active');
 				scrollPage(next);
 			}
 		}
+		
+		$.fn.fullpage.moveToSlide = function (index){
+			var destiny = '';
+			
+			if(isNaN(index)){
+				destiny = $('[data-anchor="'+index+'"]');
+			}else{
+				destiny = $('.section').eq( (index -1) );
+			}
 
+			if (destiny.length > 0) {
+				destiny.addClass('active').siblings().removeClass('active');
+				scrollPage(destiny);
+			}
+		}
+		
+		
+		
 		function scrollPage(element) {
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
@@ -139,7 +189,7 @@
 				location.hash = '';
 			}
 			
-			dest = $(element).position();
+			dest = element.position();
 			dtop = dest != null ? dest.top : null;
 	
 			$('#superContainer').animate({
@@ -147,6 +197,14 @@
 			}, options.scrollingSpeed, options.easing, function() {
 				isMoving = false;
 			});
+			
+			var anchorLink  = element.attr('data-anchor');
+			
+			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
+			lastScrolledDestiny = anchorLink;
+
+			activateMenuElement(anchorLink);
+			activateNavDots(anchorLink);
 		}
 		
 		function scrollToAnchor(){
@@ -167,10 +225,16 @@
 		//(a way to detect back history button as we play with the hashes on the URL)
 		$(window).on('hashchange',function(){
 			var value =  window.location.hash.replace('#', '');
-			var element = $('[data-anchor="'+value+'"]');
 			
-			element.addClass('active').siblings().removeClass('active');
-			scrollPage(element);
+			/*in order to call scrollpage() only once for each destination at a time
+			It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
+			event is fired on every scroll too.*/
+			if(value != lastScrolledDestiny){
+				var element = $('[data-anchor="'+value+'"]');
+				
+				element.addClass('active').siblings().removeClass('active');
+				scrollPage(element);
+			}
 		});
 			
 		
@@ -183,12 +247,12 @@
 				switch (e.which) {
 				//up
 				case 38:
-					moveSlideUp();
+					$.fn.fullpage.moveSlideUp();
 					break;
 
 				//down
 				case 40:
-					moveSlideDown();
+					$.fn.fullpage.moveSlideDown();
 					break;
 
 				//left
@@ -246,10 +310,6 @@
 			}, 500);
 
 			destiny.addClass('active');
-
-			//setting active status for the navigation bars		
-			//setFloatingNavigation($(this).closest('.section'), destiny);
-
 		});
 
 		if (!isTablet) {
@@ -323,7 +383,7 @@
 				});
 			} else {
 				$("img").each(function() {
-					$(this).css("width", '80%');
+					$(this).css("width", '');
 				});
 			}
 
@@ -340,6 +400,31 @@
 				$("body").css("font-size", '100%');
 			}
 		}
+		
+		/**
+		 * Activating the website navigation dots according to the given slide name.
+		 */
+		function activateNavDots(name){
+			if(options.navigation){
+				$('#fullPage-nav').find('.active').removeClass('active');	
+				$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
+			}
+		}
+				
+		/**
+		 * Activating the website main menu elements according to the given slide name.
+		 */
+		function activateMenuElement(name){
+			if(options.menu){
+				$(options.menu).find('.active').removeClass('active');	
+				$(options.menu).find('[data-menuanchor="'+name+'"]').addClass('active');
+			}
+		}
 
 	};
+	
+			
+			
+
+
 })(jQuery);
