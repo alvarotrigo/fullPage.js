@@ -99,6 +99,32 @@ $.fn.fullpage({
 });
 ```
 
+## Methods
+
+### moveSlideUp
+Scrolls one slide up:
+```javascript
+$.fn.fullpage.moveSlideUp();
+```
+
+### moveSlideDown
+Scrolls one slide down:
+```javascript
+$.fn.fullpage.moveSlideDown();
+```
+
+
+### moveSlideTo
+Scrolls the page to the given slide anchor name or to the given index.
+```javascript
+/*Scrolling to the section with the anchor link `firstSlide` */
+$.fn.fullpage.moveToSlide('#firstSlide');
+```
+
+```javascript
+/*Scrolling to the 3rd section in the site*/
+$.fn.fullpage.moveToSlide(3); 
+```
 
 ## License
 
