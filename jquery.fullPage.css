@@ -44,6 +44,7 @@ body, html {
 	width: 0px;
 	height: 0px;
 	border-style: solid;
+	margin-top: -38px;
 }
 
 .controlArrow.prev{
