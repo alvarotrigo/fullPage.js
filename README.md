@@ -1,4 +1,6 @@
 # fullPage.js
+
+![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/imgs/intro.png)
 A simple and easy to use plugin to create fullscreen scrolling websites. (also known as single page websites)
 It allows to create fullscren scrolling websites as well as adding some landscape sliders inside the sections of the site.
 
