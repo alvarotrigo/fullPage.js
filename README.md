@@ -86,10 +86,10 @@ In order to link the elements with the menu with the slides, an HTML 5 data-tag 
 used within the sections. Example:
 ```html
 <ul id="myMenu">
-	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
-	<li data-menuanchor="secondPage" class=""><a href="#secondPage">Second slide</a></li>
-	<li data-menuanchor="3rdPage" class=""><a href="#3rdPage">Third slide</a></li>
-	<li data-menuanchor="4thpage" class=""><a href="#4thpage">Fourth slide</a></li>
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
+    <li data-menuanchor="secondPage" class=""><a href="#secondPage">Second slide</a></li>
+    <li data-menuanchor="3rdPage" class=""><a href="#3rdPage">Third slide</a></li>
+    <li data-menuanchor="4thpage" class=""><a href="#4thpage">Fourth slide</a></li>
 </ul>
 ```
 ```javascript
