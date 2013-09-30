@@ -92,7 +92,6 @@ used within the sections. Example:
 	<li data-menuanchor="4thpage" class=""><a href="#4thpage">Fourth slide</a></li>
 </ul>
 ```
-
 ```javascript
 $.fn.fullpage({
     anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
