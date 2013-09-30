@@ -81,6 +81,29 @@ It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of 
 
 Other library could be used instead.
 
+- `menu`: (default 'false') A selector can be used to specify the menu to link with the slides. This way 
+the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
+This won't generate a menu but just add the `active` class to the given element (the menu) with the corresponding anchor link.
+In order to link the elements with the menu with the slides, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as 
+used within the sections. 
+
+Example:
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="secondPage" class=""><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage" class=""><a href="#3rdPage">Third slide</a></li>
+	<li data-menuanchor="4thpage" class=""><a href="#4thpage">Fourth slide</a></li>
+</ul>
+```
+
+```javascript
+$.fn.fullpage({
+    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+    menu: '#myMenu'
+});
+```
+
 
 ## License
 
