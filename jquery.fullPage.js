@@ -373,6 +373,8 @@
 			var preferredHeight = 825;
 			var windowSize = displayHeight;
 
+			/* Problem to be solved
+			
 			if (displayHeight < 825) {
 				var percentage = (windowSize * 100) / preferredHeight;
 				var newFontSize = percentage.toFixed(2);
@@ -385,7 +387,7 @@
 				$("img").each(function() {
 					$(this).css("width", '');
 				});
-			}
+			}*/
 
 			if (displayHeight < 825 || displayWitdh < 900) {
 				if (displayWitdh < 900) {
