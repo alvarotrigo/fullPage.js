@@ -23,7 +23,9 @@
 			'navigation': false,
 			'navigationPosition': 'right',
 			'navigationColor': '#000',
-			'controlArrowColor': '#fff'
+			'controlArrowColor': '#fff',
+			'loopBottom': false,
+			'loopTop': false
 		}, options);
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/); 
@@ -116,11 +118,12 @@
 		var sq = {};
 		sq = document;
 
-		if (sq.addEventListener) {
+		if (sq.addEventListener){
 			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
 			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
-		} else
+		}else{
 			sq.attachEvent("onmousewheel", MouseWheelHandler());
+		}
 
 		function MouseWheelHandler() {
 			return function(e) {
@@ -147,7 +150,13 @@
 
 		$.fn.fullpage.moveSlideUp = function(){
 			var prev = $('.section.active').prev('.section');
-			if (prev.length > 0) {
+			
+			//looping to the bottom if there's no more sections above
+			if(options.loopTop && !prev.length){
+				prev = $('.section').last();
+			}
+			
+			if (prev.length > 0 || (!prev.length && options.loopTop)){
 				prev.addClass('active').siblings().removeClass('active');
 				scrollPage(prev);
 			}
@@ -155,10 +164,16 @@
 
 		$.fn.fullpage.moveSlideDown = function (){
 			var next = $('.section.active').next('.section');
-			if (next.length > 0) {
+			
+			//looping to the top if there's no more sections below
+			if(options.loopBottom && !next.length){
+				next = $('.section').first();
+			}
+	
+			if (next.length > 0 || (!next.length && options.loopBottom)){
 				next.addClass('active').siblings().removeClass('active');
 				scrollPage(next);
-			}
+			} 
 		}
 		
 		$.fn.fullpage.moveToSlide = function (index){
