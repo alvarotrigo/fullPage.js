@@ -19,7 +19,7 @@ Working under all modern browsers as well as old ones such as IE8, Opera 12...
 As you can see in the `example.html` file, you will need to include the javascript file `jquery.fullPage.js` and the css file `jquery.fullPage.css` 
 of the plugin as well as [jQuery library](http://jquery.com/) (and the [jQuery UI library](http://jqueryui.com/) in case you want to use easing effects. (active by default))
 
-###Incuding files:
+###Including files:
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
 
