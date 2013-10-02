@@ -79,6 +79,10 @@ $.fn.fullpage({
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical scrolling.
 It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of its transitions. Other library could be used instead.
 
+- `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
+
+- `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
+
 - `menu`: (default 'false') A selector can be used to specify the menu to link with the slides. This way 
 the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but just add the `active` class to the given element (the menu) with the corresponding anchor link.
