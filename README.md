@@ -33,7 +33,7 @@ of the plugin as well as [jQuery library](http://jquery.com/) (and the [jQuery U
 Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 ```html
-<div class="section active"> WHATEVER</div>
+<div class="section"> WHATEVER</div>
 <div class="section">WHATEVER</div>
 <div class="section">WHATEVER</div>
 <div class="section">WHATEVER</div>
@@ -41,15 +41,13 @@ The active section by default will be the first section, which is taken as the h
 
 In order to create a landscape slider within a section, each slide will be difined with another `div`:
 ```html
-<div class="section active">
-	<div class="slide active"> Slide 1 </div>
+<div class="section">
+	<div class="slide"> Slide 1 </div>
 	<div class="slide"> Slide 2 </div>
 	<div class="slide"> Slide  </div>
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
-The class `active` will be requiered to specify which slide is the one to show in the first place.
-
 You can see a full example of the HTML structure in the [`example.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/example.html).
 
 ###Initialization 
@@ -85,15 +83,15 @@ It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of 
 
 - `menu`: (default 'false') A selector can be used to specify the menu to link with the slides. This way 
 the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
-This won't generate a menu but just add the `active` class to the given element (the menu) with the corresponding anchor link.
-In order to link the elements with the menu with the slides, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as 
+This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor link.
+In order to link the elements of the menu with the slides, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as 
 used within the sections. Example:
 ```html
 <ul id="myMenu">
-    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
-    <li data-menuanchor="secondPage" class=""><a href="#secondPage">Second slide</a></li>
-    <li data-menuanchor="3rdPage" class=""><a href="#3rdPage">Third slide</a></li>
-    <li data-menuanchor="4thpage" class=""><a href="#4thpage">Fourth slide</a></li>
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third section</a></li>
+    <li data-menuanchor="4thpage"><a href="#4thpage">Fourth section</a></li>
 </ul>
 ```
 ```javascript
