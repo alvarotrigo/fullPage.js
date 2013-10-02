@@ -69,6 +69,10 @@
 		$('.section').each(function(index) {
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
+			
+			if(!index){
+				$(this).addClass('active');
+			}
 
 			$(this).css('height', windowsHeight + 'px');
 			
@@ -98,7 +102,11 @@
 				$('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
 
 				
-				slides.each(function() {
+				slides.each(function(index) {
+					if(!index){
+						$(this).addClass('active');
+					}
+					
 					$(this).css('width', slideWidth + '%');
 				});
 			}
