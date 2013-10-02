@@ -210,7 +210,9 @@
 			$('#superContainer').animate({
 				top : -dtop
 			}, options.scrollingSpeed, options.easing, function() {
-				isMoving = false;
+				setTimeout(function(){
+					isMoving = false;	
+				}, 700);
 			});
 			
 			var anchorLink  = element.attr('data-anchor');
