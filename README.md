@@ -81,6 +81,9 @@ It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of 
 
 - `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
 
+- `touchScrolling`: (default `true`) Defines whether to use the touch scrolling on touch devices or the normal scroll. It also
+has influence on the way the sections fit the browser/device window.
+
 - `menu`: (default 'false') A selector can be used to specify the menu to link with the slides. This way 
 the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor link.
