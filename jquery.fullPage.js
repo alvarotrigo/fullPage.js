@@ -272,11 +272,13 @@
 				switch (e.which) {
 				//up
 				case 38:
+				case 33:
 					$.fn.fullpage.moveSlideUp();
 					break;
 
 				//down
 				case 40:
+				case 34:
 					$.fn.fullpage.moveSlideDown();
 					break;
 
