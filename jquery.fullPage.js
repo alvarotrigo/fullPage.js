@@ -25,7 +25,8 @@
 			'navigationColor': '#000',
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
-			'loopTop': false
+			'loopTop': false,
+			'touchScrolling': true
 		}, options);
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/); 
@@ -36,7 +37,7 @@
 		
 		var lastScrolledDestiny;
 		
-		if (!isTablet) {
+		if(!isTablet || options.touchScrolling){
 			$('html, body').css({
 				'overflow' : 'hidden',
 				'height' : '100%'
@@ -66,7 +67,7 @@
 			}
 		}
 		
-		$('.section').each(function(index) {
+		$('.section').each(function(index){
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
 			
@@ -116,6 +117,41 @@
 		}).promise().done(function(){
 			scrollToAnchor();
 		});
+		
+		
+		if(options.touchScrolling){
+			var touchStartY = 0;
+			var touchEndY = 0;
+		
+			/* Detecting touch events 
+			
+			* As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
+			* This way, the touchstart and the touch moves shows an small difference between them which is the
+			* used one to determine the direction.
+			*/
+			document.addEventListener('touchmove', function(e){
+				//preventing the easing on iOS devices
+				e.preventDefault();
+
+				if (!isMoving) { //if theres any #
+					touchEndY  = e.touches[0].pageY;
+					touchEndX  = e.touches[0].pageX;
+					if(touchStartY > touchEndY){
+						// moved down
+						$.fn.fullpage.moveSlideDown();
+				     }else{
+				        // moved up
+						$.fn.fullpage.moveSlideUp();
+				     }
+				}
+		   
+			});
+			
+			document.addEventListener('touchstart', function(e){
+			     touchStartY = e.touches[0].pageY;
+			});
+		}
+
 
 		/**
 		 * Detecting mousewheel scrolling
@@ -364,7 +400,7 @@
 				resizeMe(windowsHeight, windowsWidtdh);
 			}
 			
-			$('.section').each(function() {
+			$('.section').each(function(){
 				$(this).css('height', windowsHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
@@ -381,11 +417,11 @@
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
 			
-			if (!isTablet) {
+			if (!isTablet || options.touchScrolling){
 				$('#superContainer').animate({
 					top : -destinyPos.top
 				}, options.scrollingSpeed, options.easing);
-			} else {
+			}else{
 				$('html, body').animate({
 					scrollTop : destinyPos.top
 				}, options.scrollingSpeed, options.easing);
