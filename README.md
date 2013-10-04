@@ -131,6 +131,39 @@ $.fn.fullpage.moveToSlide('#firstSlide');
 $.fn.fullpage.moveToSlide(3); 
 ```
 
+## Callbacks
+**afterLoad** (`anchorLink`, `index`)
+Callback fired once the sections has been loaded, once the scrolling has ended. 
+Parameters:
+
+- `anchorLink`: anchorLink corresponding to the section.
+- `index`: index of the section. Starting from 1.
+
+In case of not having anchorLinks defined in the plugin the `index` parameter would be the only one to use.
+
+Example:
+
+```javascript
+$(document).ready(function() {
+			$.fn.fullpage({
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+			
+				afterLoad: function(anchorLink, index){
+					//using index
+					if(index == '3'){
+						alert("Section 3 ended loading");
+					}
+					
+					//using anchorLink
+					if(anchorLink == 'secondSlide'){
+						alert("Section 2 ended loading");
+					}
+				}
+			});
+
+```
+
+
 ## License
 
 (The MIT License)
