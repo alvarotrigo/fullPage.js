@@ -393,6 +393,10 @@
 				resizeId = setTimeout(doneResizing, 500);
 			});
 		}
+		
+		$(window).bind('orientationchange', function(event) {
+		  doneResizing();
+		});
 
 		/**
 		 * When resizing is finished, we adjust the slides sizes and positions
@@ -405,7 +409,7 @@
 			if (options.resize) {
 				resizeMe(windowsHeight, windowsWidtdh);
 			}
-			
+
 			$('.section').each(function(){
 				$(this).css('height', windowsHeight + 'px');
 
@@ -422,16 +426,10 @@
 
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
-			
-			if (!isTablet || options.touchScrolling){
-				$('#superContainer').animate({
-					top : -destinyPos.top
-				}, options.scrollingSpeed, options.easing);
-			}else{
-				$('html, body').animate({
-					scrollTop : destinyPos.top
-				}, options.scrollingSpeed, options.easing);
-			}
+
+			$('#superContainer').animate({
+				top : -destinyPos.top
+			}, options.scrollingSpeed, options.easing);
 		}
 
 		/**
