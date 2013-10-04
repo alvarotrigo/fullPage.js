@@ -26,7 +26,10 @@
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
-			'touchScrolling': true
+			'touchScrolling': true,
+			
+			//events
+			'afterLoad': null
 		}, options);
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/); 
@@ -254,6 +257,9 @@
 			$('#superContainer').animate({
 				top : -dtop
 			}, options.scrollingSpeed, options.easing, function() {
+				//callback
+				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
+				
 				setTimeout(function(){
 					isMoving = false;	
 				}, 700);
