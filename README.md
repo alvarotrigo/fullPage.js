@@ -144,23 +144,21 @@ In case of not having anchorLinks defined in the plugin the `index` parameter wo
 Example:
 
 ```javascript
-$(document).ready(function() {
-			$.fn.fullpage({
-				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+	$.fn.fullpage({
+		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+	
+		afterLoad: function(anchorLink, index){
+			//using index
+			if(index == '3'){
+				alert("Section 3 ended loading");
+			}
 			
-				afterLoad: function(anchorLink, index){
-					//using index
-					if(index == '3'){
-						alert("Section 3 ended loading");
-					}
-					
-					//using anchorLink
-					if(anchorLink == 'secondSlide'){
-						alert("Section 2 ended loading");
-					}
-				}
-			});
-
+			//using anchorLink
+			if(anchorLink == 'secondSlide'){
+				alert("Section 2 ended loading");
+			}
+		}
+	});
 ```
 
 
