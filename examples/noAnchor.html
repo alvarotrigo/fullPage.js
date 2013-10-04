@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<title>No Anchor Links - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage.js with no anchor links." />
+	<meta name="keywords"  content="fullpage,jquery,anchor,links,inside,demo" />
+	<meta name="Resource-type" content="Document" />
+
+	
+	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="demoPage.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+		
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
+	
+	<script type="text/javascript" src="../jquery.fullPage.js"></script>
+	<script type="text/javascript" src="examples.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var pepe = $.fn.fullpage({
+				slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+
+<select id="demosMenu">
+  <option id="background" selected>Choose Demo</option>
+  <option id="background">Background Images</option>
+  <option id="looping">Looping</option>
+  <option id="noAnchor">No anchor links</option>
+  <option id="scrollingSpeed">Scrolling speed</option>
+  <option id="easing">Easing</option>
+  <option id="callbacks">Callbacks</option>
+</select>
+
+
+<div class="section " id="section0">
+	<h1>fullPage.js</h1>
+	<p>No Anchor Links (#)</p>
+	<img src="imgs/fullPage.png" alt="fullPage" />
+</div>
+<div class="section" id="section1">
+	<div class="intro">
+		<h1>More Simple yet</h1>
+		<p>Sections won't contain anchor links. It's more simple to configure but a bit more restrictive.</p>
+	</div>
+	</div>
+</div>
+<div class="section" id="section2">
+	<div class="intro">
+		<h1>URL without /#</h1>
+		<p>But back button won't work!</p>
+	</div>
+</div>
+
+
+</body>
+</html>

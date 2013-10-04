@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<title>FullScrren Backgrounds - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage full-screen backgrounds." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+	<meta name="Resource-type" content="Document" />
+
+	
+	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="backgrounds.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+		
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
+	
+	<script type="text/javascript" src="../jquery.fullPage.js"></script>
+	<script type="text/javascript" src="examples.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.fn.fullpage({
+				'verticalCentered': false
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+<select id="demosMenu">
+  <option id="background" selected>Choose Demo</option>
+  <option id="background">Background Images</option>
+  <option id="looping">Looping</option>
+  <option id="noAnchor">No anchor links</option>
+  <option id="scrollingSpeed">Scrolling speed</option>
+  <option id="easing">Easing</option>
+  <option id="callbacks">Callbacks</option>
+</select>
+
+<div class="section " id="section0"><h1>fullPage.js</h1></div>
+<div class="section" id="section1">
+    <div class="slide" id="slide1"><h1>Slide Backgrounds</h1></div>
+    <div class="slide" id="slide2"><h1>Totally customizable</h1></div>
+</div>
+<div class="section" id="section2"><h1>Lovely images <br />for a lovely page</h1></div>
+<div class="section" id="section3"><h1>One Image = One thousand words</h1></div>
+
+
+</body>
+</html>

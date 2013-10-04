@@ -1,0 +1,33 @@
+.wrap{
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	position: relative;
+}
+h1{
+	font-size: 5em;	
+	font-family: arial,helvetica;
+}
+.section{
+	text-align:center;
+}
+ul li{
+	display:inline-block;
+	padding: 20px;
+	color: #ccc;
+}
+ul li.active{
+   color: #000;
+}
+ul{
+	position:fixed;
+	top:0;
+	left:0;
+	height: 40px;
+	background: #fff;
+	z-index: 9999;
+	width: 100%;
+	padding: 0;
+	margin:0;
+}
+	
