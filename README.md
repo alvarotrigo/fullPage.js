@@ -33,7 +33,7 @@ of the plugin as well as [jQuery library](http://jquery.com/) (and the [jQuery U
 Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 ```html
-<div class="section"> WHATEVER</div>
+<div class="section">WHATEVER</div>
 <div class="section">WHATEVER</div>
 <div class="section">WHATEVER</div>
 <div class="section">WHATEVER</div>
@@ -44,7 +44,7 @@ In order to create a landscape slider within a section, each slide will be difin
 <div class="section">
 	<div class="slide"> Slide 1 </div>
 	<div class="slide"> Slide 2 </div>
-	<div class="slide"> Slide  </div>
+	<div class="slide"> Slide 3 </div>
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
@@ -93,13 +93,13 @@ used within the sections. Example:
 <ul id="myMenu">
     <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
     <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third section</a></li>
-    <li data-menuanchor="4thpage"><a href="#4thpage">Fourth section</a></li>
+    <li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+    <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
 </ul>
 ```
 ```javascript
 $.fn.fullpage({
-    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
     menu: '#myMenu'
 });
 ```
@@ -145,7 +145,7 @@ Example:
 
 ```javascript
 	$.fn.fullpage({
-		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	
 		afterLoad: function(anchorLink, index){
 			//using index
