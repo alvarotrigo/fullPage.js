@@ -122,7 +122,7 @@
 		});
 		
 		
-		if(options.touchScrolling){
+		if(options.touchScrolling && isTablet){
 			var touchStartY = 0;
 			var touchEndY = 0;
 		
