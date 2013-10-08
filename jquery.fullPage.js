@@ -8,9 +8,6 @@
 
 (function($) {
 	$.fn.fullpage = function(options) {
-		//TODO is not use
-		// var that = this;
-
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
 			"verticalCentered" : true,
@@ -32,13 +29,11 @@
 			'afterLoad': null
 		}, options);
 
-		//click flag
+		//flag to avoid very fast sliding for landscape sliders
 		var slideLapse = true;
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 
-		//TODO is not use
-		// var windowsWidtdh = $(window).width();
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		
@@ -52,8 +47,7 @@
 		}
 		
 		if(options.verticalCentered){
-			$('.section').addClass('table');
-			$('.section').wrapInner('<div class="tableCell" />');
+			$('.section').addClass('table').wrapInner('<div class="tableCell" />');
 		}
 
 		$('body').wrapInner('<div id="superContainer" />');
@@ -94,6 +88,7 @@
 			if (options.navigation) {
 				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
 			}
+			
 
 			// if there's any slide
 			if (numSlides > 0) {
@@ -345,7 +340,7 @@
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
 		$('.section').on('click', '.controlArrow', function() {
-			// click flag
+			//not that fast my friend! :)
 			if (!slideLapse) {
 				return;
 			}
@@ -384,7 +379,8 @@
 			slidesContainer.animate({
 				scrollLeft : destinyPos.left
 			}, 500, function() {
-				slideLapse = true;
+				//letting them slide again
+				slideLapse = true; 
 			});
 
 			destiny.addClass('active');
