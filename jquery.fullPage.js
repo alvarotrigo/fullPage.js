@@ -346,10 +346,10 @@
 		 */
 		$('.section').on('click', '.controlArrow', function() {
 			// click flag
-			if (options.flag === false) {
+			if (!slideLapse) {
 				return;
 			}
-			options.flag = false;
+			slideLapse = false;
 
 			var slides = $(this).closest('.section').find('.slides');
 			var slidesContainer = slides.find('.slidesContainer').parent();
