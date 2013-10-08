@@ -8,11 +8,11 @@
 
 (function($) {
 	$.fn.fullpage = function(options) {
-	
-		var that = this;
+		//TODO is not use
+		// var that = this;
 
 		// Create some defaults, extending them with any options that were provided
-		var options = $.extend({
+		options = $.extend({
 			"verticalCentered" : true,
 			'resize' : true,
 			'slidesColor' : [],
@@ -27,14 +27,17 @@
 			'loopBottom': false,
 			'loopTop': false,
 			'touchScrolling': true,
-			
+
 			//events
-			'afterLoad': null
+			'afterLoad': null,
+			//flag
+			'flag': true
 		}, options);
 
-		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/); 
+		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 
-		var windowsWidtdh = $(window).width();
+		//TODO is not use
+		// var windowsWidtdh = $(window).width();
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		
@@ -54,18 +57,17 @@
 
 		$('body').wrapInner('<div id="superContainer" />');
 
-		
 		//creating the navigation dots 
-		if(options.navigation){
-			$('body').append('<div id="fullPage-nav"><ul></ul></div>');	
+		if (options.navigation) {
+			$('body').append('<div id="fullPage-nav"><ul></ul></div>');
 			var nav = $('#fullPage-nav');
 
 			nav.css('color', options.navigationColor);
-	
-	
-			if(options.navigationPosition == 'right'){
+
+
+			if (options.navigationPosition === 'right') {
 				nav.css('right', '17px');
-			}else{
+			} else {
 				nav.css('left', '17px');
 			}
 		}
@@ -80,16 +82,16 @@
 
 			$(this).css('height', windowsHeight + 'px');
 			
-			if(typeof options.slidesColor[index] != 'undefined'){
+			if (typeof options.slidesColor[index] !==  'undefined') {
 				$(this).css('background-color', options.slidesColor[index]);
-			}	
+			}
 
-			if(typeof options.anchors[index] != 'undefined'){			
+			if (typeof options.anchors[index] !== 'undefined') {
 				$(this).attr('data-anchor', options.anchors[index]);
 			}
 			
-			if(options.navigation){
-				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>')
+			if (options.navigation) {
+				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
 			}
 
 			// if there's any slide
@@ -125,6 +127,7 @@
 		if(options.touchScrolling && isTablet){
 			var touchStartY = 0;
 			var touchEndY = 0;
+			var touchEndX = 0;
 		
 			/* Detecting touch events 
 			
@@ -137,21 +140,20 @@
 				e.preventDefault();
 
 				if (!isMoving) { //if theres any #
-					touchEndY  = e.touches[0].pageY;
-					touchEndX  = e.touches[0].pageX;
+					touchEndY = e.touches[0].pageY;
+					touchEndX = e.touches[0].pageX;
 					if(touchStartY > touchEndY){
 						// moved down
 						$.fn.fullpage.moveSlideDown();
-				     }else{
-				        // moved up
+					} else {
+						// moved up
 						$.fn.fullpage.moveSlideUp();
-				     }
+					}
 				}
-		   
 			});
 			
 			document.addEventListener('touchstart', function(e){
-			     touchStartY = e.touches[0].pageY;
+				touchStartY = e.touches[0].pageY;
 			});
 		}
 
@@ -165,17 +167,10 @@
 		var sq = {};
 		sq = document;
 
-		if (sq.addEventListener){
-			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
-			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
-		}else{
-			sq.attachEvent("onmousewheel", MouseWheelHandler());
-		}
-
 		function MouseWheelHandler() {
 			return function(e) {
 				// cross-browser wheel delta
-				var e = window.event || e;
+				e = window.event || e;
 				var delta = Math.max(-1, Math.min(1,
 						(e.wheelDelta || -e.detail)));
 
@@ -192,7 +187,14 @@
 				}
 
 				return false;
-			}
+			};
+		}
+
+		if (sq.addEventListener) {
+			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
+			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
+		} else {
+			sq.attachEvent("onmousewheel", MouseWheelHandler());
 		}
 
 		$.fn.fullpage.moveSlideUp = function(){
@@ -202,12 +204,12 @@
 			if(options.loopTop && !prev.length){
 				prev = $('.section').last();
 			}
-			
+
 			if (prev.length > 0 || (!prev.length && options.loopTop)){
 				prev.addClass('active').siblings().removeClass('active');
 				scrollPage(prev);
 			}
-		}
+		};
 
 		$.fn.fullpage.moveSlideDown = function (){
 			var next = $('.section.active').next('.section');
@@ -220,8 +222,8 @@
 			if (next.length > 0 || (!next.length && options.loopBottom)){
 				next.addClass('active').siblings().removeClass('active');
 				scrollPage(next);
-			} 
-		}
+			}
+		};
 		
 		$.fn.fullpage.moveToSlide = function (index){
 			var destiny = '';
@@ -236,23 +238,21 @@
 				destiny.addClass('active').siblings().removeClass('active');
 				scrollPage(destiny);
 			}
-		}
-		
-		
-		
+		};
+
 		function scrollPage(element) {
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
 			isMoving = true;
 
-			if(typeof element.data('anchor') != 'undefined'){
+			if(typeof element.data('anchor') !== 'undefined'){
 				location.hash = element.data('anchor');
 			}else{
 				location.hash = '';
 			}
 			
-			dest = element.position();
-			dtop = dest != null ? dest.top : null;
+			var dest = element.position();
+			var dtop = dest !== null ? dest.top : null;
 	
 			$('#superContainer').animate({
 				top : -dtop
@@ -261,10 +261,10 @@
 				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
 				
 				setTimeout(function(){
-					isMoving = false;	
+					isMoving = false;
 				}, 700);
 			});
-			
+
 			var anchorLink  = element.attr('data-anchor');
 			
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
@@ -292,13 +292,13 @@
 		//(a way to detect back history button as we play with the hashes on the URL)
 		$(window).on('hashchange',function(){
 			var value =  window.location.hash.replace('#', '');
-			
+
 			/*in order to call scrollpage() only once for each destination at a time
 			It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 			event is fired on every scroll too.*/
-			if(value != lastScrolledDestiny){
+			if (value !== lastScrolledDestiny) {
 				var element = $('[data-anchor="'+value+'"]');
-				
+
 				element.addClass('active').siblings().removeClass('active');
 				scrollPage(element);
 			}
@@ -344,6 +344,12 @@
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
 		$('.section').on('click', '.controlArrow', function() {
+			// click flag
+			if (options.flag === false) {
+				return;
+			}
+			options.flag = false;
+
 			var slides = $(this).closest('.section').find('.slides');
 			var slidesContainer = slides.find('.slidesContainer').parent();
 			var currentSlide = slides.find('.slide.active');
@@ -376,7 +382,12 @@
 
 			slidesContainer.animate({
 				scrollLeft : destinyPos.left
-			}, 500);
+			}, {
+				duration: 500,
+				complete: function() {
+					options.flag = true;
+				}
+			});
 
 			destiny.addClass('active');
 		});
@@ -386,7 +397,6 @@
 
 			//when resizing the site, we adjust the heights of the sections
 			$(window).resize(function() {
-
 				//in order to call the functions only when the resize is finished
 				//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 				clearTimeout(resizeId);
@@ -394,8 +404,8 @@
 			});
 		}
 		
-		$(window).bind('orientationchange', function(event) {
-		  doneResizing();
+		$(window).bind('orientationchange', function() {
+			doneResizing();
 		});
 
 		/**
@@ -461,7 +471,7 @@
 					windowSize = displayWitdh;
 					preferredHeight = 900;
 				}
-				var percentage = (windowSize * 100) / preferredHeight
+				var percentage = (windowSize * 100) / preferredHeight;
 				var newFontSize = percentage.toFixed(2);
 
 				$("body").css("font-size", newFontSize + '%');
@@ -475,7 +485,7 @@
 		 */
 		function activateNavDots(name){
 			if(options.navigation){
-				$('#fullPage-nav').find('.active').removeClass('active');	
+				$('#fullPage-nav').find('.active').removeClass('active');
 				$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
 			}
 		}
@@ -485,15 +495,9 @@
 		 */
 		function activateMenuElement(name){
 			if(options.menu){
-				$(options.menu).find('.active').removeClass('active');	
+				$(options.menu).find('.active').removeClass('active');
 				$(options.menu).find('[data-menuanchor="'+name+'"]').addClass('active');
 			}
 		}
-
 	};
-	
-			
-			
-
-
 })(jQuery);
