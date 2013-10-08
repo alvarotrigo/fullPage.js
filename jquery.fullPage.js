@@ -29,10 +29,11 @@
 			'touchScrolling': true,
 
 			//events
-			'afterLoad': null,
-			//flag
-			'flag': true
+			'afterLoad': null
 		}, options);
+
+		//click flag
+		var slideLapse = true;
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 
@@ -345,10 +346,10 @@
 		 */
 		$('.section').on('click', '.controlArrow', function() {
 			// click flag
-			if (options.flag === false) {
+			if (!slideLapse) {
 				return;
 			}
-			options.flag = false;
+			slideLapse = false;
 
 			var slides = $(this).closest('.section').find('.slides');
 			var slidesContainer = slides.find('.slidesContainer').parent();
@@ -382,11 +383,8 @@
 
 			slidesContainer.animate({
 				scrollLeft : destinyPos.left
-			}, {
-				duration: 500,
-				complete: function() {
-					options.flag = true;
-				}
+			}, 500, function() {
+				slideLapse = true;
 			});
 
 			destiny.addClass('active');
