@@ -30,8 +30,8 @@
 
 			//events
 			'afterLoad': null,
-			//flag
-			'flag': true
+			//click flag
+			'slideLapse': true
 		}, options);
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
@@ -382,11 +382,8 @@
 
 			slidesContainer.animate({
 				scrollLeft : destinyPos.left
-			}, {
-				duration: 500,
-				complete: function() {
-					options.flag = true;
-				}
+			}, 500, function() {
+				options.slideLapse = true;
 			});
 
 			destiny.addClass('active');
