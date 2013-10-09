@@ -24,11 +24,13 @@
 			'loopBottom': false,
 			'loopTop': false,
 			'touchScrolling': true,
+			'scrollOverflow': true,
 
 			//events
 			'afterLoad': null
-		}, options);
-
+		}, options);		
+		
+			
 		//flag to avoid very fast sliding for landscape sliders
 		var slideLapse = true;
 
@@ -89,7 +91,6 @@
 				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
 			}
 			
-
 			// if there's any slide
 			if (numSlides > 0) {
 				var sliderWidth = numSlides * 100;
@@ -116,9 +117,30 @@
 
 			
 		}).promise().done(function(){
+			if(options.scrollOverflow){
+				loadSlimScroll(function(){
+					$('.section').each(function(){
+						if($(this).height() > windowsHeight){
+							if(options.verticalCentered){
+								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
+							}else{
+								$(this).wrapInner('<div class="scrollable" />');
+							}
+						
+							$(this).find('.scrollable').slimScroll({
+								height: windowsHeight + 'px',
+								size: '10px',
+								alwaysVisible: true
+							});
+						}
+					});
+				});
+			}
+			
 			scrollToAnchor();
 		});
 		
+
 		
 		if(options.touchScrolling && isTablet){
 			var touchStartY = 0;
@@ -136,14 +158,36 @@
 				e.preventDefault();
 
 				if (!isMoving) { //if theres any #
+					var scrollable = $('.section.active').find('.scrollable');
+				
 					touchEndY = e.touches[0].pageY;
 					touchEndX = e.touches[0].pageX;
 					if(touchStartY > touchEndY){
-						// moved down
-						$.fn.fullpage.moveSlideDown();
+						if(scrollable.length > 0 ){
+							//is the scrollbar at the end of the scroll?
+							if(isScrolled('bottom', scrollable)){
+								$.fn.fullpage.moveSlideDown();
+							}else{
+								return true;
+							}
+						}else{
+							// moved down
+							$.fn.fullpage.moveSlideDown();
+						}
 					} else {
-						// moved up
-						$.fn.fullpage.moveSlideUp();
+					
+						if(scrollable.length > 0){
+							//is the scrollbar at the start of the scroll?
+							if(isScrolled('top', scrollable)){
+								$.fn.fullpage.moveSlideUp();
+							}
+							else{
+								return true;
+							}
+						}else{
+							// moved up
+							$.fn.fullpage.moveSlideUp();
+						}
 					}
 				}
 			});
@@ -171,14 +215,34 @@
 						(e.wheelDelta || -e.detail)));
 
 				if (!isMoving) { //if theres any #
+					var scrollable = $('.section.active').find('.scrollable');
+				
 					//scrolling down?
 					if (delta < 0) {
-						$.fn.fullpage.moveSlideDown();
+						if(scrollable.length > 0 ){
+							//is the scrollbar at the end of the scroll?
+							if(isScrolled('bottom', scrollable)){
+								$.fn.fullpage.moveSlideDown();
+							}else{
+								return true; //normal scroll
+							}
+						}else{
+							$.fn.fullpage.moveSlideDown();
+						}
 					}
 
 					//scrolling up?
 					else {
-						$.fn.fullpage.moveSlideUp();
+						if(scrollable.length > 0){
+							//is the scrollbar at the start of the scroll?
+							if(isScrolled('top', scrollable)){
+								$.fn.fullpage.moveSlideUp();
+							}else{
+								return true; //normal scroll
+							}
+						}else{
+							$.fn.fullpage.moveSlideUp();
+						}
 					}
 				}
 
@@ -408,6 +472,13 @@
 		function doneResizing() {
 			var windowsWidtdh = $(window).width();
 			var windowsHeight = $(window).height();
+			
+			//resizing the scrolling divs
+			if(options.scrollOverflow){
+				$('.section').each(function(){
+					$(this).find('.scrollable').css('height', windowsHeight + 'px').parent().css('height', windowsHeight + 'px');
+				});
+			}
 
 			//text and images resizing
 			if (options.resize) {
@@ -493,5 +564,37 @@
 				$(options.menu).find('[data-menuanchor="'+name+'"]').addClass('active');
 			}
 		}
+		
+		/**
+		* Return a boolean depending on whether the scrollable element is at the end or at the start of the scrolling
+		* depending on the given type.
+		*/
+		function isScrolled(type, scrollable){
+			if(type === 'top'){
+				return !scrollable.scrollTop();
+			}else if(type === 'bottom'){
+				return scrollable.scrollTop() + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+			}
+		}
+		
+				/**
+		* Loading dynamiaclly the slimscroll.js plugin used for the scrolling bar.
+		* $.getScript didn't work well on local. This way it does.
+		*/
+		function loadSlimScroll(callback){
+			if (typeof callback !== 'function') {
+			   throw 'Not a valid callback';  
+			}
+	
+			var head = document.getElementsByTagName("head")[0];  
+			var script =document.createElement('script');   
+			script.onload = callback; //callback to execute it only after loading
+			script.id = 'uploadScript';  
+			script.type = 'text/javascript';  
+			script.src = 'vendors/jquery.slimscroll.min.js';   
+			head.appendChild(script);
+		}
+			
+		
 	};
 })(jQuery);

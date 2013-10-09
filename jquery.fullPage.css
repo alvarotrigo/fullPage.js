@@ -5,6 +5,7 @@ body, html {
 #superContainer {
     height:100%;
     position:relative;
+	
 }
 .section{
     position: relative;
@@ -57,4 +58,7 @@ body, html {
 	right:15px;
 	border-width: 38.5px 0 38.5px 34px;
 	border-color: transparent transparent transparent #fff;
+}
+.scrollable{
+	overflow:scroll;
 }
