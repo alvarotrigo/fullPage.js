@@ -28,27 +28,36 @@
 
 			//events
 			'afterLoad': null
-		}, options);		
-		
+		}, options);
+
+		/* This event is triggered when the #url of the slide/section is 
+		not present in the DOM */
+		var HashNotFound = {
+			type: "HashNotFound",
+			message: "FullPage.js: Specifed resource (" + window.location.hash + 
+				") not found",
+			time: new Date()
+		}
 			
 		//flag to avoid very fast sliding for landscape sliders
 		var slideLapse = true;
 
-		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+		var isTablet = navigator.userAgent
+															.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		
 		var lastScrolledDestiny;
 		
-		if(!isTablet || options.touchScrolling){
+		if(!isTablet || options.touchScrolling) {
 			$('html, body').css({
 				'overflow' : 'hidden',
 				'height' : '100%'
 			});
 		}
 		
-		if(options.verticalCentered){
+		if(options.verticalCentered) {
 			$('.section').addClass('table').wrapInner('<div class="tableCell" />');
 		}
 
@@ -69,11 +78,11 @@
 			}
 		}
 		
-		$('.section').each(function(index){
+		$('.section').each(function(index) {
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
 			
-			if(!index){
+			if(!index) {
 				$(this).addClass('active');
 			}
 
@@ -88,7 +97,8 @@
 			}
 			
 			if (options.navigation) {
-				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
+				$('#fullPage-nav').find('ul').append('<li><a href="#' + 
+						options.anchors[index] + '"><span></span></a></li>');
 			}
 			
 			// if there's any slide
@@ -100,33 +110,34 @@
 				slides.parent().wrap('<div class="slides" />');
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
-				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
-				$('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
-				$('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+
+				$(this).find('.slides').after('<div class="controlArrow prev"></div>'
+						+ '<div class="controlArrow next"></div>');
+
+				$('.controlArrow.next').css('border-color', 
+						'transparent transparent transparent '+ options.controlArrowColor);
+
+				$('.controlArrow.prev').css('border-color', 'transparent ' + 
+					options.controlArrowColor + ' transparent transparent');
 
 				
 				slides.each(function(index) {
-					if(!index){
+					if(!index) {
 						$(this).addClass('active');
 					}
-					
 					$(this).css('width', slideWidth + '%');
 				});
 			}
-			
-
-			
-		}).promise().done(function(){
-			if(options.scrollOverflow){
-				loadSlimScroll(function(){
-					$('.section').each(function(){
-						if($(this).height() > windowsHeight){
-							if(options.verticalCentered){
+		}).promise().done(function() {
+			if(options.scrollOverflow) {
+				loadSlimScroll(function() {
+					$('.section').each(function() {
+						if($(this).height() > windowsHeight) {
+							if(options.verticalCentered) {
 								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
-							}else{
+							} else {
 								$(this).wrapInner('<div class="scrollable" />');
 							}
-						
 							$(this).find('.scrollable').slimScroll({
 								height: windowsHeight + 'px',
 								size: '10px',
@@ -136,13 +147,12 @@
 					});
 				});
 			}
-			
 			scrollToAnchor();
 		});
 		
 
 		
-		if(options.touchScrolling && isTablet){
+		if(options.touchScrolling && isTablet) {
 			var touchStartY = 0;
 			var touchEndY = 0;
 			var touchEndX = 0;
@@ -153,7 +163,7 @@
 			* This way, the touchstart and the touch moves shows an small difference between them which is the
 			* used one to determine the direction.
 			*/
-			document.addEventListener('touchmove', function(e){
+			document.addEventListener('touchmove', function(e) {
 				//preventing the easing on iOS devices
 				e.preventDefault();
 
@@ -162,10 +172,10 @@
 				
 					touchEndY = e.touches[0].pageY;
 					touchEndX = e.touches[0].pageX;
-					if(touchStartY > touchEndY){
-						if(scrollable.length > 0 ){
+					if(touchStartY > touchEndY) {
+						if(scrollable.length > 0 ) {
 							//is the scrollbar at the end of the scroll?
-							if(isScrolled('bottom', scrollable)){
+							if(isScrolled('bottom', scrollable)) {
 								$.fn.fullpage.moveSlideDown();
 							}else{
 								return true;
@@ -176,9 +186,9 @@
 						}
 					} else {
 					
-						if(scrollable.length > 0){
+						if(scrollable.length > 0) {
 							//is the scrollbar at the start of the scroll?
-							if(isScrolled('top', scrollable)){
+							if(isScrolled('top', scrollable)) {
 								$.fn.fullpage.moveSlideUp();
 							}
 							else{
@@ -192,7 +202,7 @@
 				}
 			});
 			
-			document.addEventListener('touchstart', function(e){
+			document.addEventListener('touchstart', function(e) {
 				touchStartY = e.touches[0].pageY;
 			});
 		}
@@ -219,9 +229,9 @@
 				
 					//scrolling down?
 					if (delta < 0) {
-						if(scrollable.length > 0 ){
+						if(scrollable.length > 0 ) {
 							//is the scrollbar at the end of the scroll?
-							if(isScrolled('bottom', scrollable)){
+							if(isScrolled('bottom', scrollable)) {
 								$.fn.fullpage.moveSlideDown();
 							}else{
 								return true; //normal scroll
@@ -233,9 +243,9 @@
 
 					//scrolling up?
 					else {
-						if(scrollable.length > 0){
+						if(scrollable.length > 0) {
 							//is the scrollbar at the start of the scroll?
-							if(isScrolled('top', scrollable)){
+							if(isScrolled('top', scrollable)) {
 								$.fn.fullpage.moveSlideUp();
 							}else{
 								return true; //normal scroll
@@ -257,39 +267,39 @@
 			sq.attachEvent("onmousewheel", MouseWheelHandler());
 		}
 
-		$.fn.fullpage.moveSlideUp = function(){
+		$.fn.fullpage.moveSlideUp = function() {
 			var prev = $('.section.active').prev('.section');
 			
 			//looping to the bottom if there's no more sections above
-			if(options.loopTop && !prev.length){
+			if(options.loopTop && !prev.length) {
 				prev = $('.section').last();
 			}
 
-			if (prev.length > 0 || (!prev.length && options.loopTop)){
+			if (prev.length > 0 || (!prev.length && options.loopTop)) {
 				prev.addClass('active').siblings().removeClass('active');
 				scrollPage(prev);
 			}
 		};
 
-		$.fn.fullpage.moveSlideDown = function (){
+		$.fn.fullpage.moveSlideDown = function () {
 			var next = $('.section.active').next('.section');
 			
 			//looping to the top if there's no more sections below
-			if(options.loopBottom && !next.length){
+			if(options.loopBottom && !next.length) {
 				next = $('.section').first();
 			}
 	
-			if (next.length > 0 || (!next.length && options.loopBottom)){
+			if (next.length > 0 || (!next.length && options.loopBottom)) {
 				next.addClass('active').siblings().removeClass('active');
 				scrollPage(next);
 			}
 		};
 		
-		$.fn.fullpage.moveToSlide = function (index){
+		$.fn.fullpage.moveToSlide = function (index) {
 			var destiny = '';
 			
-			if(isNaN(index)){
-				destiny = $('[data-anchor="'+index+'"]');
+			if(isNaN(index)) {
+				destiny = $('[data-anchor="' + index + '"]');
 			}else{
 				destiny = $('.section').eq( (index -1) );
 			}
@@ -304,8 +314,7 @@
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
 			isMoving = true;
-
-			if(typeof element.data('anchor') !== 'undefined'){
+			if(typeof element.data('anchor') !== 'undefined') {
 				location.hash = element.data('anchor');
 			}else{
 				location.hash = '';
@@ -318,9 +327,10 @@
 				top : -dtop
 			}, options.scrollingSpeed, options.easing, function() {
 				//callback
-				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
+				$.isFunction(options.afterLoad) && options.afterLoad.call(this,
+						anchorLink, (element.index('.section') + 1));
 				
-				setTimeout(function(){
+				setTimeout(function() {
 					isMoving = false;
 				}, 700);
 			});
@@ -334,35 +344,28 @@
 			activateNavDots(anchorLink);
 		}
 		
-		function scrollToAnchor(){
-			//getting the anchor link in the URL and deleting the `#`
+		function scrollToAnchor() {
 			var value =  window.location.hash.replace('#', '');
-						
-			if(value){  //if theres any #
-			
-				var element = $('[data-anchor="'+value+'"]');
-				
-				element.addClass('active').siblings().removeClass('active');
-				//updating the array positions...
-				scrollPage(element);
+			if(value && value !== lastScrolledDestiny) {
+				var element = $('[data-anchor="' + value + '"]');
+				if(element.length) {
+					element.addClass('active').siblings().removeClass('active');
+					scrollPage(element);
+				} else {
+					$.event.trigger(HashNotFound)
+				}
 			}
 		}
 
 		//detecting any change on the URL to scroll to the given anchor link
 		//(a way to detect back history button as we play with the hashes on the URL)
-		$(window).on('hashchange',function(){
-			var value =  window.location.hash.replace('#', '');
-
-			/*in order to call scrollpage() only once for each destination at a time
-			It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
-			event is fired on every scroll too.*/
-			if (value !== lastScrolledDestiny) {
-				var element = $('[data-anchor="'+value+'"]');
-
-				element.addClass('active').siblings().removeClass('active');
-				scrollPage(element);
-			}
+		$(window).on('hashchange', function() {
+			scrollToAnchor();
 		});
+
+		$(window).on('load', function() {
+			scrollToAnchor();
+		})
 			
 		
 		/**
@@ -474,8 +477,8 @@
 			var windowsHeight = $(window).height();
 			
 			//resizing the scrolling divs
-			if(options.scrollOverflow){
-				$('.section').each(function(){
+			if(options.scrollOverflow) {
+				$('.section').each(function() {
 					$(this).find('.scrollable').css('height', windowsHeight + 'px').parent().css('height', windowsHeight + 'px');
 				});
 			}
@@ -485,7 +488,7 @@
 				resizeMe(windowsHeight, windowsWidtdh);
 			}
 
-			$('.section').each(function(){
+			$('.section').each(function() {
 				$(this).css('height', windowsHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
@@ -548,8 +551,8 @@
 		/**
 		 * Activating the website navigation dots according to the given slide name.
 		 */
-		function activateNavDots(name){
-			if(options.navigation){
+		function activateNavDots(name) {
+			if(options.navigation) {
 				$('#fullPage-nav').find('.active').removeClass('active');
 				$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
 			}
@@ -558,8 +561,8 @@
 		/**
 		 * Activating the website main menu elements according to the given slide name.
 		 */
-		function activateMenuElement(name){
-			if(options.menu){
+		function activateMenuElement(name) {
+			if(options.menu) {
 				$(options.menu).find('.active').removeClass('active');
 				$(options.menu).find('[data-menuanchor="'+name+'"]').addClass('active');
 			}
@@ -569,10 +572,10 @@
 		* Return a boolean depending on whether the scrollable element is at the end or at the start of the scrolling
 		* depending on the given type.
 		*/
-		function isScrolled(type, scrollable){
-			if(type === 'top'){
+		function isScrolled(type, scrollable) {
+			if(type === 'top') {
 				return !scrollable.scrollTop();
-			}else if(type === 'bottom'){
+			}else if(type === 'bottom') {
 				return scrollable.scrollTop() + scrollable.innerHeight() >= scrollable[0].scrollHeight;
 			}
 		}
@@ -581,7 +584,7 @@
 		* Loading dynamiaclly the slimscroll.js plugin used for the scrolling bar.
 		* $.getScript didn't work well on local. This way it does.
 		*/
-		function loadSlimScroll(callback){
+		function loadSlimScroll(callback) {
 			if (typeof callback !== 'function') {
 			   throw 'Not a valid callback';  
 			}
