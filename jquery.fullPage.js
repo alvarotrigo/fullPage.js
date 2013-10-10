@@ -44,6 +44,9 @@
 					'overflow' : 'auto',
 					'height' : 'auto'
 				});
+				
+				//deleting the possible negative top
+				$('#supercontainer').css('top', '0px');
 			}
 		};
 		
