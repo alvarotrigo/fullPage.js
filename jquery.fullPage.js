@@ -39,6 +39,11 @@
 					'overflow' : 'hidden',
 					'height' : '100%'
 				});
+			}else{
+				$('html, body').css({
+					'overflow' : 'auto',
+					'height' : 'auto'
+				});
 			}
 		};
 		
