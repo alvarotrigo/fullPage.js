@@ -139,6 +139,7 @@ is scrollable.
 
 ```javascript
 $.fn.fullpage.setAutoScrolling('false');
+```
 
 ## Callbacks
 **afterLoad** (`anchorLink`, `index`)
