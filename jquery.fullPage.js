@@ -54,7 +54,7 @@
 		//flag to avoid very fast sliding for landscape sliders
 		var slideLapse = true;
 
-		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
 		var windowsHeight = $(window).height();
 		var isMoving = false;
