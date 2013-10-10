@@ -346,7 +346,7 @@
 		
 		function scrollToAnchor() {
 			var value =  window.location.hash.replace('#', '');
-			if(value) {
+			if(value && value !== lastScrolledDestiny) {
 				var element = $('[data-anchor="' + value + '"]');
 				if(element.length) {
 					element.addClass('active').siblings().removeClass('active');
