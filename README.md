@@ -81,8 +81,8 @@ It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of 
 
 - `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
 
-- `touchScrolling`: (default `true`) Defines whether to use the touch scrolling on touch devices or the normal scroll. It also
-has influence on the way the sections fit the browser/device window.
+- `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also
+has influence on the way the sections fit the browser/device window in tablets and mobile phones.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way 
 the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
@@ -118,18 +118,27 @@ Scrolls one slide down:
 $.fn.fullpage.moveSlideDown();
 ```
 
-
 ### moveSlideTo
 Scrolls the page to the given slide anchor name or to the given index.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` */
 $.fn.fullpage.moveToSlide('#firstSlide');
+
 ```
 
 ```javascript
 /*Scrolling to the 3rd section in the site*/
 $.fn.fullpage.moveToSlide(3); 
 ```
+
+### setAutoScrolling
+Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, 
+otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with 
+`scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section 
+is scrollable.
+
+```javascript
+$.fn.fullpage.setAutoScrolling('false');
 
 ## Callbacks
 **afterLoad** (`anchorLink`, `index`)
