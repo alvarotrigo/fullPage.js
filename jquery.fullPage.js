@@ -325,8 +325,10 @@
 		};
 
 		function scrollPage(element) {
-			var scrollOptions = {}, dtop, scrolledElement;
-			
+			var scrollOptions = {}, scrolledElement;
+			var dest = element.position();
+			var dtop = dest !== null ? dest.top : null;
+
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
 			isMoving = true;
@@ -336,9 +338,6 @@
 			}else{
 				location.hash = '';
 			}
-			
-			var dest = element.position();
-			var dtop = dest !== null ? dest.top : null;
 	
 			if(options.autoScrolling){
 			
