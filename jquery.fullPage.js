@@ -46,7 +46,7 @@
 				});
 				
 				//deleting the possible negative top
-				$('#supercontainer').css('top', '0px');
+				$('#superContainer').css('top', '0px');
 			}
 		};
 		
