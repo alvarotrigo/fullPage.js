@@ -23,7 +23,7 @@
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
-			'touchScrolling': true,
+			'autoScrolling': false,
 			'scrollOverflow': true,
 
 			//events
@@ -41,7 +41,7 @@
 		
 		var lastScrolledDestiny;
 		
-		if(!isTablet || options.touchScrolling){
+		if(!isTablet && options.autoScrolling){
 			$('html, body').css({
 				'overflow' : 'hidden',
 				'height' : '100%'
@@ -140,9 +140,32 @@
 			scrollToAnchor();
 		});
 		
+		if(options.menu && !options.autoScrolling){
+			//when scrolling...
+			$(window).scroll(function(e){
+				var currentScroll = $(window).scrollTop();
+				
+				var scrolledSections = $('.section').map(function(){
+					if ($(this).offset().top < (currentScroll + 100)){
+						return $(this);
+					}
+				});
+				
+				//geting the last one
+				var currentSection = scrolledSections[scrolledSections.length-1];
+				$('.section.active').removeClass('active');
+				currentSection.addClass('active');
+			
+				var anchorLink  = currentSection.attr('data-anchor');
+				
+				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
+				
+				activateMenuElement(anchorLink);		
+			});	
+		}
 
 		
-		if(options.touchScrolling && isTablet){
+		if(options.autoScrolling && isTablet){
 			var touchStartY = 0;
 			var touchEndY = 0;
 			var touchEndX = 0;
@@ -250,13 +273,14 @@
 			};
 		}
 
-		if (sq.addEventListener) {
-			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
-			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
-		} else {
-			sq.attachEvent("onmousewheel", MouseWheelHandler());
+		if(options.autoScrolling){
+			if (sq.addEventListener) {
+				sq.addEventListener("mousewheel", MouseWheelHandler(), false);
+				sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
+			} else {
+				sq.attachEvent("onmousewheel", MouseWheelHandler());
+			}
 		}
-
 		$.fn.fullpage.moveSlideUp = function(){
 			var prev = $('.section.active').prev('.section');
 			
@@ -301,6 +325,8 @@
 		};
 
 		function scrollPage(element) {
+			var scrollOptions = {}, dtop, scrolledElement;
+			
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
 			isMoving = true;
@@ -314,9 +340,18 @@
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
 	
-			$('#superContainer').animate({
-				top : -dtop
-			}, options.scrollingSpeed, options.easing, function() {
+			if(options.autoScrolling){
+			
+				scrollOptions['top'] = -dtop;
+				scrolledElement = '#superContainer';
+			}else{
+				scrollOptions['scrollTop'] = dtop;
+				scrolledElement = 'html, body';
+			}
+			
+			$(scrolledElement).animate(
+				scrollOptions 
+			, options.scrollingSpeed, options.easing, function() {
 				//callback
 				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
 				
@@ -324,7 +359,8 @@
 					isMoving = false;
 				}, 700);
 			});
-
+			
+			
 			var anchorLink  = element.attr('data-anchor');
 			
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
