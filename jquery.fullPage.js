@@ -190,10 +190,11 @@
 		* This way, the touchstart and the touch moves shows an small difference between them which is the
 		* used one to determine the direction.
 		*/
-		$(document).on('touchmove', function(e){
+		$(document).on('touchmove', function(event){
 			if(options.autoScrolling && isTablet){
 				//preventing the easing on iOS devices
-				e.preventDefault();
+				event.preventDefault();
+				var e = event.originalEvent;
 
 				if (!isMoving) { //if theres any #
 					var scrollable = $('.section.active').find('.scrollable');
@@ -231,8 +232,9 @@
 			}
 		});
 		
-		$(document).on('touchstart', function(e){
+		$(document).on('touchstart', function(event){
 			if(options.autoScrolling && isTablet){
+				var e = event.originalEvent;
 				touchStartY = e.touches[0].pageY;
 			}
 		});
