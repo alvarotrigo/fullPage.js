@@ -23,12 +23,24 @@
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
-			'autoScrolling': false,
+			'autoScrolling': true,
 			'scrollOverflow': true,
 
 			//events
 			'afterLoad': null
 		}, options);		
+		
+		
+		$.fn.fullpage.setAutoScrolling = function(value){
+			options.autoScrolling = value;
+			
+			if(options.autoScrolling){
+				$('html, body').css({
+					'overflow' : 'hidden',
+					'height' : '100%'
+				});
+			}
+		};
 		
 			
 		//flag to avoid very fast sliding for landscape sliders
@@ -41,12 +53,7 @@
 		
 		var lastScrolledDestiny;
 		
-		if(!isTablet && options.autoScrolling){
-			$('html, body').css({
-				'overflow' : 'hidden',
-				'height' : '100%'
-			});
-		}
+		$.fn.fullpage.setAutoScrolling(options.autoScrolling);
 		
 		if(options.verticalCentered){
 			$('.section').addClass('table').wrapInner('<div class="tableCell" />');
@@ -140,9 +147,10 @@
 			scrollToAnchor();
 		});
 		
-		if(options.menu && !options.autoScrolling){
-			//when scrolling...
-			$(window).scroll(function(e){
+		
+		//when scrolling...
+		$(window).scroll(function(e){
+			if(options.menu && !options.autoScrolling){
 				var currentScroll = $(window).scrollTop();
 				
 				var scrolledSections = $('.section').map(function(){
@@ -160,23 +168,25 @@
 				
 				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 				
-				activateMenuElement(anchorLink);		
-			});	
-		}
+				activateMenuElement(anchorLink);	
+			}					
+		});	
+	
 
 		
-		if(options.autoScrolling && isTablet){
-			var touchStartY = 0;
-			var touchEndY = 0;
-			var touchEndX = 0;
+	
+		var touchStartY = 0;
+		var touchEndY = 0;
+		var touchEndX = 0;
+	
+		/* Detecting touch events 
 		
-			/* Detecting touch events 
-			
-			* As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
-			* This way, the touchstart and the touch moves shows an small difference between them which is the
-			* used one to determine the direction.
-			*/
-			document.addEventListener('touchmove', function(e){
+		* As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
+		* This way, the touchstart and the touch moves shows an small difference between them which is the
+		* used one to determine the direction.
+		*/
+		$(document).on('touchmove', function(e){
+			if(options.autoScrolling && isTablet){
 				//preventing the easing on iOS devices
 				e.preventDefault();
 
@@ -213,12 +223,15 @@
 						}
 					}
 				}
-			});
-			
-			document.addEventListener('touchstart', function(e){
+			}
+		});
+		
+		$(document).on('touchstart', function(e){
+			if(options.autoScrolling && isTablet){
 				touchStartY = e.touches[0].pageY;
-			});
-		}
+			}
+		});
+		
 
 
 		/**
@@ -232,55 +245,57 @@
 
 		function MouseWheelHandler() {
 			return function(e) {
-				// cross-browser wheel delta
-				e = window.event || e;
-				var delta = Math.max(-1, Math.min(1,
-						(e.wheelDelta || -e.detail)));
+				if(options.autoScrolling){
+					// cross-browser wheel delta
+					e = window.event || e;
+					var delta = Math.max(-1, Math.min(1,
+							(e.wheelDelta || -e.detail)));
 
-				if (!isMoving) { //if theres any #
-					var scrollable = $('.section.active').find('.scrollable');
-				
-					//scrolling down?
-					if (delta < 0) {
-						if(scrollable.length > 0 ){
-							//is the scrollbar at the end of the scroll?
-							if(isScrolled('bottom', scrollable)){
+					if (!isMoving) { //if theres any #
+						var scrollable = $('.section.active').find('.scrollable');
+					
+						//scrolling down?
+						if (delta < 0) {
+							if(scrollable.length > 0 ){
+								//is the scrollbar at the end of the scroll?
+								if(isScrolled('bottom', scrollable)){
+									$.fn.fullpage.moveSlideDown();
+								}else{
+									return true; //normal scroll
+								}
+							}else{
 								$.fn.fullpage.moveSlideDown();
-							}else{
-								return true; //normal scroll
 							}
-						}else{
-							$.fn.fullpage.moveSlideDown();
 						}
-					}
 
-					//scrolling up?
-					else {
-						if(scrollable.length > 0){
-							//is the scrollbar at the start of the scroll?
-							if(isScrolled('top', scrollable)){
+						//scrolling up?
+						else {
+							if(scrollable.length > 0){
+								//is the scrollbar at the start of the scroll?
+								if(isScrolled('top', scrollable)){
+									$.fn.fullpage.moveSlideUp();
+								}else{
+									return true; //normal scroll
+								}
+							}else{
 								$.fn.fullpage.moveSlideUp();
-							}else{
-								return true; //normal scroll
 							}
-						}else{
-							$.fn.fullpage.moveSlideUp();
 						}
 					}
-				}
 
-				return false;
-			};
-		}
-
-		if(options.autoScrolling){
-			if (sq.addEventListener) {
-				sq.addEventListener("mousewheel", MouseWheelHandler(), false);
-				sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
-			} else {
-				sq.attachEvent("onmousewheel", MouseWheelHandler());
+					return false;
+				};
 			}
 		}
+
+		
+		if (sq.addEventListener) {
+			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
+			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
+		} else {
+			sq.attachEvent("onmousewheel", MouseWheelHandler());
+		}
+		
 		$.fn.fullpage.moveSlideUp = function(){
 			var prev = $('.section.active').prev('.section');
 			
@@ -631,6 +646,7 @@
 			head.appendChild(script);
 		}
 			
+
 		
 	};
 })(jQuery);
