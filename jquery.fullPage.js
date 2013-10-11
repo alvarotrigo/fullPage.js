@@ -27,7 +27,8 @@
 			'scrollOverflow': false,
 
 			//events
-			'afterLoad': null
+			'afterLoad': null,
+			'afterRender': null
 		}, options);		
 		
 		
@@ -132,6 +133,8 @@
 
 			
 		}).promise().done(function(){
+			$.isFunction( options.afterRender ) && options.afterRender.call( this);
+
 			if(options.scrollOverflow){
 				$('.section').each(function(){
 					if($(this).height() > windowsHeight){
