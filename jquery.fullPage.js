@@ -24,7 +24,7 @@
 			'loopBottom': false,
 			'loopTop': false,
 			'autoScrolling': true,
-			'scrollOverflow': true,
+			'scrollOverflow': false,
 
 			//events
 			'afterLoad': null
