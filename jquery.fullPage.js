@@ -133,22 +133,20 @@
 			
 		}).promise().done(function(){
 			if(options.scrollOverflow){
-				loadSlimScroll(function(){
-					$('.section').each(function(){
-						if($(this).height() > windowsHeight){
-							if(options.verticalCentered){
-								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
-							}else{
-								$(this).wrapInner('<div class="scrollable" />');
-							}
-						
-							$(this).find('.scrollable').slimScroll({
-								height: windowsHeight + 'px',
-								size: '10px',
-								alwaysVisible: true
-							});
+				$('.section').each(function(){
+					if($(this).height() > windowsHeight){
+						if(options.verticalCentered){
+							$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
+						}else{
+							$(this).wrapInner('<div class="scrollable" />');
 						}
-					});
+					
+						$(this).find('.scrollable').slimScroll({
+							height: windowsHeight + 'px',
+							size: '10px',
+							alwaysVisible: true
+						});
+					}
 				});
 			}
 			
@@ -636,26 +634,6 @@
 				return scrollable.scrollTop() + scrollable.innerHeight() >= scrollable[0].scrollHeight;
 			}
 		}
-		
-				/**
-		* Loading dynamiaclly the slimscroll.js plugin used for the scrolling bar.
-		* $.getScript didn't work well on local. This way it does.
-		*/
-		function loadSlimScroll(callback){
-			if (typeof callback !== 'function') {
-			   throw 'Not a valid callback';  
-			}
-	
-			var head = document.getElementsByTagName("head")[0];  
-			var script =document.createElement('script');   
-			script.onload = callback; //callback to execute it only after loading
-			script.id = 'uploadScript';  
-			script.type = 'text/javascript';  
-			script.src = 'vendors/jquery.slimscroll.min.js';   
-			head.appendChild(script);
-		}
-			
-
 		
 	};
 })(jQuery);
