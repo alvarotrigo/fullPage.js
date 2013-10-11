@@ -104,6 +104,14 @@ $.fn.fullpage({
 });
 ```
 
+- `scrollOverflow`: (default `false`) defines whether or not to create an scroll for the section in case its content is bigger than the height of it.
+In case of setting it to `true`, it requieres the vendor plugin `jquery.slimscroll.min` and it should be loaded before fullPaje.js plugin. For example:
+
+```html
+<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="jquery.fullPage.js"></script>
+```
+
 ## Methods
 
 ### moveSlideUp
