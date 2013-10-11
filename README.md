@@ -183,6 +183,19 @@ Example:
 	});
 ```
 
+**afterRender** ()
+This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or
+fire any code which requieres the document to be ready. (as this plugin modifies the document DOM to create the resulting structure)
+
+Example:
+
+```javascript
+	$.fn.fullpage({
+		afterRender: function(){
+			alert("The resulting DOM stucture is ready");
+		}
+	});
+```
 
 ## License
 
