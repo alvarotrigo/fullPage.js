@@ -27,7 +27,7 @@ of the plugin as well as [jQuery library](http://jquery.com/) (and the [jQuery U
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
 	
 <!-- This line is needed in case of setting the plugin 
-	option `overflowScrolling` to `true` -->
+	option `scrollOverflow` to `true` -->
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
 	
 <script type="text/javascript" src="jquery.fullPage.js"></script>
