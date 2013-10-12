@@ -25,6 +25,7 @@
 			'loopTop': false,
 			'autoScrolling': true,
 			'scrollOverflow': false,
+			'scrollResistance': 1,
 
 			//events
 			'afterLoad': null,
@@ -259,14 +260,13 @@
 				if(options.autoScrolling){
 					// cross-browser wheel delta
 					e = window.event || e;
-					var delta = Math.max(-1, Math.min(1,
-							(e.wheelDelta || -e.detail)));
+					var delta = e.wheelDelta || e.detail*(-120);	// adapt e.detail to e.wheelData
 
 					if (!isMoving) { //if theres any #
 						var scrollable = $('.section.active').find('.scrollable');
 					
 						//scrolling down?
-						if (delta < 0) {
+						if (delta < (-1)*options.scrollResistance) {	// does scroll-delta exceed resistance?
 							if(scrollable.length > 0 ){
 								//is the scrollbar at the end of the scroll?
 								if(isScrolled('bottom', scrollable)){
@@ -280,7 +280,7 @@
 						}
 
 						//scrolling up?
-						else {
+						else if (delta > options.scrollResistance) {	// does scroll-delta exceed resistance?
 							if(scrollable.length > 0){
 								//is the scrollbar at the start of the scroll?
 								if(isScrolled('top', scrollable)){
