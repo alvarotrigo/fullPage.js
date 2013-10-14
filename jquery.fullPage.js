@@ -136,20 +136,23 @@
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 
 			if(options.scrollOverflow){
-				$('.section').each(function(){
-					if($(this).height() > windowsHeight){
-						if(options.verticalCentered){
-							$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
-						}else{
-							$(this).wrapInner('<div class="scrollable" />');
+				//after DOM and images are loaded 
+				$(window).on('load', function() {
+					$('.section').each(function(){
+						if($(this).height() > windowsHeight){
+							if(options.verticalCentered){
+								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
+							}else{
+								$(this).wrapInner('<div class="scrollable" />');
+							}
+						
+							$(this).find('.scrollable').slimScroll({
+								height: windowsHeight + 'px',
+								size: '10px',
+								alwaysVisible: true
+							});
 						}
-					
-						$(this).find('.scrollable').slimScroll({
-							height: windowsHeight + 'px',
-							size: '10px',
-							alwaysVisible: true
-						});
-					}
+					});
 				});
 			}
 			
