@@ -63,6 +63,19 @@ $(document).ready(function() {
 });
 ```
 
+### Advance usage
+In order to create links to certain slides inside a section, you could do it by just adding two attributes to any element:
+- class="toSlide"
+- data-index="3" (or whatever slide number you want to link)
+
+For example:
+```html
+<span class="toSlide" data-index="3">Click here to go to slide 3</span>
+```
+[Living example](http://jsfiddle.net/7PwsS/15/)
+
+To create links between sections, you could use the `menu` option and make use of anchor links (#) as explained below in the options section.
+
 ## Options
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
