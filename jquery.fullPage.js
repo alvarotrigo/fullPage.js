@@ -518,7 +518,9 @@
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
-		$('.section').on('click', '.toSlide', function() {
+		$('.section').on('click', '.toSlide', function(e) {
+			e.preventDefault();
+			
 			var slides = $(this).closest('.section').find('.slides');
 			var slidesContainer = slides.find('.slidesContainer').parent();
 			var currentSlide = slides.find('.slide.active');
