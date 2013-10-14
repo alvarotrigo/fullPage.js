@@ -514,6 +514,33 @@
 			destiny.addClass('active');
 		});
 
+		
+		/**
+		 * Scrolling horizontally when clicking on the slider controls.
+		 */
+		$('.section').on('click', '.toSlide', function() {
+			var slides = $(this).closest('.section').find('.slides');
+			var slidesContainer = slides.find('.slidesContainer').parent();
+			var currentSlide = slides.find('.slide.active');
+			var destiny = null;
+			var destinyPos = 0;
+			
+			destiny = slides.find('.slide').eq( ($(this).attr('data-index') -1) );
+
+			if(destiny.length > 0){
+				currentSlide.removeClass('active');
+
+				//is there a next slide in the secuence?
+				destinyPos = destiny.position();
+
+				slidesContainer.animate({
+					scrollLeft : destinyPos.left
+				}, 500);
+
+				destiny.addClass('active');
+			}
+		});
+		
 		if (!isTablet) {
 			var resizeId;
 
