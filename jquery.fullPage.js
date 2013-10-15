@@ -633,7 +633,7 @@
 		/**
 		 * Resizing of the font size depending on the window size as well as some of the images on the site.
 		 */
-		function resizeMe(displayHeight, displayWitdh) {
+		function resizeMe(displayHeight, displayWidth) {
 			//Standard height, for which the body font size is correct
 			var preferredHeight = 825;
 			var windowSize = displayHeight;
@@ -654,9 +654,9 @@
 				});
 			}*/
 
-			if (displayHeight < 825 || displayWitdh < 900) {
-				if (displayWitdh < 900) {
-					windowSize = displayWitdh;
+			if (displayHeight < 825 || displayWidth < 900) {
+				if (displayWidth < 900) {
+					windowSize = displayWidth;
 					preferredHeight = 900;
 				}
 				var percentage = (windowSize * 100) / preferredHeight;
