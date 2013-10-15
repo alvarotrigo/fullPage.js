@@ -63,6 +63,29 @@ $(document).ready(function() {
 });
 ```
 
+A more complex initialization with all options could look like this:
+```javascript
+$(document).ready(function() {
+	$.fn.fullpage({
+		verticalCentered: true,
+		resize : true,
+		slidesColor : ['#ccc', '#fff'],
+		anchors:['firstSlide', 'secondSlide'],
+		scrollingSpeed: 700,
+		easing: 'easeInQuart',
+		menu: false,
+		loopBottom: false,
+		loopTop: false,
+		autoScrolling: true,
+		scrollOverflow: false,
+
+		//events
+		afterLoad: function(anchorLink, index){},
+		afterRender: function(){},
+	});
+});
+```
+
 ### Advance usage
 In order to create links to certain slides inside a section, you could do it by just adding two attributes to any element:
 - class="toSlide"
