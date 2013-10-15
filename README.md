@@ -78,6 +78,7 @@ $(document).ready(function() {
 		loopTop: false,
 		autoScrolling: true,
 		scrollOverflow: false,
+		css3: false,
 
 		//events
 		afterLoad: function(anchorLink, index){},
@@ -120,6 +121,9 @@ It requieres [jQuery UI library](http://jqueryui.com/) in case of using some of 
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
 - `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
+
+- `css3`: (default `false`). Defines wheter to use javascript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in 
+tablet and mobile devices with browsers supporting CSS3.
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also
 has influence on the way the sections fit the browser/device window in tablets and mobile phones.
