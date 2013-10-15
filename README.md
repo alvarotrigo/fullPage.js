@@ -170,7 +170,7 @@ Scrolls one slide down:
 $.fn.fullpage.moveSlideDown();
 ```
 
-### moveSlideTo
+### moveToSlide
 Scrolls the page to the given slide anchor name or to the given index.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` */
