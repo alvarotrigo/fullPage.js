@@ -62,3 +62,9 @@ body, html {
 .scrollable{
 	overflow:scroll;
 }
+.easing{
+    -webkit-transition: all 0.7s ease-out;
+    -moz-transition: all 0.7s ease-out;
+    -o-transition: all 0.7s ease-out;
+    transition: all 0.7s ease-out;
+}

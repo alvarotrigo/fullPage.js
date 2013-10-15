@@ -25,6 +25,7 @@
 			'loopTop': false,
 			'autoScrolling': true,
 			'scrollOverflow': false,
+			'css3': false,
 
 			//events
 			'afterLoad': null,
@@ -134,6 +135,11 @@
 			
 		}).promise().done(function(){
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
+			
+			//moving the menu outside the main container (avoid problems with fixed positions when using CSS3 tranforms)
+			if(options.menu){
+				$(options.menu).appendTo('body');
+			}
 
 			if(options.scrollOverflow){
 				//after DOM and images are loaded 
@@ -145,7 +151,7 @@
 							}else{
 								$(this).wrapInner('<div class="scrollable" />');
 							}
-						
+
 							$(this).find('.scrollable').slimScroll({
 								height: windowsHeight + 'px',
 								size: '10px',
@@ -158,7 +164,7 @@
 			
 			scrollToAnchor();
 		});
-		
+	
 		
 		//when scrolling...
 		$(window).scroll(function(e){
@@ -369,7 +375,6 @@
 			}
 	
 			if(options.autoScrolling){
-			
 				scrollOptions['top'] = -dtop;
 				scrolledElement = '#superContainer';
 			}else{
@@ -377,17 +382,29 @@
 				scrolledElement = 'html, body';
 			}
 			
-			$(scrolledElement).animate(
-				scrollOptions 
-			, options.scrollingSpeed, options.easing, function() {
-				//callback
-				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
-				
+			if(options.css3 && options.autoScrolling){
+				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
+				$('#superContainer').addClass('easing').css({
+					'-webkit-transform': translate3d,
+					'-moz-transform': translate3d,
+					'-ms-transform':translate3d,
+					'transform': translate3d
+				});
 				setTimeout(function(){
 					isMoving = false;
 				}, 700);
-			});
-			
+			}else{
+				$(scrolledElement).animate(
+					scrollOptions 
+				, options.scrollingSpeed, options.easing, function() {
+					//callback
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
+					
+					setTimeout(function(){
+						isMoving = false;
+					}, 700);
+				});
+			}
 			
 			var anchorLink  = element.attr('data-anchor');
 			
@@ -504,13 +521,26 @@
 				destinyPos = destiny.position();
 			}
 
-			slidesContainer.animate({
-				scrollLeft : destinyPos.left
-			}, 500, function() {
-				//letting them slide again
-				slideLapse = true; 
-			});
-
+			if(options.css3){
+				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
+				
+				slides.find('.slidesContainer').addClass('easing').css({
+					'-webkit-transform': translate3d,
+					'-moz-transform': translate3d,
+					'-ms-transform':translate3d,
+					'transform': translate3d
+				});
+				setTimeout(function(){
+					slideLapse = true;
+				}, 500);
+			}else{
+				slidesContainer.animate({
+					scrollLeft : destinyPos.left
+				}, 500, function() {
+					//letting them slide again
+					slideLapse = true; 
+				});
+			}
 			destiny.addClass('active');
 		});
 
