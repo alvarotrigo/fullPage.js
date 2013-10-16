@@ -185,13 +185,14 @@
 				
 				//geting the last one
 				var currentSection = scrolledSections[scrolledSections.length-1];
-				
+				var yMovement = getYmovement(currentSection);
+								
 				if(!currentSection.hasClass('active')){
 					$('.section.active').removeClass('active');
 					currentSection.addClass('active');
 				
 					var anchorLink  = currentSection.attr('data-anchor');
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, (currentSection.index('.section')));
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, currentSection.index('.section'), yMovement);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 					
@@ -335,7 +336,6 @@
 			}
 
 			if (prev.length > 0 || (!prev.length && options.loopTop)){
-				prev.addClass('active').siblings().removeClass('active');
 				scrollPage(prev);
 			}
 		};
@@ -349,7 +349,6 @@
 			}
 	
 			if (next.length > 0 || (!next.length && options.loopBottom)){
-				next.addClass('active').siblings().removeClass('active');
 				scrollPage(next);
 			}
 		};
@@ -364,16 +363,18 @@
 			}
 
 			if (destiny.length > 0) {
-				destiny.addClass('active').siblings().removeClass('active');
 				scrollPage(destiny);
 			}
 		};
-
+		
 		function scrollPage(element) {
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
+			var yMovement = getYmovement(element);
 
+			element.addClass('active').siblings().removeClass('active');
+			
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
 			isMoving = true;
@@ -406,7 +407,7 @@
 					isMoving = false;
 				}, 700);
 			}else{
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, (element.index('.section')));
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, element.index('.section'), yMovement);
 				
 				$(scrolledElement).animate(
 					scrollOptions 
@@ -419,8 +420,6 @@
 					}, 700);
 				});
 			}
-			
-
 			
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
 			lastScrolledDestiny = anchorLink;
@@ -437,7 +436,6 @@
 			
 				var element = $('[data-anchor="'+value+'"]');
 				
-				element.addClass('active').siblings().removeClass('active');
 				//updating the array positions...
 				scrollPage(element);
 			}
@@ -454,7 +452,6 @@
 			if (value !== lastScrolledDestiny) {
 				var element = $('[data-anchor="'+value+'"]');
 
-				element.addClass('active').siblings().removeClass('active');
 				scrollPage(element);
 			}
 		});
@@ -712,6 +709,17 @@
 			}else if(type === 'bottom'){
 				return scrollable.scrollTop() + scrollable.innerHeight() >= scrollable[0].scrollHeight;
 			}
+		}
+		
+		
+		function getYmovement(destiny){
+			var fromIndex = $('.section.active').index('.section');
+			var toIndex = destiny.index('.section');
+			
+			if(fromIndex > toIndex){
+				return 'up';
+			}
+			return 'down';
 		}
 		
 	};
