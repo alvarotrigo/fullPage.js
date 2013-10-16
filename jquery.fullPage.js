@@ -29,7 +29,8 @@
 
 			//events
 			'afterLoad': null,
-			'afterRender': null
+			'onLeave': null,
+			'afterRender': null,
 		}, options);		
 		
 		
@@ -179,14 +180,18 @@
 				
 				//geting the last one
 				var currentSection = scrolledSections[scrolledSections.length-1];
-				$('.section.active').removeClass('active');
-				currentSection.addClass('active');
-			
-				var anchorLink  = currentSection.attr('data-anchor');
 				
-				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
+				if(!currentSection.hasClass('active')){
+					$('.section.active').removeClass('active');
+					currentSection.addClass('active');
 				
-				activateMenuElement(anchorLink);	
+					var anchorLink  = currentSection.attr('data-anchor');
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, anchorLink, (currentSection.index('.section')));
+
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
+					
+					activateMenuElement(anchorLink);	
+				}
 			}					
 		});	
 	
@@ -394,6 +399,8 @@
 					isMoving = false;
 				}, 700);
 			}else{
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, anchorLink, (element.index('.section')));
+				
 				$(scrolledElement).animate(
 					scrollOptions 
 				, options.scrollingSpeed, options.easing, function() {
