@@ -106,7 +106,7 @@
 			}
 			
 			if (options.navigation) {
-				$('#fullPage-nav').find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
+				nav.find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
 			}
 			
 			// if there's any slide
@@ -136,6 +136,11 @@
 			
 		}).promise().done(function(){
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
+			
+			//vertical centered of the navigation
+			if(options.navigation){
+				nav.css('margin-top', '-' + (nav.height()/2) + 'px');
+			}
 			
 			//moving the menu outside the main container (avoid problems with fixed positions when using CSS3 tranforms)
 			if(options.menu){
