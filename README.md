@@ -223,21 +223,26 @@ Example:
 	});
 ```
 
-**onLeave** (`index`)
+**onLeave** (`index`, direction)
 This callback is fired once the user leaves a section, in the transition to the new section. 
 
 Parameters:
 
 - `index`: index of the leaving section. Starting from 1.
+- `direction`: it will take the values `up` or `down` depending on the scrolling direction.
 
 Example:
 
 ```javascript
 	$.fn.fullpage({	
-		onLeave: function(index){
-			//after leaving section 1
-			if(index == '1'){
-				alert("Going to section 2!");
+		onLeave: function(index, direction){
+			//after leaving section 2
+			if(index == '2' && direction =='down'){
+				alert("Going to section 3!");
+			}
+			
+			else if(index == '2' && direction == 'up'){
+				alert("Going to section 1!");
 			}
 		}
 	});
