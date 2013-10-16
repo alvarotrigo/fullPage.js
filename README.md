@@ -74,6 +74,8 @@ $(document).ready(function() {
 		scrollingSpeed: 700,
 		easing: 'easeInQuart',
 		menu: false,
+		navigation: false,
+		navigationPosition: 'right',
 		loopBottom: false,
 		loopTop: false,
 		autoScrolling: true,
@@ -148,6 +150,10 @@ $.fn.fullpage({
     menu: '#myMenu'
 });
 ```
+
+- `navigation`: (default `false`) If sets to `true` , it will show a navigation bar composed by small circles. 
+
+- `navigationPosition`: (default `right`) It can be set to `left` or `right` and defines in which position the navigation bar will be shown in case of using one.
 
 - `scrollOverflow`: (default `false`) defines whether or not to create an scroll for the section in case its content is bigger than the height of it.
 In case of setting it to `true`, it requieres the vendor plugin `jquery.slimscroll.min` and it should be loaded before fullPaje.js plugin. For example:
