@@ -711,7 +711,10 @@
 			}
 		}
 		
-		
+		/**
+		* Retuns `up` or `down` depending on the scrolling movement to reach its destination
+		* from the current section.
+		*/
 		function getYmovement(destiny){
 			var fromIndex = $('.section.active').index('.section');
 			var toIndex = destiny.index('.section');
