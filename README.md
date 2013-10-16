@@ -81,7 +81,7 @@ $(document).ready(function() {
 		css3: false,
 
 		//events
-		onLeave: function(anchorLink, index){},
+		onLeave: function(index){},
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
 	});
