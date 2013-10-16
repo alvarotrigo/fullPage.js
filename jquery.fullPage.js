@@ -30,7 +30,7 @@
 			//events
 			'afterLoad': null,
 			'onLeave': null,
-			'afterRender': null,
+			'afterRender': null
 		}, options);		
 		
 		
