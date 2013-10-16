@@ -81,6 +81,7 @@ $(document).ready(function() {
 		css3: false,
 
 		//events
+		onLeave: function(anchorLink, index){},
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
 	});
@@ -223,6 +224,27 @@ Example:
 		}
 	});
 ```
+
+**onLeave** (`index`)
+This callback is fired once the user leaves a section, in the transition to the new section. 
+
+Parameters:
+
+- `index`: index of the leaving section. Starting from 1.
+
+Example:
+
+```javascript
+	$.fn.fullpage({	
+		onLeave: function(index){
+			//after leaving section 1
+			if(index == '1'){
+				alert("Going to section 2!");
+			}
+		}
+	});
+```
+
 
 **afterRender** ()
 This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or

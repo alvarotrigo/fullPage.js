@@ -186,7 +186,7 @@
 					currentSection.addClass('active');
 				
 					var anchorLink  = currentSection.attr('data-anchor');
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, anchorLink, (currentSection.index('.section')));
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, (currentSection.index('.section')));
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 					
@@ -372,7 +372,7 @@
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
 			isMoving = true;
-
+			
 			if(typeof element.data('anchor') !== 'undefined'){
 				location.hash = element.data('anchor');
 			}else{
@@ -387,6 +387,8 @@
 				scrolledElement = 'html, body';
 			}
 			
+			var anchorLink  = element.attr('data-anchor');
+						
 			if(options.css3 && options.autoScrolling){
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				$('#superContainer').addClass('easing').css({
@@ -399,7 +401,7 @@
 					isMoving = false;
 				}, 700);
 			}else{
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, anchorLink, (element.index('.section')));
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, (element.index('.section')));
 				
 				$(scrolledElement).animate(
 					scrollOptions 
@@ -413,7 +415,7 @@
 				});
 			}
 			
-			var anchorLink  = element.attr('data-anchor');
+
 			
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
 			lastScrolledDestiny = anchorLink;
