@@ -503,7 +503,6 @@
 			slideLapse = false;
 
 			var slides = $(this).closest('.section').find('.slides');
-			var slidesContainer = slides.find('.slidesContainer').parent();
 			var currentSlide = slides.find('.slide.active');
 			var destiny = null;
 			var destinyPos = 0;
@@ -532,6 +531,43 @@
 				destinyPos = destiny.position();
 			}
 
+			landscapeScroll(slides, destinyPos);
+			
+			destiny.addClass('active');
+		});
+
+		
+		/**
+		 * Scrolling horizontally when clicking on the slider controls.
+		 */
+		$('.section').on('click', '.toSlide', function(e) {
+			e.preventDefault();
+			
+			var slides = $(this).closest('.section').find('.slides');
+			var currentSlide = slides.find('.slide.active');
+			var destiny = null;
+			var destinyPos = 0;
+			
+			destiny = slides.find('.slide').eq( ($(this).attr('data-index') -1) );
+
+			if(destiny.length > 0){
+				currentSlide.removeClass('active');
+
+				//is there a next slide in the secuence?
+				destinyPos = destiny.position();
+
+				landscapeScroll(slides, destinyPos);
+				
+				destiny.addClass('active');
+			}
+		});
+		
+		/**
+		* Scrolls horizontal sliders.
+		*/
+		function landscapeScroll(slides, destinyPos){
+			var slidesContainer = slides.find('.slidesContainer').parent();
+			
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 				
@@ -552,37 +588,8 @@
 					slideLapse = true; 
 				});
 			}
-			destiny.addClass('active');
-		});
-
+		}
 		
-		/**
-		 * Scrolling horizontally when clicking on the slider controls.
-		 */
-		$('.section').on('click', '.toSlide', function(e) {
-			e.preventDefault();
-			
-			var slides = $(this).closest('.section').find('.slides');
-			var slidesContainer = slides.find('.slidesContainer').parent();
-			var currentSlide = slides.find('.slide.active');
-			var destiny = null;
-			var destinyPos = 0;
-			
-			destiny = slides.find('.slide').eq( ($(this).attr('data-index') -1) );
-
-			if(destiny.length > 0){
-				currentSlide.removeClass('active');
-
-				//is there a next slide in the secuence?
-				destinyPos = destiny.position();
-
-				slidesContainer.animate({
-					scrollLeft : destinyPos.left
-				}, 500);
-
-				destiny.addClass('active');
-			}
-		});
 		
 		if (!isTablet) {
 			var resizeId;
