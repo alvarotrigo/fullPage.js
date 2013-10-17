@@ -67,7 +67,7 @@
 		$.fn.fullpage.setAutoScrolling(options.autoScrolling);
 		
 		if(options.verticalCentered){
-			$('.section').addClass('table').wrapInner('<div class="tableCell" />');
+			$('.section').addClass('table').wrapInner('<div class="tableCell" style="height:' + windowsHeight + 'px" />');
 		}
 
 		$('body').wrapInner('<div id="superContainer" />');
@@ -614,13 +614,6 @@
 		function doneResizing() {
 			var windowsWidtdh = $(window).width();
 			var windowsHeight = $(window).height();
-			
-			//resizing the scrolling divs
-			if(options.scrollOverflow){
-				$('.section').each(function(){
-					$(this).find('.scrollable').css('height', windowsHeight + 'px').parent().css('height', windowsHeight + 'px');
-				});
-			}
 
 			//text and images resizing
 			if (options.resize) {
@@ -628,6 +621,17 @@
 			}
 
 			$('.section').each(function(){
+			
+				//resizing the scrolling divs
+				if(options.scrollOverflow){
+					$(this).find('.scrollable').css('height', windowsHeight + 'px').parent().css('height', windowsHeight + 'px');
+				}
+				
+				//adjusting the height of the table-cell for IE and Firefox
+				if(options.verticalCentered){
+					$(this).find('.tableCell').css('height', windowsHeight + 'px');
+				}
+				
 				$(this).css('height', windowsHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
