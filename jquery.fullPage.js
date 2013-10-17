@@ -137,9 +137,10 @@
 		}).promise().done(function(){
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			
-			//vertical centered of the navigation
+			//vertical centered of the navigation + first bullet active
 			if(options.navigation){
 				nav.css('margin-top', '-' + (nav.height()/2) + 'px');
+				nav.find('li').first().find('a').addClass('active');
 			}
 			
 			//moving the menu outside the main container (avoid problems with fixed positions when using CSS3 tranforms)
@@ -167,8 +168,8 @@
 					});
 				});
 			}
-			
-			scrollToAnchor();
+		
+			scrollToAnchor();			
 		});
 	
 		
@@ -579,11 +580,11 @@
 				});
 				setTimeout(function(){
 					slideLapse = true;
-				}, 500);
+				}, options.scrollingSpeed);
 			}else{
 				slidesContainer.animate({
 					scrollLeft : destinyPos.left
-				}, 500, function() {
+				}, options.scrollingSpeed, function() {
 					//letting them slide again
 					slideLapse = true; 
 				});
@@ -634,18 +635,14 @@
 				if (slides.length > 0) {
 					var destinyPos = slides.find('.slide.active').position();
 
-					slides.animate({
-						scrollLeft : destinyPos.left
-					}, options.scrollingSpeed);
+					landscapeScroll(slides, destinyPos);
 				}
 			});
 
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
 
-			$('#superContainer').animate({
-				top : -destinyPos.top
-			}, options.scrollingSpeed, options.easing);
+			scrollPage($('.section.active'));
 		}
 
 		/**
