@@ -168,14 +168,17 @@
 					});
 				});
 			}
-		
-			scrollToAnchor();			
+	
+			$(window).on('load', function() {
+				scrollToAnchor();	
+			});
+			
 		});
 	
 		
 		//when scrolling...
 		$(window).scroll(function(e){
-			if(options.menu && !options.autoScrolling){
+			if(!options.autoScrolling){
 				var currentScroll = $(window).scrollTop();
 				
 				var scrolledSections = $('.section').map(function(){
@@ -184,11 +187,13 @@
 					}
 				});
 				
-				//geting the last one
+				//geting the last one, the current one on the screen
 				var currentSection = scrolledSections[scrolledSections.length-1];
-				var yMovement = getYmovement(currentSection);
-								
+				
+				//executing only once the first time we reach the section
 				if(!currentSection.hasClass('active')){
+					var yMovement = getYmovement(currentSection);
+					
 					$('.section.active').removeClass('active');
 					currentSection.addClass('active');
 				
@@ -368,7 +373,7 @@
 			}
 		};
 		
-		function scrollPage(element) {
+		function scrollPage(element, callback) {
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
@@ -380,12 +385,14 @@
 			//more than once if the page is scrolling
 			isMoving = true;
 			
-			if(typeof element.data('anchor') !== 'undefined'){
-				location.hash = element.data('anchor');
-			}else{
-				location.hash = '';
+			if(!$.isFunction( callback )){
+				if(typeof element.data('anchor') !== 'undefined'){
+					location.hash = element.data('anchor');
+				}else{
+					location.hash = '';
+				}
 			}
-	
+			
 			if(options.autoScrolling){
 				scrollOptions['top'] = -dtop;
 				scrolledElement = '#superContainer';
@@ -393,7 +400,7 @@
 				scrollOptions['scrollTop'] = dtop;
 				scrolledElement = 'html, body';
 			}
-			
+						
 			var anchorLink  = element.attr('data-anchor');
 						
 			if(options.css3 && options.autoScrolling){
@@ -406,6 +413,7 @@
 				});
 				setTimeout(function(){
 					isMoving = false;
+					$.isFunction( callback ) && callback.call( this);
 				}, 700);
 			}else{
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, element.index('.section'), yMovement);
@@ -418,6 +426,7 @@
 					
 					setTimeout(function(){
 						isMoving = false;
+						$.isFunction( callback ) && callback.call( this);
 					}, 700);
 				});
 			}
@@ -431,27 +440,46 @@
 		
 		function scrollToAnchor(){
 			//getting the anchor link in the URL and deleting the `#`
-			var value =  window.location.hash.replace('#', '');
+			var value =  window.location.hash.replace('#', '').split('/');
+			var section = value[0];
+			var slide = value[1];
 						
-			if(value){  //if theres any #
-			
-				var element = $('[data-anchor="'+value+'"]');
+			if(section){  //if theres any #
+				var element = $('[data-anchor="'+section+'"]');
 				
 				//updating the array positions...
-				scrollPage(element);
+				
+				scrollPage(element, function(){
+					if(typeof slide != 'undefined'){
+						var slides = element.find('.slides');
+						var destiny =  slides.find('[data-anchor="'+slide+'"]');
+						if(!destiny.length){
+							destiny = slides.find('.slide').eq(slide);
+						}
+						
+						slides.find('.slide').first().removeClass('active');
+						
+						landscapeScroll(slides, destiny);
+						
+						destiny.addClass('active');
+						
+					}
+				});
+				
 			}
 		}
 
 		//detecting any change on the URL to scroll to the given anchor link
 		//(a way to detect back history button as we play with the hashes on the URL)
 		$(window).on('hashchange',function(){
-			var value =  window.location.hash.replace('#', '');
+			var value =  window.location.hash.replace('#', '').split('/');
+			var section = value[0];
 
 			/*in order to call scrollpage() only once for each destination at a time
 			It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 			event is fired on every scroll too.*/
-			if (value !== lastScrolledDestiny) {
-				var element = $('[data-anchor="'+value+'"]');
+			if (section !== lastScrolledDestiny) {
+				var element = $('[data-anchor="'+section+'"]');
 
 				scrollPage(element);
 			}
@@ -506,7 +534,6 @@
 			var slides = $(this).closest('.section').find('.slides');
 			var currentSlide = slides.find('.slide.active');
 			var destiny = null;
-			var destinyPos = 0;
 
 			currentSlide.removeClass('active');
 
@@ -516,23 +543,17 @@
 				destiny = currentSlide.next('.slide');
 			}
 
-			//is there a next slide in the secuence?
-			if (destiny.length > 0) {
-				destinyPos = destiny.position();
-			}
-
-			//to the last
-			else {
+			//is there isn't a next slide in the secuence?
+			if(!destiny.length) {
+				//to the last
 				if ($(this).hasClass('prev')) {
 					destiny = currentSlide.siblings(':last');
 				} else {
 					destiny = currentSlide.siblings(':first');
-				}
-
-				destinyPos = destiny.position();
+				}	
 			}
-
-			landscapeScroll(slides, destinyPos);
+						
+			landscapeScroll(slides, destiny);
 			
 			destiny.addClass('active');
 		});
@@ -547,17 +568,13 @@
 			var slides = $(this).closest('.section').find('.slides');
 			var currentSlide = slides.find('.slide.active');
 			var destiny = null;
-			var destinyPos = 0;
 			
 			destiny = slides.find('.slide').eq( ($(this).attr('data-index') -1) );
 
 			if(destiny.length > 0){
 				currentSlide.removeClass('active');
 
-				//is there a next slide in the secuence?
-				destinyPos = destiny.position();
-
-				landscapeScroll(slides, destinyPos);
+				landscapeScroll(slides, destiny);
 				
 				destiny.addClass('active');
 			}
@@ -566,8 +583,17 @@
 		/**
 		* Scrolls horizontal sliders.
 		*/
-		function landscapeScroll(slides, destinyPos){
+		function landscapeScroll(slides, destiny){
+			var destinyPos = destiny.position();
 			var slidesContainer = slides.find('.slidesContainer').parent();
+			
+			var slideAnchor = destiny.data('anchor');
+			
+			if(typeof slideAnchor === 'undefined'){
+				slideAnchor = destiny.index('.slide');
+			}
+			
+			location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
 			
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
@@ -602,8 +628,8 @@
 				clearTimeout(resizeId);
 				resizeId = setTimeout(doneResizing, 500);
 			});
-		}
 		
+		}
 		$(window).bind('orientationchange', function() {
 			doneResizing();
 		});
