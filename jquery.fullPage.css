@@ -24,6 +24,45 @@ body, html {
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
+
+/*slides - bullet navigation*/
+.slides-nav-bullets {
+    position: absolute;
+    left:50%;
+    margin-left: -50px;
+    bottom: 50px;
+    margin-top: -40px;
+    z-index: 10;
+    list-style-type: none;
+    padding: 0;
+    width: 100px;
+    text-align: center;
+}
+
+.slides-nav-bullets  li {
+        margin-left: 5px;
+        margin-right: 5px;
+        display: inline-block;
+        position: relative;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        text-indent:-9999px;
+        background: rgba(255, 255, 255,0);
+        border: solid 1px #fff;
+        border-radius: 10px;
+        cursor:pointer;
+}
+
+.slides-nav-bullets li:hover {
+    background: #fff;
+}
+
+.slides-nav-bullets li.active {
+    background: #fff;
+}
+
+
 .section.table{
 	display:table;
 	width:100%;
@@ -54,7 +93,7 @@ body, html {
 	border-width: 38.5px 34px 38.5px 0;
 	border-color: transparent #fff transparent transparent;
 }
-.controlArrow.next{  
+.controlArrow.next{
 	right:15px;
 	border-width: 38.5px 0 38.5px 34px;
 	border-color: transparent transparent transparent #fff;
