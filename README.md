@@ -176,7 +176,7 @@ $.fn.fullpage.moveSlideDown();
 Scrolls the page to the given slide anchor name or to the given index.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` */
-$.fn.fullpage.moveToSlide('#firstSlide');
+$.fn.fullpage.moveToSlide('firstSlide');
 
 ```
 
