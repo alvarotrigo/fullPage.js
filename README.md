@@ -146,7 +146,7 @@ $.fn.fullpage({
 });
 ```
 
-- `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles.
+- `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles. It requieres the use of anchor links at the moment. 
 
 - `navigationPosition`: (default `right`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
