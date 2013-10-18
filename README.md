@@ -89,7 +89,23 @@ $(document).ready(function() {
 ```
 
 ### Advance usage
-In order to create links to certain slides inside a section, you could do it by just adding two attributes to any element:
+In order to create links to certain slides inside a section, you could do it in two ways:
+
+#### Using anchor links
+If you are using fullPage.js with anchor links for the sections (using the `anchors` option), then you will be able to use anchor links also to navigate directly to a certain slide inside a section.
+
+You can do it by using the index of the slide (starting by 0), or if you prefer, you can create custom anchor links for them by using the attribute `data-anchor` in each slide. For example:
+
+```html
+<div class="section">
+    <div class="slide" data-anchor="slide1"> Slide 1 </div>
+    <div class="slide" data-anchor="slide2"> Slide 2 </div>
+    <div class="slide" data-anchor="slide3"> Slide 3 </div>
+    <div class="slide" data-anchor="slide4"> Slide 4 </div>
+</div>
+```
+
+#### Using events:
 - `class="toSlide"`
 - `data-index="3"` (or whatever slide number you want to link)
 
