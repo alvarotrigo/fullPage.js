@@ -105,8 +105,13 @@
 				$(this).data('anchor', options.anchors[index]);
 			}
 			
+
 			if (options.navigation) {
-				nav.find('ul').append('<li><a href="#' + options.anchors[index] + '"><span></span></a></li>');
+				var link = '';
+				if(options.anchors.length){
+					link = options.anchors[index];
+				}
+				nav.find('ul').append('<li><a href="#' + link + '"><span></span></a></li>');
 			}
 			
 			// if there's any slide
@@ -379,6 +384,7 @@
 			var dtop = dest !== null ? dest.top : null;
 			var yMovement = getYmovement(element);
 			var anchorLink  = element.data('anchor');
+			var sectionIndex = element.index('.section');
 			
 			element.addClass('active').siblings().removeClass('active');
 			
@@ -417,13 +423,13 @@
 					$.isFunction( callback ) && callback.call( this);
 				}, 700);
 			}else{
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, element.index('.section'), yMovement);
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 				
 				$(scrolledElement).animate(
 					scrollOptions 
 				, options.scrollingSpeed, options.easing, function() {
 					//callback
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (element.index('.section') + 1));
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
 					
 					setTimeout(function(){
 						isMoving = false;
@@ -436,7 +442,7 @@
 			lastScrolledDestiny = anchorLink;
 
 			activateMenuElement(anchorLink);
-			activateNavDots(anchorLink);
+			activateNavDots(anchorLink, sectionIndex);
 		}
 		
 		function scrollToAnchor(){
@@ -520,6 +526,12 @@
 					return; // exit this handler for other keys
 				}
 			}
+		});
+		
+		$(document).on('click', '#fullPage-nav a', function(e){
+			e.preventDefault();
+			var index = $(this).parent().index('li');
+			scrollPage($('.section').eq(index));
 		});
 
 		/**
@@ -718,10 +730,14 @@
 		/**
 		 * Activating the website navigation dots according to the given slide name.
 		 */
-		function activateNavDots(name){
+		function activateNavDots(name, sectionIndex){
 			if(options.navigation){
 				$('#fullPage-nav').find('.active').removeClass('active');
-				$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
+				if(name){ 
+					$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
+				}else{
+					$('#fullPage-nav').find('li').eq(sectionIndex).find('a').addClass('active');
+				}
 			}
 		}
 				
