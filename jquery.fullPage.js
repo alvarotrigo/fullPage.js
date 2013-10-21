@@ -102,7 +102,7 @@
 			}
 
 			if (typeof options.anchors[index] !== 'undefined') {
-				$(this).attr('data-anchor', options.anchors[index]);
+				$(this).data('anchor', options.anchors[index]);
 			}
 			
 			if (options.navigation) {
@@ -197,7 +197,7 @@
 					$('.section.active').removeClass('active');
 					currentSection.addClass('active');
 				
-					var anchorLink  = currentSection.attr('data-anchor');
+					var anchorLink  = currentSection.data('anchor');
 					$.isFunction( options.onLeave ) && options.onLeave.call( this, currentSection.index('.section'), yMovement);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
@@ -378,7 +378,8 @@
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
 			var yMovement = getYmovement(element);
-
+			var anchorLink  = element.data('anchor');
+			
 			element.addClass('active').siblings().removeClass('active');
 			
 			//preventing from activating the MouseWheelHandler event
@@ -386,8 +387,8 @@
 			isMoving = true;
 			
 			if(!$.isFunction( callback )){
-				if(typeof element.data('anchor') !== 'undefined'){
-					location.hash = element.data('anchor');
+				if(typeof anchorLink !== 'undefined'){
+					location.hash = anchorLink;
 				}else{
 					location.hash = '';
 				}
@@ -401,7 +402,7 @@
 				scrolledElement = 'html, body';
 			}
 						
-			var anchorLink  = element.attr('data-anchor');
+			
 						
 			if(options.css3 && options.autoScrolling){
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
@@ -569,7 +570,7 @@
 			var currentSlide = slides.find('.slide.active');
 			var destiny = null;
 			
-			destiny = slides.find('.slide').eq( ($(this).attr('data-index') -1) );
+			destiny = slides.find('.slide').eq( ($(this).data('index') -1) );
 
 			if(destiny.length > 0){
 				currentSlide.removeClass('active');
@@ -611,6 +612,7 @@
 				slidesContainer.animate({
 					scrollLeft : destinyPos.left
 				}, options.scrollingSpeed, function() {
+
 					//letting them slide again
 					slideLapse = true; 
 				});
