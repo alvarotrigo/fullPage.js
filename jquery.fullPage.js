@@ -11,6 +11,7 @@
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
 			"verticalCentered" : true,
+			'resize' : true,
 			'slidesColor' : [],
 			'anchors':[],
 			'scrollingSpeed': 700,
@@ -409,7 +410,7 @@
 						
 			
 						
-			if(options.css3 && options.autoScrolling){
+			if(options.css3 && options.autoScrolling){  console.log("with CSS3...");
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
@@ -426,7 +427,7 @@
 					isMoving = false;
 					$.isFunction( callback ) && callback.call( this);
 				}, 700);
-			}else{
+			}else{console.log("normal ...");
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 				
 				$(scrolledElement).animate(
@@ -682,15 +683,14 @@
 				//adjusting the position fo the FULL WIDTH slides...
 				var slides = $(this).find('.slides');
 				if (slides.length > 0) {
-					var destinyPos = slides.find('.slide.active').position();
-
-					landscapeScroll(slides, destinyPos);
+					landscapeScroll(slides, slides.find('.slide.active'));
 				}
 			});
 
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
 
+			console.log("scrolling...");
 			scrollPage($('.section.active'));
 		}
 
