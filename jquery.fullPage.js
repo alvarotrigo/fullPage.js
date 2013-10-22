@@ -208,6 +208,7 @@
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 					
 					activateMenuElement(anchorLink);	
+					activateNavDots(anchorLink, 0);
 				}
 			}					
 		});	
@@ -445,9 +446,12 @@
 			
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
 			lastScrolledDestiny = anchorLink;
-
-			activateMenuElement(anchorLink);
-			activateNavDots(anchorLink, sectionIndex);
+			
+			//avoid firing it twice (as it does also on scroll)
+			if(options.autoScrolling){
+				activateMenuElement(anchorLink);
+				activateNavDots(anchorLink, sectionIndex);
+			}
 		}
 		
 		function scrollToAnchor(){
