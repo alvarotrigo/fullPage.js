@@ -411,6 +411,8 @@
 			
 						
 			if(options.css3 && options.autoScrolling){
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
+
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				$('#superContainer').addClass('easing').css({
 					'-webkit-transform': translate3d,
@@ -418,6 +420,9 @@
 					'-ms-transform':translate3d,
 					'transform': translate3d
 				});
+				
+				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
+				
 				setTimeout(function(){
 					isMoving = false;
 					$.isFunction( callback ) && callback.call( this);
