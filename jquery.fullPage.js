@@ -149,7 +149,7 @@
 			}
 			
 			//moving the menu outside the main container (avoid problems with fixed positions when using CSS3 tranforms)
-			if(options.menu){
+			if(options.menu && options.css3){
 				$(options.menu).appendTo('body');
 			}
 
