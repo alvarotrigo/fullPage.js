@@ -11,7 +11,6 @@
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
 			"verticalCentered" : true,
-			'resize' : true,
 			'slidesColor' : [],
 			'anchors':[],
 			'scrollingSpeed': 700,
@@ -102,7 +101,7 @@
 			}
 
 			if (typeof options.anchors[index] !== 'undefined') {
-				$(this).data('anchor', options.anchors[index]);
+				$(this).attr('data-anchor', options.anchors[index]);
 			}
 			
 
@@ -378,7 +377,7 @@
 			}
 		};
 		
-		function scrollPage(element, callback) {
+		function scrollPage(element, callback) {;
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
@@ -491,6 +490,7 @@
 			It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 			event is fired on every scroll too.*/
 			if (section !== lastScrolledDestiny) {
+
 				var element = $('[data-anchor="'+section+'"]');
 
 				scrollPage(element);
