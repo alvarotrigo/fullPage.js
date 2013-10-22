@@ -410,7 +410,7 @@
 						
 			
 						
-			if(options.css3 && options.autoScrolling){  console.log("with CSS3...");
+			if(options.css3 && options.autoScrolling){
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
@@ -427,7 +427,7 @@
 					isMoving = false;
 					$.isFunction( callback ) && callback.call( this);
 				}, 700);
-			}else{console.log("normal ...");
+			}else{
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 				
 				$(scrolledElement).animate(
@@ -690,7 +690,6 @@
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
 
-			console.log("scrolling...");
 			scrollPage($('.section.active'));
 		}
 
