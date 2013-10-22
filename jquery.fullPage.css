@@ -69,7 +69,7 @@ body, html {
     transition: all 0.7s ease-out;
 }
 #fullPage-nav{
-	position: absolute;
+	position: fixed;
 	z-index: 100;
 	margin-top: -32px;
 	top: 50%;
