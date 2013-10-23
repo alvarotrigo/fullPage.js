@@ -540,7 +540,8 @@
 		
 		$(document).on('click', '#fullPage-nav a', function(e){
 			e.preventDefault();
-			var index = $(this).parent().index('li');
+			var index = $(this).parent().index();
+			alert(index);
 			scrollPage($('.section').eq(index));
 		});
 
