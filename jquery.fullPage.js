@@ -379,7 +379,7 @@
 			}
 		};
 		
-		function scrollPage(element, callback) {;
+		function scrollPage(element, callback) {
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
