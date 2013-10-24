@@ -79,6 +79,8 @@ $(document).ready(function() {
 		autoScrolling: true,
 		scrollOverflow: false,
 		css3: false,
+		paddingTop: 0,
+		paddingBottom: 0,
 
 		//events
 		onLeave: function(index, direction){},
@@ -142,6 +144,10 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 - `css3`: (default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3.
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
+
+- `paddingTop`: (default `0`) Defines the top padding for each section. Useful in case of using a fixed header. 
+
+- `paddingBottom`: (default `0`) Defines the bottom padding for each section. Useful in case of using a fixed footer.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
