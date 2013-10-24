@@ -145,9 +145,9 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-- `paddingTop`: (default `0`) Defines the top padding for each section. Useful in case of using a fixed header. 
+- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value (without `px`). Useful in case of using a fixed header. 
 
-- `paddingBottom`: (default `0`) Defines the bottom padding for each section. Useful in case of using a fixed footer.
+- `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value (without `px`). Useful in case of using a fixed footer.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
