@@ -1,5 +1,5 @@
 /**
- * fullPage 1.0
+ * fullPage 1.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -26,6 +26,8 @@
 			'autoScrolling': true,
 			'scrollOverflow': false,
 			'css3': false,
+			'paddingTop': 0,
+			'paddingBottom': 0,
 
 			//events
 			'afterLoad': null,
@@ -60,6 +62,7 @@
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
 		var windowsHeight = $(window).height();
+		var sectionHeight = getSectionHeight(windowsHeight);
 		var isMoving = false;
 		
 		var lastScrolledDestiny;
@@ -67,7 +70,7 @@
 		$.fn.fullpage.setAutoScrolling(options.autoScrolling);
 		
 		if(options.verticalCentered){
-			$('.section').addClass('table').wrapInner('<div class="tableCell" style="height:' + windowsHeight + 'px" />');
+			$('.section').addClass('table').wrapInner('<div class="tableCell" style="height:' + sectionHeight + 'px" />');
 		}
 
 		$('body').wrapInner('<div id="superContainer" />');
@@ -95,7 +98,9 @@
 				$(this).addClass('active');
 			}
 
-			$(this).css('height', windowsHeight + 'px');
+
+			$(this).css('height', sectionHeight + 'px')
+					.css('padding', options.paddingTop + 'px' + ' 0 ' + options.paddingBottom + 'px' + ' 0');
 			
 			if (typeof options.slidesColor[index] !==  'undefined') {
 				$(this).css('background-color', options.slidesColor[index]);
@@ -157,7 +162,7 @@
 				//after DOM and images are loaded 
 				$(window).on('load', function() {
 					$('.section').each(function(){
-						if($(this).height() > windowsHeight){
+						if($(this).outerHeight() > sectionHeight){
 							if(options.verticalCentered){
 								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
 							}else{
@@ -165,7 +170,7 @@
 							}
 
 							$(this).find('.scrollable').slimScroll({
-								height: windowsHeight + 'px',
+								height: sectionHeight + 'px',
 								size: '10px',
 								alwaysVisible: true
 							});
@@ -664,6 +669,7 @@
 		function doneResizing() {
 			var windowsWidtdh = $(window).width();
 			var windowsHeight = $(window).height();
+			var sectionHeight = getSectionHeight(windowsHeight);
 
 			//text and images resizing
 			if (options.resize) {
@@ -674,15 +680,15 @@
 			
 				//resizing the scrolling divs
 				if(options.scrollOverflow){
-					$(this).find('.scrollable').css('height', windowsHeight + 'px').parent().css('height', windowsHeight + 'px');
+					$(this).find('.scrollable').css('height', sectionHeight + 'px').parent().css('height', sectionHeight + 'px');
 				}
 				
 				//adjusting the height of the table-cell for IE and Firefox
 				if(options.verticalCentered){
-					$(this).find('.tableCell').css('height', windowsHeight + 'px');
+					$(this).find('.tableCell').css('height', sectionHeight + 'px');
 				}
 				
-				$(this).css('height', windowsHeight + 'px');
+				$(this).css('height', sectionHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
 				var slides = $(this).find('.slides');
@@ -783,7 +789,10 @@
 				return 'up';
 			}
 			return 'down';
-		}
+		}		
 		
+		function getSectionHeight(currentHeight){
+			return currentHeight - options.paddingBottom  - options.paddingTop;
+		}
 	};
 })(jQuery);
