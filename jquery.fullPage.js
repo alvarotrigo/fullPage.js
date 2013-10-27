@@ -427,12 +427,14 @@
 					'transform': translate3d
 				});
 				
-				$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
-				
 				setTimeout(function(){
-					isMoving = false;
-					$.isFunction( callback ) && callback.call( this);
-				}, 700);
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
+
+                    			setTimeout(function(){
+                        			isMoving = false;
+                        			$.isFunction( callback ) && callback.call( this);
+                    			}, 700);
+                		}, options.scrollingSpeed);
 			}else{
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 				
