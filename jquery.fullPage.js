@@ -1,5 +1,5 @@
 /**
- * fullPage 1.1
+ * fullPage 1.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -188,7 +188,7 @@
 		
 		//when scrolling...
 		$(window).scroll(function(e){
-			if(!options.autoScrolling){
+			if(!options.autoScrolling){	
 				var currentScroll = $(window).scrollTop();
 				
 				var scrolledSections = $('.section').map(function(){
@@ -214,6 +214,10 @@
 					
 					activateMenuElement(anchorLink);	
 					activateNavDots(anchorLink, 0);
+					
+					if(options.anchors.length){
+						location.hash = anchorLink;
+					}
 				}
 			}					
 		});	
@@ -495,17 +499,19 @@
 		//detecting any change on the URL to scroll to the given anchor link
 		//(a way to detect back history button as we play with the hashes on the URL)
 		$(window).on('hashchange',function(){
-			var value =  window.location.hash.replace('#', '').split('/');
-			var section = value[0];
+			if(options.autoScrolling){
+				var value =  window.location.hash.replace('#', '').split('/');
+				var section = value[0];
 
-			/*in order to call scrollpage() only once for each destination at a time
-			It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
-			event is fired on every scroll too.*/
-			if (section !== lastScrolledDestiny) {
+				/*in order to call scrollpage() only once for each destination at a time
+				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
+				event is fired on every scroll too.*/
+				if (section !== lastScrolledDestiny) {
 
-				var element = $('[data-anchor="'+section+'"]');
+					var element = $('[data-anchor="'+section+'"]');
 
-				scrollPage(element);
+					scrollPage(element);
+				}
 			}
 		});
 			
@@ -616,14 +622,20 @@
 		function landscapeScroll(slides, destiny){
 			var destinyPos = destiny.position();
 			var slidesContainer = slides.find('.slidesContainer').parent();
+			var slideIndex = destiny.index('.slide');
 			
 			var slideAnchor = destiny.data('anchor');
 			
 			if(typeof slideAnchor === 'undefined'){
-				slideAnchor = destiny.index('.slide');
+				slideAnchor = slideIndex;
 			}
 			
-			location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
+			//isn't it the first slide?
+			if(slideIndex){
+				location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
+			}else{
+				location.hash = location.hash.split('/')[0];
+			}
 			
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
@@ -702,7 +714,12 @@
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
 
-			scrollPage($('.section.active'));
+			var activeSection = $('.section.active');
+			
+			//isn't it the first section?
+			if(activeSection.index('.section')){
+				scrollPage(activeSection);
+			}
 		}
 
 		/**
