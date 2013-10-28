@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2
+ * fullPage 1.2.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -185,10 +185,13 @@
 			
 		});
 	
+		var scrollId;
+		var isScrolling = false;
 		
 		//when scrolling...
 		$(window).scroll(function(e){
-			if(!options.autoScrolling){	
+
+			if(!options.autoScrolling){					
 				var currentScroll = $(window).scrollTop();
 				
 				var scrolledSections = $('.section').map(function(){
@@ -202,6 +205,8 @@
 				
 				//executing only once the first time we reach the section
 				if(!currentSection.hasClass('active')){
+					isScrolling = true;	
+					
 					var yMovement = getYmovement(currentSection);
 					
 					$('.section.active').removeClass('active');
@@ -215,10 +220,21 @@
 					activateMenuElement(anchorLink);	
 					activateNavDots(anchorLink, 0);
 					
-					if(options.anchors.length){
+				
+					if(options.anchors.length && !isMoving){
+						//needed to enter in hashChange event when using the menu with anchor links
+						lastScrolledDestiny = anchorLink;
+			
 						location.hash = anchorLink;
 					}
+					
+					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+					clearTimeout(scrollId);
+					scrollId = setTimeout(function(){					
+						isScrolling = false;
+					}, 100);
 				}
+				
 			}					
 		});	
 	
@@ -499,7 +515,7 @@
 		//detecting any change on the URL to scroll to the given anchor link
 		//(a way to detect back history button as we play with the hashes on the URL)
 		$(window).on('hashchange',function(){
-			if(options.autoScrolling){
+			if(!isScrolling){
 				var value =  window.location.hash.replace('#', '').split('/');
 				var section = value[0];
 
@@ -507,7 +523,7 @@
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
 				if (section !== lastScrolledDestiny) {
-
+	
 					var element = $('[data-anchor="'+section+'"]');
 
 					scrollPage(element);
