@@ -216,7 +216,7 @@ $.fn.fullpage.setAutoScrolling('false');
 ```
 
 ## Callbacks
-**afterLoad** (`anchorLink`, `index`)
+###afterLoad (`anchorLink`, `index`)
 Callback fired once the sections have been loaded, after the scrolling has ended. 
 Parameters:
 
@@ -245,7 +245,7 @@ Example:
 	});
 ```
 
-**onLeave** (`index`, direction)
+###onLeave (`index`, direction)
 This callback is fired once the user leaves a section, in the transition to the new section. 
 
 Parameters:
@@ -271,7 +271,7 @@ Example:
 ```
 
 
-**afterRender** ()
+###afterRender()
 This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or fire any code which requires the document to be ready (as this plugin modifies the DOM to create the resulting structure).
 
 Example:
@@ -285,7 +285,7 @@ Example:
 ```
 
 
-**afterSlideLoad** (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
+###afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
 Callback fired once the slide of a section have been loaded, after the scrolling has ended. 
 Parameters:
 
