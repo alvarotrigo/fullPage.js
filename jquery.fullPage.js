@@ -163,7 +163,7 @@
 				//after DOM and images are loaded 
 				$(window).on('load', function() {
 					$('.section').each(function(){
-						if($(this).outerHeight() > sectionHeight){
+						if (($(this).outerHeight() - options.paddingBottom - options.paddingTop) > sectionHeight) {
 							if(options.verticalCentered){
 								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
 							}else{
