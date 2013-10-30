@@ -245,7 +245,7 @@ Example:
 	});
 ```
 
-###onLeave (`index`, direction)
+###onLeave (`index`, `direction`)
 This callback is fired once the user leaves a section, in the transition to the new section. 
 
 Parameters:
