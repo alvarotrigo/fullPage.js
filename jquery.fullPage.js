@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.1
+ * fullPage 1.2.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -32,7 +32,8 @@
 			//events
 			'afterLoad': null,
 			'onLeave': null,
-			'afterRender': null
+			'afterRender': null,
+			'afterSlideLoad': null
 		}, options);		
 		
 		
@@ -450,11 +451,11 @@
 				setTimeout(function(){
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
 
-                    			setTimeout(function(){
-                        			isMoving = false;
-                        			$.isFunction( callback ) && callback.call( this);
-                    			}, 700);
-                		}, options.scrollingSpeed);
+						setTimeout(function(){
+							isMoving = false;
+							$.isFunction( callback ) && callback.call( this);
+						}, 700);
+				}, options.scrollingSpeed);
 			}else{
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 				
@@ -639,6 +640,9 @@
 			var destinyPos = destiny.position();
 			var slidesContainer = slides.find('.slidesContainer').parent();
 			var slideIndex = destiny.index('.slide');
+			var section = slides.closest('.section');
+			var sectionIndex = section.index('.section');
+			var anchorLink = section.data('anchor');
 			
 			var slideAnchor = destiny.data('anchor');
 			
@@ -663,6 +667,8 @@
 					'transform': translate3d
 				});
 				setTimeout(function(){
+					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
+
 					slideLapse = true;
 				}, options.scrollingSpeed);
 			}else{
@@ -670,6 +676,8 @@
 					scrollLeft : destinyPos.left
 				}, options.scrollingSpeed, function() {
 
+					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+					
 					//letting them slide again
 					slideLapse = true; 
 				});
