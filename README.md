@@ -284,6 +284,40 @@ Example:
 	});
 ```
 
+
+**afterSlideLoad** (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
+Callback fired once the slide of a section have been loaded, after the scrolling has ended. 
+Parameters:
+
+- `anchorLink`: anchorLink corresponding to the section.
+- `index`: index of the section. Starting from 1.
+- `slideAnchor`: anchor corresponding to the slide (in case there is)
+- `slideIndex`: index of the slide. Starting from 1. (the default slide doesn't count as slide, but as a section)
+
+
+In case of not having anchorLinks defined for the slide or slides the `slideIndex` parameter would be the only one to use.
+Example:
+
+```javascript
+	$.fn.fullpage({
+		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	
+		afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
+		
+			//first slide of the second section
+			if(anchorLink == 'secondPage' && slideIndex == 1){
+				alert("First slide loaded");
+			}
+			
+			//second slide of the second section (supposing #secondSlide is the
+			//anchor for the second slide
+			if(index == 2 && slideIndex == 'secondSlide'){
+				alert("Second slide loaded");
+			}
+		}
+	});
+```
+
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
