@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.2
+ * fullPage 1.2.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -650,11 +650,14 @@
 				slideAnchor = slideIndex;
 			}
 			
-			//isn't it the first slide?
-			if(slideIndex){
-				location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
-			}else{
-				location.hash = location.hash.split('/')[0];
+			//only changing the URL if the slides are in the current section
+			if(section.hasClass('active')){
+				//isn't it the first slide?
+				if(slideIndex){
+					location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
+				}else{
+					location.hash = location.hash.split('/')[0];
+				}
 			}
 			
 			if(options.css3){
