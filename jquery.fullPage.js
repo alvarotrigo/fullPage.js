@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.3
+ * fullPage 1.2.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -65,14 +65,10 @@
 		var windowsHeight = $(window).height();
 		var sectionHeight = getSectionHeight(windowsHeight);
 		var isMoving = false;
-		
 		var lastScrolledDestiny;
 		
 		$.fn.fullpage.setAutoScrolling(options.autoScrolling);
-		
-		if(options.verticalCentered){
-			$('.section').addClass('table').wrapInner('<div class="tableCell" style="height:' + sectionHeight + 'px" />');
-		}
+	
 
 		$('body').wrapInner('<div id="superContainer" />');
 
@@ -99,7 +95,6 @@
 				$(this).addClass('active');
 			}
 
-
 			$(this).css('height', sectionHeight + 'px')
 					.css('padding', options.paddingTop + 'px' + ' 0 ' + options.paddingBottom + 'px' + ' 0');
 			
@@ -124,7 +119,7 @@
 			if (numSlides > 0) {
 				var sliderWidth = numSlides * 100;
 				var slideWidth = 100 / numSlides;
-
+				
 				slides.wrapAll('<div class="slidesContainer" />');
 				slides.parent().wrap('<div class="slides" />');
 
@@ -140,12 +135,22 @@
 					}
 					
 					$(this).css('width', slideWidth + '%');
+					
+					if(options.verticalCentered){
+						addTableClass($(this));
+					}
 				});
+			}else{
+				if(options.verticalCentered){
+					addTableClass($(this));
+				}
 			}
 			
+		
 
 			
-		}).promise().done(function(){
+		}).promise().done(function(){			
+
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			
 			//vertical centered of the navigation + first bullet active
@@ -163,19 +168,16 @@
 				//after DOM and images are loaded 
 				$(window).on('load', function() {
 					$('.section').each(function(){
-						if (($(this).outerHeight() - options.paddingBottom - options.paddingTop) > sectionHeight) {
-							if(options.verticalCentered){
-								$(this).find('.tableCell').wrapInner('<div class="scrollable" />');
-							}else{
-								$(this).wrapInner('<div class="scrollable" />');
-							}
-
-							$(this).find('.scrollable').slimScroll({
-								height: sectionHeight + 'px',
-								size: '10px',
-								alwaysVisible: true
+						var slides = $(this).find('.slide');
+						
+						if(slides.length){
+							slides.each(function(){
+								createSlimScrolling($(this));
 							});
+						}else{
+							createSlimScrolling($(this));
 						}
+						
 					});
 				});
 			}
@@ -839,6 +841,27 @@
 		
 		function getSectionHeight(currentHeight){
 			return currentHeight - options.paddingBottom  - options.paddingTop;
+		}
+		
+		
+		function createSlimScrolling(element){
+			if ((element.outerHeight() - options.paddingBottom - options.paddingTop) > sectionHeight) {
+				if(options.verticalCentered){
+					element.find('.tableCell').wrapInner('<div class="scrollable" />');
+				}else{
+					element.wrapInner('<div class="scrollable" />');
+				}
+
+				element.find('.scrollable').slimScroll({
+					height: sectionHeight + 'px',
+					size: '10px',
+					alwaysVisible: true
+				});
+			}
+		}
+		
+		function addTableClass(element){
+			element.addClass('table').wrapInner('<div class="tableCell" style="height:' + sectionHeight + 'px;" />');
 		}
 	};
 })(jQuery);
