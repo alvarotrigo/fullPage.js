@@ -36,6 +36,10 @@
 			'afterSlideLoad': null
 		}, options);		
 		
+		//Defines the delay to take place before being able to scroll to the next section
+		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and 
+		//Apple devices (laptops, mouses...)
+		var scrollDelay = 700;
 		
 		$.fn.fullpage.setAutoScrolling = function(value){
 			options.autoScrolling = value;
@@ -456,7 +460,7 @@
 						setTimeout(function(){
 							isMoving = false;
 							$.isFunction( callback ) && callback.call( this);
-						}, 700);
+						}, scrollDelay);
 				}, options.scrollingSpeed);
 			}else{
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
@@ -470,7 +474,7 @@
 					setTimeout(function(){
 						isMoving = false;
 						$.isFunction( callback ) && callback.call( this);
-					}, 700);
+					}, scrollDelay);
 				});
 			}
 			
@@ -845,7 +849,7 @@
 		
 		
 		function createSlimScrolling(element){
-			if ((element.outerHeight() - options.paddingBottom - options.paddingTop) > sectionHeight) {
+			if ((element.outerHeight()  - options.paddingBottom - options.paddingTop) > sectionHeight) {
 				if(options.verticalCentered){
 					element.find('.tableCell').wrapInner('<div class="scrollable" />');
 				}else{
