@@ -15,6 +15,7 @@
 			'slidesColor' : [],
 			'anchors':[],
 			'scrollingSpeed': 700,
+			'scrollDelay': 700,
 			'easing': 'easeInQuart',
 			'menu': false,
 			'navigation': false,
@@ -452,11 +453,10 @@
 				
 				setTimeout(function(){
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
-
-						setTimeout(function(){
-							isMoving = false;
-							$.isFunction( callback ) && callback.call( this);
-						}, 700);
+					setTimeout(function(){
+						isMoving = false;
+						$.isFunction( callback ) && callback.call( this);
+					}, options.scrollDelay);
 				}, options.scrollingSpeed);
 			}else{
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
@@ -466,11 +466,10 @@
 				, options.scrollingSpeed, options.easing, function() {
 					//callback
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
-					
 					setTimeout(function(){
 						isMoving = false;
 						$.isFunction( callback ) && callback.call( this);
-					}, 700);
+					}, options.scrollDelay);
 				});
 			}
 			
