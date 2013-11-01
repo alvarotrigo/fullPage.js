@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.4
+ * fullPage 1.2.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -849,7 +849,10 @@
 		
 		
 		function createSlimScrolling(element){
-			if ((element.outerHeight()  - options.paddingBottom - options.paddingTop) > sectionHeight) {
+			//needed to make `scrollHeight` work under Opera 12
+			element.css('overflow', 'hidden');
+			
+			if ((element.get(0).scrollHeight  - options.paddingBottom - options.paddingTop) > sectionHeight) {
 				if(options.verticalCentered){
 					element.find('.tableCell').wrapInner('<div class="scrollable" />');
 				}else{
@@ -862,6 +865,9 @@
 					alwaysVisible: true
 				});
 			}
+			
+			//undo 
+			element.css('overflow', '');
 		}
 		
 		function addTableClass(element){
