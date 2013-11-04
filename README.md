@@ -321,6 +321,7 @@ Example:
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
+- http://rodrigo.maroto.me/
 
 ## License
 
