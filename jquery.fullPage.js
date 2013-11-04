@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.5
+ * fullPage 1.2.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -325,9 +325,17 @@
 					e = window.event || e;
 					var delta = Math.max(-1, Math.min(1,
 							(e.wheelDelta || -e.detail)));
-
+					var scrollable;
+					var activeSection = $('.section.active');
+					
 					if (!isMoving) { //if theres any #
-						var scrollable = $('.section.active').find('.scrollable');
+					
+						//if there are landscape slides, we check if the scrolling bar is in the current one or not
+						if(activeSection.find('.slides').length){
+							 scrollable= activeSection.find('.slide.active').find('.scrollable');
+						}else{
+							scrollable = activeSection.find('.scrollable');
+						}
 					
 						//scrolling down?
 						if (delta < 0) {
