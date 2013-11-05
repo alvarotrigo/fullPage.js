@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.6
+ * fullPage 1.2.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -26,8 +26,8 @@
 			'autoScrolling': true,
 			'scrollOverflow': false,
 			'css3': false,
-			'paddingTop': 0,
-			'paddingBottom': 0,
+			'paddingTop': null,
+			'paddingBottom': null,
 
 			//events
 			'afterLoad': null,
@@ -67,7 +67,6 @@
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
 		var windowsHeight = $(window).height();
-		var sectionHeight = getSectionHeight(windowsHeight);
 		var isMoving = false;
 		var lastScrolledDestiny;
 		
@@ -99,8 +98,11 @@
 				$(this).addClass('active');
 			}
 
-			$(this).css('height', sectionHeight + 'px')
-					.css('padding', options.paddingTop + 'px' + ' 0 ' + options.paddingBottom + 'px' + ' 0');
+			$(this).css('height', windowsHeight + 'px');
+			
+			if(options.paddingTop && options.paddingBottom){
+				$(this).css('padding', options.paddingTop  + ' 0 ' + options.paddingBottom + ' 0');
+			}
 			
 			if (typeof options.slidesColor[index] !==  'undefined') {
 				$(this).css('background-color', options.slidesColor[index]);
@@ -724,7 +726,6 @@
 		function doneResizing() {
 			var windowsWidtdh = $(window).width();
 			var windowsHeight = $(window).height();
-			var sectionHeight = getSectionHeight(windowsHeight);
 
 			//text and images resizing
 			if (options.resize) {
@@ -732,18 +733,19 @@
 			}
 
 			$('.section').each(function(){
+				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
 			
 				//resizing the scrolling divs
 				if(options.scrollOverflow){
-					$(this).find('.scrollable').css('height', sectionHeight + 'px').parent().css('height', sectionHeight + 'px');
+					$(this).find('.scrollable').css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
 				}
 				
 				//adjusting the height of the table-cell for IE and Firefox
 				if(options.verticalCentered){
-					$(this).find('.tableCell').css('height', sectionHeight + 'px');
+					$(this).find('.tableCell').css('height', windowsHeight + 'px');
 				}
 				
-				$(this).css('height', sectionHeight + 'px');
+				$(this).css('height', windowsHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
 				var slides = $(this).find('.slides');
@@ -851,24 +853,26 @@
 			return 'down';
 		}		
 		
-		function getSectionHeight(currentHeight){
-			return currentHeight - options.paddingBottom  - options.paddingTop;
-		}
-		
 		
 		function createSlimScrolling(element){
 			//needed to make `scrollHeight` work under Opera 12
 			element.css('overflow', 'hidden');
 			
-			if ((element.get(0).scrollHeight  - options.paddingBottom - options.paddingTop) > sectionHeight) {
+			//in case element is a slide
+			var section = element.closest('.section');
+			
+			var contentHeight = element.get(0).scrollHeight  - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+			if ( contentHeight > windowsHeight) {
 				if(options.verticalCentered){
 					element.find('.tableCell').wrapInner('<div class="scrollable" />');
 				}else{
 					element.wrapInner('<div class="scrollable" />');
 				}
+				
+				var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
 
 				element.find('.scrollable').slimScroll({
-					height: sectionHeight + 'px',
+					height: scrollHeight + 'px',
 					size: '10px',
 					alwaysVisible: true
 				});
@@ -879,7 +883,7 @@
 		}
 		
 		function addTableClass(element){
-			element.addClass('table').wrapInner('<div class="tableCell" style="height:' + sectionHeight + 'px;" />');
+			element.addClass('table').wrapInner('<div class="tableCell" style="height:' + windowsHeight + 'px;" />');
 		}
 	};
 })(jQuery);

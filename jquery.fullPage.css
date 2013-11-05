@@ -1,3 +1,10 @@
+/**
+ * fullPage 1.2.7
+ * https://github.com/alvarotrigo/fullPage.js
+ * MIT licensed
+ *
+ * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ */
 body, html {
     margin:0;
     padding:0;
@@ -8,6 +15,9 @@ body, html {
 }
 .section{
     position: relative;
+	-webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+         box-sizing: border-box; 
 }
 .slide {
     float: left;
