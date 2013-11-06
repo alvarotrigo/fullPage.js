@@ -27,6 +27,7 @@ body, html {
     display: block;
 }
 .slides {
+	height: 100%;
     overflow: hidden;
     position: relative;
     -webkit-transition: all 0.3s ease-out;
