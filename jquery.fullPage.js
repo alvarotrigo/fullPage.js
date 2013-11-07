@@ -44,19 +44,42 @@
 		$.fn.fullpage.setAutoScrolling = function(value){
 			options.autoScrolling = value;
 			
+			var element = $('.section.active');
+				
 			if(options.autoScrolling){
 				$('html, body').css({
 					'overflow' : 'hidden',
 					'height' : '100%'
 				});
+				
+				if(element.length){
+					//moving the container up
+					if(options.css3){
+						var translate3d = 'translate3d(0px, -' + element.position().top + 'px, 0px)';
+						transformContainer(translate3d, false)
+					}else{
+						//deleting the possible negative top
+						$('#superContainer').css('top', '-'  + element.position().top + 'px');
+					}
+				}
+					
 			}else{
 				$('html, body').css({
 					'overflow' : 'auto',
 					'height' : 'auto'
 				});
 				
-				//deleting the possible negative top
-				$('#superContainer').css('top', '0px');
+				if(options.css3){
+					//moving the container up
+					var translate3d = 'translate3d(0px, 0px, 0px)';
+					transformContainer(translate3d, false)
+				}else{
+					//deleting the possible negative top
+					$('#superContainer').css('top', '0px');
+				}
+				
+				//scrolling the page to the section with no animation
+				$('html, body').scrollTop(element.offset().top);
 			}
 		};
 		
@@ -457,12 +480,7 @@
 				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
-				$('#superContainer').addClass('easing').css({
-					'-webkit-transform': translate3d,
-					'-moz-transform': translate3d,
-					'-ms-transform':translate3d,
-					'transform': translate3d
-				});
+				transformContainer(translate3d, true);
 				
 				setTimeout(function(){
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
@@ -884,6 +902,21 @@
 		
 		function addTableClass(element){
 			element.addClass('table').wrapInner('<div class="tableCell" style="height:' + windowsHeight + 'px;" />');
+		}
+		
+		
+		/**
+		* Adds a css3 transform property to the container class with or without animation depending on the animated param.
+		*/
+		function transformContainer(translate3d, animated){
+			$('#superContainer').toggleClass('easing', animated);
+			
+			$('#superContainer').css({
+				'-webkit-transform': translate3d,
+				'-moz-transform': translate3d,
+				'-ms-transform':translate3d,
+				'transform': translate3d
+			});
 		}
 	};
 })(jQuery);
