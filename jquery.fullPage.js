@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.8
+ * fullPage 1.2.85
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -79,7 +79,7 @@
 				}
 				
 				//scrolling the page to the section with no animation
-				$('html, body').scrollTop(element.offset().top);
+				$('html, body').scrollTop(element.position().top);
 			}
 		};
 		
@@ -451,6 +451,7 @@
 			var yMovement = getYmovement(element);
 			var anchorLink  = element.data('anchor');
 			var sectionIndex = element.index('.section');
+			var leavingSection = sectionIndex;
 			
 			element.addClass('active').siblings().removeClass('active');
 			
@@ -474,10 +475,15 @@
 				scrolledElement = 'html, body';
 			}
 						
-			
+			//calculating the index of the section we are leaving
+			if(yMovement === 'up'){
+				leavingSection +=2; 
+			}			
 						
 			if(options.css3 && options.autoScrolling){
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
+
+				
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				transformContainer(translate3d, true);
@@ -491,7 +497,7 @@
 						}, scrollDelay);
 				}, options.scrollingSpeed);
 			}else{
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, sectionIndex, yMovement);
+				$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
 				
 				$(scrolledElement).animate(
 					scrollOptions 
