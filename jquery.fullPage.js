@@ -615,6 +615,52 @@
 		});
 
 		/**
+		 * Function for jumping to section & slide
+		 */
+		$.fn.fullpage.scrollToDeepLink = function (section, slide){
+
+			$.fn.fullpage.moveToSlide(section);
+			
+			var sectionElement = $('[data-anchor="'+section+'"]');
+
+			if (sectionElement.length > 0) {
+				var slides = sectionElement.find('.slides');		
+				if (slides.length > 0) {
+
+					var currentSlide = slides.find('.slide.active');
+					currentSlide.removeClass('active');
+					
+					var slideElement = null;
+					var slideElement = sectionElement.find('[data-anchor="'+slide+'"]');
+					if (slideElement.length > 0) {	
+						setTimeout(function(){
+							landscapeScroll(slides, slideElement);
+							slideElement.addClass('active');							
+						}, scrollDelay);
+						
+					}
+				}
+			}
+
+		};
+
+		/**
+		 * Deeplink on page with class 'deep-link' goes directly to section and slide within it
+		 */
+		$('.deep-link').on('click', function(e) {
+			e.preventDefault();
+			var href = $(this).attr('href');
+			if (href) {
+				var deeplink_data = href.replace('#', '').split('/');
+				var section = deeplink_data[0];			
+				var slide   = deeplink_data[1];	
+				if(typeof section != 'undefined' && typeof slide != 'undefined') {	
+					$.fn.fullpage.scrollToDeepLink(section, slide);	
+				}
+			}
+		});
+
+		/**
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
 		$('.section').on('click', '.controlArrow', function() {
