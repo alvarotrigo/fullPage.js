@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.85
+ * fullPage 1.2.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -23,6 +23,7 @@
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
+			'loopHorizontal': true,
 			'autoScrolling': true,
 			'scrollOverflow': false,
 			'css3': false,
@@ -94,7 +95,7 @@
 		var lastScrolledDestiny;
 		
 		$.fn.fullpage.setAutoScrolling(options.autoScrolling);
-	
+		addScrollEvent();
 
 		$('body').wrapInner('<div id="superContainer" />');
 
@@ -154,8 +155,12 @@
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
 				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
-				$('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
-				$('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+				$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+				$(this).find('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+				
+				if(!options.loopHorizontal){
+					$(this).find('.controlArrow.prev').hide();
+				}
 
 				
 				slides.each(function(index) {
@@ -340,68 +345,65 @@
 		 * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
 		 * http://www.sitepoint.com/html5-javascript-mouse-wheel/
 		 */
-		var sq = {};
-		sq = document;
-
-		function MouseWheelHandler() {
-			return function(e) {
-				if(options.autoScrolling){
-					// cross-browser wheel delta
-					e = window.event || e;
-					var delta = Math.max(-1, Math.min(1,
-							(e.wheelDelta || -e.detail)));
-					var scrollable;
-					var activeSection = $('.section.active');
-					
-					if (!isMoving) { //if theres any #
-					
-						//if there are landscape slides, we check if the scrolling bar is in the current one or not
-						if(activeSection.find('.slides').length){
-							 scrollable= activeSection.find('.slide.active').find('.scrollable');
-						}else{
-							scrollable = activeSection.find('.scrollable');
-						}
-					
-						//scrolling down?
-						if (delta < 0) {
-							if(scrollable.length > 0 ){
-								//is the scrollbar at the end of the scroll?
-								if(isScrolled('bottom', scrollable)){
-									$.fn.fullpage.moveSlideDown();
-								}else{
-									return true; //normal scroll
-								}
-							}else{
+		function MouseWheelHandler(e) {
+			if(options.autoScrolling){
+				// cross-browser wheel delta
+				e = window.event || e;
+				var delta = Math.max(-1, Math.min(1,
+						(e.wheelDelta || -e.detail)));
+				var scrollable;
+				var activeSection = $('.section.active');
+				
+				if (!isMoving) { //if theres any #
+				
+					//if there are landscape slides, we check if the scrolling bar is in the current one or not
+					if(activeSection.find('.slides').length){
+						 scrollable= activeSection.find('.slide.active').find('.scrollable');
+					}else{
+						scrollable = activeSection.find('.scrollable');
+					}
+				
+					//scrolling down?
+					if (delta < 0) {
+						if(scrollable.length > 0 ){
+							//is the scrollbar at the end of the scroll?
+							if(isScrolled('bottom', scrollable)){
 								$.fn.fullpage.moveSlideDown();
-							}
-						}
-
-						//scrolling up?
-						else {
-							if(scrollable.length > 0){
-								//is the scrollbar at the start of the scroll?
-								if(isScrolled('top', scrollable)){
-									$.fn.fullpage.moveSlideUp();
-								}else{
-									return true; //normal scroll
-								}
 							}else{
-								$.fn.fullpage.moveSlideUp();
+								return true; //normal scroll
 							}
+						}else{
+							$.fn.fullpage.moveSlideDown();
 						}
 					}
 
-					return false;
-				};
+					//scrolling up?
+					else {
+						if(scrollable.length > 0){
+							//is the scrollbar at the start of the scroll?
+							if(isScrolled('top', scrollable)){
+								$.fn.fullpage.moveSlideUp();
+							}else{
+								return true; //normal scroll
+							}
+						}else{
+							$.fn.fullpage.moveSlideUp();
+						}
+					}
+				}
+
+				return false;
 			}
 		}
 
-		
-		if (sq.addEventListener) {
-			sq.addEventListener("mousewheel", MouseWheelHandler(), false);
-			sq.addEventListener("DOMMouseScroll", MouseWheelHandler(), false);
-		} else {
-			sq.attachEvent("onmousewheel", MouseWheelHandler());
+			
+		function addScrollEvent(){
+			if (document.addEventListener) {
+				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+				document.addEventListener("DOMMouseScroll", MouseWheelHandler, false); //Firefox
+			} else {
+				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+			}
 		}
 		
 		$.fn.fullpage.moveSlideUp = function(){
@@ -690,11 +692,23 @@
 				slideAnchor = slideIndex;
 			}
 			
-			//only changing the URL if the slides are in the current section
+			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
 			if(section.hasClass('active')){
+			
+				if(!options.loopBottom){
+					//hidding it for the fist slide, showing for the rest
+					section.find('.controlArrow.prev').toggle(slideIndex!=0);
+				}
+			
 				//isn't it the first slide?
 				if(slideIndex){
 					location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
+					
+					if(!options.loopBottom){
+						//hidding it for the last slide, showing for the rest
+						section.find('.controlArrow.next').toggle(!destiny.is(':last-child'));
+					}			
+				//first slide
 				}else{
 					location.hash = location.hash.split('/')[0];
 				}
