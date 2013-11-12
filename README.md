@@ -77,6 +77,7 @@ $(document).ready(function() {
 		navigationPosition: 'right',
 		loopBottom: false,
 		loopTop: false,
+		loopHorizontal: true,
 		autoScrolling: true,
 		scrollOverflow: false,
 		css3: false,
@@ -141,6 +142,8 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
 - `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
+
+- `loopHorizontal`: (default `true`) Defines whether horizontal sliders will loop after reaching the last or previous slide or not. 
 
 - `css3`: (default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3.
 
