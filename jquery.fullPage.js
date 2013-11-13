@@ -1,5 +1,5 @@
 /**
- * fullPage 1.2.9
+ * fullPage 1.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -82,6 +82,7 @@
 				//scrolling the page to the section with no animation
 				$('html, body').scrollTop(element.position().top);
 			}
+			
 		};
 		
 			
@@ -94,7 +95,6 @@
 		var isMoving = false;
 		var lastScrolledDestiny;
 		
-		$.fn.fullpage.setAutoScrolling(options.autoScrolling);
 		addScrollEvent();
 
 		$('body').wrapInner('<div id="superContainer" />');
@@ -184,6 +184,7 @@
 
 			
 		}).promise().done(function(){			
+			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
 
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			
@@ -530,28 +531,8 @@
 			var section = value[0];
 			var slide = value[1];
 						
-			if(section){  //if theres any #
-				var element = $('[data-anchor="'+section+'"]');
-				
-				//updating the array positions...
-				
-				scrollPage(element, function(){
-					if(typeof slide != 'undefined'){
-						var slides = element.find('.slides');
-						var destiny =  slides.find('[data-anchor="'+slide+'"]');
-						if(!destiny.length){
-							destiny = slides.find('.slide').eq(slide);
-						}
-						
-						slides.find('.slide').first().removeClass('active');
-						
-						landscapeScroll(slides, destiny);
-						
-						destiny.addClass('active');
-						
-					}
-				});
-				
+			if(section){  //if theres any #				
+				scrollPageAndSlide(section, slide);
 			}
 		}
 
@@ -561,15 +542,13 @@
 			if(!isScrolling){
 				var value =  window.location.hash.replace('#', '').split('/');
 				var section = value[0];
-
+				var slide = value[1];
+				
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
 				if (section !== lastScrolledDestiny) {
-	
-					var element = $('[data-anchor="'+section+'"]');
-
-					scrollPage(element);
+					scrollPageAndSlide(section, slide);
 				}
 			}
 		});
@@ -936,6 +915,30 @@
 				'-moz-transform': translate3d,
 				'-ms-transform':translate3d,
 				'transform': translate3d
+			});
+		}
+		
+		
+		/**
+		* Scrolls to the given section and slide 
+		*/
+		function scrollPageAndSlide(section, slide){
+			var element = $('[data-anchor="'+section+'"]');
+						
+			scrollPage(element, function(){
+				if(typeof slide != 'undefined'){
+					var slides = element.find('.slides');
+					var destiny =  slides.find('[data-anchor="'+slide+'"]');
+					if(!destiny.length){
+						destiny = slides.find('.slide').eq(slide);
+					}
+					
+					slides.find('.slide').first().removeClass('active');
+					
+					landscapeScroll(slides, destiny);
+					
+					destiny.addClass('active');
+				}
 			});
 		}
 	};
