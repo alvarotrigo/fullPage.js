@@ -83,6 +83,7 @@ $(document).ready(function() {
 		css3: false,
 		paddingTop: 0,
 		paddingBottom: 0,
+		fixedElements: '#element1, .element2',
 
 		//events
 		onLeave: function(index, direction){},
