@@ -154,6 +154,8 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 
 - `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value (without `px`). Useful in case of using a fixed footer.
 
+- `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` otpion to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `#element1, .element2`)
+
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
 In order to link the elements of the menu with the slides, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as 
