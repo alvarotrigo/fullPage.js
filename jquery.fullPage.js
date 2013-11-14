@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3
+ * fullPage 1.3.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -29,6 +29,7 @@
 			'css3': false,
 			'paddingTop': null,
 			'paddingBottom': null,
+			'fixedElements': null,
 
 			//events
 			'afterLoad': null,
@@ -87,7 +88,7 @@
 		
 			
 		//flag to avoid very fast sliding for landscape sliders
-		var slideLapse = true;
+		var slideMoving = false;
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
 
@@ -188,6 +189,11 @@
 
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			
+			//fixed elements need to be moved out of the plugin container due to problems with CSS3.
+			if(options.fixedElements && options.css3){
+				$(options.fixedElements).appendTo('body');
+			}
+			
 			//vertical centered of the navigation + first bullet active
 			if(options.navigation){
 				nav.css('margin-top', '-' + (nav.height()/2) + 'px');
@@ -280,6 +286,7 @@
 		
 	
 		var touchStartY = 0;
+		var touchStartX = 0;
 		var touchEndY = 0;
 		var touchEndX = 0;
 	
@@ -294,47 +301,63 @@
 				//preventing the easing on iOS devices
 				event.preventDefault();
 				var e = event.originalEvent;
+				var touchMoved = false;
 
 				if (!isMoving) { //if theres any #
-					var scrollable = $('.section.active').find('.scrollable');
 				
 					touchEndY = e.touches[0].pageY;
 					touchEndX = e.touches[0].pageX;
-					if(touchStartY > touchEndY){
-						if(scrollable.length > 0 ){
-							//is the scrollbar at the end of the scroll?
-							if(isScrolled('bottom', scrollable)){
-								$.fn.fullpage.moveSlideDown();
-							}else{
-								return true;
-							}
-						}else{
-							// moved down
-							$.fn.fullpage.moveSlideDown();
-						}
-					} else {
 					
-						if(scrollable.length > 0){
-							//is the scrollbar at the start of the scroll?
-							if(isScrolled('top', scrollable)){
-								$.fn.fullpage.moveSlideUp();
-							}
-							else{
-								return true;
-							}
-						}else{
-							// moved up
-							$.fn.fullpage.moveSlideUp();
+					
+					//if movement in the X axys is bigger than in the Y and the currect section has slides...
+					if($('.section.active').find('.slides').length && Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY) ){
+						if(touchStartX > touchEndX){
+							$('.section.active').find('.controlArrow.next').trigger('click');
+						}
+						else if(touchStartX < touchEndX){
+							$('.section.active').find('.controlArrow.prev').trigger('click');
 						}
 					}
+					//vertical scrolling
+					else{
+						var scrollable = $('.section.active').find('.scrollable');
+						if(touchStartY > touchEndY){
+							if(scrollable.length > 0 ){
+								//is the scrollbar at the end of the scroll?
+								if(isScrolled('bottom', scrollable)){
+									$.fn.fullpage.moveSlideDown();
+								}else{
+									return true;
+								}
+							}else{
+								// moved down
+								$.fn.fullpage.moveSlideDown();
+							}
+						} else {
+						
+							if(scrollable.length > 0){
+								//is the scrollbar at the start of the scroll?
+								if(isScrolled('top', scrollable)){
+									$.fn.fullpage.moveSlideUp();
+								}
+								else{
+									return true;
+								}
+							}else{
+								// moved up
+								$.fn.fullpage.moveSlideUp();
+							}
+						}
+					}					
 				}
 			}
 		});
-		
+
 		$(document).on('touchstart', function(event){
 			if(options.autoScrolling && isTablet){
 				var e = event.originalEvent;
 				touchStartY = e.touches[0].pageY;
+				touchStartX = e.touches[0].pageX;
 			}
 		});
 		
@@ -600,10 +623,10 @@
 		 */
 		$('.section').on('click', '.controlArrow', function() {
 			//not that fast my friend! :)
-			if (!slideLapse) {
+			if (slideMoving) {
 				return;
 			}
-			slideLapse = false;
+			slideMoving = true;
 
 			var slides = $(this).closest('.section').find('.slides');
 			var currentSlide = slides.find('.slide.active');
@@ -705,7 +728,7 @@
 				setTimeout(function(){
 					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
 
-					slideLapse = true;
+					slideMoving = false;
 				}, options.scrollingSpeed);
 			}else{
 				slidesContainer.animate({
@@ -715,7 +738,7 @@
 					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
 					
 					//letting them slide again
-					slideLapse = true; 
+					slideMoving = false; 
 				});
 			}
 		}
