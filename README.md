@@ -219,7 +219,7 @@ Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with `scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section is scrollable.
 
 ```javascript
-$.fn.fullpage.setAutoScrolling('false');
+$.fn.fullpage.setAutoScrolling(false);
 ```
 
 ## Callbacks
