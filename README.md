@@ -8,6 +8,8 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 - [Apple demo] (http://alvarotrigo.com/fullPage/examples/apple.html)
 - [Temporal Website](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
 
++[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
 ## Introduction
 The plugin is in its first version and will keep improving with time.
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
@@ -331,6 +333,11 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.ondamujer.com
 - http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
+
+## Donations
+Donations would be more than welcome :)
++[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
 
 ## License
 
