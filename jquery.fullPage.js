@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.2
+ * fullPage 1.3.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -561,12 +561,16 @@
 				var value =  window.location.hash.replace('#', '').split('/');
 				var section = value[0];
 				var slide = value[1];
+
 				
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
-				if (section !== lastScrolledDestiny) {
+				if (section !== lastScrolledDestiny || (typeof slide != 'undefined' && !slideMoving))  {
+					console.log("entro");
 					scrollPageAndSlide(section, slide);
+				}else{
+					console.log("noooooooooooo");
 				}
 			}
 		});
@@ -941,23 +945,38 @@
 		* Scrolls to the given section and slide 
 		*/
 		function scrollPageAndSlide(section, slide){
-			var element = $('[data-anchor="'+section+'"]');
-						
-			scrollPage(element, function(){
-				if(typeof slide != 'undefined'){
-					var slides = element.find('.slides');
-					var destiny =  slides.find('[data-anchor="'+slide+'"]');
-					if(!destiny.length){
-						destiny = slides.find('.slide').eq(slide);
-					}
-					
-					slides.find('.slide').first().removeClass('active');
-					
-					landscapeScroll(slides, destiny);
-					
-					destiny.addClass('active');
+			var section = $('[data-anchor="'+section+'"]');
+
+			//we need to scroll to the section and then to the slide
+			if (section !== lastScrolledDestiny){
+				scrollPage(section, function(){
+					scrollSlider(section, slide)
+				});
+			}
+			//if we were already in the section
+			else{
+				scrollSlider(section, slide);
+			}
+			
+		}
+		
+		/**
+		* Scrolls the slider to the given slide destination for the given section
+		*/
+		function scrollSlider(section, slide){
+			if(typeof slide != 'undefined'){
+				var slides = section.find('.slides');
+				var destiny =  slides.find('[data-anchor="'+slide+'"]');
+				if(!destiny.length){
+					destiny = slides.find('.slide').eq(slide);
 				}
-			});
+				
+				slides.find('.slide').first().removeClass('active');
+				
+				landscapeScroll(slides, destiny);
+				
+				destiny.addClass('active');
+			}
 		}
 	};
 })(jQuery);
