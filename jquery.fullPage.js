@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.1
+ * fullPage 1.3.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -477,7 +477,7 @@
 			var yMovement = getYmovement(element);
 			var anchorLink  = element.data('anchor');
 			var sectionIndex = element.index('.section');
-			var leavingSection = sectionIndex;
+			var leavingSection = $('.section.active').index('.section') + 1;
 			
 			element.addClass('active').siblings().removeClass('active');
 			
@@ -499,12 +499,7 @@
 			}else{
 				scrollOptions['scrollTop'] = dtop;
 				scrolledElement = 'html, body';
-			}
-						
-			//calculating the index of the section we are leaving
-			if(yMovement === 'up'){
-				leavingSection +=2; 
-			}			
+			}		
 						
 			if(options.css3 && options.autoScrolling){
 
