@@ -337,7 +337,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 ## Donations
 Donations would be more than welcome :)
 
-<div style="text-align:center;" markdown="1">
+<div style="text-align:center;" >
 	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" target="_blank">
 		<img src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif" />
 	</a>
