@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.36
+ * fullPage 1.3.37
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -567,10 +567,7 @@
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
 				if (section !== lastScrolledDestiny || (typeof slide != 'undefined' && !slideMoving))  {
-					console.log("entro");
 					scrollPageAndSlide(section, slide);
-				}else{
-					console.log("noooooooooooo");
 				}
 			}
 		});
