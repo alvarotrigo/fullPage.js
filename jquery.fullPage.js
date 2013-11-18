@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.35
+ * fullPage 1.3.36
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -944,11 +944,11 @@
 		/**
 		* Scrolls to the given section and slide 
 		*/
-		function scrollPageAndSlide(section, slide){
-			var section = $('[data-anchor="'+section+'"]');
+		function scrollPageAndSlide(destiny, slide){
+			var section = $('[data-anchor="'+destiny+'"]');
 
 			//we need to scroll to the section and then to the slide
-			if (section !== lastScrolledDestiny){
+			if (destiny !== lastScrolledDestiny){
 				scrollPage(section, function(){
 					scrollSlider(section, slide)
 				});
