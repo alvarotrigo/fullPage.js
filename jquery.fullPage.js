@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.38
+ * fullPage 1.3.39
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -968,7 +968,7 @@
 					destiny = slides.find('.slide').eq(slide);
 				}
 				
-				slides.find('.slide').first().removeClass('active');
+				slides.find('.slide.active').removeClass('active');
 				
 				landscapeScroll(slides, destiny);
 				
