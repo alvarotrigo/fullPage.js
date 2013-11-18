@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.37
+ * fullPage 1.3.38
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -679,9 +679,9 @@
 		function landscapeScroll(slides, destiny){
 			var destinyPos = destiny.position();
 			var slidesContainer = slides.find('.slidesContainer').parent();
-			var slideIndex = destiny.index('.slide');
+			var slideIndex = destiny.index();
 			var section = slides.closest('.section');
-			var sectionIndex = section.index('.section');
+			var sectionIndex = section.index();
 			var anchorLink = section.data('anchor');
 			
 			var slideAnchor = destiny.data('anchor');
