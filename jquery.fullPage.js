@@ -431,7 +431,7 @@
 		}
 		
 		$.fn.fullpage.moveSlideUp = function(){
-			var prev = $('.section.active').prev('.section');
+			var prev = $('.section.active').prevAll('.section');
 			
 			//looping to the bottom if there's no more sections above
 			if(options.loopTop && !prev.length){
@@ -444,7 +444,7 @@
 		};
 
 		$.fn.fullpage.moveSlideDown = function (){
-			var next = $('.section.active').next('.section');
+			var next = $('.section.active').nextAll('.section');
 			
 			//looping to the top if there's no more sections below
 			if(options.loopBottom && !next.length){
