@@ -1,5 +1,5 @@
 /**
- * fullPage 1.3.39
+ * fullPage 1.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -208,6 +208,7 @@
 			if(options.scrollOverflow){
 				//after DOM and images are loaded 
 				$(window).on('load', function() {
+					
 					$('.section').each(function(){
 						var slides = $(this).find('.slide');
 						
@@ -760,8 +761,8 @@
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
 		function doneResizing() {
-			var windowsWidtdh = $(window).width();
-			var windowsHeight = $(window).height();
+			windowsWidtdh = $(window).width();
+			windowsHeight = $(window).height();
 
 			//text and images resizing
 			if (options.resize) {
@@ -773,7 +774,16 @@
 			
 				//resizing the scrolling divs
 				if(options.scrollOverflow){
-					$(this).find('.scrollable').css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+					var slides = $(this).find('.slide');
+					
+					if(slides.length){
+						slides.each(function(){
+							createSlimScrolling($(this));
+						});
+					}else{
+						createSlimScrolling($(this));
+					}
+					
 				}
 				
 				//adjusting the height of the table-cell for IE and Firefox
@@ -785,7 +795,7 @@
 
 				//adjusting the position fo the FULL WIDTH slides...
 				var slides = $(this).find('.slides');
-				if (slides.length > 0) {
+				if (slides.length) {
 					landscapeScroll(slides, slides.find('.slide.active'));
 				}
 			});
@@ -896,22 +906,45 @@
 			
 			//in case element is a slide
 			var section = element.closest('.section');
+			var scrollable = element.find('.scrollable');
+
+			//if there was scroll, the contentHeight will be the one in the scrollable section
+			if(scrollable.length){
+				var contentHeight = element.find('.scrollable').get(0).scrollHeight  - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+			}else{
+				var contentHeight = element.get(0).scrollHeight  - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+			}
 			
-			var contentHeight = element.get(0).scrollHeight  - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+			//needs scroll?
 			if ( contentHeight > windowsHeight) {
-				if(options.verticalCentered){
-					element.find('.tableCell').wrapInner('<div class="scrollable" />');
-				}else{
-					element.wrapInner('<div class="scrollable" />');
-				}
-				
 				var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
 
-				element.find('.scrollable').slimScroll({
-					height: scrollHeight + 'px',
-					size: '10px',
-					alwaysVisible: true
-				});
+				//was there already an scroll ? Updating it
+				if(scrollable.length){
+					scrollable.css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+				}
+				//creating the scrolling
+				else{					
+					if(options.verticalCentered){
+						element.find('.tableCell').wrapInner('<div class="scrollable" />');
+					}else{
+						element.wrapInner('<div class="scrollable" />');
+					}
+					
+
+					element.find('.scrollable').slimScroll({
+						height: scrollHeight + 'px',
+						size: '10px',
+						alwaysVisible: true
+					});
+				}
+			}
+			
+			//removing the scrolling when it is not necessary anymore
+			else{				
+				element.find('.scrollable').children().first().unwrap().unwrap();
+				element.find('.slimScrollBar').remove();
+				element.find('.slimScrollRail').remove();
 			}
 			
 			//undo 
