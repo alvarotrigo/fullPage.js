@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.1
+ * fullPage 1.4.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -20,6 +20,7 @@
 			'navigation': false,
 			'navigationPosition': 'right',
 			'navigationColor': '#000',
+			'navigationTooltips': [],
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
@@ -122,6 +123,7 @@
 			}
 		}
 		
+		
 		$('.section').each(function(index){
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
@@ -150,7 +152,12 @@
 				if(options.anchors.length){
 					link = options.anchors[index];
 				}
-				nav.find('ul').append('<li><a href="#' + link + '"><span></span></a></li>');
+				var tooltip = options.navigationTooltips[index];
+				if(typeof tooltip === 'undefined'){
+					tooltip = '';
+				}
+				
+				nav.find('ul').append('<li data-tooltip="' + tooltip + '"><a href="#' + link + '"><span></span></a></li>');
 			}
 			
 			// if there's any slide
@@ -616,11 +623,23 @@
 			}
 		});
 		
+		//navigation action 
 		$(document).on('click', '#fullPage-nav a', function(e){
 			e.preventDefault();
 			var index = $(this).parent().index();
 			scrollPage($('.section').eq(index));
 		});
+		
+		//navigation tooltips 
+		$(document).on({
+			mouseenter: function(){
+				var tooltip = $(this).data('tooltip');
+				$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+			},
+			mouseleave: function(){
+				$(this).find('.fullPage-tooltip').fadeOut().remove();
+			}
+		}, '#fullPage-nav li');
 
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.

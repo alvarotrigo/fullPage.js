@@ -77,6 +77,7 @@ $(document).ready(function() {
 		menu: false,
 		navigation: false,
 		navigationPosition: 'right',
+		navigationTooltips: ['firstSlide', 'secondSlide'],
 		loopBottom: false,
 		loopTop: false,
 		loopHorizontal: true,
@@ -125,6 +126,7 @@ For example:
 To create links between sections, you could use the `menu` option and make use of anchor links (#) as explained below in the options section.
 
 ## Options
+
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
 - `resize`: (default `true`) Whether you want to resize the text when the window is resized. 
@@ -138,6 +140,8 @@ $.fn.fullpage({
     slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
+
+- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. 
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical scrolling.
 It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
@@ -179,7 +183,9 @@ $.fn.fullpage({
 
 - `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles. It requieres the use of anchor links at the moment. 
 
-- `navigationPosition`: (default `right`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
+- `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
+
+- `navigationTolltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTolltips: ['firstSlide', 'secondSlide']`.
 
 - `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it.
 In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscroll.min`](https://github.com/rochal/jQuery-slimScroll) and it should be loaded before the fullPaje.js plugin. For example:
