@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4
+ * fullPage 1.4.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -37,6 +37,8 @@
 			'afterRender': null,
 			'afterSlideLoad': null
 		}, options);		
+		
+		
 		
 		//Defines the delay to take place before being able to scroll to the next section
 		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and 
@@ -97,6 +99,11 @@
 		var lastScrolledDestiny;
 		
 		addScrollEvent();
+		
+		//if css3 is not supported, it will use jQuery animations
+		if(options.css3){
+			options.css3 = support3d();
+		}
 
 		$('body').wrapInner('<div id="superContainer" />');
 
@@ -1007,6 +1014,38 @@
 				
 				destiny.addClass('active');
 			}
+		}
+		
+		
+		/**
+		* Checks for translate3d support 
+		* @return boolean
+		* http://stackoverflow.com/questions/5661671/detecting-transform-translate3d-support
+		*/
+		function support3d() {
+			var el = document.createElement('p'), 
+				has3d,
+				transforms = {
+					'webkitTransform':'-webkit-transform',
+					'OTransform':'-o-transform',
+					'msTransform':'-ms-transform',
+					'MozTransform':'-moz-transform',
+					'transform':'transform'
+				};
+
+			// Add it to the body to get the computed style.
+			document.body.insertBefore(el, null);
+
+			for (var t in transforms) {
+				if (el.style[t] !== undefined) {
+					el.style[t] = "translate3d(1px,1px,1px)";
+					has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+				}
+			}
+			
+			document.body.removeChild(el);
+
+			return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
 		}
 	};
 })(jQuery);
