@@ -96,6 +96,7 @@ body, html {
 	width: 14px;
 	height: 13px;
 	margin: 7px;
+	position:relative;
 }
 #fullPage-nav li a{
 	display: block;
@@ -121,4 +122,17 @@ body, html {
 	border-radius: 50%;
 	position: absolute;
 	z-index: 1;
+}
+.fullPage-tooltip{
+	position: absolute;
+	color: #ff;
+	font-size: 14px;
+	font-family: arial, helvetica, sans-serif;
+	top: -2px;
+}
+.fullPage-tooltip.right{
+	right: 20px;
+}
+.fullPage-tooltip.left{
+	left: 20px;
 }
