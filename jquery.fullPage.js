@@ -581,7 +581,7 @@
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
-				if (section !== lastScrolledDestiny || (typeof slide != 'undefined' && !slideMoving))  {
+				if (section && section !== lastScrolledDestiny || (typeof slide != 'undefined' && !slideMoving))  {
 					scrollPageAndSlide(section, slide);
 				}
 			}
@@ -738,7 +738,7 @@
 					location.hash = location.hash.split('/')[0];
 				}
 			}
-			
+
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 				
