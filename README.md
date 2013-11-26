@@ -338,6 +338,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 
 - http://www.ondamujer.com
 - http://www.villareginateodolinda.it
+- http://www.omqcomics.com/
 - http://rodrigo.maroto.me
 
 ## Donations
