@@ -790,12 +790,12 @@
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
 		function doneResizing() {
-			windowsWidtdh = $(window).width();
+			var windowsWidth = $(window).width();
 			windowsHeight = $(window).height();
 
 			//text and images resizing
 			if (options.resize) {
-				resizeMe(windowsHeight, windowsWidtdh);
+				resizeMe(windowsHeight, windowsWidth);
 			}
 
 			$('.section').each(function(){
