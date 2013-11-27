@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.2
+ * fullPage 1.4.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -723,16 +723,19 @@
 				if(!options.loopHorizontal){
 					//hidding it for the fist slide, showing for the rest
 					section.find('.controlArrow.prev').toggle(slideIndex!=0);
+
+					//hidding it for the last slide, showing for the rest
+					section.find('.controlArrow.next').toggle(!destiny.is(':last-child'));
 				}
-			
 				//isn't it the first slide?
 				if(slideIndex){
-					location.hash = location.hash.split('/')[0] + '/' + slideAnchor;
+					if(typeof anchorLink !== 'undefined'){
+						var sectionHash = anchorLink;
+					}else{
+						var sectionHash = '';
+					}
 					
-					if(!options.loopHorizontal){
-						//hidding it for the last slide, showing for the rest
-						section.find('.controlArrow.next').toggle(!destiny.is(':last-child'));
-					}			
+					location.hash = sectionHash + '/' + slideAnchor;
 				//first slide
 				}else{
 					location.hash = location.hash.split('/')[0];
