@@ -92,6 +92,7 @@ $(document).ready(function() {
 		onLeave: function(index, direction){},
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
+		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex)
 	});
 });
 ```
@@ -152,7 +153,7 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 
 - `loopHorizontal`: (default `true`) Defines whether horizontal sliders will loop after reaching the last or previous slide or not. 
 
-- `css3`: (default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3.
+- `css3`: (default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
