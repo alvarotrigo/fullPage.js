@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.4
+ * fullPage 1.4.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -21,6 +21,8 @@
 			'navigationPosition': 'right',
 			'navigationColor': '#000',
 			'navigationTooltips': [],
+			'slidesNavigation': false,
+			'slidesNavPosition': 'bottom',
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
@@ -114,13 +116,7 @@
 			var nav = $('#fullPage-nav');
 
 			nav.css('color', options.navigationColor);
-
-
-			if (options.navigationPosition === 'right') {
-				nav.css('right', '17px');
-			} else {
-				nav.css('left', '17px');
-			}
+			nav.addClass(options.navigationPosition);
 		}
 		
 		
@@ -177,6 +173,10 @@
 					$(this).find('.controlArrow.prev').hide();
 				}
 
+				
+				if(options.slidesNavigation){
+					addSlidesNavigation($(this), numSlides);
+				}
 				
 				slides.each(function(index) {
 					if(!index){
@@ -655,8 +655,6 @@
 			var currentSlide = slides.find('.slide.active');
 			var destiny = null;
 
-			currentSlide.removeClass('active');
-
 			if ($(this).hasClass('prev')) {
 				destiny = currentSlide.prev('.slide');
 			} else {
@@ -674,8 +672,6 @@
 			}
 						
 			landscapeScroll(slides, destiny);
-			
-			destiny.addClass('active');
 		});
 
 		
@@ -692,11 +688,7 @@
 			destiny = slides.find('.slide').eq( ($(this).data('index') -1) );
 
 			if(destiny.length > 0){
-				currentSlide.removeClass('active');
-
 				landscapeScroll(slides, destiny);
-				
-				destiny.addClass('active');
 			}
 		});
 		
@@ -710,8 +702,11 @@
 			var section = slides.closest('.section');
 			var sectionIndex = section.index();
 			var anchorLink = section.data('anchor');
-			
+			var slidesNav = section.find('.fullPage-slidesNav');
 			var slideAnchor = destiny.data('anchor');
+	
+			destiny.addClass('active').siblings().removeClass('active');
+
 			
 			if(typeof slideAnchor === 'undefined'){
 				slideAnchor = slideIndex;
@@ -767,6 +762,9 @@
 					slideMoving = false; 
 				});
 			}
+			
+			slidesNav.find('.active').removeClass('active');
+			slidesNav.find('li').eq(slideIndex).find('a').addClass('active');
 		}
 		
 		
@@ -1030,13 +1028,40 @@
 					destiny = slides.find('.slide').eq(slide);
 				}
 				
-				slides.find('.slide.active').removeClass('active');
-				
 				landscapeScroll(slides, destiny);
-				
-				destiny.addClass('active');
 			}
 		}
+		
+		/**
+		* Creates a landscape navigation bar with dots for horizontal sliders.
+		*/
+		function addSlidesNavigation(section, numSlides){						
+			section.append('<div class="fullPage-slidesNav"><ul></ul></div>');
+			var nav = section.find('.fullPage-slidesNav');
+
+			//top or bottom
+			nav.addClass(options.slidesNavPosition);
+
+			for(var i=0; i< numSlides; i++){			
+				nav.find('ul').append('<li><a href="#"><span></span></a></li>');
+			}
+			
+			//centering it
+			nav.css('margin-left', '-' + (nav.width()/2) + 'px');
+			
+			nav.find('li').first().find('a').addClass('active');
+		}
+		
+		/**
+		* Scrolls the slider to the given slide destination for the given section
+		*/
+		$(document).on('click', '.fullPage-slidesNav a', function(e){
+			e.preventDefault();
+			var slides = $(this).closest('.section').find('.slides');		
+			var destiny = slides.find('.slide').eq($(this).closest('li').index());
+			
+			landscapeScroll(slides, destiny);
+		});
 		
 		
 		/**
