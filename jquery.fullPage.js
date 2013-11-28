@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.3
+ * fullPage 1.4.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -28,8 +28,8 @@
 			'autoScrolling': true,
 			'scrollOverflow': false,
 			'css3': false,
-			'paddingTop': null,
-			'paddingBottom': null,
+			'paddingTop': 0,
+			'paddingBottom': 0,
 			'fixedElements': null,
 
 			//events
@@ -134,7 +134,7 @@
 
 			$(this).css('height', windowsHeight + 'px');
 			
-			if(options.paddingTop && options.paddingBottom){
+			if(options.paddingTop || options.paddingBottom){
 				$(this).css('padding', options.paddingTop  + ' 0 ' + options.paddingBottom + ' 0');
 			}
 			
