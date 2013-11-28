@@ -86,8 +86,8 @@ $(document).ready(function() {
 		autoScrolling: true,
 		scrollOverflow: false,
 		css3: false,
-		paddingTop: 0,
-		paddingBottom: 0,
+		paddingTop: '3em',
+		paddingBottom: '10px',
 		fixedElements: '#element1, .element2',
 
 		//events
@@ -159,9 +159,9 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value (without `px`). Useful in case of using a fixed header. 
+- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header. 
 
-- `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value (without `px`). Useful in case of using a fixed footer.
+- `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.
 
 - `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` otpion to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
 
@@ -348,6 +348,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.villareginateodolinda.it
 - http://www.omqcomics.com/
 - http://rodrigo.maroto.me
+- http://azul257.com.mx
 
 ## Donations
 Donations would be more than welcome :)
