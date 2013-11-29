@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.5
+ * fullPage 1.4.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -33,6 +33,7 @@
 			'paddingTop': 0,
 			'paddingBottom': 0,
 			'fixedElements': null,
+			'normalScrollElements': null,
 
 			//events
 			'afterLoad': null,
@@ -641,6 +642,22 @@
 			}
 		}, '#fullPage-nav li');
 
+	
+		if(options.normalScrollElements){
+			$(document).on('mouseover', options.normalScrollElements, function () {
+				if (document.addEventListener) {
+					document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+					document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Firefox
+				} else {
+					document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+				}
+			});
+			
+			$(document).on('mouseout', options.normalScrollElements, function(){
+				addScrollEvent();
+			});
+		}
+		
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
