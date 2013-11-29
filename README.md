@@ -89,6 +89,7 @@ $(document).ready(function() {
 		paddingTop: '3em',
 		paddingBottom: '10px',
 		fixedElements: '#element1, .element2',
+		normalScrollElements: '#element1, .element2',
 
 		//events
 		onLeave: function(index, direction){},
@@ -164,6 +165,8 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 - `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.
 
 - `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` otpion to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
+
+- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
@@ -345,8 +348,9 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 
 - http://rockercreative.com/
 - http://www.ondamujer.com
-- http://www.villareginateodolinda.it
 - http://www.omqcomics.com/
+- http://www.carlphot.com/
+- http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
 - http://azul257.com.mx
 
