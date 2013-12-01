@@ -191,7 +191,7 @@ $.fn.fullpage({
 
 - `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
-- `navigationTolltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTolltips: ['firstSlide', 'secondSlide']`.
+- `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`.
 
 - `slidesNavigation`: (default `false`) If set to `true` it will show a navigation bar made up of small circles for each landscape slider on the site. 
 
