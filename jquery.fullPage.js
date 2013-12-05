@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.6
+ * fullPage 1.4.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -39,7 +39,8 @@
 			'afterLoad': null,
 			'onLeave': null,
 			'afterRender': null,
-			'afterSlideLoad': null
+			'afterSlideLoad': null,
+			'onSlideLeave': null
 		}, options);		
 		
 		
@@ -717,10 +718,17 @@
 			var slidesContainer = slides.find('.slidesContainer').parent();
 			var slideIndex = destiny.index();
 			var section = slides.closest('.section');
-			var sectionIndex = section.index();
+			var sectionIndex = section.index('.section');
 			var anchorLink = section.data('anchor');
 			var slidesNav = section.find('.fullPage-slidesNav');
 			var slideAnchor = destiny.data('anchor');
+	
+			if(options.onSlideLeave){
+				var prevSlideIndex = section.find('.slide.active').index();
+				var xMovement = getXmovement(prevSlideIndex, slideIndex);
+
+				$.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( this, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
+			}
 	
 			destiny.addClass('active').siblings().removeClass('active');
 
@@ -752,7 +760,7 @@
 				}else{
 					location.hash = location.hash.split('/')[0];
 				}
-			}
+			}			
 
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
@@ -941,6 +949,17 @@
 				return 'up';
 			}
 			return 'down';
+		}	
+
+		/**
+		* Retuns `right` or `left` depending on the scrolling movement to reach its destination
+		* from the current slide.
+		*/
+		function getXmovement(fromIndex, toIndex){			
+			if(fromIndex > toIndex){
+				return 'left';
+			}
+			return 'right';
 		}		
 		
 		

@@ -343,6 +343,36 @@ Example:
 	});
 ```
 
+
+
+###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`)
+This callback is fired once the user leaves an slide to go to another, in the transition to the new slide. 
+Parameters:
+
+- `anchorLink`: anchorLink corresponding to the section.
+- `index`: index of the section. Starting from 1.
+- `slideIndex`: index of the slide. **Starting from 0.** 
+- `direction`: takes the values `right` or `left` depending on the scrolling direction.
+
+
+Example:
+
+```javascript
+	$.fn.fullpage({	
+		onSlideLeave: function( anchorLink, index, slideIndex, direction){
+			//leaving the first slide of the 2nd Section to the right
+			if(index == 2 && slideIndex == 0 && direction == 'right'){
+				alert("Leaving the fist slide!!");
+			}
+			
+			//leaving the 3rd slide of the 2nd Section to the left
+			if(index == 2 && slideIndex == 2 && direction == 'left'){
+				alert("Going to slide 2! ");
+			}
+		}
+	});
+```
+
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
