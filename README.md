@@ -346,6 +346,8 @@ Example:
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
+![Vodafone](http://alvarotrigo.com/fullPage/imgs/vodafone.png)
+- https://www.xone.vodafone.com
 - http://rockercreative.com/
 - http://www.jennbeaupre.com/grime/
 - http://www.ondamujer.com
