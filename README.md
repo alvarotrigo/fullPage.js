@@ -145,7 +145,7 @@ $.fn.fullpage({
 });
 ```
 
-- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. 
+- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site.
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical scrolling.
 It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
@@ -382,6 +382,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.jennbeaupre.com/grime/
 - http://www.ondamujer.com
 - http://www.omqcomics.com/
+- http://mymattioli.it/
 - http://www.carlphot.com/
 - http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
