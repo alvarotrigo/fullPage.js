@@ -379,7 +379,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 ![Vodafone](http://alvarotrigo.com/fullPage/imgs/vodafone.png)
 - https://www.xone.vodafone.com
 - http://rockercreative.com/
-- http://www.jennbeaupre.com/grime/
+- http://www.jennbeaupre.com/jb/index.html
+- http://lawinenstift.com/
 - http://www.ondamujer.com
 - http://www.omqcomics.com/
 - http://mymattioli.it/
