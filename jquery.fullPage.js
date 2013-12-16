@@ -473,18 +473,22 @@
 			}
 		};
 		
-		$.fn.fullpage.moveToSlide = function (index){
-			var destiny = '';
-			
-			if(isNaN(index)){
-				destiny = $('[data-anchor="'+index+'"]');
-			}else{
-				destiny = $('.section').eq( (index -1) );
-			}
+		$.fn.fullpage.moveToSlide = function (index, slide) {
+		  var destiny = '';
 
-			if (destiny.length > 0) {
-				scrollPage(destiny);
-			}
+		  if(isNaN(index)) {
+		    destiny = $('[data-anchor="'+index+'"]');
+		  } else {
+		    destiny = $('.section').eq( (index -1) );
+		  }
+
+		  if (isNaN(index) && slide !== 'undefined') {
+		    scrollPageAndSlide(index, slide);
+		  } else {
+		    if (destiny.length > 0) {
+		      scrollPage(destiny);
+		    }
+		  }
 		};
 		
 		function scrollPage(element, callback) {
