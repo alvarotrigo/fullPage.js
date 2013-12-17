@@ -207,29 +207,32 @@ In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscr
 
 ## Methods
 
-### moveSlideUp
-Scrolls one slide up:
+### moveSectionUp
+Scrolls one section up:
 ```javascript
-$.fn.fullpage.moveSlideUp();
+$.fn.fullpage.moveSectionUp();
 ```
 
-### moveSlideDown
-Scrolls one slide down:
+### moveSectionDown
+Scrolls one section down:
 ```javascript
-$.fn.fullpage.moveSlideDown();
+$.fn.fullpage.moveSectionDown();
 ```
 
-### moveToSlide
-Scrolls the page to the given slide anchor name or to the given index.
+### moveTo
+Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
 ```javascript
-/*Scrolling to the section with the anchor link `firstSlide` */
-$.fn.fullpage.moveToSlide('firstSlide');
+/*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
+$.fn.fullpage.moveTo('firstSlide', 2);
 
 ```
 
 ```javascript
-/*Scrolling to the 3rd section in the site*/
-$.fn.fullpage.moveToSlide(3); 
+//Scrolling to the 3rd section in the site
+$.fn.fullpage.moveTo(3, 0); 
+
+//Whic his the same as 
+$.fn.fullpage.moveTo(3); 
 ```
 
 ### setAutoScrolling
@@ -387,8 +390,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.carlphot.com/
 - http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
-- http://azul257.com.mx
 - http://www.gricnik.info/
+- http://azul257.com.mx
 
 ## Donations
 Donations would be more than welcome :)

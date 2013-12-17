@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.7
+ * fullPage 1.4.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -342,27 +342,27 @@
 							if(scrollable.length > 0 ){
 								//is the scrollbar at the end of the scroll?
 								if(isScrolled('bottom', scrollable)){
-									$.fn.fullpage.moveSlideDown();
+									$.fn.fullpage.moveSectionDown();
 								}else{
 									return true;
 								}
 							}else{
 								// moved down
-								$.fn.fullpage.moveSlideDown();
+								$.fn.fullpage.moveSectionDown();
 							}
 						} else {
 						
 							if(scrollable.length > 0){
 								//is the scrollbar at the start of the scroll?
 								if(isScrolled('top', scrollable)){
-									$.fn.fullpage.moveSlideUp();
+									$.fn.fullpage.moveSectionUp();
 								}
 								else{
 									return true;
 								}
 							}else{
 								// moved up
-								$.fn.fullpage.moveSlideUp();
+								$.fn.fullpage.moveSectionUp();
 							}
 						}
 					}					
@@ -409,12 +409,12 @@
 						if(scrollable.length > 0 ){
 							//is the scrollbar at the end of the scroll?
 							if(isScrolled('bottom', scrollable)){
-								$.fn.fullpage.moveSlideDown();
+								$.fn.fullpage.moveSectionDown();
 							}else{
 								return true; //normal scroll
 							}
 						}else{
-							$.fn.fullpage.moveSlideDown();
+							$.fn.fullpage.moveSectionDown();
 						}
 					}
 
@@ -423,12 +423,12 @@
 						if(scrollable.length > 0){
 							//is the scrollbar at the start of the scroll?
 							if(isScrolled('top', scrollable)){
-								$.fn.fullpage.moveSlideUp();
+								$.fn.fullpage.moveSectionUp();
 							}else{
 								return true; //normal scroll
 							}
 						}else{
-							$.fn.fullpage.moveSlideUp();
+							$.fn.fullpage.moveSectionUp();
 						}
 					}
 				}
@@ -447,7 +447,7 @@
 			}
 		}
 		
-		$.fn.fullpage.moveSlideUp = function(){
+		$.fn.fullpage.moveSectionUp = function(){
 			var prev = $('.section.active').prev('.section');
 			
 			//looping to the bottom if there's no more sections above
@@ -460,7 +460,7 @@
 			}
 		};
 
-		$.fn.fullpage.moveSlideDown = function (){
+		$.fn.fullpage.moveSectionDown = function (){
 			var next = $('.section.active').next('.section');
 			
 			//looping to the top if there's no more sections below
@@ -473,16 +473,19 @@
 			}
 		};
 		
-		$.fn.fullpage.moveToSlide = function (index){
+		$.fn.fullpage.moveTo = function (section, slide){
+			console.log(section + 'vs' +  slide);
 			var destiny = '';
 			
-			if(isNaN(index)){
-				destiny = $('[data-anchor="'+index+'"]');
+			if(isNaN(section)){
+				destiny = $('[data-anchor="'+section+'"]');
 			}else{
-				destiny = $('.section').eq( (index -1) );
+				destiny = $('.section').eq( (section -1) );
 			}
-
-			if (destiny.length > 0) {
+			
+			if (slide !== 'undefined'){
+				scrollPageAndSlide(section, slide);
+			}else if(destiny.length > 0){
 				scrollPage(destiny);
 			}
 		};
@@ -600,13 +603,13 @@
 				//up
 				case 38:
 				case 33:
-					$.fn.fullpage.moveSlideUp();
+					$.fn.fullpage.moveSectionUp();
 					break;
 
 				//down
 				case 40:
 				case 34:
-					$.fn.fullpage.moveSlideDown();
+					$.fn.fullpage.moveSectionDown();
 					break;
 
 				//left
@@ -1038,7 +1041,11 @@
 		* Scrolls to the given section and slide 
 		*/
 		function scrollPageAndSlide(destiny, slide){
-			var section = $('[data-anchor="'+destiny+'"]');
+			if(isNaN(destiny)){
+				var section = $('[data-anchor="'+destiny+'"]');
+			}else{
+				var section = $('.section').eq( (destiny -1) );
+			}
 
 			//we need to scroll to the section and then to the slide
 			if (destiny !== lastScrolledDestiny){
