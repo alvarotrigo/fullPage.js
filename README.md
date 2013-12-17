@@ -207,19 +207,19 @@ In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscr
 
 ## Methods
 
-### moveSectionUp
+### moveSectionUp()
 Scrolls one section up:
 ```javascript
 $.fn.fullpage.moveSectionUp();
 ```
 
-### moveSectionDown
+### moveSectionDown()
 Scrolls one section down:
 ```javascript
 $.fn.fullpage.moveSectionDown();
 ```
 
-### moveTo
+### moveTo(section, slide)
 Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
