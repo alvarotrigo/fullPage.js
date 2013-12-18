@@ -19,5 +19,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+      "jquery.slimscroll": "latest",
+      "jQuery": "latest",
+      "jquery.ui": "latest"
+    }
 }
