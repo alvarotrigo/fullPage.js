@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.8
+ * fullPage 1.4.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -319,6 +319,9 @@
 				event.preventDefault();
 				var e = event.originalEvent;
 				var touchMoved = false;
+				var activeSection = $('.section.active');
+				var scrollable;
+				var xThreshold = 100;
 
 				if (!isMoving) { //if theres any #
 				
@@ -327,17 +330,23 @@
 					
 					
 					//if movement in the X axys is bigger than in the Y and the currect section has slides...
-					if($('.section.active').find('.slides').length && Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY) ){
+					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY) + xThreshold)){
 						if(touchStartX > touchEndX){
-							$('.section.active').find('.controlArrow.next').trigger('click');
+							activeSection.find('.controlArrow.next').trigger('click');
 						}
 						else if(touchStartX < touchEndX){
-							$('.section.active').find('.controlArrow.prev').trigger('click');
+							activeSection.find('.controlArrow.prev').trigger('click');
 						}
 					}
 					//vertical scrolling
 					else{
-						var scrollable = $('.section.active').find('.scrollable');
+						//if there are landscape slides, we check if the scrolling bar is in the current one or not
+						if(activeSection.find('.slides').length){
+							 scrollable= activeSection.find('.slide.active').find('.scrollable');
+						}else{
+							scrollable = activeSection.find('.scrollable');
+						}
+				
 						if(touchStartY > touchEndY){
 							if(scrollable.length > 0 ){
 								//is the scrollbar at the end of the scroll?
@@ -474,7 +483,6 @@
 		};
 		
 		$.fn.fullpage.moveTo = function (section, slide){
-			console.log(section + 'vs' +  slide);
 			var destiny = '';
 			
 			if(isNaN(section)){
