@@ -1,5 +1,5 @@
 /**
- * fullPage 1.4.9
+ * fullPage 1.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -65,7 +65,7 @@
 					//moving the container up
 					if(options.css3){
 						var translate3d = 'translate3d(0px, -' + element.position().top + 'px, 0px)';
-						transformContainer(translate3d, false)
+						transformContainer(translate3d, false);
 					}else{
 						//deleting the possible negative top
 						$('#superContainer').css('top', '-'  + element.position().top + 'px');
@@ -81,7 +81,7 @@
 				if(options.css3){
 					//moving the container up
 					var translate3d = 'translate3d(0px, 0px, 0px)';
-					transformContainer(translate3d, false)
+					transformContainer(translate3d, false);
 				}else{
 					//deleting the possible negative top
 					$('#superContainer').css('top', '0px');
@@ -321,16 +321,15 @@
 				var touchMoved = false;
 				var activeSection = $('.section.active');
 				var scrollable;
-				var xThreshold = 100;
 
-				if (!isMoving) { //if theres any #
+				if (!isMoving && !slideMoving) { //if theres any #
 				
 					touchEndY = e.touches[0].pageY;
 					touchEndX = e.touches[0].pageX;
 					
 					
 					//if movement in the X axys is bigger than in the Y and the currect section has slides...
-					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY) + xThreshold)){
+					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))){
 						if(touchStartX > touchEndX){
 							activeSection.find('.controlArrow.next').trigger('click');
 						}
@@ -342,7 +341,7 @@
 					else{
 						//if there are landscape slides, we check if the scrolling bar is in the current one or not
 						if(activeSection.find('.slides').length){
-							 scrollable= activeSection.find('.slide.active').find('.scrollable');
+							scrollable= activeSection.find('.slide.active').find('.scrollable');
 						}else{
 							scrollable = activeSection.find('.scrollable');
 						}
@@ -408,7 +407,7 @@
 				
 					//if there are landscape slides, we check if the scrolling bar is in the current one or not
 					if(activeSection.find('.slides').length){
-						 scrollable= activeSection.find('.slide.active').find('.scrollable');
+						scrollable= activeSection.find('.slide.active').find('.scrollable');
 					}else{
 						scrollable = activeSection.find('.scrollable');
 					}
