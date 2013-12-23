@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5
+ * fullPage 1.5.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -589,11 +589,13 @@
 				var section = value[0];
 				var slide = value[1];
 
+				//when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
+				var stillInFirstSection =  (typeof lastScrolledDestiny === 'undefined' && $('.section').first().hasClass('active'));
 				
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
-				if (section && section !== lastScrolledDestiny || (typeof slide != 'undefined' && !slideMoving))  {
+				if (section && section !== lastScrolledDestiny && !stillInFirstSection || (typeof slide != 'undefined' && !slideMoving))  {
 					scrollPageAndSlide(section, slide);
 				}
 			}
@@ -1054,8 +1056,9 @@
 				var section = $('.section').eq( (destiny -1) );
 			}
 
+
 			//we need to scroll to the section and then to the slide
-			if (destiny !== lastScrolledDestiny){
+			if (destiny !== lastScrolledDestiny && !section.hasClass('active')){
 				scrollPage(section, function(){
 					scrollSlider(section, slide)
 				});
@@ -1077,7 +1080,7 @@
 				if(!destiny.length){
 					destiny = slides.find('.slide').eq(slide);
 				}
-				
+
 				landscapeScroll(slides, destiny);
 			}
 		}
