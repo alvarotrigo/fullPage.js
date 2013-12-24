@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.1
+ * fullPage 1.5.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -102,7 +102,9 @@
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		var lastScrolledDestiny;
-		
+		var lastScrolledSlide;
+
+
 		addScrollEvent();
 		
 		//if css3 is not supported, it will use jQuery animations
@@ -504,6 +506,13 @@
 			var yMovement = getYmovement(element);
 			var anchorLink  = element.data('anchor');
 			var sectionIndex = element.index('.section');
+			var activeSlide = element.find('.slide.active');
+
+			if(activeSlide.length){
+				var slideAnchorLink = activeSlide.data('anchor');
+				var slideIndex = activeSlide.index();
+			}
+
 			var leavingSection = $('.section.active').index('.section') + 1;
 			
 			element.addClass('active').siblings().removeClass('active');
@@ -512,13 +521,13 @@
 			//more than once if the page is scrolling
 			isMoving = true;
 			
-			if(!$.isFunction( callback )){
+			//if(!$.isFunction( callback )){
 				if(typeof anchorLink !== 'undefined'){
-					location.hash = anchorLink;
+					setURLHash(slideIndex, slideAnchorLink, anchorLink);
 				}else{
 					location.hash = '';
 				}
-			}
+			//}
 			
 			if(options.autoScrolling){
 				scrollOptions['top'] = -dtop;
@@ -590,15 +599,17 @@
 				var slide = value[1];
 
 				//when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
-				var stillInFirstSection =  (typeof lastScrolledDestiny === 'undefined' && $('.section').first().hasClass('active'));
-				
+				var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
+				var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined');
+
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
-				if (section && section !== lastScrolledDestiny && !stillInFirstSection || (typeof slide != 'undefined' && !slideMoving))  {
+				if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (typeof slide !== 'undefined' && !slideMoving && lastScrolledSlide != slide ))  {
 					scrollPageAndSlide(section, slide);
 				}
 			}
+			
 		});
 			
 		
@@ -759,19 +770,8 @@
 					//hidding it for the last slide, showing for the rest
 					section.find('.controlArrow.next').toggle(!destiny.is(':last-child'));
 				}
-				//isn't it the first slide?
-				if(slideIndex){
-					if(typeof anchorLink !== 'undefined'){
-						var sectionHash = anchorLink;
-					}else{
-						var sectionHash = '';
-					}
-					
-					location.hash = sectionHash + '/' + slideAnchor;
-				//first slide
-				}else{
-					location.hash = location.hash.split('/')[0];
-				}
+
+				setURLHash(slideIndex, slideAnchor, anchorLink);				
 			}			
 
 			if(options.css3){
@@ -1050,6 +1050,7 @@
 		* Scrolls to the given section and slide 
 		*/
 		function scrollPageAndSlide(destiny, slide){
+
 			if(isNaN(destiny)){
 				var section = $('[data-anchor="'+destiny+'"]');
 			}else{
@@ -1105,6 +1106,38 @@
 			nav.find('li').first().find('a').addClass('active');
 		}
 		
+
+		/**
+		* Sets the URL hash for a section with slides
+		*/
+		function setURLHash(slideIndex, slideAnchor, anchorLink){
+			var sectionHash = '';
+
+			//isn't it the first slide?
+			if(slideIndex){
+				if(typeof anchorLink !== 'undefined'){
+					sectionHash = anchorLink;
+				}
+
+				//slide without anchor link? We take the index instead.
+				if(typeof slideAnchor === 'undefined'){
+					slideAnchor = slideIndex;
+				}
+				
+				lastScrolledSlide = slideAnchor;
+				location.hash = sectionHash + '/' + slideAnchor;
+
+			//first slide won't have slide anchor, just the section one
+			}else if(typeof slideIndex !== 'undefined'){
+				location.hash = anchorLink;
+			}
+
+			//section without slides
+			else{
+				location.hash = anchorLink;
+			}
+		}
+
 		/**
 		* Scrolls the slider to the given slide destination for the given section
 		*/
