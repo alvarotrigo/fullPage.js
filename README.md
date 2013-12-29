@@ -95,8 +95,8 @@ $(document).ready(function() {
 		onLeave: function(index, direction){},
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
-		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex),
-		onSlideLeave: function(anchorLink, index, slideIndex, direction)
+		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+		onSlideLeave: function(anchorLink, index, slideIndex, direction){}
 	});
 });
 ```
