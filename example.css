@@ -1,13 +1,13 @@
-.wrap{
+.wrap {
 	margin-left: auto;
 	margin-right: auto;
 	width: 960px;
 	position: relative;
 }
-h1{
-	font-size: 5em;	
-	font-family: arial,helvetica;
+h1 {
+	font-size: 5em;
+	font-family: arial, helvetica, sans-serif;
 }
-.section{
-	text-align:center;
+.section {
+	text-align: center;
 }
