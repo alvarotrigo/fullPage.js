@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.2
+ * fullPage 1.5.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1078,11 +1078,14 @@
 			if(typeof slide != 'undefined'){
 				var slides = section.find('.slides');
 				var destiny =  slides.find('[data-anchor="'+slide+'"]');
+
 				if(!destiny.length){
 					destiny = slides.find('.slide').eq(slide);
 				}
 
-				landscapeScroll(slides, destiny);
+				if(destiny.length){
+					landscapeScroll(slides, destiny);
+				}
 			}
 		}
 		
