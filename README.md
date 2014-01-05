@@ -397,6 +397,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://azul257.com.mx
 - http://insomniapodcast.us
 - http://acuity-prod.com/
+- http://www.kesstrio.com
+- http://willontheway.com/
 
 ## Donations
 Donations would be more than welcome :)
