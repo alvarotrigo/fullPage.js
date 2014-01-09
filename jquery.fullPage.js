@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.4
+ * fullPage 1.5.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -316,7 +316,7 @@
 		* used one to determine the direction.
 		*/
 		$(document).on('touchmove MSPointerMove', function(event){
-			if(options.autoScrolling && isTablet){
+			if(options.autoScrolling){
 				//preventing the easing on iOS devices
 				event.preventDefault();
 				var e = event.originalEvent;
@@ -382,7 +382,7 @@
 		
 		$(document).on('touchstart MSPointerDown', function(event){
 			
-			if(options.autoScrolling && isTablet){
+			if(options.autoScrolling){
 				var e = event.originalEvent;
 				touchStartY = e.touches[0].pageY;
 				touchStartX = e.touches[0].pageX;
