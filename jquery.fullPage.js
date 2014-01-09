@@ -101,6 +101,7 @@
 
 		var windowsHeight = $(window).height();
 		var isMoving = false;
+		var isResizing = false;
 		var lastScrolledDestiny;
 		var lastScrolledSlide;
 
@@ -122,7 +123,6 @@
 			nav.css('color', options.navigationColor);
 			nav.addClass(options.navigationPosition);
 		}
-		
 		
 		$('.section').each(function(index){
 			var slides = $(this).find('.slide');
@@ -315,7 +315,7 @@
 		* This way, the touchstart and the touch moves shows an small difference between them which is the
 		* used one to determine the direction.
 		*/
-		$(document).on('touchmove', function(event){
+		$(document).on('touchmove MSPointerMove', function(event){
 			if(options.autoScrolling && isTablet){
 				//preventing the easing on iOS devices
 				event.preventDefault();
@@ -379,8 +379,9 @@
 				}
 			}
 		});
-
-		$(document).on('touchstart', function(event){
+		
+		$(document).on('touchstart MSPointerDown', function(event){
+			
 			if(options.autoScrolling && isTablet){
 				var e = event.originalEvent;
 				touchStartY = e.touches[0].pageY;
@@ -746,11 +747,18 @@
 			var slidesNav = section.find('.fullPage-slidesNav');
 			var slideAnchor = destiny.data('anchor');
 	
+			//caching the value of isResizing at the momment the function is called 
+			//because it will be checked later inside a setTimeout and the value might change
+			var localIsResizing = isResizing; 
+
 			if(options.onSlideLeave){
 				var prevSlideIndex = section.find('.slide.active').index();
 				var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
-				$.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( this, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
+				//if the site is not just resizing and readjusting the slides
+				if(!localIsResizing){
+					$.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( this, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
+				}
 			}
 	
 			destiny.addClass('active').siblings().removeClass('active');
@@ -784,7 +792,10 @@
 					'transform': translate3d
 				});
 				setTimeout(function(){
-					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
+					//if the site is not just resizing and readjusting the slides
+					if(!localIsResizing){
+						$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
+					}
 
 					slideMoving = false;
 				}, options.scrollingSpeed);
@@ -793,8 +804,10 @@
 					scrollLeft : destinyPos.left
 				}, options.scrollingSpeed, function() {
 
-					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
-					
+					//if the site is not just resizing and readjusting the slides
+					if(!localIsResizing){
+						$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+					}	
 					//letting them slide again
 					slideMoving = false; 
 				});
@@ -825,6 +838,8 @@
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
 		function doneResizing() {
+			isResizing = true;
+
 			var windowsWidth = $(window).width();
 			windowsHeight = $(window).height();
 
@@ -873,6 +888,8 @@
 			if(activeSection.index('.section')){
 				scrollPage(activeSection);
 			}
+
+			isResizing = false;
 		}
 
 		/**
