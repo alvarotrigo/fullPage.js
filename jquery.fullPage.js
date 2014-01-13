@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.5
+ * fullPage 1.5.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1133,28 +1133,31 @@
 		function setURLHash(slideIndex, slideAnchor, anchorLink){
 			var sectionHash = '';
 
-			//isn't it the first slide?
-			if(slideIndex){
-				if(typeof anchorLink !== 'undefined'){
-					sectionHash = anchorLink;
+			if(options.anchors.length){
+
+				//isn't it the first slide?
+				if(slideIndex){
+					if(typeof anchorLink !== 'undefined'){
+						sectionHash = anchorLink;
+					}
+
+					//slide without anchor link? We take the index instead.
+					if(typeof slideAnchor === 'undefined'){
+						slideAnchor = slideIndex;
+					}
+					
+					lastScrolledSlide = slideAnchor;
+					location.hash = sectionHash + '/' + slideAnchor;
+
+				//first slide won't have slide anchor, just the section one
+				}else if(typeof slideIndex !== 'undefined'){
+					location.hash = anchorLink;
 				}
 
-				//slide without anchor link? We take the index instead.
-				if(typeof slideAnchor === 'undefined'){
-					slideAnchor = slideIndex;
+				//section without slides
+				else{
+					location.hash = anchorLink;
 				}
-				
-				lastScrolledSlide = slideAnchor;
-				location.hash = sectionHash + '/' + slideAnchor;
-
-			//first slide won't have slide anchor, just the section one
-			}else if(typeof slideIndex !== 'undefined'){
-				location.hash = anchorLink;
-			}
-
-			//section without slides
-			else{
-				location.hash = anchorLink;
 			}
 		}
 
