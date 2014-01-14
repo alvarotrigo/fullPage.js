@@ -93,33 +93,17 @@
 			
 		};
 		
-
 		/**
-		* Removes the auto scrolling action fired by the mouse wheel and tackpad.
-		* After this function is called, the mousewheel and trackpad movements won't scroll through sections.
+		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
 		*/
-		$.fn.fullpage.removeMouseWheelHandler = function (){
-			if (document.addEventListener) {
-				document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Firefox
-			} else {
-				document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+		$.fn.fullpage.setMouseWheelScrolling = function (value){
+			console.log(value);
+			if(value){
+				addMouseWheelHandler();
+			}else{
+				removeMouseWheelHandler();
 			}
 		};
-
-
-		/**
-		* Adds the auto scrolling action for the mouse wheel and tackpad.
-		* After this function is called, the mousewheel and trackpad movements will scroll through sections
-		*/
-		$.fn.fullpage.addMouseWheelHandler = function (){
-			if (document.addEventListener) {
-				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.addEventListener("DOMMouseScroll", MouseWheelHandler, false); //Firefox
-			} else {
-				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
-			}
-		}
 
 			
 		//flag to avoid very fast sliding for landscape sliders
@@ -134,7 +118,7 @@
 		var lastScrolledSlide;
 
 
-		$.fn.fullpage.addMouseWheelHandler();
+		$.fn.fullpage.setMouseWheelScrolling(true);
 		
 		//if css3 is not supported, it will use jQuery animations
 		if(options.css3){
@@ -689,11 +673,11 @@
 
 		if(options.normalScrollElements){
 			$(document).on('mouseover', options.normalScrollElements, function () {
-				$.fn.fullpage.removeMouseWheelHandler();
+				$.fn.fullpage.setMouseWheelScrolling(false);
 			});
 			
 			$(document).on('mouseout', options.normalScrollElements, function(){
-				$.fn.fullpage.addMouseWheelHandler();
+				$.fn.fullpage.setMouseWheelScrolling(true);
 			});
 		}
 		
@@ -1217,5 +1201,35 @@
 
 			return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
 		}
+
+
+
+		/**
+		* Removes the auto scrolling action fired by the mouse wheel and tackpad.
+		* After this function is called, the mousewheel and trackpad movements won't scroll through sections.
+		*/
+		function removeMouseWheelHandler(){
+			if (document.addEventListener) {
+				document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+				document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Firefox
+			} else {
+				document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+			}
+		}
+
+
+		/**
+		* Adds the auto scrolling action for the mouse wheel and tackpad.
+		* After this function is called, the mousewheel and trackpad movements will scroll through sections
+		*/
+		function addMouseWheelHandler(){
+			if (document.addEventListener) {
+				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+				document.addEventListener("DOMMouseScroll", MouseWheelHandler, false); //Firefox
+			} else {
+				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+			}
+		}
+
 	};
 })(jQuery);
