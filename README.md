@@ -244,6 +244,14 @@ Defines the way the page scrolling behaves. If it is set to `true`, it will use 
 $.fn.fullpage.setAutoScrolling(false);
 ```
 
+### setMouseWheelScrolling
+Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
+
+```javascript
+$.fn.fullpage.setMouseWheelScrolling(false);
+```
+
+
 ## Callbacks
 ###afterLoad (`anchorLink`, `index`)
 Callback fired once the sections have been loaded, after the scrolling has ended. 
