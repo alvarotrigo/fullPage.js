@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.6
+ * fullPage 1.5.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -93,6 +93,34 @@
 			
 		};
 		
+
+		/**
+		* Removes the auto scrolling action fired by the mouse wheel and tackpad.
+		* After this function is called, the mousewheel and trackpad movements won't scroll through sections.
+		*/
+		$.fn.fullpage.removeMouseWheelHandler = function (){
+			if (document.addEventListener) {
+				document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+				document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Firefox
+			} else {
+				document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+			}
+		};
+
+
+		/**
+		* Adds the auto scrolling action for the mouse wheel and tackpad.
+		* After this function is called, the mousewheel and trackpad movements will scroll through sections
+		*/
+		$.fn.fullpage.addMouseWheelHandler = function (){
+			if (document.addEventListener) {
+				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+				document.addEventListener("DOMMouseScroll", MouseWheelHandler, false); //Firefox
+			} else {
+				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+			}
+		}
+
 			
 		//flag to avoid very fast sliding for landscape sliders
 		var slideMoving = false;
@@ -106,7 +134,7 @@
 		var lastScrolledSlide;
 
 
-		addScrollEvent();
+		$.fn.fullpage.addMouseWheelHandler();
 		
 		//if css3 is not supported, it will use jQuery animations
 		if(options.css3){
@@ -448,15 +476,6 @@
 			}
 		}
 
-			
-		function addScrollEvent(){
-			if (document.addEventListener) {
-				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.addEventListener("DOMMouseScroll", MouseWheelHandler, false); //Firefox
-			} else {
-				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
-			}
-		}
 		
 		$.fn.fullpage.moveSectionUp = function(){
 			var prev = $('.section.active').prev('.section');
@@ -667,19 +686,14 @@
 			}
 		}, '#fullPage-nav li');
 
-	
+
 		if(options.normalScrollElements){
 			$(document).on('mouseover', options.normalScrollElements, function () {
-				if (document.addEventListener) {
-					document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-					document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Firefox
-				} else {
-					document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
-				}
+				$.fn.fullpage.removeMouseWheelHandler();
 			});
 			
 			$(document).on('mouseout', options.normalScrollElements, function(){
-				addScrollEvent();
+				$.fn.fullpage.addMouseWheelHandler();
 			});
 		}
 		
