@@ -245,7 +245,7 @@ $.fn.fullpage.setAutoScrolling(false);
 ```
 
 ### setMouseWheelScrolling
-Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
+Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad (which is active by default).
 
 ```javascript
 $.fn.fullpage.setMouseWheelScrolling(false);
