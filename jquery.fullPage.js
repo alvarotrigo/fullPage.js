@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.7
+ * fullPage 1.5.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -97,7 +97,6 @@
 		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
 		*/
 		$.fn.fullpage.setMouseWheelScrolling = function (value){
-			console.log(value);
 			if(value){
 				addMouseWheelHandler();
 			}else{
@@ -481,7 +480,7 @@
 			if(options.loopBottom && !next.length){
 				next = $('.section').first();
 			}
-	
+
 			if (next.length > 0 || (!next.length && options.loopBottom)){
 				scrollPage(next);
 			}
@@ -525,13 +524,9 @@
 			//more than once if the page is scrolling
 			isMoving = true;
 			
-			//if(!$.isFunction( callback )){
-				if(typeof anchorLink !== 'undefined'){
-					setURLHash(slideIndex, slideAnchorLink, anchorLink);
-				}else{
-					location.hash = '';
-				}
-			//}
+			if(typeof anchorLink !== 'undefined'){
+				setURLHash(slideIndex, slideAnchorLink, anchorLink);
+			}
 			
 			if(options.autoScrolling){
 				scrollOptions['top'] = -dtop;
