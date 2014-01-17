@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.8
+ * fullPage 1.5.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -860,7 +860,7 @@
 				
 				//adjusting the height of the table-cell for IE and Firefox
 				if(options.verticalCentered){
-					$(this).find('.tableCell').css('height', windowsHeight + 'px');
+					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
 				}
 				
 				$(this).css('height', windowsHeight + 'px');
@@ -995,15 +995,18 @@
 
 			//if there was scroll, the contentHeight will be the one in the scrollable section
 			if(scrollable.length){
-				var contentHeight = element.find('.scrollable').get(0).scrollHeight  - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+				var contentHeight = element.find('.scrollable').get(0).scrollHeight;
 			}else{
-				var contentHeight = element.get(0).scrollHeight  - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+				var contentHeight = element.get(0).scrollHeight;
+				if(options.verticalCentered){
+					contentHeight = element.find('.tableCell').get(0).scrollHeight;
+				}
 			}
 			
-			//needs scroll?
-			if ( contentHeight > windowsHeight) {
-				var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+			var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
 
+			//needs scroll?
+			if ( contentHeight > scrollHeight) {
 				//was there already an scroll ? Updating it
 				if(scrollable.length){
 					scrollable.css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
@@ -1037,9 +1040,24 @@
 		}
 		
 		function addTableClass(element){
-			element.addClass('table').wrapInner('<div class="tableCell" style="height:' + windowsHeight + 'px;" />');
+			element.addClass('table').wrapInner('<div class="tableCell" style="height:' + getTableHeight(element) + 'px;" />');
 		}
 		
+		function getTableHeight(element){
+			var sectionHeight = windowsHeight;
+
+			if(options.paddingTop || options.paddingBottom){
+				var section = element;
+				if(!section.hasClass('section')){
+					section = element.closest('.section');
+				}
+			
+				var paddings = parseInt(section.css('padding-top')) + parseInt(section.css('padding-bottom'));
+				sectionHeight = (windowsHeight - paddings);
+			}
+
+			return sectionHeight;
+		}
 		
 		/**
 		* Adds a css3 transform property to the container class with or without animation depending on the animated param.
