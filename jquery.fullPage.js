@@ -327,20 +327,20 @@
 		* This way, the touchstart and the touch moves shows an small difference between them which is the
 		* used one to determine the direction.
 		*/
-		function setPositionOnMove(pageX, pageY){
+				function setPositionOnMove(pageX, pageY){
 			if(options.autoScrolling){
 				var touchMoved = false;
 				var activeSection = $('.section.active');
 				var scrollable;
 
 				if (!isMoving && !slideMoving) { //if theres any #
-				
+					
 					touchEndY = pageY;
 					touchEndX = pageX;
 					
 					//if movement in the X axys is bigger than in the Y and the currect section has slides...
 					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))
-					    && Math.abs(touchStartX - touchEndX ) > deltaVerticalScroll){
+						&& Math.abs(touchStartX - touchEndX ) > deltaVerticalScroll){
 						if(touchStartX > touchEndX){
 							activeSection.find('.controlArrow.next').trigger('click');
 						}
@@ -356,10 +356,10 @@
 						}else{
 							scrollable = activeSection.find('.scrollable');
 						}
-				
-					if(Math.abs(touchStartY - touchEndY) > deltaVerticalScroll){
-						if(touchStartY > touchEndY){
-							if(scrollable.length > 0 ){
+						
+						if(Math.abs(touchStartY - touchEndY) > deltaVerticalScroll){
+							if(touchStartY > touchEndY){
+								if(scrollable.length > 0 ){
 								//is the scrollbar at the end of the scroll?
 								if(isScrolled('bottom', scrollable)){
 									$.fn.fullpage.moveSectionDown();
@@ -371,7 +371,7 @@
 								$.fn.fullpage.moveSectionDown();
 							}
 						} else {
-						
+							
 							if(scrollable.length > 0){
 								//is the scrollbar at the start of the scroll?
 								if(isScrolled('top', scrollable)){
@@ -389,7 +389,7 @@
 				}					
 			}
 		}
-		}
+	}
 		
 		$(document).on('touchmove', function(event){
 			//preventing the easing on iOS devices
@@ -405,7 +405,10 @@
 			}
 		});
 
-	if ( window.navigator.userAgent.indexOf("MSIE ") > 0 ) {
+	//IE11 no longer reports as MSIE
+	function isIE() { return ((navigator.appName == 'Microsoft Internet Explorer') || ((navigator.appName == 'Netscape') && (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null))); }
+
+	if (  isIE() ) {
 		$("body").on("pointerup", function(event){
 			event.preventDefault();
 			setPositionOnMove(event.originalEvent.pageX,event.originalEvent.pageY);
