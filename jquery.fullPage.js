@@ -34,6 +34,7 @@
 			'paddingBottom': 0,
 			'fixedElements': null,
 			'normalScrollElements': null,
+			'useKeyboard': true,
 
 			//events
 			'afterLoad': null,
@@ -616,33 +617,35 @@
 		 * Sliding with arrow keys, both, vertical and horizontal
 		 */
 		$(document).keydown(function(e) {
-			//Moving the mian page with the keyboard arrows
-			if (!isMoving) {
-				switch (e.which) {
-				//up
-				case 38:
-				case 33:
-					$.fn.fullpage.moveSectionUp();
-					break;
+			if (options.useKeyboard) {
+				//Moving the mian page with the keyboard arrows
+				if (!isMoving) {
+					switch (e.which) {
+					//up
+					case 38:
+					case 33:
+						$.fn.fullpage.moveSectionUp();
+						break;
 
-				//down
-				case 40:
-				case 34:
-					$.fn.fullpage.moveSectionDown();
-					break;
+					//down
+					case 40:
+					case 34:
+						$.fn.fullpage.moveSectionDown();
+						break;
 
-				//left
-				case 37:
-					$('.section.active').find('.controlArrow.prev').trigger('click');
-					break;
+					//left
+					case 37:
+						$('.section.active').find('.controlArrow.prev').trigger('click');
+						break;
 
-				//right
-				case 39:
-					$('.section.active').find('.controlArrow.next').trigger('click');
-					break;
+					//right
+					case 39:
+						$('.section.active').find('.controlArrow.next').trigger('click');
+						break;
 
-				default:
-					return; // exit this handler for other keys
+					default:
+						return; // exit this handler for other keys
+					}
 				}
 			}
 		});
