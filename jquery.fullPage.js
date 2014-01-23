@@ -319,6 +319,7 @@
 		var touchStartX = 0;
 		var touchEndY = 0;
 		var touchEndX = 0;
+		var deltaVerticalScroll = 45;
 	
 		/* Detecting touch events 
 		
@@ -326,23 +327,20 @@
 		* This way, the touchstart and the touch moves shows an small difference between them which is the
 		* used one to determine the direction.
 		*/
-		$(document).on('touchmove MSPointerMove', function(event){
+				function setPositionOnMove(pageX, pageY){
 			if(options.autoScrolling){
-				//preventing the easing on iOS devices
-				event.preventDefault();
-				var e = event.originalEvent;
 				var touchMoved = false;
 				var activeSection = $('.section.active');
 				var scrollable;
 
 				if (!isMoving && !slideMoving) { //if theres any #
-				
-					touchEndY = e.touches[0].pageY;
-					touchEndX = e.touches[0].pageX;
 					
+					touchEndY = pageY;
+					touchEndX = pageX;
 					
 					//if movement in the X axys is bigger than in the Y and the currect section has slides...
-					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))){
+					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))
+						&& Math.abs(touchStartX - touchEndX ) > deltaVerticalScroll){
 						if(touchStartX > touchEndX){
 							activeSection.find('.controlArrow.next').trigger('click');
 						}
@@ -358,9 +356,10 @@
 						}else{
 							scrollable = activeSection.find('.scrollable');
 						}
-				
-						if(touchStartY > touchEndY){
-							if(scrollable.length > 0 ){
+						
+						if(Math.abs(touchStartY - touchEndY) > deltaVerticalScroll){
+							if(touchStartY > touchEndY){
+								if(scrollable.length > 0 ){
 								//is the scrollbar at the end of the scroll?
 								if(isScrolled('bottom', scrollable)){
 									$.fn.fullpage.moveSectionDown();
@@ -372,7 +371,7 @@
 								$.fn.fullpage.moveSectionDown();
 							}
 						} else {
-						
+							
 							if(scrollable.length > 0){
 								//is the scrollbar at the start of the scroll?
 								if(isScrolled('top', scrollable)){
@@ -386,22 +385,43 @@
 								$.fn.fullpage.moveSectionUp();
 							}
 						}
-					}					
-				}
+					}
+				}					
 			}
-		});
+		}
+	}
 		
-		$(document).on('touchstart MSPointerDown', function(event){
-			
+		$(document).on('touchmove', function(event){
+			//preventing the easing on iOS devices
+			event.preventDefault();
+			setPositionOnMove(event.originalEvent.touches[0].pageX,event.originalEvent.touches[0].pageY);
+		});
+				
+		$(document).on('touchstart', function(event){
 			if(options.autoScrolling){
 				var e = event.originalEvent;
 				touchStartY = e.touches[0].pageY;
 				touchStartX = e.touches[0].pageX;
 			}
 		});
+
+	//IE11 no longer reports as MSIE
+	function isIE() { return ((navigator.appName == 'Microsoft Internet Explorer') || ((navigator.appName == 'Netscape') && (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null))); }
+
+	if (  isIE() ) {
+		$("body").on("pointerup", function(event){
+			event.preventDefault();
+			setPositionOnMove(event.originalEvent.pageX,event.originalEvent.pageY);
+		});
 		
-
-
+		$("body").on('pointerdown', function(event){
+			if(options.autoScrolling){
+				var e = event.originalEvent;
+				touchStartY = e.pageY;
+				touchStartX = e.pageX;
+			}
+		});
+	}
 		/**
 		 * Detecting mousewheel scrolling
 		 * 
