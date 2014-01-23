@@ -33,7 +33,9 @@
 			'paddingTop': 0,
 			'paddingBottom': 0,
 			'fixedElements': null,
-			'normalScrollElements': null,
+			'normalScrollElements': null, 
+      'touchSensitivity': 100,
+
 
 			//events
 			'afterLoad': null,
@@ -343,10 +345,9 @@
 					
 					//if movement in the X axys is bigger than in the Y and the currect section has slides...
 					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))){
-						if(touchStartX > touchEndX){
+						if (touchStartX > (touchEndX + options.touchSensitivity)) {
 							activeSection.find('.controlArrow.next').trigger('click');
-						}
-						else if(touchStartX < touchEndX){
+						} else if (touchStartX < (touchEndX - options.touchSensitivity)) {
 							activeSection.find('.controlArrow.prev').trigger('click');
 						}
 					}
@@ -359,7 +360,7 @@
 							scrollable = activeSection.find('.scrollable');
 						}
 				
-						if(touchStartY > touchEndY){
+						if (touchStartY > (touchEndY + options.touchSensitivity)) {
 							if(scrollable.length > 0 ){
 								//is the scrollbar at the end of the scroll?
 								if(isScrolled('bottom', scrollable)){
@@ -371,7 +372,7 @@
 								// moved down
 								$.fn.fullpage.moveSectionDown();
 							}
-						} else {
+						} else if (touchEndY > (touchStartY + options.touchSensitivity)) {
 						
 							if(scrollable.length > 0){
 								//is the scrollbar at the start of the scroll?
