@@ -8,6 +8,7 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 - [Apple demo] (http://alvarotrigo.com/fullPage/examples/apple.html)
 - [Temporal Website](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
 
+Invite me to a coffe
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Introduction
@@ -398,9 +399,11 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.jennbeaupre.com/jb/index.html
 - http://lawinenstift.com/
 - http://bnacademy.com.au/
+- http://getstrudel.com/
 - http://xepler.com/services
 - http://www.ondamujer.com
 - http://www.omqcomics.com/
+- http://www.matrimonia.rs/
 - http://mymattioli.it/
 - http://www.carlphot.com/
 - http://www.villareginateodolinda.it
