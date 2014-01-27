@@ -34,6 +34,7 @@
 			'paddingBottom': 0,
 			'fixedElements': null,
 			'normalScrollElements': null,
+			'keyboardScrolling': true,
 
 			//events
 			'afterLoad': null,
@@ -616,8 +617,8 @@
 		 * Sliding with arrow keys, both, vertical and horizontal
 		 */
 		$(document).keydown(function(e) {
-			//Moving the mian page with the keyboard arrows
-			if (!isMoving) {
+			//Moving the main page with the keyboard arrows if keyboard scrolling is enabled
+			if (options.keyboardScrolling && !isMoving) {
 				switch (e.which) {
 				//up
 				case 38:
