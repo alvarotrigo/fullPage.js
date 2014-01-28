@@ -417,6 +417,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://acuity-prod.com/
 - http://www.kesstrio.com
 - http://willontheway.com/
+- http://www.karmaffne.com/
 
 ## Donations
 Donations would be more than welcome :)
