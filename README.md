@@ -8,6 +8,7 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 - [Apple demo] (http://alvarotrigo.com/fullPage/examples/apple.html)
 - [Temporal Website](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
 
+Invite me to a coffe
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Introduction
@@ -90,6 +91,7 @@ $(document).ready(function() {
 		paddingBottom: '10px',
 		fixedElements: '#element1, .element2',
 		normalScrollElements: '#element1, .element2',
+		keyboardScrolling: 'true',
 
 		//events
 		onLeave: function(index, direction){},
@@ -168,6 +170,8 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 - `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` otpion to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
 
 - `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
+
+- `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
@@ -398,9 +402,11 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.jennbeaupre.com/jb/index.html
 - http://lawinenstift.com/
 - http://bnacademy.com.au/
+- http://getstrudel.com/
 - http://xepler.com/services
 - http://www.ondamujer.com
 - http://www.omqcomics.com/
+- http://www.matrimonia.rs/
 - http://mymattioli.it/
 - http://www.carlphot.com/
 - http://www.villareginateodolinda.it
@@ -411,6 +417,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://acuity-prod.com/
 - http://www.kesstrio.com
 - http://willontheway.com/
+- http://www.karmaffne.com/
 
 ## Donations
 Donations would be more than welcome :)
