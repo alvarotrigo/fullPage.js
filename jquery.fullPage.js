@@ -49,7 +49,7 @@
 		//Defines the delay to take place before being able to scroll to the next section
 		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and 
 		//Apple devices (laptops, mouses...)
-		var scrollDelay = 700;
+		var scrollDelay = 600;
 		
 		$.fn.fullpage.setAutoScrolling = function(value){
 			options.autoScrolling = value;
@@ -706,7 +706,7 @@
 					destiny = currentSlide.siblings(':first');
 				}	
 			}
-						
+
 			landscapeScroll(slides, destiny);
 		});
 
