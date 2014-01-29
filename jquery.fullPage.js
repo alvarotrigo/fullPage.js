@@ -365,36 +365,36 @@
 							scrollable = activeSection.find('.scrollable');
 						}
 						
-						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
-							if (touchStartY > touchEndY) {
-								if(scrollable.length > 0 ){
-								//is the scrollbar at the end of the scroll?
-								if(isScrolled('bottom', scrollable)){
-									$.fn.fullpage.moveSectionDown();
+							if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
+								if (touchStartY > touchEndY) {
+									if(scrollable.length > 0 ){
+									//is the scrollbar at the end of the scroll?
+									if(isScrolled('bottom', scrollable)){
+										$.fn.fullpage.moveSectionDown();
+									}else{
+										return true;
+									}
 								}else{
-									return true;
+									// moved down
+									$.fn.fullpage.moveSectionDown();
 								}
-							}else{
-								// moved down
-								$.fn.fullpage.moveSectionDown();
-							}
-						} else if (touchEndY > touchStartY) {
-							
-							if(scrollable.length > 0){
-								//is the scrollbar at the start of the scroll?
-								if(isScrolled('top', scrollable)){
+							} else if (touchEndY > touchStartY) {
+								
+								if(scrollable.length > 0){
+									//is the scrollbar at the start of the scroll?
+									if(isScrolled('top', scrollable)){
+										$.fn.fullpage.moveSectionUp();
+									}
+									else{
+										return true;
+									}
+								}else{
+									// moved up
 									$.fn.fullpage.moveSectionUp();
 								}
-								else{
-									return true;
-								}
-							}else{
-								// moved up
-								$.fn.fullpage.moveSectionUp();
 							}
 						}
-					}
-				}					
+					}					
 				}
 			}
 		});
