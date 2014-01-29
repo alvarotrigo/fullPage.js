@@ -91,7 +91,7 @@ $(document).ready(function() {
 		paddingBottom: '10px',
 		fixedElements: '#element1, .element2',
 		normalScrollElements: '#element1, .element2',
-		keyboardScrolling: 'true',
+		keyboardScrolling: true,
 		touchSensitivity: 15,
 
 		//events
