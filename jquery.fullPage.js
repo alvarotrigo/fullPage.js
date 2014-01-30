@@ -33,8 +33,10 @@
 			'paddingTop': 0,
 			'paddingBottom': 0,
 			'fixedElements': null,
-			'normalScrollElements': null,
+			'normalScrollElements': null, 
 			'keyboardScrolling': true,
+			'touchSensitivity': 5,
+
 
 			//events
 			'afterLoad': null,
@@ -343,14 +345,17 @@
 					
 					
 					//if movement in the X axys is bigger than in the Y and the currect section has slides...
-					if(activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))){
-						if(touchStartX > touchEndX){
-							activeSection.find('.controlArrow.next').trigger('click');
-						}
-						else if(touchStartX < touchEndX){
-							activeSection.find('.controlArrow.prev').trigger('click');
-						}
+					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+					    //is the movement bigger than the minimum sensitivity to scroll?
+					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
+					        if (touchStartX > touchEndX) {
+					            activeSection.find('.controlArrow.next').trigger('click');
+					        } else {
+					            activeSection.find('.controlArrow.prev').trigger('click');
+					        }
+					    }
 					}
+
 					//vertical scrolling
 					else{
 						//if there are landscape slides, we check if the scrolling bar is in the current one or not
@@ -359,32 +364,34 @@
 						}else{
 							scrollable = activeSection.find('.scrollable');
 						}
-				
-						if(touchStartY > touchEndY){
-							if(scrollable.length > 0 ){
-								//is the scrollbar at the end of the scroll?
-								if(isScrolled('bottom', scrollable)){
-									$.fn.fullpage.moveSectionDown();
-								}else{
-									return true;
-								}
-							}else{
-								// moved down
-								$.fn.fullpage.moveSectionDown();
-							}
-						} else {
 						
-							if(scrollable.length > 0){
-								//is the scrollbar at the start of the scroll?
-								if(isScrolled('top', scrollable)){
+							if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
+								if (touchStartY > touchEndY) {
+									if(scrollable.length > 0 ){
+									//is the scrollbar at the end of the scroll?
+									if(isScrolled('bottom', scrollable)){
+										$.fn.fullpage.moveSectionDown();
+									}else{
+										return true;
+									}
+								}else{
+									// moved down
+									$.fn.fullpage.moveSectionDown();
+								}
+							} else if (touchEndY > touchStartY) {
+								
+								if(scrollable.length > 0){
+									//is the scrollbar at the start of the scroll?
+									if(isScrolled('top', scrollable)){
+										$.fn.fullpage.moveSectionUp();
+									}
+									else{
+										return true;
+									}
+								}else{
+									// moved up
 									$.fn.fullpage.moveSectionUp();
 								}
-								else{
-									return true;
-								}
-							}else{
-								// moved up
-								$.fn.fullpage.moveSectionUp();
 							}
 						}
 					}					
