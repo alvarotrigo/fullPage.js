@@ -644,12 +644,12 @@
 
 				//left
 				case 37:
-					$('.section.active').find('.controlArrow.prev').trigger('click');
+					$('.section.active').find('.controlArrow.prev:visible').trigger('click');
 					break;
 
 				//right
 				case 39:
-					$('.section.active').find('.controlArrow.next').trigger('click');
+					$('.section.active').find('.controlArrow.next:visible').trigger('click');
 					break;
 
 				default:
