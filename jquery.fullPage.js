@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.0
+ * fullPage 1.6.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -350,9 +350,10 @@
 					    //is the movement greater than the minimum resistance to scroll?
 					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
 					        if (touchStartX > touchEndX) {
-					            activeSection.find('.controlArrow.next').trigger('click');
+					             activeSection.find('.controlArrow.next:visible').trigger('click');
+					           
 					        } else {
-					            activeSection.find('.controlArrow.prev').trigger('click');
+					            activeSection.find('.controlArrow.prev:visible').trigger('click');
 					        }
 					    }
 					}
