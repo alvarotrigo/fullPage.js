@@ -1,5 +1,5 @@
 /**
- * fullPage 1.5.9
+ * fullPage 1.6.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -344,9 +344,10 @@
 					touchEndX = e.touches[0].pageX;
 					
 					
-					//if movement in the X axys is bigger than in the Y and the currect section has slides...
+					//if movement in the X axys is greater than in the Y and the currect section has slides...
 					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
-					    //is the movement bigger than the minimum sensitivity to scroll?
+					    
+					    //is the movement greater than the minimum resistance to scroll?
 					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
 					        if (touchStartX > touchEndX) {
 					            activeSection.find('.controlArrow.next').trigger('click');
@@ -365,9 +366,10 @@
 							scrollable = activeSection.find('.scrollable');
 						}
 						
-							if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
-								if (touchStartY > touchEndY) {
-									if(scrollable.length > 0 ){
+						//is the movement greater than the minimum resistance to scroll?
+						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
+							if (touchStartY > touchEndY) {
+								if(scrollable.length > 0 ){
 									//is the scrollbar at the end of the scroll?
 									if(isScrolled('bottom', scrollable)){
 										$.fn.fullpage.moveSectionDown();
@@ -1086,6 +1088,9 @@
 		* Scrolls to the given section and slide 
 		*/
 		function scrollPageAndSlide(destiny, slide){
+			if (typeof slide === 'undefined') {
+			    slide = 0;
+			}
 
 			if(isNaN(destiny)){
 				var section = $('[data-anchor="'+destiny+'"]');
