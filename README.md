@@ -251,11 +251,11 @@ Defines the way the page scrolling behaves. If it is set to `true`, it will use 
 $.fn.fullpage.setAutoScrolling(false);
 ```
 
-### setMouseWheelScrolling
-Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad (which is active by default).
+### setAllowScrolling
+Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
 ```javascript
-$.fn.fullpage.setMouseWheelScrolling(false);
+$.fn.fullpage.setAllowScrolling(false);
 ```
 
 ### setKeyboardScrolling

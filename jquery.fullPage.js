@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.3
+ * fullPage 1.6.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -104,13 +104,15 @@
 		};
 		
 		/**
-		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
+		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures. 
 		*/
-		$.fn.fullpage.setMouseWheelScrolling = function (value){
+		$.fn.fullpage.setAllowScrolling = function (value){
 			if(value){
 				addMouseWheelHandler();
+				addTouchHandler();
 			}else{
 				removeMouseWheelHandler();
+				removeTouchHandler();
 			}
 		};
 		
@@ -133,7 +135,7 @@
 		var lastScrolledSlide;
 
 
-		$.fn.fullpage.setMouseWheelScrolling(true);
+		$.fn.fullpage.setAllowScrolling(true);
 		
 		//if css3 is not supported, it will use jQuery animations
 		if(options.css3){
@@ -345,20 +347,22 @@
 		* This way, the touchstart and the touch moves shows an small difference between them which is the
 		* used one to determine the direction.
 		*/
-		$(document).on('touchmove MSPointerMove', function(event){
+		function touchMoveHandler(event){
+		
 			if(options.autoScrolling){
 				//preventing the easing on iOS devices
 				event.preventDefault();
-				var e = event.originalEvent;
+				
+				var e = window.event || event;
+		
 				var touchMoved = false;
 				var activeSection = $('.section.active');
 				var scrollable;
 
 				if (!isMoving && !slideMoving) { //if theres any #
-				
-					touchEndY = e.touches[0].pageY;
-					touchEndX = e.touches[0].pageX;
-					
+					var touchEvents = getEventsPage(e);
+					touchEndY = touchEvents['y'];
+					touchEndX = touchEvents['x'];
 					
 					//if movement in the X axys is greater than in the Y and the currect section has slides...
 					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
@@ -416,16 +420,17 @@
 					}					
 				}
 			}
-		});
+		}
 		
-		$(document).on('touchstart MSPointerDown', function(event){
-			
+		function touchStartHandler(event){
+		
 			if(options.autoScrolling){
-				var e = event.originalEvent;
-				touchStartY = e.touches[0].pageY;
-				touchStartX = e.touches[0].pageX;
+				var e = window.event || event;
+				var touchEvents = getEventsPage(e);
+				touchStartY = touchEvents['y'];
+				touchStartX = touchEvents['x'];
 			}
-		});
+		}
 		
 
 
@@ -1272,6 +1277,46 @@
 			} else {
 				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
 			}
+		}
+		
+		
+		/**
+		* Adds the possibility to auto scroll through sections on touch devices.
+		*/
+		function addTouchHandler(){
+				document.addEventListener("touchstart", touchStartHandler, false); 
+				//document.addEventListener("MSPointerDown", touchStartHandler, false);  //windows 8
+				
+				document.addEventListener("touchmove", touchMoveHandler, false); 
+				//document.addEventListener("MSPointerMove", touchMoveHandler, false);  //windows 8
+		}
+		
+		/**
+		* Removes the auto scrolling for touch devices.
+		*/
+		function removeTouchHandler(){
+			document.removeEventListener('touchstart', touchStartHandler, false); 
+			document.removeEventListener('MSPointerDown', touchStartHandler, false); //windows 8
+			
+			document.removeEventListener('touchmove', touchMoveHandler, false); 
+			document.removeEventListener('MSPointerMove', touchMoveHandler, false); //windows 8
+		}
+		
+		/**
+		* Gets the pageX and pageY properties depending on the browser.
+		* https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
+		*/
+		function getEventsPage(e){
+			var events = new Array();
+			if (window.navigator.msPointerEnabled){
+				events['y'] = e.pageY;
+				events['x'] = e.pageX;
+			}else{
+				events['y'] = e.touches[0].pageY;
+				events['x'] =  e.touches[0].pageX;
+			}
+
+			return events;
 		}
 
 	};
