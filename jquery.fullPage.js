@@ -104,14 +104,25 @@
 		};
 		
 		/**
+		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
+		*/
+		$.fn.fullpage.setMouseWheelScrolling = function (value){
+			if(value){
+				addMouseWheelHandler();
+			}else{
+				removeMouseWheelHandler();
+			}
+		};
+		
+		/**
 		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures. 
 		*/
 		$.fn.fullpage.setAllowScrolling = function (value){
 			if(value){
-				addMouseWheelHandler();
+				$.fn.fullpage.setMouseWheelScrolling(true);
 				addTouchHandler();
 			}else{
-				removeMouseWheelHandler();
+				$.fn.fullpage.setMouseWheelScrolling(false);
 				removeTouchHandler();
 			}
 		};
@@ -700,7 +711,7 @@
 
 		if(options.normalScrollElements){
 			$(document).on('mouseover', options.normalScrollElements, function () {
-				$.fn.fullpage.setMouseWheelScrolling(false);
+				$.fn.fullpage.set(false);
 			});
 			
 			$(document).on('mouseout', options.normalScrollElements, function(){
