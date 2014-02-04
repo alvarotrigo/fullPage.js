@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.1
+ * fullPage 1.6.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -95,6 +95,13 @@
 			}
 			
 		};
+
+		/**
+		* Defines the scrolling speed 
+		*/
+		$.fn.fullpage.setScrollingSpeed = function(value){
+		   options.scrollingSpeed = value;
+		};
 		
 		/**
 		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad. 
@@ -106,7 +113,13 @@
 				removeMouseWheelHandler();
 			}
 		};
-
+		
+		/**
+		* Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
+		*/
+		$.fn.fullpage.setKeyboardScrolling = function (value){
+			options.keyboardScrolling = value;
+		};
 			
 		//flag to avoid very fast sliding for landscape sliders
 		var slideMoving = false;
@@ -512,7 +525,7 @@
 				scrollPage(destiny);
 			}
 		};
-		
+
 		function scrollPage(element, callback) {
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();

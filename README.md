@@ -258,6 +258,22 @@ Adds or remove the possiblity of scrolling through sections by using the mouse w
 $.fn.fullpage.setMouseWheelScrolling(false);
 ```
 
+### setKeyboardScrolling
+Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys (which is active by default).
+
+```javascript
+$.fn.fullpage.setKeyboardScrolling(false);
+```
+
+
+### setScrollingSpeed
+Defines the scrolling speed in miliseconds.
+
+```javascript
+$.fn.fullpage.setScrollingSpeed(700);
+```
+
+
 
 ## Callbacks
 ###afterLoad (`anchorLink`, `index`)
