@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.2
+ * fullPage 1.6.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -197,8 +197,11 @@
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
 				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
-				$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
-				$(this).find('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+				
+				if(options.controlArrowColor!='#fff'){
+					$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+					$(this).find('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+				}
 				
 				if(!options.loopHorizontal){
 					$(this).find('.controlArrow.prev').hide();
