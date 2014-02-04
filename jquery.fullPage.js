@@ -1285,10 +1285,10 @@
 		*/
 		function addTouchHandler(){
 				document.addEventListener("touchstart", touchStartHandler, false); 
-				//document.addEventListener("MSPointerDown", touchStartHandler, false);  //windows 8
+				document.addEventListener("MSPointerDown", touchStartHandler, false);  //windows 8
 				
 				document.addEventListener("touchmove", touchMoveHandler, false); 
-				//document.addEventListener("MSPointerMove", touchMoveHandler, false);  //windows 8
+				document.addEventListener("MSPointerMove", touchMoveHandler, false);  //windows 8
 		}
 		
 		/**
