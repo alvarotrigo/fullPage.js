@@ -29,9 +29,9 @@ As you can see in the `example.html` file, you will need to include the JavaScri
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
 	
-<!-- This is needed in the case of setting the plugin 
-	option `scrollOverflow` to `true` -->
+<!-- This following line needed in the case of setting the plugin option `scrollOverflow` to `true` -->
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
