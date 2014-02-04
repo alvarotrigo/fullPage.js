@@ -418,6 +418,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.restaurantwoods.nl/
 - http://collection.madeofsundays.com
 - http://jacoberiksson.se/
+- http://patuque.com/santateresa
 - http://www.jennbeaupre.com/jb/index.html
 - http://lawinenstift.com/
 - http://bnacademy.com.au/
