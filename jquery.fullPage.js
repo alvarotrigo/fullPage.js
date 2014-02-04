@@ -711,7 +711,7 @@
 
 		if(options.normalScrollElements){
 			$(document).on('mouseover', options.normalScrollElements, function () {
-				$.fn.fullpage.set(false);
+				$.fn.fullpage.setMouseWheelScrolling(false);
 			});
 			
 			$(document).on('mouseout', options.normalScrollElements, function(){
