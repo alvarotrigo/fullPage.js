@@ -418,6 +418,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![xepler](http://alvarotrigo.com/fullPage/imgs/logos/xepler.png)](http://xepler.com/services)
 [![matrimonia](http://alvarotrigo.com/fullPage/imgs/logos/matrimonia.png)](http://www.matrimonia.rs/)
 [![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli-3.png)](http://mymattioli.it/)
+[![redd](http://alvarotrigo.com/fullPage/imgs/logos/redd.png)](http://www.getredd.com/)
 
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
