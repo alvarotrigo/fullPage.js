@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.5
+ * fullPage 1.6.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -357,7 +357,7 @@
 		* As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
 		* This way, the touchstart and the touch moves shows an small difference between them which is the
 		* used one to determine the direction.
-		*/
+		*/		
 		function touchMoveHandler(event){
 		
 			if(options.autoScrolling){
@@ -1295,22 +1295,16 @@
 		* Adds the possibility to auto scroll through sections on touch devices.
 		*/
 		function addTouchHandler(){
-				document.addEventListener("touchstart", touchStartHandler, false); 
-				//document.addEventListener("MSPointerDown", touchStartHandler, false);  //windows 8
-				
-				document.addEventListener("touchmove", touchMoveHandler, false); 
-				//document.addEventListener("MSPointerMove", touchMoveHandler, false);  //windows 8
+				$(document).off('touchstart MSPointerDown').on('touchstart MSPointerDown', touchStartHandler);
+				$(document).off('touchmove MSPointerMove').on('touchmove MSPointerMove', touchMoveHandler);
 		}
 		
 		/**
 		* Removes the auto scrolling for touch devices.
 		*/
 		function removeTouchHandler(){
-			document.removeEventListener('touchstart', touchStartHandler, false); 
-			//document.removeEventListener('MSPointerDown', touchStartHandler, false); //windows 8
-			
-			document.removeEventListener('touchmove', touchMoveHandler, false); 
-			//document.removeEventListener('MSPointerMove', touchMoveHandler, false); //windows 8
+			$(document).off('touchstart MSPointerDown');
+			$(document).off('touchmove MSPointerMove');
 		}
 		
 		/**
