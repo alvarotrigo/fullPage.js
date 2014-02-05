@@ -414,6 +414,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![Vodafone](http://alvarotrigo.com/fullPage/imgs/logos/vodafone.png)](https://www.xone.vodafone.com)
 [![docspera](http://alvarotrigo.com/fullPage/imgs/logos/docspera.png)](http://docspera.com)
 [![strudel](http://alvarotrigo.com/fullPage/imgs/logos/strudel.png)](http://getstrudel.com/)
+[![scribe](http://alvarotrigo.com/fullPage/imgs/logos/scribe.png)](http://usescribe.com/)
 [![xepler](http://alvarotrigo.com/fullPage/imgs/logos/xepler.png)](http://xepler.com/services)
 [![matrimonia](http://alvarotrigo.com/fullPage/imgs/logos/matrimonia.png)](http://www.matrimonia.rs/)
 [![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli-3.png)](http://mymattioli.it/)
@@ -431,6 +432,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://lawinenstift.com/
 - http://bnacademy.com.au/
 - http://getstrudel.com/
+- http://usescribe.com/
 - http://xepler.com/services
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.ondamujer.com
