@@ -416,7 +416,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![strudel](http://alvarotrigo.com/fullPage/imgs/logos/strudel.png)](http://getstrudel.com/)
 [![xepler](http://alvarotrigo.com/fullPage/imgs/logos/xepler.png)](http://xepler.com/services)
 [![matrimonia](http://alvarotrigo.com/fullPage/imgs/logos/matrimonia.png)](http://www.matrimonia.rs/)
-[![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli-2.png)](http://mymattioli.it/)
+[![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli-3.png)](http://mymattioli.it/)
 [![ondaMujer](http://alvarotrigo.com/fullPage/imgs/logos/ondaMujer.png)](http://www.ondamujer.com)
 
 - https://www.xone.vodafone.com
