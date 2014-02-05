@@ -411,7 +411,14 @@ Example:
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
-[![Vodafone](http://alvarotrigo.com/fullPage/imgs/vodafone.png)](https://www.xone.vodafone.com)
+[![Vodafone](http://alvarotrigo.com/fullPage/imgs/logos/vodafone.png)](https://www.xone.vodafone.com)
+[![docspera](http://alvarotrigo.com/fullPage/imgs/logos/docspera.png)](http://docspera.com)
+[![strudel](http://alvarotrigo.com/fullPage/imgs/logos/strudel.png)](http://getstrudel.com/)
+[![xepler](http://alvarotrigo.com/fullPage/imgs/logos/xepler.png)](http://xepler.com/services)
+[![matrimonia](http://alvarotrigo.com/fullPage/imgs/logos/matrimonia.png)](http://www.matrimonia.rs/)
+[![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli.png)](http://mymattioli.it/)
+[![ondaMujer](http://alvarotrigo.com/fullPage/imgs/logos/ondaMujer.png)](http://www.ondamujer.com)
+
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
 - http://rockercreative.com/
