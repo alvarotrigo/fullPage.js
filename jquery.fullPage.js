@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.6
+ * fullPage 1.6.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -834,11 +834,11 @@
 					}
 
 					slideMoving = false;
-				}, options.scrollingSpeed);
+				}, options.scrollingSpeed, options.easing);
 			}else{
 				slidesContainer.animate({
 					scrollLeft : destinyPos.left
-				}, options.scrollingSpeed, function() {
+				}, options.scrollingSpeed, options.easing, function() {
 
 					//if the site is not just resizing and readjusting the slides
 					if(!localIsResizing){
