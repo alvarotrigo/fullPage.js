@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.4
+ * fullPage 1.6.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1296,10 +1296,10 @@
 		*/
 		function addTouchHandler(){
 				document.addEventListener("touchstart", touchStartHandler, false); 
-				document.addEventListener("MSPointerDown", touchStartHandler, false);  //windows 8
+				//document.addEventListener("MSPointerDown", touchStartHandler, false);  //windows 8
 				
 				document.addEventListener("touchmove", touchMoveHandler, false); 
-				document.addEventListener("MSPointerMove", touchMoveHandler, false);  //windows 8
+				//document.addEventListener("MSPointerMove", touchMoveHandler, false);  //windows 8
 		}
 		
 		/**
@@ -1307,10 +1307,10 @@
 		*/
 		function removeTouchHandler(){
 			document.removeEventListener('touchstart', touchStartHandler, false); 
-			document.removeEventListener('MSPointerDown', touchStartHandler, false); //windows 8
+			//document.removeEventListener('MSPointerDown', touchStartHandler, false); //windows 8
 			
 			document.removeEventListener('touchmove', touchMoveHandler, false); 
-			document.removeEventListener('MSPointerMove', touchMoveHandler, false); //windows 8
+			//document.removeEventListener('MSPointerMove', touchMoveHandler, false); //windows 8
 		}
 		
 		/**
