@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.7
+ * fullPage 1.6.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -364,7 +364,7 @@
 				//preventing the easing on iOS devices
 				event.preventDefault();
 				
-				var e = window.event || event;
+				var e = event.originalEvent;
 		
 				var touchMoved = false;
 				var activeSection = $('.section.active');
@@ -374,7 +374,7 @@
 					var touchEvents = getEventsPage(e);
 					touchEndY = touchEvents['y'];
 					touchEndX = touchEvents['x'];
-					
+										
 					//if movement in the X axys is greater than in the Y and the currect section has slides...
 					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 					    
@@ -436,7 +436,7 @@
 		function touchStartHandler(event){
 		
 			if(options.autoScrolling){
-				var e = window.event || event;
+				var e = event.originalEvent;
 				var touchEvents = getEventsPage(e);
 				touchStartY = touchEvents['y'];
 				touchStartX = touchEvents['x'];
