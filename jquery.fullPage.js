@@ -379,19 +379,19 @@
 					var touchEvents = getEventsPage(e);
 					touchEndY = touchEvents['y'];
 					touchEndX = touchEvents['x'];
-
+					
 					//if movement in the X axys is greater than in the Y and the currect section has slides...
 					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
-
-						//is the movement greater than the minimum resistance to scroll?
-						if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
-							if (touchStartX > touchEndX) {
-								activeSection.find('.controlArrow.next:visible').trigger('click');
-
-							} else {
-								activeSection.find('.controlArrow.prev:visible').trigger('click');
-							}
-						}
+					    
+					    //is the movement greater than the minimum resistance to scroll?
+					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
+					        if (touchStartX > touchEndX) {
+					             activeSection.find('.controlArrow.next:visible').trigger('click');
+					           
+					        } else {
+					            activeSection.find('.controlArrow.prev:visible').trigger('click');
+					        }
+					    }
 					}
 
 					//vertical scrolling
@@ -476,14 +476,14 @@
 				
 					//scrolling down?
 					if (delta < 0) {
-						if (scrollable.length > 0) {
+						if(scrollable.length > 0 ){
 							//is the scrollbar at the end of the scroll?
-							if (isScrolled('bottom', scrollable)) {
+							if(isScrolled('bottom', scrollable)){
 								$.fn.fullpage.moveSectionDown();
-							} else {
+							}else{
 								return true; //normal scroll
 							}
-						} else {
+						}else{
 							$.fn.fullpage.moveSectionDown();
 						}
 					}
@@ -508,34 +508,34 @@
 		}
 
 		
-		$.fn.fullpage.moveSectionUp = function () {
+		$.fn.fullpage.moveSectionUp = function(){
 			var prev = $('.section.active').prev('.section');
-
+			
 			//looping to the bottom if there's no more sections above
-			if (!prev.length &&
-				(options.loopTop || options.continuousVertical)) {
+			if(!prev.length &&
+				(options.loopTop || options.continuousVertical)){
 				prev = $('.section').last();
 			}
 
-			if (prev.length > 0 ||
+			if(prev.length > 0 ||
 				(!prev.length &&
-				(options.loopTop || options.continuousVertical))) {
+				(options.loopTop || options.continuousVertical))){
 				scrollPage(prev, null, true);
 			}
 		};
 
-		$.fn.fullpage.moveSectionDown = function () {
+		$.fn.fullpage.moveSectionDown = function (){
 			var next = $('.section.active').next('.section');
 
 			//looping to the top if there's no more sections below
-			if (!next.length &&
-				(options.loopBottom || options.continuousVertical)) {
+			if(!next.length &&
+				(options.loopBottom || options.continuousVertical)){
 				next = $('.section').first();
 			}
 
-			if (next.length > 0 ||
+			if(next.length > 0 ||
 				(!next.length &&
-				(options.loopBottom || options.continuousVertical))) {
+				(options.loopBottom || options.continuousVertical))){
 				scrollPage(next, null, false);
 			}
 		};
@@ -556,7 +556,7 @@
 			}
 		};
 
-		function scrollPage(element, callback, isMovementUp) {
+		function scrollPage(element, callback, isMovementUp){
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
