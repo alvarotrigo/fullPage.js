@@ -411,7 +411,15 @@ Example:
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
-![Vodafone](http://alvarotrigo.com/fullPage/imgs/vodafone.png)
+[![Vodafone](http://alvarotrigo.com/fullPage/imgs/logos/vodafone.png)](https://www.xone.vodafone.com)
+[![docspera](http://alvarotrigo.com/fullPage/imgs/logos/docspera.png)](http://docspera.com)
+[![strudel](http://alvarotrigo.com/fullPage/imgs/logos/strudel.png)](http://getstrudel.com/)
+[![scribe](http://alvarotrigo.com/fullPage/imgs/logos/scribe.png)](http://usescribe.com/)
+[![xepler](http://alvarotrigo.com/fullPage/imgs/logos/xepler.png)](http://xepler.com/services)
+[![matrimonia](http://alvarotrigo.com/fullPage/imgs/logos/matrimonia.png)](http://www.matrimonia.rs/)
+[![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli-3.png)](http://mymattioli.it/)
+[![redd](http://alvarotrigo.com/fullPage/imgs/logos/redd.png)](http://www.getredd.com/)
+
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
 - http://rockercreative.com/
@@ -419,10 +427,12 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://collection.madeofsundays.com
 - http://jacoberiksson.se/
 - http://patuque.com/santateresa
+- http://docspera.com
 - http://www.jennbeaupre.com/jb/index.html
 - http://lawinenstift.com/
 - http://bnacademy.com.au/
 - http://getstrudel.com/
+- http://usescribe.com/
 - http://xepler.com/services
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.ondamujer.com
