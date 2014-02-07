@@ -93,7 +93,7 @@ $(document).ready(function() {
 		normalScrollElements: '#element1, .element2',
 		keyboardScrolling: true,
 		touchSensitivity: 15,
-		continuousVertical': false,
+		continuousVertical: false,
 
 		//events
 		onLeave: function(index, direction){},
