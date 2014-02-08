@@ -512,14 +512,11 @@
 			var prev = $('.section.active').prev('.section');
 			
 			//looping to the bottom if there's no more sections above
-			if(!prev.length &&
-				(options.loopTop || options.continuousVertical)){
+			if (!prev.length && (options.loopTop || options.continuousVertical)) {
 				prev = $('.section').last();
 			}
 
-			if(prev.length > 0 ||
-				(!prev.length &&
-				(options.loopTop || options.continuousVertical))){
+			if (prev.length) {
 				scrollPage(prev, null, true);
 			}
 		};
@@ -572,8 +569,8 @@
 
 			// If continuousVertical && we need to wrap around
 			if (options.autoScrolling && options.continuousVertical && typeof (isMovementUp) !== "undefined" &&
-				((!isMovementUp && $('.section.active').position().top > dtop) || // Scrolling down
-				(isMovementUp && $('.section.active').position().top < dtop))) { // Scrolling up
+				((!isMovementUp && yMovement == 'up') || // Intending to scroll down but about to go up or
+				(isMovementUp && yMovement == 'down'))) { // intending to scroll up but about to go down
 
 				// Scrolling down
 				if (!isMovementUp) {
