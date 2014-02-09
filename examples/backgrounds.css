@@ -45,7 +45,8 @@ ul{
  #section0,
  #section1,
  #section2,
- #section3{
+ #section3,
+ .slide{
 	background-size: cover;
  }
  #section0{
