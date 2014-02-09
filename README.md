@@ -93,6 +93,9 @@ $(document).ready(function() {
 		normalScrollElements: '#element1, .element2',
 		keyboardScrolling: true,
 		touchSensitivity: 15,
+		sectionClass: 'my_section',
+		slideClass: 'my_slide',
+		activeClass: 'my_active',
 
 		//events
 		onLeave: function(index, direction){},
@@ -207,6 +210,12 @@ $.fn.fullpage({
 
 - `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it.
 In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscroll.min`](https://github.com/rochal/jQuery-slimScroll) and it should be loaded before the fullPaje.js plugin. For example:
+
+- `sectionClass`: (default `section`) defines what class to use for sections.
+
+- `slideClass`: (default `slide`) defines what class to use for slides.
+
+- `activeClass`: (default `active`) defines what class to use for active
 
 ```html
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
