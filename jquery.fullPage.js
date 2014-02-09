@@ -36,7 +36,7 @@
 			'normalScrollElements': null, 
 			'keyboardScrolling': true,
 			'touchSensitivity': 5,
-
+			'continuousVertical': false,
 
 			//events
 			'afterLoad': null,
@@ -46,7 +46,12 @@
 			'onSlideLeave': null
 		}, options);		
 		
-		
+	    // Disable mutually exclusive settings
+		if (options.continuousVertical &&
+			(options.loopTop || options.loopBottom)) {
+		    options.continuousVertical = false;
+		    console && console.log && console.log("Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled");
+		}
 		
 		//Defines the delay to take place before being able to scroll to the next section
 		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and 
@@ -507,25 +512,28 @@
 			var prev = $('.section.active').prev('.section');
 			
 			//looping to the bottom if there's no more sections above
-			if(options.loopTop && !prev.length){
+			if (!prev.length && (options.loopTop || options.continuousVertical)) {
 				prev = $('.section').last();
 			}
 
-			if (prev.length > 0 || (!prev.length && options.loopTop)){
-				scrollPage(prev);
+			if (prev.length) {
+				scrollPage(prev, null, true);
 			}
 		};
 
 		$.fn.fullpage.moveSectionDown = function (){
 			var next = $('.section.active').next('.section');
-			
+
 			//looping to the top if there's no more sections below
-			if(options.loopBottom && !next.length){
+			if(!next.length &&
+				(options.loopBottom || options.continuousVertical)){
 				next = $('.section').first();
 			}
 
-			if (next.length > 0 || (!next.length && options.loopBottom)){
-				scrollPage(next);
+			if(next.length > 0 ||
+				(!next.length &&
+				(options.loopBottom || options.continuousVertical))){
+				scrollPage(next, null, false);
 			}
 		};
 		
@@ -545,7 +553,7 @@
 			}
 		};
 
-		function scrollPage(element, callback) {
+		function scrollPage(element, callback, isMovementUp){
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			var dtop = dest !== null ? dest.top : null;
@@ -557,6 +565,39 @@
 			if(activeSlide.length){
 				var slideAnchorLink = activeSlide.data('anchor');
 				var slideIndex = activeSlide.index();
+			}
+
+			// If continuousVertical && we need to wrap around
+			if (options.autoScrolling && options.continuousVertical && typeof (isMovementUp) !== "undefined" &&
+				((!isMovementUp && yMovement == 'up') || // Intending to scroll down but about to go up or
+				(isMovementUp && yMovement == 'down'))) { // intending to scroll up but about to go down
+
+				// Scrolling down
+				if (!isMovementUp) {
+					// Move all previous sections to after the active section
+					$(".section.active").after($('.section.active').prevAll(".section").get().reverse());
+				}
+				else { // Scrolling up
+					// Move all next sections to before the active section
+					$(".section.active").before($('.section.active').nextAll(".section"));
+				}
+
+				// Maintain the displayed position (now that we changed the element order)
+				if (options.css3) {
+					var translate3d = 'translate3d(0px, -' + $('.section.active').position().top + 'px, 0px)';
+					transformContainer(translate3d, false);
+				}
+				else {
+					$("#superContainer").css("top", -$('.section.active').position().top);
+				}
+
+				// save for later the elements that still need to be reordered
+				var wrapAroundElements = $(".section.active");
+
+				// Recalculate animation variables
+				dest = element.position();
+				dtop = dest !== null ? dest.top : null;
+				yMovement = getYmovement(element);
 			}
 
 			var leavingSection = $('.section.active').index('.section') + 1;
@@ -577,40 +618,72 @@
 			}else{
 				scrollOptions['scrollTop'] = dtop;
 				scrolledElement = 'html, body';
-			}		
-						
-			if(options.css3 && options.autoScrolling){
+			}
 
-				
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
+			// Fix section order after continuousVertical changes have been animated
+			var continuousVerticalFixSectionOrder = function () {
+				// If continuousVertical is in effect (and autoScrolling would also be in effect then), 
+				// finish moving the elements around so the direct navigation will function more simply
+				if (!wrapAroundElements || !wrapAroundElements.length) {
+					return;
+				}
+
+				if (isMovementUp) {
+					$('.section:first').before(wrapAroundElements);
+				}
+				else {
+					$('.section:last').after(wrapAroundElements);
+				}
+
+				if (options.css3) {
+					var translate3d = 'translate3d(0px, -' + $('.section.active').position().top + 'px, 0px)';
+					transformContainer(translate3d, false);
+				}
+				else {
+					$("#superContainer").css("top", -$('.section.active').position().top);
+				}
+			};
+
+
+			// Use CSS3 translate functionality or...
+			if (options.css3 && options.autoScrolling) {
+				//callback (onLeave)
+				$.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				transformContainer(translate3d, true);
-				
-				setTimeout(function(){
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
 
-						setTimeout(function(){
-							isMoving = false;
-							$.isFunction( callback ) && callback.call( this);
-						}, scrollDelay);
-				}, options.scrollingSpeed);
-			}else{
-				$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
-				
-				$(scrolledElement).animate(
-					scrollOptions 
-				, options.scrollingSpeed, options.easing, function() {
-					//callback
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (sectionIndex + 1));
-					
-					setTimeout(function(){
+				setTimeout(function () {
+					//fix section order from continuousVertical
+					continuousVerticalFixSectionOrder();
+
+					//callback (afterLoad)
+					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+
+					setTimeout(function () {
 						isMoving = false;
-						$.isFunction( callback ) && callback.call( this);
+						$.isFunction(callback) && callback.call(this);
+					}, scrollDelay);
+				}, options.scrollingSpeed);
+			} else { // ... use jQuery animate
+				$.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, yMovement);
+
+				$(scrolledElement).animate(
+					scrollOptions
+				, options.scrollingSpeed, options.easing, function () {
+					//fix section order from continuousVertical
+					continuousVerticalFixSectionOrder();
+
+					//callback (afterLoad)
+					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+
+					setTimeout(function () {
+						isMoving = false;
+						$.isFunction(callback) && callback.call(this);
 					}, scrollDelay);
 				});
 			}
-			
+
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
 			lastScrolledDestiny = anchorLink;
 			

@@ -26,7 +26,15 @@ $(document).ready(function(){
 
 		case 'callbacks':
 		  window.location.href = 'callback.html';
-		  break;			  
+		  break;
+
+	    case 'css3':
+	      window.location.href = 'css3.html';
+	      break;
+
+	    case 'continuous':
+	      window.location.href = 'continuous.html';
+	      break;
 	  }
 	});
 
