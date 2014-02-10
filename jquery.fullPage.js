@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.9
+ * fullPage 1.7.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -37,6 +37,7 @@
 			'keyboardScrolling': true,
 			'touchSensitivity': 5,
 			'continuousVertical': false,
+			'start': null,
 
 			//events
 			'afterLoad': null,
@@ -720,7 +721,7 @@
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
 				event is fired on every scroll too.*/
-				if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (typeof slide !== 'undefined' && !slideMoving && lastScrolledSlide != slide ))  {
+				if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
 					scrollPageAndSlide(section, slide);
 				}
 			}
@@ -1281,6 +1282,7 @@
 
 				//first slide won't have slide anchor, just the section one
 				}else if(typeof slideIndex !== 'undefined'){
+					lastScrolledSlide = slideAnchor;
 					location.hash = anchorLink;
 				}
 
