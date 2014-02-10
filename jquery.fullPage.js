@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.1
+ * fullPage 1.7.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -37,7 +37,7 @@
 			'keyboardScrolling': true,
 			'touchSensitivity': 5,
 			'continuousVertical': false,
-			'start': null,
+			'animateAnchor': true,
 
 			//events
 			'afterLoad': null,
@@ -72,13 +72,7 @@
 				
 				if(element.length){
 					//moving the container up
-					if(options.css3){
-						var translate3d = 'translate3d(0px, -' + element.position().top + 'px, 0px)';
-						transformContainer(translate3d, false);
-					}else{
-						//deleting the possible negative top
-						$('#superContainer').css('top', '-'  + element.position().top + 'px');
-					}
+					silentScroll(element.position().top);
 				}
 					
 			}else{
@@ -87,14 +81,7 @@
 					'height' : 'auto'
 				});
 				
-				if(options.css3){
-					//moving the container up
-					var translate3d = 'translate3d(0px, 0px, 0px)';
-					transformContainer(translate3d, false);
-				}else{
-					//deleting the possible negative top
-					$('#superContainer').css('top', '0px');
-				}
+				silentScroll(0);
 				
 				//scrolling the page to the section with no animation
 				$('html, body').scrollTop(element.position().top);
@@ -151,7 +138,6 @@
 		var lastScrolledDestiny;
 		var lastScrolledSlide;
 
-
 		$.fn.fullpage.setAllowScrolling(true);
 		
 		//if css3 is not supported, it will use jQuery animations
@@ -190,8 +176,7 @@
 
 			if (typeof options.anchors[index] !== 'undefined') {
 				$(this).attr('data-anchor', options.anchors[index]);
-			}
-			
+			}			
 
 			if (options.navigation) {
 				var link = '';
@@ -205,6 +190,7 @@
 				
 				nav.find('ul').append('<li data-tooltip="' + tooltip + '"><a href="#' + link + '"><span></span></a></li>');
 			}
+
 			
 			// if there's any slide
 			if (numSlides > 0) {
@@ -251,7 +237,7 @@
 		
 
 			
-		}).promise().done(function(){			
+		}).promise().done(function(){	
 			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
 
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
@@ -289,6 +275,27 @@
 						
 					});
 				});
+			}
+
+
+			//getting the anchor link in the URL and deleting the `#`
+			var value =  window.location.hash.replace('#', '').split('/');
+			var destiny = value[0];
+
+			if(destiny.length){
+
+				if(isNaN(destiny)){
+					var section = $('[data-anchor="'+destiny+'"]');
+				}else{
+					var section = $('.section').eq( (destiny -1) );
+				}
+
+				if(!options.animateAnchor && typeof options.anchors!== 'undefined'){ 
+					silentScroll(section.position().top);
+
+					//updating the active class
+					section.addClass('active').siblings().removeClass('active');
+				}
 			}
 	
 			$(window).on('load', function() {
@@ -584,13 +591,7 @@
 				}
 
 				// Maintain the displayed position (now that we changed the element order)
-				if (options.css3) {
-					var translate3d = 'translate3d(0px, -' + $('.section.active').position().top + 'px, 0px)';
-					transformContainer(translate3d, false);
-				}
-				else {
-					$("#superContainer").css("top", -$('.section.active').position().top);
-				}
+				silentScroll($('.section.active').position().top);
 
 				// save for later the elements that still need to be reordered
 				var wrapAroundElements = $(".section.active");
@@ -636,13 +637,7 @@
 					$('.section:last').after(wrapAroundElements);
 				}
 
-				if (options.css3) {
-					var translate3d = 'translate3d(0px, -' + $('.section.active').position().top + 'px, 0px)';
-					transformContainer(translate3d, false);
-				}
-				else {
-					$("#superContainer").css("top", -$('.section.active').position().top);
-				}
+				silentScroll($('.section.active').position().top);
 			};
 
 
@@ -700,7 +695,7 @@
 			var value =  window.location.hash.replace('#', '').split('/');
 			var section = value[0];
 			var slide = value[1];
-						
+
 			if(section){  //if theres any #				
 				scrollPageAndSlide(section, slide);
 			}
@@ -1401,6 +1396,16 @@
 			}
 
 			return events;
+		}
+
+		function silentScroll(top){
+			if (options.css3) {
+				var translate3d = 'translate3d(0px, -' + top + 'px, 0px)';
+				transformContainer(translate3d, false);
+			}
+			else {
+				$("#superContainer").css("top", -top);
+			}
 		}
 
 	};

@@ -94,6 +94,7 @@ $(document).ready(function() {
 		keyboardScrolling: true,
 		touchSensitivity: 15,
 		continuousVertical: false,
+		animateAnchor: true,
 
 		//events
 		onLeave: function(index, direction){},
@@ -178,6 +179,8 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide 
 
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
+
+- `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
