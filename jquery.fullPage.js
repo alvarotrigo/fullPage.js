@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.0
+ * fullPage 1.7.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1370,16 +1370,20 @@
 		* Adds the possibility to auto scroll through sections on touch devices.
 		*/
 		function addTouchHandler(){
+			if(isTablet){
 				$(document).off('touchstart MSPointerDown').on('touchstart MSPointerDown', touchStartHandler);
 				$(document).off('touchmove MSPointerMove').on('touchmove MSPointerMove', touchMoveHandler);
+			}
 		}
 		
 		/**
 		* Removes the auto scrolling for touch devices.
 		*/
 		function removeTouchHandler(){
-			$(document).off('touchstart MSPointerDown');
-			$(document).off('touchmove MSPointerMove');
+			if(isTablet){
+				$(document).off('touchstart MSPointerDown');
+				$(document).off('touchmove MSPointerMove');
+			}
 		}
 		
 		/**
