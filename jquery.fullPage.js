@@ -283,14 +283,9 @@
 			var destiny = value[0];
 
 			if(destiny.length){
+				var section = $('[data-anchor="'+destiny+'"]');
 
-				if(isNaN(destiny)){
-					var section = $('[data-anchor="'+destiny+'"]');
-				}else{
-					var section = $('.section').eq( (destiny -1) );
-				}
-
-				if(!options.animateAnchor && typeof options.anchors!== 'undefined'){ 
+				if(!options.animateAnchor && section.length){ 
 					silentScroll(section.position().top);
 
 					//updating the active class
@@ -564,11 +559,13 @@
 		function scrollPage(element, callback, isMovementUp){
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
-			var dtop = dest !== null ? dest.top : null;
+			if(typeof dest === "undefined"){ return; } //there's no element to scroll, leaving the function
+			var dtop = dest.top;			
 			var yMovement = getYmovement(element);
 			var anchorLink  = element.data('anchor');
 			var sectionIndex = element.index('.section');
 			var activeSlide = element.find('.slide.active');
+			var activeSection = $('.section.active');
 
 			if(activeSlide.length){
 				var slideAnchorLink = activeSlide.data('anchor');
@@ -583,26 +580,26 @@
 				// Scrolling down
 				if (!isMovementUp) {
 					// Move all previous sections to after the active section
-					$(".section.active").after($('.section.active').prevAll(".section").get().reverse());
+					$(".section.active").after(activeSection.prevAll(".section").get().reverse());
 				}
 				else { // Scrolling up
 					// Move all next sections to before the active section
-					$(".section.active").before($('.section.active').nextAll(".section"));
+					$(".section.active").before(activeSection.nextAll(".section"));
 				}
 
 				// Maintain the displayed position (now that we changed the element order)
 				silentScroll($('.section.active').position().top);
 
 				// save for later the elements that still need to be reordered
-				var wrapAroundElements = $(".section.active");
+				var wrapAroundElements = activeSection;
 
 				// Recalculate animation variables
 				dest = element.position();
-				dtop = dest !== null ? dest.top : null;
+				dtop = dest.top;
 				yMovement = getYmovement(element);
 			}
 
-			var leavingSection = $('.section.active').index('.section') + 1;
+			var leavingSection = activeSection.index('.section') + 1;
 			
 			element.addClass('active').siblings().removeClass('active');
 			
