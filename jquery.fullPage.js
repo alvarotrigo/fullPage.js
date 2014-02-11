@@ -564,7 +564,7 @@
 		function scrollPage(element, callback, isMovementUp){
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
-			var dtop = dest !== null ? dest.top : null;
+			var dtop = dest !== undefined ? dest.top : null;
 			var yMovement = getYmovement(element);
 			var anchorLink  = element.data('anchor');
 			var sectionIndex = element.index('.section');
@@ -598,7 +598,7 @@
 
 				// Recalculate animation variables
 				dest = element.position();
-				dtop = dest !== null ? dest.top : null;
+				dtop = dest !== undefined ? dest.top : null;
 				yMovement = getYmovement(element);
 			}
 
