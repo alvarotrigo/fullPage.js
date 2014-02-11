@@ -598,7 +598,7 @@
 
 				// Recalculate animation variables
 				dest = element.position();
-				dtop = dest !== null ? dest.top : null;
+				dtop = dest !== undefined ? dest.top : null;
 				yMovement = getYmovement(element);
 			}
 
