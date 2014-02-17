@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.2
+ * fullPage 1.7.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -287,6 +287,7 @@
 
 				if(!options.animateAnchor && section.length){ 
 					silentScroll(section.position().top);
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, destiny, (section.index('.section') + 1));
 
 					//updating the active class
 					section.addClass('active').siblings().removeClass('active');
