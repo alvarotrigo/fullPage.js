@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.3
+ * fullPage 1.7.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -239,8 +239,6 @@
 			
 		}).promise().done(function(){	
 			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
-
-			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			
 			//fixed elements need to be moved out of the plugin container due to problems with CSS3.
 			if(options.fixedElements && options.css3){
@@ -274,7 +272,10 @@
 						}
 						
 					});
+					$.isFunction( options.afterRender ) && options.afterRender.call( this);
 				});
+			}else{
+				$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			}
 
 
@@ -293,6 +294,7 @@
 					section.addClass('active').siblings().removeClass('active');
 				}
 			}
+
 	
 			$(window).on('load', function() {
 				scrollToAnchor();	
