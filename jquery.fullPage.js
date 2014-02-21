@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.4
+ * fullPage 1.7.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -160,7 +160,8 @@
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
 			
-			if(!index){
+			//if no active section is defined, the 1st one will be the default one
+			if(!index && $('.section.active').length === 0) {
 				$(this).addClass('active');
 			}
 
@@ -248,7 +249,7 @@
 			//vertical centered of the navigation + first bullet active
 			if(options.navigation){
 				nav.css('margin-top', '-' + (nav.height()/2) + 'px');
-				nav.find('li').first().find('a').addClass('active');
+				nav.find('li').eq($('.section.active').index('.section')).find('a').addClass('active');
 			}
 			
 			//moving the menu outside the main container (avoid problems with fixed positions when using CSS3 tranforms)
