@@ -44,6 +44,10 @@ The active section by default will be the first section, which is taken as the h
 <div class="section">Some section</div>
 <div class="section">Some section</div>
 ```
+If you want to define a different starting point rather than the first section, just add the class `active` to the section you want to load first.
+```html
+<div class="section active">Some section</div>
+```
 
 In order to create a landscape slider within a section, each slide will be defined with another `div`:
 ```html
@@ -55,6 +59,7 @@ In order to create a landscape slider within a section, each slide will be defin
 </div>
 ````
 You can see a fully working example of the HTML structure in the [`example.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/example.html).
+
 
 ###Initialization 
 All you need to do is call the plugin inside a `$(document).ready` function:
@@ -440,6 +445,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://getstrudel.com/
 - http://usescribe.com/
 - http://lucilecazanave.com/
+- http://medlive.com
 - http://xepler.com/services
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.ondamujer.com
