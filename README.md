@@ -422,6 +422,7 @@ Example:
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL
 
+[![Sony](http://alvarotrigo.com/fullPage/imgs/logos/sony.gif)](http://www.sony-asia.com/microsite/mdr-10/)
 [![Vodafone](http://alvarotrigo.com/fullPage/imgs/logos/vodafone.png)](https://www.xone.vodafone.com)
 [![docspera](http://alvarotrigo.com/fullPage/imgs/logos/docspera.png)](http://docspera.com)
 [![strudel](http://alvarotrigo.com/fullPage/imgs/logos/strudel.png)](http://getstrudel.com/)
@@ -431,6 +432,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![myMattioli](http://alvarotrigo.com/fullPage/imgs/logos/myMattioli-3.png)](http://mymattioli.it/)
 [![redd](http://alvarotrigo.com/fullPage/imgs/logos/redd.png)](http://www.getredd.com/)
 
+- http://www.sony-asia.com/microsite/mdr-10/
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
 - http://rockercreative.com/
