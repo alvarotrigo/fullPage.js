@@ -98,7 +98,7 @@ html, body {
 .fullPage-slidesNav {
     position: absolute;
     z-index: 4;
-    left: 50%;
+    left: 0;
     opacity: 1;
 }
 .fullPage-slidesNav.bottom {
