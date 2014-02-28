@@ -100,6 +100,7 @@ html, body {
     z-index: 4;
     left: 50%;
     opacity: 1;
+    white-space: nowrap;
 }
 .fullPage-slidesNav.bottom {
     bottom: 17px;
