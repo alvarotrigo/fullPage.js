@@ -1248,7 +1248,7 @@
 			}
 			
 			//centering it
-			nav.css('margin-left', ($('html').width()-nav.width())/2 + 'px');
+			nav.css('margin-left', (section.width()-nav.width())/2 + 'px');
 			
 			nav.find('li').first().find('a').addClass('active');
 		}
