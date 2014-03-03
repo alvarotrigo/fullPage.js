@@ -100,6 +100,7 @@ $(document).ready(function() {
 		touchSensitivity: 15,
 		continuousVertical: false,
 		animateAnchor: true,
+		startPosition: [2,3],
 
 		//events
 		onLeave: function(index, direction){},
@@ -186,6 +187,8 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
+
+- `startPosition`: (default `false`) Specifies starting section and slide as two index numerical array (eg. [2,3]) where first index is section, second is slide. Sections start counting from top to bottom, beginning with 1. Slides start counting from left to right, beginning with 1. By default, will load page at the top-left section/slide.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
