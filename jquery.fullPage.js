@@ -468,7 +468,7 @@
 				// cross-browser wheel delta
 				e = window.event || e;
 				var delta = Math.max(-1, Math.min(1,
-						(e.wheelDelta || -e.detail)));
+						(e.wheelDelta || -e.deltaY || -e.detail)));
 				var scrollable;
 				var activeSection = $('.section.active');
 				
@@ -1341,7 +1341,7 @@
 		function removeMouseWheelHandler(){
 			if (document.addEventListener) {
 				document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Firefox
+				document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
 			} else {
 				document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
 			}
@@ -1355,7 +1355,7 @@
 		function addMouseWheelHandler(){
 			if (document.addEventListener) {
 				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.addEventListener("DOMMouseScroll", MouseWheelHandler, false); //Firefox
+				document.addEventListener("wheel", MouseWheelHandler, false); //Firefox
 			} else {
 				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
 			}
