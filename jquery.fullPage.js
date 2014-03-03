@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.6
+ * fullPage 1.7.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -957,6 +957,13 @@
 			$('.section').each(function(){
 				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
 			
+				//adjusting the height of the table-cell for IE and Firefox
+				if(options.verticalCentered){
+					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
+				}
+				
+				$(this).css('height', windowsHeight + 'px');
+
 				//resizing the scrolling divs
 				if(options.scrollOverflow){
 					var slides = $(this).find('.slide');
@@ -971,12 +978,6 @@
 					
 				}
 				
-				//adjusting the height of the table-cell for IE and Firefox
-				if(options.verticalCentered){
-					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
-				}
-				
-				$(this).css('height', windowsHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
 				var slides = $(this).find('.slides');
@@ -1115,7 +1116,7 @@
 					contentHeight = element.find('.tableCell').get(0).scrollHeight;
 				}
 			}
-			
+
 			var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
 
 			//needs scroll?
