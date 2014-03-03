@@ -425,7 +425,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![Sony](http://wallpapers-for-ipad.com/fullpage/imgs/logos/sony.gif)](http://www.sony-asia.com/microsite/mdr-10/)
 [![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs/logos/vodafone.png)](https://www.xone.vodafone.com)
 [![docspera](http://wallpapers-for-ipad.com/fullpage/imgs/logos/docspera.png)](http://docspera.com)
-[![strudel](http://wallpapers-for-ipad.com/fullpage/imgs/logos/strudel.png)](http://getstrudel.com/)
+[![strudel](http://wallpapers-for-ipad.com/fullpage/imgs/logos/strudel.jpg)](http://getstrudel.com/)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs/logos/scribe.png)](http://usescribe.com/)
 [![xepler](http://wallpapers-for-ipad.com/fullpage/imgs/logos/xepler.png)](http://xepler.com/services)
 [![matrimonia](http://wallpapers-for-ipad.com/fullpage/imgs/logos/matrimonia.png)](http://www.matrimonia.rs/)
