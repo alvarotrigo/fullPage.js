@@ -44,7 +44,7 @@ The active section by default will be the first section, which is taken as the h
 <div class="section">Some section</div>
 <div class="section">Some section</div>
 ```
-If you want to define a different starting point rather than the first section, just add the class `active` to the section you want to load first.
+If you want to define a different starting point rather than the first section or the first slide of a section, just add the class `active` to the section and slide you want to load first.
 ```html
 <div class="section active">Some section</div>
 ```
