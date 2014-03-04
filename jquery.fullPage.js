@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.7
+ * fullPage 1.7.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -157,6 +157,7 @@
 		}
 		
 		$('.section').each(function(index){
+			var that = $(this);
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
 			
@@ -220,7 +221,11 @@
 				
 				slides.each(function(index) {
 					if(!index){
-						$(this).addClass('active');
+
+						//if the slide won#t be an starting point, the default will be the first one
+						if(!that.hasClass('active') && that.find('.slide.active').length == 0){
+							$(this).addClass('active');
+						}
 					}
 					
 					$(this).css('width', slideWidth + '%');
@@ -240,6 +245,16 @@
 			
 		}).promise().done(function(){	
 			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
+
+
+			//the starting point is a slide? 
+			var activeSlide = $('.section.active').find('.slide.active');
+			if(activeSlide.length){
+				var prevScrollingSpeepd = options.scrollingSpeed;
+				$.fn.fullpage.setScrollingSpeed (0);
+				landscapeScroll($('.section.active').find('.slides'), activeSlide);
+				$.fn.fullpage.setScrollingSpeed(prevScrollingSpeepd);
+			}
 			
 			//fixed elements need to be moved out of the plugin container due to problems with CSS3.
 			if(options.fixedElements && options.css3){
@@ -890,13 +905,9 @@
 
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
-				
-				slides.find('.slidesContainer').addClass('easing').css({
-					'-webkit-transform': translate3d,
-					'-moz-transform': translate3d,
-					'-ms-transform':translate3d,
-					'transform': translate3d
-				});
+
+				slides.find('.slidesContainer').toggleClass('easing', options.scrollingSpeed>0).css(getTransforms(translate3d));
+
 				setTimeout(function(){
 					//if the site is not just resizing and readjusting the slides
 					if(!localIsResizing){
@@ -1179,12 +1190,7 @@
 		function transformContainer(translate3d, animated){
 			$('#superContainer').toggleClass('easing', animated);
 			
-			$('#superContainer').css({
-				'-webkit-transform': translate3d,
-				'-moz-transform': translate3d,
-				'-ms-transform':translate3d,
-				'transform': translate3d
-			});
+			$('#superContainer').css(getTransforms(translate3d));
 		}
 		
 		
@@ -1408,6 +1414,15 @@
 			else {
 				$("#superContainer").css("top", -top);
 			}
+		}
+
+		function getTransforms(translate3d){
+			return {
+				'-webkit-transform': translate3d,
+				'-moz-transform': translate3d,
+				'-ms-transform':translate3d,
+				'transform': translate3d
+			};
 		}
 
 	};
