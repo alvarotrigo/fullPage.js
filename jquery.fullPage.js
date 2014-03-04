@@ -38,6 +38,7 @@
 			'touchSensitivity': 5,
 			'continuousVertical': false,
 			'animateAnchor': true,
+			'startPosition': false,
 
 			//events
 			'afterLoad': null,
@@ -298,7 +299,17 @@
 
 	
 			$(window).on('load', function() {
-				scrollToAnchor();	
+				if(options.startPosition){
+					var section = $('.section').eq(options.startPosition[0] - 1);
+					scrollPage(section,false,false,true);
+					if(options.startPosition[1] > 1){
+						var slides = section.find('.slides');
+						var slide = slides.find('.slide').eq(options.startPosition[1] - 1);
+						landscapeScroll(slides,slide,true);
+					}
+				} else {
+					scrollToAnchor();
+				}
 			});
 			
 		});
@@ -560,7 +571,8 @@
 			}
 		};
 
-		function scrollPage(element, callback, isMovementUp){
+		function scrollPage(element, callback, isMovementUp, fast){
+			var fast = fast ? fast : false;
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
 			if(typeof dest === "undefined"){ return; } //there's no element to scroll, leaving the function
@@ -648,37 +660,71 @@
 				$.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
-				transformContainer(translate3d, true);
-
-				setTimeout(function () {
-					//fix section order from continuousVertical
-					continuousVerticalFixSectionOrder();
-
-					//callback (afterLoad)
-					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+				if (fast) {
+					transformContainer(translate3d, false);
 
 					setTimeout(function () {
-						isMoving = false;
-						$.isFunction(callback) && callback.call(this);
-					}, scrollDelay);
-				}, options.scrollingSpeed);
+						//fix section order from continuousVertical
+						continuousVerticalFixSectionOrder();
+
+						//callback (afterLoad)
+						$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+
+						setTimeout(function () {
+							isMoving = false;
+							$.isFunction(callback) && callback.call(this);
+						}, 0);
+					}, 0);
+				} else {
+					transformContainer(translate3d, true);
+
+					setTimeout(function () {
+						//fix section order from continuousVertical
+						continuousVerticalFixSectionOrder();
+
+						//callback (afterLoad)
+						$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+
+						setTimeout(function () {
+							isMoving = false;
+							$.isFunction(callback) && callback.call(this);
+						}, scrollDelay);
+					}, options.scrollingSpeed);
+				}
 			} else { // ... use jQuery animate
 				$.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, yMovement);
 
-				$(scrolledElement).animate(
-					scrollOptions
-				, options.scrollingSpeed, options.easing, function () {
-					//fix section order from continuousVertical
-					continuousVerticalFixSectionOrder();
+				if(fast){
+					$(scrolledElement).animate(
+						scrollOptions
+					, 0, function () {
+						//fix section order from continuousVertical
+						continuousVerticalFixSectionOrder();
 
-					//callback (afterLoad)
-					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+						//callback (afterLoad)
+						$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
 
-					setTimeout(function () {
-						isMoving = false;
-						$.isFunction(callback) && callback.call(this);
-					}, scrollDelay);
-				});
+						setTimeout(function () {
+							isMoving = false;
+							$.isFunction(callback) && callback.call(this);
+						}, scrollDelay);
+					});
+				} else {
+					$(scrolledElement).animate(
+						scrollOptions
+					, options.scrollingSpeed, options.easing, function () {
+						//fix section order from continuousVertical
+						continuousVerticalFixSectionOrder();
+
+						//callback (afterLoad)
+						$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+
+						setTimeout(function () {
+							isMoving = false;
+							$.isFunction(callback) && callback.call(this);
+						}, scrollDelay);
+					});
+				}
 			}
 
 			//flag to avoid callingn `scrollPage()` twice in case of using anchor links
@@ -843,7 +889,8 @@
 		/**
 		* Scrolls horizontal sliders.
 		*/
-		function landscapeScroll(slides, destiny){
+		function landscapeScroll(slides, destiny, fast){
+			var fast = fast ? fast : false;
 			var destinyPos = destiny.position();
 			var slidesContainer = slides.find('.slidesContainer').parent();
 			var slideIndex = destiny.index();
@@ -891,32 +938,63 @@
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 				
-				slides.find('.slidesContainer').addClass('easing').css({
-					'-webkit-transform': translate3d,
-					'-moz-transform': translate3d,
-					'-ms-transform':translate3d,
-					'transform': translate3d
-				});
-				setTimeout(function(){
-					//if the site is not just resizing and readjusting the slides
-					if(!localIsResizing){
-						$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
-					}
+				if (fast) {
+					slides.find('.slidesContainer').toggleClass('easing',false).css({
+						'-webkit-transform': translate3d,
+						'-moz-transform': translate3d,
+						'-ms-transform':translate3d,
+						'transform': translate3d
+					});
+					setTimeout(function(){
+						//if the site is not just resizing and readjusting the slides
+						if(!localIsResizing){
+							$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
+						}
 
-					slideMoving = false;
-				}, options.scrollingSpeed, options.easing);
+						slideMoving = false;
+					}, 0);
+				} else {
+					slides.find('.slidesContainer').addClass('easing').css({
+						'-webkit-transform': translate3d,
+						'-moz-transform': translate3d,
+						'-ms-transform':translate3d,
+						'transform': translate3d
+					});
+					setTimeout(function(){
+						//if the site is not just resizing and readjusting the slides
+						if(!localIsResizing){
+							$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
+						}
+
+						slideMoving = false;
+					}, options.scrollingSpeed, options.easing);
+				}
 			}else{
-				slidesContainer.animate({
-					scrollLeft : destinyPos.left
-				}, options.scrollingSpeed, options.easing, function() {
+				if (fast){
+					slidesContainer.animate({
+						scrollLeft : destinyPos.left
+					}, 0, function() {
 
-					//if the site is not just resizing and readjusting the slides
-					if(!localIsResizing){
-						$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
-					}	
-					//letting them slide again
-					slideMoving = false; 
-				});
+						//if the site is not just resizing and readjusting the slides
+						if(!localIsResizing){
+							$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+						}	
+						//letting them slide again
+						slideMoving = false; 
+					});
+				} else {
+					slidesContainer.animate({
+						scrollLeft : destinyPos.left
+					}, options.scrollingSpeed, options.easing, function() {
+
+						//if the site is not just resizing and readjusting the slides
+						if(!localIsResizing){
+							$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+						}	
+						//letting them slide again
+						slideMoving = false; 
+					});
+				}
 			}
 			
 			slidesNav.find('.active').removeClass('active');
