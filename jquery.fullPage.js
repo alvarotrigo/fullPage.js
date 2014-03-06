@@ -1,5 +1,5 @@
 /**
- * fullPage 1.7.8
+ * fullPage 1.7.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -947,9 +947,17 @@
 			});
 		
 		}
-		$(window).bind('orientationchange', function() {
-			doneResizing();
+		
+		
+		var supportsOrientationChange = "onorientationchange" in window,
+		orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+		
+		$(window).bind(orientationEvent , function() {
+			if(isTablet){
+				doneResizing();
+			}
 		});
+		
 
 		/**
 		 * When resizing is finished, we adjust the slides sizes and positions
