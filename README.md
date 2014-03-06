@@ -187,10 +187,9 @@ It requieres [jQuery UI](http://jqueryui.com/) for using some of its transitions
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
-- `menu`: (default `false`) A selector can be used to specify the menu to link with the slides. This way the scrolling of the slides will activate the corresponding element in the menu using the class `active`.
+- `menu`: (default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
-In order to link the elements of the menu with the slides, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as 
-used within the sections. Example:
+In order to link the elements of the menu with the sections, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as used within the sections. Example:
 ```html
 <ul id="myMenu">
     <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
