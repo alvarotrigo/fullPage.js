@@ -837,16 +837,17 @@
 	                	destiny = currentSlide.next('.slide');
 	            	}
 	
-	            	//is there isn't a next slide in the secuence?
-	            	//respect loopHorizontal setting
-	            	if (!destiny.length && options.loopHorizontal) {
-	                	//to the last
-	                	if (direction === 'prev') {
-	                    		destiny = currentSlide.siblings(':last');
-	                	} else {
-	                    		destiny = currentSlide.siblings(':first');
-	                	}
-	            	}
+	            //is there isn't a next slide in the secuence?
+	            if (!destiny.length) {
+	                //respect loopHorizontal setting
+	                if(!options.loopHorizontal) return;
+	                //to the last
+	                if (direction === 'prev') {
+	                    destiny = currentSlide.siblings(':last');
+	                } else {
+	                    destiny = currentSlide.siblings(':first');
+	                }
+	            }
 	
 	            	//not that fast my friend! :)
 	            	if (slideMoving) {
