@@ -839,7 +839,7 @@
 	
 	            	//is there isn't a next slide in the secuence?
 	            	//respect loopHorizontal setting
-	            	if (!destiny.length && loopHorizontal) {
+	            	if (!destiny.length && options.loopHorizontal) {
 	                	//to the last
 	                	if (direction === 'prev') {
 	                    		destiny = currentSlide.siblings(':last');
