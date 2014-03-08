@@ -23,6 +23,7 @@
 			'navigationTooltips': [],
 			'slidesNavigation': false,
 			'slidesNavPosition': 'bottom',
+			'controlArrow': true,
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
@@ -203,15 +204,17 @@
 				slides.parent().wrap('<div class="slides" />');
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
-				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
-				
-				if(options.controlArrowColor!='#fff'){
-					$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
-					$(this).find('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
-				}
-				
-				if(!options.loopHorizontal){
-					$(this).find('.controlArrow.prev').hide();
+				if(options.controlArrow){
+					$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
+					
+					if(options.controlArrowColor!='#fff'){
+						$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+						$(this).find('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+					}
+					
+					if(!options.loopHorizontal){
+						$(this).find('.controlArrow.prev').hide();
+					}
 				}
 
 				
@@ -761,12 +764,12 @@
 
 				//left
 				case 37:
-					$('.section.active').find('.controlArrow.prev:visible').trigger('click');
+                			$.fn.fullpage.moveSlideLeft();
 					break;
 
 				//right
 				case 39:
-					$('.section.active').find('.controlArrow.next:visible').trigger('click');
+					$.fn.fullpage.moveSlideRight();
 					break;
 
 				default:
@@ -804,6 +807,55 @@
 			});
 		}
 		
+		$.fn.fullpage.moveSlideRight = function() {
+            		moveSlide('next');
+	        }
+	
+	        $.fn.fullpage.moveSlideLeft = function() {
+	            	moveSlide('prev');
+	        }
+	
+	        function moveSlide(direction) {
+	        	// direction is mandatory
+		        if (!direction) {
+		                return;
+		        }
+	
+		        var activeSection = $('.section.active');
+		        var slides = activeSection.find('.slides');
+		        
+		        // break if no slides on this page
+		        if (!slides.length) {
+				return;
+	            	}
+	            	var currentSlide = slides.find('.slide.active');
+	            	var destiny = null;
+		
+	        	if (direction === 'prev') {
+	                	destiny = currentSlide.prev('.slide');
+	            	} else {
+	                	destiny = currentSlide.next('.slide');
+	            	}
+	
+	            	//is there isn't a next slide in the secuence?
+	            	if (!destiny.length) {
+	                	//to the last
+	                	if (direction === 'prev') {
+	                    		destiny = currentSlide.siblings(':last');
+	                	} else {
+	                    		destiny = currentSlide.siblings(':first');
+	                	}
+	            	}
+	
+	            	//not that fast my friend! :)
+	            	if (slideMoving) {
+	                	return;
+	            	}
+	            	slideMoving = true;
+	
+	            	landscapeScroll(slides, destiny);
+	        }
+
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
