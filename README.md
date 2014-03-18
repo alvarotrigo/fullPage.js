@@ -20,7 +20,7 @@ Let's make this a great plugin to make people's lives easier!
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as IE8 and Opera 12.
 
 ## Usage
-As you can see in the `example.html` file, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or a [customized version of the library](http://jqueryui.com/download/) with the desired effects.
+As you can see in the `example.html` file, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or a [customized version of the library](http://jqueryui.com/download/) with the desired effects).
 
 ###Including files:
 ```html
