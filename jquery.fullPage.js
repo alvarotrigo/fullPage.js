@@ -1,5 +1,5 @@
 /**
- * fullPage 1.8.1
+ * fullPage 1.8.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -246,7 +246,7 @@
 
 			//the starting point is a slide? 
 			var activeSlide = $('.section.active').find('.slide.active');
-			if($('.section.active').index('.section') != 0 || ($('.section.active').index('.section') == 0 && activeSlide.index() != 0)){
+			if( activeSlide.length &&  ($('.section.active').index('.section') != 0 || ($('.section.active').index('.section') == 0 && activeSlide.index() != 0))){
 				var prevScrollingSpeepd = options.scrollingSpeed;
 				$.fn.fullpage.setScrollingSpeed (0);
 				landscapeScroll($('.section.active').find('.slides'), activeSlide);
