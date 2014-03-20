@@ -35,6 +35,38 @@ $(document).ready(function(){
 	    case 'continuous':
 	      window.location.href = 'continuous.html';
 	      break;
+
+		case 'backgroundVideo':
+	      window.location.href = 'videoBackground.html';
+	      break;	 
+
+		case 'normalScroll':
+	      window.location.href = 'normalScroll.html';
+	      break;	 	   
+
+	    case 'scrolling':
+	      window.location.href = 'scrolling.html';
+	      break;	
+
+	    case 'navigationV':
+	      window.location.href = 'navigationV.html';
+	      break;		      
+
+	    case 'navigationH':
+	      window.location.href = 'navigationH.html';
+	      break;	
+
+	    case 'fixedHeaders':
+	    	window.location.href = 'fixedHeaders.html';
+	    	break;
+
+	    case 'gradientBackgrounds':
+	    	window.location.href = 'gradientBackgrounds.html';
+	    	break;	    	
+
+	    case 'apple':
+	    	window.location.href = 'apple.html';
+	    	break;	   
 	  }
 	});
 

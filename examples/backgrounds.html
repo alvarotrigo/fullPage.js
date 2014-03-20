@@ -3,7 +3,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
-	<title>FullScrren Backgrounds - fullPage.js</title>
+	<title>FullScreen Backgrounds - fullPage.js</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
 	<meta name="description" content="fullPage full-screen backgrounds." />
 	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
@@ -11,7 +11,72 @@
 
 	
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
-	<link rel="stylesheet" type="text/css" href="backgrounds.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<style>
+	
+	/* Style for our header texts 
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;	
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+	
+	/* Centered texts in each section 
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+	
+	
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section0,
+	#section1,
+	#section2,
+	#section3{
+		background-size: cover;
+	}
+	
+	/* Defining each sectino background and styles 
+	* --------------------------------------- */
+	#section0{
+		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg1.jpg);
+		padding: 30% 0 0 0;
+	}
+	#section2{
+		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg3.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section3{
+		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg4.jpg);
+		padding: 6% 0 0 0;
+	}
+	#section3 h1{
+		color: #000;
+	}
+
+ 
+ 	/*Adding background for the slides
+	* --------------------------------------- */
+	#slide1{
+		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg2.jpg);
+		padding: 6% 0 0 0;
+	}
+	#slide2{
+		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg5.jpg);
+		padding: 6% 0 0 0;
+	}
+	
+	
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	</style>
 
 	<!--[if IE]>
 		<script type="text/javascript">
@@ -28,7 +93,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$.fn.fullpage({
-				'verticalCentered': false
+				verticalCentered: false,
 			});
 		});
 	</script>
@@ -36,9 +101,13 @@
 </head>
 <body>
 
+<a href="https://github.com/alvarotrigo/fullPage.js" id="githubLink"><img style="position: fixed;z-index:99; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
 <select id="demosMenu">
   <option id="background" selected>Choose Demo</option>
-  <option id="background">Background Images</option>
+  <option id="background">Background images</option>
+  <option id="backgroundVideo">Background video</option>
+  <option id="gradientBackgrounds">Gradient backgrounds</option>
   <option id="looping">Looping</option>
   <option id="noAnchor">No anchor links</option>
   <option id="scrollingSpeed">Scrolling speed</option>
@@ -46,7 +115,17 @@
   <option id="callbacks">Callbacks</option>
   <option id="css3">CSS3</option>
   <option id="continuous">Continuous scrolling</option>
+  <option id="normalScroll">Normal scrolling</option>
+  <option id="scrolling">Scroll inside sections and slides</option>
+  <option id="navigationV">Vertical navigation dots</option>
+  <option id="navigationH">Horizontal navigation dots</option>
+  <option id="fixedHeaders">Fixed headers</option>
+  <option id="apple">Apple iPhone demo (animations)</option>
 </select>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://alvarotrigo.com/fullPage/" data-text="Great plugin to create fullscreen scrolling websites: http://alvarotrigo.com/fullPage/">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
 
 <div class="section " id="section0"><h1>fullPage.js</h1></div>
 <div class="section" id="section1">

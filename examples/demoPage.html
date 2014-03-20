@@ -11,8 +11,38 @@
 
 	
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
-	<link rel="stylesheet" type="text/css" href="demoPage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
 
+	
+	<style>
+
+		/* Sections
+		 * --------------------------------------- */
+		#section0 img,
+		#section1 img{
+			margin: 20px 0 0 0;
+		}	
+		#section2 img{
+			margin: 20px 0 0 52px;	
+		}
+		#section3 img{
+			bottom: 0px;
+			position: absolute;
+			margin-left: -420px;
+		}
+		.intro p{
+			width: 50%;
+			margin: 0 auto;
+			font-size: 1.5em;
+		}
+		.twitter-share-button{
+			position: absolute;
+			z-index: 99;
+			right: 149px;
+			top: 9px;
+		}
+
+	</style>
 	<!--[if IE]>
 		<script type="text/javascript">
 			 var console = { log: function() {} };
@@ -41,7 +71,9 @@
 
 <select id="demosMenu">
   <option id="background" selected>Choose Demo</option>
-  <option id="background">Background Images</option>
+  <option id="background">Background images</option>
+  <option id="backgroundVideo">Background video</option>
+  <option id="gradientBackgrounds">Gradient backgrounds</option>
   <option id="looping">Looping</option>
   <option id="noAnchor">No anchor links</option>
   <option id="scrollingSpeed">Scrolling speed</option>
@@ -49,8 +81,13 @@
   <option id="callbacks">Callbacks</option>
   <option id="css3">CSS3</option>
   <option id="continuous">Continuous scrolling</option>
+  <option id="normalScroll">Normal scrolling</option>
+  <option id="scrolling">Scroll inside sections and slides</option>
+  <option id="navigationV">Vertical navigation dots</option>
+  <option id="navigationH">Horizontal navigation dots</option>
+  <option id="fixedHeaders">Fixed headers</option>
+  <option id="apple">Apple iPhone demo (animations)</option>
 </select>
-
 
 <ul id="menu">
 	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
