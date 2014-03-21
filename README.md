@@ -12,12 +12,12 @@ Invite me to a coffe
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Introduction
-The plugin is in its first version and will keep improving with time.
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
-
 Let's make this a great plugin to make people's lives easier!
 
-fullPage.js is fully functional on all modern browsers, as well as some old ones such as IE8 and Opera 12.
+## Compatibility 
+fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12... 
+It can work with CSS3 and without it, making it ideal for old browsers compativility.
 
 ## Usage
 As you can see in the `example.html` file, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
