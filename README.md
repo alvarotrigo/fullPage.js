@@ -20,14 +20,18 @@ Let's make this a great plugin to make people's lives easier!
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as IE8 and Opera 12.
 
 ## Usage
-As you can see in the `example.html` file, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or a [customized version of the library](http://jqueryui.com/download/) with the desired effects).
+As you can see in the `example.html` file, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
 
 ###Including files:
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<!-- This following line is needed in case of using the default easing option or when using another
+ one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
+<script src="vendors/jquery.easings.min.js"></script>	
+
 	
 <!-- This following line needed in the case of setting the plugin option `scrollOverflow` to `true` -->
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
