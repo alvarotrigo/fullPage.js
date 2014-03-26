@@ -460,6 +460,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.matrimonia.rs/
 - http://mymattioli.it/
 - http://www.carlphot.com/
+- http://medissix.com/
 - http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
 - http://www.gricnik.info/
@@ -471,6 +472,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.karmaffne.com/
 - http://andreapaolucci.com/
 - http://www.fergalkeenan.com 
+- http://spell-star.appspot.com/
 
 ## Donations
 Donations would be more than welcome :)
