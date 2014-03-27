@@ -126,6 +126,13 @@
 		$.fn.fullpage.setKeyboardScrolling = function (value){
 			options.keyboardScrolling = value;
 		};
+
+		/**
+		* Add set resize
+		*/
+		$.fn.fullpage.setResize = function(value){
+		   options.resize = value;
+		};
 			
 		//flag to avoid very fast sliding for landscape sliders
 		var slideMoving = false;
