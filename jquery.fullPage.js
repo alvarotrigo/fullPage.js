@@ -12,6 +12,7 @@
 		options = $.extend({
 			"verticalCentered" : true,
 			'resize' : true,
+			'resizeSections' : true,
 			'slidesColor' : [],
 			'anchors':[],
 			'scrollingSpeed': 700,
@@ -119,12 +120,29 @@
 				removeTouchHandler();
 			}
 		};
+
+		// Add resize font
+		$.fn.fullpage.setResize = function (value) {
+			options.resize = value;
+		}
+
+		// Add resize sections
+		$.fn.fullpage.setResizeSections = function (value) {
+			options.resizeSections = value;
+		}
 		
 		/**
 		* Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
 		*/
 		$.fn.fullpage.setKeyboardScrolling = function (value){
 			options.keyboardScrolling = value;
+		};
+
+		/**
+		* Add set resize
+		*/
+		$.fn.fullpage.setResize = function(value){
+		   options.resize = value;
 		};
 			
 		//flag to avoid very fast sliding for landscape sliders
@@ -975,40 +993,12 @@
 
 			//text and images resizing
 			if (options.resize) {
-				resizeMe(windowsHeight, windowsWidth);
+				resizeFont(windowsHeight, windowsWidth);
 			}
 
-			$('.section').each(function(){
-				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
-			
-				//adjusting the height of the table-cell for IE and Firefox
-				if(options.verticalCentered){
-					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
-				}
-				
-				$(this).css('height', windowsHeight + 'px');
-
-				//resizing the scrolling divs
-				if(options.scrollOverflow){
-					var slides = $(this).find('.slide');
-					
-					if(slides.length){
-						slides.each(function(){
-							createSlimScrolling($(this));
-						});
-					}else{
-						createSlimScrolling($(this));
-					}
-					
-				}
-				
-
-				//adjusting the position fo the FULL WIDTH slides...
-				var slides = $(this).find('.slides');
-				if (slides.length) {
-					landscapeScroll(slides, slides.find('.slide.active'));
-				}
-			});
+			if (options.resizeSections) {
+				resizeSections(windowsHeight);
+			}
 
 			//adjusting the position for the current section
 			var destinyPos = $('.section.active').position();
@@ -1023,10 +1013,43 @@
 			isResizing = false;
 		}
 
+		// resize Section's height, slides height
+		function resizeSections(windowsHeight) {
+			$('.section').each(function(){
+				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
+
+				//adjusting the height of the table-cell for IE and Firefox
+				if(options.verticalCentered){
+					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
+				}
+
+				$(this).css('height', windowsHeight + 'px');
+
+				//resizing the scrolling divs
+				if(options.scrollOverflow){
+					var slides = $(this).find('.slide');
+
+					if(slides.length){
+						slides.each(function(){
+							createSlimScrolling($(this));
+						});
+					}else{
+						createSlimScrolling($(this));
+					}
+				}
+
+				//adjusting the position fo the FULL WIDTH slides...
+				var slides = $(this).find('.slides');
+				if (slides.length) {
+					landscapeScroll(slides, slides.find('.slide.active'));
+				}
+			});
+		}
+
 		/**
 		 * Resizing of the font size depending on the window size as well as some of the images on the site.
 		 */
-		function resizeMe(displayHeight, displayWidth) {
+		function resizeFont(displayHeight, displayWidth) {
 			//Standard height, for which the body font size is correct
 			var preferredHeight = 825;
 			var windowSize = displayHeight;
