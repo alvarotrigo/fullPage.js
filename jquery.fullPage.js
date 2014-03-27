@@ -1115,7 +1115,10 @@
 		* Retuns `right` or `left` depending on the scrolling movement to reach its destination
 		* from the current slide.
 		*/
-		function getXmovement(fromIndex, toIndex){			
+		function getXmovement(fromIndex, toIndex){
+			if( fromIndex == toIndex){
+				return 'none'
+			}
 			if(fromIndex > toIndex){
 				return 'left';
 			}
