@@ -80,6 +80,7 @@ $(document).ready(function() {
 	$.fn.fullpage({
 		verticalCentered: true,
 		resize : true,
+		resizeSections : true,
 		slidesColor : ['#ccc', '#fff'],
 		anchors:['firstSlide', 'secondSlide'],
 		scrollingSpeed: 700,
@@ -149,6 +150,8 @@ To create links between sections, you could use the `menu` option and make use o
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
 - `resize`: (default `true`) Whether you want to resize the text when the window is resized. 
+
+- `resizeSections`: (default `true`) Whether you want to resize the section's size when the window is resized. 
 
 - `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
 
