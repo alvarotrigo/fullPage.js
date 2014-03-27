@@ -455,7 +455,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://xepler.com/services
 - http://www.graphicid.dk/
 - http://portfolio.io.utwente.nl/student/dijkavan/
-- http://www.ondamujer.com
 - http://www.omqcomics.com/
 - http://www.matrimonia.rs/
 - http://mymattioli.it/
