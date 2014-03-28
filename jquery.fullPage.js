@@ -922,6 +922,7 @@
 					slideMoving = false;
 				}, options.scrollingSpeed, options.easing);
 			}else{
+				while(slidesContainer.queue().length)slidesContainer.stop(false,true);
 				slidesContainer.animate({
 					scrollLeft : destinyPos.left
 				}, options.scrollingSpeed, options.easing, function() {
