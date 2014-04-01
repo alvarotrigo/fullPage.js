@@ -1,5 +1,5 @@
 /**
- * fullPage 1.8.4
+ * fullPage 1.8.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -582,6 +582,7 @@
 			var sectionIndex = element.index('.section');
 			var activeSlide = element.find('.slide.active');
 			var activeSection = $('.section.active');
+			var leavingSection = activeSection.index('.section') + 1;
 
 			//caching the value of isResizing at the momment the function is called 
 			//because it will be checked later inside a setTimeout and the value might change
@@ -619,7 +620,6 @@
 				yMovement = getYmovement(element);
 			}
 
-			var leavingSection = activeSection.index('.section') + 1;
 			
 			element.addClass('active').siblings().removeClass('active');
 			
