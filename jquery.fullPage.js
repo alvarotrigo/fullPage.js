@@ -1,5 +1,5 @@
 /**
- * fullPage 1.8.5
+ * fullPage 1.7.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -38,6 +38,8 @@
 			'touchSensitivity': 5,
 			'continuousVertical': false,
 			'animateAnchor': true,
+
+			'normalScrollElementTouchThreshold': 5,
 
 			//events
 			'afterLoad': null,
@@ -157,7 +159,6 @@
 		}
 		
 		$('.section').each(function(index){
-			var that = $(this);
 			var slides = $(this).find('.slide');
 			var numSlides = slides.length;
 			
@@ -220,8 +221,7 @@
 				}
 				
 				slides.each(function(index) {
-					//if the slide won#t be an starting point, the default will be the first one
-					if(!index && that.find('.slide.active').length == 0){
+					if(!index){
 						$(this).addClass('active');
 					}
 					
@@ -242,16 +242,6 @@
 			
 		}).promise().done(function(){	
 			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
-
-
-			//the starting point is a slide? 
-			var activeSlide = $('.section.active').find('.slide.active');
-			if( activeSlide.length &&  ($('.section.active').index('.section') != 0 || ($('.section.active').index('.section') == 0 && activeSlide.index() != 0))){
-				var prevScrollingSpeepd = options.scrollingSpeed;
-				$.fn.fullpage.setScrollingSpeed (0);
-				landscapeScroll($('.section.active').find('.slides'), activeSlide);
-				$.fn.fullpage.setScrollingSpeed(prevScrollingSpeepd);
-			}
 			
 			//fixed elements need to be moved out of the plugin container due to problems with CSS3.
 			if(options.fixedElements && options.css3){
@@ -386,7 +376,10 @@
 		
 			if(options.autoScrolling){
 				//preventing the easing on iOS devices
-				event.preventDefault();
+				// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
+				if (!checkParentForNormalScrollElement(event.target)) {
+					event.preventDefault();
+				}
 				
 				var e = event.originalEvent;
 		
@@ -454,6 +447,27 @@
 						}
 					}					
 				}
+			}
+		}
+
+		/**
+		 * recursive function to loop up the parent nodes to check if one of them exists in options.normalScrollElements
+		 * Currently works well for iOS - Android might need some testing
+		 * @param  {Element} el  target element / jquery selector (in subsequent nodes)
+		 * @param  {int}     hop current hop compared to options.normalScrollElementTouchThreshold 
+		 * @return {boolean} true if there is a match to options.normalScrollElements
+		 */
+		function checkParentForNormalScrollElement (el, hop) {
+			hop = hop || 0;
+			var parent = $(el).parent();
+
+			if (hop < options.normalScrollElementTouchThreshold &&
+				parent.is(options.normalScrollElements) ) {
+				return true;
+			} else if (hop == options.normalScrollElementTouchThreshold) {
+				return false;
+			} else {
+				return checkParentForNormalScrollElement(parent, ++hop);
 			}
 		}
 		
@@ -582,11 +596,6 @@
 			var sectionIndex = element.index('.section');
 			var activeSlide = element.find('.slide.active');
 			var activeSection = $('.section.active');
-			var leavingSection = activeSection.index('.section') + 1;
-
-			//caching the value of isResizing at the momment the function is called 
-			//because it will be checked later inside a setTimeout and the value might change
-			var localIsResizing = isResizing; 
 
 			if(activeSlide.length){
 				var slideAnchorLink = activeSlide.data('anchor');
@@ -620,6 +629,7 @@
 				yMovement = getYmovement(element);
 			}
 
+			var leavingSection = activeSection.index('.section') + 1;
 			
 			element.addClass('active').siblings().removeClass('active');
 			
@@ -660,10 +670,8 @@
 
 			// Use CSS3 translate functionality or...
 			if (options.css3 && options.autoScrolling) {
-
-				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, yMovement);
-				
+				//callback (onLeave)
+				$.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				transformContainer(translate3d, true);
@@ -672,18 +680,16 @@
 					//fix section order from continuousVertical
 					continuousVerticalFixSectionOrder();
 
-					//callback (afterLoad) 	if the site is not just resizing and readjusting the slides
-					$.isFunction(options.afterLoad) && !localIsResizing && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+					//callback (afterLoad)
+					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
 
 					setTimeout(function () {
 						isMoving = false;
 						$.isFunction(callback) && callback.call(this);
 					}, scrollDelay);
 				}, options.scrollingSpeed);
-			} else { // ... use jQuery animate 
-
-				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, yMovement);
+			} else { // ... use jQuery animate
+				$.isFunction(options.onLeave) && options.onLeave.call(this, leavingSection, yMovement);
 
 				$(scrolledElement).animate(
 					scrollOptions
@@ -691,8 +697,8 @@
 					//fix section order from continuousVertical
 					continuousVerticalFixSectionOrder();
 
-					//callback (afterLoad) if the site is not just resizing and readjusting the slides
-					$.isFunction(options.afterLoad) && !localIsResizing && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+					//callback (afterLoad)
+					$.isFunction(options.afterLoad) && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
 
 					setTimeout(function () {
 						isMoving = false;
@@ -743,8 +749,8 @@
 			}
 			
 		});
-
-
+			
+		
 		/**
 		 * Sliding with arrow keys, both, vertical and horizontal
 		 */
@@ -752,30 +758,30 @@
 			//Moving the main page with the keyboard arrows if keyboard scrolling is enabled
 			if (options.keyboardScrolling && !isMoving) {
 				switch (e.which) {
-					//up
-					case 38:
-					case 33:
-						$.fn.fullpage.moveSectionUp();
-						break;
+				//up
+				case 38:
+				case 33:
+					$.fn.fullpage.moveSectionUp();
+					break;
 
-					//down
-					case 40:
-					case 34:
-						$.fn.fullpage.moveSectionDown();
-						break;
+				//down
+				case 40:
+				case 34:
+					$.fn.fullpage.moveSectionDown();
+					break;
 
-					//left
-					case 37:
-						$('.section.active').find('.controlArrow.prev:visible').trigger('click');
-						break;
+				//left
+				case 37:
+					$('.section.active').find('.controlArrow.prev:visible').trigger('click');
+					break;
 
-					//right
-					case 39:
-						$('.section.active').find('.controlArrow.next:visible').trigger('click');
-						break;
+				//right
+				case 39:
+					$('.section.active').find('.controlArrow.next:visible').trigger('click');
+					break;
 
-					default:
-						return; // exit this handler for other keys
+				default:
+					return; // exit this handler for other keys
 				}
 			}
 		});
@@ -910,9 +916,13 @@
 
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
-
-				slides.find('.slidesContainer').toggleClass('easing', options.scrollingSpeed>0).css(getTransforms(translate3d));
-
+				
+				slides.find('.slidesContainer').addClass('easing').css({
+					'-webkit-transform': translate3d,
+					'-moz-transform': translate3d,
+					'-ms-transform':translate3d,
+					'transform': translate3d
+				});
 				setTimeout(function(){
 					//if the site is not just resizing and readjusting the slides
 					if(!localIsResizing){
@@ -952,17 +962,9 @@
 			});
 		
 		}
-		
-		
-		var supportsOrientationChange = "onorientationchange" in window,
-		orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-		
-		$(window).bind(orientationEvent , function() {
-			if(isTablet){
-				doneResizing();
-			}
+		$(window).bind('orientationchange', function() {
+			doneResizing();
 		});
-		
 
 		/**
 		 * When resizing is finished, we adjust the slides sizes and positions
@@ -981,13 +983,6 @@
 			$('.section').each(function(){
 				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
 			
-				//adjusting the height of the table-cell for IE and Firefox
-				if(options.verticalCentered){
-					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
-				}
-				
-				$(this).css('height', windowsHeight + 'px');
-
 				//resizing the scrolling divs
 				if(options.scrollOverflow){
 					var slides = $(this).find('.slide');
@@ -1002,6 +997,12 @@
 					
 				}
 				
+				//adjusting the height of the table-cell for IE and Firefox
+				if(options.verticalCentered){
+					$(this).find('.tableCell').css('height', getTableHeight($(this)) + 'px');
+				}
+				
+				$(this).css('height', windowsHeight + 'px');
 
 				//adjusting the position fo the FULL WIDTH slides...
 				var slides = $(this).find('.slides');
@@ -1115,10 +1116,7 @@
 		* Retuns `right` or `left` depending on the scrolling movement to reach its destination
 		* from the current slide.
 		*/
-		function getXmovement(fromIndex, toIndex){
-			if( fromIndex == toIndex){
-				return 'none'
-			}
+		function getXmovement(fromIndex, toIndex){			
 			if(fromIndex > toIndex){
 				return 'left';
 			}
@@ -1143,7 +1141,7 @@
 					contentHeight = element.find('.tableCell').get(0).scrollHeight;
 				}
 			}
-
+			
 			var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
 
 			//needs scroll?
@@ -1206,7 +1204,12 @@
 		function transformContainer(translate3d, animated){
 			$('#superContainer').toggleClass('easing', animated);
 			
-			$('#superContainer').css(getTransforms(translate3d));
+			$('#superContainer').css({
+				'-webkit-transform': translate3d,
+				'-moz-transform': translate3d,
+				'-ms-transform':translate3d,
+				'transform': translate3d
+			});
 		}
 		
 		
@@ -1430,15 +1433,6 @@
 			else {
 				$("#superContainer").css("top", -top);
 			}
-		}
-
-		function getTransforms(translate3d){
-			return {
-				'-webkit-transform': translate3d,
-				'-moz-transform': translate3d,
-				'-ms-transform':translate3d,
-				'transform': translate3d
-			};
 		}
 
 	};
