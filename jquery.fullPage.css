@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.6
+ * fullPage 1.6.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -9,6 +9,7 @@ html, body {
     margin: 0;
     padding: 0;
 	overflow:hidden;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 #superContainer {
     height: 100%;
