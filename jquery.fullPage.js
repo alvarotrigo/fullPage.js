@@ -49,11 +49,11 @@
 			'onSlideLeave': null
 		}, options);		
 
-	    // Disable mutually exclusive settings
+		// Disable mutually exclusive settings
 		if (options.continuousVertical &&
 			(options.loopTop || options.loopBottom)) {
-		    options.continuousVertical = false;
-		    console && console.log && console.log("Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled");
+			options.continuousVertical = false;
+			console && console.log && console.log("Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled");
 		}
 
 		//Defines the delay to take place before being able to scroll to the next section
@@ -391,73 +391,73 @@
 				// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
 				if (!checkParentForNormalScrollElement(event.target)) {
 					event.preventDefault();
-				}
-				
-				var e = event.originalEvent;
 
-				var touchMoved = false;
-				var activeSection = $('.section.active');
-				var scrollable;
+					var e = event.originalEvent;
 
-				if (!isMoving && !slideMoving) { //if theres any #
-					var touchEvents = getEventsPage(e);
-					touchEndY = touchEvents['y'];
-					touchEndX = touchEvents['x'];
+					var touchMoved = false;
+					var activeSection = $('.section.active');
+					var scrollable;
 
-					//if movement in the X axys is greater than in the Y and the currect section has slides...
-					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+					if (!isMoving && !slideMoving) { //if theres any #
+						var touchEvents = getEventsPage(e);
+						touchEndY = touchEvents['y'];
+						touchEndX = touchEvents['x'];
 
-					    //is the movement greater than the minimum resistance to scroll?
-					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
-					        if (touchStartX > touchEndX) {
-					             activeSection.find('.controlArrow.next:visible').trigger('click');
+						//if movement in the X axys is greater than in the Y and the currect section has slides...
+						if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
-					        } else {
-					            activeSection.find('.controlArrow.prev:visible').trigger('click');
-					        }
-					    }
-					}
+							//is the movement greater than the minimum resistance to scroll?
+							if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
+								if (touchStartX > touchEndX) {
+									activeSection.find('.controlArrow.next:visible').trigger('click');
 
-					//vertical scrolling
-					else{
-						//if there are landscape slides, we check if the scrolling bar is in the current one or not
-						if(activeSection.find('.slides').length){
-							scrollable= activeSection.find('.slide.active').find('.scrollable');
-						}else{
-							scrollable = activeSection.find('.scrollable');
-						}
-
-						//is the movement greater than the minimum resistance to scroll?
-						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
-							if (touchStartY > touchEndY) {
-								if(scrollable.length > 0 ){
-									//is the scrollbar at the end of the scroll?
-									if(isScrolled('bottom', scrollable)){
-										$.fn.fullpage.moveSectionDown();
-									}else{
-										return true;
-									}
-								}else{
-									// moved down
-									$.fn.fullpage.moveSectionDown();
-								}
-							} else if (touchEndY > touchStartY) {
-
-								if(scrollable.length > 0){
-									//is the scrollbar at the start of the scroll?
-									if(isScrolled('top', scrollable)){
-										$.fn.fullpage.moveSectionUp();
-									}
-									else{
-										return true;
-									}
-								}else{
-									// moved up
-									$.fn.fullpage.moveSectionUp();
+								} else {
+									activeSection.find('.controlArrow.prev:visible').trigger('click');
 								}
 							}
 						}
-					}					
+
+						//vertical scrolling
+						else{
+							//if there are landscape slides, we check if the scrolling bar is in the current one or not
+							if(activeSection.find('.slides').length){
+								scrollable= activeSection.find('.slide.active').find('.scrollable');
+							}else{
+								scrollable = activeSection.find('.scrollable');
+							}
+
+							//is the movement greater than the minimum resistance to scroll?
+							if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
+								if (touchStartY > touchEndY) {
+									if(scrollable.length > 0 ){
+										//is the scrollbar at the end of the scroll?
+										if(isScrolled('bottom', scrollable)){
+											$.fn.fullpage.moveSectionDown();
+										}else{
+											return true;
+										}
+									}else{
+										// moved down
+										$.fn.fullpage.moveSectionDown();
+									}
+								} else if (touchEndY > touchStartY) {
+
+									if(scrollable.length > 0){
+										//is the scrollbar at the start of the scroll?
+										if(isScrolled('top', scrollable)){
+											$.fn.fullpage.moveSectionUp();
+										}
+										else{
+											return true;
+										}
+									}else{
+										// moved up
+										$.fn.fullpage.moveSectionUp();
+									}
+								}
+							}
+						}					
+					}
 				}
 			}
 		}
@@ -1241,7 +1241,7 @@
 		*/
 		function scrollPageAndSlide(destiny, slide){
 			if (typeof slide === 'undefined') {
-			    slide = 0;
+				slide = 0;
 			}
 
 			if(isNaN(destiny)){
