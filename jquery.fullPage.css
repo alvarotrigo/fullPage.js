@@ -8,17 +8,18 @@
 html, body {
     margin: 0;
     padding: 0;
-	overflow:hidden;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    overflow:hidden;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 #superContainer {
     height: 100%;
     position: relative;
-	
-	/* Touch detection for Windows 8 */
-	-ms-touch-action: none; 
+
+    /* Touch detection for Windows 8 */
+    -ms-touch-action: none;
 }
-.section {
+.section,
+section[data-role="page"] {
     position: relative;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -40,7 +41,8 @@ html, body {
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
-.section.table, .slide.table {
+.section.table, .slide.table,
+section[data-role="page"].table {
     display: table;
     width: 100%;
 }
@@ -110,8 +112,8 @@ html, body {
 }
 #fullPage-nav ul,
 .fullPage-slidesNav ul {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 #fullPage-nav li,
 .fullPage-slidesNav li {
