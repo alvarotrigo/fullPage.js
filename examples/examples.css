@@ -107,7 +107,8 @@ p{
 #menu{
 	position:fixed;
 	top:0;
-	left:0;
+	left:auto;
+	right: auto;
 	height: 40px;
 	z-index: 70;
 	width: 100%;
