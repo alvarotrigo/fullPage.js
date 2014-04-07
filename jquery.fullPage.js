@@ -1,5 +1,5 @@
 /**
- * fullPage 1.8.5
+ * fullPage 2.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -131,7 +131,7 @@
 		var slideMoving = false;
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
-
+		var container = $(this).length? $(this): $('#superContainer'); // for compatibity reasons for fullpage < v2.0
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		var isResizing = false;
@@ -145,7 +145,18 @@
 			options.css3 = support3d();
 		}
 
-		$('body').wrapInner('<div id="superContainer" />');
+		if($(this).length){
+			container.css({
+				'height': '100%',
+				'position': 'relative',
+				'-ms-touch-action': 'none'
+			});
+		}
+
+		//for compatibity reasons for fullpage < v2.0 
+		else{
+			$('body').wrapInner('<div id="superContainer" />');
+		}
 
 		//creating the navigation dots 
 		if (options.navigation) {
@@ -633,7 +644,7 @@
 			
 			if(options.autoScrolling){
 				scrollOptions['top'] = -dtop;
-				scrolledElement = '#superContainer';
+				scrolledElement = container.selector;
 			}else{
 				scrollOptions['scrollTop'] = dtop;
 				scrolledElement = 'html, body';
@@ -1204,9 +1215,9 @@
 		* Adds a css3 transform property to the container class with or without animation depending on the animated param.
 		*/
 		function transformContainer(translate3d, animated){
-			$('#superContainer').toggleClass('easing', animated);
+			container.toggleClass('easing', animated);
 			
-			$('#superContainer').css(getTransforms(translate3d));
+			container.css(getTransforms(translate3d));
 		}
 		
 		
@@ -1428,7 +1439,7 @@
 				transformContainer(translate3d, false);
 			}
 			else {
-				$("#superContainer").css("top", -top);
+				container.css("top", -top);
 			}
 		}
 

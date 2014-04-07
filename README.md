@@ -43,10 +43,12 @@ As you can see in the example files, you will need to include the JavaScript fil
 Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 ```html
-<div class="section">Some section</div>
-<div class="section">Some section</div>
-<div class="section">Some section</div>
-<div class="section">Some section</div>
+<div id="fullpage">
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+</div>
 ```
 If you want to define a different starting point rather than the first section or the first slide of a section, just add the class `active` to the section and slide you want to load first.
 ```html
@@ -70,14 +72,14 @@ All you need to do is call the plugin inside a `$(document).ready` function:
 
 ```javascript
 $(document).ready(function() {
-	$.fn.fullpage();
+	$('#fullpage').fullpage();
 });
 ```
 
 A more complex initialization with all options set could look like this:
 ```javascript
 $(document).ready(function() {
-	$.fn.fullpage({
+	$('#fullpage').fullpage({
 		verticalCentered: true,
 		resize : true,
 		slidesColor : ['#ccc', '#fff'],
@@ -155,7 +157,7 @@ To create links between sections, you could use the `menu` option and make use o
 - `slidesColor`:(default `none`) Define the CSS `background-color` property for each section: 
 Example: 
 ```javascript
-$.fn.fullpage({
+$('#fullpage').fullpage({
     slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
@@ -203,7 +205,7 @@ In order to link the elements of the menu with the sections, an HTML 5 data-tag 
 </ul>
 ```
 ```javascript
-$.fn.fullpage({
+$('#fullpage').fullpage({
     anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
     menu: '#myMenu'
 });
@@ -302,7 +304,7 @@ In case of not having anchorLinks defined in the plugin the `index` parameter wo
 Example:
 
 ```javascript
-	$.fn.fullpage({
+	$('#fullpage').fullpage({
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	
 		afterLoad: function(anchorLink, index){
@@ -330,7 +332,7 @@ Parameters:
 Example:
 
 ```javascript
-	$.fn.fullpage({	
+	$('#fullpage').fullpage({	
 		onLeave: function(index, direction){
 			//after leaving section 2
 			if(index == '2' && direction =='down'){
@@ -351,7 +353,7 @@ This callback is fired just after the structure of the page is generated. This i
 Example:
 
 ```javascript
-	$.fn.fullpage({
+	$('#fullpage').fullpage({
 		afterRender: function(){
 			alert("The resulting DOM stucture is ready");
 		}
@@ -373,7 +375,7 @@ In case of not having anchorLinks defined for the slide or slides the `slideInde
 Example:
 
 ```javascript
-	$.fn.fullpage({
+	$('#fullpage').fullpage({
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	
 		afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
@@ -407,7 +409,7 @@ Parameters:
 Example:
 
 ```javascript
-	$.fn.fullpage({	
+	$('#fullpage').fullpage({	
 		onSlideLeave: function( anchorLink, index, slideIndex, direction){
 			//leaving the first slide of the 2nd Section to the right
 			if(index == 2 && slideIndex == 0 && direction == 'right'){
