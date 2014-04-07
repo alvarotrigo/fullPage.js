@@ -39,6 +39,8 @@
 			'continuousVertical': false,
 			'animateAnchor': true,
 
+			'normalScrollElementTouchThreshold': 5,
+
 			//events
 			'afterLoad': null,
 			'onLeave': null,
@@ -398,74 +400,98 @@
 		
 			if(options.autoScrolling){
 				//preventing the easing on iOS devices
-				event.preventDefault();
+				// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
+				if (!checkParentForNormalScrollElement(event.target)) {
+					event.preventDefault();
 				
-				var e = event.originalEvent;
-		
-				var touchMoved = false;
-				var activeSection = $('.section.active');
-				var scrollable;
+					var e = event.originalEvent;
+			
+					var touchMoved = false;
+					var activeSection = $('.section.active');
+					var scrollable;
 
-				if (!isMoving && !slideMoving) { //if theres any #
-					var touchEvents = getEventsPage(e);
-					touchEndY = touchEvents['y'];
-					touchEndX = touchEvents['x'];
-										
-					//if movement in the X axys is greater than in the Y and the currect section has slides...
-					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
-					    
-					    //is the movement greater than the minimum resistance to scroll?
-					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
-					        if (touchStartX > touchEndX) {
-					             activeSection.find('.controlArrow.next:visible').trigger('click');
-					           
-					        } else {
-					            activeSection.find('.controlArrow.prev:visible').trigger('click');
-					        }
-					    }
-					}
-
-					//vertical scrolling
-					else{
-						//if there are landscape slides, we check if the scrolling bar is in the current one or not
-						if(activeSection.find('.slides').length){
-							scrollable= activeSection.find('.slide.active').find('.scrollable');
-						}else{
-							scrollable = activeSection.find('.scrollable');
+					if (!isMoving && !slideMoving) { //if theres any #
+						var touchEvents = getEventsPage(e);
+						touchEndY = touchEvents['y'];
+						touchEndX = touchEvents['x'];
+											
+						//if movement in the X axys is greater than in the Y and the currect section has slides...
+						if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+						    
+						    //is the movement greater than the minimum resistance to scroll?
+						    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
+						        if (touchStartX > touchEndX) {
+						             activeSection.find('.controlArrow.next:visible').trigger('click');
+						           
+						        } else {
+						            activeSection.find('.controlArrow.prev:visible').trigger('click');
+						        }
+						    }
 						}
-						
-						//is the movement greater than the minimum resistance to scroll?
-						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
-							if (touchStartY > touchEndY) {
-								if(scrollable.length > 0 ){
-									//is the scrollbar at the end of the scroll?
-									if(isScrolled('bottom', scrollable)){
-										$.fn.fullpage.moveSectionDown();
+
+						//vertical scrolling
+						else{
+							//if there are landscape slides, we check if the scrolling bar is in the current one or not
+							if(activeSection.find('.slides').length){
+								scrollable= activeSection.find('.slide.active').find('.scrollable');
+							}else{
+								scrollable = activeSection.find('.scrollable');
+							}
+							
+							//is the movement greater than the minimum resistance to scroll?
+							if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
+								if (touchStartY > touchEndY) {
+									if(scrollable.length > 0 ){
+										//is the scrollbar at the end of the scroll?
+										if(isScrolled('bottom', scrollable)){
+											$.fn.fullpage.moveSectionDown();
+										}else{
+											return true;
+										}
 									}else{
-										return true;
+										// moved down
+										$.fn.fullpage.moveSectionDown();
 									}
-								}else{
-									// moved down
-									$.fn.fullpage.moveSectionDown();
-								}
-							} else if (touchEndY > touchStartY) {
-								
-								if(scrollable.length > 0){
-									//is the scrollbar at the start of the scroll?
-									if(isScrolled('top', scrollable)){
+								} else if (touchEndY > touchStartY) {
+									
+									if(scrollable.length > 0){
+										//is the scrollbar at the start of the scroll?
+										if(isScrolled('top', scrollable)){
+											$.fn.fullpage.moveSectionUp();
+										}
+										else{
+											return true;
+										}
+									}else{
+										// moved up
 										$.fn.fullpage.moveSectionUp();
 									}
-									else{
-										return true;
-									}
-								}else{
-									// moved up
-									$.fn.fullpage.moveSectionUp();
 								}
 							}
-						}
-					}					
+						}					
+					}
 				}
+			}
+		}
+
+		/**
+		 * recursive function to loop up the parent nodes to check if one of them exists in options.normalScrollElements
+		 * Currently works well for iOS - Android might need some testing
+		 * @param  {Element} el  target element / jquery selector (in subsequent nodes)
+		 * @param  {int}     hop current hop compared to options.normalScrollElementTouchThreshold 
+		 * @return {boolean} true if there is a match to options.normalScrollElements
+		 */
+		function checkParentForNormalScrollElement (el, hop) {
+			hop = hop || 0;
+			var parent = $(el).parent();
+
+			if (hop < options.normalScrollElementTouchThreshold &&
+				parent.is(options.normalScrollElements) ) {
+				return true;
+			} else if (hop == options.normalScrollElementTouchThreshold) {
+				return false;
+			} else {
+				return checkParentForNormalScrollElement(parent, ++hop);
 			}
 		}
 		
