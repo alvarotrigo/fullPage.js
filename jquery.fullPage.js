@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0
+ * fullPage 2.0.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -131,7 +131,7 @@
 		var slideMoving = false;
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
-		var container = $(this).length? $(this): $('#superContainer'); // for compatibity reasons for fullpage < v2.0
+		var container = $(this); // for compatibity reasons for fullpage < v2.0
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		var isResizing = false;
@@ -156,6 +156,7 @@
 		//for compatibity reasons for fullpage < v2.0 
 		else{
 			$('body').wrapInner('<div id="superContainer" />');
+			container = $('#superContainer');
 		}
 
 		//creating the navigation dots 
