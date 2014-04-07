@@ -565,7 +565,7 @@
 				destiny = $('.section').eq( (section -1) );
 			}
 			
-			if (slide !== 'undefined'){
+			if (typeof slide !== 'undefined'){
 				scrollPageAndSlide(section, slide);
 			}else if(destiny.length > 0){
 				scrollPage(destiny);
