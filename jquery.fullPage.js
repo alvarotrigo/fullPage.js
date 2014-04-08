@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0.1
+ * fullPage 2.0.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -38,7 +38,6 @@
 			'touchSensitivity': 5,
 			'continuousVertical': false,
 			'animateAnchor': true,
-
 			'normalScrollElementTouchThreshold': 5,
 
 			//events
@@ -399,9 +398,10 @@
 		function touchMoveHandler(event){
 		
 			if(options.autoScrolling){
-				//preventing the easing on iOS devices
 				// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
 				if (!checkParentForNormalScrollElement(event.target)) {
+				
+					//preventing the easing on iOS devices
 					event.preventDefault();
 				
 					var e = event.originalEvent;
