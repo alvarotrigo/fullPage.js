@@ -26,7 +26,7 @@
 	<script type="text/javascript" src="examples.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var pepe = $.fn.fullpage({
+			$('#fullpage').fullpage({
 				slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
 				menu: '#menu',
@@ -67,25 +67,25 @@
 	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
 </ul>
 
-<div class="section " id="section0">
-	<h1>fullPage.js</h1>
-	<p>Looping Top and Bottom Enabled</p>
-	<img src="imgs/fullPage.png" alt="fullPage" />
-</div>
-<div class="section" id="section1">
-	<div class="intro">
-		<h1>Looping!</h1>
-		<p>Go to the first section and scroll up or to the last one and scroll down to see how it works.</p>
+<div id="fullpage">
+	<div class="section " id="section0">
+		<h1>fullPage.js</h1>
+		<p>Looping Top and Bottom Enabled</p>
+		<img src="imgs/fullPage.png" alt="fullPage" />
 	</div>
+	<div class="section" id="section1">
+		<div class="intro">
+			<h1>Looping!</h1>
+			<p>Go to the first section and scroll up or to the last one and scroll down to see how it works.</p>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Scroll Down</h1>
+			<p>And it will loop to the first section</p>
+		</div>
 	</div>
 </div>
-<div class="section" id="section2">
-	<div class="intro">
-		<h1>Scroll Down</h1>
-		<p>And it will loop to the first section</p>
-	</div>
-</div>
-
 
 </body>
 </html>

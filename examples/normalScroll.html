@@ -56,7 +56,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.fn.fullpage({
+			$('#fullpage').fullpage({
 				menu: '#menu',
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
 				slidesColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
@@ -87,46 +87,44 @@
   <option id="fixedHeaders">Fixed headers</option>
   <option id="apple">Apple iPhone demo (animations)</option>
 </select>
+
 <ul id="menu">
 	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
 	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
 	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
 </ul>
 
-<div class="section " id="section0">
-	<div class="intro">
-		<img src="http://wallpapers-for-ipad.com/fullpage/imgs/1.png"  alt="1"/>
-		<h1>Normal scrolling</h1>
-		<p>With a linked menu</p>
-	</div>
-
-	
-		
-	</div>
-</div>
-<div class="section" id="section1">
-    <div class="slide" id="slide1">
+<div id="fullpage">
+	<div class="section " id="section0">
 		<div class="intro">
-			<h1>URL get updated (#)</h1>
-			<p>
-				Easy to bookmark and share
-			</p>
+			<img src="imgs/1.png"  alt="1"/>
+			<h1>Normal scrolling</h1>
+			<p>With a linked menu</p>
 		</div>
 	</div>
-	
-    <div class="slide" id="slide2">
-		<h1>Horizontal sliders!</h1>
-		<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
-	</div>
+	<div class="section" id="section1">
+	    <div class="slide" id="slide1">
+			<div class="intro">
+				<h1>URL get updated (#)</h1>
+				<p>
+					Easy to bookmark and share
+				</p>
+			</div>
+		</div>
+		
+	    <div class="slide" id="slide2">
+			<h1>Horizontal sliders!</h1>
+			<img src="imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
+		</div>
 
-</div>
-<div class="section" id="section2">
-	<div class="intro">
-		<h1>Just use </h1>
-		<p>autoScrolling:false</p>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Just use </h1>
+			<p>autoScrolling:false</p>
+		</div>
 	</div>
 </div>
-
 
 </body>
 </html>

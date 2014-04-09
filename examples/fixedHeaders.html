@@ -83,19 +83,10 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.fn.fullpage({
+			$('#fullpage').fullpage({
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
 				slidesColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
-				css3: true,
-				
-				/*
-				* Using the option css3, this is needed. 
-				* What we do is moving the header and footer outside the wrap used by the plugin.
-				* This is done because CSS3 translate3d function doesn't take into account fixed elements and treat them 
-				* as relative ones.
-				*/
-				fixedElements: '#header, #footer, #infoMenu, #demosMenu'
-				
+				css3: true				
 			});
 		});
 	</script>
@@ -127,36 +118,36 @@
 <div id="header">Header</div>
 <div id="footer">Footer</div>
 
-<div class="section " id="section0">
-	<div class="intro">
-		<h1>Fixed elements</h1>
-		<p>Create your own headers and footers</p>
-	</div>
-	</div>
-</div>
-<div class="section" id="section1">
-    <div class="slide" id="slide1">
+<div id="fullpage">
+	<div class="section " id="section0">
 		<div class="intro">
-			<h1>About using CSS3</h1>
-			<p>
-				When using CSS3 you will need to use the function `afterRender` to move your header and footer outside the plugin main wrap.
-				This way it won't move on scrolling. Take a look at the source code of this page.
-			</p>
+			<h1>Fixed elements</h1>
+			<p>Create your own headers and footers</p>
 		</div>
 	</div>
-	
-    <div class="slide" id="slide2">
-		<h1>Slide 2</h1>
-		<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
-	</div>
+	<div class="section" id="section1">
+	    <div class="slide" id="slide1">
+			<div class="intro">
+				<h1>How to do it</h1>
+				<p>
+					 You just need to move your header and footer outside the plugin main wrap.
+					This way it won't move on scrolling. Take a look at the source code of this page.
+				</p>
+			</div>
+		</div>
+		
+	    <div class="slide" id="slide2">
+			<h1>Slide 2</h1>
+			<img src="imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
+		</div>
 
-</div>
-<div class="section" id="section2">
-	<div class="intro">
-		<h1>Enjoy it</h1>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Enjoy it</h1>
+		</div>
 	</div>
 </div>
-
 
 
 </body>

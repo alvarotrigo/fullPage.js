@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="../jquery.fullPage.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var pepe = $.fn.fullpage({
+			$('#fullpage').fullpage({
 				slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff']
 			});
 		});
@@ -34,16 +34,18 @@
 </head>
 <body>
 
-<div class="section active" id="section0"><h1>fullPage.js</h1></div>
-<div class="section" id="section1">
-    <div class="slide active"><h1>Simple Demo</h1></div>
-    <div class="slide"><h1>Only text</h1></div>
-    <div class="slide"><h1>And text</h1></div>
-    <div class="slide"><h1>And more text</h1></div>
-</div>
-<div class="section" id="section2"><h1>No wraps, no extra markup</h1></div>
-<div class="section" id="section3"><h1>Just the simplest demo ever</h1></div>
 
+<div id="fullpage">
+	<div class="section active" id="section0"><h1>fullPage.js</h1></div>
+	<div class="section" id="section1">
+	    <div class="slide active"><h1>Simple Demo</h1></div>
+	    <div class="slide"><h1>Only text</h1></div>
+	    <div class="slide"><h1>And text</h1></div>
+	    <div class="slide"><h1>And more text</h1></div>
+	</div>
+	<div class="section" id="section2"><h1>No wraps, no extra markup</h1></div>
+	<div class="section" id="section3"><h1>Just the simplest demo ever</h1></div>
+</div>
 
 </body>
 </html>

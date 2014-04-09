@@ -43,15 +43,15 @@
 	/* Defining each sectino background and styles 
 	* --------------------------------------- */
 	#section0{
-		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg1.jpg);
+		background-image: url(imgs/bg1.jpg);
 		padding: 30% 0 0 0;
 	}
 	#section2{
-		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg3.jpg);
+		background-image: url(imgs/bg3.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section3{
-		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg4.jpg);
+		background-image: url(imgs/bg4.jpg);
 		padding: 6% 0 0 0;
 	}
 	#section3 h1{
@@ -62,11 +62,11 @@
  	/*Adding background for the slides
 	* --------------------------------------- */
 	#slide1{
-		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg2.jpg);
+		background-image: url(imgs/bg2.jpg);
 		padding: 6% 0 0 0;
 	}
 	#slide2{
-		background-image: url(http://wallpapers-for-ipad.com/fullpage/imgs/bg5.jpg);
+		background-image: url(imgs/bg5.jpg);
 		padding: 6% 0 0 0;
 	}
 	
@@ -92,7 +92,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.fn.fullpage({
+			$('#fullpage').fullpage({
 				verticalCentered: false,
 			});
 		});
@@ -127,14 +127,15 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 
-<div class="section " id="section0"><h1>fullPage.js</h1></div>
-<div class="section" id="section1">
-    <div class="slide" id="slide1"><h1>Slide Backgrounds</h1></div>
-    <div class="slide" id="slide2"><h1>Totally customizable</h1></div>
+<div id="fullpage">
+	<div class="section " id="section0"><h1>fullPage.js</h1></div>
+	<div class="section" id="section1">
+	    <div class="slide" id="slide1"><h1>Slide Backgrounds</h1></div>
+	    <div class="slide" id="slide2"><h1>Totally customizable</h1></div>
+	</div>
+	<div class="section" id="section2"><h1>Lovely images <br />for a lovely page</h1></div>
+	<div class="section" id="section3"><h1>One Image = One thousand words</h1></div>
 </div>
-<div class="section" id="section2"><h1>Lovely images <br />for a lovely page</h1></div>
-<div class="section" id="section3"><h1>One Image = One thousand words</h1></div>
-
 
 </body>
 </html>

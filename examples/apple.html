@@ -282,19 +282,7 @@
 		margin: 10% 0 0 0;
 	}
 	
-	
-	
-	/* Menu
-	* --------------------------------------- */
-	#infoMenu.whiteLinks li:nth-child(1) a,
-	#infoMenu.whiteLinks li:nth-child(2) a,
-	#infoMenu.whiteLinks li:nth-child(3) a{
-		color: #fff;
-	}
-	#infoMenu{
-		font-family: arial, helvetica;
-	}
-	
+
 	
 	/* Overwriting fullPage.js tooltip color
 	* --------------------------------------- */
@@ -324,21 +312,18 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$.fn.fullpage({
+			$('#fullpage').fullpage({
 				'verticalCentered': false,
 				'css3': true,
 				'slidesColor': ['#F0F2F4', '#fff', '#fff', '#fff'],
 				'navigation': true,
 				'navigationPosition': 'right',
 				'navigationTooltips': ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
-				'fixedElements': '#demosMenu',
-				
+								
 				'afterLoad': function(anchorLink, index){
 					if(index == 2){
 						$('#iphone3, #iphone2, #iphone4').addClass('active');
-					}
-					$('#infoMenu').toggleClass('whiteLinks', index ==4);
-					
+					}					
 				},
 				
 				'onLeave': function(index, direction){
@@ -351,18 +336,7 @@
 					
 					$('#staticImg').toggleClass('active', (index == 2 && direction == 'down' ) || (index == 4 && direction == 'up'));
 					$('#staticImg').toggleClass('moveDown', index == 3 && direction == 'down');	
-				},
-				
-				/*
-				Needed to maintain the fixed position of the element
-				due to problems using translate3d and fixed elements.
-				*/
-				afterRender: function(){
-					$('#infoMenu').appendTo('body');
-					
-					$('#githubLink, .twitter-share-button').appendTo('body');
 				}
-				
 			});
 		});
 	</script>
@@ -390,59 +364,60 @@
   <option id="apple">Apple iPhone demo (animations)</option>
 </select>
 
-<div id="staticImg">
-	<div class="imgsContainer">
-		<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-green.png" alt="iphone" id="iphone-green" />
-	</div>
-</div>
-
-<div class="section " id="section0">
-	<h1>Apple fullPage.js Demo</h1>
-	<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone1.jpg" alt="iphone" />
-</div>
-<div class="section" id="section1">
-	<div class="wrap">
+<div id="fullpage">
+	<div id="staticImg">
 		<div class="imgsContainer">
-			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone2.png" alt="iphone" id="iphone2" />
-			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone3.png" alt="iphone" id="iphone3" />
-			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone4.png" alt="iphone" id="iphone4" />
-		</div>
-		
-		<div class="box">
-			<h2>A powerful plugin</h2>
-			 <strong>fullPage.js</strong>  callbacks allow you to create amazing dynamic sites with a bit of imagination. This example tries to reproduce the Apple iPhone-5c website animations as an example of what fullPage.js is capable of.
+			<img src="imgs/iphone-green.png" alt="iphone" id="iphone-green" />
 		</div>
 	</div>
-</div>
 
-<div class="section moveDown" id="section2">
-	<div class="wrap">
+	<div class="section " id="section0">
+		<h1>Apple fullPage.js Demo</h1>
+		<img src="imgs/iphone1.jpg" alt="iphone" />
+	</div>
+	<div class="section" id="section1">
+		<div class="wrap">
+			<div class="imgsContainer">
+				<img src="imgs/iphone2.png" alt="iphone" id="iphone2" />
+				<img src="imgs/iphone3.png" alt="iphone" id="iphone3" />
+				<img src="imgs/iphone4.png" alt="iphone" id="iphone4" />
+			</div>
+			
+			<div class="box">
+				<h2>A powerful plugin</h2>
+				 <strong>fullPage.js</strong>  callbacks allow you to create amazing dynamic sites with a bit of imagination. This example tries to reproduce the Apple iPhone-5c website animations as an example of what fullPage.js is capable of.
+			</div>
+		</div>
+	</div>
+
+	<div class="section moveDown" id="section2">
+		<div class="wrap">
+			<div class="imgsContainer">
+				<img src="imgs/iphone-yellow.png" alt="iphone" id="iphone-yellow" />
+				<img src="imgs/iphone-red.png" alt="iphone" id="iphone-red" />
+				<img src="imgs/iphone-blue.png" alt="iphone" id="iphone-blue" />
+			</div>
+			
+			<div class="box">
+				<h2>Amazing stuff</h2>
+				Combining <strong>fullPage.js</strong> with your own CSS styles and animations, you will be able to create something remarkable. 
+			</div>
+		</div>
+	</div>
+	<div class="section moveDown" id="section3">
+		<div class="wrap">
+			<div class="box">
+				<h2>Just a demo</h2>
+				This is, of course, just a demo. I didn't want to spend much time on it.
+				Don't expect it to work perfectly in all kind of screens.
+				It has been designed to work on 1180px width or over on modern browsers with CSS3.
+			</div>
+		</div>
 		<div class="imgsContainer">
-			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-yellow.png" alt="iphone" id="iphone-yellow" />
-			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-red.png" alt="iphone" id="iphone-red" />
-			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-blue.png" alt="iphone" id="iphone-blue" />
-		</div>
-		
-		<div class="box">
-			<h2>Amazing stuff</h2>
-			Combining <strong>fullPage.js</strong> with your own CSS styles and animations, you will be able to create something remarkable. 
+			<img src="imgs/iphone-two.png" alt="iphone" id="iphone-two" />
 		</div>
 	</div>
 </div>
-<div class="section moveDown" id="section3">
-	<div class="wrap">
-		<div class="box">
-			<h2>Just a demo</h2>
-			This is, of course, just a demo. I didn't want to spend much time on it.
-			Don't expect it to work perfectly in all kind of screens.
-			It has been designed to work on 1180px width or over on modern browsers with CSS3.
-		</div>
-	</div>
-	<div class="imgsContainer">
-		<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-two.png" alt="iphone" id="iphone-two" />
-	</div>
-</div>
-
 
 </body>
 </html>
