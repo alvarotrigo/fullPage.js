@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0.2
+ * fullPage 2.0.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -348,15 +348,16 @@
 				
 				//executing only once the first time we reach the section
 				if(!currentSection.hasClass('active')){
+					var leavingSection = $('.section.active').index('.section') + 1;
+
 					isScrolling = true;	
 					
 					var yMovement = getYmovement(currentSection);
 					
-					$('.section.active').removeClass('active');
-					currentSection.addClass('active');
+					currentSection.addClass('active').siblings().removeClass('active');
 				
 					var anchorLink  = currentSection.data('anchor');
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, currentSection.index('.section'), yMovement);
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 					
