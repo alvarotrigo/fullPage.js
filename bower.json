@@ -5,12 +5,14 @@
   "authors": [
     "Alvaro Trigo https://github.com/alvarotrigo"
   ],
-  "description": "Create full screen pages fast and simple",
+  "description": "Create  beautiful fullscreen scrolling websites",
   "main": "jquery.fullPage.js",
   "keywords": [
     "jquery",
     "scrolling",
-    "single_page"
+    "single_page",
+    "one_page",
+    "sliding"
   ],
   "license": "MIT",
   "ignore": [
