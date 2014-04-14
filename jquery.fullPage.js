@@ -348,16 +348,22 @@
 				
 				//executing only once the first time we reach the section
 				if(!currentSection.hasClass('active')){
-					var leavingSection = $('.section.active').index('.section') + 1;
+					var leavingSectionIndex = $('.section.active').index('.section') + 1;
 
 					isScrolling = true;	
 					
 					var yMovement = getYmovement(currentSection);
-					
-					currentSection.addClass('active').siblings().removeClass('active');
+									
+					var anchorLink  = currentSection.data('anchor');
+
+                    var leavingSection = $('.section.active').removeClass('active');
+                    var leavingSectionIndex = leavingSection.index('.section');                    
+                    var nextSectionIndex = currentSection.index('.section');
+                    
+                    currentSection.addClass('active');
 				
 					var anchorLink  = currentSection.data('anchor');
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSectionIndex, nextSectionIndex, yMovement);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 					
@@ -622,6 +628,8 @@
 			var activeSlide = element.find('.slide.active');
 			var activeSection = $('.section.active');
 			var leavingSection = activeSection.index('.section') + 1;
+            var leavingSectionIndex = activeSection.index('.section') + 1;
+ 			var nextSectionIndex = element.index('.section') + 1;
 
 			//caching the value of isResizing at the momment the function is called 
 			//because it will be checked later inside a setTimeout and the value might change
@@ -701,8 +709,7 @@
 			if (options.css3 && options.autoScrolling) {
 
 				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, yMovement);
-				
+				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSectionIndex, nextSectionIndex, yMovement);
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				transformContainer(translate3d, true);
@@ -722,9 +729,9 @@
 			} else { // ... use jQuery animate 
 
 				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, yMovement);
-
-				$(scrolledElement).animate(
+				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSectionIndex, nextSectionIndex, yMovement);
+				
+                $(scrolledElement).animate(
 					scrollOptions
 				, options.scrollingSpeed, options.easing, function () {
 					//fix section order from continuousVertical
