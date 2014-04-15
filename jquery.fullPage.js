@@ -21,6 +21,7 @@
 			'navigationPosition': 'right',
 			'navigationColor': '#000',
 			'navigationTooltips': [],
+			'showActiveTooltip': false,
 			'slidesNavigation': false,
 			'slidesNavPosition': 'bottom',
 			'controlArrowColor': '#fff',
