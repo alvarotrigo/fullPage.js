@@ -261,6 +261,18 @@ $.fn.fullpage.moveTo(3, 0);
 $.fn.fullpage.moveTo(3); 
 ```
 
+### moveSlideRight()
+Scrolls the horizontal slider of the current section to the next slide:
+```javascript
+$.fn.fullpage.moveSlideRight();
+```
+
+### moveSlideLeft()
+Scrolls the horizontal slider of the current section to the previous slide:
+```javascript
+$.fn.fullpage.moveSlideLeft();
+```
+
 ### setAutoScrolling
 Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with `scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section is scrollable.

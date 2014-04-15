@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0.3
+ * fullPage 2.0.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -422,10 +422,9 @@
 						    //is the movement greater than the minimum resistance to scroll?
 						    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
 						        if (touchStartX > touchEndX) {
-						             activeSection.find('.controlArrow.next:visible').trigger('click');
-						           
+						            $.fn.fullpage.moveSlideRight(); //next 
 						        } else {
-						            activeSection.find('.controlArrow.prev:visible').trigger('click');
+						            $.fn.fullpage.moveSlideLeft(); //prev
 						        }
 						    }
 						}
@@ -610,6 +609,49 @@
 				scrollPage(destiny);
 			}
 		};
+
+		$.fn.fullpage.moveSlideRight = function(){
+			moveSlide('next');
+		}
+
+		$.fn.fullpage.moveSlideLeft = function(){
+			moveSlide('prev');
+		}
+
+		function moveSlide(direction){
+		    var activeSection = $('.section.active');
+		    var slides = activeSection.find('.slides');
+
+		    // more than one slide needed and nothing should be sliding
+			if (!slides.length || slideMoving) {
+			    return;
+			}
+
+		    var currentSlide = slides.find('.slide.active');
+		    var destiny = null;
+
+		    if(direction === 'prev'){
+		        destiny = currentSlide.prev('.slide');
+		    }else{
+		        destiny = currentSlide.next('.slide');
+		    }
+
+		    //isn't there a next slide in the secuence?
+			if(!destiny.length){
+				//respect loopHorizontal settin
+				if (!options.loopHorizontal) return;
+
+			    if(direction === 'prev'){
+			        destiny = currentSlide.siblings(':last');
+			    }else{
+			        destiny = currentSlide.siblings(':first');
+			    }
+			}
+
+		    slideMoving = true;
+
+		    landscapeScroll(slides, destiny);
+		}
 
 		function scrollPage(element, callback, isMovementUp){
 			var scrollOptions = {}, scrolledElement;
@@ -805,12 +847,12 @@
 
 					//left
 					case 37:
-						$('.section.active').find('.controlArrow.prev:visible').trigger('click');
+						$.fn.fullpage.moveSlideLeft();
 						break;
 
 					//right
 					case 39:
-						$('.section.active').find('.controlArrow.next:visible').trigger('click');
+						$.fn.fullpage.moveSlideRight();
 						break;
 
 					default:
@@ -852,33 +894,11 @@
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
 		$('.section').on('click', '.controlArrow', function() {
-			//not that fast my friend! :)
-			if (slideMoving) {
-				return;
-			}
-			slideMoving = true;
-
-			var slides = $(this).closest('.section').find('.slides');
-			var currentSlide = slides.find('.slide.active');
-			var destiny = null;
-
 			if ($(this).hasClass('prev')) {
-				destiny = currentSlide.prev('.slide');
+				$.fn.fullpage.moveSlideLeft();
 			} else {
-				destiny = currentSlide.next('.slide');
+				$.fn.fullpage.moveSlideRight();
 			}
-
-			//is there isn't a next slide in the secuence?
-			if(!destiny.length) {
-				//to the last
-				if ($(this).hasClass('prev')) {
-					destiny = currentSlide.siblings(':last');
-				} else {
-					destiny = currentSlide.siblings(':first');
-				}	
-			}
-
-			landscapeScroll(slides, destiny);
 		});
 
 		
