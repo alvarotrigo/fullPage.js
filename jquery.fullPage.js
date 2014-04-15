@@ -23,6 +23,7 @@
 			'navigationTooltips': [],
 			'slidesNavigation': false,
 			'slidesNavPosition': 'bottom',
+			'showActiveToolTip': false,
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
@@ -872,10 +873,23 @@
 		$(document).on({
 			mouseenter: function(){
 				var tooltip = $(this).data('tooltip');
-				$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+				
+				if(options.showActiveTooltip === true) {
+					if(!$(this).find('a').hasClass('active')) {
+						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+					}
+				} else {
+					$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+				}
 			},
 			mouseleave: function(){
-				$(this).find('.fullPage-tooltip').fadeOut().remove();
+				if(options.showActiveTooltip === true) {
+					if(!$(this).find('a').hasClass('active')) {
+						$(this).find('.fullPage-tooltip').fadeOut().remove();
+					}
+				} else {
+					$(this).find('.fullPage-tooltip').fadeOut().remove();
+				}
 			}
 		}, '#fullPage-nav li');
 
@@ -1125,9 +1139,19 @@
 		 */
 		function activateNavDots(name, sectionIndex){
 			if(options.navigation){
-				$('#fullPage-nav').find('.active').removeClass('active');
+				var lastLink = $('#fullPage-nav').find('.active');
+				var activeLink = $('#fullPage-nav').find('a[href="#' + name + '"]');
+				var tooltip = options.navigationTooltips[sectionIndex];
+
+				lastLink.removeClass('active');
+
+				if(options.showActiveTooltip === true)
+					lastLink.parent().find('.fullPage-tooltip').fadeOut(200).remove();
+
 				if(name){ 
 					$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
+					$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo(activeLink).fadeIn(200);
+
 				}else{
 					$('#fullPage-nav').find('li').eq(sectionIndex).find('a').addClass('active');
 				}
