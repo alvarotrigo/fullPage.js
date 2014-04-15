@@ -1150,7 +1150,8 @@
 
 				if(name){ 
 					$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
-					$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo(activeLink).fadeIn(200);
+					if(options.showActiveTooltip === true)
+						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo(activeLink).fadeIn(200);
 
 				}else{
 					$('#fullPage-nav').find('li').eq(sectionIndex).find('a').addClass('active');
