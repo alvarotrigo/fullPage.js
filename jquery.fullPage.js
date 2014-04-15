@@ -791,15 +791,24 @@
 		//navigation tooltips 
 		$(document).on({
 			mouseenter: function(){
+				var tooltip = $(this).data('tooltip');
+				
+				if(options.showActiveTooltip === true) {
 					if(!$(this).find('a').hasClass('active')) {
-						var tooltip = $(this).data('tooltip');
 						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
 					}
+				} else {
+					$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
 				}
 			},
 			mouseleave: function(){
-				if(!$(this).find('a').hasClass('active'))
+				if(options.showActiveTooltip === true) {
+					if(!$(this).find('a').hasClass('active')) {
+						$(this).find('.fullPage-tooltip').fadeOut().remove();
+					}
+				} else {
 					$(this).find('.fullPage-tooltip').fadeOut().remove();
+				}
 			}
 		}, '#fullPage-nav li');
 
@@ -1079,11 +1088,14 @@
 				var tooltip = options.navigationTooltips[sectionIndex];
 
 				lastLink.removeClass('active');
-				lastLink.find('.fullPage-tooltip').fadeOut(200).remove();
+
+				if(options.showActiveTooltip === true)
+					lastLink.find('.fullPage-tooltip').fadeOut(200).remove();
 
 				if(name){ 
 					dotNav.find('a[href="#' + name + '"]').addClass('active');
-					$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo(activeLink).fadeIn(200);/*.delay(2000).fadeOut(200);*/
+					if(options.showActiveTooltip === true)
+						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo(activeLink).fadeIn(200);/*.delay(2000).fadeOut(200);*/
 
 				}else{
 					dotNav.find('li').eq(sectionIndex).find('a').addClass('active');
