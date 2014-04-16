@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0.4
+ * fullPage 2.0.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -397,81 +397,82 @@
 		* used one to determine the direction.
 		*/		
 		function touchMoveHandler(event){
-		
+			var e = event.originalEvent;
+
 			if(options.autoScrolling){
-				// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
-				if (!checkParentForNormalScrollElement(event.target)) {
-				
-					//preventing the easing on iOS devices
-					event.preventDefault();
-				
-					var e = event.originalEvent;
-			
-					var touchMoved = false;
-					var activeSection = $('.section.active');
-					var scrollable;
+				//preventing the easing on iOS devices 
+				event.preventDefault();
+			}
 
-					if (!isMoving && !slideMoving) { //if theres any #
-						var touchEvents = getEventsPage(e);
-						touchEndY = touchEvents['y'];
-						touchEndX = touchEvents['x'];
-											
-						//if movement in the X axys is greater than in the Y and the currect section has slides...
-						if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
-						    
-						    //is the movement greater than the minimum resistance to scroll?
-						    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
-						        if (touchStartX > touchEndX) {
-						            $.fn.fullpage.moveSlideRight(); //next 
-						        } else {
-						            $.fn.fullpage.moveSlideLeft(); //prev
-						        }
-						    }
+			// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
+			if (!checkParentForNormalScrollElement(event.target)) {
+		
+				var touchMoved = false;
+				var activeSection = $('.section.active');
+				var scrollable;
+
+				if (!isMoving && !slideMoving) { //if theres any #
+					var touchEvents = getEventsPage(e);
+					touchEndY = touchEvents['y'];
+					touchEndX = touchEvents['x'];
+										
+					//if movement in the X axys is greater than in the Y and the currect section has slides...
+					if (activeSection.find('.slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+					    
+					    //is the movement greater than the minimum resistance to scroll?
+					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
+					        if (touchStartX > touchEndX) {
+					            $.fn.fullpage.moveSlideRight(); //next 
+					        } else {
+					            $.fn.fullpage.moveSlideLeft(); //prev
+					        }
+					    }
+					}
+
+					//vertical scrolling (only when autoScrolling is enabled)
+					else if(options.autoScrolling){
+					
+						//if there are landscape slides, we check if the scrolling bar is in the current one or not
+						if(activeSection.find('.slides').length){
+							scrollable= activeSection.find('.slide.active').find('.scrollable');
+						}else{
+							scrollable = activeSection.find('.scrollable');
 						}
-
-						//vertical scrolling
-						else{
-							//if there are landscape slides, we check if the scrolling bar is in the current one or not
-							if(activeSection.find('.slides').length){
-								scrollable= activeSection.find('.slide.active').find('.scrollable');
-							}else{
-								scrollable = activeSection.find('.scrollable');
-							}
-							
-							//is the movement greater than the minimum resistance to scroll?
-							if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
-								if (touchStartY > touchEndY) {
-									if(scrollable.length > 0 ){
-										//is the scrollbar at the end of the scroll?
-										if(isScrolled('bottom', scrollable)){
-											$.fn.fullpage.moveSectionDown();
-										}else{
-											return true;
-										}
-									}else{
-										// moved down
+						
+						//is the movement greater than the minimum resistance to scroll?
+						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
+							if (touchStartY > touchEndY) {
+								if(scrollable.length > 0 ){
+									//is the scrollbar at the end of the scroll?
+									if(isScrolled('bottom', scrollable)){
 										$.fn.fullpage.moveSectionDown();
-									}
-								} else if (touchEndY > touchStartY) {
-									
-									if(scrollable.length > 0){
-										//is the scrollbar at the start of the scroll?
-										if(isScrolled('top', scrollable)){
-											$.fn.fullpage.moveSectionUp();
-										}
-										else{
-											return true;
-										}
 									}else{
-										// moved up
+										return true;
+									}
+								}else{
+									// moved down
+									$.fn.fullpage.moveSectionDown();
+								}
+							} else if (touchEndY > touchStartY) {
+								
+								if(scrollable.length > 0){
+									//is the scrollbar at the start of the scroll?
+									if(isScrolled('top', scrollable)){
 										$.fn.fullpage.moveSectionUp();
 									}
+									else{
+										return true;
+									}
+								}else{
+									// moved up
+									$.fn.fullpage.moveSectionUp();
 								}
 							}
-						}					
+						}
 					}
 				}
 			}
+
 		}
 
 		/**
@@ -496,13 +497,10 @@
 		}
 		
 		function touchStartHandler(event){
-		
-			if(options.autoScrolling){
-				var e = event.originalEvent;
-				var touchEvents = getEventsPage(e);
-				touchStartY = touchEvents['y'];
-				touchStartX = touchEvents['x'];
-			}
+			var e = event.originalEvent;
+			var touchEvents = getEventsPage(e);
+			touchStartY = touchEvents['y'];
+			touchStartX = touchEvents['x'];
 		}
 		
 
