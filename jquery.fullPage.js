@@ -874,7 +874,7 @@
 			mouseenter: function(){
 				var tooltip = $(this).data('tooltip');
 				
-				if(options.showActiveTooltip === true) {
+				if(options.showActiveTooltip) {
 					if(!$(this).find('a').hasClass('active')) {
 						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
 					}
@@ -883,7 +883,7 @@
 				}
 			},
 			mouseleave: function(){
-				if(options.showActiveTooltip === true) {
+				if(options.showActiveTooltip) {
 					if(!$(this).find('a').hasClass('active')) {
 						$(this).find('.fullPage-tooltip').fadeOut().remove();
 					}
@@ -1140,18 +1140,21 @@
 		function activateNavDots(name, sectionIndex){
 			if(options.navigation){
 				var lastLink = $('#fullPage-nav').find('.active');
-				var activeLink = $('#fullPage-nav').find('a[href="#' + name + '"]');
 				var tooltip = options.navigationTooltips[sectionIndex];
 
 				lastLink.removeClass('active');
 
-				if(options.showActiveTooltip === true)
-					lastLink.parent().find('.fullPage-tooltip').fadeOut(200).remove();
+				if(options.showActiveTooltip) {
+					lastLink.siblings('.fullPage-tooltip').fadeOut(200).remove();
+				}
 
 				if(name){ 
-					$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
-					if(options.showActiveTooltip === true)
-						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo(activeLink).fadeIn(200);
+					var activeLink = $('#fullPage-nav').find('a[href="#' + name + '"]');
+					activeLink.addClass('active');
+					
+					//additional conditional to be sure the tooltip wasn't already added by the 'mouseenter' when dots are clicked
+					if(options.showActiveTooltip && activeLink.closest('li').find('.fullPage-tooltip').length === 0) 
+						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(activeLink.closest('li'))).fadeIn(200);
 
 				}else{
 					$('#fullPage-nav').find('li').eq(sectionIndex).find('a').addClass('active');
