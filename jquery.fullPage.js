@@ -23,6 +23,7 @@
 			'navigationTooltips': [],
 			'slidesNavigation': false,
 			'slidesNavPosition': 'bottom',
+			'showActiveToolTip': false,
 			'controlArrowColor': '#fff',
 			'loopBottom': false,
 			'loopTop': false,
@@ -870,10 +871,23 @@
 		$(document).on({
 			mouseenter: function(){
 				var tooltip = $(this).data('tooltip');
-				$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+				
+				if(options.showActiveTooltip) {
+					if(!$(this).find('a').hasClass('active')) {
+						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+					}
+				} else {
+					$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
+				}
 			},
 			mouseleave: function(){
-				$(this).find('.fullPage-tooltip').fadeOut().remove();
+				if(options.showActiveTooltip) {
+					if(!$(this).find('a').hasClass('active')) {
+						$(this).find('.fullPage-tooltip').fadeOut().remove();
+					}
+				} else {
+					$(this).find('.fullPage-tooltip').fadeOut().remove();
+				}
 			}
 		}, '#fullPage-nav li');
 
@@ -1123,9 +1137,22 @@
 		 */
 		function activateNavDots(name, sectionIndex){
 			if(options.navigation){
-				$('#fullPage-nav').find('.active').removeClass('active');
+				var lastLink = $('#fullPage-nav').find('.active');
+				var tooltip = options.navigationTooltips[sectionIndex];
+
+				lastLink.removeClass('active');
+
+				if(options.showActiveTooltip)
+					lastLink.siblings('.fullPage-tooltip').fadeOut(200).remove();
+
 				if(name){ 
-					$('#fullPage-nav').find('a[href="#' + name + '"]').addClass('active');
+					var activeLink = $('#fullPage-nav').find('a[href="#' + name + '"]');
+					activeLink.addClass('active');
+					
+					//additional conditional to be sure the tooltip wasn't already added by the 'mouseenter' when dots are clicked
+					if(options.showActiveTooltip && activeLink.siblings('.fullPage-tooltip').length === 0) 
+						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(activeLink.closest('li'))).fadeIn(200);
+
 				}else{
 					$('#fullPage-nav').find('li').eq(sectionIndex).find('a').addClass('active');
 				}
