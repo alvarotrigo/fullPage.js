@@ -1144,16 +1144,15 @@
 
 				lastLink.removeClass('active');
 
-				if(options.showActiveTooltip) {
+				if(options.showActiveTooltip)
 					lastLink.siblings('.fullPage-tooltip').fadeOut(200).remove();
-				}
 
 				if(name){ 
 					var activeLink = $('#fullPage-nav').find('a[href="#' + name + '"]');
 					activeLink.addClass('active');
 					
 					//additional conditional to be sure the tooltip wasn't already added by the 'mouseenter' when dots are clicked
-					if(options.showActiveTooltip && activeLink.closest('li').find('.fullPage-tooltip').length === 0) 
+					if(options.showActiveTooltip && activeLink.siblings('.fullPage-tooltip').length === 0) 
 						$('<div class="fullPage-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(activeLink.closest('li'))).fadeIn(200);
 
 				}else{
