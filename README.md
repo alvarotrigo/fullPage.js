@@ -111,6 +111,7 @@ $(document).ready(function() {
 		onLeave: function(index, direction){},
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
+		afterResize: function(){},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
 		onSlideLeave: function(anchorLink, index, slideIndex, direction){}
 	});
@@ -374,6 +375,18 @@ Example:
 	});
 ```
 
+###afterResize()
+This callback is fired just after the sections are finished resizing (due for example a window resize event).
+
+Example:
+
+```javascript
+	$('#fullpage').fullpage({
+		afterResize: function(){
+			alert("The sections have finished resizing");
+		}
+	});
+```
 
 ###afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
 Callback fired once the slide of a section have been loaded, after the scrolling has ended. 
