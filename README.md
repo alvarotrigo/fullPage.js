@@ -504,6 +504,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.fergalkeenan.com 
 - http://spell-star.appspot.com/
 - http://yizeng.me/
+- http://rienpipe.es/
+- http://sunfishlabs.com/
 
 ## Donations
 Donations would be more than welcome :)
