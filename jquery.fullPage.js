@@ -24,7 +24,8 @@
 			'slidesNavigation': false,
 			'slidesNavPosition': 'bottom',
 			'controlArrowColor': '#fff',
-			'loopBottom': false,
+            'controlArrowMarkup': '<div class="controlArrow prev">&lt;</div><div class="controlArrow next">&gt;</div>',
+            'loopBottom': false,
 			'loopTop': false,
 			'loopHorizontal': true,
 			'autoScrolling': true,
@@ -216,9 +217,15 @@
 				slides.parent().wrap('<div class="slides" />');
 
 				$(this).find('.slidesContainer').css('width', sliderWidth + '%');
-				$(this).find('.slides').after('<div class="controlArrow prev"></div><div class="controlArrow next"></div>');
-				
-				if(options.controlArrowColor!='#fff'){
+
+                $(this).find('.slides').after(options.controlArrowMarkup);
+
+                if(numSlides==1){
+                    $(this).find('.controlArrow.next').hide();
+                    $(this).find('.controlArrow.prev').hide();
+                }
+
+                if(options.controlArrowColor!='#fff'){
 					$(this).find('.controlArrow.next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
 					$(this).find('.controlArrow.prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
 				}
