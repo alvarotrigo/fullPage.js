@@ -376,7 +376,7 @@ Example:
 ```
 
 ###afterResize()
-This callback is fired just after the sections are finished resizing (due for example a window resize event).
+This callback is fired after resizing the browser's window. Just after the sections are resized.
 
 Example:
 
