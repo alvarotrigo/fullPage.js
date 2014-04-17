@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0.5
+ * fullPage 2.0.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -44,6 +44,7 @@
 			'afterLoad': null,
 			'onLeave': null,
 			'afterRender': null,
+			'afterResize': null,
 			'afterSlideLoad': null,
 			'onSlideLeave': null
 		}, options);		
@@ -1078,6 +1079,7 @@
 			}
 
 			isResizing = false;
+			$.isFunction( options.afterResize ) && options.afterResize.call( this);
 		}
 
 		/**
