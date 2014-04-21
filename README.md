@@ -484,6 +484,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://bearonunicycle.com/
 - http://xepler.com/services
 - http://www.graphicid.dk/
+- http://hed.citinet.pro/
 - http://www.jukstapoz.com/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.omqcomics.com/
