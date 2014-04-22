@@ -486,6 +486,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.graphicid.dk/
 - http://hed.citinet.pro/
 - http://www.jukstapoz.com/
+- http://www.batzaya.net/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.omqcomics.com/
 - http://www.matrimonia.rs/
