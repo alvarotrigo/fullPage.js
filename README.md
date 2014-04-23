@@ -108,7 +108,7 @@ $(document).ready(function() {
 		animateAnchor: true,
 
 		//events
-		onLeave: function(index, direction){},
+		onLeave: function(index, nextIndex, direction){},
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
 		afterResize: function(){},
@@ -336,12 +336,13 @@ Example:
 	});
 ```
 
-###onLeave (`index`, `direction`)
+###onLeave (`index`, `nextIndex`, `direction`)
 This callback is fired once the user leaves a section, in the transition to the new section. 
 
 Parameters:
 
 - `index`: index of the leaving section. Starting from 1.
+- `nextIndex`: index of the coming section. Starting from 1.
 - `direction`: it will take the values `up` or `down` depending on the scrolling direction.
 
 Example:

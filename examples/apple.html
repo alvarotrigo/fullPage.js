@@ -326,7 +326,7 @@
 					}					
 				},
 				
-				'onLeave': function(index, direction){
+				'onLeave': function(index, newIndex, direction){
 					if (index == 3 && direction == 'down'){
 						$('.section').eq(index -1).removeClass('moveDown').addClass('moveUp');
 					}
