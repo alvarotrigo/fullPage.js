@@ -17,7 +17,7 @@ Let's make this a great plugin to make people's lives easier!
 
 ## Compatibility 
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12... 
-It can work with CSS3 and without it, making it ideal for old browsers compativility.
+It works with browsers with CSS3 support and with the ones who don't have it, making it ideal for old browsers compatibility.
 
 ## Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
@@ -134,6 +134,8 @@ You can do it by using the index of the slide (starting by 0), or if you prefer,
     <div class="slide" data-anchor="slide4"> Slide 4 </div>
 </div>
 ```
+
+**Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
 #### Using events:
 - `class="toSlide"`
@@ -342,7 +344,7 @@ This callback is fired once the user leaves a section, in the transition to the 
 Parameters:
 
 - `index`: index of the leaving section. Starting from 1.
-- `nextIndex`: index of the coming section. Starting from 1.
+- `nextIndex`: index of the destination section. Starting from 1.
 - `direction`: it will take the values `up` or `down` depending on the scrolling direction.
 
 Example:
