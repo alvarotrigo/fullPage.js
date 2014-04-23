@@ -358,7 +358,7 @@
 					currentSection.addClass('active').siblings().removeClass('active');
 				
 					var anchorLink  = currentSection.data('anchor');
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, yMovement);
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.section') + 1), yMovement);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
 					
@@ -742,7 +742,7 @@
 			if (options.css3 && options.autoScrolling) {
 
 				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, yMovement);
+				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
 				
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
@@ -763,7 +763,7 @@
 			} else { // ... use jQuery animate 
 
 				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, yMovement);
+				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
 
 				$(scrolledElement).animate(
 					scrollOptions
