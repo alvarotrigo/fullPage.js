@@ -470,13 +470,13 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.sony-asia.com/microsite/mdr-10/
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
-- http://rockercreative.com/
+- http://snapzheimer.org/
 - http://www.restaurantwoods.nl/
 - http://collection.madeofsundays.com
 - http://jacoberiksson.se/
 - http://patuque.com/santateresa
 - http://docspera.com
-- http://www.jennbeaupre.com/jb/index.html
+- http://rockercreative.com/
 - http://lawinenstift.com/
 - http://bnacademy.com.au/
 - http://getstrudel.com/
@@ -494,6 +494,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.omqcomics.com/
 - http://www.matrimonia.rs/
+- http://www.jennbeaupre.com/jb/index.html
 - http://mymattioli.it/
 - http://www.carlphot.com/
 - http://medissix.com/
