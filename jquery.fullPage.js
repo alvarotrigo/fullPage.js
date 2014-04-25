@@ -46,7 +46,9 @@
 			'afterRender': null,
 			'afterResize': null,
 			'afterSlideLoad': null,
-			'onSlideLeave': null
+			'onSlideLeave': null,
+			'couldMoveUp': null,
+			'couldMoveDown': null
 		}, options);		
 		
 	    // Disable mutually exclusive settings
@@ -515,7 +517,7 @@
 		function MouseWheelHandler(e) {
 			if(options.autoScrolling){
 				// cross-browser wheel delta
-				e = window.event || e;
+				e = window.event || e;mo
 				var delta = Math.max(-1, Math.min(1,
 						(e.wheelDelta || -e.deltaY || -e.detail)));
 				var scrollable;
@@ -565,6 +567,10 @@
 
 		
 		$.fn.fullpage.moveSectionUp = function(){
+            		if($.isFunction( options.couldMoveUp ) && !options.couldMoveUp.call( this , index )){
+                		return;			    
+            		}
+			
 			var prev = $('.section.active').prev('.section');
 			
 			//looping to the bottom if there's no more sections above
@@ -577,7 +583,12 @@
 			}
 		};
 
-		$.fn.fullpage.moveSectionDown = function (){
+		$.fn.fullpage.moveSectionDown = function(){
+			var index = $('.section.active').index(".section");
+			if($.isFunction( options.couldMoveDown ) && !options.couldMoveDown.call( this , index )){
+                		return;
+			}
+                
 			var next = $('.section.active').next('.section');
 
 			//looping to the top if there's no more sections below
