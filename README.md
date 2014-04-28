@@ -478,6 +478,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://docspera.com
 - http://rockercreative.com/
 - http://lawinenstift.com/
+- http://www.thinkecoinc.com/wifi/
+- http://wtfdesign.pl/
 - http://bnacademy.com.au/
 - http://getstrudel.com/
 - http://usescribe.com/
