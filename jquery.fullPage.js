@@ -1422,10 +1422,10 @@
 		*/
 		function removeMouseWheelHandler(){
 			if (document.addEventListener) {
-				document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+				$(document).off('mousewheel.fullPage'); //IE9, Chrome, Safari, Oper
+				$(document).off('wheel.fullPage'); //Firefox
 			} else {
-				document.detachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+				$(document).off("onmousewheel.fullPage"); //IE 6/7/8
 			}
 		}
 
@@ -1436,10 +1436,10 @@
 		*/
 		function addMouseWheelHandler(){
 			if (document.addEventListener) {
-				document.addEventListener("mousewheel", MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-				document.addEventListener("wheel", MouseWheelHandler, false); //Firefox
+				$(document).on("mousewheel.fullPage", MouseWheelHandler); //IE9, Chrome, Safari, Oper
+				$(document).on("wheel.fullPage", MouseWheelHandler); //Firefox
 			} else {
-				document.attachEvent("onmousewheel", MouseWheelHandler); //IE 6/7/8
+				$(document).on("onmousewheel.fullPage", MouseWheelHandler); //IE 6/7/8
 			}
 		}
 		
