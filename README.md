@@ -11,6 +11,8 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 Invite me to a coffe
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
+Cusotmizations of the plugin available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me.</a>
+
 ## Introduction
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
 Let's make this a great plugin to make people's lives easier!
