@@ -24,7 +24,6 @@
   ],
   "dependencies": {
       "jquery.slimscroll": "latest",
-      "jQuery": "latest",
-      "jquery.ui": "latest"
+      "jQuery": "latest"
     }
 }
