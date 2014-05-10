@@ -6,7 +6,10 @@
     "Alvaro Trigo https://github.com/alvarotrigo"
   ],
   "description": "Create  beautiful fullscreen scrolling websites",
-  "main": "jquery.fullPage.js",
+  "main": [
+    "jquery.fullPage.js",
+    "jquery.fullPage.css"
+  ],
   "keywords": [
     "jquery",
     "scrolling",
