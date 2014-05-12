@@ -1203,10 +1203,10 @@
 				}
 			}
 
-			var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
-
 			//needs scroll?
-			if ( contentHeight > scrollHeight) {
+			if ( contentHeight > windowsHeight) {
+				var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+				
 				//was there already an scroll ? Updating it
 				if(scrollable.length){
 					scrollable.css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
