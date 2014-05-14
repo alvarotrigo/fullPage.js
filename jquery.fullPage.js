@@ -39,7 +39,7 @@
 			'continuousVertical': false,
 			'animateAnchor': true,
 			'normalScrollElementTouchThreshold': 5,
-            'mouseWheelTimeout': 0,
+			'mouseWheelTimeout': 0,
 
 			//events
 			'afterLoad': null,
@@ -506,7 +506,7 @@
 		}
 
 
-        var lastMouseWheelTimeStamp = null;
+		var lastMouseWheelTimeStamp = null;
 
 		/**
 		 * Detecting mousewheel scrolling
@@ -519,16 +519,16 @@
 				// cross-browser wheel delta
 				e = window.event || e;
 
-                var currentMouseWheelTimeStamp = e.timeStamp;
-                if (options.mouseWheelTimeout) {
-                    if (lastMouseWheelTimeStamp) {
-                        var timeStampDelta = currentMouseWheelTimeStamp - lastMouseWheelTimeStamp;
-                        if (timeStampDelta < options.mouseWheelTimeout) {
-                            return;
-                        }
-                    }
-                    lastMouseWheelTimeStamp = currentMouseWheelTimeStamp;
-                }
+				var currentMouseWheelTimeStamp = e.timeStamp;
+				if (options.mouseWheelTimeout) {
+					if (lastMouseWheelTimeStamp) {
+						var timeStampDelta = currentMouseWheelTimeStamp - lastMouseWheelTimeStamp;
+						if (timeStampDelta < options.mouseWheelTimeout) {
+							return;
+						}
+					}
+					lastMouseWheelTimeStamp = currentMouseWheelTimeStamp;
+				}
 
                 var delta = Math.max(-1, Math.min(1,
 						(e.wheelDelta || -e.deltaY || -e.detail)));
