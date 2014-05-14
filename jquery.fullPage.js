@@ -39,6 +39,7 @@
 			'continuousVertical': false,
 			'animateAnchor': true,
 			'normalScrollElementTouchThreshold': 5,
+			'mouseWheelTimeout': 0,
 
 			//events
 			'afterLoad': null,
@@ -503,8 +504,9 @@
 			touchStartY = touchEvents['y'];
 			touchStartX = touchEvents['x'];
 		}
-		
 
+
+		var lastMouseWheelTimeStamp = null;
 
 		/**
 		 * Detecting mousewheel scrolling
@@ -516,6 +518,18 @@
 			if(options.autoScrolling){
 				// cross-browser wheel delta
 				e = window.event || e;
+
+				var currentMouseWheelTimeStamp = e.timeStamp;
+				if (options.mouseWheelTimeout) {
+					if (lastMouseWheelTimeStamp) {
+						var timeStampDelta = currentMouseWheelTimeStamp - lastMouseWheelTimeStamp;
+						if (timeStampDelta < options.mouseWheelTimeout) {
+							return;
+						}
+					}
+					lastMouseWheelTimeStamp = currentMouseWheelTimeStamp;
+				}
+
 				var delta = Math.max(-1, Math.min(1,
 						(e.wheelDelta || -e.deltaY || -e.detail)));
 				var scrollable;
