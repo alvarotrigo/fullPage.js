@@ -310,6 +310,12 @@ $.fn.fullpage.setScrollingSpeed(700);
 ```
 
 
+### getIndex
+Get the active Index , very useful when scrolling is off
+
+```javascript
+$.fn.fullpage.getIndex();
+```
 
 ## Callbacks
 ###afterLoad (`anchorLink`, `index`)
