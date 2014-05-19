@@ -132,7 +132,7 @@
 		//flag to avoid very fast sliding for landscape sliders
 		var slideMoving = false;
 
-		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone)/);
+		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone|Tizen|Bada)/);
 		var container = $(this); // for compatibity reasons for fullpage < v2.0
 		var windowsHeight = $(window).height();
 		var isMoving = false;
