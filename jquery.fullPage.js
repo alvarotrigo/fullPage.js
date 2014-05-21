@@ -209,7 +209,7 @@
 
 			
 			// if there's any slide
-			if (numSlides > 0) {
+			if (numSlides > 1) {
 				var sliderWidth = numSlides * 100;
 				var slideWidth = 100 / numSlides;
 				
