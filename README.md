@@ -105,6 +105,7 @@ $(document).ready(function() {
 		paddingBottom: '10px',
 		fixedElements: '#element1, .element2',
 		normalScrollElements: '#element1, .element2',
+		normalScrollElementTouchThreshold: 5,
 		keyboardScrolling: true,
 		touchSensitivity: 15,
 		continuousVertical: false,
