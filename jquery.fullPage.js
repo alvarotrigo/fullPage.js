@@ -10,7 +10,7 @@
 	$.fn.fullpage = function(options) {
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
-			"verticalCentered" : true,
+			'verticalCentered' : true,
 			'resize' : true,
 			'slidesColor' : [],
 			'anchors':[],
@@ -285,22 +285,7 @@
 
 			if(options.scrollOverflow){
 				//after DOM and images are loaded 
-				$(window).on('load', function() {
-					
-					$('.section').each(function(){
-						var slides = $(this).find('.slide');
-						
-						if(slides.length){
-							slides.each(function(){
-								createSlimScrolling($(this));
-							});
-						}else{
-							createSlimScrolling($(this));
-						}
-						
-					});
-					$.isFunction( options.afterRender ) && options.afterRender.call( this);
-				});
+				$(window).on('load', windowLoadHandlerCreateSlimScrolling);
 			}else{
 				$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			}
@@ -333,58 +318,7 @@
 		var isScrolling = false;
 		
 		//when scrolling...
-		$(window).scroll(function(e){
-
-			if(!options.autoScrolling){					
-				var currentScroll = $(window).scrollTop();
-				
-				var scrolledSections = $('.section').map(function(){
-					if ($(this).offset().top < (currentScroll + 100)){
-						return $(this);
-					}
-				});
-				
-				//geting the last one, the current one on the screen
-				var currentSection = scrolledSections[scrolledSections.length-1];
-				
-				//executing only once the first time we reach the section
-				if(!currentSection.hasClass('active')){
-					var leavingSection = $('.section.active').index('.section') + 1;
-
-					isScrolling = true;	
-					
-					var yMovement = getYmovement(currentSection);
-					
-					currentSection.addClass('active').siblings().removeClass('active');
-				
-					var anchorLink  = currentSection.data('anchor');
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.section') + 1), yMovement);
-
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
-					
-					activateMenuElement(anchorLink);	
-					activateNavDots(anchorLink, 0);
-					
-				
-					if(options.anchors.length && !isMoving){
-						//needed to enter in hashChange event when using the menu with anchor links
-						lastScrolledDestiny = anchorLink;
-			
-						location.hash = anchorLink;
-					}
-					
-					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
-					clearTimeout(scrollId);
-					scrollId = setTimeout(function(){					
-						isScrolling = false;
-					}, 100);
-				}
-				
-			}					
-		});	
-	
-
-		
+		$(window).on('scroll', scrollHandler);	
 	
 		var touchStartY = 0;
 		var touchStartX = 0;
@@ -616,6 +550,38 @@
 		$.fn.fullpage.moveSlideLeft = function(){
 			moveSlide('prev');
 		}
+		
+		/**
+		 * Remove events listeners added by fullPagejs
+		 */
+		$.fn.fullpage.destroy = function(){
+
+			$('.fullpageNav').remove();
+
+			removeMouseWheelHandler();
+			removeTouchHandler();
+
+			$(window)
+				.off('load', windowLoadHandlerCreateSlimScrolling)
+				.off('scroll', scrollHandler)
+				.off('hashchange', hashChangeHandler);
+
+			var $document = $(document)	
+										.off('click', '#fullPage-nav a')
+										.off('mouseenter', '#fullPage-nav li')
+										.off('mouseleave', '#fullPage-nav li')
+										.off('keydown', keydownHandler);
+	
+			if(options.normalScrollElements){
+				$document
+					.off('mouseover', options.normalScrollElements)
+					.off('mouseout', options.normalScrollElements);
+			}
+
+			$('.section')
+				.off('click', '.controlArrow')
+				.off('click', '.toSlide');
+		}
 
 		function moveSlide(direction){
 		    var activeSection = $('.section.active');
@@ -804,61 +770,13 @@
 
 		//detecting any change on the URL to scroll to the given anchor link
 		//(a way to detect back history button as we play with the hashes on the URL)
-		$(window).on('hashchange',function(){
-			if(!isScrolling){
-				var value =  window.location.hash.replace('#', '').split('/');
-				var section = value[0];
-				var slide = value[1];
-
-				//when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
-				var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
-				var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined');
-
-				/*in order to call scrollpage() only once for each destination at a time
-				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange` 
-				event is fired on every scroll too.*/
-				if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
-					scrollPageAndSlide(section, slide);
-				}
-			}
-			
-		});
+		$(window).on('hashchange', hashChangeHandler);
 
 
 		/**
 		 * Sliding with arrow keys, both, vertical and horizontal
 		 */
-		$(document).keydown(function(e) {
-			//Moving the main page with the keyboard arrows if keyboard scrolling is enabled
-			if (options.keyboardScrolling && !isMoving) {
-				switch (e.which) {
-					//up
-					case 38:
-					case 33:
-						$.fn.fullpage.moveSectionUp();
-						break;
-
-					//down
-					case 40:
-					case 34:
-						$.fn.fullpage.moveSectionDown();
-						break;
-
-					//left
-					case 37:
-						$.fn.fullpage.moveSlideLeft();
-						break;
-
-					//right
-					case 39:
-						$.fn.fullpage.moveSlideRight();
-						break;
-
-					default:
-						return; // exit this handler for other keys
-				}
-			}
-		});
+		$(document).on('keydown', keydownHandler);
 		
 		//navigation action 
 		$(document).on('click', '#fullPage-nav a', function(e){
@@ -1461,6 +1379,136 @@
 			if(isTablet){
 				$(document).off('touchstart MSPointerDown');
 				$(document).off('touchmove MSPointerMove');
+			}
+		}
+		
+		/**
+		 * Function attached to window onload and creating slim scrolling
+		 */
+		function windowLoadHandlerCreateSlimScrolling(){
+			$('.section').each(function(){
+				var slides = $(this).find('.slide');
+
+				if(slides.length){
+					slides.each(function(){
+						createSlimScrolling($(this));
+					});
+				}else{
+					createSlimScrolling($(this));
+				}
+
+			});
+			$.isFunction( options.afterRender ) && options.afterRender.call( this);
+		}
+		
+		/**
+		 * Function attached to keydown event for slides navigation
+		 */
+		function keydownHandler(e)
+		{
+			//Moving the main page with the keyboard arrows if keyboard scrolling is enabled
+			if (options.keyboardScrolling && !isMoving) {
+				switch (e.which) {
+					//up
+					case 38:
+					case 33:
+						$.fn.fullpage.moveSectionUp();
+						break;
+
+					//down
+					case 40:
+					case 34:
+						$.fn.fullpage.moveSectionDown();
+						break;
+
+					//left
+					case 37:
+						$.fn.fullpage.moveSlideLeft();
+						break;
+
+					//right
+					case 39:
+						$.fn.fullpage.moveSlideRight();
+						break;
+
+					default:
+						return; // exit this handler for other keys
+				}
+			}
+		}
+		
+		/**
+		 * Function attached to hashchange event
+		 */
+		function hashChangeHandler()
+		{
+			if(!isScrolling){
+				var value =  window.location.hash.replace('#', '').split('/');
+				var section = value[0];
+				var slide = value[1];
+
+				//when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
+				var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
+				var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined');
+
+				/*in order to call scrollpage() only once for each destination at a time
+				 It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
+				 event is fired on every scroll too.*/
+				if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
+					scrollPageAndSlide(section, slide);
+				}
+			}
+		}
+		
+		/**
+		 * Function attached to scroll event
+		 */
+		function scrollHandler(e)
+		{
+			if(!options.autoScrolling){
+				var currentScroll = $(window).scrollTop();
+
+				var scrolledSections = $('.section').map(function(){
+					if ($(this).offset().top < (currentScroll + 100)){
+						return $(this);
+					}
+				});
+
+				//geting the last one, the current one on the screen
+				var currentSection = scrolledSections[scrolledSections.length-1];
+
+				//executing only once the first time we reach the section
+				if(!currentSection.hasClass('active')){
+					var leavingSection = $('.section.active').index('.section') + 1;
+
+					isScrolling = true;
+
+					var yMovement = getYmovement(currentSection);
+
+					currentSection.addClass('active').siblings().removeClass('active');
+
+					var anchorLink  = currentSection.data('anchor');
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.section') + 1), yMovement);
+
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.section') + 1));
+
+					activateMenuElement(anchorLink);
+					activateNavDots(anchorLink, 0);
+
+
+					if(options.anchors.length && !isMoving){
+						//needed to enter in hashChange event when using the menu with anchor links
+						lastScrolledDestiny = anchorLink;
+
+						location.hash = anchorLink;
+					}
+
+					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+					clearTimeout(scrollId);
+					scrollId = setTimeout(function(){
+						isScrolling = false;
+					}, 100);
+				}
 			}
 		}
 		
