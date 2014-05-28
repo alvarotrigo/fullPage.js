@@ -556,8 +556,6 @@
 		 */
 		$.fn.fullpage.destroy = function(){
 
-			$('.fullpageNav').remove();
-
 			removeMouseWheelHandler();
 			removeTouchHandler();
 
@@ -566,11 +564,16 @@
 				.off('scroll', scrollHandler)
 				.off('hashchange', hashChangeHandler);
 
-			var $document = $(document)	
-										.off('click', '#fullPage-nav a')
-										.off('mouseenter', '#fullPage-nav li')
-										.off('mouseleave', '#fullPage-nav li')
-										.off('keydown', keydownHandler);
+			var $document = $(document).off('keydown', keydownHandler);
+
+			if (options.navigation) {
+
+				$document.off('click', '#fullPage-nav a')
+							.off('mouseenter', '#fullPage-nav li')
+							.off('mouseleave', '#fullPage-nav li');
+
+				nav.remove();
+			}
 	
 			if(options.normalScrollElements){
 				$document
