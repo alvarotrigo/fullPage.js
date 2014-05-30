@@ -475,6 +475,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
 - http://snapzheimer.org/
+- https://moneytree.jp/
 - http://www.restaurantwoods.nl/
 - http://collection.madeofsundays.com
 - http://jacoberiksson.se/
@@ -504,6 +505,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://mymattioli.it/
 - http://www.carlphot.com/
 - http://medissix.com/
+- http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
 - http://www.gricnik.info/
