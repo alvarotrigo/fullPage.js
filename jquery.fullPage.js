@@ -67,10 +67,7 @@
 			var element = $('.section.active');
 				
 			if(options.autoScrolling){
-				$('html, body').css({
-					'overflow' : 'hidden',
-					'height' : '100%'
-				});
+				$('html, body').addClass('autoScrolling');
 				
 				if(element.length){
 					//moving the container up
@@ -78,11 +75,6 @@
 				}
 					
 			}else{
-				$('html, body').css({
-					'overflow' : 'auto',
-					'height' : 'auto'
-				});
-				
 				silentScroll(0);
 				
 				//scrolling the page to the section with no animation
@@ -566,7 +558,7 @@
 
 			var $document = $(document).off('keydown', keydownHandler);
 
-			if (options.navigation) {
+			if (options.navigation){
 
 				$document.off('click', '#fullPage-nav a')
 							.off('mouseenter', '#fullPage-nav li')
@@ -579,6 +571,10 @@
 				$document
 					.off('mouseover', options.normalScrollElements)
 					.off('mouseout', options.normalScrollElements);
+			}
+
+			if(options.autoScrolling){
+				$('html, body').removeClass('autoScrolling');
 			}
 
 			$('.section')
