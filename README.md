@@ -188,7 +188,7 @@ It requieres the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jque
 
 - `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.
 
-- `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` otpion to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
+- `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
 
 - `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
 
