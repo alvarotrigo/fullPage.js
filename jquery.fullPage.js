@@ -1,5 +1,5 @@
 /**
- * fullPage 2.0.7
+ * fullPage 2.0.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1152,7 +1152,7 @@
 			if(type === 'top'){
 				return !scrollable.scrollTop();
 			}else if(type === 'bottom'){
-				return scrollable.scrollTop() + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+				return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
 			}
 		}
 		
