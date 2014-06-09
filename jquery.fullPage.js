@@ -844,6 +844,16 @@
 						$.fn.fullpage.moveSectionDown();
 						break;
 
+					//Home
+					case 36:
+						$.fn.fullpage.moveTo(1);
+						break;
+
+					//End
+					case 35:
+						$.fn.fullpage.moveTo( $('.section').length );
+						break;
+
 					//left
 					case 37:
 						$.fn.fullpage.moveSlideLeft();
