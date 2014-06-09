@@ -36,7 +36,7 @@ As you can see in the example files, you will need to include the JavaScript fil
 <script src="vendors/jquery.easings.min.js"></script>	
 
 	
-<!-- This following line needed in the case of setting the plugin option `scrollOverflow` to `true` -->
+<!-- This following line needed in the case of using the plugin option `scrollOverflow:true` -->
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
 
 <script type="text/javascript" src="jquery.fullPage.js"></script>
@@ -264,7 +264,7 @@ $.fn.fullpage.moveTo('firstSlide', 2);
 //Scrolling to the 3rd section in the site
 $.fn.fullpage.moveTo(3, 0); 
 
-//Whic his the same as 
+//Which is the same as 
 $.fn.fullpage.moveTo(3); 
 ```
 
