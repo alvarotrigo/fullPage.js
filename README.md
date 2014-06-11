@@ -18,8 +18,8 @@ Customizations of the plugin available upon request for some reasonable price. <
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
 Let's make this a great plugin to make people's lives easier!
 
-## Compatibility 
-fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12... 
+## Compatibility
+fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12...
 It works with browsers with CSS3 support and with the ones who don't have it, making it ideal for old browsers compatibility.
 
 ## Usage
@@ -33,9 +33,9 @@ As you can see in the example files, you will need to include the JavaScript fil
 
 <!-- This following line is needed in case of using the default easing option or when using another
  one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
-<script src="vendors/jquery.easings.min.js"></script>	
+<script src="vendors/jquery.easings.min.js"></script>
 
-	
+
 <!-- This following line needed in the case of using the plugin option `scrollOverflow:true` -->
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
 
@@ -70,7 +70,7 @@ In order to create a landscape slider within a section, each slide will be defin
 You can see a fully working example of the HTML structure in the [`example.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/example.html).
 
 
-###Initialization 
+###Initialization
 All you need to do is call the plugin inside a `$(document).ready` function:
 
 ```javascript
@@ -157,12 +157,12 @@ To create links between sections, you could use the `menu` option and make use o
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
-- `resize`: (default `true`) Whether you want to resize the text when the window is resized. 
+- `resize`: (default `true`) Whether you want to resize the text when the window is resized.
 
 - `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
 
-- `slidesColor`:(default `none`) Define the CSS `background-color` property for each section: 
-Example: 
+- `slidesColor`:(default `none`) Define the CSS `background-color` property for each section:
+Example:
 ```javascript
 $('#fullpage').fullpage({
     slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
@@ -178,13 +178,13 @@ It requieres the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jque
 
 - `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
 
-- `loopHorizontal`: (default `true`) Defines whether horizontal sliders will loop after reaching the last or previous slide or not. 
+- `loopHorizontal`: (default `true`) Defines whether horizontal sliders will loop after reaching the last or previous slide or not.
 
 - `css3`: (default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header. 
+- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header.
 
 - `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.
 
@@ -196,7 +196,7 @@ It requieres the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jque
 
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 
-- `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide 
+- `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
 
@@ -220,13 +220,13 @@ $('#fullpage').fullpage({
 });
 ```
 
-- `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles. 
+- `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles.
 
 - `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
 - `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`.
 
-- `slidesNavigation`: (default `false`) If set to `true` it will show a navigation bar made up of small circles for each landscape slider on the site. 
+- `slidesNavigation`: (default `false`) If set to `true` it will show a navigation bar made up of small circles for each landscape slider on the site.
 
 - `slidesNavPosition`: (default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.
 
@@ -262,10 +262,10 @@ $.fn.fullpage.moveTo('firstSlide', 2);
 
 ```javascript
 //Scrolling to the 3rd section in the site
-$.fn.fullpage.moveTo(3, 0); 
+$.fn.fullpage.moveTo(3, 0);
 
-//Which is the same as 
-$.fn.fullpage.moveTo(3); 
+//Which is the same as
+$.fn.fullpage.moveTo(3);
 ```
 
 ### moveSlideRight()
@@ -314,7 +314,7 @@ $.fn.fullpage.setScrollingSpeed(700);
 
 ## Callbacks
 ###afterLoad (`anchorLink`, `index`)
-Callback fired once the sections have been loaded, after the scrolling has ended. 
+Callback fired once the sections have been loaded, after the scrolling has ended.
 Parameters:
 
 - `anchorLink`: anchorLink corresponding to the section.
@@ -327,13 +327,13 @@ Example:
 ```javascript
 	$('#fullpage').fullpage({
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-	
+
 		afterLoad: function(anchorLink, index){
 			//using index
 			if(index == '3'){
 				alert("Section 3 ended loading");
 			}
-			
+
 			//using anchorLink
 			if(anchorLink == 'secondSlide'){
 				alert("Section 2 ended loading");
@@ -343,7 +343,7 @@ Example:
 ```
 
 ###onLeave (`index`, `nextIndex`, `direction`)
-This callback is fired once the user leaves a section, in the transition to the new section. 
+This callback is fired once the user leaves a section, in the transition to the new section.
 
 Parameters:
 
@@ -354,13 +354,13 @@ Parameters:
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({	
+	$('#fullpage').fullpage({
 		onLeave: function(index, direction){
 			//after leaving section 2
 			if(index == '2' && direction =='down'){
 				alert("Going to section 3!");
 			}
-			
+
 			else if(index == '2' && direction == 'up'){
 				alert("Going to section 1!");
 			}
@@ -396,7 +396,7 @@ Example:
 ```
 
 ###afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
-Callback fired once the slide of a section have been loaded, after the scrolling has ended. 
+Callback fired once the slide of a section have been loaded, after the scrolling has ended.
 Parameters:
 
 - `anchorLink`: anchorLink corresponding to the section.
@@ -411,14 +411,14 @@ Example:
 ```javascript
 	$('#fullpage').fullpage({
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-	
+
 		afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
-		
+
 			//first slide of the second section
 			if(anchorLink == 'secondPage' && slideIndex == 1){
 				alert("First slide loaded");
 			}
-			
+
 			//second slide of the second section (supposing #secondSlide is the
 			//anchor for the second slide
 			if(index == 2 && slideIndex == 'secondSlide'){
@@ -431,25 +431,25 @@ Example:
 
 
 ###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`)
-This callback is fired once the user leaves an slide to go to another, in the transition to the new slide. 
+This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
 Parameters:
 
 - `anchorLink`: anchorLink corresponding to the section.
 - `index`: index of the section. Starting from 1.
-- `slideIndex`: index of the slide. **Starting from 0.** 
+- `slideIndex`: index of the slide. **Starting from 0.**
 - `direction`: takes the values `right` or `left` depending on the scrolling direction.
 
 
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({	
+	$('#fullpage').fullpage({
 		onSlideLeave: function( anchorLink, index, slideIndex, direction){
 			//leaving the first slide of the 2nd Section to the right
 			if(index == 2 && slideIndex == 0 && direction == 'right'){
 				alert("Leaving the fist slide!!");
 			}
-			
+
 			//leaving the 3rd slide of the 2nd Section to the left
 			if(index == 2 && slideIndex == 2 && direction == 'left'){
 				alert("Going to slide 2! ");
@@ -516,12 +516,13 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://willontheway.com/
 - http://www.karmaffne.com/
 - http://andreapaolucci.com/
-- http://www.fergalkeenan.com 
+- http://www.fergalkeenan.com
 - http://spell-star.appspot.com/
 - http://yizeng.me/
 - http://rienpipe.es/
 - http://sunfishlabs.com/
 - http://wc2014.plnwrx.com/
+- http://organice.io/
 
 ## Donations
 Donations would be more than welcome :)
