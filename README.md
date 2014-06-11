@@ -485,7 +485,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.thinkecoinc.com/wifi/
 - http://wtfdesign.pl/
 - http://bnacademy.com.au/
-- http://getstrudel.com/
+- http://wantnova.com/
 - http://usescribe.com/
 - http://lucilecazanave.com/
 - http://overallstudio.co.il/
@@ -493,6 +493,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://therope.it/
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
+- http://www.carpetloverclub.net/
 - http://xepler.com/services
 - http://www.graphicid.dk/
 - http://hed.citinet.pro/
