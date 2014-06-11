@@ -522,7 +522,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://rienpipe.es/
 - http://sunfishlabs.com/
 - http://wc2014.plnwrx.com/
-- https://pypi.python.org/pypi/django-organice-theme-fullpage (theme for Python-powered Django websites)
+- http://organice.io/ (based on [django-organice-theme-fullpage](https://pypi.python.org/pypi/django-organice-theme-fullpage))
 
 ## Donations
 Donations would be more than welcome :)
