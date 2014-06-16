@@ -523,6 +523,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://sunfishlabs.com/
 - http://wc2014.plnwrx.com/
 - http://organice.io/
+- http://www.cima-ecuador.com/
 
 ## Donations
 Donations would be more than welcome :)
