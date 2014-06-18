@@ -1,5 +1,5 @@
 /**
- * fullPage 1.6.7
+ * fullPage 1.6.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -14,9 +14,12 @@ html, body {
 #superContainer {
     height: 100%;
     position: relative;
-	
+
 	/* Touch detection for Windows 8 */
-	-ms-touch-action: none; 
+    -ms-touch-action: none;
+
+    /* IE 11 on Windows Phone 8.1*/
+	touch-action: none;
 }
 .section {
     position: relative;

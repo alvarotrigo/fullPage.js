@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.0
+ * fullPage 2.1.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1459,8 +1459,11 @@
 		*/
 		function addTouchHandler(){
 			if(isTablet){
-				$(document).off('touchstart MSPointerDown').on('touchstart MSPointerDown', touchStartHandler);
-				$(document).off('touchmove MSPointerMove').on('touchmove MSPointerMove', touchMoveHandler);
+				//Microsoft pointers
+				MSPointer = getMSPointer();
+
+				$(document).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
+				$(document).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
 			}
 		}
 
@@ -1469,11 +1472,34 @@
 		*/
 		function removeTouchHandler(){
 			if(isTablet){
-				$(document).off('touchstart MSPointerDown');
-				$(document).off('touchmove MSPointerMove');
+				//Microsoft pointers
+				MSPointer = getMSPointer();
+
+				$(document).off('touchstart ' + MSPointer.down);
+				$(document).off('touchmove ' + MSPointer.move);
 			}
 		}
 
+
+		/*
+		* Returns and object with Microsoft pointers (for IE<11 and for IE >= 11)
+		* http://msdn.microsoft.com/en-us/library/ie/dn304886(v=vs.85).aspx
+		*/
+		function getMSPointer(){
+			var pointer;
+
+			//IE >= 11
+			if(window.PointerEvent){
+				pointer = { down: "pointerdown", move: "pointermove"};
+			}
+
+			//IE < 11
+			else{
+				pointer = { down: "MSPointerDown", move: "MSPointerMove"};
+			}
+
+			return pointer;
+		}
 		/**
 		* Gets the pageX and pageY properties depending on the browser.
 		* https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
