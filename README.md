@@ -160,7 +160,7 @@ To create links between sections, you could use the `menu` option and make use o
 
 - `resize`: (default `true`) Whether you want to resize the text when the window is resized.
 
-- `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
+- `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
 - `slidesColor`:(default `none`) Define the CSS `background-color` property for each section:
 Example:
@@ -281,7 +281,7 @@ Scrolls the horizontal slider of the current section to the previous slide:
 $.fn.fullpage.moveSlideLeft();
 ```
 
-### setAutoScrolling
+### setAutoScrolling(boolean)
 Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with `scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section is scrollable.
 
@@ -289,14 +289,14 @@ Defines the way the page scrolling behaves. If it is set to `true`, it will use 
 $.fn.fullpage.setAutoScrolling(false);
 ```
 
-### setAllowScrolling
+### setAllowScrolling(boolean)
 Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
 ```javascript
 $.fn.fullpage.setAllowScrolling(false);
 ```
 
-### setKeyboardScrolling
+### setKeyboardScrolling(boolean)
 Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys (which is active by default).
 
 ```javascript
@@ -304,13 +304,34 @@ $.fn.fullpage.setKeyboardScrolling(false);
 ```
 
 
-### setScrollingSpeed
-Defines the scrolling speed in miliseconds.
+### setScrollingSpeed(milliseconds)
+Defines the scrolling speed in milliseconds.
 
 ```javascript
 $.fn.fullpage.setScrollingSpeed(700);
 ```
 
+### destroy(type)
+Destroys the plugin events and optinally its HTML markup and styles.
+Ideal to use when using AJAX to load content. ()
+
+- `type`: can be empty or `all`. If `all` is passed, the HTML markup and styles used by fullpage.js will be removed. This way the original HTML markup, the one used before any plugin modification is made, will be maintained.
+
+```javascript
+//destroy any plugin event (scrolls, hashchange in the URL...)
+$.fn.fullpage.destroy();
+
+//destroy any plugin event and any plugin modification done over your original HTML markup.
+$.fn.fullpage.destroy('all');
+```
+
+### reBuild()
+Updates the DOM structure to fit the new window size or its contents.
+Ideal to use in convination with AJAX calls or external changes in the DOM structure of the site.
+
+```javascript
+$.fn.fullpage.reBuild();
+```
 
 
 ## Callbacks
