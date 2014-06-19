@@ -156,177 +156,88 @@ To create links between sections, you could use the `menu` option and make use o
 
 ## Options
 
+- `verticalCentered`: (default `true`) Vertically centering of the content within sections.
 
-<table>
-	<tr>
-		<td>verticalCentered</td>
-		<td>(default `true`) Vertically centering of the content within sections.</td>
-	</tr>
+- `resize`: (default `true`) Whether you want to resize the text when the window is resized.
 
-	<tr>
-		<td>resize</td>
-		<td>(default `true`) Whether you want to resize the text when the window is resized.</td>
-	</tr>
+- `scrollingSpeed`: (default `700`) Speed in miliseconds for the scrolling transitions.
 
-	<tr>
-		<td>scrollingSpeed</td>
-		<td>(default `700`) Speed in miliseconds for the scrolling transitions.</td>
-	</tr>
+- `slidesColor`:(default `none`) Define the CSS `background-color` property for each section:
+Example:
+```javascript
+$('#fullpage').fullpage({
+    slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
 
-	<tr>
-		<td>slidesColor</td>
-		<td>(default `none`) Define the CSS `background-color` property for each section:
-			Example:
-			```javascript
-			$('#fullpage').fullpage({
-			    slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-			});
-			```
-		</td>
-	</tr>
+- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).
 
-	<tr>
-		<td>anchors</td>
-		<td>(default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).</td>
-	</tr>
+- `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical and horizontal scrolling.
+It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
 
-	<tr>
-		<td>easing</td>
-		<td>(default `easeInQuart`) Defines the transition effect to use for the vertical and horizontal scrolling.
-It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.</td>
-	</tr>
+- `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
-	<tr>
-		<td>loopTop</td>
-		<td>(default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.</td>
-	</tr>
+- `loopBottom`: (default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.
 
-	<tr>
-		<td>loopBottom</td>
-		<td>(default `false`) Defines whether scrolling down in the last section should scroll to the first one or not.</td>
-	</tr>
+- `loopHorizontal`: (default `true`) Defines whether horizontal sliders will loop after reaching the last or previous slide or not.
 
-	<tr>
-		<td>loopHorizontal</td>
-		<td>(default `true`) Defines whether horizontal sliders will loop after reaching the last or previous slide or not.</td>
-	</tr>
+- `css3`: (default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.
 
-	<tr>
-		<td>css3</td>
-		<td>(default `false`). Defines wheter to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.</td>
-	</tr>
+- `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-	<tr>
-		<td>autoScrolling</td>
-		<td>(default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.</td>
-	</tr>
+- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header.
 
-	<tr>
-		<td>paddingTop</td>
-		<td>(default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header.</td>
-	</tr>
+- `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.
 
-	<tr>
-		<td>paddingBottom</td>
-		<td>(default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.</td>
-	</tr>
+- `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
 
-	<tr>
-		<td>fixedElements</td>
-		<td>(default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necesary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)</td>
-	</tr>
+- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
 
-	<tr>
-		<td>normalScrollElements</td>
-		<td>(default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)</td>
-	</tr>
+- `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
 
-	<tr>
-		<td>normalScrollElementTouchThreshold</td>
-		<td>(default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)</td>
-	</tr>
+- `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 
-	<tr>
-		<td>keyboardScrolling</td>
-		<td>(default `true`) Defines if the content can be navigated using the keyboard</td>
-	</tr>
+- `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
-	<tr>
-		<td>touchSensitivity</td>
-		<td>(default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide</td>
-	</tr>
+- `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
 
-	<tr>
-		<td>continuousVertical</td>
-		<td>(default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.</td>
-	</tr>
+- `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
-	<tr>
-		<td>animateAnchor</td>
-		<td>(default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.</td>
-	</tr>
+- `menu`: (default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
+This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
+In order to link the elements of the menu with the sections, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as used within the sections. Example:
+```html
+<ul id="myMenu">
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+    <li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+    <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+</ul>
+```
+```javascript
+$('#fullpage').fullpage({
+    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+    menu: '#myMenu'
+});
+```
 
-	<tr>
-		<td>menu</td>
-		<td>
-			(default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
-			This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
-			In order to link the elements of the menu with the sections, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as used within the sections. Example:
-			```html
-			<ul id="myMenu">
-			    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-			    <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-			    <li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-			    <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
-			</ul>
-			```
-			```javascript
-			$('#fullpage').fullpage({
-			    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-			    menu: '#myMenu'
-			});
-			```
-		</td>
-	</tr>
+- `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles.
 
-	<tr>
-		<td>navigation</td>
-		<td>(default `false`) If set to `true`, it will show a navigation bar made up of small circles.</td>
-	</tr>
+- `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
-	<tr>
-		<td>navigationPosition</td>
-		<td>(default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).</td>
-	</tr>
+- `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`.
 
-	<tr>
-		<td>navigationTooltips</td>
-		<td>(default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`.</td>
-	</tr>
+- `slidesNavigation`: (default `false`) If set to `true` it will show a navigation bar made up of small circles for each landscape slider on the site.
 
-	<tr>
-		<td>slidesNavigation</td>
-		<td>(default `false`) If set to `true` it will show a navigation bar made up of small circles for each landscape slider on the site.</td>
-	</tr>
+- `slidesNavPosition`: (default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.
 
-	<tr>
-		<td>slidesNavPosition</td>
-		<td>(default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.</td>
-	</tr>
+- `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it.
+In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscroll.min`](https://github.com/rochal/jQuery-slimScroll) and it should be loaded before the fullPaje.js plugin. For example:
 
-	<tr>
-		<td>scrollOverflow</td>
-		<td>
-			(default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it.
-			In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscroll.min`](https://github.com/rochal/jQuery-slimScroll) and it should be loaded before the fullPaje.js plugin. For example:
-
-			```html
-			<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
-			<script type="text/javascript" src="jquery.fullPage.js"></script>
-			```
-		</td>
-	</tr>
-</table>
+```html
+<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="jquery.fullPage.js"></script>
+```
 
 ## Methods
 
