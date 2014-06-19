@@ -158,7 +158,7 @@ To create links between sections, you could use the `menu` option and make use o
 
 <table>
 	<tr>
-		<td>verticalCentered</td>
+		<td>**verticalCentered**</td>
 		<td>(default `true`) Vertically centering of the content within sections.</td>
 	</tr>
 
@@ -271,21 +271,20 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 			(default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
 			This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
 			In order to link the elements of the menu with the sections, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as used within the sections. Example:
-			<pre>
+			```html
 			<ul id="myMenu">
 			    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
 			    <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
 			    <li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
 			    <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
 			</ul>
-			</pre>
-
-			<pre>
+			```
+			```javascript
 			$('#fullpage').fullpage({
 			    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 			    menu: '#myMenu'
 			});
-			</pre>
+			```
 		</td>
 	</tr>
 
@@ -320,10 +319,10 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 			(default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it.
 			In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscroll.min`](https://github.com/rochal/jQuery-slimScroll) and it should be loaded before the fullPaje.js plugin. For example:
 
-			<pre>
-				<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
-				<script type="text/javascript" src="jquery.fullPage.js"></script>
-			</pre>
+			```html
+			<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+			<script type="text/javascript" src="jquery.fullPage.js"></script>
+			```
 		</td>
 	</tr>
 </table>
