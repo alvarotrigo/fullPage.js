@@ -493,11 +493,12 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.carpetloverclub.net/
+- http://www.implisit.com/
+- http://www.batzaya.net/
 - http://xepler.com/services
 - http://www.graphicid.dk/
 - http://hed.citinet.pro/
 - http://www.jukstapoz.com/
-- http://www.batzaya.net/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.omqcomics.com/
 - http://www.matrimonia.rs/
