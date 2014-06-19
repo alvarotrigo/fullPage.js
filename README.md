@@ -159,7 +159,7 @@ To create links between sections, you could use the `menu` option and make use o
 
 | Name	| Description |
 | ------- | ---------|
-| **verticalCentered** | ``html <b>hi</b> ``` |
+| **verticalCentered** | ```html <b>hi</b> ``` |
 
 
 <table>
