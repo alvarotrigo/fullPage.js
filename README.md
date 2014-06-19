@@ -157,14 +157,9 @@ To create links between sections, you could use the `menu` option and make use o
 ## Options
 
 
-| Name	| Description |
-| ------- | ---------|
-| **verticalCentered** | ```html <b>hi</b> ``` |
-
-
 <table>
 	<tr>
-		<td>**verticalCentered**</td>
+		<td>verticalCentered</td>
 		<td>(default `true`) Vertically centering of the content within sections.</td>
 	</tr>
 
