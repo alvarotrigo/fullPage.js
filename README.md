@@ -547,6 +547,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://wc2014.plnwrx.com/
 - http://organice.io/
 - http://www.cima-ecuador.com/
+- http://www.rienpipe.es
+- http://bootstrap.tunerus.ru/nastroyka_pianino/
 
 ## Donations
 Donations would be more than welcome :)
