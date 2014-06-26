@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.2
+ * fullPage 2.1.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -816,7 +816,7 @@
 
 				//when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
 				var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
-				var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined');
+				var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined' && !slideMoving);
 
 				/*in order to call scrollpage() only once for each destination at a time
 				It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
