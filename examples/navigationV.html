@@ -2,22 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>FullScreen Backgrounds - fullPage.js</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
 	<meta name="description" content="fullPage full-screen navigation and sections control menu." />
 	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,navigation,control arrows, dots" />
 	<meta name="Resource-type" content="Document" />
 
-	
+
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
 	<style>
-	
-	/* Style for our header texts 
+
+	/* Style for our header texts
 	* --------------------------------------- */
 	h1{
-		font-size: 5em;	
+		font-size: 5em;
 		font-family: arial,helvetica;
 		color: #fff;
 		margin:0;
@@ -25,8 +25,8 @@
 	.intro p{
 		color: #fff;
 	}
-	
-	/* Centered texts in each section 
+
+	/* Centered texts in each section
 	* --------------------------------------- */
 	.section{
 		text-align:center;
@@ -40,8 +40,8 @@
 	.controlArrow.next{
 		right: 50px;
 	}
-	
-	
+
+
 	/* Bottom menu
 	* --------------------------------------- */
 	#infoMenu li a {
@@ -55,8 +55,8 @@
 		</script>
 	<![endif]-->
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
 	<script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
 
@@ -67,7 +67,7 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
-				slidesColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
 				navigation: true,
 				navigationPosition: 'right',
 				navigationTooltips: ['First', 'Second', 'Third']
@@ -116,7 +116,7 @@
 				</p>
 			</div>
 		</div>
-		
+
 	    <div class="slide" id="slide2">
 			<h1>Slide 2</h1>
 			<img src="http://wallpapers-for-ipad.com/fullpage/imgs/iphone-blue.png" alt="iphone" id="iphone-two" />

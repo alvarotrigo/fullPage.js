@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.3
+ * fullPage 2.1.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -12,7 +12,7 @@
 		options = $.extend({
 			"verticalCentered": true,
 			'resize': true,
-			'slidesColor' : [],
+			'sectionsColor' : [],
 			'anchors':[],
 			'scrollingSpeed': 700,
 			'easing': 'easeInQuart',
@@ -133,12 +133,13 @@
 		var slideMoving = false;
 
 		var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
-		var container = $(this); // for compatibity reasons for fullpage < v2.0
+		var container = $(this);
 		var windowsHeight = $(window).height();
 		var isMoving = false;
 		var isResizing = false;
 		var lastScrolledDestiny;
 		var lastScrolledSlide;
+		var wrapperSelector = 'fullpage-wrapper';
 
 		$.fn.fullpage.setAllowScrolling(true);
 
@@ -153,12 +154,14 @@
 				'position': 'relative',
 				'-ms-touch-action': 'none'
 			});
+
+			//adding a class to recognize the container internally in the code
+			container.addClass(wrapperSelector);
 		}
 
-		//for compatibity reasons for fullpage < v2.0
+		//trying to use fullpage without a selector?
 		else{
-			$('body').wrapInner('<div id="superContainer" />');
-			container = $('#superContainer');
+			console.error("Error! Fullpage.js needs to be initialized with a selector. For example: $('#myContainer').fullpage();");
 		}
 
 		//creating the navigation dots
@@ -186,8 +189,8 @@
 				$(this).css('padding', options.paddingTop  + ' 0 ' + options.paddingBottom + ' 0');
 			}
 
-			if (typeof options.slidesColor[index] !==  'undefined') {
-				$(this).css('background-color', options.slidesColor[index]);
+			if (typeof options.sectionsColor[index] !==  'undefined') {
+				$(this).css('background-color', options.sectionsColor[index]);
 			}
 
 			if (typeof options.anchors[index] !== 'undefined') {
@@ -277,8 +280,8 @@
 				nav.find('li').eq($('.section.active').index('.section')).find('a').addClass('active');
 			}
 
-			//moving the menu outside the main container (avoid problems with fixed positions when using CSS3 tranforms)
-			if(options.menu && options.css3){
+			//moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
+			if(options.menu && options.css3 && $(options.menu).closest('.fullpage-wrapper').length){
 				$(options.menu).appendTo('body');
 			}
 
@@ -715,7 +718,7 @@
 
 			if(options.autoScrolling){
 				scrollOptions['top'] = -dtop;
-				scrolledElement = container.selector;
+				scrolledElement = '.'+wrapperSelector;
 			}else{
 				scrollOptions['scrollTop'] = dtop;
 				scrolledElement = 'html, body';

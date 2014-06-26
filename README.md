@@ -29,7 +29,7 @@ As you can see in the example files, you will need to include the JavaScript fil
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <!-- This following line is needed in case of using the default easing option or when using another
  one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
@@ -85,7 +85,7 @@ $(document).ready(function() {
 	$('#fullpage').fullpage({
 		verticalCentered: true,
 		resize : true,
-		slidesColor : ['#ccc', '#fff'],
+		sectionsColor : ['#ccc', '#fff'],
 		anchors:['firstSlide', 'secondSlide'],
 		scrollingSpeed: 700,
 		easing: 'easeInQuart',
@@ -103,7 +103,6 @@ $(document).ready(function() {
 		css3: false,
 		paddingTop: '3em',
 		paddingBottom: '10px',
-		fixedElements: '#element1, .element2',
 		normalScrollElements: '#element1, .element2',
 		normalScrollElementTouchThreshold: 5,
 		keyboardScrolling: true,
@@ -162,11 +161,11 @@ To create links between sections, you could use the `menu` option and make use o
 
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
-- `slidesColor`:(default `none`) Define the CSS `background-color` property for each section:
+- `sectionsColor`:(default `none`) Define the CSS `background-color` property for each section:
 Example:
 ```javascript
 $('#fullpage').fullpage({
-    slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
 
@@ -220,6 +219,8 @@ $('#fullpage').fullpage({
     menu: '#myMenu'
 });
 ```
+
+**Note:** the menu element should be placed outside the fullpage wrapper in order to avoid problem when ussing `css3:true`. Otherwise it will be appeneded to the `body` by the plugin itself.
 
 - `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles.
 

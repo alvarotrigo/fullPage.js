@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Scrolling Speed - fullPage.js</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
 	<meta name="description" content="fullPage demo scrolling speed." />
 	<meta name="keywords"  content="fullpage,jquery,demo,scrolling,speed,scrollingSpeed" />
 	<meta name="Resource-type" content="Document" />
 
-	
+
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
 
@@ -18,21 +18,21 @@
 			 var console = { log: function() {} };
 		</script>
 	<![endif]-->
-		
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>	
-	
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
 	<script type="text/javascript" src="../jquery.fullPage.js"></script>
 	<script type="text/javascript" src="examples.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
-				slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
 				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
 				menu: '#menu',
 				scrollingSpeed: 1700
 			});
-			
+
 		});
 	</script>
 
