@@ -242,9 +242,9 @@ In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscr
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
-- 'sectionSelector': (default '.section') Defines the jQuery selector used for the plugin sections. It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js..
+- `sectionSelector`: (default `.section`) Defines the jQuery selector used for the plugin sections. It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js..
 
-- 'slideSelector': (default '.slide')  Defines the jQuery selector used for the plugin slides.  It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
+- `slideSelector`: (default `.slide`)  Defines the jQuery selector used for the plugin slides.  It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
 
 ## Methods
 
