@@ -1024,28 +1024,14 @@
 		}
 
 
-		if (!isTouchDevice) {
-			var resizeId;
-
-			//when resizing the site, we adjust the heights of the sections
-			$(window).resize(function() {
-				//in order to call the functions only when the resize is finished
-				//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-				clearTimeout(resizeId);
-				resizeId = setTimeout($.fn.fullpage.reBuild, 500);
-			});
-
-		}
-
-
-		var supportsOrientationChange = "onorientationchange" in window,
-		orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
-
-		$(window).bind(orientationEvent , function() {
-			if(isTouchDevice){
-				$.fn.fullpage.reBuild();
-			}
-		});
+    var resizeId;
+    //when resizing the site, we adjust the heights of the sections
+    $(window).resize(function() {
+      //in order to call the functions only when the resize is finished
+      //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
+      clearTimeout(resizeId);
+      resizeId = setTimeout($.fn.fullpage.reBuild, 500);
+    });
 
 
 		/**
