@@ -1030,7 +1030,13 @@
       //in order to call the functions only when the resize is finished
       //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
       clearTimeout(resizeId);
-      resizeId = setTimeout($.fn.fullpage.reBuild, 500);
+			if (isTouchDevice) {
+        // rebuild immediately on touch devices
+        $.fn.fullpage.reBuild();
+      } else {
+        // wait for desktops...
+        resizeId = setTimeout($.fn.fullpage.reBuild, 500);
+      }
     });
 
 
