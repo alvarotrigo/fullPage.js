@@ -556,6 +556,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.cima-ecuador.com/
 - http://www.rienpipe.es
 - http://bootstrap.tunerus.ru/nastroyka_pianino/
+- http://moysport.ru/
 
 ## Donations
 Donations would be more than welcome :)
