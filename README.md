@@ -557,6 +557,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.rienpipe.es
 - http://bootstrap.tunerus.ru/nastroyka_pianino/
 - http://moysport.ru/
+- http://www.norttilaakso.fi/
+- http://wcfixtures.co.uk/
 
 ## Donations
 Donations would be more than welcome :)
