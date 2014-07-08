@@ -26,21 +26,26 @@ It works with browsers with CSS3 support and with the ones who don't have it, ma
 As you can see in the example files, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
 
 ###Including files:
+
 ```html
-<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+<head>
+  <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- This following line is needed in case of using the default easing option or when using another
- one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
-<script src="vendors/jquery.easings.min.js"></script>
+  <!-- This following line is needed in case of using the default easing option or when using another
+       one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
+  <script src="vendors/jquery.easings.min.js"></script>
 
 
-<!-- This following line needed in the case of using the plugin option `scrollOverflow:true` -->
-<script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
+  <!-- This following line needed in the case of using the plugin option `scrollOverflow:true` -->
+  <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
 
-<script type="text/javascript" src="jquery.fullPage.js"></script>
+  <script type="text/javascript" src="jquery.fullPage.js"></script>
+</head>
 ```
+
+**Tip:** Be sure to include all fullPage.js logic in the `<head>...</head>` of your document. This includes the actual script, as well as [your custom javascript to initialize fullpage](#initialization).
 
 ###Required HTML structure
 Each section will be defined with a `div` containing the `section` class.
