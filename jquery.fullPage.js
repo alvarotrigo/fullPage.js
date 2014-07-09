@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.5
+ * fullPage 2.1.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -314,7 +314,17 @@
 				var section = $('[data-anchor="'+destiny+'"]');
 
 				if(!options.animateAnchor && section.length){
-					silentScroll(section.position().top);
+
+					if(options.autoScrolling){
+						silentScroll(section.position().top);
+					}
+					else{
+						silentScroll(0);
+
+						//scrolling the page to the section with no animation
+						$('html, body').scrollTop(section.position().top);
+					}
+
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, destiny, (section.index('.fp-section') + 1));
 
 					//updating the active class
@@ -1024,20 +1034,21 @@
 		}
 
 
-    var resizeId;
-    //when resizing the site, we adjust the heights of the sections
-    $(window).resize(function() {
-      //in order to call the functions only when the resize is finished
-      //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-      clearTimeout(resizeId);
+	    var resizeId;
+
+	    //when resizing the site, we adjust the heights of the sections, slimScroll...
+	    $(window).resize(function() {
+	    	// rebuild immediately on touch devices
 			if (isTouchDevice) {
-        // rebuild immediately on touch devices
-        $.fn.fullpage.reBuild();
-      } else {
-        // wait for desktops...
-        resizeId = setTimeout($.fn.fullpage.reBuild, 500);
-      }
-    });
+	        	$.fn.fullpage.reBuild();
+	      	}else{
+	      		//in order to call the functions only when the resize is finished
+	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
+	      		clearTimeout(resizeId);
+
+	        	resizeId = setTimeout($.fn.fullpage.reBuild, 500);
+	      	}
+	    });
 
 
 		/**
