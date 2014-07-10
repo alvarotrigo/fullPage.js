@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.6
+ * fullPage 2.1.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -324,6 +324,9 @@
 						//scrolling the page to the section with no animation
 						$('html, body').scrollTop(section.position().top);
 					}
+
+					activateMenuElement(destiny);
+					activateNavDots(destiny, null);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, destiny, (section.index('.fp-section') + 1));
 
@@ -1249,6 +1252,7 @@
 
 
 					element.find('.fp-scrollable').slimScroll({
+						allowPageScroll: true,
 						height: scrollHeight + 'px',
 						size: '10px',
 						alwaysVisible: true
