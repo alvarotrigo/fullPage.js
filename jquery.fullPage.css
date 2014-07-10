@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.5
+ * fullPage 2.1.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -114,23 +114,23 @@ html, body {
     top: 17px;
 }
 #fp-nav ul,
-.fp-slidesNavul {
+.fp-slidesNav ul {
   margin: 0;
   padding: 0;
 }
 #fp-nav li,
-.fp-slidesNavli {
+.fp-slidesNav li {
     display: block;
     width: 14px;
     height: 13px;
     margin: 7px;
     position:relative;
 }
-.fp-slidesNavli {
+.fp-slidesNav li {
     display: inline-block;
 }
 #fp-nav li a,
-.fp-slidesNavli a {
+.fp-slidesNav li a {
     display: block;
     position: relative;
     z-index: 1;
@@ -144,7 +144,7 @@ html, body {
     background: #333;
 }
 #fp-nav span,
-.fp-slidesNavspan {
+.fp-slidesNav span {
     top: 2px;
     left: 2px;
     width: 8px;
