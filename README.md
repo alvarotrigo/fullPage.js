@@ -44,6 +44,18 @@ As you can see in the example files, you will need to include the JavaScript fil
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
+#### CDN
+
+For online websites, you can use jsDelivr CDN to help load faster:
+```html
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.fullpage/2.1.8/jquery.fullPage.min.css" />
+<!-- laod the latest 1.11.* jQuery branch -->
+<script src="//cdn.jsdelivr.net/jquery/1.11/jquery.min.js"></script>
+<!-- load a collated jquery.easings.min.js, jquery.slimscroll.min.js, & jquery.fullPage.min.js in one call -->
+<script src="//cdn.jsdelivr.net/g/jquery.ui@1.9.2%28jquery.ui.effect.min.js%29,slimscroll@1.3,jquery.fullpage@2.1"></script>
+```
+
+
 ###Required HTML structure
 Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
