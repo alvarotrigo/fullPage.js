@@ -176,7 +176,7 @@ $('#fullpage').fullpage({
 - `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical and horizontal scrolling.
-It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/easing/) for using some of its transitions. Other libraries could be used instead.
+It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
 
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
@@ -553,6 +553,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://spell-star.appspot.com/
 - http://yizeng.me/
 - http://rienpipe.es/
+- http://neolearning.eu/
 - http://sunfishlabs.com/
 - http://unabridgedsoftware.com/
 - http://wc2014.plnwrx.com/
