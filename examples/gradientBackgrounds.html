@@ -23,6 +23,9 @@
 		margin:0;
 		padding:0;
 	}
+	.intro p{
+		color: #fff;
+	}
 	
 	/* Centered texts in each section 
 	* --------------------------------------- */
@@ -31,43 +34,34 @@
 	}
 	
 	
-	/* Backgrounds will cover all the section
-	* --------------------------------------- */
-	#section0,
-	#section1,
-	#section2,
-	#section3{
-		background-size: cover;
-	}
 	
 	/* Defining each sectino background and styles 
 	* --------------------------------------- */
 	#section0{
-		background-image: url(imgs/bg1.jpg);
-		padding: 30% 0 0 0;
+		background: -webkit-gradient(linear, top left, bottom left, from(#4bbfc3), to(#7baabe));
+		background: -webkit-linear-gradient(#4BBFC3, #7BAABE);
+		background: linear-gradient(#4BBFC3,#7BAABE);
 	}
+
 	#section2{
-		background-image: url(imgs/bg3.jpg);
-		padding: 6% 0 0 0;
+		background: -webkit-gradient(linear, top left, bottom left, from(#969ac6), to(#636F8F));
+		background: -webkit-linear-gradient(#969AC6, #636F8F);
+		background: linear-gradient(#969AC6,#636F8F);
 	}
-	#section3{
-		background-image: url(imgs/bg4.jpg);
-		padding: 6% 0 0 0;
-	}
-	#section3 h1{
-		color: #000;
-	}
+
 
  
  	/*Adding background for the slides
 	* --------------------------------------- */
 	#slide1{
-		background-image: url(imgs/bg2.jpg);
-		padding: 6% 0 0 0;
+		background: -webkit-gradient(linear, top left, bottom left, from(#7baabe), to(#969ac6));
+		background: -webkit-linear-gradient(#7BAABE, #969AC6);
+		background: linear-gradient(#7BAABE,#969AC6);
 	}
 	#slide2{
-		background-image: url(imgs/bg5.jpg);
-		padding: 6% 0 0 0;
+		background: -webkit-gradient(linear, top left, bottom left, from(#92a1ca), to(#76c2bd));
+		background: -webkit-linear-gradient(#92a1ca, #76c2bd);
+		background: linear-gradient(#92a1ca,#76c2bd);
 	}
 	
 	
@@ -92,16 +86,12 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#fullpage').fullpage({
-				verticalCentered: false,
-			});
+			$('#fullpage').fullpage();
 		});
 	</script>
 
 </head>
 <body>
-
-<a href="https://github.com/alvarotrigo/fullPage.js" id="githubLink"><img style="position: fixed;z-index:99; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
 <select id="demosMenu">
   <option id="background" selected>Choose Demo</option>
@@ -123,19 +113,20 @@
   <option id="apple">Apple iPhone demo (animations)</option>
 </select>
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://alvarotrigo.com/fullPage/" data-text="Great plugin to create fullscreen scrolling websites: http://alvarotrigo.com/fullPage/">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-
 <div id="fullpage">
-	<div class="section " id="section0"><h1>fullPage.js</h1></div>
+	<div class="section " id="section0"><h1>Gradient backgrounds</h1></div>
 	<div class="section" id="section1">
-	    <div class="slide" id="slide1"><h1>Slide Backgrounds</h1></div>
-	    <div class="slide" id="slide2"><h1>Totally customizable</h1></div>
+	    <div class="slide" id="slide1"><h1>Soft graduated colors</h1></div>
+	    <div class="slide" id="slide2"><h1>Even for each slide if you want</h1></div>
 	</div>
-	<div class="section" id="section2"><h1>Lovely images <br />for a lovely page</h1></div>
-	<div class="section" id="section3"><h1>One Image = One thousand words</h1></div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Feel free!</h1>
+			<p>Using CSS3 gradients you can play as much as you want with graduated colors</p>
+		</div>
+	</div>
 </div>
+
 
 </body>
 </html>

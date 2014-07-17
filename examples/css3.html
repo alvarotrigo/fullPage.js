@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CSS3 - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage.js using CSS3 transformations." />
+	<meta name="keywords"  content="fullpage,jquery,anchor,links,inside,demo,css,css3" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="../jquery.fullPage.js"></script>
+	<script type="text/javascript" src="examples.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+       			css3: true
+       		});
+		});
+	</script>
+
+</head>
+<body>
+
+
+<select id="demosMenu">
+  <option id="background" selected>Choose Demo</option>
+  <option id="background">Background images</option>
+  <option id="backgroundVideo">Background video</option>
+  <option id="gradientBackgrounds">Gradient backgrounds</option>
+  <option id="looping">Looping</option>
+  <option id="noAnchor">No anchor links</option>
+  <option id="scrollingSpeed">Scrolling speed</option>
+  <option id="easing">Easing</option>
+  <option id="callbacks">Callbacks</option>
+  <option id="css3">CSS3</option>
+  <option id="continuous">Continuous scrolling</option>
+  <option id="normalScroll">Normal scrolling</option>
+  <option id="scrolling">Scroll inside sections and slides</option>
+  <option id="navigationV">Vertical navigation dots</option>
+  <option id="navigationH">Horizontal navigation dots</option>
+  <option id="fixedHeaders">Fixed headers</option>
+  <option id="apple">Apple iPhone demo (animations)</option>
+</select>
+
+
+<div id="fullpage">
+	<div class="section " id="section0">
+		<h1>fullPage.js</h1>
+		<p>CSS3</p>
+		<img src="imgs/fullPage.png" alt="fullPage" />
+	</div>
+	<div class="section" id="section1">
+		<div class="intro">
+			<h1>Speed on mobile</h1>
+			<p>
+	      If CSS3 transforms are supported (e.g. on mobile devices) they will be used for animations, usually a good
+	      choice if the animation on mobile devices is slow.
+			</p>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>No CSS3? No problem!</h1>
+			<p>If CSS3 is not available, animations will fall back to jQuery animate.</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

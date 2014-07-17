@@ -3,15 +3,52 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Scrolling Speed - fullPage.js</title>
+	<title>FullScreen Backgrounds - fullPage.js</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
-	<meta name="description" content="fullPage demo scrolling speed." />
-	<meta name="keywords"  content="fullpage,jquery,demo,scrolling,speed,scrollingSpeed" />
+	<meta name="description" content="fullPage full-screen backgrounds." />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
 	<meta name="Resource-type" content="Document" />
 
 
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+
+	/* Layer with position absolute in order to have it over the video
+	* --------------------------------------- */
+	#section0 .layer{
+		position: absolute;
+		z-index: 2;
+		width: 100%;
+		left: 0;
+		top: 43%;
+		height: 100%;
+	}
+
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	</style>
 
 	<!--[if IE]>
 		<script type="text/javascript">
@@ -24,15 +61,21 @@
 
 	<script type="text/javascript" src="../jquery.fullPage.js"></script>
 	<script type="text/javascript" src="examples.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
-				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-				menu: '#menu',
-				scrollingSpeed: 1700
-			});
+				verticalCentered: true,
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+				afterRender: function(){
 
+					//setting the size
+					$('video').height($(window).height());
+
+					//playing the video
+					$('video').get(0).play();
+				}
+			});
 		});
 	</script>
 
@@ -59,42 +102,23 @@
   <option id="apple">Apple iPhone demo (animations)</option>
 </select>
 
-<ul id="menu">
-	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
-	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
-</ul>
-
 <div id="fullpage">
 	<div class="section " id="section0">
-		<h1>fullPage.js</h1>
-		<p>Configure the scrolling speed!</p>
-		<img src="imgs/fullPage.png" alt="fullPage" />
+		<video autoplay loop muted controls="false">
+			<source src="imgs/flowers.mp4" type="video/mp4">
+			<source src="imgs/flowers.webm" type="video/webm">
+		</video>
+		<div class="layer">
+			<h1>fullPage.js videos</h1>
+		</div>
 	</div>
 	<div class="section" id="section1">
-	    <div class="slide">
-			<div class="intro">
-				<img src="imgs/1.png" alt="Cool" />
-				<h1>Slow scrolling speed</h1>
-				<p>In case we want to make a site for old people, for example :)</p>
-			</div>
-		</div>
-	    <div class="slide">
-			<div class="intro">
-				<img src="imgs/2.png" alt="Compatible" />
-				<h1>Landscape too</h1>
-				<p>Also applied to landscape slides. Great uh?</p>
-			</div>
-		</div>
+	    <div class="slide" id="slide1"><h1>Slide Backgrounds</h1></div>
+	    <div class="slide" id="slide2"><h1>Totally customizable</h1></div>
 	</div>
-	<div class="section" id="section2">
-		<div class="intro">
-			<h1>Slooooooww</h1>
-			<p>Now you can try other demos!</p>
-		</div>
-	</div>
+	<div class="section" id="section2"><h1>Lovely images <br />for a lovely page</h1></div>
+	<div class="section" id="section3"><h1>One Image = One thousand words</h1></div>
 </div>
-
 
 </body>
 </html>
