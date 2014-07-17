@@ -383,7 +383,7 @@ Example:
 			if(index == 2 && slideIndex == 0 && direction == 'right'){
 				alert("Leaving the fist slide!!");
 			}
-			
+
 			//leaving the 3rd slide of the 2nd Section to the left
 			if(index == 2 && slideIndex == 2 && direction == 'left'){
 				alert("Going to slide 2! ");
