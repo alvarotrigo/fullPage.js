@@ -136,7 +136,7 @@ html, body {
     text-decoration: none;
 }
 #fp-nav li .active span,
-.fp-slidesNav.active span {
+.fp-slidesNav .active span {
     background: #333;
 }
 #fp-nav span,
