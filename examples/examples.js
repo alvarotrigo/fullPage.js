@@ -4,14 +4,22 @@ $(document).ready(function(){
 	  var id = $(this).find("option:selected").attr("id");
 
 	  switch (id){
+	  	case 'fullVideos':
+	  		window.location.href = 'videoBackground.html';
+		  break;
+
 		case 'background':
 		  window.location.href = 'backgrounds.html';
 		  break;
-		  
+
+		case 'oneSection':
+		  window.location.href = 'oneSection.html';
+		  break;
+
 		 case 'looping':
 		  window.location.href = 'looping.html';
 		  break;
-		  
+
 		case 'noAnchor':
 		  window.location.href = 'noAnchor.html';
 		  break;
@@ -22,7 +30,7 @@ $(document).ready(function(){
 
 		case 'easing':
 		  window.location.href = 'easing.html';
-		  break;	
+		  break;
 
 		case 'callbacks':
 		  window.location.href = 'callback.html';
@@ -38,23 +46,23 @@ $(document).ready(function(){
 
 		case 'backgroundVideo':
 	      window.location.href = 'videoBackground.html';
-	      break;	 
+	      break;
 
 		case 'normalScroll':
 	      window.location.href = 'normalScroll.html';
-	      break;	 	   
+	      break;
 
 	    case 'scrolling':
 	      window.location.href = 'scrolling.html';
-	      break;	
+	      break;
 
 	    case 'navigationV':
 	      window.location.href = 'navigationV.html';
-	      break;		      
+	      break;
 
 	    case 'navigationH':
 	      window.location.href = 'navigationH.html';
-	      break;	
+	      break;
 
 	    case 'fixedHeaders':
 	    	window.location.href = 'fixedHeaders.html';
@@ -62,11 +70,11 @@ $(document).ready(function(){
 
 	    case 'gradientBackgrounds':
 	    	window.location.href = 'gradientBackgrounds.html';
-	    	break;	    	
+	    	break;
 
 	    case 'apple':
 	    	window.location.href = 'apple.html';
-	    	break;	   
+	    	break;
 	  }
 	});
 

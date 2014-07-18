@@ -30,6 +30,24 @@
 		text-align:center;
 	}
 
+	#myVideo{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		top:0;
+		right:0;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+		background-size: 100% 100%;
+ 		background-color: black; /* in case the video doesn't fit the whole page*/
+  		background-image: /* our video */;
+  		background-position: center center;
+  		background-size: contain;
+   		object-fit: cover; /*cover video background */
+	}
+
+
 
 	/* Layer with position absolute in order to have it over the video
 	* --------------------------------------- */
@@ -69,8 +87,6 @@
 				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
 				afterRender: function(){
 
-					//setting the size
-					$('video').height($(window).height());
 
 					//playing the video
 					$('video').get(0).play();
@@ -100,11 +116,13 @@
   <option id="navigationH">Horizontal navigation dots</option>
   <option id="fixedHeaders">Fixed headers</option>
   <option id="apple">Apple iPhone demo (animations)</option>
+  <option id="oneSection">One Single Section</option>
+  <option id="fullVideos">Full background videos</option>
 </select>
 
 <div id="fullpage">
 	<div class="section " id="section0">
-		<video autoplay loop muted controls="false">
+		<video autoplay loop muted controls="false" id="myVideo">
 			<source src="imgs/flowers.mp4" type="video/mp4">
 			<source src="imgs/flowers.webm" type="video/webm">
 		</video>
