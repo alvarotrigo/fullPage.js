@@ -163,6 +163,7 @@ html, body {
     font-size: 14px;
     font-family: arial, helvetica, sans-serif;
     top: -2px;
+    white-space: nowrap;
 }
 .fp-tooltip.right {
     right: 20px;
