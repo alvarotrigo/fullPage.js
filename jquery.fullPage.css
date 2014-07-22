@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.8
+ * fullPage 2.1.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -25,7 +25,7 @@ html, body {
 }
 .fp-section {
     position: relative;
-    -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */ 
+    -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
     -moz-box-sizing: border-box; /* <=28 */
     box-sizing: border-box;
 }
@@ -37,6 +37,7 @@ html, body {
     display: block;
 }
 .fp-slides {
+    z-index:1;
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -59,6 +60,7 @@ html, body {
 }
 .fp-controlArrow {
     position: absolute;
+    z-index: 4;
     top: 50%;
     cursor: pointer;
     width: 0;
