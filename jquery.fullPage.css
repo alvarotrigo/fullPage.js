@@ -155,8 +155,12 @@ html, body {
 }
 .fp-tooltip {
     position: absolute;
-    top: -2px;
+    top: -5px;
+ 		padding: 0.3em 0.9em 0.3em 0.6em;
+		border-radius: 0px 1em 1em 0px;
     color: #fff;
+		background: #111; /* IE<=8 */
+		background-color: rgba(17, 17, 17, 0.75);
     font-size: 14px;
     font-family: arial, helvetica, sans-serif;
     white-space: nowrap;
