@@ -242,9 +242,20 @@
 		-moz-transition: all 0.7s ease-out;
 		-o-transition: all 0.7s ease-out;
 		transition: all 0.7s ease-out;
+
+		-webkit-backface-visibility: hidden;
+		-webkit-perspective: 1000;
 	}
 	#staticImg.moveDown{
-		top: 300%;
+	-webkit-transform: translate3d(0, 100%, 0);
+      -ms-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0);
+	}
+	#staticImg.moveUp{
+
+	-webkit-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 	}
 	#staticImg.moveDown .imgsContainer{
 			top: 50%;
@@ -335,7 +346,8 @@
 					}
 
 					$('#staticImg').toggleClass('active', (index == 2 && direction == 'down' ) || (index == 4 && direction == 'up'));
-					$('#staticImg').toggleClass('moveDown', index == 3 && direction == 'down');
+					$('#staticImg').toggleClass('moveDown', nextIndex == 4);
+					$('#staticImg').toggleClass('moveUp', index == 4 && direction == 'up');
 				}
 			});
 		});
