@@ -27,15 +27,41 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				slidesColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-                limitToDiv: true
+				partialPage: true
 			});
 		});
 	</script>
+	<style>
+	.democontainer {
+	    /* The size specified here will be applied to container
+		if you are using anything that's smaller you should 
+		update your secton's css to fill width or height*/
+	    width: 300px;
+	    height: 400px;
+	    font-size: 6pt;
+	}
+	#title {
+	    width: 300px;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	#wrapper {
+	    width: 300px;
+	    height: 400px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 200px;
+	}
+	body {
+	    background-color: #EE9;
+	}
+	</style>
 
 </head>
 <body>
 
-
+<div id="wrapper">
+<div id="title">This is a demo of partial page slides</div>
 <div id="fullpage" class="democontainer">
 	<div class="section active" id="section0"><h1>fullPage.js</h1></div>
 	<div class="section" id="section1">
@@ -47,6 +73,6 @@
 	<div class="section" id="section2"><h1>No wraps, no extra markup</h1></div>
 	<div class="section" id="section3"><h1>Just the simplest demo ever</h1></div>
 </div>
-
+</div>
 </body>
 </html>
