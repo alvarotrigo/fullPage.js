@@ -39,6 +39,7 @@
 			'continuousVertical': false,
 			'animateAnchor': true,
 			'normalScrollElementTouchThreshold': 5,
+            'limitToDiv': false,
 
 			//events
 			'afterLoad': null,
@@ -134,7 +135,8 @@
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone|Tizen|Bada)/);
 		var container = $(this); // for compatibity reasons for fullpage < v2.0
-		var windowsHeight = $(window).height();
+        var windowsHeight = options.limitToDiv?$(this).height():$(window).height();
+        var windowsWidth = options.limitToDiv?$(this).width():$(window).width();
 		var isMoving = false;
 		var isResizing = false;
 		var lastScrolledDestiny;
@@ -146,6 +148,16 @@
 		if(options.css3){
 			options.css3 = support3d();
 		}
+
+        // Wrap the container in a mask to hide overflown sections when targeting a div
+        if(options.limitToDiv){
+            container.wrap('<div class="fullPage-mask"></div>');
+            var maskcontainer = container.parent();
+            maskcontainer.css({
+                'height': windowsHeight,
+                'width': windowsWidth
+            });
+        }
 
 		if($(this).length){
 			container.css({
@@ -1028,10 +1040,16 @@
 		function doneResizing() {
 			isResizing = true;
 
-			var windowsWidth = $(window).width();
-			windowsHeight = $(window).height();
+            if(!options.limitToDiv)
+            {
+                var windowsWidth = $(window).width();
+                windowsHeight = $(window).height();
+            }else{
+                var windowsWidth = $(this).width();
+                windowsHeight = $(this).height();
+            }
 
-			//text and images resizing
+            //text and images resizing
 			if (options.resize) {
 				resizeMe(windowsHeight, windowsWidth);
 			}

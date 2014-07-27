@@ -165,3 +165,6 @@ html, body {
 .fullPage-tooltip.left {
     left: 20px;
 }
+.fullPage-mask {
+    overflow: hidden;
+}
