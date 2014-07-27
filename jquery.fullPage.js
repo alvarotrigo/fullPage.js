@@ -39,7 +39,7 @@
 			'continuousVertical': false,
 			'animateAnchor': true,
 			'normalScrollElementTouchThreshold': 5,
-            'limitToDiv': false,
+			'partialPage': false,
 
 			//events
 			'afterLoad': null,
@@ -135,8 +135,8 @@
 
 		var isTablet = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|Windows Phone|Tizen|Bada)/);
 		var container = $(this); // for compatibity reasons for fullpage < v2.0
-        var windowsHeight = options.limitToDiv?$(this).height():$(window).height();
-        var windowsWidth = options.limitToDiv?$(this).width():$(window).width();
+		var windowsHeight = options.partialPage?$(this).height():$(window).height();
+		var windowsWidth = options.partialPage?$(this).width():$(window).width();
 		var isMoving = false;
 		var isResizing = false;
 		var lastScrolledDestiny;
@@ -150,7 +150,7 @@
 		}
 
         // Wrap the container in a mask to hide overflown sections when targeting a div
-        if(options.limitToDiv){
+        if(options.partialPage){
             container.wrap('<div class="fullPage-mask"></div>');
             var maskcontainer = container.parent();
             maskcontainer.css({
@@ -1040,7 +1040,7 @@
 		function doneResizing() {
 			isResizing = true;
 
-            if(!options.limitToDiv)
+            if(!options.partialPage)
             {
                 var windowsWidth = $(window).width();
                 windowsHeight = $(window).height();
