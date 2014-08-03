@@ -248,6 +248,18 @@ In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscr
 
 - `slideSelector`: (default `.slide`)  Defines the jQuery selector used for the plugin slides.  It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
 
+**Note:** You can use slimScroll event to gather the scroll state with events (see http://rocha.la/jQuery-slimScroll for more):
+```javascript
+	// Scroll event
+	$(section).bind('slimscrolling', function(e, pos) {
+		console.log(e,"Scrollbar at "+pos+"px");
+	});
+	// Top and bottom event
+	$('#Sbiographie').bind('slimscroll', function(e, pos) {
+		console.log("Reached " + pos");
+	});
+```
+
 ## Methods
 
 ### moveSectionUp()
