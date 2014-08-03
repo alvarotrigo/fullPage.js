@@ -9,7 +9,7 @@
 (function($) {
 	$.fn.fullpage = function(options) {
 		// Create some defaults, extending them with any options that were provided
-		options = $.extend({
+		var options = $.extend({
 			"verticalCentered": true,
 			'resize': true,
 			'sectionsColor' : [],
@@ -42,6 +42,13 @@
 			'sectionSelector': '.section',
 			'slideSelector': '.slide',
 
+			// Slimscroll default options
+			'slimScroll': {
+				'allowPageScroll': true,
+				'size': '10px',
+				'alwaysVisible': true
+			},
+
 			//events
 			'afterLoad': null,
 			'onLeave': null,
@@ -51,11 +58,11 @@
 			'onSlideLeave': null
 		}, options);
 
-	    // Disable mutually exclusive settings
+		// Disable mutually exclusive settings
 		if (options.continuousVertical &&
 			(options.loopTop || options.loopBottom)) {
-		    options.continuousVertical = false;
-		    console && console.log && console.log("Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled");
+			options.continuousVertical = false;
+			console && console.log && console.log("Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled");
 		}
 
 		//Defines the delay to take place before being able to scroll to the next section
@@ -97,7 +104,7 @@
 		* Defines the scrolling speed
 		*/
 		$.fn.fullpage.setScrollingSpeed = function(value){
-		   options.scrollingSpeed = value;
+			options.scrollingSpeed = value;
 		};
 
 		/**
@@ -1252,13 +1259,10 @@
 						element.wrapInner('<div class="fp-scrollable" />');
 					}
 
+					options.slimScroll.height = scrollHeight + 'px';
 
-					element.find('.fp-scrollable').slimScroll({
-						allowPageScroll: true,
-						height: scrollHeight + 'px',
-						size: '10px',
-						alwaysVisible: true
-					});
+					// Call slimScroll with options
+					element.find('.fp-scrollable').slimScroll(options.slimScroll);
 				}
 			}
 
@@ -1642,7 +1646,6 @@
 			//to know if the plugin was already used in case it is used in a future again
 			container.addClass('fullpage-used');
 		}
-
 	};
 
 })(jQuery);

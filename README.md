@@ -114,6 +114,17 @@ $(document).ready(function() {
 		sectionSelector: '.section',
 		slideSelector: '.slide',
 
+		// See more options at http://rocha.la/jQuery-slimScroll @author Piotr Rochala
+		slimScroll: {
+			color: '#ffcc00',
+			railVisible: true,
+			railColor: '#222',
+			railOpacity: 0.3,
+			wheelStep: 10,
+			disableFadeOut: false,
+		},
+
+
 		//events
 		onLeave: function(index, nextIndex, direction){},
 		afterLoad: function(anchorLink, index){},
