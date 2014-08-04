@@ -489,6 +489,11 @@ Example:
 	});
 ```
 
+## Getting help
+For usage help for your particular website, [StackOverflow](http://stackoverflow.com/search?q=fullpage.js) is a better plase to ask.  [The author](http://alvarotrigo.com/) is available for consulting if you need private or advanced help. 
+
+Bugs or suggestions are welcome in [GitHub Issues](https://github.com/alvarotrigo/fullPage.js/issues).
+
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
