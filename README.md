@@ -506,6 +506,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
 - http://snapzheimer.org/
+- http://www.newjumoconcept.com/
 - https://moneytree.jp/
 - http://www.restaurantwoods.nl/
 - http://collection.madeofsundays.com
@@ -566,6 +567,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.norttilaakso.fi/
 - http://wcfixtures.co.uk/
 - http://www.dopehustleinc.com/default.php
+- http://themify.me/demo/#theme=fullpane
 
 ## Donations
 Donations would be more than welcome :)
