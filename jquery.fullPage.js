@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.8
+ * fullPage 2.1.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -247,9 +247,16 @@
 				}
 
 				slides.each(function(index) {
+					var startingSlide = that.find('.fp-slide.active');
+
 					//if the slide won#t be an starting point, the default will be the first one
-					if(!index && that.find('.fp-slide.active').length == 0){
+					if(!index && startingSlide.length == 0){
 						$(this).addClass('active');
+					}
+
+					//is there a starting point for a non-starting section?
+					else{
+						silentLandscapeScroll(startingSlide);
 					}
 
 					$(this).css('width', slideWidth + '%');
@@ -272,11 +279,10 @@
 
 			//the starting point is a slide?
 			var activeSlide = $('.fp-section.active').find('.fp-slide.active');
+
+			//the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
 			if( activeSlide.length &&  ($('.fp-section.active').index('.fp-section') != 0 || ($('.fp-section.active').index('.fp-section') == 0 && activeSlide.index() != 0))){
-				var prevScrollingSpeepd = options.scrollingSpeed;
-				$.fn.fullpage.setScrollingSpeed (0);
-				landscapeScroll($('.fp-section.active').find('.fp-slides'), activeSlide);
-				$.fn.fullpage.setScrollingSpeed(prevScrollingSpeepd);
+				silentLandscapeScroll(activeSlide);
 			}
 
 			//fixed elements need to be moved out of the plugin container due to problems with CSS3.
@@ -921,11 +927,11 @@
 
 
 		if(options.normalScrollElements){
-			$(document).on('mouseover', options.normalScrollElements, function () {
+			$(document).on('mouseenter', options.normalScrollElements, function () {
 				$.fn.fullpage.setMouseWheelScrolling(false);
 			});
 
-			$(document).on('mouseout', options.normalScrollElements, function(){
+			$(document).on('mouseleave', options.normalScrollElements, function(){
 				$.fn.fullpage.setMouseWheelScrolling(true);
 			});
 		}
@@ -993,17 +999,16 @@
 				slideAnchor = slideIndex;
 			}
 
+			if(!options.loopHorizontal){
+				//hidding it for the fist slide, showing for the rest
+				section.find('.fp-controlArrow.fp-prev').toggle(slideIndex!=0);
+
+				//hidding it for the last slide, showing for the rest
+				section.find('.fp-controlArrow.fp-next').toggle(!destiny.is(':last-child'));
+			}
+
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
 			if(section.hasClass('active')){
-
-				if(!options.loopHorizontal){
-					//hidding it for the fist slide, showing for the rest
-					section.find('.fp-controlArrow.fp-prev').toggle(slideIndex!=0);
-
-					//hidding it for the last slide, showing for the rest
-					section.find('.fp-controlArrow.fp-next').toggle(!destiny.is(':last-child'));
-				}
-
 				setURLHash(slideIndex, slideAnchor, anchorLink);
 			}
 
@@ -1332,7 +1337,6 @@
 			else{
 				scrollSlider(section, slide);
 			}
-
 		}
 
 		/**
@@ -1486,26 +1490,22 @@
 		* Adds the possibility to auto scroll through sections on touch devices.
 		*/
 		function addTouchHandler(){
-			if(isTouchDevice){
-				//Microsoft pointers
-				MSPointer = getMSPointer();
+			//Microsoft pointers
+			MSPointer = getMSPointer();
 
-				$(document).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
-				$(document).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
-			}
+			$(document).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
+			$(document).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
 		}
 
 		/**
 		* Removes the auto scrolling for touch devices.
 		*/
 		function removeTouchHandler(){
-			if(isTouchDevice){
-				//Microsoft pointers
-				MSPointer = getMSPointer();
+			//Microsoft pointers
+			MSPointer = getMSPointer();
 
-				$(document).off('touchstart ' + MSPointer.down);
-				$(document).off('touchmove ' + MSPointer.move);
-			}
+			$(document).off('touchstart ' + MSPointer.down);
+			$(document).off('touchmove ' + MSPointer.move);
 		}
 
 
@@ -1543,6 +1543,13 @@
 			}
 
 			return events;
+		}
+
+		function silentLandscapeScroll(activeSlide){
+			var prevScrollingSpeepd = options.scrollingSpeed;
+			$.fn.fullpage.setScrollingSpeed (0);
+			landscapeScroll(activeSlide.closest('.fp-slides'), activeSlide);
+			$.fn.fullpage.setScrollingSpeed(prevScrollingSpeepd);
 		}
 
 		function silentScroll(top){
