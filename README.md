@@ -22,7 +22,7 @@ Let's make this a great plugin to make people's lives easier!
 
 ## Compatibility
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12, etc.
-It works with browsers with CSS3 support and with the ones who don't have it, making it ideal for old browsers compatibility.
+It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
 
 ## Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
@@ -560,6 +560,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://unabridgedsoftware.com/
 - http://wc2014.plnwrx.com/
 - http://organice.io/
+- http://alchemy-research.com/
 - http://www.cima-ecuador.com/
 - http://www.rienpipe.es
 - http://bootstrap.tunerus.ru/nastroyka_pianino/
