@@ -1,5 +1,5 @@
 /**
- * fullPage 2.1.9
+ * fullPage 2.2.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1490,22 +1490,26 @@
 		* Adds the possibility to auto scroll through sections on touch devices.
 		*/
 		function addTouchHandler(){
-			//Microsoft pointers
-			MSPointer = getMSPointer();
+			if(isTouchDevice){
+				//Microsoft pointers
+				MSPointer = getMSPointer();
 
-			$(document).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
-			$(document).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
+				$(document).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
+				$(document).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
+			}
 		}
 
 		/**
 		* Removes the auto scrolling for touch devices.
 		*/
 		function removeTouchHandler(){
-			//Microsoft pointers
-			MSPointer = getMSPointer();
+			if(isTouchDevice){
+				//Microsoft pointers
+				MSPointer = getMSPointer();
 
-			$(document).off('touchstart ' + MSPointer.down);
-			$(document).off('touchmove ' + MSPointer.move);
+				$(document).off('touchstart ' + MSPointer.down);
+				$(document).off('touchmove ' + MSPointer.move);
+			}
 		}
 
 
