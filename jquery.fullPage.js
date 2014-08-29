@@ -621,9 +621,7 @@
 				next = $('.fp-section').first();
 			}
 
-			if(next.length > 0 ||
-				(!next.length &&
-				(options.loopBottom || options.continuousVertical))){
+			if(next.length){
 				scrollPage(next, null, false);
 			}
 		};
