@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.1
+ * fullPage 2.2.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -81,8 +81,8 @@
 
 			}else{
 				$('html, body').css({
-					'overflow' : 'auto',
-					'height' : 'auto'
+					'overflow' : 'initial',
+					'height' : 'initial'
 				});
 
 				silentScroll(0);
