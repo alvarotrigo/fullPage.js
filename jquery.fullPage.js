@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.3
+ * fullPage 2.2.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -248,24 +248,25 @@
 				}
 
 				slides.each(function(index) {
-					var startingSlide = that.find('.fp-slide.active');
-
-					//if the slide won#t be an starting point, the default will be the first one
-					if(!index && startingSlide.length == 0){
-						$(this).addClass('active');
-					}
-
-					//is there a starting point for a non-starting section?
-					else{
-						silentLandscapeScroll(startingSlide);
-					}
-
 					$(this).css('width', slideWidth + '%');
 
 					if(options.verticalCentered){
 						addTableClass($(this));
 					}
 				});
+
+				var startingSlide = that.find('.fp-slide.active');
+
+				//if the slide won#t be an starting point, the default will be the first one
+				if(startingSlide.length == 0){
+					slides.eq(0).addClass('active');
+				}
+
+				//is there a starting point for a non-starting section?
+				else{
+					silentLandscapeScroll(startingSlide);
+				}
+
 			}else{
 				if(options.verticalCentered){
 					addTableClass($(this));
