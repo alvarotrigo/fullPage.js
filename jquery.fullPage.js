@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.4
+ * fullPage 2.2.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -81,7 +81,7 @@
 
 			}else{
 				$('html, body').css({
-					'overflow' : 'initial',
+					'overflow' : 'visible',
 					'height' : 'initial'
 				});
 
