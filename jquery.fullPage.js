@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.2
+ * fullPage 2.2.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
