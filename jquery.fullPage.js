@@ -921,7 +921,9 @@
 				$('<div class="fp-tooltip ' + options.navigationPosition +'">' + tooltip + '</div>').hide().appendTo($(this)).fadeIn(200);
 			},
 			mouseleave: function(){
-				$(this).find('.fp-tooltip').fadeOut().remove();
+				$(this).find('.fp-tooltip').fadeOut(200, function() {
+					$(this).remove();
+				});
 			}
 		}, '#fp-nav li');
 
