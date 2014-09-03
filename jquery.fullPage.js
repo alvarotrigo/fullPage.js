@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.2
+ * fullPage 2.2.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1123,14 +1123,14 @@
 		 * Resizing of the font size depending on the window size as well as some of the images on the site.
 		 */
 		function resizeMe(displayHeight, displayWidth) {
-			//Standard height, for which the body font size is correct
+			//Standard dimensions, for which the body font size is correct
 			var preferredHeight = 825;
-			var windowSize = displayHeight;
+			var preferredWidth = 900;
 
 			/* Problem to be solved
 
-			if (displayHeight < 825) {
-				var percentage = (windowSize * 100) / preferredHeight;
+			if (displayHeight < preferredHeight) {
+				var percentage = (displayHeight * 100) / preferredHeight;
 				var newFontSize = percentage.toFixed(2);
 
 				$("img").each(function() {
@@ -1143,12 +1143,10 @@
 				});
 			}*/
 
-			if (displayHeight < 825 || displayWidth < 900) {
-				if (displayWidth < 900) {
-					windowSize = displayWidth;
-					preferredHeight = 900;
-				}
-				var percentage = (windowSize * 100) / preferredHeight;
+			if (displayHeight < preferredHeight || displayWidth < preferredWidth) {
+				var heightPercentage = (displayHeight * 100) / preferredHeight;
+				var widthPercentage = (displayWidth * 100) / preferredWidth;
+				var percentage = Math.min(heightPercentage, widthPercentage);
 				var newFontSize = percentage.toFixed(2);
 
 				$("body").css("font-size", newFontSize + '%');
