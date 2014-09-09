@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.5.1
+ * fullPage 2.2.5.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -393,15 +393,14 @@
 
 				//executing only once the first time we reach the section
 				if(!currentSection.hasClass('active')){
-					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
-
 					isScrolling = true;
 
+					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
 					var yMovement = getYmovement(currentSection);
+					var anchorLink  = currentSection.data('anchor');
 
 					currentSection.addClass('active').siblings().removeClass('active');
 
-					var anchorLink  = currentSection.data('anchor');
 					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
 
 					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
@@ -422,7 +421,6 @@
 						isScrolling = false;
 					}, 100);
 				}
-
 			}
 		}
 
@@ -764,46 +762,37 @@
 			};
 
 
+			//actions to do once the section is loaded
+			var afterSectionLoads = function(){
+				continuousVerticalFixSectionOrder();
+
+				//callback (afterLoad) if the site is not just resizing and readjusting the slides
+				$.isFunction(options.afterLoad) && !localIsResizing && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
+
+				setTimeout(function () {
+					isMoving = false;
+					$.isFunction(callback) && callback.call(this);
+				}, scrollDelay);
+			}
+
+			//callback (onLeave) if the site is not just resizing and readjusting the slides
+			$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
+
 			// Use CSS3 translate functionality or...
 			if (options.css3 && options.autoScrolling) {
-
-				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
-
 
 				var translate3d = 'translate3d(0px, -' + dtop + 'px, 0px)';
 				transformContainer(translate3d, true);
 
 				setTimeout(function () {
-					//fix section order from continuousVertical
-					continuousVerticalFixSectionOrder();
-
-					//callback (afterLoad) 	if the site is not just resizing and readjusting the slides
-					$.isFunction(options.afterLoad) && !localIsResizing && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
-
-					setTimeout(function () {
-						isMoving = false;
-						$.isFunction(callback) && callback.call(this);
-					}, scrollDelay);
+					afterSectionLoads();
 				}, options.scrollingSpeed);
 			} else { // ... use jQuery animate
-
-				//callback (onLeave) if the site is not just resizing and readjusting the slides
-				$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
 
 				$(scrolledElement).animate(
 					scrollOptions
 				, options.scrollingSpeed, options.easing, function () {
-					//fix section order from continuousVertical
-					continuousVerticalFixSectionOrder();
-
-					//callback (afterLoad) if the site is not just resizing and readjusting the slides
-					$.isFunction(options.afterLoad) && !localIsResizing && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
-
-					setTimeout(function () {
-						isMoving = false;
-						$.isFunction(callback) && callback.call(this);
-					}, scrollDelay);
+					afterSectionLoads();
 				});
 			}
 
@@ -816,6 +805,8 @@
 				activateNavDots(anchorLink, sectionIndex);
 			}
 		}
+
+
 
 		function scrollToAnchor(){
 			//getting the anchor link in the URL and deleting the `#`
@@ -1006,30 +997,29 @@
 				setURLHash(slideIndex, slideAnchor, anchorLink);
 			}
 
+			var afterSlideLoads = function(){
+				//if the site is not just resizing and readjusting the slides
+				if(!localIsResizing){
+					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+				}
+				//letting them slide again
+				slideMoving = false;
+			};
+
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 
 				slides.find('.fp-slidesContainer').toggleClass('fp-easing', options.scrollingSpeed>0).css(getTransforms(translate3d));
 
 				setTimeout(function(){
-					//if the site is not just resizing and readjusting the slides
-					if(!localIsResizing){
-						$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex );
-					}
-
-					slideMoving = false;
+					afterSlideLoads();
 				}, options.scrollingSpeed, options.easing);
 			}else{
 				slidesContainer.animate({
 					scrollLeft : destinyPos.left
 				}, options.scrollingSpeed, options.easing, function() {
 
-					//if the site is not just resizing and readjusting the slides
-					if(!localIsResizing){
-						$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
-					}
-					//letting them slide again
-					slideMoving = false;
+					afterSlideLoads();
 				});
 			}
 
@@ -1090,7 +1080,6 @@
 					}else{
 						createSlimScrolling($(this));
 					}
-
 				}
 
 				//adjusting the position fo the FULL WIDTH slides...
@@ -1121,22 +1110,6 @@
 			//Standard dimensions, for which the body font size is correct
 			var preferredHeight = 825;
 			var preferredWidth = 900;
-
-			/* Problem to be solved
-
-			if (displayHeight < preferredHeight) {
-				var percentage = (displayHeight * 100) / preferredHeight;
-				var newFontSize = percentage.toFixed(2);
-
-				$("img").each(function() {
-					var newWidth = ((80 * percentage) / 100).toFixed(2);
-					$(this).css("width", newWidth + '%');
-				});
-			} else {
-				$("img").each(function() {
-					$(this).css("width", '');
-				});
-			}*/
 
 			if (displayHeight < preferredHeight || displayWidth < preferredWidth) {
 				var heightPercentage = (displayHeight * 100) / preferredHeight;
@@ -1248,7 +1221,6 @@
 					}else{
 						element.wrapInner('<div class="fp-scrollable" />');
 					}
-
 
 					element.find('.fp-scrollable').slimScroll({
 						allowPageScroll: true,
