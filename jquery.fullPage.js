@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.5
+ * fullPage 2.2.5.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -142,6 +142,7 @@
 		var isResizing = false;
 		var lastScrolledDestiny;
 		var lastScrolledSlide;
+		var nav;
 		var wrapperSelector = 'fullpage-wrapper';
 
 		$.fn.fullpage.setAllowScrolling(true);
@@ -177,11 +178,7 @@
 
 		//creating the navigation dots
 		if (options.navigation) {
-			$('body').append('<div id="fp-nav"><ul></ul></div>');
-			var nav = $('#fp-nav');
-
-			nav.css('color', options.navigationColor);
-			nav.addClass(options.navigationPosition);
+			addVerticalNavigation();
 		}
 
 		$('.fp-section').each(function(index){
@@ -207,20 +204,6 @@
 			if (typeof options.anchors[index] !== 'undefined') {
 				$(this).attr('data-anchor', options.anchors[index]);
 			}
-
-			if (options.navigation) {
-				var link = '';
-				if(options.anchors.length){
-					link = options.anchors[index];
-				}
-				var tooltip = options.navigationTooltips[index];
-				if(typeof tooltip === 'undefined'){
-					tooltip = '';
-				}
-
-				nav.find('ul').append('<li data-tooltip="' + tooltip + '"><a href="#' + link + '"><span></span></a></li>');
-			}
-
 
 			// if there's any slide
 			if (numSlides > 1) {
@@ -272,9 +255,6 @@
 					addTableClass($(this));
 				}
 			}
-
-
-
 
 		}).promise().done(function(){
 			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
@@ -350,6 +330,31 @@
 
 		});
 
+
+		/**
+		* Creates a vertical navigation bar.
+		*/
+		function addVerticalNavigation(){
+			$('body').append('<div id="fp-nav"><ul></ul></div>');
+			nav = $('#fp-nav');
+
+			nav.css('color', options.navigationColor);
+			nav.addClass(options.navigationPosition);
+
+			for(var cont = 0; cont < $('.fp-section').length; cont++){
+				var link = '';
+				if(options.anchors.length){
+					link = options.anchors[cont];
+				}
+				var tooltip = options.navigationTooltips[cont];
+				if(typeof tooltip === 'undefined'){
+					tooltip = '';
+				}
+
+				nav.find('ul').append('<li data-tooltip="' + tooltip + '"><a href="#' + link + '"><span></span></a></li>');
+			}
+		}
+
 		function createSlimScrollingHandler(){
 			$('.fp-section').each(function(){
 				var slides = $(this).find('.fp-slide');
@@ -404,7 +409,6 @@
 					activateMenuElement(anchorLink);
 					activateNavDots(anchorLink, 0);
 
-
 					if(options.anchors.length && !isMoving){
 						//needed to enter in hashChange event when using the menu with anchor links
 						lastScrolledDestiny = anchorLink;
@@ -419,6 +423,47 @@
 					}, 100);
 				}
 
+			}
+		}
+
+
+		/**
+		* Determines whether the active section or slide is scrollable through and scrolling bar
+		*/
+		function isScrollable(activeSection){
+			//if there are landscape slides, we check if the scrolling bar is in the current one or not
+			if(activeSection.find('.fp-slides').length){
+				scrollable= activeSection.find('.fp-slide.active').find('.fp-scrollable');
+			}else{
+				scrollable = activeSection.find('.fp-scrollable');
+			}
+
+			return scrollable;
+		}
+
+		/**
+		* Determines the way of scrolling up or down:
+		* by 'automatically' scrolling a section or by using the default and normal scrolling.
+		*/
+		function scrolling(type, scrollable){
+			if(type == 'down'){
+				var check = 'bottom';
+				var scrollSection = $.fn.fullpage.moveSectionDown;
+			}else{
+				var check = 'top';
+				var scrollSection = $.fn.fullpage.moveSectionUp;
+			}
+
+			if(scrollable.length > 0 ){
+				//is the scrollbar at the start/end of the scroll?
+				if(isScrolled(check, scrollable)){
+					scrollSection();
+				}else{
+					return true;
+				}
+			}else{
+				// moved up/down
+				scrollSection();
 			}
 		}
 
@@ -447,7 +492,7 @@
 
 				var touchMoved = false;
 				var activeSection = $('.fp-section.active');
-				var scrollable;
+				var scrollable = isScrollable(activeSection);
 
 				if (!isMoving && !slideMoving) { //if theres any #
 					var touchEvents = getEventsPage(e);
@@ -470,41 +515,12 @@
 					//vertical scrolling (only when autoScrolling is enabled)
 					else if(options.autoScrolling){
 
-						//if there are landscape slides, we check if the scrolling bar is in the current one or not
-						if(activeSection.find('.fp-slides').length){
-							scrollable= activeSection.find('.fp-slide.active').find('.fp-scrollable');
-						}else{
-							scrollable = activeSection.find('.fp-scrollable');
-						}
-
 						//is the movement greater than the minimum resistance to scroll?
 						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
 							if (touchStartY > touchEndY) {
-								if(scrollable.length > 0 ){
-									//is the scrollbar at the end of the scroll?
-									if(isScrolled('bottom', scrollable)){
-										$.fn.fullpage.moveSectionDown();
-									}else{
-										return true;
-									}
-								}else{
-									// moved down
-									$.fn.fullpage.moveSectionDown();
-								}
+								scrolling('down', scrollable);
 							} else if (touchEndY > touchStartY) {
-
-								if(scrollable.length > 0){
-									//is the scrollbar at the start of the scroll?
-									if(isScrolled('top', scrollable)){
-										$.fn.fullpage.moveSectionUp();
-									}
-									else{
-										return true;
-									}
-								}else{
-									// moved up
-									$.fn.fullpage.moveSectionUp();
-								}
+								scrolling('up', scrollable);
 							}
 						}
 					}
@@ -512,6 +528,8 @@
 			}
 
 		}
+
+
 
 		/**
 		 * recursive function to loop up the parent nodes to check if one of them exists in options.normalScrollElements
@@ -554,44 +572,18 @@
 				e = window.event || e;
 				var delta = Math.max(-1, Math.min(1,
 						(e.wheelDelta || -e.deltaY || -e.detail)));
-				var scrollable;
+
 				var activeSection = $('.fp-section.active');
+				var scrollable = isScrollable(activeSection);
 
 				if (!isMoving) { //if theres any #
-
-					//if there are landscape slides, we check if the scrolling bar is in the current one or not
-					if(activeSection.find('.fp-slides').length){
-						scrollable= activeSection.find('.fp-slide.active').find('.fp-scrollable');
-					}else{
-						scrollable = activeSection.find('.fp-scrollable');
-					}
-
 					//scrolling down?
 					if (delta < 0) {
-						if(scrollable.length > 0 ){
-							//is the scrollbar at the end of the scroll?
-							if(isScrolled('bottom', scrollable)){
-								$.fn.fullpage.moveSectionDown();
-							}else{
-								return true; //normal scroll
-							}
-						}else{
-							$.fn.fullpage.moveSectionDown();
-						}
-					}
+						scrolling('down', scrollable);
 
 					//scrolling up?
-					else {
-						if(scrollable.length > 0){
-							//is the scrollbar at the start of the scroll?
-							if(isScrolled('top', scrollable)){
-								$.fn.fullpage.moveSectionUp();
-							}else{
-								return true; //normal scroll
-							}
-						}else{
-							$.fn.fullpage.moveSectionUp();
-						}
+					}else {
+						scrolling('up', scrollable);
 					}
 				}
 
