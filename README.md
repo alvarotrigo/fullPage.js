@@ -344,6 +344,12 @@ Ideal to use in convination with AJAX calls or external changes in the DOM struc
 $.fn.fullpage.reBuild();
 ```
 
+### getIndex
+Get the active Index , very useful when scrolling is off
+
+```javascript
+$.fn.fullpage.getIndex();
+```
 
 ## Callbacks
 ###afterLoad (`anchorLink`, `index`)

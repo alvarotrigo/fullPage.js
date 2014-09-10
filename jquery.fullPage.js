@@ -641,6 +641,14 @@
 			moveSlide('prev');
 		};
 
+        /**
+         *  Get the index , useful when scroll is off
+         * @returns {number} Return the active index
+         */
+        $.fn.fullpage.getIndex = function () {
+            return $('.section.active').index('.section')+1;
+        }
+
 		function moveSlide(direction){
 		    var activeSection = $('.fp-section.active');
 		    var slides = activeSection.find('.fp-slides');
