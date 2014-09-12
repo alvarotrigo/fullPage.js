@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.5.2
+ * fullPage 2.2.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -676,6 +676,16 @@
 		    landscapeScroll(slides, destiny);
 		}
 
+		/**
+		* Maintains the active slides in the viewport
+		* (Because he `scroll` animation might get lost with some actions, such as when using continuousVertical)
+		*/
+		function keepSlidesPosition(){
+			$('.fp-slide.active').each(function(){
+				silentLandscapeScroll($(this));
+			});
+		}
+
 		function scrollPage(element, callback, isMovementUp){
 			var scrollOptions = {}, scrolledElement;
 			var dest = element.position();
@@ -714,6 +724,9 @@
 
 				// Maintain the displayed position (now that we changed the element order)
 				silentScroll($('.fp-section.active').position().top);
+
+				// Maintain the active slides visible in the viewport
+				keepSlidesPosition();
 
 				// save for later the elements that still need to be reordered
 				var wrapAroundElements = activeSection;
@@ -759,6 +772,9 @@
 				}
 
 				silentScroll($('.fp-section.active').position().top);
+
+				// Maintain the active slides visible in the viewport
+				keepSlidesPosition();
 			};
 
 
