@@ -520,6 +520,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://rockercreative.com/
 - http://lawinenstift.com/
 - http://wtfdesign.pl/
+- http://thekorner.fr/
 - http://bnacademy.com.au/
 - http://wantnova.com/
 - http://usescribe.com/
