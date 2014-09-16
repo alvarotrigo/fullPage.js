@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.7
+ * fullPage 2.2.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1054,11 +1054,11 @@
 			slidesNav.find('li').eq(slideIndex).find('a').addClass('active');
 		}
 
+	    //when resizing the site, we adjust the heights of the sections, slimScroll...
+	    $(window).resize(resizeHandler);
 
 	    var resizeId;
-
-	    //when resizing the site, we adjust the heights of the sections, slimScroll...
-	    $(window).resize(function() {
+	    function resizeHandler(){
 	    	// rebuild immediately on touch devices
 			if (isTouchDevice) {
 	        	$.fn.fullpage.reBuild();
@@ -1069,7 +1069,7 @@
 
 	        	resizeId = setTimeout($.fn.fullpage.reBuild, 500);
 	      	}
-	    });
+	    }
 
 
 		/**
@@ -1578,7 +1578,8 @@
 
  			$(window)
 				.off('scroll', scrollHandler)
-  				.off('hashchange', hashChangeHandler);
+  				.off('hashchange', hashChangeHandler)
+  				.off('resize', resizeHandler);
 
 			$(document)
 				.off('click', '#fp-nav a')
