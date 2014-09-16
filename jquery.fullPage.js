@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.6
+ * fullPage 2.2.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -74,6 +74,12 @@
 					'height' : '100%'
 				});
 
+				//for IE touch devices
+				container.css({
+					'-ms-touch-action': 'none',
+					'touch-action': 'none'
+				});
+
 				if(element.length){
 					//moving the container up
 					silentScroll(element.position().top);
@@ -83,6 +89,12 @@
 				$('html, body').css({
 					'overflow' : 'visible',
 					'height' : 'initial'
+				});
+
+				//for IE touch devices
+				container.css({
+					'-ms-touch-action': '',
+					'touch-action': ''
 				});
 
 				silentScroll(0);
@@ -155,8 +167,7 @@
 		if($(this).length){
 			container.css({
 				'height': '100%',
-				'position': 'relative',
-				'-ms-touch-action': 'none'
+				'position': 'relative'
 			});
 
 			//adding a class to recognize the container internally in the code
@@ -1610,7 +1621,8 @@
 			container.css({
 	 			'height': '',
 	 			'position': '',
-	 			'-ms-touch-action': ''
+	 			'-ms-touch-action': '',
+	 			'touch-action': ''
 	 		});
 
 			//removing added classes
