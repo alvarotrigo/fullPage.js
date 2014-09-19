@@ -1642,9 +1642,6 @@
 
 			//scrolling the page to the top with no animation
 			$('html, body').scrollTop(0);
-
-			//to know if the plugin was already used in case it is used in a future again
-			container.addClass('fullpage-used');
 		}
 
 	};
