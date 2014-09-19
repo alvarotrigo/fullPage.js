@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.8
+ * fullPage 2.2.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -498,8 +498,6 @@
 
 			// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
 			if (!checkParentForNormalScrollElement(event.target)) {
-
-				var touchMoved = false;
 				var activeSection = $('.fp-section.active');
 				var scrollable = isScrollable(activeSection);
 
@@ -917,12 +915,26 @@
 			}
 		});
 
-		//navigation action
-		$(document).on('click', '#fp-nav a', function(e){
+		/**
+		* Scrolls to the section when clicking the navigation bullet
+		*/
+		$(document).on('click touchstart', '#fp-nav a', function(e){
 			e.preventDefault();
 			var index = $(this).parent().index();
 			scrollPage($('.fp-section').eq(index));
 		});
+
+		/**
+		* Scrolls the slider to the given slide destination for the given section
+		*/
+		$(document).on('click touchstart', '.fp-slidesNav a', function(e){
+			e.preventDefault();
+			var slides = $(this).closest('.fp-section').find('.fp-slides');
+			var destiny = slides.find('.fp-slide').eq($(this).closest('li').index());
+
+			landscapeScroll(slides, destiny);
+		});
+
 
 		//navigation tooltips
 		$(document).on({
@@ -951,7 +963,7 @@
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
-		$('.fp-section').on('click', '.fp-controlArrow', function() {
+		$('.fp-section').on('click touchstart', '.fp-controlArrow', function() {
 			if ($(this).hasClass('fp-prev')) {
 				$.fn.fullpage.moveSlideLeft();
 			} else {
@@ -1403,18 +1415,6 @@
 				}
 			}
 		}
-
-		/**
-		* Scrolls the slider to the given slide destination for the given section
-		*/
-		$(document).on('click', '.fp-slidesNav a', function(e){
-			e.preventDefault();
-			var slides = $(this).closest('.fp-section').find('.fp-slides');
-			var destiny = slides.find('.fp-slide').eq($(this).closest('li').index());
-
-			landscapeScroll(slides, destiny);
-		});
-
 
 		/**
 		* Checks for translate3d support
