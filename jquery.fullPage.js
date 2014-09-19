@@ -295,7 +295,7 @@
 			}
 
 			if(options.scrollOverflow){
-				if(container.hasClass('fullpage-used')){
+				if(document.readyState === "complete"){
 					createSlimScrollingHandler();
 				}
 				//after DOM and images are loaded
