@@ -1048,7 +1048,7 @@
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 
-				slides.find('.fp-slidesContainer').toggleClass('fp-easing', options.scrollingSpeed>0).css(getTransforms(translate3d));
+				slides.find('.fp-slidesContainer').toggleClass('fp-easing', options.scrollingSpeed>0).css('transform', translate3d);
 
 				setTimeout(function(){
 					afterSlideLoads();
@@ -1311,7 +1311,7 @@
 		function transformContainer(translate3d, animated){
 			container.toggleClass('fp-easing', animated);
 
-			container.css(getTransforms(translate3d));
+			container.css('transform', translate3d);
 		}
 
 
@@ -1556,16 +1556,6 @@
 				container.css("top", -top);
 			}
 		}
-
-		function getTransforms(translate3d){
-			return {
-				'-webkit-transform': translate3d,
-				'-moz-transform': translate3d,
-				'-ms-transform':translate3d,
-				'transform': translate3d
-			};
-		}
-
 
 		/*
 		* Destroys fullpage.js plugin events and optinally its html markup and styles
