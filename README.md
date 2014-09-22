@@ -532,6 +532,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://therope.it/
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
+- http://www.famavolat.com/
 - http://www.carpetloverclub.net/
 - http://www.implisit.com/
 - http://www.batzaya.net/
