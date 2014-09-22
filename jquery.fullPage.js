@@ -149,7 +149,7 @@
 		var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
 		var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
 		var container = $(this);
-		var windowsHeight = $(window).height();
+		var windowsHeight = window.innerHeight ? window.innerHeight : $(window).height();
 		var isMoving = false;
 		var isResizing = false;
 		var lastScrolledDestiny;
@@ -1091,7 +1091,7 @@
 			isResizing = true;
 
 			var windowsWidth = $(window).width();
-			windowsHeight = $(window).height();
+			windowsHeight = window.innerHeight ? window.innerHeight : $(window).height();
 
 			//text and images resizing
 			if (options.resize) {
