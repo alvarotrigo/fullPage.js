@@ -585,6 +585,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://vfwpost1.org/
 - http://dancingroad.com
 - http://www.camanihome.com/
+- http://www.exapoint.ch/
 
 ## Donations
 Donations would be more than welcome :)
