@@ -47,6 +47,7 @@
 			'onLeave': null,
 			'afterRender': null,
 			'afterResize': null,
+			'afterReBuild': null,
 			'afterSlideLoad': null,
 			'onSlideLeave': null
 		}, options);
@@ -1127,20 +1128,81 @@
 	    var resizeId;
 	    function resizeHandler(){
 	    	// rebuild immediately on touch devices
-			if (isTouchDevice) {
+		if (isTouchDevice) {
 
 				//if the keyboard is visible
 				if ($(document.activeElement).attr('type') !== 'text') {
-		        	$.fn.fullpage.reBuild();
+	        		$.fn.fullpage.reBuild(true);
 		        }
 	      	}else{
 	      		//in order to call the functions only when the resize is finished
 	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 	      		clearTimeout(resizeId);
 
-	        	resizeId = setTimeout($.fn.fullpage.reBuild, 500);
+	        	resizeId = setTimeout($.fn.fullpage.reBuild(true), 500);
 	      	}
 	    }
+
+
+		/**
+		 * When resizing is finished, we adjust the slides sizes and positions
+		 */
+		$.fn.fullpage.reBuild = function(resizing){
+			isResizing = true;
+
+			var windowsWidth = $(window).width();
+			windowsHeight = $(window).height();
+
+			//text and images resizing
+			if (options.resize) {
+				resizeMe(windowsHeight, windowsWidth);
+			}
+
+			$('.fp-section').each(function(){
+				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
+
+				//adjusting the height of the table-cell for IE and Firefox
+				if(options.verticalCentered){
+					$(this).find('.fp-tableCell').css('height', getTableHeight($(this)) + 'px');
+				}
+
+				$(this).css('height', windowsHeight + 'px');
+
+				//resizing the scrolling divs
+				if(options.scrollOverflow){
+					var slides = $(this).find('.fp-slide');
+
+					if(slides.length){
+						slides.each(function(){
+							createSlimScrolling($(this));
+						});
+					}else{
+						createSlimScrolling($(this));
+					}
+				}
+
+				//adjusting the position fo the FULL WIDTH slides...
+				var slides = $(this).find('.fp-slides');
+				if (slides.length) {
+					landscapeScroll(slides, slides.find('.fp-slide.active'));
+				}
+			});
+
+			//adjusting the position for the current section
+			var destinyPos = $('.fp-section.active').position();
+
+			var activeSection = $('.fp-section.active');
+
+			//isn't it the first section?
+			if(activeSection.index('.fp-section')){
+				scrollPage(activeSection);
+			}
+
+			isResizing = false;
+			
+			$.isFunction( options.afterResize ) && resizing && options.afterResize.call( this ) 
+			$.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call( this );
+		}
 
 		/**
 		 * Resizing of the font size depending on the window size as well as some of the images on the site.
