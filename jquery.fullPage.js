@@ -1,5 +1,5 @@
 /**
- * fullPage 2.2.9
+ * fullPage 2.3.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -142,6 +142,115 @@
 		$.fn.fullpage.setKeyboardScrolling = function (value){
 			options.keyboardScrolling = value;
 		};
+
+		$.fn.fullpage.moveSectionUp = function(){
+			var prev = $('.fp-section.active').prev('.fp-section');
+
+			//looping to the bottom if there's no more sections above
+			if (!prev.length && (options.loopTop || options.continuousVertical)) {
+				prev = $('.fp-section').last();
+			}
+
+			if (prev.length) {
+				scrollPage(prev, null, true);
+			}
+		};
+
+		$.fn.fullpage.moveSectionDown = function (){
+			var next = $('.fp-section.active').next('.fp-section');
+
+			//looping to the top if there's no more sections below
+			if(!next.length &&
+				(options.loopBottom || options.continuousVertical)){
+				next = $('.fp-section').first();
+			}
+
+			if(next.length){
+				scrollPage(next, null, false);
+			}
+		};
+
+		$.fn.fullpage.moveTo = function (section, slide){
+			var destiny = '';
+
+			if(isNaN(section)){
+				destiny = $('[data-anchor="'+section+'"]');
+			}else{
+				destiny = $('.fp-section').eq( (section -1) );
+			}
+
+			if (typeof slide !== 'undefined'){
+				scrollPageAndSlide(section, slide);
+			}else if(destiny.length > 0){
+				scrollPage(destiny);
+			}
+		};
+
+		$.fn.fullpage.moveSlideRight = function(){
+			moveSlide('next');
+		};
+
+		$.fn.fullpage.moveSlideLeft = function(){
+			moveSlide('prev');
+		};
+
+		/**
+		 * When resizing is finished, we adjust the slides sizes and positions
+		 */
+		$.fn.fullpage.reBuild = function(){
+			isResizing = true;
+
+			var windowsWidth = $(window).width();
+			windowsHeight = $(window).height();
+
+			//text and images resizing
+			if (options.resize) {
+				resizeMe(windowsHeight, windowsWidth);
+			}
+
+			$('.fp-section').each(function(){
+				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
+
+				//adjusting the height of the table-cell for IE and Firefox
+				if(options.verticalCentered){
+					$(this).find('.fp-tableCell').css('height', getTableHeight($(this)) + 'px');
+				}
+
+				$(this).css('height', windowsHeight + 'px');
+
+				//resizing the scrolling divs
+				if(options.scrollOverflow){
+					var slides = $(this).find('.fp-slide');
+
+					if(slides.length){
+						slides.each(function(){
+							createSlimScrolling($(this));
+						});
+					}else{
+						createSlimScrolling($(this));
+					}
+				}
+
+				//adjusting the position fo the FULL WIDTH slides...
+				var slides = $(this).find('.fp-slides');
+				if (slides.length) {
+					landscapeScroll(slides, slides.find('.fp-slide.active'));
+				}
+			});
+
+			//adjusting the position for the current section
+			var destinyPos = $('.fp-section.active').position();
+
+			var activeSection = $('.fp-section.active');
+
+			//isn't it the first section?
+			if(activeSection.index('.fp-section')){
+				scrollPage(activeSection);
+			}
+
+			isResizing = false;
+			$.isFunction( options.afterResize ) && options.afterResize.call( this);
+		}
 
 		//flag to avoid very fast sliding for landscape sliders
 		var slideMoving = false;
@@ -536,8 +645,6 @@
 
 		}
 
-
-
 		/**
 		 * recursive function to loop up the parent nodes to check if one of them exists in options.normalScrollElements
 		 * Currently works well for iOS - Android might need some testing
@@ -597,58 +704,6 @@
 				return false;
 			}
 		}
-
-
-		$.fn.fullpage.moveSectionUp = function(){
-			var prev = $('.fp-section.active').prev('.fp-section');
-
-			//looping to the bottom if there's no more sections above
-			if (!prev.length && (options.loopTop || options.continuousVertical)) {
-				prev = $('.fp-section').last();
-			}
-
-			if (prev.length) {
-				scrollPage(prev, null, true);
-			}
-		};
-
-		$.fn.fullpage.moveSectionDown = function (){
-			var next = $('.fp-section.active').next('.fp-section');
-
-			//looping to the top if there's no more sections below
-			if(!next.length &&
-				(options.loopBottom || options.continuousVertical)){
-				next = $('.fp-section').first();
-			}
-
-			if(next.length){
-				scrollPage(next, null, false);
-			}
-		};
-
-		$.fn.fullpage.moveTo = function (section, slide){
-			var destiny = '';
-
-			if(isNaN(section)){
-				destiny = $('[data-anchor="'+section+'"]');
-			}else{
-				destiny = $('.fp-section').eq( (section -1) );
-			}
-
-			if (typeof slide !== 'undefined'){
-				scrollPageAndSlide(section, slide);
-			}else if(destiny.length > 0){
-				scrollPage(destiny);
-			}
-		};
-
-		$.fn.fullpage.moveSlideRight = function(){
-			moveSlide('next');
-		};
-
-		$.fn.fullpage.moveSlideLeft = function(){
-			moveSlide('prev');
-		};
 
 		function moveSlide(direction){
 		    var activeSection = $('.fp-section.active');
@@ -1073,7 +1128,11 @@
 	    function resizeHandler(){
 	    	// rebuild immediately on touch devices
 			if (isTouchDevice) {
-	        	$.fn.fullpage.reBuild();
+
+				//if the keyboard is visible
+				if ($(document.activeElement).attr('type') !== 'text') {
+		        	$.fn.fullpage.reBuild();
+		        }
 	      	}else{
 	      		//in order to call the functions only when the resize is finished
 	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
@@ -1082,65 +1141,6 @@
 	        	resizeId = setTimeout($.fn.fullpage.reBuild, 500);
 	      	}
 	    }
-
-
-		/**
-		 * When resizing is finished, we adjust the slides sizes and positions
-		 */
-		$.fn.fullpage.reBuild = function(){
-			isResizing = true;
-
-			var windowsWidth = $(window).width();
-			windowsHeight = $(window).height();
-
-			//text and images resizing
-			if (options.resize) {
-				resizeMe(windowsHeight, windowsWidth);
-			}
-
-			$('.fp-section').each(function(){
-				var scrollHeight = windowsHeight - parseInt($(this).css('padding-bottom')) - parseInt($(this).css('padding-top'));
-
-				//adjusting the height of the table-cell for IE and Firefox
-				if(options.verticalCentered){
-					$(this).find('.fp-tableCell').css('height', getTableHeight($(this)) + 'px');
-				}
-
-				$(this).css('height', windowsHeight + 'px');
-
-				//resizing the scrolling divs
-				if(options.scrollOverflow){
-					var slides = $(this).find('.fp-slide');
-
-					if(slides.length){
-						slides.each(function(){
-							createSlimScrolling($(this));
-						});
-					}else{
-						createSlimScrolling($(this));
-					}
-				}
-
-				//adjusting the position fo the FULL WIDTH slides...
-				var slides = $(this).find('.fp-slides');
-				if (slides.length) {
-					landscapeScroll(slides, slides.find('.fp-slide.active'));
-				}
-			});
-
-			//adjusting the position for the current section
-			var destinyPos = $('.fp-section.active').position();
-
-			var activeSection = $('.fp-section.active');
-
-			//isn't it the first section?
-			if(activeSection.index('.fp-section')){
-				scrollPage(activeSection);
-			}
-
-			isResizing = false;
-			$.isFunction( options.afterResize ) && options.afterResize.call( this);
-		}
 
 		/**
 		 * Resizing of the font size depending on the window size as well as some of the images on the site.
