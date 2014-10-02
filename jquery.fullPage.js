@@ -47,6 +47,7 @@
 			'onLeave': null,
 			'afterRender': null,
 			'afterResize': null,
+			'afterReBuild': null,
 			'afterSlideLoad': null,
 			'onSlideLeave': null
 		}, options);
@@ -197,7 +198,7 @@
 		/**
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
-		$.fn.fullpage.reBuild = function(){
+		$.fn.fullpage.reBuild = function(resizing){
 			isResizing = true;
 
 			var windowsWidth = $(window).width();
@@ -249,7 +250,8 @@
 			}
 
 			isResizing = false;
-			$.isFunction( options.afterResize ) && options.afterResize.call( this);
+			$.isFunction( options.afterResize ) && resizing && options.afterResize.call( this ) 
+			$.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call( this );
 		}
 
 		//flag to avoid very fast sliding for landscape sliders
@@ -1131,14 +1133,14 @@
 
 				//if the keyboard is visible
 				if ($(document.activeElement).attr('type') !== 'text') {
-		        	$.fn.fullpage.reBuild();
+		        	$.fn.fullpage.reBuild(true);
 		        }
 	      	}else{
 	      		//in order to call the functions only when the resize is finished
 	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 	      		clearTimeout(resizeId);
 
-	        	resizeId = setTimeout($.fn.fullpage.reBuild, 500);
+	        	resizeId = setTimeout($.fn.fullpage.reBuild(true), 500);
 	      	}
 	    }
 
