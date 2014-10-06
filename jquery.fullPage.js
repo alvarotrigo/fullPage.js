@@ -514,7 +514,7 @@
 				var currentSection = scrolledSections[scrolledSections.length-1];
 
 				//executing only once the first time we reach the section
-				if(!currentSection.hasClass('active')){
+				if(currentSection && !currentSection.hasClass('active')){
 					isScrolling = true;
 
 					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
