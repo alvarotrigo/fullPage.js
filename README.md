@@ -113,6 +113,12 @@ $(document).ready(function() {
 		animateAnchor: true,
 		sectionSelector: '.section',
 		slideSelector: '.slide',
+		overrideKeydownHome: false, // Prevents the default event for the home key from firing
+		overrideKeydownEnd: false, // Prevents the default event for the end key from firing
+		overrideKeydownUp: false, // Prevents the default event for the up key from firing
+		overrideKeydownDown: false, // Prevents the default event for the down key from firing
+		overrideKeydownLeft: false, // Prevents the default event for the left key from firing
+		overrideKeydownRight: false, // Prevents the default event for the right key from firing
 
 		//events
 		onLeave: function(index, nextIndex, direction){},
@@ -207,6 +213,8 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
+
+- `overrideKeydown[Home/End/Up/Down/Left/Right]`: (default `false`) Prevents the default event for the given key from firing, and enables you to override the keydown event with your own function (See methods for some neat stuff)
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.

@@ -41,6 +41,12 @@
 			'normalScrollElementTouchThreshold': 5,
 			'sectionSelector': '.section',
 			'slideSelector': '.slide',
+			'overrideKeydownHome': false,
+			'overrideKeydownEnd': false,
+			'overrideKeydownUp': false,
+			'overrideKeydownDown': false,
+			'overrideKeydownLeft': false,
+			'overrideKeydownRight': false,
 
 			//events
 			'afterLoad': null,
@@ -938,32 +944,50 @@
 					//up
 					case 38:
 					case 33:
+						if(options.overrideKeydownUp){
+							break;
+						}
 						$.fn.fullpage.moveSectionUp();
 						break;
 
 					//down
 					case 40:
 					case 34:
+						if(options.overrideKeydownDown){
+							break;
+						}
 						$.fn.fullpage.moveSectionDown();
 						break;
 
 					//Home
 					case 36:
+						if(options.overrideKeydownHome){
+							break;
+						}
 						$.fn.fullpage.moveTo(1);
 						break;
 
 					//End
 					case 35:
+						if(options.overrideKeydownEnd){
+							break;
+						}
 						$.fn.fullpage.moveTo( $('.fp-section').length );
 						break;
 
 					//left
 					case 37:
+						if(options.overrideKeydownLeft){
+							break;
+						}
 						$.fn.fullpage.moveSlideLeft();
 						break;
 
 					//right
 					case 39:
+						if(options.overrideKeydownRight){
+							break;
+						}
 						$.fn.fullpage.moveSlideRight();
 						break;
 
