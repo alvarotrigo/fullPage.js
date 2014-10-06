@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.0
+ * fullPage 2.3.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -250,7 +250,7 @@
 			}
 
 			isResizing = false;
-			$.isFunction( options.afterResize ) && resizing && options.afterResize.call( this ) 
+			$.isFunction( options.afterResize ) && resizing && options.afterResize.call( this )
 			$.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call( this );
 		}
 
@@ -602,13 +602,14 @@
 		function touchMoveHandler(event){
 			var e = event.originalEvent;
 
-			if(options.autoScrolling){
-				//preventing the easing on iOS devices
-				event.preventDefault();
-			}
-
 			// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
 			if (!checkParentForNormalScrollElement(event.target)) {
+
+				if(options.autoScrolling){
+					//preventing the easing on iOS devices
+					event.preventDefault();
+				}
+
 				var activeSection = $('.fp-section.active');
 				var scrollable = isScrollable(activeSection);
 
