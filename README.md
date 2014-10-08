@@ -145,18 +145,6 @@ You can do it by using the index of the slide (starting by 0), or if you prefer,
 
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
-#### Using events:
-- `class="toSlide"`
-- `data-index="3"` (or whatever slide number you want to link)
-
-For example:
-```html
-<span class="toSlide" data-index="3">Click here to go to slide 3</span>
-```
-[Live example](http://jsfiddle.net/7PwsS/15/)
-
-To create links between sections, you could use the `menu` option and make use of anchor links (#) as explained below in the options section.
-
 ## Options
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections.

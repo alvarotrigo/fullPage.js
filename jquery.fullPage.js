@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.2
+ * fullPage 2.3.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1029,24 +1029,6 @@
 			}
 		});
 
-
-		/**
-		 * Scrolling horizontally when clicking on the slider controls.
-		 */
-		$('.fp-section').on('click', '.toSlide', function(e) {
-			e.preventDefault();
-
-			var slides = $(this).closest('.fp-section').find('.fp-slides');
-			var currentSlide = slides.find('.fp-slide.active');
-			var destiny = null;
-
-			destiny = slides.find('.fp-slide').eq( ($(this).data('index') -1) );
-
-			if(destiny.length > 0){
-				landscapeScroll(slides, destiny);
-			}
-		});
-
 		/**
 		* Scrolls horizontal sliders.
 		*/
@@ -1593,8 +1575,7 @@
   				.off('mouseout', options.normalScrollElements);
 
 			$('.fp-section')
-				.off('click', '.fp-controlArrow')
-				.off('click', '.toSlide');
+				.off('click', '.fp-controlArrow');
 
 			//lets make a mess!
 			if(all){
