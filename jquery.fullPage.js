@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.3
+ * fullPage 2.3.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -1123,7 +1123,9 @@
 	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 	      		clearTimeout(resizeId);
 
-	        	resizeId = setTimeout($.fn.fullpage.reBuild(true), 500);
+	        	resizeId = setTimeout(function(){ 
+	        		$.fn.fullpage.reBuild(true);
+	        	}, 500);
 	      	}
 	    }
 
