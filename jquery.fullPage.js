@@ -510,38 +510,40 @@
 					}
 				});
 
-				//geting the last one, the current one on the screen
-				var currentSection = scrolledSections[scrolledSections.length-1];
+				if (scrolledSections.length) {
+					//geting the last one, the current one on the screen
+					var currentSection = scrolledSections[scrolledSections.length-1];
 
-				//executing only once the first time we reach the section
-				if(currentSection && !currentSection.hasClass('active')){
-					isScrolling = true;
+					//executing only once the first time we reach the section
+					if(!currentSection.hasClass('active')){
+						isScrolling = true;
 
-					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
-					var yMovement = getYmovement(currentSection);
-					var anchorLink  = currentSection.data('anchor');
+						var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
+						var yMovement = getYmovement(currentSection);
+						var anchorLink  = currentSection.data('anchor');
 
-					currentSection.addClass('active').siblings().removeClass('active');
+						currentSection.addClass('active').siblings().removeClass('active');
 
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
+						$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
 
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
+						$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
 
-					activateMenuElement(anchorLink);
-					activateNavDots(anchorLink, 0);
+						activateMenuElement(anchorLink);
+						activateNavDots(anchorLink, 0);
 
-					if(options.anchors.length && !isMoving){
-						//needed to enter in hashChange event when using the menu with anchor links
-						lastScrolledDestiny = anchorLink;
+						if(options.anchors.length && !isMoving){
+							//needed to enter in hashChange event when using the menu with anchor links
+							lastScrolledDestiny = anchorLink;
 
-						location.hash = anchorLink;
+							location.hash = anchorLink;
+						}
+
+						//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+						clearTimeout(scrollId);
+						scrollId = setTimeout(function(){
+							isScrolling = false;
+						}, 100);
 					}
-
-					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
-					clearTimeout(scrollId);
-					scrollId = setTimeout(function(){
-						isScrolling = false;
-					}, 100);
 				}
 			}
 		}
