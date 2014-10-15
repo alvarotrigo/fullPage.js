@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.5
+ * fullPage 2.3.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -28,6 +28,7 @@
 			'loopTop': false,
 			'loopHorizontal': true,
 			'autoScrolling': true,
+			'fitSection': true,
 			'scrollOverflow': false,
 			'css3': false,
 			'paddingTop': 0,
@@ -493,57 +494,78 @@
 			$.isFunction( options.afterRender ) && options.afterRender.call( this);
 		}
 
+		//stop autoScrolling when the user scrolls
+		$("html, body").bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(){
+			if(!options.autoScrolling && options.fitSection){
+		    	$('html, body').stop();
+		    }
+		});
 
 		var scrollId;
+		var scrollId2;
 		var isScrolling = false;
 
 		//when scrolling...
 		$(window).on('scroll', scrollHandler);
 
 		function scrollHandler(){
-			if(!options.autoScrolling && !isMoving){
+			if(!options.autoScrolling){
 				var currentScroll = $(window).scrollTop();
+				var visibleSectionIndex = 0;
+				var initial = Math.abs(currentScroll - $('.fp-section').first().offset().top);
 
-				var scrolledSections = $('.fp-section').map(function(){
-					if ($(this).offset().top < (currentScroll + 100)){
-						return $(this);
+				//taking the section which is showing more content in the viewport
+				$('.fp-section').each(function(index){
+					var current = Math.abs(currentScroll - $(this).offset().top);
+
+					if(current < initial){
+						visibleSectionIndex = index;
+						initial = current;
 					}
 				});
 
-				if (scrolledSections.length) {
-					//geting the last one, the current one on the screen
-					var currentSection = scrolledSections[scrolledSections.length-1];
+				//geting the last one, the current one on the screen
+				var currentSection = $('.fp-section').eq(visibleSectionIndex);
 
-					//executing only once the first time we reach the section
-					if(!currentSection.hasClass('active')){
-						isScrolling = true;
+				//executing only once the first time we reach the section
+				if(!currentSection.hasClass('active') && !isMoving){
+					isScrolling = true;
 
-						var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
-						var yMovement = getYmovement(currentSection);
-						var anchorLink  = currentSection.data('anchor');
+					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
+					var yMovement = getYmovement(currentSection);
+					var anchorLink  = currentSection.data('anchor');
 
-						currentSection.addClass('active').siblings().removeClass('active');
+					currentSection.addClass('active').siblings().removeClass('active');
 
-						$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
+					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
 
-						$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
 
-						activateMenuElement(anchorLink);
-						activateNavDots(anchorLink, 0);
+					activateMenuElement(anchorLink);
+					activateNavDots(anchorLink, 0);
 
-						if(options.anchors.length && !isMoving){
-							//needed to enter in hashChange event when using the menu with anchor links
-							lastScrolledDestiny = anchorLink;
+					if(options.anchors.length && !isMoving){
+						//needed to enter in hashChange event when using the menu with anchor links
+						lastScrolledDestiny = anchorLink;
 
-							location.hash = anchorLink;
-						}
-
-						//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
-						clearTimeout(scrollId);
-						scrollId = setTimeout(function(){
-							isScrolling = false;
-						}, 100);
+						location.hash = anchorLink;
 					}
+
+					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+					clearTimeout(scrollId);
+					scrollId = setTimeout(function(){
+						isScrolling = false;
+					}, 100);
+				}
+
+				if(options.fitSection){
+					//for the auto adjust of the viewport to fit a whole section
+					clearTimeout(scrollId2);
+					scrollId2 = setTimeout(function(){
+						if(!isMoving){
+							scrollPage(currentSection);
+						}
+					}, 1000);
 				}
 			}
 		}
