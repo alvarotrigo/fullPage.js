@@ -498,6 +498,7 @@
 		$("html, body").bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(){
 			if(!options.autoScrolling && options.fitSection){
 		    	$('html, body').stop();
+		    	isMoving = false;
 		    }
 		});
 
