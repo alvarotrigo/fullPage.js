@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.4
+ * fullPage 2.3.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -501,7 +501,7 @@
 		$(window).on('scroll', scrollHandler);
 
 		function scrollHandler(){
-			if(!options.autoScrolling){
+			if(!options.autoScrolling && !isMoving){
 				var currentScroll = $(window).scrollTop();
 
 				var scrolledSections = $('.fp-section').map(function(){
@@ -850,7 +850,6 @@
 			//actions to do once the section is loaded
 			var afterSectionLoads = function(){
 				continuousVerticalFixSectionOrder();
-
 				//callback (afterLoad) if the site is not just resizing and readjusting the slides
 				$.isFunction(options.afterLoad) && !localIsResizing && options.afterLoad.call(this, anchorLink, (sectionIndex + 1));
 
@@ -876,7 +875,7 @@
 
 				$(scrolledElement).animate(
 					scrollOptions
-				, options.scrollingSpeed, options.easing, function () {
+				, options.scrollingSpeed, options.easing).promise().done(function () { //only one single callback in case of animating  `html, body`
 					afterSectionLoads();
 				});
 			}
@@ -1053,7 +1052,7 @@
 				var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
 				//if the site is not just resizing and readjusting the slides
-				if(!localIsResizing){
+				if(!localIsResizing && xMovement!=='none'){
 					$.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( this, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
 				}
 			}
@@ -1125,7 +1124,7 @@
 	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
 	      		clearTimeout(resizeId);
 
-	        	resizeId = setTimeout(function(){ 
+	        	resizeId = setTimeout(function(){
 	        		$.fn.fullpage.reBuild(true);
 	        	}, 500);
 	      	}
