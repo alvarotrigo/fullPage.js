@@ -351,7 +351,7 @@ Example:
 
 		afterLoad: function(anchorLink, index){
 			//using index
-			if(index == '3'){
+			if(index == 3){
 				alert("Section 3 ended loading");
 			}
 
@@ -378,11 +378,11 @@ Example:
 	$('#fullpage').fullpage({
 		onLeave: function(index, nextIndex, direction){
 			//after leaving section 2
-			if(index == '2' && direction =='down'){
+			if(index == 2 && direction =='down'){
 				alert("Going to section 3!");
 			}
 
-			else if(index == '2' && direction == 'up'){
+			else if(index == 2 && direction == 'up'){
 				alert("Going to section 1!");
 			}
 		}
