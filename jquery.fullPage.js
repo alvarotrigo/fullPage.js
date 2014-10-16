@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.6
+ * fullPage 2.3.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -28,7 +28,7 @@
 			'loopTop': false,
 			'loopHorizontal': true,
 			'autoScrolling': true,
-			'fitSection': true,
+			'fitSection': false,
 			'scrollOverflow': false,
 			'css3': false,
 			'paddingTop': 0,
@@ -529,7 +529,7 @@
 				var currentSection = $('.fp-section').eq(visibleSectionIndex);
 
 				//executing only once the first time we reach the section
-				if(!currentSection.hasClass('active') && !isMoving){
+				if(!currentSection.hasClass('active')){
 					isScrolling = true;
 
 					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
@@ -538,9 +538,11 @@
 
 					currentSection.addClass('active').siblings().removeClass('active');
 
-					$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
+					if(!isMoving){
+						$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
 
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
+						$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
+					}
 
 					activateMenuElement(anchorLink);
 					activateNavDots(anchorLink, 0);
