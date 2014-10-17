@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.9
+ * fullPage 2.4.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -42,6 +42,8 @@
 			'normalScrollElementTouchThreshold': 5,
 			'sectionSelector': '.section',
 			'slideSelector': '.slide',
+			'responsive': 0,
+
 
 			//events
 			'afterLoad': null,
@@ -1140,6 +1142,9 @@
 
 	    var resizeId;
 	    function resizeHandler(){
+	    	//checking if it needs to get responsive
+	    	responsive();
+
 	    	// rebuild immediately on touch devices
 			if (isTouchDevice) {
 
@@ -1156,6 +1161,25 @@
 	        		$.fn.fullpage.reBuild(true);
 	        	}, 500);
 	      	}
+	    }
+
+	    /**
+	    * Checks if the site needs to get responsive and disables autoScrolling if so.
+	    * A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS.
+	    */
+	    function responsive(){
+	    	if(options.responsive){
+	    		var isResponsive = container.hasClass('fp-responsive');
+	    		if ($(window).width() < options.responsive ){
+	    			if(!isResponsive){
+	    				$.fn.fullpage.setAutoScrolling(false);
+						container.addClass('fp-responsive');
+	    			}
+	    		}else if(isResponsive){
+	    			$.fn.fullpage.setAutoScrolling(true);
+					container.removeClass('fp-responsive');
+	    		}
+	    	}
 	    }
 
 		/**
