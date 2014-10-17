@@ -1,5 +1,5 @@
 /**
- * fullPage 2.3.8
+ * fullPage 2.3.9
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -793,7 +793,7 @@
 			var leavingSection = activeSection.index('.fp-section') + 1;
 
 			//quiting when activeSection is the target element
-			if(activeSection.is(element)){ return; }
+			if(activeSection.is(element) && !isResizing){ return; }
 
 			//caching the value of isResizing at the momment the function is called
 			//because it will be checked later inside a setTimeout and the value might change
