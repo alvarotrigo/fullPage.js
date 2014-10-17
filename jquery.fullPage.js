@@ -791,7 +791,10 @@
 			var activeSlide = element.find('.fp-slide.active');
 			var activeSection = $('.fp-section.active');
 			var leavingSection = activeSection.index('.fp-section') + 1;
-
+			
+			// activeSection is the target element
+			if(activeSection.is(element)){ return; }
+			
 			//caching the value of isResizing at the momment the function is called
 			//because it will be checked later inside a setTimeout and the value might change
 			var localIsResizing = isResizing;
