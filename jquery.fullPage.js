@@ -890,7 +890,7 @@
 			}
 
 			//callback (onLeave) if the site is not just resizing and readjusting the slides
-			$.isFunction(options.onLeave) && !localIsResizing && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
+			$.isFunction(options.onLeave) && !localIsResizing && !options.fitSection && options.onLeave.call(this, leavingSection, (sectionIndex + 1), yMovement);
 
 			// Use CSS3 translate functionality or...
 			if (options.css3 && options.autoScrolling) {
