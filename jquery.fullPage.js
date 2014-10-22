@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.1
+ * fullPage 2.4.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -418,6 +418,7 @@
 				$.isFunction( options.afterRender ) && options.afterRender.call( this);
 			}
 
+			responsive();
 
 			//getting the anchor link in the URL and deleting the `#`
 			var value =  window.location.hash.replace('#', '').split('/');
@@ -1214,10 +1215,12 @@
 	    		if ($(window).width() < options.responsive ){
 	    			if(!isResponsive){
 	    				$.fn.fullpage.setAutoScrolling(false);
+	    				$('#fp-nav').hide();
 						container.addClass('fp-responsive');
 	    			}
 	    		}else if(isResponsive){
 	    			$.fn.fullpage.setAutoScrolling(true);
+	    			$('#fp-nav').show();
 					container.removeClass('fp-responsive');
 	    		}
 	    	}
