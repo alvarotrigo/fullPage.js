@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.2
+ * fullPage 2.4.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -16,6 +16,7 @@
 			'anchors':[],
 			'scrollingSpeed': 700,
 			'easing': 'easeInQuart',
+			'easingcss3': 'ease',
 			'menu': false,
 			'navigation': false,
 			'navigationPosition': 'right',
@@ -1161,7 +1162,7 @@
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 
-				slides.find('.fp-slidesContainer').toggleClass('fp-easing', options.scrollingSpeed>0).css(getTransforms(translate3d));
+				addAnimation(slides.find('.fp-slidesContainer'), options.scrollingSpeed>0).css(getTransforms(translate3d));
 
 				setTimeout(function(){
 					afterSlideLoads();
@@ -1225,6 +1226,31 @@
 	    		}
 	    	}
 	    }
+
+	    /**
+		* Toogles transition animations for the given element
+		*/
+		function addAnimation(element, adding){
+			var transition = 'all ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
+
+			if(adding){
+				element.removeClass('fp-notransition');
+				return element.css({
+					'-webkit-transition': transition,
+         			'transition': transition
+           		});
+			}
+
+			//removing the animation
+			return removeAnimation(element);
+		}
+
+		/**
+		* Remove transition animations for the given element
+		*/
+		function removeAnimation(element){
+			return element.addClass('fp-notransition');
+		}
 
 		/**
 		 * Resizing of the font size depending on the window size as well as some of the images on the site.
@@ -1398,7 +1424,7 @@
 		* Adds a css3 transform property to the container class with or without animation depending on the animated param.
 		*/
 		function transformContainer(translate3d, animated){
-			container.toggleClass('fp-easing', animated);
+			addAnimation(container, animated);
 
 			container.css(getTransforms(translate3d));
 		}
@@ -1720,7 +1746,8 @@
 				$(this).removeClass('fp-table active');
 			})
 
-			container.find('.fp-easing').removeClass('fp-easing');
+			removeAnimation(container);
+			removeAnimation(container.find('.fp-easing'));
 
 			//Unwrapping content
 			container.find('.fp-tableCell, .fp-slidesContainer, .fp-slides').each(function(){

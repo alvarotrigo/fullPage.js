@@ -81,10 +81,11 @@ html, body {
 }
 .fp-scrollable {
     overflow: scroll;
+
 }
-.fp-easing {
-    -webkit-transition: all 0.7s ease-out; /* Safari<=6 Android<=4.3 */
-    transition: all 0.7s ease-out;
+.fp-notransition {
+    -webkit-transition: none !important;
+    transition: none !important;
 }
 #fp-nav {
     position: fixed;

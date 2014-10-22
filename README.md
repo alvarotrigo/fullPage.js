@@ -91,6 +91,7 @@ $(document).ready(function() {
 		anchors:['firstSlide', 'secondSlide'],
 		scrollingSpeed: 700,
 		easing: 'easeInQuart',
+		easingcss3: 'ease',
 		menu: false,
 		navigation: false,
 		navigationPosition: 'right',
@@ -168,6 +169,8 @@ $('#fullpage').fullpage({
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical and horizontal scrolling.
 It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
+
+- `easingcss3`: (default `ease`) Defines the transition effect to use in case of using `css3:true`.
 
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
