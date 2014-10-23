@@ -27,6 +27,13 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 ## Usage
 As you can see in the example files, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
 
+### Install using bower:
+Optionally, you can install pagePiling.js with bower:
+Terminal:
+```shell
+bower install fullpage.js
+```
+
 ###Including files:
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
@@ -178,9 +185,9 @@ $('#fullpage').fullpage({
 **Important** It is helpful to understand that the values in the `anchors` option array correlate directly to the element with the class of `.section` by it's position in the markup.
 
 - `easing`: (default `easeInQuart`) Defines the transition effect to use for the vertical and horizontal scrolling.
-It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of its transitions. Other libraries could be used instead.
+It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of [its transitions](http://api.jqueryui.com/easings/). Other libraries could be used instead.
 
-- `easingcss3`: (default `ease`) Defines the transition effect to use in case of using `css3:true`.
+- `easingcss3`: (default `ease`) Defines the transition effect to use in case of using `css3:true`. You can use the [pre-defined ones](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (such as `linear`, `ease-out`...) or create your own ones using the `cubic-bezier` function. You might want to use [Matthew Lein CSS Easing Animation Tool](http://matthewlein.com/ceaser/) for it.
 
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
