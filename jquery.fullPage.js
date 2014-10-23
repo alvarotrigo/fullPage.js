@@ -10,40 +10,49 @@
 	$.fn.fullpage = function(options) {
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
-			"verticalCentered": true,
-			'resize': true,
-			'sectionsColor' : [],
-			'anchors':[],
-			'scrollingSpeed': 700,
-			'easing': 'easeInQuart',
-			'easingcss3': 'ease',
+			//navigation
 			'menu': false,
+			'anchors':[],
 			'navigation': false,
 			'navigationPosition': 'right',
 			'navigationColor': '#000',
 			'navigationTooltips': [],
 			'slidesNavigation': false,
 			'slidesNavPosition': 'bottom',
-			'controlArrowColor': '#fff',
+
+			//scrolling
+			'css3': false,
+			'scrollingSpeed': 700,
+			'autoScrolling': true,
+			'easing': 'easeInQuart',
+			'easingcss3': 'ease',
 			'loopBottom': false,
 			'loopTop': false,
 			'loopHorizontal': true,
-			'autoScrolling': true,
+			'continuousVertical': false,
 			'fitSection': false,
+			'normalScrollElements': null,
 			'scrollOverflow': false,
-			'css3': false,
+			'touchSensitivity': 5,
+			'normalScrollElementTouchThreshold': 5,
+
+			//Accessibility
+			'keyboardScrolling': true,
+			'animateAnchor': true,
+
+			//design
+			'controlArrowColor': '#fff',
+			"verticalCentered": true,
+			'resize': true,
+			'sectionsColor' : [],
 			'paddingTop': 0,
 			'paddingBottom': 0,
 			'fixedElements': null,
-			'normalScrollElements': null,
-			'keyboardScrolling': true,
-			'touchSensitivity': 5,
-			'continuousVertical': false,
-			'animateAnchor': true,
-			'normalScrollElementTouchThreshold': 5,
+			'responsive': 0,
+
+			//Custom selectors
 			'sectionSelector': '.section',
 			'slideSelector': '.slide',
-			'responsive': 0,
 
 
 			//events

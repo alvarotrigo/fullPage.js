@@ -85,36 +85,46 @@ A more complex initialization with all options set could look like this:
 ```javascript
 $(document).ready(function() {
 	$('#fullpage').fullpage({
-		verticalCentered: true,
-		resize : true,
-		sectionsColor : ['#ccc', '#fff'],
-		anchors:['firstSlide', 'secondSlide'],
-		scrollingSpeed: 700,
-		easing: 'easeInQuart',
-		easingcss3: 'ease',
+		//Navigation
 		menu: false,
+		anchors:['firstSlide', 'secondSlide'],
 		navigation: false,
 		navigationPosition: 'right',
 		navigationTooltips: ['firstSlide', 'secondSlide'],
 		slidesNavigation: true,
 		slidesNavPosition: 'bottom',
+
+		//Scrolling
+		css3: false,
+		scrollingSpeed: 700,
+		autoScrolling: true,
+		easing: 'easeInQuart',
+		easingcss3: 'ease',
 		loopBottom: false,
 		loopTop: false,
 		loopHorizontal: true,
-		autoScrolling: true,
+		continuousVertical: false,
+		normalScrollElements: '#element1, .element2',
 		scrollOverflow: false,
-		css3: false,
+		touchSensitivity: 15,
+		normalScrollElementTouchThreshold: 5,
+
+		//Accessibility
+		keyboardScrolling: true,
+		animateAnchor: true,
+
+		//Design
+		verticalCentered: true,
+		resize : true,
+		sectionsColor : ['#ccc', '#fff'],
 		paddingTop: '3em',
 		paddingBottom: '10px',
-		normalScrollElements: '#element1, .element2',
-		normalScrollElementTouchThreshold: 5,
-		keyboardScrolling: true,
-		touchSensitivity: 15,
-		continuousVertical: false,
-		animateAnchor: true,
+		fixedElements: '#header, .footer',
+		responsive: 0,
+
+		//Custom selectors
 		sectionSelector: '.section',
 		slideSelector: '.slide',
-		responsive: 0,
 
 		//events
 		onLeave: function(index, nextIndex, direction){},
@@ -251,13 +261,13 @@ Scrolls one section up:
 ```javascript
 $.fn.fullpage.moveSectionUp();
 ```
-
+---
 ### moveSectionDown()
 Scrolls one section down:
 ```javascript
 $.fn.fullpage.moveSectionDown();
 ```
-
+---
 ### moveTo(section, slide)
 Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
 ```javascript
@@ -273,19 +283,19 @@ $.fn.fullpage.moveTo(3, 0);
 //Which is the same as
 $.fn.fullpage.moveTo(3);
 ```
-
+---
 ### moveSlideRight()
 Scrolls the horizontal slider of the current section to the next slide:
 ```javascript
 $.fn.fullpage.moveSlideRight();
 ```
-
+---
 ### moveSlideLeft()
 Scrolls the horizontal slider of the current section to the previous slide:
 ```javascript
 $.fn.fullpage.moveSlideLeft();
 ```
-
+---
 ### setAutoScrolling(boolean)
 Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with `scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section is scrollable.
@@ -293,29 +303,28 @@ Defines the way the page scrolling behaves. If it is set to `true`, it will use 
 ```javascript
 $.fn.fullpage.setAutoScrolling(false);
 ```
-
+---
 ### setAllowScrolling(boolean)
 Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
 ```javascript
 $.fn.fullpage.setAllowScrolling(false);
 ```
-
+---
 ### setKeyboardScrolling(boolean)
 Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys (which is active by default).
 
 ```javascript
 $.fn.fullpage.setKeyboardScrolling(false);
 ```
-
-
+---
 ### setScrollingSpeed(milliseconds)
 Defines the scrolling speed in milliseconds.
 
 ```javascript
 $.fn.fullpage.setScrollingSpeed(700);
 ```
-
+---
 ### destroy(type)
 Destroys the plugin events and optinally its HTML markup and styles.
 Ideal to use when using AJAX to load content. ()
@@ -329,7 +338,7 @@ $.fn.fullpage.destroy();
 //destroy any plugin event and any plugin modification done over your original HTML markup.
 $.fn.fullpage.destroy('all');
 ```
-
+---
 ### reBuild()
 Updates the DOM structure to fit the new window size or its contents.
 Ideal to use in convination with AJAX calls or external changes in the DOM structure of the site.
@@ -368,7 +377,7 @@ Example:
 		}
 	});
 ```
-
+---
 ###onLeave (`index`, `nextIndex`, `direction`)
 This callback is fired once the user leaves a section, in the transition to the new section.
 
@@ -395,7 +404,7 @@ Example:
 	});
 ```
 
-
+---
 ###afterRender()
 This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or fire any code which requires the document to be ready (as this plugin modifies the DOM to create the resulting structure).
 
@@ -408,7 +417,7 @@ Example:
 		}
 	});
 ```
-
+---
 ###afterResize()
 This callback is fired after resizing the browser's window. Just after the sections are resized.
 
@@ -421,7 +430,7 @@ Example:
 		}
 	});
 ```
-
+---
 ###afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
 Callback fired once the slide of a section have been loaded, after the scrolling has ended.
 Parameters:
@@ -456,7 +465,7 @@ Example:
 ```
 
 
-
+---
 ###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`)
 This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
 Parameters:
