@@ -28,7 +28,7 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 As you can see in the example files, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
 
 ### Install using bower:
-Optionally, you can install pagePiling.js with bower:
+Optionally, you can install fullPage.js with bower:
 Terminal:
 ```shell
 bower install fullpage.js
