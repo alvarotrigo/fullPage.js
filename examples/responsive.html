@@ -32,16 +32,6 @@
 		text-align:center;
 	}
 
-	/* Overwriting styles for control arrows for slides
-	* --------------------------------------- */
-	.controlArrow.prev {
-		left: 50px;
-	}
-	.controlArrow.next{
-		right: 50px;
-	}
-
-
 	/* Bottom menu
 	* --------------------------------------- */
 	#infoMenu li a {
@@ -70,7 +60,8 @@
 				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['First page', 'Second page', 'Third and last page']
+				navigationTooltips: ['First page', 'Second page', 'Third and last page'],
+				responsive: 900
 			});
 		});
 	</script>
@@ -81,13 +72,13 @@
 <select id="demosMenu">
   <option selected>Choose Demo</option>
   <option id="backgrounds">Background images</option>
-  <option id="backgroundVideo">Background video</option>
+  <option id="videoBackground">Background video</option>
   <option id="gradientBackgrounds">Gradient backgrounds</option>
   <option id="looping">Looping</option>
   <option id="noAnchor">No anchor links</option>
   <option id="scrollingSpeed">Scrolling speed</option>
   <option id="easing">Easing</option>
-  <option id="callbacks">Callbacks</option>
+  <option id="callback">Callbacks</option>
   <option id="css3">CSS3</option>
   <option id="continuous">Continuous scrolling</option>
   <option id="normalScroll">Normal scrolling</option>
@@ -98,35 +89,32 @@
   <option id="apple">Apple iPhone demo (animations)</option>
   <option id="oneSection">One Single Section</option>
   <option id="responsive">Responsive</option>
-  <option id="methods">Methods</option>
+   <option id="methods">Methods</option>
 </select>
 
 
 <div id="fullpage">
 	<div class="section " id="section0">
 		<div class="intro">
-			<h1>Navigation dots</h1>
-			<p>An easy and beautiful way to navigate throw the sections</p>
+			<h1>Responsive</h1>
+			<p>This example will turn to normal scroll when the window size gets smaller than 900px</p>
 		</div>
 	</div>
 	<div class="section" id="section1">
 	    <div class="slide" id="slide1">
 			<div class="intro">
-				<h1>Clickable</h1>
-				<p>
-					You can even click on the navigation and jump directly to another section.
-				</p>
+				<h1>Ideal for small screens</h1>
 			</div>
 		</div>
 
 	    <div class="slide" id="slide2">
-			<h1>Slide 2</h1>
+			<h1>This example uses responsive: 900</h1>
 		</div>
 
 	</div>
 	<div class="section" id="section2">
 		<div class="intro">
-			<h1>Enjoy it</h1>
+			<h1>Keep it simple!</h1>
 		</div>
 	</div>
 </div>

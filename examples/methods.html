@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Methods - Callbacks - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage methods demo." />
+	<meta name="keywords"  content="fullpage,jquery,methods,callbacks,demo" />
+	<meta name="Resource-type" content="Document" />
+
+	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="../jquery.fullPage.js"></script>
+	<script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="examples.js"></script>
+	<script type="text/javascript">
+	 $(document).ready(function() {
+
+	 		function initialization(){
+	 			$('#myContainer').fullpage({
+	                sectionsColor: ['#4A6FB1', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+	                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+	                resize: false,
+	                animateAnchor:false,
+					scrollOverflow: true,
+					autoScrolling:true,
+					responsive: 900,
+					fitSection: false,
+					menu: '#menu',
+					navigation:true,
+					continuousVertical:true,
+					paddingTop: '20px',
+	                css3: true,
+					onLeave: function(index, nextIndex, direction){
+						console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
+					},
+	       			afterLoad: function(anchorLink, index){
+						console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+	       			},
+					afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+						console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
+					},
+	        		onSlideLeave: function(anchorLink, index, slideIndex, direction){
+						console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
+	        		},
+	        		afterRender: function(){
+						console.log("afterRender");
+	        		},
+	        		afterResize: function(){
+						console.log("afterResize");
+	        		}
+	            });
+	 		}
+
+	 		//fullPage.js initialization
+            initialization();
+
+
+			$('#moveSectionUp').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSectionUp();
+			});
+
+			$('#moveSectionDown').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSectionDown();
+			});
+
+			$('#moveTo').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveTo(3, 2);
+			});
+
+			$('#moveSlideRight').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSlideRight();
+			});
+
+			$('#moveSlideLeft').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.moveSlideLeft();
+			});
+
+			$('#setAutoScrollingFalse').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAutoScrolling(false);
+			});
+
+			$('#setAutoScrollingTrue').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAutoScrolling(true);
+			});
+
+			$('#setAllowScrollingFalse').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAllowScrolling(false);
+			});
+
+			$('#setAllowScrollingTrue').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setAllowScrolling(true);
+			});
+
+			$('#setKeyboardScrollingFalse').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setKeyboardScrolling(false);
+			});
+
+			$('#setKeyboardScrollingTrue').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setKeyboardScrolling(true);
+			});
+
+			$('#setScrollingSpeed1500').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setScrollingSpeed(2500);
+			});
+
+			$('#setScrollingSpeed700').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.setScrollingSpeed(700);
+			});
+
+			$('#destroy').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.destroy('all');
+			});
+
+			$('#undestroy').click(function(e){
+				e.preventDefault();
+
+				//fullPage.js initialization
+				initialization();
+			});
+
+			$('#reBuild').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.reBuild();
+			});
+        });
+    </script>
+
+	<style>
+		#actions{
+			position:fixed;
+			top: 73px;
+			left: 30px;
+			z-index: 99999;
+		}
+		#actions a{
+			background: rgba(0,0,0,0.8);
+			padding: 7px;
+			margin: 2px;
+			color: #ccc;
+			display: inline-block;
+		}
+		#actions a:hover{
+			color: #fff;
+			background: #81A140;
+		}
+
+		/* Overwriting styles for control arrows for slides
+		* --------------------------------------- */
+		.fp-controlArrow.fp-prev {
+			left: 50px;
+		}
+		.fp-controlArrow.fp-next{
+			right: 50px;
+		}
+	</style>
+
+</head>
+<body>
+
+<select id="demosMenu">
+  <option selected>Choose Demo</option>
+  <option id="backgrounds">Background images</option>
+  <option id="backgroundVideo">Background video</option>
+  <option id="gradientBackgrounds">Gradient backgrounds</option>
+  <option id="looping">Looping</option>
+  <option id="noAnchor">No anchor links</option>
+  <option id="scrollingSpeed">Scrolling speed</option>
+  <option id="easing">Easing</option>
+  <option id="callbacks">Callbacks</option>
+  <option id="css3">CSS3</option>
+  <option id="continuous">Continuous scrolling</option>
+  <option id="normalScroll">Normal scrolling</option>
+  <option id="scrolling">Scroll inside sections and slides</option>
+  <option id="navigationV">Vertical navigation dots</option>
+  <option id="navigationH">Horizontal navigation dots</option>
+  <option id="fixedHeaders">Fixed headers</option>
+  <option id="apple">Apple iPhone demo (animations)</option>
+  <option id="oneSection">One Single Section</option>
+  <option id="responsive">Responsive</option>
+  <option id="methods">Methods</option>
+</select>
+
+
+<div id="actions">
+	<a id="moveSectionUp" href="#">moveSectionUp</a>
+	<a id="moveSectionDown" href="#">moveSectionDown</a>
+	<a id="moveTo" href="#">moveTo(3,2)</a>
+	<a id="moveSlideRight" href="#">moveSlideRight</a>
+	<a id="moveSlideLeft" href="#">moveSlideLeft</a>
+	<a id="setAutoScrollingTrue" href="#">setAutoScrolling(true)</a>
+	<a id="setAutoScrollingFalse" href="#">setAutoScrolling(false)</a>
+	<a id="setAllowScrollingTrue" href="#">setAllowScrolling(true)</a>
+	<a id="setAllowScrollingFalse" href="#">setAllowScrolling(false)</a>
+	<a id="setKeyboardScrollingTrue" href="#">setKeyboardScrolling(true)</a>
+	<a id="setKeyboardScrollingFalse" href="#">setKeyboardScrolling(false)</a>
+	<a id="setScrollingSpeed1500" href="#">setScrollingSpeed(1500)</a>
+	<a id="setScrollingSpeed700" href="#">setScrollingSpeed(700)</a>
+	<a id="destroy" href="#">destroy('all')</a>
+	<a id="undestroy" href="#">undestroy</a>
+	<a id="reBuild" href="#">reBuild</a>
+</div>
+
+
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+	<li data-menuanchor="4thpage"><a href="#4thpage">Fourth slide</a></li>
+</ul>
+<div id="myContainer">
+
+	<div class="section" id="section0">
+		<div class="slide" id ="slide1.1">
+			<h1>Section 1</h1>
+		</div>
+		<div class="slide" id ="slide1.2"><h1>Slide 1.2</h1></div>
+		<div class="slide" id ="slide1.3"><h1>Slide 1.3</h1></div>
+		</div>
+	<div class="section" id="section1">
+		<div class="slide"><h1>Section 2</h1></div>
+	    <div class="slide"><div class="wrap"><h1>Slide 2.1</h1></div></div>
+	    <div class="slide"><h1>Slide 2.2</h1></div>
+	    <div class="slide"><h1>Slide 2.3</h1></div>
+	</div>
+	<div class="section" id="section2"><h1>Section 3</h1></div>
+	<div class="section" id="section3"><h1>Section 4</h1></div>
+</div>
+
+</body>
+</html>

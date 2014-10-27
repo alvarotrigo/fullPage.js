@@ -10,7 +10,7 @@ a{
 	text-decoration:none;
 }
 table {
-    border-spacing: 0;    
+    border-spacing: 0;
 }
 fieldset,img {
     border: 0;
@@ -59,7 +59,7 @@ body{
 	position: relative;
 }
 h1{
-	font-size: 6em;	
+	font-size: 6em;
 }
 p{
 	font-size: 2em;
@@ -78,8 +78,8 @@ p{
 	color: #000;
 	background:#fff;
 	background: rgba(255,255,255, 0.5);
-	-webkit-border-radius: 10px; 
-            border-radius: 10px; 
+	-webkit-border-radius: 10px;
+            border-radius: 10px;
 }
 #menu li.active{
 	background:#666;
@@ -137,7 +137,7 @@ p{
 	border-color: #2f96b4 #2f96b4 #1f6377;
 	border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-	
+
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -178,7 +178,7 @@ p{
 }
 #infoMenu li a{
 	display: block;
-	margin: 0 22px 0 0;	
+	margin: 0 22px 0 0;
 	color: #333;
 }
 #infoMenu li a:hover{
