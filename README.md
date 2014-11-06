@@ -528,6 +528,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://jacoberiksson.se/
 - http://patuque.com/santateresa
 - http://ymcadc.org/AnnualReport/
+- http://www.dividendsolar.com/
 - http://lawinenstift.com/
 - http://wtfdesign.pl/
 - http://thekorner.fr/
