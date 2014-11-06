@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>FullScreen Backgrounds - fullPage.js</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="author" content="Alvaro Trigo Lopez">
+    <meta name="description" content="fullPage full-screen navigation and sections control menu.">
+    <meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,navigation,control arrows, dots">
+    <link rel="stylesheet" href="../jquery.fullPage.css">
+    <link rel="stylesheet" href="examples.css">
+    <style>
+        .section {
+            text-align: center;
+        }
+
+        .section h1,
+        .section p {
+            color: #333333;
+        }
+
+        .section h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <select id="demosMenu">
+        <option selected>Choose Demo</option>
+        <option id="backgrounds">Background images</option>
+        <option id="backgroundVideo">Background video</option>
+        <option id="gradientBackgrounds">Gradient backgrounds</option>
+        <option id="looping">Looping</option>
+        <option id="noAnchor">No anchor links</option>
+        <option id="scrollingSpeed">Scrolling speed</option>
+        <option id="easing">Easing</option>
+        <option id="callbacks">Callbacks</option>
+        <option id="css3">CSS3</option>
+        <option id="continuous">Continuous scrolling</option>
+        <option id="normalScroll">Normal scrolling</option>
+        <option id="scrolling">Scroll inside sections and slides</option>
+        <option id="verticalNavigation">Vertical navigation dots</option>
+        <option id="verticalNavigationArrows">Vertical navigation with arrows</option>
+        <option id="horizontalNavigation">Horizontal navigation dots</option>
+        <option id="fixedHeaders">Fixed headers</option>
+        <option id="apple">Apple iPhone demo (animations)</option>
+        <option id="oneSection">One Single Section</option>
+        <option id="responsive">Responsive</option>
+        <option id="methods">Methods</option>
+    </select>
+
+    <div id="fullpage">
+        <div class="section">
+            <h1>Navigation with arrows</h1>
+            <p>An easy and beautiful way to navigate throw the sections</p>
+        </div>
+
+        <div class="section">
+            <h1>Clickable</h1>
+            <p>You can even click on the navigation and jump directly to another section.</p>
+        </div>
+
+        <div class="section">
+            <h1>Enjoy it!</h1>
+        </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="../jquery.fullPage.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('#fullpage').fullpage({
+                anchors: ['1', '2', '3'],
+                navigation: true,
+                navigationArrows: true,
+                navigationTooltips: ['First page', 'Second page', 'Third and last page'],
+                sectionsColor: ['#f1c40f', '#e67e22', '#c0392b']
+            });
+        });
+    </script>
+</body>
+</html>

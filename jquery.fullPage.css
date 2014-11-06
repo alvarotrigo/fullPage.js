@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.3
+ * fullPage 2.4.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -117,19 +117,19 @@ html, body {
   margin: 0;
   padding: 0;
 }
-#fp-nav li,
-.fp-slidesNav li {
+#fp-nav ul li,
+.fp-slidesNav ul li {
     display: block;
     width: 14px;
     height: 13px;
     margin: 7px;
     position:relative;
 }
-.fp-slidesNav li {
+.fp-slidesNav ul li {
     display: inline-block;
 }
-#fp-nav li a,
-.fp-slidesNav li a {
+#fp-nav ul li a,
+.fp-slidesNav ul li a {
     display: block;
     position: relative;
     z-index: 1;
@@ -138,12 +138,12 @@ html, body {
     cursor: pointer;
     text-decoration: none;
 }
-#fp-nav li .active span,
-.fp-slidesNav .active span {
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span {
     background: #333;
 }
-#fp-nav span,
-.fp-slidesNav span {
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
     top: 2px;
     left: 2px;
     width: 8px;
@@ -154,7 +154,7 @@ html, body {
     position: absolute;
     z-index: 1;
 }
-.fp-tooltip {
+#fp-nav ul li .fp-tooltip {
     position: absolute;
     top: -2px;
     color: #fff;
@@ -163,9 +163,30 @@ html, body {
     white-space: nowrap;
     max-width: 220px;
 }
-.fp-tooltip.right {
+#fp-nav ul li .fp-tooltip.right {
     right: 20px;
 }
-.fp-tooltip.left {
+#fp-nav ul li .fp-tooltip.left {
     left: 20px;
+}
+#fp-nav span.prev,
+#fp-nav span.next {
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+    text-align: center;
+    position: relative;
+    line-height: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    display: block;
+    height: 20px;
+    margin: 7px;
+    width: 14px;
+}
+
+#fp-nav span.inactive {
+    cursor: default;
+    opacity: 0.25;
 }
