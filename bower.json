@@ -3,12 +3,12 @@
   "version": "2.4.4",
   "homepage": "http://alvarotrigo.com/fullPage/",
   "authors": [
-    "Alvaro Trigo https://github.com/alvarotrigo"
+    "Alvaro Trigo"
   ],
-  "description": "Create  beautiful fullscreen scrolling websites",
+  "description": "Create beautiful fullscreen scrolling websites",
   "main": [
-    "jquery.fullPage.js",
-    "jquery.fullPage.css"
+    "jquery.fullPage.css",
+    "jquery.fullPage.js"
   ],
   "keywords": [
     "jquery",
@@ -28,6 +28,7 @@
   ],
   "dependencies": {
       "jquery.slimscroll": "latest",
+      "jquery.easings": "latest",
       "jquery": "latest"
     }
 }
