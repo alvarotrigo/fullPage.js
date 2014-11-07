@@ -30,7 +30,7 @@
             'loopBottom': false,
             'loopTop': false,
             'loopHorizontal': true,
-            'iinuousVertical': false,
+            'continuousVertical': false,
             'fitSection': false,
             'normalScrollElements': null,
             'scrollOverflow': false,
@@ -42,7 +42,7 @@
             'animateAnchor': true,
 
             // Design
-            'irolArrowColor': '#ffffff',
+            'controlArrowColor': '#ffffff',
             "verticalCentered": true,
             'resize': true,
             'sectionsColor' : [],
@@ -66,9 +66,9 @@
         }, options);
 
         // Disable mutually exclusive settings
-        if (options.iinuousVertical && (options.loopTop || options.loopBottom)) {
-            options.iinuousVertical = false;
-            console.log('Option loopTop/loopBottom is mutually exclusive with iinuousVertical; iinuousVertical disabled');
+        if (options.continuousVertical && (options.loopTop || options.loopBottom)) {
+            options.continuousVertical = false;
+            console.log('Option loopTop/loopBottom is mutually exclusive with continuousVertical; continuousVertical disabled');
         }
 
         // Defines the delay to take place before being able to scroll to the next section
@@ -88,13 +88,13 @@
                 });
 
                 // For IE touch devices
-                iainer.css({
+                container.css({
                     '-ms-touch-action': 'none',
                     'touch-action': 'none'
                 });
 
                 if (element.length) {
-                    // Moving the iainer up
+                    // Moving the container up
                     silentScroll(element.position().top);
                 }
             } else {
@@ -104,7 +104,7 @@
                 });
 
                 // For IE touch devices
-                iainer.css({
+                container.css({
                     '-ms-touch-action': '',
                     'touch-action': ''
                 });
@@ -164,7 +164,7 @@
             var prev = $('.fp-section.active').prev('.fp-section');
 
             // Looping to the bottom if there's no more sections above
-            if (!prev.length && (options.loopTop || options.iinuousVertical)) {
+            if (!prev.length && (options.loopTop || options.continuousVertical)) {
                 prev = $('.fp-section').last();
             }
 
@@ -181,7 +181,7 @@
 
             // Looping to the top if there's no more sections below
             if(!next.length &&
-                (options.loopBottom || options.iinuousVertical)) {
+                (options.loopBottom || options.continuousVertical)) {
                 next = $('.fp-section').first();
             }
 
@@ -292,7 +292,7 @@
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
-        var iainer = $(this);
+        var container = $(this);
         var windowsHeight = $(window).height();
         var isMoving = false;
         var isResizing = false;
@@ -309,16 +309,17 @@
         }
 
         if ($(this).length) {
-            iainer.css({
+            container.css({
                 'position': 'relative',
                 'height': '100%'
             });
 
-            // Adding a class to recognize the iainer internally in the code
-            iainer.addClass(wrapperSelector);
+            // Adding a class to recognize the container internally in
+            // the code
+            container.addClass(wrapperSelector);
         } else {
             // Trying to use fullpage without a selector?
-            console.error("Error! Fullpage.js needs to be initialized with a selector. For example: $('#myiainer').fullpage();");
+            console.error("Error! Fullpage.js needs to be initialized with a selector. For example: $('#myContainer').fullpage();");
         }
 
         // Adding internal class names to void problem with common ones
@@ -363,24 +364,24 @@
                 var sliderWidth = numSlides * 100;
                 var slideWidth = 100 / numSlides;
 
-                slides.wrapAll('<div class="fp-slidesiainer" />');
-                slides.parent().wrap('<div class="fp-slides" />');
+                slides.wrapAll('<div class="fp-slidesContainer"></div>');
+                slides.parent().wrap('<div class="fp-slides"></div>');
 
-                $(this).find('.fp-slidesiainer').css('width', sliderWidth + '%');
-                $(this).find('.fp-slides').after('<div class="fp-irolArrow fp-prev"></div>'
-                        + '<div class="fp-irolArrow fp-next"></div>');
+                $(this).find('.fp-slidesContainer').css('width', sliderWidth + '%');
+                $(this).find('.fp-slides').after('<div class="fp-controlArrow fp-prev"></div>'
+                        + '<div class="fp-controlArrow fp-next"></div>');
 
-                if (options.irolArrowColor != '#ffffff') {
-                    $(this).find('.fp-irolArrow.fp-next').css({
-                        'border-color': 'transparent transparent transparent ' + options.irolArrowColor
+                if (options.controlArrowColor != '#ffffff') {
+                    $(this).find('.fp-controlArrow.fp-next').css({
+                        'border-color': 'transparent transparent transparent ' + options.controlArrowColor
                     });
-                    $(this).find('.fp-irolArrow.fp-prev').css({
-                        'border-color': 'transparent ' + options.irolArrowColor + ' transparent transparent'
+                    $(this).find('.fp-controlArrow.fp-prev').css({
+                        'border-color': 'transparent ' + options.controlArrowColor + ' transparent transparent'
                     });
                 }
 
                 if (!options.loopHorizontal) {
-                    $(this).find('.fp-irolArrow.fp-prev').hide();
+                    $(this).find('.fp-controlArrow.fp-prev').hide();
                 }
 
                 if (options.slidesNavigation) {
@@ -422,19 +423,19 @@
                 silentLandscapeScroll(activeSlide);
             }
 
-            // Fixed elements need to be moved out of the plugin iainer
+            // Fixed elements need to be moved out of the plugin container
             // due to problems with CSS3
             if (options.fixedElements && options.css3) {
                 $(options.fixedElements).appendTo('body');
             }
 
-            // vertical centered of the navigation + first bullet active
+            // Vertical centered of the navigation + first bullet active
             if (options.navigation) {
                 nav.css('margin-top', '-' + (nav.height() / 2) + 'px');
                 nav.find('li').eq($('.fp-section.active').index('.fp-section')).find('a').addClass('active');
             }
 
-            // Moving the menu outside the main iainer if it is inside
+            // Moving the menu outside the main container if it is inside
             // (avoid problems with fixed positions when using CSS3 tranforms)
             if (options.menu && options.css3 && $(options.menu).closest('.fullpage-wrapper').length) {
                 $(options.menu).appendTo('body');
@@ -558,7 +559,7 @@
                 var visibleSectionIndex = 0;
                 var initial = Math.abs(currentScroll - $('.fp-section').first().offset().top);
 
-                // Taking the section which is showing more ient in the viewport
+                // Taking the section which is showing more content in the viewport
                 $('.fp-section').each(function(index) {
                     var current = Math.abs(currentScroll - $(this).offset().top);
 
@@ -822,7 +823,7 @@
         /**
          * Maintains the active slides in the viewport (Because the `scroll`
          * animation might get lost with some actions, such as when using
-         * iinuousVertical)
+         * continuousVertical)
          */
         function keepSlidesPosition() {
             $('.fp-slide.active').each(function() {
@@ -871,8 +872,8 @@
                 var slideIndex = v.activeSlide.index();
             }
 
-            // If iinuousVertical && we need to wrap around
-            if (options.autoScrolling && options.iinuousVertical && v.isMovementUp !== undefined
+            // If continuousVertical && we need to wrap around
+            if (options.autoScrolling && options.continuousVertical && v.isMovementUp !== undefined
                     && ((!v.isMovementUp && v.yMovement == 'up') // Intending to scroll down but about to go up or
                     || (v.isMovementUp && v.yMovement == 'down'))) { // Intending to scroll up but about to go down
                 v = createInfiniteSections(v);
@@ -925,7 +926,7 @@
         function performMovement(v) {
             if (options.css3 && options.autoScrolling) { // Using CSS3 translate functionality
                 var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
-                transformiainer(translate3d, true);
+                transformContainer(translate3d, true);
 
                 setTimeout(function() {
                     afterSectionLoads(v);
@@ -991,10 +992,10 @@
         }
 
         /**
-         * Fix section order after iinuousVertical changes have been animated
+         * Fix section order after continuousVertical changes have been animated
          */
-        function iinuousVerticalFixSectionOrder(v) {
-            // If iinuousVertical is in effect (and autoScrolling would also be
+        function continuousVerticalFixSectionOrder(v) {
+            // If continuousVertical is in effect (and autoScrolling would also be
             // in effect then), finish moving the elements around so the direct
             // navigation will function more simply
             if (!v.wrapAroundElements || !v.wrapAroundElements.length) {
@@ -1018,7 +1019,7 @@
          * Actions to do once the section is loaded
          */
         function afterSectionLoads(v) {
-            iinuousVerticalFixSectionOrder(v);
+            continuousVerticalFixSectionOrder(v);
 
             // Callback (afterLoad) if the site is not just resizing
             // and readjusting the slides
@@ -1180,9 +1181,9 @@
         }
 
         /**
-         * Scrolling horizontally when clicking on the slider irols
+         * Scrolling horizontally when clicking on the slider controls
          */
-        $('.fp-section').on('click touchstart', '.fp-irolArrow', function() {
+        $('.fp-section').on('click touchstart', '.fp-controlArrow', function() {
             if ($(this).hasClass('fp-prev')) {
                 $.fn.fullpage.moveSlideLeft();
             } else {
@@ -1195,7 +1196,7 @@
          */
         function landscapeScroll(slides, destiny) {
             var destinyPos = destiny.position();
-            var slidesiainer = slides.find('.fp-slidesiainer').parent();
+            var slidesContainer = slides.find('.fp-slidesContainer').parent();
             var slideIndex = destiny.index();
             var section = slides.closest('.fp-section');
             var sectionIndex = section.index('.fp-section');
@@ -1228,10 +1229,10 @@
 
             if (!options.loopHorizontal) {
                 // Hidding it for the fist slide, showing for the rest
-                section.find('.fp-irolArrow.fp-prev').toggle(slideIndex != 0);
+                section.find('.fp-controlArrow.fp-prev').toggle(slideIndex != 0);
 
                 // Hidding it for the last slide, showing for the rest
-                section.find('.fp-irolArrow.fp-next').toggle(!destiny.is(':last-child'));
+                section.find('.fp-controlArrow.fp-next').toggle(!destiny.is(':last-child'));
             }
 
             // Only changing the URL if the slides are in the current
@@ -1254,14 +1255,14 @@
 
             if (options.css3) {
                 var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
-                addAnimation(slides.find('.fp-slidesiainer'), options.scrollingSpeed > 0)
+                addAnimation(slides.find('.fp-slidesContainer'), options.scrollingSpeed > 0)
                         .css(getTransforms(translate3d));
 
                 setTimeout(function() {
                     afterSlideLoads();
                 }, options.scrollingSpeed, options.easing);
             } else {
-                slidesiainer.animate({
+                slidesContainer.animate({
                     scrollLeft: destinyPos.left
                 }, options.scrollingSpeed, options.easing, function() {
                     afterSlideLoads();
@@ -1302,22 +1303,22 @@
          * Checks if the site needs to get responsive and disables
          * autoScrolling if so
          *
-         * A class `fp-responsive` is added to the plugin's iainer in
-         * case the user wants to use it for his own responsive CSS
+         * A class `fp-responsive` is added to the plugin's container
+         * in case the user wants to use it for his own responsive CSS
          */
         function responsive() {
             if (options.responsive) {
-                var isResponsive = iainer.hasClass('fp-responsive');
+                var isResponsive = container.hasClass('fp-responsive');
                 if ($(window).width() < options.responsive){
                     if (!isResponsive) {
                         $.fn.fullpage.setAutoScrolling(false);
                         $('#fp-nav').hide();
-                        iainer.addClass('fp-responsive');
+                        container.addClass('fp-responsive');
                     }
                 } else if (isResponsive) {
                     $.fn.fullpage.setAutoScrolling(true);
                     $('#fp-nav').show();
-                    iainer.removeClass('fp-responsive');
+                    container.removeClass('fp-responsive');
                 }
             }
         }
@@ -1450,21 +1451,21 @@
             var section = element.closest('.fp-section');
             var scrollable = element.find('.fp-scrollable');
 
-            // If there was scroll, the ientHeight will be the one in the
-            // scrollable section
+            // If there was scroll, the contentHeight will be the one in
+            // the scrollable section
             if (scrollable.length) {
-                var ientHeight = scrollable.get(0).scrollHeight;
+                var contentHeight = scrollable.get(0).scrollHeight;
             } else {
-                var ientHeight = element.get(0).scrollHeight;
+                var contentHeight = element.get(0).scrollHeight;
                 if (options.verticalCentered) {
-                    ientHeight = element.find('.fp-tableCell').get(0).scrollHeight;
+                    contentHeight = element.find('.fp-tableCell').get(0).scrollHeight;
                 }
             }
 
             var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom'))
                     - parseInt(section.css('padding-top'));
 
-            if (ientHeight > scrollHeight) { // Needs scroll?
+            if (contentHeight > scrollHeight) { // Needs scroll?
                 if(scrollable.length) { // Was there already an scroll? Updating it
                     scrollable.css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
                 } else { // Creating the scrolling
@@ -1517,12 +1518,12 @@
         }
 
         /**
-         * Adds a css3 transform property to the iainer class with
+         * Adds a css3 transform property to the container class with
          * or without animation depending on the animated param
          */
         function transformiainer(translate3d, animated) {
-            addAnimation(iainer, animated);
-            iainer.css(getTransforms(translate3d));
+            addAnimation(container, animated);
+            container.css(getTransforms(translate3d));
         }
 
         /**
@@ -1752,9 +1753,9 @@
         function silentScroll(top) {
             if (options.css3) {
                 var translate3d = 'translate3d(0px, -' + top + 'px, 0px)';
-                transformiainer(translate3d, false);
+                transformContainer(translate3d, false);
             } else {
-                iainer.css('top', -top);
+                container.css('top', -top);
             }
         }
 
@@ -1790,7 +1791,7 @@
                 .off('mouseover', options.normalScrollElements)
                 .off('mouseout', options.normalScrollElements);
 
-            $('.fp-section').off('click', '.fp-irolArrow');
+            $('.fp-section').off('click', '.fp-controlArrow');
 
             // Lets make a mess!
             if (all) {
@@ -1805,7 +1806,7 @@
             // Reseting the `top` or `translate` properties to 0
             silentScroll(0);
 
-            $('#fp-nav, .fp-slidesNav, .fp-irolArrow').remove();
+            $('#fp-nav, .fp-slidesNav, .fp-controlArrow').remove();
 
             // Removing inline styles
             $('.fp-section').css({
@@ -1816,7 +1817,7 @@
 
             $('.fp-slide').css({ 'width': '' });
 
-            iainer.css({
+            container.css({
                 '-ms-touch-action': '',
                 'touch-action': '',
                 'position': '',
@@ -1829,11 +1830,11 @@
                 $(this).removeClass('fp-table active');
             })
 
-            removeAnimation(iainer);
-            removeAnimation(iainer.find('.fp-easing'));
+            removeAnimation(container);
+            removeAnimation(container.find('.fp-easing'));
 
-            // Unwrapping ient
-            iainer.find('.fp-tableCell, .fp-slidesiainer, .fp-slides').each(function(){
+            // Unwrapping content
+            container.find('.fp-tableCell, .fp-slidesContainer, .fp-slides').each(function() {
                 // Unwrap not being use in case there's no child element
                 // inside and it's just text
                 $(this).replaceWith(this.childNodes);
