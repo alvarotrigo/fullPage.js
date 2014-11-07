@@ -96,6 +96,7 @@ $(document).ready(function() {
 		menu: false,
 		anchors:['firstSlide', 'secondSlide'],
 		navigation: false,
+		navigationArrows: false,
 		navigationPosition: 'right',
 		navigationTooltips: ['firstSlide', 'secondSlide'],
 		slidesNavigation: true,
@@ -238,6 +239,8 @@ $('#fullpage').fullpage({
 **Note:** the menu element should be placed outside the fullpage wrapper in order to avoid problem when ussing `css3:true`. Otherwise it will be appeneded to the `body` by the plugin itself.
 
 - `navigation`: (default `false`) If set to `true`, it will show a navigation bar made up of small circles.
+
+- `navigationArrows`: (default `false`) If set to `true`, arrows will be added to the navigation to move to the previous/next section.
 
 - `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 

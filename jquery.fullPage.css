@@ -1,171 +1,225 @@
-/**
- * fullPage 2.4.3
+/*!
+ * fullPage 2.4.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
- * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ * Copyright (C) 2013-2014 alvarotrigo.com - by Alvaro Trigo
  */
-html, body {
-    margin: 0;
+
+html,
+body {
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden;
     padding: 0;
-    overflow:hidden;
-
-    /*Avoid flicker on slides transitions for mobile phones #336 */
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    margin: 0;
 }
+
 #superContainer {
-    height: 100%;
-    position: relative;
-
-    /* Touch detection for Windows 8 */
     -ms-touch-action: none;
-
-    /* IE 11 on Windows Phone 8.1*/
     touch-action: none;
-}
-.fp-section {
     position: relative;
-    -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
-    -moz-box-sizing: border-box; /* <=28 */
-    box-sizing: border-box;
+    height: 100%;
 }
+
+.fp-section {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+}
+
 .fp-slide {
     float: left;
 }
-.fp-slide, .fp-slidesContainer {
-    height: 100%;
+
+.fp-slide,
+.fp-slidesContainer {
     display: block;
-}
-.fp-slides {
-    z-index:1;
     height: 100%;
-    overflow: hidden;
-    position: relative;
-    -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
-    transition: all 0.3s ease-out;
 }
-.fp-section.fp-table, .fp-slide.fp-table {
+
+.fp-slides {
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    z-index: 1;
+}
+
+.fp-section.fp-table,
+.fp-slide.fp-table {
     display: table;
     width: 100%;
 }
+
 .fp-tableCell {
-    display: table-cell;
     vertical-align: middle;
-    width: 100%;
+    display: table-cell;
     height: 100%;
+    width: 100%;
 }
+
 .fp-slidesContainer {
-    float: left;
     position: relative;
+    float: left;
 }
+
 .fp-controlArrow {
-    position: absolute;
-    z-index: 4;
-    top: 50%;
-    cursor: pointer;
-    width: 0;
-    height: 0;
     border-style: solid;
+    position: absolute;
     margin-top: -38px;
+    cursor: pointer;
+    z-index: 4;
+    height: 0;
+    width: 0;
+    top: 50%;
 }
+
 .fp-controlArrow.fp-prev {
+    border-color: transparent #ffffff transparent transparent;
+    border-width: 38.5px 34px 38.5px 0;
     left: 15px;
     width: 0;
-    border-width: 38.5px 34px 38.5px 0;
-    border-color: transparent #fff transparent transparent;
 }
+
 .fp-controlArrow.fp-next {
-    right: 15px;
+    border-color: transparent transparent transparent #ffffff;
     border-width: 38.5px 0 38.5px 34px;
-    border-color: transparent transparent transparent #fff;
+    right: 15px;
 }
+
 .fp-scrollable {
     overflow: scroll;
-
 }
+
 .fp-notransition {
     -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
     transition: none !important;
 }
+
 #fp-nav {
+    margin-top: -32px;
     position: fixed;
     z-index: 100;
-    margin-top: -32px;
+    opacity: 1;
     top: 50%;
-    opacity: 1;
 }
+
 #fp-nav.right {
-    right: 17px;
-}
-#fp-nav.left {
-    left: 17px;
-}
-.fp-slidesNav{
-    position: absolute;
-    z-index: 4;
-    left: 50%;
-    opacity: 1;
-}
-.fp-slidesNav.bottom {
-    bottom: 17px;
-}
-.fp-slidesNav.top {
-    top: 17px;
-}
-#fp-nav ul,
-.fp-slidesNav ul {
-  margin: 0;
-  padding: 0;
-}
-#fp-nav li,
-.fp-slidesNav li {
-    display: block;
-    width: 14px;
-    height: 13px;
-    margin: 7px;
-    position:relative;
-}
-.fp-slidesNav li {
-    display: inline-block;
-}
-#fp-nav li a,
-.fp-slidesNav li a {
-    display: block;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    text-decoration: none;
-}
-#fp-nav li .active span,
-.fp-slidesNav .active span {
-    background: #333;
-}
-#fp-nav span,
-.fp-slidesNav span {
-    top: 2px;
-    left: 2px;
-    width: 8px;
-    height: 8px;
-    border: 1px solid #000;
-    background: rgba(0, 0, 0, 0);
-    border-radius: 50%;
-    position: absolute;
-    z-index: 1;
-}
-.fp-tooltip {
-    position: absolute;
-    top: -2px;
-    color: #fff;
-    font-size: 14px;
-    font-family: arial, helvetica, sans-serif;
-    white-space: nowrap;
-    max-width: 220px;
-}
-.fp-tooltip.right {
     right: 20px;
 }
-.fp-tooltip.left {
+
+#fp-nav.left {
     left: 20px;
+}
+
+.fp-slidesNav{
+    position: absolute;
+    opacity: 1;
+    z-index: 4;
+    left: 50%;
+}
+
+.fp-slidesNav.bottom {
+    bottom: 20px;
+}
+
+.fp-slidesNav.top {
+    top: 20px;
+}
+
+#fp-nav ul,
+.fp-slidesNav ul {
+    line-height: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+#fp-nav ul li,
+.fp-slidesNav ul li {
+    position: relative;
+    display: block;
+    padding: 5px 0;
+    height: 10px;
+    width: 10px;
+}
+
+
+.fp-slidesNav ul li {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+#fp-nav ul li a,
+.fp-slidesNav ul li a {
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    background: transparent;
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span {
+    background: #000000;
+}
+
+#fp-nav ul li .fp-tooltip {
+    font-family: Arial, sans-serif;
+    white-space: nowrap;
+    position: absolute;
+    line-height: 16px;
+    max-width: 220px;
+    font-size: 14px;
+    color: #ffffff;
+    top: -4px;
+}
+
+#fp-nav ul li .fp-tooltip.right {
+    right: 20px;
+}
+
+#fp-nav ul li .fp-tooltip.left {
+    left: 20px;
+}
+
+#fp-nav span.prev,
+#fp-nav span.next {
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+    text-align: center;
+    position: relative;
+    line-height: 100%;
+    cursor: pointer;
+    display: block;
+    margin: 5px 0;
+    height: 20px;
+    width: 10px;
+}
+
+#fp-nav span.inactive {
+    cursor: default;
+    opacity: 0.25;
 }
