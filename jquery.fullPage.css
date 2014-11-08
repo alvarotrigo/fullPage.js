@@ -159,7 +159,7 @@ html, body {
 }
 #fp-nav ul li .fp-tooltip {
     position: absolute;
-    top: -4px;
+    top: 0px;
     color: #fff;
     font-size: 14px;
     line-height: 16px;
