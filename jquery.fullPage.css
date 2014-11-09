@@ -159,8 +159,8 @@ html, body {
     box-sizing: border-box;
 }
 #fp-nav ul li .fp-tooltip {
-    -webkit-transition: opacity 0.2s ease-out;
-    transition: opacity 0.2s ease-out;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
     display: block;
     opacity: 0;
     height: 0;
