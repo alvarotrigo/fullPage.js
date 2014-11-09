@@ -123,12 +123,12 @@ html, body {
     display: block;
     width: 10px;
     height: 10px;
-    padding: 5px 0;
+    margin: 10px 0;
     position: relative;
 }
 .fp-slidesNav li {
     display: inline-block;
-    padding: 0 5px;
+    margin: 0 5px;
 }
 #fp-nav li a,
 .fp-slidesNav li a {
@@ -152,20 +152,30 @@ html, body {
     background: transparent;
     border-radius: 50%;
     position: absolute;
+    left: 0;
     z-index: 1;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 #fp-nav ul li .fp-tooltip {
+    -webkit-transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
+    display: block;
+    opacity: 0;
+    height: 0;
     position: absolute;
-    top: 0px;
+    top: -50%;
     color: #fff;
     font-size: 14px;
     line-height: 16px;
     font-family: Arial, sans-serif;
     white-space: nowrap;
     max-width: 220px;
+}
+#fp-nav ul li:hover .fp-tooltip {
+    height: auto;
+    opacity: 1;
 }
 #fp-nav ul li .fp-tooltip.right {
     right: 20px;
