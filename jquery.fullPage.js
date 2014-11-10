@@ -813,8 +813,6 @@
 			};
 
 			//quiting when destination scroll is the same as the current one
-						console.log($(window).scrollTop() + " === " +  v.dtop);
-
 			if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $(window).scrollTop() === v.dtop)){ return; }
 
 			if(v.activeSlide.length){
@@ -1672,9 +1670,7 @@
 		}
 
 		function silentScroll(top){
-			console.log("silent");
 			if(options.scrollBar){
-				console.log("va");
 				container.scrollTop(top);
 			}
 			else if (options.css3) {
