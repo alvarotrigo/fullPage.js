@@ -504,10 +504,10 @@ Example:
 	});
 ```
 #Resources
-[CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
-[fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
-[fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
-[fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
+- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
+- [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
+- [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
+- [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
 
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
