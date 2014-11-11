@@ -8,10 +8,10 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow:hidden;
+    overflow: hidden;
 
     /*Avoid flicker on slides transitions for mobile phones #336 */
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
 }
 #superContainer {
     height: 100%;
@@ -37,7 +37,7 @@ html, body {
     display: block;
 }
 .fp-slides {
-    z-index:1;
+    z-index: 1;
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -95,10 +95,10 @@ html, body {
     opacity: 1;
 }
 #fp-nav.right {
-    right: 17px;
+    right: 25px;
 }
 #fp-nav.left {
-    left: 17px;
+    left: 25px;
 }
 .fp-slidesNav{
     position: absolute;
@@ -107,26 +107,28 @@ html, body {
     opacity: 1;
 }
 .fp-slidesNav.bottom {
-    bottom: 17px;
+    bottom: 25px;
 }
 .fp-slidesNav.top {
-    top: 17px;
+    top: 25px;
 }
 #fp-nav ul,
 .fp-slidesNav ul {
   margin: 0;
   padding: 0;
+  line-height: 10px;
 }
 #fp-nav li,
 .fp-slidesNav li {
     display: block;
-    width: 14px;
-    height: 13px;
-    margin: 7px;
-    position:relative;
+    width: 10px;
+    height: 10px;
+    margin: 10px 0;
+    position: relative;
 }
 .fp-slidesNav li {
     display: inline-block;
+    margin: 0 5px;
 }
 #fp-nav li a,
 .fp-slidesNav li a {
@@ -138,34 +140,46 @@ html, body {
     cursor: pointer;
     text-decoration: none;
 }
-#fp-nav li .active span,
-.fp-slidesNav .active span {
+#fp-nav ul li a.active span,
+.fp-slidesNav ul li a.active span {
     background: #333;
 }
-#fp-nav span,
-.fp-slidesNav span {
-    top: 2px;
-    left: 2px;
-    width: 8px;
-    height: 8px;
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    width: 100%;
+    height: 100%;
     border: 1px solid #000;
-    background: rgba(0, 0, 0, 0);
+    background: transparent;
     border-radius: 50%;
     position: absolute;
+    left: 0;
     z-index: 1;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
-.fp-tooltip {
+#fp-nav ul li .fp-tooltip {
+    -webkit-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+    display: block;
+    opacity: 0;
+    height: 0;
     position: absolute;
-    top: -2px;
+    top: -50%;
     color: #fff;
     font-size: 14px;
-    font-family: arial, helvetica, sans-serif;
+    line-height: 16px;
+    font-family: Arial, sans-serif;
     white-space: nowrap;
     max-width: 220px;
 }
-.fp-tooltip.right {
+#fp-nav ul li:hover .fp-tooltip {
+    height: auto;
+    opacity: 1;
+}
+#fp-nav ul li .fp-tooltip.right {
     right: 20px;
 }
-.fp-tooltip.left {
+#fp-nav ul li .fp-tooltip.left {
     left: 20px;
 }
