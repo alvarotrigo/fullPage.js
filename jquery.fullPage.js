@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.4
+ * fullPage 2.4.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -857,7 +857,7 @@
 		*/
 		function performMovement(v){
 			// using CSS3 translate functionality
-			if (options.css3 && options.autoScrolling) {
+			if (options.css3 && options.autoScrolling && !options.scrollBar) {
 
 				var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
 				transformContainer(translate3d, true);
