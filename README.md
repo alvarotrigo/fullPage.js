@@ -515,10 +515,9 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)](http://www.sony-asia.com/microsite/mdr-10/)
 [![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)](https://www.xone.vodafone.com)
 [![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)](http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins)
+[![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuancom/)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
-[![xepler](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/xepler.png)](http://xepler.com/services)
 [![matrimonia](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/matrimonia.png)](http://www.matrimonia.rs/)
-[![myMattioli](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/myMattioli-3.png)](http://mymattioli.it/)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/redd.png)](http://www.getredd.com/)
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
@@ -551,42 +550,33 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://overallstudio.co.il/
 - http://boxx.hk/
 - http://medlive.com
-- http://therope.it/
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
 - http://www.carpetloverclub.net/
-- http://www.implisit.com/
 - http://www.batzaya.net/
-- http://xepler.com/services
 - http://www.graphicid.dk/
 - http://hed.citinet.pro/
 - http://www.jukstapoz.com/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.omqcomics.com/
 - http://www.matrimonia.rs/
-- http://www.jennbeaupre.com/jb/index.html
-- http://mymattioli.it/
 - http://www.carlphot.com/
 - http://medissix.com/
 - http://trasmissione-energia.terna.it/
 - http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
 - http://rodrigo.maroto.me
-- http://www.gricnik.info/
 - http://azul257.com.mx
-- http://insomniapodcast.us
 - http://acuity-prod.com/
 - http://www.kesstrio.com
 - http://willontheway.com/
 - http://www.karmaffne.com/
 - http://fossdistillery.is
 - http://www.conversionculture.com/
-- http://andreapaolucci.com/
 - http://www.fergalkeenan.com
 - http://spell-star.appspot.com/
 - http://yizeng.me/
-- http://rienpipe.es/
 - http://neolearning.eu/
 - http://sunfishlabs.com/
 - http://unabridgedsoftware.com/
@@ -596,7 +586,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.cima-ecuador.com/
 - http://www.rienpipe.es
 - http://atlanticcorp.us/
-- http://bootstrap.tunerus.ru/nastroyka_pianino/
 - http://moysport.ru/
 - http://www.norttilaakso.fi/
 - http://wcfixtures.co.uk/
