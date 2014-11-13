@@ -162,6 +162,16 @@ html, body {
     font-family: arial, helvetica, sans-serif;
     white-space: nowrap;
     max-width: 220px;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+    width: 0;
+}
+#fp-nav ul li:hover .fp-tooltip {
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    width: auto;
+    opacity: 1;
 }
 #fp-nav ul li .fp-tooltip.right {
     right: 20px;
