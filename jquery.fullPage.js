@@ -477,13 +477,15 @@
 					link = options.anchors[i];
 				}
 
-				var tooltip = options.navigationTooltips[i];
-				tooltip = tooltip != undefined && tooltip != '' ? tooltip : '';
+				var li = '<li><a href="#' + link + '"><span></span></a>';
 
-				var li = '<li>'
-							+ '<a href="#' + link + '"><span></span></a>'
-							+ (tooltip != '' ? '<div class="fp-tooltip ' + options.navigationPosition + '">' + tooltip + '</div>' : '')
-						+ '</li>';
+				// Only add tooltip if needed (defined by user)
+				var tooltip = options.navigationTooltips[i];
+				if (tooltip != undefined && tooltip != '') {
+					li += '<div class="fp-tooltip ' + options.navigationPosition + '">' + tooltip + '</div>';
+				}
+
+				li += '</li>';
 
 				nav.find('ul').append(li);
 			}
