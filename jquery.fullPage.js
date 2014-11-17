@@ -457,6 +457,11 @@
 
 			$(window).on('load', function() {
 				scrollToAnchor();
+
+                // Set body class if not already
+                if(options.setBodyClass && !previousClass && options.anchors.length){
+                    setBodyClass(options.anchors[0]);
+                }
 			});
 
 		});
