@@ -125,7 +125,7 @@ html, body {
     margin: 7px;
     position:relative;
 }
-.fp-slidesNav li {
+.fp-slidesNav ul li {
     display: inline-block;
 }
 #fp-nav ul li a,
