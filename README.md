@@ -116,6 +116,7 @@ $(document).ready(function() {
 		scrollOverflow: false,
 		touchSensitivity: 15,
 		normalScrollElementTouchThreshold: 5,
+        setBodyClass: false,
 
 		//Accessibility
 		keyboardScrolling: true,
@@ -215,6 +216,8 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
+
+- `setBodyClass`: (default `false`) Defines if a class with the current section hash should be added to the body element
 
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
 

@@ -35,6 +35,7 @@
 			'scrollOverflow': false,
 			'touchSensitivity': 5,
 			'normalScrollElementTouchThreshold': 5,
+            'setBodyClass': false,
 
 			//Accessibility
 			'keyboardScrolling': true,
@@ -1527,7 +1528,27 @@
 					location.hash = anchorLink;
 				}
 			}
+
+            if(options.setBodyClass){
+                // Add class to the body
+                setBodyClass(anchorLink);
+            }
 		}
+
+
+        // Variables we care about below
+        var previousClass = '';
+
+        /**
+        * Sets the body class with the current section
+        */
+        function setBodyClass(anchorLink) {
+            $('body').removeClass(previousClass);
+            $('body').addClass(anchorLink);
+
+            previousClass = anchorLink;
+        }
+
 
 		/**
 		* Checks for translate3d support
