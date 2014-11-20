@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.6
+ * fullPage 2.4.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -638,7 +638,7 @@
 			// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
 			if (!checkParentForNormalScrollElement(event.target)) {
 
-				if(options.autoScrolling){
+				if(options.autoScrolling && !options.scrollBar){
 					//preventing the easing on iOS devices
 					event.preventDefault();
 				}
@@ -665,7 +665,7 @@
 					}
 
 					//vertical scrolling (only when autoScrolling is enabled)
-					else if(options.autoScrolling){
+					else if(options.autoScrolling && !options.scrollBar){
 
 						//is the movement greater than the minimum resistance to scroll?
 						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
@@ -1179,6 +1179,7 @@
 	    //when resizing the site, we adjust the heights of the sections, slimScroll...
 	    $(window).resize(resizeHandler);
 
+	    var previousHeight = windowsHeight;
 	    var resizeId;
 	    function resizeHandler(){
 	    	//checking if it needs to get responsive
@@ -1189,7 +1190,13 @@
 
 				//if the keyboard is visible
 				if ($(document.activeElement).attr('type') !== 'text') {
-		        	$.fn.fullpage.reBuild(true);
+					var currentHeight = $(window).height();
+
+					//making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
+					if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
+			        	$.fn.fullpage.reBuild(true);
+			        	previousHeight = currentHeight;
+			        }
 		        }
 	      	}else{
 	      		//in order to call the functions only when the resize is finished
