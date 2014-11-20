@@ -704,6 +704,10 @@
 
 		function touchStartHandler(event){
 			var e = event.originalEvent;
+			if(options.autoScrolling){
+				//preventing the easing on iOS devices
+				event.preventDefault();
+			}
 			var touchEvents = getEventsPage(e);
 			touchStartY = touchEvents['y'];
 			touchStartX = touchEvents['x'];
