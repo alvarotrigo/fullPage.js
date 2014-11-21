@@ -7,7 +7,8 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
 - [Apple demo] (http://alvarotrigo.com/fullPage/examples/apple.html)
-- [Temporary Website](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
+- [Blog Article](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
+- [Frecuently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frecuently-Answered-Questions)
 
 Invite me to a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
@@ -167,7 +168,7 @@ You can do it by using the index of the slide (starting by 0), or if you prefer,
 
 ## Options
 
-- `verticalCentered`: (default `true`) Vertically centering of the content within sections.
+- `verticalCentered`: (default `true`) Vertically centering of the content within sections. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
 
 - `resize`: (default `true`) Whether you want to resize the text when the window is resized.
 
@@ -250,7 +251,7 @@ $('#fullpage').fullpage({
 
 - `slidesNavPosition`: (default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.
 
-- `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it.
+- `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section in case its content is bigger than the height of it. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
 In case of setting it to `true`, it requieres the vendor plugin [`jquery.slimscroll.min`](https://github.com/rochal/jQuery-slimScroll) and it should be loaded before the fullPage.js plugin. For example:
 
 ```html
