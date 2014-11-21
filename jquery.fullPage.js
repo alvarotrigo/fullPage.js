@@ -35,6 +35,7 @@
 			'scrollOverflow': false,
 			'touchSensitivity': 5,
 			'normalScrollElementTouchThreshold': 5,
+            'setBodyClass': false,
 
 			//Accessibility
 			'keyboardScrolling': true,
@@ -457,6 +458,11 @@
 
 			$(window).on('load', function() {
 				scrollToAnchor();
+
+                // Set body class if not already
+                if(options.setBodyClass && !previousClass && options.anchors.length){
+                    setBodyClass(options.anchors[0]);
+                }
 			});
 
 		});
@@ -1544,7 +1550,27 @@
 			}else{
 				setBodyClass(sectionIndex + '-' + slideIndex);
 			}
+
+            if(options.setBodyClass){
+                // Add class to the body
+                setBodyClass(anchorLink);
+            }
 		}
+
+
+        // Variables we care about below
+        var previousClass = '';
+
+        /**
+        * Sets the body class with the current section
+        */
+        function setBodyClass(anchorLink) {
+            $('body').removeClass(previousClass);
+            $('body').addClass(anchorLink);
+
+            previousClass = anchorLink;
+        }
+
 
 		/**
 		* Sets a class for the body of the page depending on the active section / slide
