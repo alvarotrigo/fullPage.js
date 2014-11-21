@@ -266,7 +266,7 @@
 		var slideMoving = false;
 
 		var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
-		var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
+		var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 		var container = $(this);
 		var windowsHeight = $(window).height();
 		var isMoving = false;
@@ -704,6 +704,10 @@
 
 		function touchStartHandler(event){
 			var e = event.originalEvent;
+			if(options.autoScrolling){
+				//preventing the easing on iOS devices
+				event.preventDefault();
+			}
 			var touchEvents = getEventsPage(e);
 			touchStartY = touchEvents['y'];
 			touchStartX = touchEvents['x'];
