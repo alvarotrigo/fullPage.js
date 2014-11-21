@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.7
+ * fullPage 2.4.8
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -295,7 +295,7 @@
 
 		//trying to use fullpage without a selector?
 		else{
-			console.error("Error! Fullpage.js needs to be initialized with a selector. For example: $('#myContainer').fullpage();");
+			showError('error', "Error! Fullpage.js needs to be initialized with a selector. For example: $('#myContainer').fullpage();");
 		}
 
 		//adding internal class names to void problem with common ones
@@ -439,6 +439,7 @@
 					}
 					else{
 						silentScroll(0);
+						setBodyClass(destiny);
 
 						//scrolling the page to the section with no animation
 						$('html, body').scrollTop(section.position().top);
@@ -704,10 +705,11 @@
 
 		function touchStartHandler(event){
 			var e = event.originalEvent;
+
 			if(options.autoScrolling){
-				//preventing the easing on iOS devices
 				event.preventDefault();
 			}
+
 			var touchEvents = getEventsPage(e);
 			touchStartY = touchEvents['y'];
 			touchStartX = touchEvents['x'];
@@ -845,7 +847,7 @@
 			isMoving = true;
 
 			if(typeof v.anchorLink !== 'undefined'){
-				setURLHash(slideIndex, slideAnchorLink, v.anchorLink);
+				setURLHash(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
 			}
 
 			//callback (onLeave) if the site is not just resizing and readjusting the slides
@@ -1147,7 +1149,7 @@
 
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
 			if(section.hasClass('active')){
-				setURLHash(slideIndex, slideAnchor, anchorLink);
+				setURLHash(slideIndex, slideAnchor, anchorLink, sectionIndex);
 			}
 
 			var afterSlideLoads = function(){
@@ -1508,7 +1510,7 @@
 		/**
 		* Sets the URL hash for a section with slides
 		*/
-		function setURLHash(slideIndex, slideAnchor, anchorLink){
+		function setURLHash(slideIndex, slideAnchor, anchorLink, sectionIndex){
 			var sectionHash = '';
 
 			if(options.anchors.length){
@@ -1537,7 +1539,25 @@
 				else{
 					location.hash = anchorLink;
 				}
+
+				setBodyClass(location.hash);
+			}else{
+				setBodyClass(sectionIndex + '-' + slideIndex);
 			}
+		}
+
+		/**
+		* Sets a class for the body of the page depending on the active section / slide
+		*/
+		function setBodyClass(text){
+			//changing slash for dash to make it a valid CSS style
+			text = text.replace('/', '-').replace('#','');
+
+			//removing previous anchor classes
+			$("body")[0].className = $("body")[0].className.replace(/\b\s?fp-viewing-.*\b/g, '');
+
+			//adding the current anchor
+			$("body").addClass("fp-viewing-" + text);
 		}
 
 		/**
@@ -1779,13 +1799,23 @@
 			if (options.continuousVertical &&
 				(options.loopTop || options.loopBottom)) {
 			    options.continuousVertical = false;
-			    console && console.warn && console.warn("Option `loopTop/loopBottom` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled");
+			    showError('warn', "Option `loopTop/loopBottom` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled");
 			}
 			if(options.continuousVertical && options.scrollBar){
 				options.continuousVertical = false;
-				console && console.warn && console.warn("Option `scrollBar` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled");
+				showError('warn', "Option `scrollBar` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled");
 			}
+
+			//anchors can not have the same value as any element ID or NAME
+			$.each(options.anchors, function(index, name){
+				if($('#' + name).length || $('[name="'+name+'"]').length ){
+					showError('error', "data-anchor tags can not have the same value as any `id` element on the site (or `name` element for IE).");
+				}
+			});
 		}
 
+		function showError(type, text){
+			console && console[type] && console[type]('fullPage: ' + text);
+		}
 	};
 })(jQuery);
