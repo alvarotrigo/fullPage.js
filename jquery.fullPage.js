@@ -1413,13 +1413,15 @@
 			var sectionHeight = windowsHeight;
 
 			if(options.paddingTop || options.paddingBottom){
-				var section = element;
+				var section = element,
+				sectionTop = section.css('padding-top') === '0px' ? options.paddingTop : section.css('padding-top'),
+				sectionBottom = section.css('padding-bottom') === '0px' ? options.paddingBottom : section.css('padding-bottom');
+
 				if(!section.hasClass('fp-section')){
 					section = element.closest('.fp-section');
 				}
 
-				var paddings = parseInt(section.css('padding-top')) + parseInt(section.css('padding-bottom'));
-				sectionHeight = (windowsHeight - paddings);
+				sectionHeight = (windowsHeight - (parseInt(sectionTop) + parseInt(sectionBottom)));
 			}
 
 			return sectionHeight;
