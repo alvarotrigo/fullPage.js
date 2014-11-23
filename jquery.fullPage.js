@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.8
+ * fullPage 2.4.8.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -706,9 +706,6 @@
 		function touchStartHandler(event){
 			var e = event.originalEvent;
 
-			if(options.autoScrolling){
-				event.preventDefault();
-			}
 
 			var touchEvents = getEventsPage(e);
 			touchStartY = touchEvents['y'];
