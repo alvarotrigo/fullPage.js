@@ -26,10 +26,15 @@ fullPage.js is fully functional on all modern browsers, as well as some old ones
 It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
 
 ## Usage
-As you can see in the example files, you will need to include the JavaScript file `jquery.fullPage.js` (or the minified version `jquery.fullPage.min.js`) and the css file `jquery.fullPage.css` of the plugin, as well as [jQuery](http://jquery.com/). Optionally, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library which are the `linear` or `swing` effects. (`easeInQuart` is active by default, so you would need [jQuery UI library](http://jqueryui.com/) or the customized version  which is included in the vendors folder under the name `jquery.easings.min.js`.)
+As you can see in the example files, you will need to include:
+ - [jQuery library](http://jquery.com/). (1.6.0 minimum)
+ - The JavaScript file `jquery.fullPage.js` (or its minified version `jquery.fullPage.min.js`)
+ - The css file `jquery.fullPage.css`
+
+ **Optionally**, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing`) or the one included by default in fullPage.js (`easeInQuart`).
 
 ### Install using bower:
-Optionally, you can install fullPage.js with bower:
+**Optionally**, you can install fullPage.js with bower if you prefer:
 Terminal:
 ```shell
 bower install fullpage.js
@@ -41,8 +46,7 @@ bower install fullpage.js
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- This following line is needed in case of using the default easing option or when using another
- one rather than "linear" or "swing". You can also add the full jQuery UI instead of this file if you prefer -->
+<!-- This following line is needed only in case of using other easing effect rather than "linear", "swing" or "easeInQuart". You can also add the full jQuery UI instead of this file if you prefer -->
 <script src="vendors/jquery.easings.min.js"></script>
 
 
