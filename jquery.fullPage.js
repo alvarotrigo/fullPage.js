@@ -212,8 +212,8 @@
 		$.fn.fullpage.reBuild = function(resizing){
 			isResizing = true;
 
-			var windowsWidth = $(window).width();
-			windowsHeight = $(window).height();
+			var windowsWidth = window.innerWidth;
+			windowsHeight = window.innerHeight;
 
 			//text and images resizing
 			if (options.resize) {
