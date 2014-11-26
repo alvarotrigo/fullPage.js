@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.9
+ * fullPage 2.5.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -212,8 +212,8 @@
 		$.fn.fullpage.reBuild = function(resizing){
 			isResizing = true;
 
-			var windowsWidth = $(window).width();
-			windowsHeight = $(window).height();
+			var windowsWidth = $(window).width(),
+				windowsHeight = $(window).height();
 
 			//text and images resizing
 			if (options.resize) {
@@ -1683,8 +1683,8 @@
 		function getEventsPage(e){
 			var events = new Array();
 
-			events['y'] = (typeof e.pageY !== 'undefined' ? e.pageY : e.touches[0].pageY);
-			events['x'] = (typeof e.pageX !== 'undefined' ? e.pageX : e.touches[0].pageX);
+			events['y'] = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
+			events['x'] = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
 
 			return events;
 		}
