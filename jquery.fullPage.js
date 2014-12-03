@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.0
+ * fullPage 2.5.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -212,8 +212,8 @@
 		$.fn.fullpage.reBuild = function(resizing){
 			isResizing = true;
 
-			var windowsWidth = $(window).width(),
-				windowsHeight = $(window).height();
+			var windowsWidth = $(window).width();
+			windowsHeight = $(window).height();  //updating global var
 
 			//text and images resizing
 			if (options.resize) {
@@ -1563,7 +1563,7 @@
 			text = text.replace('/', '-').replace('#','');
 
 			//removing previous anchor classes
-			$("body")[0].className = $("body")[0].className.replace(/\b\s?fp-viewing-.*\b/g, '');
+			$("body")[0].className = $("body")[0].className.replace(/\b\s?fp-viewing-[^\s]+\b/g, '');
 
 			//adding the current anchor
 			$("body").addClass("fp-viewing-" + text);
