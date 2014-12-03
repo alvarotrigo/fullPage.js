@@ -580,6 +580,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.karmaffne.com/
 - http://fossdistillery.is
 - http://www.conversionculture.com/
+- http://ded-morozz.kiev.ua/
 - http://www.fergalkeenan.com
 - http://spell-star.appspot.com/
 - http://yizeng.me/
