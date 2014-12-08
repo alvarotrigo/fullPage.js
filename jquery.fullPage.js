@@ -1603,7 +1603,7 @@
 
 
 		/**
-		* Removes the auto scrolling action fired by the mouse wheel and tackpad.
+		* Removes the auto scrolling action fired by the mouse wheel and trackpad.
 		* After this function is called, the mousewheel and trackpad movements won't scroll through sections.
 		*/
 		function removeMouseWheelHandler(){
@@ -1617,7 +1617,7 @@
 
 
 		/**
-		* Adds the auto scrolling action for the mouse wheel and tackpad.
+		* Adds the auto scrolling action for the mouse wheel and trackpad.
 		* After this function is called, the mousewheel and trackpad movements will scroll through sections
 		*/
 		function addMouseWheelHandler(){
