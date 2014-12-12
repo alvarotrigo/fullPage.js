@@ -127,6 +127,7 @@ $(document).ready(function() {
 		animateAnchor: true,
 
 		//Design
+		controlArrows: true,
 		verticalCentered: true,
 		resize : true,
 		sectionsColor : ['#ccc', '#fff'],
@@ -171,6 +172,8 @@ You can do it by using the index of the slide (starting by 0), or if you prefer,
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
 ## Options
+
+- `controlArrows`: (default `true`) Determines whether to use control arrows for the slides to move right or left.
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
 
@@ -319,11 +322,21 @@ Defines the way the page scrolling behaves. If it is set to `true`, it will use 
 $.fn.fullpage.setAutoScrolling(false);
 ```
 ---
-### setAllowScrolling(boolean)
+### setAllowScrolling(boolean, [directions])
 Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
 
+- `directions`: (optional parameter) Admited values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
+
 ```javascript
+
+//disabling scrolling
 $.fn.fullpage.setAllowScrolling(false);
+
+//disabling scrolling down
+$.fn.fullpage.setAllowScrolling(false, 'down');
+
+//disabling scrolling down and right
+$.fn.fullpage.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean)

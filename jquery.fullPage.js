@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.1
+ * fullPage 2.5.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -41,6 +41,7 @@
 			'animateAnchor': true,
 
 			//design
+			'controlArrows': true,
 			'controlArrowColor': '#fff',
 			"verticalCentered": true,
 			'resize': true,
@@ -137,9 +138,18 @@
 
 		/**
 		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
+		* Optionally a second parameter can be used to specify the direction for which the action will be applied.
+		*
+		* @param directions string containing the direction or directions separated by comma.
 		*/
-		$.fn.fullpage.setAllowScrolling = function (value){
-			if(value){
+		$.fn.fullpage.setAllowScrolling = function (value, directions){
+			if(typeof directions != 'undefined'){
+				directions = directions.replace(' ', '').split(',');
+				$.each(directions, function (index, direction){
+					setIsScrollable(value, direction);
+				});
+			}
+			else if(value){
 				$.fn.fullpage.setMouseWheelScrolling(true);
 				addTouchHandler();
 			}else{
@@ -278,6 +288,7 @@
 		var lastScrolledSlide;
 		var nav;
 		var wrapperSelector = 'fullpage-wrapper';
+		var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
 
 		$.fn.fullpage.setAllowScrolling(true);
 
@@ -347,17 +358,10 @@
 				slides.parent().wrap('<div class="fp-slides" />');
 
 				$(this).find('.fp-slidesContainer').css('width', sliderWidth + '%');
-				$(this).find('.fp-slides').after('<div class="fp-controlArrow fp-prev"></div><div class="fp-controlArrow fp-next"></div>');
 
-				if(options.controlArrowColor!='#fff'){
-					$(this).find('.fp-controlArrow.fp-next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
-					$(this).find('.fp-controlArrow.fp-prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+				if(options.controlArrows){
+					createSlideArrows($(this));
 				}
-
-				if(!options.loopHorizontal){
-					$(this).find('.fp-controlArrow.fp-prev').hide();
-				}
-
 
 				if(options.slidesNavigation){
 					addSlidesNavigation($(this), numSlides);
@@ -464,6 +468,22 @@
 
 		});
 
+
+		/**
+		* Creates the control arrows for the given section
+		*/
+		function createSlideArrows(section){
+			section.find('.fp-slides').after('<div class="fp-controlArrow fp-prev"></div><div class="fp-controlArrow fp-next"></div>');
+
+			if(options.controlArrowColor!='#fff'){
+				section.find('.fp-controlArrow.fp-next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+				section.find('.fp-controlArrow.fp-prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+			}
+
+			if(!options.loopHorizontal){
+				section.find('.fp-controlArrow.fp-prev').hide();
+			}
+		}
 
 		/**
 		* Creates a vertical navigation bar.
@@ -603,6 +623,10 @@
 		* by 'automatically' scrolling a section or by using the default and normal scrolling.
 		*/
 		function scrolling(type, scrollable){
+			if (!isScrollAllowed[type]){
+				return;
+			}
+
 			if(type == 'down'){
 				var check = 'bottom';
 				var scrollSection = $.fn.fullpage.moveSectionDown;
@@ -662,9 +686,13 @@
 					    //is the movement greater than the minimum resistance to scroll?
 					    if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
 					        if (touchStartX > touchEndX) {
-					            $.fn.fullpage.moveSlideRight(); //next
+					        	if(isScrollAllowed.right){
+					            	$.fn.fullpage.moveSlideRight(); //next
+					            }
 					        } else {
-					            $.fn.fullpage.moveSlideLeft(); //prev
+					        	if(isScrollAllowed.left){
+					            	$.fn.fullpage.moveSlideLeft(); //prev
+					            }
 					        }
 					    }
 					}
@@ -1144,7 +1172,7 @@
 				slideAnchor = slideIndex;
 			}
 
-			if(!options.loopHorizontal){
+			if(!options.loopHorizontal && options.controlArrows){
 				//hidding it for the fist slide, showing for the rest
 				section.find('.fp-controlArrow.fp-prev').toggle(slideIndex!=0);
 
@@ -1242,21 +1270,16 @@
 	    }
 
 	    /**
-		* Toogles transition animations for the given element
+		* Adds transition animations for the given element
 		*/
-		function addAnimation(element, adding){
+		function addAnimation(element){
 			var transition = 'all ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
 
-			if(adding){
-				element.removeClass('fp-notransition');
-				return element.css({
-					'-webkit-transition': transition,
-         			'transition': transition
-           		});
-			}
-
-			//removing the animation
-			return removeAnimation(element);
+			element.removeClass('fp-notransition');
+			return element.css({
+				'-webkit-transition': transition,
+     			'transition': transition
+       		});
 		}
 
 		/**
@@ -1440,9 +1463,18 @@
 		* Adds a css3 transform property to the container class with or without animation depending on the animated param.
 		*/
 		function transformContainer(translate3d, animated){
-			addAnimation(container, animated);
+			if(animated){
+				addAnimation(container);
+			}else{
+				removeAnimation(container);
+			}
 
 			container.css(getTransforms(translate3d));
+
+			//syncronously removing the class after the animation has been applied.
+			setTimeout(function(){
+				container.removeClass('fp-notransition');
+			},10)
 		}
 
 
@@ -1716,6 +1748,17 @@
 				'-ms-transform':translate3d,
 				'transform': translate3d
 			};
+		}
+
+		function setIsScrollable(value, direction){
+			switch (direction){
+				case 'up': isScrollAllowed.up = value; break;
+				case 'down': isScrollAllowed.down = value; break;
+				case 'left': isScrollAllowed.left = value; break;
+				case 'right': isScrollAllowed.right = value; break;
+				case 'all': $.fn.fullpage.setAllowScrolling(value);
+			}
+			console.log(isScrollAllowed);
 		}
 
 

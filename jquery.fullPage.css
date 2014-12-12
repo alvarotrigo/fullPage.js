@@ -46,6 +46,7 @@ html, body {
 }
 .fp-section.fp-table, .fp-slide.fp-table {
     display: table;
+    table-layout:fixed;
     width: 100%;
 }
 .fp-tableCell {
