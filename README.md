@@ -8,7 +8,7 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 - [Live demo](http://alvarotrigo.com/fullPage/)
 - [Apple demo] (http://alvarotrigo.com/fullPage/examples/apple.html)
 - [Blog Article](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
-- [Frecuently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frecuently-Answered-Questions)
+- [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
 Invite me to a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
