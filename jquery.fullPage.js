@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.2
+ * fullPage 2.5.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -39,6 +39,7 @@
 			//Accessibility
 			'keyboardScrolling': true,
 			'animateAnchor': true,
+			'recordHistory': true,
 
 			//design
 			'controlArrows': true,
@@ -87,6 +88,8 @@
 					'height' : '100%'
 				});
 
+				$.fn.fullpage.setRecordHistory(options.recordHistory);
+
 				//for IE touch devices
 				container.css({
 					'-ms-touch-action': 'none',
@@ -104,6 +107,8 @@
 					'height' : 'initial'
 				});
 
+				$.fn.fullpage.setRecordHistory(false);
+
 				//for IE touch devices
 				container.css({
 					'-ms-touch-action': '',
@@ -116,6 +121,13 @@
 				$('html, body').scrollTop(element.position().top);
 			}
 
+		};
+
+		/**
+		* Defines wheter to record the history for each hash change in the URL.
+		*/
+		$.fn.fullpage.setRecordHistory = function(value){
+			recordHistory = value;
 		};
 
 		/**
@@ -289,6 +301,7 @@
 		var nav;
 		var wrapperSelector = 'fullpage-wrapper';
 		var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
+		var recordHistory = options.recordHistory;
 
 		$.fn.fullpage.setAllowScrolling(true);
 
@@ -566,13 +579,20 @@
 					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
 					var yMovement = getYmovement(currentSection);
 					var anchorLink  = currentSection.data('anchor');
+					var sectionIndex = currentSection.index('.fp-section') + 1;
+					var activeSlide = currentSection.find('.fp-slide.active');
+
+					if(activeSlide.length){
+						var slideAnchorLink = activeSlide.data('anchor');
+						var slideIndex = activeSlide.index();
+					}
 
 					currentSection.addClass('active').siblings().removeClass('active');
 
 					if(!isMoving){
-						$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, (currentSection.index('.fp-section') + 1), yMovement);
+						$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, sectionIndex, yMovement);
 
-						$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, (currentSection.index('.fp-section') + 1));
+						$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, sectionIndex);
 					}
 
 					activateMenuAndNav(anchorLink, 0);
@@ -581,7 +601,7 @@
 						//needed to enter in hashChange event when using the menu with anchor links
 						lastScrolledDestiny = anchorLink;
 
-						location.hash = anchorLink;
+						setState(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
 					}
 
 					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
@@ -874,7 +894,7 @@
 			//more than once if the page is scrolling
 			isMoving = true;
 
-			setURLHash(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
+			setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
 
 			//callback (onLeave) if the site is not just resizing and readjusting the slides
 			$.isFunction(options.onLeave) && !v.localIsResizing && options.onLeave.call(this, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
@@ -1182,7 +1202,7 @@
 
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
 			if(section.hasClass('active')){
-				setURLHash(slideIndex, slideAnchor, anchorLink, sectionIndex);
+				setState(slideIndex, slideAnchor, anchorLink, sectionIndex);
 			}
 
 			var afterSlideLoads = function(){
@@ -1545,9 +1565,10 @@
 
 
 		/**
-		* Sets the URL hash for a section with slides
+		* Sets the state of the website depending on the active section/slide.
+		* It changes the URL hash when needed and updates the body class.
 		*/
-		function setURLHash(slideIndex, slideAnchor, anchorLink, sectionIndex){
+		function setState(slideIndex, slideAnchor, anchorLink, sectionIndex){
 			var sectionHash = '';
 
 			if(options.anchors.length){
@@ -1564,17 +1585,17 @@
 					}
 
 					lastScrolledSlide = slideAnchor;
-					location.hash = sectionHash + '/' + slideAnchor;
+					setUrlHash(sectionHash + '/' + slideAnchor);
 
 				//first slide won't have slide anchor, just the section one
 				}else if(typeof slideIndex !== 'undefined'){
 					lastScrolledSlide = slideAnchor;
-					location.hash = anchorLink;
+					setUrlHash(anchorLink);
 				}
 
 				//section without slides
 				else{
-					location.hash = anchorLink;
+					setUrlHash(anchorLink);
 				}
 
 				setBodyClass(location.hash);
@@ -1584,6 +1605,23 @@
 			}
 			else{
 				setBodyClass(String(sectionIndex));
+			}
+		}
+
+		/**
+		* Sets the URL hash.
+		*/
+		function setUrlHash(url){
+			if(recordHistory){
+				location.hash = url;
+			}else{
+				//Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
+				if(isTouchDevice || isTouch){
+					history.replaceState(undefined, undefined, "#" + url)
+				}else{
+					var baseUrl = window.location.href.split('#')[0];
+					window.location.replace( baseUrl + '#' + url );
+				}
 			}
 		}
 
@@ -1758,7 +1796,6 @@
 				case 'right': isScrollAllowed.right = value; break;
 				case 'all': $.fn.fullpage.setAllowScrolling(value);
 			}
-			console.log(isScrollAllowed);
 		}
 
 
