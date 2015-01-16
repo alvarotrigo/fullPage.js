@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.3
+ * fullPage 2.5.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -77,8 +77,8 @@
 		//Apple devices (laptops, mouses...)
 		var scrollDelay = 600;
 
-		$.fn.fullpage.setAutoScrolling = function(value){
-			options.autoScrolling = value;
+		$.fn.fullpage.setAutoScrolling = function(value, type){
+			setVariableState('autoScrolling', value, type);
 
 			var element = $('.fp-section.active');
 
@@ -88,7 +88,7 @@
 					'height' : '100%'
 				});
 
-				$.fn.fullpage.setRecordHistory(options.recordHistory);
+				$.fn.fullpage.setRecordHistory(options.recordHistory, 'internal');
 
 				//for IE touch devices
 				container.css({
@@ -107,7 +107,7 @@
 					'height' : 'initial'
 				});
 
-				$.fn.fullpage.setRecordHistory(false);
+				$.fn.fullpage.setRecordHistory(false, 'internal');
 
 				//for IE touch devices
 				container.css({
@@ -126,15 +126,15 @@
 		/**
 		* Defines wheter to record the history for each hash change in the URL.
 		*/
-		$.fn.fullpage.setRecordHistory = function(value){
-			recordHistory = value;
+		$.fn.fullpage.setRecordHistory = function(value, type){
+			setVariableState('recordHistory', value, type);
 		};
 
 		/**
 		* Defines the scrolling speed
 		*/
-		$.fn.fullpage.setScrollingSpeed = function(value){
-		   options.scrollingSpeed = value;
+		$.fn.fullpage.setScrollingSpeed = function(value, type){
+			setVariableState('scrollingSpeed', value, type);
 		};
 
 		/**
@@ -301,7 +301,7 @@
 		var nav;
 		var wrapperSelector = 'fullpage-wrapper';
 		var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
-		var recordHistory = options.recordHistory;
+		var originals = jQuery.extend(true, {}, options); //deep copy
 
 		$.fn.fullpage.setAllowScrolling(true);
 
@@ -407,7 +407,7 @@
 			}
 
 		}).promise().done(function(){
-			$.fn.fullpage.setAutoScrolling(options.autoScrolling);
+			$.fn.fullpage.setAutoScrolling(options.autoScrolling, 'internal');
 
 			//the starting point is a slide?
 			var activeSlide = $('.fp-section.active').find('.fp-slide.active');
@@ -1277,12 +1277,12 @@
 	    		var isResponsive = container.hasClass('fp-responsive');
 	    		if ($(window).width() < options.responsive ){
 	    			if(!isResponsive){
-	    				$.fn.fullpage.setAutoScrolling(false);
+	    				$.fn.fullpage.setAutoScrolling(false, 'internal');
 	    				$('#fp-nav').hide();
 						container.addClass('fp-responsive');
 	    			}
 	    		}else if(isResponsive){
-	    			$.fn.fullpage.setAutoScrolling(true);
+	    			$.fn.fullpage.setAutoScrolling(originals.autoScrolling, 'internal');
 	    			$('#fp-nav').show();
 					container.removeClass('fp-responsive');
 	    		}
@@ -1612,7 +1612,7 @@
 		* Sets the URL hash.
 		*/
 		function setUrlHash(url){
-			if(recordHistory){
+			if(options.recordHistory){
 				location.hash = url;
 			}else{
 				//Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
@@ -1760,10 +1760,9 @@
 		}
 
 		function silentLandscapeScroll(activeSlide){
-			var prevScrollingSpeepd = options.scrollingSpeed;
-			$.fn.fullpage.setScrollingSpeed (0);
+			$.fn.fullpage.setScrollingSpeed (0, 'internal');
 			landscapeScroll(activeSlide.closest('.fp-slides'), activeSlide);
-			$.fn.fullpage.setScrollingSpeed(prevScrollingSpeepd);
+			$.fn.fullpage.setScrollingSpeed(originals.scrollingSpeed, 'internal');
 		}
 
 		function silentScroll(top){
@@ -1803,7 +1802,7 @@
 		* Destroys fullpage.js plugin events and optinally its html markup and styles
 		*/
 		$.fn.fullpage.destroy = function(all){
-			$.fn.fullpage.setAutoScrolling(false);
+			$.fn.fullpage.setAutoScrolling(false, 'internal');
  			$.fn.fullpage.setAllowScrolling(false);
  			$.fn.fullpage.setKeyboardScrolling(false);
 
@@ -1874,6 +1873,19 @@
 
 			//scrolling the page to the top with no animation
 			$('html, body').scrollTop(0);
+		}
+
+		/*
+		* Sets the state for a variable with multiple states (original, and temporal)
+		* Some variables such as `autoScrolling` or `recordHistory` might change automatically its state when using `responsive` or `autoScrolling:false`.
+		* This function is used to keep track of both states, the original and the temporal one.
+		* If type is not 'internal', then we assume the user is globally changing the variable.
+		*/
+		function setVariableState(variable, value, type){
+			options[variable] = value;
+			if(type !== 'internal'){
+				originals[variable] = value;
+			}
 		}
 
 		/**
