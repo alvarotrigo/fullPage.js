@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.4
+ * fullPage 2.5.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -615,9 +615,16 @@
 			if(options.scrollBar){
 				//for the auto adjust of the viewport to fit a whole section
 				clearTimeout(scrollId2);
+
 				scrollId2 = setTimeout(function(){
 					if(!isMoving){
+						//allows to scroll to an active section and
+						//if the section is already active, we prevent firing callbacks
+						if($('.fp-section.active').is(currentSection)){
+							isResizing = true;
+						}
 						scrollPage(currentSection);
+						isResizing = false;
 					}
 				}, 1000);
 			}
@@ -686,7 +693,7 @@
 			// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
 			if (!checkParentForNormalScrollElement(event.target)) {
 
-				if(options.autoScrolling && !options.scrollBar){
+				if(options.autoScrolling){
 					//preventing the easing on iOS devices
 					event.preventDefault();
 				}
@@ -718,7 +725,7 @@
 					}
 
 					//vertical scrolling (only when autoScrolling is enabled)
-					else if(options.autoScrolling && !options.scrollBar){
+					else if(options.autoScrolling){
 
 						//is the movement greater than the minimum resistance to scroll?
 						if (Math.abs(touchStartY - touchEndY) > ($(window).height() / 100 * options.touchSensitivity)) {
@@ -758,6 +765,11 @@
 		function touchStartHandler(event){
 			var e = event.originalEvent;
 
+			//stopping the auto scroll to adjust to a section
+			if(options.scrollBar){
+				$("html,body").stop();
+			}
+
 			var touchEvents = getEventsPage(e);
 			touchStartY = touchEvents['y'];
 			touchStartX = touchEvents['x'];
@@ -780,7 +792,6 @@
 				//preventing to scroll the site on mouse wheel when scrollbar is present
 				if(options.scrollBar){
 					e.preventDefault ? e.preventDefault() : e.returnValue = false;
-
 				}
 
 				var activeSection = $('.fp-section.active');
@@ -798,6 +809,11 @@
 				}
 
 				return false;
+			}
+
+			if(options.scrollBar){
+				//stopping the auto scroll to adjust to a section
+				$("html,body").stop();
 			}
 		}
 
