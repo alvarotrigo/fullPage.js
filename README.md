@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.5.5-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.5.6-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
@@ -405,6 +405,8 @@ Example:
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 		afterLoad: function(anchorLink, index){
+			var loadedSection = $(this);
+
 			//using index
 			if(index == 3){
 				alert("Section 3 ended loading");
@@ -432,6 +434,8 @@ Example:
 ```javascript
 	$('#fullpage').fullpage({
 		onLeave: function(index, nextIndex, direction){
+			var leavingSection = $(this);
+
 			//after leaving section 2
 			if(index == 2 && direction =='down'){
 				alert("Going to section 3!");
@@ -453,6 +457,7 @@ Example:
 ```javascript
 	$('#fullpage').fullpage({
 		afterRender: function(){
+			var pluginContainer = $(this);
 			alert("The resulting DOM structure is ready");
 		}
 	});
@@ -466,6 +471,7 @@ Example:
 ```javascript
 	$('#fullpage').fullpage({
 		afterResize: function(){
+			var pluginContainer = $(this);
 			alert("The sections have finished resizing");
 		}
 	});
@@ -480,7 +486,6 @@ Parameters:
 - `slideAnchor`: anchor corresponding to the slide (in case there is)
 - `slideIndex`: index of the slide. Starting from 1. (the default slide doesn't count as slide, but as a section)
 
-
 In case of not having anchorLinks defined for the slide or slides the `slideIndex` parameter would be the only one to use.
 Example:
 
@@ -489,6 +494,7 @@ Example:
 		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 		afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
+			var loadedSlide = $(this);
 
 			//first slide of the second section
 			if(anchorLink == 'secondPage' && slideIndex == 1){
@@ -521,6 +527,8 @@ Example:
 ```javascript
 	$('#fullpage').fullpage({
 		onSlideLeave: function( anchorLink, index, slideIndex, direction){
+			var leavingSlide = $(this);
+
 			//leaving the first slide of the 2nd Section to the right
 			if(index == 2 && slideIndex == 0 && direction == 'right'){
 				alert("Leaving the fist slide!!");

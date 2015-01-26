@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.5
+ * fullPage 2.5.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -243,14 +243,15 @@
 			}
 
 			$('.fp-section').each(function(){
+				var slidesWrap = $(this).find('.fp-slides');
+				var slides = $(this).find('.fp-slide');
+
 				//adjusting the height of the table-cell for IE and Firefox
 				if(options.verticalCentered){
 					$(this).find('.fp-tableCell').css('height', getTableHeight($(this)) + 'px');
 				}
 
 				$(this).css('height', windowsHeight + 'px');
-
-				var slides = $(this).find('.fp-slide');
 
 				//resizing the scrolling divs
 				if(options.scrollOverflow){
@@ -265,7 +266,7 @@
 
 				//adjusting the position fo the FULL WIDTH slides...
 				if (slides.length) {
-					landscapeScroll(slides, slides.find('.fp-slide.active'));
+					landscapeScroll(slidesWrap, slidesWrap.find('.fp-slide.active'));
 				}
 			});
 
@@ -462,7 +463,7 @@
 
 					activateMenuAndNav(destiny, null);
 
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( this, destiny, (section.index('.fp-section') + 1));
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index('.fp-section') + 1));
 
 					//updating the active class
 					section.addClass('active').siblings().removeClass('active');
@@ -568,12 +569,12 @@
 				currentSection = $('.fp-section').eq(visibleSectionIndex);
 			}
 
-			if(!options.autoScrolling){
+			if(!options.autoScrolling || options.scrollBar){
 				//executing only once the first time we reach the section
 				if(!currentSection.hasClass('active')){
 					isScrolling = true;
-
-					var leavingSection = $('.fp-section.active').index('.fp-section') + 1;
+					var leavingSection = $('.fp-section.active');
+					var leavingSectionIndex = leavingSection.index('.fp-section') + 1;
 					var yMovement = getYmovement(currentSection);
 					var anchorLink  = currentSection.data('anchor');
 					var sectionIndex = currentSection.index('.fp-section') + 1;
@@ -587,9 +588,9 @@
 					currentSection.addClass('active').siblings().removeClass('active');
 
 					if(!isMoving){
-						$.isFunction( options.onLeave ) && options.onLeave.call( this, leavingSection, sectionIndex, yMovement);
+						$.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
 
-						$.isFunction( options.afterLoad ) && options.afterLoad.call( this, anchorLink, sectionIndex);
+						$.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
 					}
 
 					activateMenuAndNav(anchorLink, 0);
@@ -909,7 +910,7 @@
 			setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
 
 			//callback (onLeave) if the site is not just resizing and readjusting the slides
-			$.isFunction(options.onLeave) && !v.localIsResizing && options.onLeave.call(this, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
+			$.isFunction(options.onLeave) && !v.localIsResizing && options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
 
 			performMovement(v);
 
@@ -1027,7 +1028,7 @@
 		function afterSectionLoads (v){
 			continuousVerticalFixSectionOrder(v);
 			//callback (afterLoad) if the site is not just resizing and readjusting the slides
-			$.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(this, v.anchorLink, (v.sectionIndex + 1));
+			$.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
 
 			setTimeout(function () {
 				isMoving = false;
@@ -1188,12 +1189,13 @@
 			var localIsResizing = isResizing;
 
 			if(options.onSlideLeave){
-				var prevSlideIndex = section.find('.fp-slide.active').index();
+				var prevSlide = section.find('.fp-slide.active');
+				var prevSlideIndex = prevSlide.index();
 				var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
 				//if the site is not just resizing and readjusting the slides
 				if(!localIsResizing && xMovement!=='none'){
-					$.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( this, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
+					$.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( prevSlide, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
 				}
 			}
 
@@ -1220,7 +1222,7 @@
 			var afterSlideLoads = function(){
 				//if the site is not just resizing and readjusting the slides
 				if(!localIsResizing){
-					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( this, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
+					$.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
 				}
 				//letting them slide again
 				slideMoving = false;
