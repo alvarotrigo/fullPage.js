@@ -58,6 +58,10 @@ bower install fullpage.js
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
+###Optional use of CDN
+If you prefer to use a CDN to load the needed files, fullPage.js is in CDNJS:
+https://cdnjs.com/libraries/fullpage.js
+
 ###Required HTML structure
 Each section will be defined with a `div` containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
