@@ -68,6 +68,7 @@ html, body {
     height: 0;
     border-style: solid;
     margin-top: -38px;
+    -webkit-transform: translate3d(0,0,0);
 }
 .fp-controlArrow.fp-prev {
     left: 15px;
@@ -94,6 +95,7 @@ html, body {
     margin-top: -32px;
     top: 50%;
     opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
 }
 #fp-nav.right {
     right: 17px;
