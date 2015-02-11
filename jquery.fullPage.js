@@ -118,7 +118,9 @@
 				silentScroll(0);
 
 				//scrolling the page to the section with no animation
-				$('html, body').scrollTop(element.position().top);
+				if (element.length) {
+					$('html, body').scrollTop(element.position().top);
+				}
 			}
 
 		};
