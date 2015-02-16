@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.6
+ * fullPage 2.5.7
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -25,7 +25,7 @@
 			'css3': true,
 			'scrollingSpeed': 700,
 			'autoScrolling': true,
-			'easing': 'easeInQuart',
+			'easing': 'easeInOutCubic',
 			'easingcss3': 'ease',
 			'loopBottom': false,
 			'loopTop': false,
@@ -69,13 +69,16 @@
 
 	    displayWarnings();
 
+
+	    //easeInOutCubic animation included in the plugin
+	    $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {
+	        if ((t/=d/2) < 1) return c/2*t*t*t + b;
+	        return c/2*((t-=2)*t*t + 2) + b;
+	    }});
+
+	    //TO BE REMOVED in future versions. Maintained temporaly for backwards compatibility.
 	    //easeInQuart animation included in the plugin
 	    $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
-
-		//Defines the delay to take place before being able to scroll to the next section
-		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
-		//Apple devices (laptops, mouses...)
-		var scrollDelay = 600;
 
 		$.fn.fullpage.setAutoScrolling = function(value, type){
 			setVariableState('autoScrolling', value, type);
@@ -234,6 +237,8 @@
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
 		$.fn.fullpage.reBuild = function(resizing){
+			if(container.hasClass('fp-destroyed')){ return; }  //nothing to do if the plugin was destroyed
+
 			isResizing = true;
 
 			var windowsWidth = $(window).width();
@@ -288,14 +293,15 @@
 		//flag to avoid very fast sliding for landscape sliders
 		var slideMoving = false;
 
-		var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|BB10|Windows Phone|Tizen|Bada)/);
+		var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
 		var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 		var container = $(this);
 		var windowsHeight = $(window).height();
-		var isMoving = false;
 		var isResizing = false;
 		var lastScrolledDestiny;
 		var lastScrolledSlide;
+		var canScroll = true;
+		var scrollings = [];
 		var nav;
 		var wrapperSelector = 'fullpage-wrapper';
 		var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
@@ -589,19 +595,19 @@
 
 					currentSection.addClass('active').siblings().removeClass('active');
 
-					if(!isMoving){
+					if(canScroll){
 						$.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
 
 						$.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
-					}
 
-					activateMenuAndNav(anchorLink, 0);
+						activateMenuAndNav(anchorLink, sectionIndex - 1);
 
-					if(options.anchors.length && !isMoving){
-						//needed to enter in hashChange event when using the menu with anchor links
-						lastScrolledDestiny = anchorLink;
+						if(options.anchors.length){
+							//needed to enter in hashChange event when using the menu with anchor links
+							lastScrolledDestiny = anchorLink;
 
-						setState(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
+							setState(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
+						}
 					}
 
 					//small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
@@ -617,7 +623,7 @@
 				clearTimeout(scrollId2);
 
 				scrollId2 = setTimeout(function(){
-					if(!isMoving){
+					if(canScroll){
 						//allows to scroll to an active section and
 						//if the section is already active, we prevent firing callbacks
 						if($('.fp-section.active').is(currentSection)){
@@ -690,7 +696,7 @@
 			var e = event.originalEvent;
 
 			// additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
-			if (!checkParentForNormalScrollElement(event.target)) {
+			if (!checkParentForNormalScrollElement(event.target) && isReallyTouch(e) ) {
 
 				if(options.autoScrolling){
 					//preventing the easing on iOS devices
@@ -700,7 +706,7 @@
 				var activeSection = $('.fp-section.active');
 				var scrollable = isScrollable(activeSection);
 
-				if (!isMoving && !slideMoving) { //if theres any #
+				if (canScroll && !slideMoving) { //if theres any #
 					var touchEvents = getEventsPage(e);
 
 					touchEndY = touchEvents.y;
@@ -761,6 +767,15 @@
 			}
 		}
 
+		/**
+		* As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
+		* this way we make sure that is really a touch event what IE is detecting.
+		*/
+		function isReallyTouch(e){
+		    //if is not IE   ||  IE is detecting `touch` or `pen`
+		    return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
+		}
+
 		function touchStartHandler(event){
 			var e = event.originalEvent;
 
@@ -769,11 +784,25 @@
 				$("html,body").stop();
 			}
 
-			var touchEvents = getEventsPage(e);
-			touchStartY = touchEvents.y;
-			touchStartX = touchEvents.x;
+	        if(isReallyTouch(e)){
+				var touchEvents = getEventsPage(e);
+				touchStartY = touchEvents.y;
+				touchStartX = touchEvents.x;
+			}
 		}
 
+		function getAverage(elements, number){
+			var sum = 0;
+
+			//taking `number` elements from the end to make the average, if there are not enought, 1
+			var lastElements = elements.slice(Math.max(elements.length - number, 1));
+
+			for(var i = 0; i < lastElements.length; i++){
+				sum = sum + lastElements[i];
+			}
+
+			return Math.ceil(sum/number);
+		}
 
 		/**
 		 * Detecting mousewheel scrolling
@@ -782,11 +811,21 @@
 		 * http://www.sitepoint.com/html5-javascript-mouse-wheel/
 		 */
 		function MouseWheelHandler(e) {
+			var curTime = new Date().getTime();
+
 			if(options.autoScrolling){
 				// cross-browser wheel delta
 				e = window.event || e;
-				var delta = Math.max(-1, Math.min(1,
-						(e.wheelDelta || -e.deltaY || -e.detail)));
+				var value = e.wheelDelta || -e.deltaY || -e.detail;
+				var delta = Math.max(-1, Math.min(1, value));
+
+				//keeping record of the previous scrollings
+
+				//Limiting the array to 150 (lets not waist memory!)
+				if(scrollings.length > 149){
+					scrollings.shift();
+				}
+				scrollings.push(Math.abs(value));
 
 				//preventing to scroll the site on mouse wheel when scrollbar is present
 				if(options.scrollBar){
@@ -796,14 +835,20 @@
 				var activeSection = $('.fp-section.active');
 				var scrollable = isScrollable(activeSection);
 
-				if (!isMoving) { //if theres any #
-					//scrolling down?
-					if (delta < 0) {
-						scrolling('down', scrollable);
+				if(canScroll){
+					var averageEnd = getAverage(scrollings, 10);
+					var averageMiddle = getAverage(scrollings, 70);
+					var isAccelerating = averageEnd >= averageMiddle;
 
-					//scrolling up?
-					}else {
-						scrolling('up', scrollable);
+					if(isAccelerating){
+						//scrolling down?
+						if (delta < 0) {
+							scrolling('down', scrollable);
+
+						//scrolling up?
+						}else {
+							scrolling('up', scrollable);
+						}
 					}
 				}
 
@@ -906,8 +951,8 @@
 			element.addClass('active').siblings().removeClass('active');
 
 			//preventing from activating the MouseWheelHandler event
-			//more than once if the page is scrolling
-			isMoving = true;
+            //more than once if the page is scrolling
+            canScroll = false;
 
 			setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
 
@@ -920,9 +965,7 @@
 			lastScrolledDestiny = v.anchorLink;
 
 			//avoid firing it twice (as it does also on scroll)
-			if(options.autoScrolling){
-				activateMenuAndNav(v.anchorLink, v.sectionIndex);
-			}
+			activateMenuAndNav(v.anchorLink, v.sectionIndex);
 		}
 
 		/**
@@ -1031,13 +1074,12 @@
 			continuousVerticalFixSectionOrder(v);
 			//callback (afterLoad) if the site is not just resizing and readjusting the slides
 			$.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
+			canScroll = true;
 
 			setTimeout(function () {
-				isMoving = false;
 				$.isFunction(v.callback) && v.callback.call(this);
-			}, scrollDelay);
+			}, 600);
 		}
-
 
 		/**
 		* Scrolls to the anchor in the URL when loading the site
@@ -1082,55 +1124,111 @@
 		/**
 		 * Sliding with arrow keys, both, vertical and horizontal
 		 */
-		$(document).keydown(function(e) {
-			//Moving the main page with the keyboard arrows if keyboard scrolling is enabled
-			if (options.keyboardScrolling && options.autoScrolling) {
+	    $(window).keydown(keydownHandler);
 
-				//preventing the scroll with arrow keys
-				if(e.which == 40 || e.which == 38){
+   	    var keydownId;
+		function keydownHandler(e) {
+			clearTimeout(keydownId);
+
+			keydownId = setTimeout(function(){
+				onkeydown(e);
+			},150);
+		}
+
+		function onkeydown(e){
+			var shiftPressed = e.shiftKey;
+
+			var activeElement = $(document.activeElement);
+
+			if(!activeElement.is("textarea") && !activeElement.is("input") && !activeElement.is("select") &&
+				options.keyboardScrolling && options.autoScrolling){
+
+				//preventing the scroll with arrow keys & spacebar
+				if(e.which == 40 || e.which == 38 || e.which == 32){
 					e.preventDefault();
 				}
 
-				if(!isMoving){
-					switch (e.which) {
-						//up
-						case 38:
-						case 33:
+				switch (e.which) {
+					//up
+					case 38:
+					case 33:
+						$.fn.fullpage.moveSectionUp();
+						break;
+
+					//down
+					case 32: //spacebar
+						if(shiftPressed){
 							$.fn.fullpage.moveSectionUp();
 							break;
+						}
+					case 40:
+					case 34:
+						$.fn.fullpage.moveSectionDown();
+						break;
 
-						//down
-						case 40:
-						case 34:
-							$.fn.fullpage.moveSectionDown();
-							break;
+					//Home
+					case 36:
+						$.fn.fullpage.moveTo(1);
+						break;
 
-						//Home
-						case 36:
-							$.fn.fullpage.moveTo(1);
-							break;
+					//End
+					case 35:
+						$.fn.fullpage.moveTo( $('.fp-section').length );
+						break;
 
-						//End
-						case 35:
-							$.fn.fullpage.moveTo( $('.fp-section').length );
-							break;
+					//left
+					case 37:
+						$.fn.fullpage.moveSlideLeft();
+						break;
 
-						//left
-						case 37:
-							$.fn.fullpage.moveSlideLeft();
-							break;
+					//right
+					case 39:
+						$.fn.fullpage.moveSlideRight();
+						break;
 
-						//right
-						case 39:
-							$.fn.fullpage.moveSlideRight();
-							break;
-
-						default:
-							return; // exit this handler for other keys
-					}
+					default:
+						return; // exit this handler for other keys
 				}
 			}
+
+		}
+
+		//binding the mousemove when the mouse's middle button is released
+		container.mousedown(function(e){
+			//middle button
+			if (e.which == 2){
+				oldPageY = e.pageY;
+				container.on("mousemove", mouseMoveHandler);
+			}
 		});
+
+		//unbinding the mousemove when the mouse's middle button is released
+		container.mouseup(function(e){
+			//middle button
+			if (e.which == 2){
+				container.off("mousemove");
+			}
+		});
+
+		/**
+		* Detecting the direction of the mouse movement.
+		* Used only for the middle button of the mouse.
+		*/
+		var oldPageY = 0;
+		function mouseMoveHandler(e){
+			// moving up
+			if(canScroll){
+			    if (e.pageY < oldPageY){
+			    	$.fn.fullpage.moveSectionUp();
+
+
+			    // moving downw
+			    }else if(e.pageY > oldPageY){
+			    	$.fn.fullpage.moveSectionDown();
+			    }
+			}
+			oldPageY = e.pageY;
+		}
 
 		/**
 		* Scrolls to the section when clicking the navigation bullet
@@ -1262,9 +1360,10 @@
 
 	    	// rebuild immediately on touch devices
 			if (isTouchDevice) {
+				var activeElement = $(document.activeElement);
 
-				//if the keyboard is visible
-				if ($(document.activeElement).attr('type') !== 'text') {
+				//if the keyboard is NOT visible
+				if (!activeElement.is("textarea") && !activeElement.is("input") && !activeElement.is("select")) {
 					var currentHeight = $(window).height();
 
 					//making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
@@ -1824,7 +1923,7 @@
 			$.fn.fullpage.setAutoScrolling(false, 'internal');
  			$.fn.fullpage.setAllowScrolling(false);
  			$.fn.fullpage.setKeyboardScrolling(false);
-
+ 			container.addClass('fp-destroyed');
 
  			$(window)
 				.off('scroll', scrollHandler)
