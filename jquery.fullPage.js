@@ -6,8 +6,9 @@
  * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
  */
 
-(function($) {
+(function($, window, document, Math) {
 	$.fn.fullpage = function(options) {
+		var FP = $.fn.fullpage;
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
 			//navigation
@@ -80,7 +81,7 @@
 		//easeInQuart animation included in the plugin
 		$.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
 
-		$.fn.fullpage.setAutoScrolling = function(value, type){
+		FP.setAutoScrolling = function(value, type){
 			setVariableState('autoScrolling', value, type);
 
 			var element = $('.fp-section.active');
@@ -91,7 +92,7 @@
 					'height' : '100%'
 				});
 
-				$.fn.fullpage.setRecordHistory(options.recordHistory, 'internal');
+				FP.setRecordHistory(options.recordHistory, 'internal');
 
 				//for IE touch devices
 				container.css({
@@ -110,7 +111,7 @@
 					'height' : 'initial'
 				});
 
-				$.fn.fullpage.setRecordHistory(false, 'internal');
+				FP.setRecordHistory(false, 'internal');
 
 				//for IE touch devices
 				container.css({
@@ -131,21 +132,21 @@
 		/**
 		* Defines wheter to record the history for each hash change in the URL.
 		*/
-		$.fn.fullpage.setRecordHistory = function(value, type){
+		FP.setRecordHistory = function(value, type){
 			setVariableState('recordHistory', value, type);
 		};
 
 		/**
 		* Defines the scrolling speed
 		*/
-		$.fn.fullpage.setScrollingSpeed = function(value, type){
+		FP.setScrollingSpeed = function(value, type){
 			setVariableState('scrollingSpeed', value, type);
 		};
 
 		/**
 		* Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad.
 		*/
-		$.fn.fullpage.setMouseWheelScrolling = function (value){
+		FP.setMouseWheelScrolling = function (value){
 			if(value){
 				addMouseWheelHandler();
 			}else{
@@ -159,7 +160,7 @@
 		*
 		* @param directions string containing the direction or directions separated by comma.
 		*/
-		$.fn.fullpage.setAllowScrolling = function (value, directions){
+		FP.setAllowScrolling = function (value, directions){
 			if(typeof directions != 'undefined'){
 				directions = directions.replace(' ', '').split(',');
 				$.each(directions, function (index, direction){
@@ -167,10 +168,10 @@
 				});
 			}
 			else if(value){
-				$.fn.fullpage.setMouseWheelScrolling(true);
+				FP.setMouseWheelScrolling(true);
 				addTouchHandler();
 			}else{
-				$.fn.fullpage.setMouseWheelScrolling(false);
+				FP.setMouseWheelScrolling(false);
 				removeTouchHandler();
 			}
 		};
@@ -178,11 +179,11 @@
 		/**
 		* Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
 		*/
-		$.fn.fullpage.setKeyboardScrolling = function (value){
+		FP.setKeyboardScrolling = function (value){
 			options.keyboardScrolling = value;
 		};
 
-		$.fn.fullpage.moveSectionUp = function(){
+		FP.moveSectionUp = function(){
 			var prev = $('.fp-section.active').prev('.fp-section');
 
 			//looping to the bottom if there's no more sections above
@@ -195,7 +196,7 @@
 			}
 		};
 
-		$.fn.fullpage.moveSectionDown = function (){
+		FP.moveSectionDown = function (){
 			var next = $('.fp-section.active').next('.fp-section');
 
 			//looping to the top if there's no more sections below
@@ -209,7 +210,7 @@
 			}
 		};
 
-		$.fn.fullpage.moveTo = function (section, slide){
+		FP.moveTo = function (section, slide){
 			var destiny = '';
 
 			if(isNaN(section)){
@@ -225,18 +226,18 @@
 			}
 		};
 
-		$.fn.fullpage.moveSlideRight = function(){
+		FP.moveSlideRight = function(){
 			moveSlide('next');
 		};
 
-		$.fn.fullpage.moveSlideLeft = function(){
+		FP.moveSlideLeft = function(){
 			moveSlide('prev');
 		};
 
 		/**
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
-		$.fn.fullpage.reBuild = function(resizing){
+		FP.reBuild = function(resizing){
 			if(container.hasClass('fp-destroyed')){ return; }  //nothing to do if the plugin was destroyed
 
 			isResizing = true;
@@ -307,7 +308,7 @@
 		var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
 		var originals = $.extend(true, {}, options); //deep copy
 
-		$.fn.fullpage.setAllowScrolling(true);
+		FP.setAllowScrolling(true);
 
 		//if css3 is not supported, it will use jQuery animations
 		if(options.css3){
@@ -411,7 +412,7 @@
 			}
 
 		}).promise().done(function(){
-			$.fn.fullpage.setAutoScrolling(options.autoScrolling, 'internal');
+			FP.setAutoScrolling(options.autoScrolling, 'internal');
 
 			//the starting point is a slide?
 			var activeSlide = $('.fp-section.active').find('.fp-slide.active');
@@ -661,10 +662,10 @@
 
 			if(type == 'down'){
 				check = 'bottom';
-				scrollSection = $.fn.fullpage.moveSectionDown;
+				scrollSection = FP.moveSectionDown;
 			}else{
 				check = 'top';
-				scrollSection = $.fn.fullpage.moveSectionUp;
+				scrollSection = FP.moveSectionUp;
 			}
 
 			if(scrollable.length > 0 ){
@@ -719,11 +720,11 @@
 						if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
 							if (touchStartX > touchEndX) {
 								if(isScrollAllowed.right){
-									$.fn.fullpage.moveSlideRight(); //next
+									FP.moveSlideRight(); //next
 								}
 							} else {
 								if(isScrollAllowed.left){
-									$.fn.fullpage.moveSlideLeft(); //prev
+									FP.moveSlideLeft(); //prev
 								}
 							}
 						}
@@ -1152,38 +1153,38 @@
 					//up
 					case 38:
 					case 33:
-						$.fn.fullpage.moveSectionUp();
+						FP.moveSectionUp();
 						break;
 
 					//down
 					case 32: //spacebar
 						if(shiftPressed){
-							$.fn.fullpage.moveSectionUp();
+							FP.moveSectionUp();
 							break;
 						}
 					case 40:
 					case 34:
-						$.fn.fullpage.moveSectionDown();
+						FP.moveSectionDown();
 						break;
 
 					//Home
 					case 36:
-						$.fn.fullpage.moveTo(1);
+						FP.moveTo(1);
 						break;
 
 					//End
 					case 35:
-						$.fn.fullpage.moveTo( $('.fp-section').length );
+						FP.moveTo( $('.fp-section').length );
 						break;
 
 					//left
 					case 37:
-						$.fn.fullpage.moveSlideLeft();
+						FP.moveSlideLeft();
 						break;
 
 					//right
 					case 39:
-						$.fn.fullpage.moveSlideRight();
+						FP.moveSlideRight();
 						break;
 
 					default:
@@ -1219,12 +1220,12 @@
 			// moving up
 			if(canScroll){
 				if (e.pageY < oldPageY){
-					$.fn.fullpage.moveSectionUp();
+					FP.moveSectionUp();
 
 
 				// moving downw
 				}else if(e.pageY > oldPageY){
-					$.fn.fullpage.moveSectionDown();
+					FP.moveSectionDown();
 				}
 			}
 			oldPageY = e.pageY;
@@ -1252,11 +1253,11 @@
 
 		if(options.normalScrollElements){
 			$(document).on('mouseenter', options.normalScrollElements, function () {
-				$.fn.fullpage.setMouseWheelScrolling(false);
+				FP.setMouseWheelScrolling(false);
 			});
 
 			$(document).on('mouseleave', options.normalScrollElements, function(){
-				$.fn.fullpage.setMouseWheelScrolling(true);
+				FP.setMouseWheelScrolling(true);
 			});
 		}
 
@@ -1265,9 +1266,9 @@
 		 */
 		$('.fp-section').on('click touchstart', '.fp-controlArrow', function() {
 			if ($(this).hasClass('fp-prev')) {
-				$.fn.fullpage.moveSlideLeft();
+				FP.moveSlideLeft();
 			} else {
-				$.fn.fullpage.moveSlideRight();
+				FP.moveSlideRight();
 			}
 		});
 
@@ -1368,7 +1369,7 @@
 
 					//making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
 					if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-						$.fn.fullpage.reBuild(true);
+						FP.reBuild(true);
 						previousHeight = currentHeight;
 					}
 				}
@@ -1378,7 +1379,7 @@
 				clearTimeout(resizeId);
 
 				resizeId = setTimeout(function(){
-					$.fn.fullpage.reBuild(true);
+					FP.reBuild(true);
 				}, 500);
 			}
 		}
@@ -1392,12 +1393,12 @@
 				var isResponsive = container.hasClass('fp-responsive');
 				if ($(window).width() < options.responsive ){
 					if(!isResponsive){
-						$.fn.fullpage.setAutoScrolling(false, 'internal');
+						FP.setAutoScrolling(false, 'internal');
 						$('#fp-nav').hide();
 						container.addClass('fp-responsive');
 					}
 				}else if(isResponsive){
-					$.fn.fullpage.setAutoScrolling(originals.autoScrolling, 'internal');
+					FP.setAutoScrolling(originals.autoScrolling, 'internal');
 					$('#fp-nav').show();
 					container.removeClass('fp-responsive');
 				}
@@ -1878,9 +1879,9 @@
 		}
 
 		function silentLandscapeScroll(activeSlide){
-			$.fn.fullpage.setScrollingSpeed (0, 'internal');
+			FP.setScrollingSpeed (0, 'internal');
 			landscapeScroll(activeSlide.closest('.fp-slides'), activeSlide);
-			$.fn.fullpage.setScrollingSpeed(originals.scrollingSpeed, 'internal');
+			FP.setScrollingSpeed(originals.scrollingSpeed, 'internal');
 		}
 
 		function silentScroll(top){
@@ -1911,7 +1912,7 @@
 				case 'down': isScrollAllowed.down = value; break;
 				case 'left': isScrollAllowed.left = value; break;
 				case 'right': isScrollAllowed.right = value; break;
-				case 'all': $.fn.fullpage.setAllowScrolling(value);
+				case 'all': FP.setAllowScrolling(value);
 			}
 		}
 
@@ -1919,10 +1920,10 @@
 		/*
 		* Destroys fullpage.js plugin events and optinally its html markup and styles
 		*/
-		$.fn.fullpage.destroy = function(all){
-			$.fn.fullpage.setAutoScrolling(false, 'internal');
-			$.fn.fullpage.setAllowScrolling(false);
-			$.fn.fullpage.setKeyboardScrolling(false);
+		FP.destroy = function(all){
+			FP.setAutoScrolling(false, 'internal');
+			FP.setAllowScrolling(false);
+			FP.setKeyboardScrolling(false);
 			container.addClass('fp-destroyed');
 
 			$(window)
@@ -2033,4 +2034,4 @@
 			console && console[type] && console[type]('fullPage: ' + text);
 		}
 	};
-})(jQuery);
+})(jQuery, window, document, Math);
