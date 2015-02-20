@@ -85,7 +85,9 @@ html, body {
 }
 .fp-scrollable {
     overflow: scroll;
-
+}
+.fp-scrollable:hover {
+    background-color: transparent;
 }
 .fp-notransition {
     -webkit-transition: none !important;
