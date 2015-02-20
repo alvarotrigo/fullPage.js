@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.5.7-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.5.8-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
@@ -116,6 +116,7 @@ $(document).ready(function() {
 		css3: true,
 		scrollingSpeed: 700,
 		autoScrolling: true,
+		fitToSection: true,
 		scrollBar: false,
 		easing: 'easeInOutCubic',
 		easingcss3: 'ease',
@@ -136,7 +137,7 @@ $(document).ready(function() {
 		//Design
 		controlArrows: true,
 		verticalCentered: true,
-		resize : true,
+		resize : false,
 		sectionsColor : ['#ccc', '#fff'],
 		paddingTop: '3em',
 		paddingBottom: '10px',
@@ -184,7 +185,7 @@ You can do it by using the index of the slide (starting by 0), or if you prefer,
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
 
-- `resize`: (default `true`) Whether you want to resize the text when the window is resized.
+- `resize`: (default `false`) Whether you want to resize the text when the window is resized.
 
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
@@ -214,6 +215,8 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 - `css3`: (default `true`). Defines whether to use JavaScript or CSS3 transforms to scroll within sections and slides. Useful to speed up the movement in tablet and mobile devices with browsers supporting CSS3. If this option is set to `true` and the browser doesn't support CSS3, a jQuery fallback will be used instead.
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
+
+- `fitToSection`: (default `true`). Determines whether or not to fit sections to the viewport or not. When set to `true` the currente active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
 
 - `scrollBar`: (default `false`). Determines whether to use scrol bar for the site or not. In case of using scroll bar, the `autoScrolling` functionality will still working as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
 
@@ -326,6 +329,13 @@ $.fn.fullpage.moveSlideLeft();
 ### setAutoScrolling(boolean)
 Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with `scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section is scrollable.
+
+```javascript
+$.fn.fullpage.setAutoScrolling(false);
+```
+---
+### setFitToSection(boolean)
+Sets the value for the option `fitToSection` determining whether to fit the section in the screen or not.
 
 ```javascript
 $.fn.fullpage.setAutoScrolling(false);
