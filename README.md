@@ -338,7 +338,7 @@ $.fn.fullpage.setAutoScrolling(false);
 Sets the value for the option `fitToSection` determining whether to fit the section in the screen or not.
 
 ```javascript
-$.fn.fullpage.setAutoScrolling(false);
+$.fn.fullpage.setFitToSection(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
