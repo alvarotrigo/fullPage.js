@@ -187,11 +187,11 @@
 		};
 
 		FP.moveSectionUp = function(){
-			var prev = $('.fp-section.active').prev('.fp-section');
+			var prev = $('.fp-section.active').prev('.fp-section:visible');
 
 			//looping to the bottom if there's no more sections above
 			if (!prev.length && (options.loopTop || options.continuousVertical)) {
-				prev = $('.fp-section').last();
+				prev = $('.fp-section:visible').last();
 			}
 
 			if (prev.length) {
@@ -200,12 +200,12 @@
 		};
 
 		FP.moveSectionDown = function (){
-			var next = $('.fp-section.active').next('.fp-section');
+			var next = $('.fp-section.active').next('.fp-section:visible');
 
 			//looping to the top if there's no more sections below
 			if(!next.length &&
 				(options.loopBottom || options.continuousVertical)){
-				next = $('.fp-section').first();
+				next = $('.fp-section:visible').first();
 			}
 
 			if(next.length){
