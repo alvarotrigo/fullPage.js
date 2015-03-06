@@ -37,6 +37,7 @@
 			'scrollOverflow': false,
 			'touchSensitivity': 5,
 			'normalScrollElementTouchThreshold': 5,
+			'scrollDelay':600,
 
 			//Accessibility
 			'keyboardScrolling': true,
@@ -1090,7 +1091,7 @@
 
 			setTimeout(function () {
 				$.isFunction(v.callback) && v.callback.call(this);
-			}, 600);
+			}, options.scrollDelay);
 		}
 
 		/**
