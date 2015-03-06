@@ -66,7 +66,10 @@
 			'afterResize': null,
 			'afterReBuild': null,
 			'afterSlideLoad': null,
-			'onSlideLeave': null
+			'onSlideLeave': null,
+
+			//slimScroll
+			'slimScrollWheelstep': 20
 		}, options);
 
 		displayWarnings();
@@ -1569,7 +1572,8 @@
 						allowPageScroll: true,
 						height: scrollHeight + 'px',
 						size: '10px',
-						alwaysVisible: true
+						alwaysVisible: true,
+						wheelStep: options.wheelStep
 					});
 				}
 			}
