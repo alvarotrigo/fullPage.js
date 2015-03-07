@@ -60,6 +60,7 @@
 
 
 			//events
+			'onEnd': null,
 			'afterLoad': null,
 			'onLeave': null,
 			'afterRender': null,
@@ -197,6 +198,9 @@
 
 			if (prev.length) {
 				scrollPage(prev, null, true);
+			} else {
+				// dispatch event that you have reached the end
+				$.isFunction( options.onEnd ) && options.onEnd.call( this, "top");				
 			}
 		};
 
@@ -211,6 +215,9 @@
 
 			if(next.length){
 				scrollPage(next, null, false);
+			} else {
+				// dispatch event that you have reached the end
+				$.isFunction( options.onEnd ) && options.onEnd.call( this, "bottom");
 			}
 		};
 
