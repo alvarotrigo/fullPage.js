@@ -8,6 +8,81 @@
 
 (function($, window, document, Math, undefined) {
 	'use strict';
+
+	// keeping central set of classnames and selectors
+	var classNames = {
+		wrapper:           'fullpage-wrapper',
+		active:            'active',
+		// slide
+		slide:             'fp-slide',
+		slideWrapper:      'fp-slides',
+		slidesContainer:   'fp-slidesContainer',
+		table:             'fp-table',
+		tableActive:       'fp-table active',
+		// slide nav
+		slidesNav:         'fp-slidesNav',
+		slideArrow:        'fp-controlArrow',
+		slidePrev:         'fp-prev',
+		slideNext:         'fp-next',
+		slideArrowNext:    'fp-controlArrow fp-next',
+		slideArrowPrev:    'fp-controlArrow fp-prev',
+		// section
+		section:           'fp-section',
+		tableCell:         'fp-tableCell',
+		// section nav
+		sectionNavTooltip: 'fp-tooltip',
+		// slimscroll
+		scrollable:        'fp-scrollable',
+		// util
+		responsive:        'fp-responsive',
+		notTransition:     'fp-notransition',
+		destroyed:         'fp-destroyed',
+		viewingPrefix:     'fp-viewing'
+	};
+	var ids = {
+		// section nav
+		sectionNav: 'fp-nav'
+	};
+	var selectors = {
+		body:               'body',
+		wrapper:            '.fullpage-wrapper',
+		active:             '.active',
+		// slide
+		slideCustom:        '.slide',
+		slideWrapper:       '.fp-slides',
+		slidesContainer:    '.fp-slidesContainer',
+		slide:              '.fp-slide',
+		activeSlide:        '.fp-slide.active',
+		// slide nav
+		slidesNav:          '.fp-slidesNav',
+		slidesNavLinks:     '.fp-slidesNav a',
+		slideArrow:         '.fp-controlArrow',
+		slideArrowNext:     '.fp-controlArrow.fp-next',
+		slideArrowPrev:     '.fp-controlArrow.fp-prev',
+		// section
+		sectionCustom:      '.section',
+		section:            '.fp-section',
+		activeSection:      '.fp-section.active',
+		sectionFirst:       '.fp-section:first',
+		sectionLast:        '.fp-section:last',
+		tableCell:          '.fp-tableCell',
+		// section nav
+		sectionNav:         '#fp-nav',
+		sectionNavListItem: '#fp-nav li',
+		sectionNavLinks:    '#fp-nav a',
+		// slimscroll
+		scrollable:         '.fp-scrollable',
+		slimScrollBar:      '.slimScrollBar',
+		slimScrollRail:     '.slimScrollRail',
+		// jquery ui
+		easing:             '.fp-easing',
+		// combo selectors
+		sectionsAndSlides:  '.fp-section, .fp-slide',
+		wrappedContent:     '.fp-tableCell, .fp-slidesContainer, .fp-slides',
+		controls:           '#fp-nav, .fp-slidesNav, .fp-controlArrow',
+		htmlBody:           'html, body'
+	};
+
 	$.fn.fullpage = function(options) {
 		var FP = $.fn.fullpage;
 		// Create some defaults, extending them with any options that were provided
@@ -55,8 +130,8 @@
 			'responsive': 0,
 
 			//Custom selectors
-			'sectionSelector': '.section',
-			'slideSelector': '.slide',
+			'sectionSelector': selectors.sectionCustom,
+			'slideSelector': selectors.slideCustom,
 
 
 			//events
@@ -81,10 +156,10 @@
 		FP.setAutoScrolling = function(value, type){
 			setVariableState('autoScrolling', value, type);
 
-			var element = $('.fp-section.active');
+			var element = $(selectors.activeSection);
 
 			if(options.autoScrolling && !options.scrollBar){
-				$('html, body').css({
+				$(selectors.htmlBody).css({
 					'overflow' : 'hidden',
 					'height' : '100%'
 				});
@@ -103,7 +178,7 @@
 				}
 
 			}else{
-				$('html, body').css({
+				$(selectors.htmlBody).css({
 					'overflow' : 'visible',
 					'height' : 'initial'
 				});
@@ -120,7 +195,7 @@
 
 				//scrolling the page to the section with no animation
 				if (element.length) {
-					$('html, body').scrollTop(element.position().top);
+					$(selectors.htmlBody).scrollTop(element.position().top);
 				}
 			}
 
@@ -188,11 +263,11 @@
 		};
 
 		FP.moveSectionUp = function(){
-			var prev = $('.fp-section.active').prev('.fp-section');
+			var prev = $(selectors.activeSection).prev(selectors.section);
 
 			//looping to the bottom if there's no more sections above
 			if (!prev.length && (options.loopTop || options.continuousVertical)) {
-				prev = $('.fp-section').last();
+				prev = $(selectors.section).last();
 			}
 
 			if (prev.length) {
@@ -201,12 +276,12 @@
 		};
 
 		FP.moveSectionDown = function (){
-			var next = $('.fp-section.active').next('.fp-section');
+			var next = $(selectors.activeSection).next(selectors.section);
 
 			//looping to the top if there's no more sections below
 			if(!next.length &&
 				(options.loopBottom || options.continuousVertical)){
-				next = $('.fp-section').first();
+				next = $(selectors.section).first();
 			}
 
 			if(next.length){
@@ -220,7 +295,7 @@
 			if(isNaN(section)){
 				destiny = $('[data-anchor="'+section+'"]');
 			}else{
-				destiny = $('.fp-section').eq( (section -1) );
+				destiny = $(selectors.section).eq( (section -1) );
 			}
 
 			if (typeof slide !== 'undefined'){
@@ -242,7 +317,7 @@
 		 * When resizing is finished, we adjust the slides sizes and positions
 		 */
 		FP.reBuild = function(resizing){
-			if(container.hasClass('fp-destroyed')){ return; }  //nothing to do if the plugin was destroyed
+			if(container.hasClass(classNames.destroyed)){ return; }  //nothing to do if the plugin was destroyed
 
 			isResizing = true;
 
@@ -254,13 +329,13 @@
 				resizeMe(windowsHeight, windowsWidth);
 			}
 
-			$('.fp-section').each(function(){
-				var slidesWrap = $(this).find('.fp-slides');
-				var slides = $(this).find('.fp-slide');
+			$(selectors.section).each(function(){
+				var slidesWrap = $(this).find(selectors.slideWrapper);
+				var slides = $(this).find(selectors.slide);
 
 				//adjusting the height of the table-cell for IE and Firefox
 				if(options.verticalCentered){
-					$(this).find('.fp-tableCell').css('height', getTableHeight($(this)) + 'px');
+					$(this).find(selectors.tableCell).css('height', getTableHeight($(this)) + 'px');
 				}
 
 				$(this).css('height', windowsHeight + 'px');
@@ -278,14 +353,14 @@
 
 				//adjusting the position fo the FULL WIDTH slides...
 				if (slides.length) {
-					landscapeScroll(slidesWrap, slidesWrap.find('.fp-slide.active'));
+					landscapeScroll(slidesWrap, slidesWrap.find(selectors.activeSlide));
 				}
 			});
 
-			var activeSection = $('.fp-section.active');
+			var activeSection = $(selectors.activeSection);
 
 			//isn't it the first section?
-			if(activeSection.index('.fp-section')){
+			if(activeSection.index(selectors.section)){
 				//adjusting the position for the current section
 				scrollPage(activeSection);
 			}
@@ -308,12 +383,12 @@
 		var canScroll = true;
 		var scrollings = [];
 		var nav;
-		var wrapperSelector = 'fullpage-wrapper';
+		var wrapperSelector = classNames.wrapper;
 		var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
 		var originals = $.extend(true, {}, options); //deep copy
 
 		FP.setAllowScrolling(true);
-		container.removeClass('fp-destroyed'); //in case it was destroyed before initilizing it again
+		container.removeClass(classNames.destroyed); //in case it was destroyed before initilizing it again
 
 		//if css3 is not supported, it will use jQuery animations
 		if(options.css3){
@@ -337,10 +412,10 @@
 
 		//adding internal class names to void problem with common ones
 		$(options.sectionSelector).each(function(){
-			$(this).addClass('fp-section');
+			$(this).addClass(classNames.section);
 		});
 		$(options.slideSelector).each(function(){
-			$(this).addClass('fp-slide');
+			$(this).addClass(classNames.slide);
 		});
 
 		//creating the navigation dots
@@ -348,14 +423,14 @@
 			addVerticalNavigation();
 		}
 
-		$('.fp-section').each(function(index){
+		$(selectors.section).each(function(index){
 			var that = $(this);
-			var slides = $(this).find('.fp-slide');
+			var slides = $(this).find(selectors.slide);
 			var numSlides = slides.length;
 
 			//if no active section is defined, the 1st one will be the default one
-			if(!index && $('.fp-section.active').length === 0) {
-				$(this).addClass('active');
+			if(!index && $(selectors.activeSection).length === 0) {
+				$(this).addClass(classNames.active);
 			}
 
 			$(this).css('height', windowsHeight + 'px');
@@ -372,7 +447,7 @@
 				$(this).attr('data-anchor', options.anchors[index]);
 
 				//activating the menu / nav element on load
-				if($(this).hasClass('active')){
+				if($(this).hasClass(classNames.active)){
 					activateMenuAndNav(options.anchors[index], index);
 				}
 			}
@@ -382,10 +457,10 @@
 				var sliderWidth = numSlides * 100;
 				var slideWidth = 100 / numSlides;
 
-				slides.wrapAll('<div class="fp-slidesContainer" />');
-				slides.parent().wrap('<div class="fp-slides" />');
+				slides.wrapAll('<div class="' + classNames.slidesContainer + '" />');
+				slides.parent().wrap('<div class="' + classNames.slideWrapper + '" />');
 
-				$(this).find('.fp-slidesContainer').css('width', sliderWidth + '%');
+				$(this).find(selectors.slidesContainer).css('width', sliderWidth + '%');
 
 				if(options.controlArrows){
 					createSlideArrows($(this));
@@ -403,11 +478,11 @@
 					}
 				});
 
-				var startingSlide = that.find('.fp-slide.active');
+				var startingSlide = that.find(selectors.activeSlide);
 
 				//if the slide won#t be an starting point, the default will be the first one
 				if(!startingSlide.length){
-					slides.eq(0).addClass('active');
+					slides.eq(0).addClass(classNames.active);
 				}
 
 				//is there a starting point for a non-starting section?
@@ -425,27 +500,27 @@
 			FP.setAutoScrolling(options.autoScrolling, 'internal');
 
 			//the starting point is a slide?
-			var activeSlide = $('.fp-section.active').find('.fp-slide.active');
+			var activeSlide = $(selectors.activeSection).find(selectors.activeSlide);
 
 			//the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
-			if( activeSlide.length &&  ($('.fp-section.active').index('.fp-section') !== 0 || ($('.fp-section.active').index('.fp-section') === 0 && activeSlide.index() !== 0))){
+			if( activeSlide.length &&  ($(selectors.activeSection).index(selectors.section) !== 0 || ($(selectors.activeSection).index(selectors.section) === 0 && activeSlide.index() !== 0))){
 				silentLandscapeScroll(activeSlide);
 			}
 
 			//fixed elements need to be moved out of the plugin container due to problems with CSS3.
 			if(options.fixedElements && options.css3){
-				$(options.fixedElements).appendTo('body');
+				$(options.fixedElements).appendTo(selectors.body);
 			}
 
 			//vertical centered of the navigation + first bullet active
 			if(options.navigation){
 				nav.css('margin-top', '-' + (nav.height()/2) + 'px');
-				nav.find('li').eq($('.fp-section.active').index('.fp-section')).find('a').addClass('active');
+				nav.find('li').eq($(selectors.activeSection).index(selectors.section)).find('a').addClass(classNames.active);
 			}
 
 			//moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
-			if(options.menu && options.css3 && $(options.menu).closest('.fullpage-wrapper').length){
-				$(options.menu).appendTo('body');
+			if(options.menu && options.css3 && $(options.menu).closest(selectors.wrapper).length){
+				$(options.menu).appendTo(selectors.body);
 			}
 
 			if(options.scrollOverflow){
@@ -477,14 +552,14 @@
 						setBodyClass(destiny);
 
 						//scrolling the page to the section with no animation
-						$('html, body').scrollTop(section.position().top);
+						$(selectors.htmlBody).scrollTop(section.position().top);
 					}
 					activateMenuAndNav(destiny, null);
 
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index('.fp-section') + 1));
+					$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index(selectors.section) + 1));
 
 					//updating the active class
-					section.addClass('active').siblings().removeClass('active');
+					section.addClass(classNames.active).siblings().removeClass(classNames.active);
 				}
 			}
 
@@ -500,15 +575,15 @@
 		* Creates the control arrows for the given section
 		*/
 		function createSlideArrows(section){
-			section.find('.fp-slides').after('<div class="fp-controlArrow fp-prev"></div><div class="fp-controlArrow fp-next"></div>');
+			section.find(selectors.slideWrapper).after('<div class="' + classNames.slideArrowPrev + '"></div><div class="' + classNames.slideArrowNext + '"></div>');
 
 			if(options.controlArrowColor!='#fff'){
-				section.find('.fp-controlArrow.fp-next').css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
-				section.find('.fp-controlArrow.fp-prev').css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+				section.find(selectors.slideArrowNext).css('border-color', 'transparent transparent transparent '+options.controlArrowColor);
+				section.find(selectors.slideArrowPrev).css('border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
 			}
 
 			if(!options.loopHorizontal){
-				section.find('.fp-controlArrow.fp-prev').hide();
+				section.find(selectors.slideArrowPrev).hide();
 			}
 		}
 
@@ -516,12 +591,12 @@
 		* Creates a vertical navigation bar.
 		*/
 		function addVerticalNavigation(){
-			$('body').append('<div id="fp-nav"><ul></ul></div>');
-			nav = $('#fp-nav');
+			$(selectors.body).append('<div id="' + ids.sectionNav + '"><ul></ul></div>');
+			nav = $(selectors.sectionNav);
 
 			nav.addClass(options.navigationPosition);
 
-			for (var i = 0; i < $('.fp-section').length; i++) {
+			for (var i = 0; i < $(selectors.section).length; i++) {
 				var link = '';
 				if (options.anchors.length) {
 					link = options.anchors[i];
@@ -533,7 +608,7 @@
 				var tooltip = options.navigationTooltips[i];
 
 				if (typeof tooltip !== 'undefined' && tooltip !== '') {
-					li += '<div class="fp-tooltip ' + options.navigationPosition + '">' + tooltip + '</div>';
+					li += '<div class="' + classNames.sectionNavTooltip + ' ' + options.navigationPosition + '">' + tooltip + '</div>';
 				}
 
 				li += '</li>';
@@ -543,8 +618,8 @@
 		}
 
 		function createSlimScrollingHandler(){
-			$('.fp-section').each(function(){
-				var slides = $(this).find('.fp-slide');
+			$(selectors.section).each(function(){
+				var slides = $(this).find(selectors.slide);
 
 				if(slides.length){
 					slides.each(function(){
@@ -571,10 +646,10 @@
 			if(!options.autoScrolling || options.scrollBar){
 				var currentScroll = $(window).scrollTop();
 				var visibleSectionIndex = 0;
-				var initial = Math.abs(currentScroll - document.getElementsByClassName('fp-section')[0].offsetTop);
+				var initial = Math.abs(currentScroll - document.getElementsByClassName(classNames.section)[0].offsetTop);
 
 				//taking the section which is showing more content in the viewport
-				var sections =  document.getElementsByClassName('fp-section');
+				var sections =  document.getElementsByClassName(classNames.section);
 				for (var i = 0; i < sections.length; ++i) {
 					var section = sections[i];
 
@@ -592,14 +667,14 @@
 
 			if(!options.autoScrolling || options.scrollBar){
 				//executing only once the first time we reach the section
-				if(!currentSection.hasClass('active')){
+				if(!currentSection.hasClass(classNames.active)){
 					isScrolling = true;
-					var leavingSection = $('.fp-section.active');
-					var leavingSectionIndex = leavingSection.index('.fp-section') + 1;
+					var leavingSection = $(selectors.activeSection);
+					var leavingSectionIndex = leavingSection.index(selectors.section) + 1;
 					var yMovement = getYmovement(currentSection);
 					var anchorLink  = currentSection.data('anchor');
-					var sectionIndex = currentSection.index('.fp-section') + 1;
-					var activeSlide = currentSection.find('.fp-slide.active');
+					var sectionIndex = currentSection.index(selectors.section) + 1;
+					var activeSlide = currentSection.find(selectors.activeSlide);
 
 					if(activeSlide.length){
 						var slideAnchorLink = activeSlide.data('anchor');
@@ -607,7 +682,7 @@
 					}
 
 					if(canScroll){
-						currentSection.addClass('active').siblings().removeClass('active');
+						currentSection.addClass(classNames.active).siblings().removeClass(classNames.active);
 
 						$.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
 
@@ -638,7 +713,7 @@
 						if(canScroll){
 							//allows to scroll to an active section and
 							//if the section is already active, we prevent firing callbacks
-							if($('.fp-section.active').is(currentSection)){
+							if($(selectors.activeSection).is(currentSection)){
 								isResizing = true;
 							}
 							scrollPage(currentSection);
@@ -655,11 +730,11 @@
 		*/
 		function isScrollable(activeSection){
 			//if there are landscape slides, we check if the scrolling bar is in the current one or not
-			if(activeSection.find('.fp-slides').length){
-				return activeSection.find('.fp-slide.active').find('.fp-scrollable');
+			if(activeSection.find(selectors.slideWrapper).length){
+				return activeSection.find(selectors.activeSlide).find(selectors.scrollable);
 			}
 
-			return activeSection.find('.fp-scrollable');
+			return activeSection.find(selectors.scrollable);
 		}
 
 		/**
@@ -716,7 +791,7 @@
 					event.preventDefault();
 				}
 
-				var activeSection = $('.fp-section.active');
+				var activeSection = $(selectors.activeSection);
 				var scrollable = isScrollable(activeSection);
 
 				if (canScroll && !slideMoving) { //if theres any #
@@ -726,7 +801,7 @@
 					touchEndX = touchEvents.x;
 
 					//if movement in the X axys is greater than in the Y and the currect section has slides...
-					if (activeSection.find('.fp-slides').length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+					if (activeSection.find(selectors.slideWrapper).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
 						//is the movement greater than the minimum resistance to scroll?
 						if (Math.abs(touchStartX - touchEndX) > ($(window).width() / 100 * options.touchSensitivity)) {
@@ -844,7 +919,7 @@
 					e.preventDefault ? e.preventDefault() : e.returnValue = false;
 				}
 
-				var activeSection = $('.fp-section.active');
+				var activeSection = $(selectors.activeSection);
 				var scrollable = isScrollable(activeSection);
 
 				if(canScroll){
@@ -874,21 +949,21 @@
 		}
 
 		function moveSlide(direction){
-			var activeSection = $('.fp-section.active');
-			var slides = activeSection.find('.fp-slides');
+			var activeSection = $(selectors.activeSection);
+			var slides = activeSection.find(selectors.slideWrapper);
 
 			// more than one slide needed and nothing should be sliding
 			if (!slides.length || slideMoving) {
 				return;
 			}
 
-			var currentSlide = slides.find('.fp-slide.active');
+			var currentSlide = slides.find(selectors.activeSlide);
 			var destiny = null;
 
 			if(direction === 'prev'){
-				destiny = currentSlide.prev('.fp-slide');
+				destiny = currentSlide.prev(selectors.slide);
 			}else{
-				destiny = currentSlide.next('.fp-slide');
+				destiny = currentSlide.next(selectors.slide);
 			}
 
 			//isn't there a next slide in the secuence?
@@ -913,7 +988,7 @@
 		* (Because he `scroll` animation might get lost with some actions, such as when using continuousVertical)
 		*/
 		function keepSlidesPosition(){
-			$('.fp-slide.active').each(function(){
+			$(selectors.activeSlide).each(function(){
 				silentLandscapeScroll($(this));
 			});
 		}
@@ -934,10 +1009,10 @@
 				dtop: dest.top,
 				yMovement: getYmovement(element),
 				anchorLink: element.data('anchor'),
-				sectionIndex: element.index('.fp-section'),
-				activeSlide: element.find('.fp-slide.active'),
-				activeSection: $('.fp-section.active'),
-				leavingSection: $('.fp-section.active').index('.fp-section') + 1,
+				sectionIndex: element.index(selectors.section),
+				activeSlide: element.find(selectors.activeSlide),
+				activeSection: $(selectors.activeSection),
+				leavingSection: $(selectors.activeSection).index(selectors.section) + 1,
 
 				//caching the value of isResizing at the momment the function is called
 				//because it will be checked later inside a setTimeout and the value might change
@@ -960,7 +1035,7 @@
 				v = createInfiniteSections(v);
 			}
 
-			element.addClass('active').siblings().removeClass('active');
+			element.addClass(classNames.active).siblings().removeClass(classNames.active);
 
 			//preventing from activating the MouseWheelHandler event
 			//more than once if the page is scrolling
@@ -1018,7 +1093,7 @@
 				scroll.element = '.'+wrapperSelector;
 			}else{
 				scroll.options = { 'scrollTop': v.dtop};
-				scroll.element = 'html, body';
+				scroll.element = selectors.htmlBody;
 			}
 
 			return scroll;
@@ -1031,15 +1106,15 @@
 			// Scrolling down
 			if (!v.isMovementUp) {
 				// Move all previous sections to after the active section
-				$('.fp-section.active').after(v.activeSection.prevAll('.fp-section').get().reverse());
+				$(selectors.activeSection).after(v.activeSection.prevAll(selectors.section).get().reverse());
 			}
 			else { // Scrolling up
 				// Move all next sections to before the active section
-				$('.fp-section.active').before(v.activeSection.nextAll('.fp-section'));
+				$(selectors.activeSection).before(v.activeSection.nextAll(selectors.section));
 			}
 
 			// Maintain the displayed position (now that we changed the element order)
-			silentScroll($('.fp-section.active').position().top);
+			silentScroll($(selectors.activeSection).position().top);
 
 			// Maintain the active slides visible in the viewport
 			keepSlidesPosition();
@@ -1066,13 +1141,13 @@
 			}
 
 			if (v.isMovementUp) {
-				$('.fp-section:first').before(v.wrapAroundElements);
+				$(selectors.sectionFirst).before(v.wrapAroundElements);
 			}
 			else {
-				$('.fp-section:last').after(v.wrapAroundElements);
+				$(selectors.sectionLast).after(v.wrapAroundElements);
 			}
 
-			silentScroll($('.fp-section.active').position().top);
+			silentScroll($(selectors.activeSection).position().top);
 
 			// Maintain the active slides visible in the viewport
 			keepSlidesPosition();
@@ -1188,7 +1263,7 @@
 
 				//End
 				case 35:
-					FP.moveTo( $('.fp-section').length );
+					FP.moveTo( $(selectors.section).length );
 					break;
 
 				//left
@@ -1245,19 +1320,19 @@
 		/**
 		* Scrolls to the section when clicking the navigation bullet
 		*/
-		$(document).on('click touchstart', '#fp-nav a', function(e){
+		$(document).on('click touchstart', selectors.sectionNavLinks, function(e){
 			e.preventDefault();
 			var index = $(this).parent().index();
-			scrollPage($('.fp-section').eq(index));
+			scrollPage($(selectors.section).eq(index));
 		});
 
 		/**
 		* Scrolls the slider to the given slide destination for the given section
 		*/
-		$(document).on('click touchstart', '.fp-slidesNav a', function(e){
+		$(document).on('click touchstart', selectors.slidesNavLinks, function(e){
 			e.preventDefault();
-			var slides = $(this).closest('.fp-section').find('.fp-slides');
-			var destiny = slides.find('.fp-slide').eq($(this).closest('li').index());
+			var slides = $(this).closest(selectors.section).find(selectors.slideWrapper);
+			var destiny = slides.find(selectors.slide).eq($(this).closest('li').index());
 
 			landscapeScroll(slides, destiny);
 		});
@@ -1275,8 +1350,8 @@
 		/**
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
-		$('.fp-section').on('click touchstart', '.fp-controlArrow', function() {
-			if ($(this).hasClass('fp-prev')) {
+		$(selectors.section).on('click touchstart', selectors.slideArrow, function() {
+			if ($(this).hasClass(classNames.prev)) {
 				FP.moveSlideLeft();
 			} else {
 				FP.moveSlideRight();
@@ -1288,12 +1363,12 @@
 		*/
 		function landscapeScroll(slides, destiny){
 			var destinyPos = destiny.position();
-			var slidesContainer = slides.find('.fp-slidesContainer').parent();
+			var slidesContainer = slides.find(selectors.slidesContainer).parent();
 			var slideIndex = destiny.index();
-			var section = slides.closest('.fp-section');
-			var sectionIndex = section.index('.fp-section');
+			var section = slides.closest(selectors.section);
+			var sectionIndex = section.index(selectors.section);
 			var anchorLink = section.data('anchor');
-			var slidesNav = section.find('.fp-slidesNav');
+			var slidesNav = section.find(selectors.slidesNav);
 			var slideAnchor = destiny.data('anchor');
 
 			//caching the value of isResizing at the momment the function is called
@@ -1301,7 +1376,7 @@
 			var localIsResizing = isResizing;
 
 			if(options.onSlideLeave){
-				var prevSlide = section.find('.fp-slide.active');
+				var prevSlide = section.find(selectors.activeSlide);
 				var prevSlideIndex = prevSlide.index();
 				var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
@@ -1311,7 +1386,7 @@
 				}
 			}
 
-			destiny.addClass('active').siblings().removeClass('active');
+			destiny.addClass(classNames.active).siblings().removeClass(classNames.active);
 
 
 			if(typeof slideAnchor === 'undefined'){
@@ -1320,14 +1395,14 @@
 
 			if(!options.loopHorizontal && options.controlArrows){
 				//hidding it for the fist slide, showing for the rest
-				section.find('.fp-controlArrow.fp-prev').toggle(slideIndex!==0);
+				section.find(selectors.slideArrowPrev).toggle(slideIndex!==0);
 
 				//hidding it for the last slide, showing for the rest
-				section.find('.fp-controlArrow.fp-next').toggle(!destiny.is(':last-child'));
+				section.find(selectors.slideArrowNext).toggle(!destiny.is(':last-child'));
 			}
 
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
-			if(section.hasClass('active')){
+			if(section.hasClass(classNames.active)){
 				setState(slideIndex, slideAnchor, anchorLink, sectionIndex);
 			}
 
@@ -1343,7 +1418,7 @@
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
 
-				addAnimation(slides.find('.fp-slidesContainer'), options.scrollingSpeed>0).css(getTransforms(translate3d));
+				addAnimation(slides.find(selectors.slidesContainer), options.scrollingSpeed>0).css(getTransforms(translate3d));
 
 				setTimeout(function(){
 					afterSlideLoads();
@@ -1357,8 +1432,8 @@
 				});
 			}
 
-			slidesNav.find('.active').removeClass('active');
-			slidesNav.find('li').eq(slideIndex).find('a').addClass('active');
+			slidesNav.find(selectors.active).removeClass(classNames.active);
+			slidesNav.find('li').eq(slideIndex).find('a').addClass(classNames.active);
 		}
 
 		//when resizing the site, we adjust the heights of the sections, slimScroll...
@@ -1401,19 +1476,19 @@
 		*/
 		function responsive(){
 			if(options.responsive){
-				var isResponsive = container.hasClass('fp-responsive');
+				var isResponsive = container.hasClass(classNames.responsive);
 				if ($(window).width() < options.responsive ){
 					if(!isResponsive){
 						FP.setAutoScrolling(false, 'internal');
 						FP.setFitToSection(false, 'internal');
-						$('#fp-nav').hide();
-						container.addClass('fp-responsive');
+						$(selectors.sectionNav).hide();
+						container.addClass(classNames.responsive);
 					}
 				}else if(isResponsive){
 					FP.setAutoScrolling(originals.autoScrolling, 'internal');
 					FP.setFitToSection(originals.autoScrolling, 'internal');
-					$('#fp-nav').show();
-					container.removeClass('fp-responsive');
+					$(selectors.sectionNav).show();
+					container.removeClass(classNames.responsive);
 				}
 			}
 		}
@@ -1424,7 +1499,7 @@
 		function addAnimation(element){
 			var transition = 'all ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
 
-			element.removeClass('fp-notransition');
+			element.removeClass(classNames.notTransition);
 			return element.css({
 				'-webkit-transition': transition,
 				'transition': transition
@@ -1435,7 +1510,7 @@
 		* Remove transition animations for the given element
 		*/
 		function removeAnimation(element){
-			return element.addClass('fp-notransition');
+			return element.addClass(classNames.notTransition);
 		}
 
 		/**
@@ -1452,9 +1527,9 @@
 				var percentage = Math.min(heightPercentage, widthPercentage);
 				var newFontSize = percentage.toFixed(2);
 
-				$('body').css('font-size', newFontSize + '%');
+				$(selectors.body).css('font-size', newFontSize + '%');
 			} else {
-				$('body').css('font-size', '100%');
+				$(selectors.body).css('font-size', '100%');
 			}
 		}
 
@@ -1463,11 +1538,11 @@
 		 */
 		function activateNavDots(name, sectionIndex){
 			if(options.navigation){
-				$('#fp-nav').find('.active').removeClass('active');
+				$(selectors.sectionNav).find(selectors.active).removeClass(classNames.active);
 				if(name){
-					$('#fp-nav').find('a[href="#' + name + '"]').addClass('active');
+					$(selectors.sectionNav).find('a[href="#' + name + '"]').addClass(classNames.active);
 				}else{
-					$('#fp-nav').find('li').eq(sectionIndex).find('a').addClass('active');
+					$(selectors.sectionNav).find('li').eq(sectionIndex).find('a').addClass(classNames.active);
 				}
 			}
 		}
@@ -1477,8 +1552,8 @@
 		 */
 		function activateMenuElement(name){
 			if(options.menu){
-				$(options.menu).find('.active').removeClass('active');
-				$(options.menu).find('[data-menuanchor="'+name+'"]').addClass('active');
+				$(options.menu).find(selectors.active).removeClass(classNames.active);
+				$(options.menu).find('[data-menuanchor="'+name+'"]').addClass(classNames.active);
 			}
 		}
 
@@ -1504,8 +1579,8 @@
 		* from the current section.
 		*/
 		function getYmovement(destiny){
-			var fromIndex = $('.fp-section.active').index('.fp-section');
-			var toIndex = destiny.index('.fp-section');
+			var fromIndex = $(selectors.activeSection).index(selectors.section);
+			var toIndex = destiny.index(selectors.section);
 			if( fromIndex == toIndex){
 				return 'none';
 			}
@@ -1535,8 +1610,8 @@
 			element.css('overflow', 'hidden');
 
 			//in case element is a slide
-			var section = element.closest('.fp-section');
-			var scrollable = element.find('.fp-scrollable');
+			var section = element.closest(selectors.section);
+			var scrollable = element.find(selectors.scrollable);
 			var contentHeight;
 
 			//if there was scroll, the contentHeight will be the one in the scrollable section
@@ -1545,7 +1620,7 @@
 			}else{
 				contentHeight = element.get(0).scrollHeight;
 				if(options.verticalCentered){
-					contentHeight = element.find('.fp-tableCell').get(0).scrollHeight;
+					contentHeight = element.find(selectors.tableCell).get(0).scrollHeight;
 				}
 			}
 
@@ -1560,12 +1635,12 @@
 				//creating the scrolling
 				else{
 					if(options.verticalCentered){
-						element.find('.fp-tableCell').wrapInner('<div class="fp-scrollable" />');
+						element.find(selectors.tableCell).wrapInner('<div class="' + classNames.scrollable + '" />');
 					}else{
-						element.wrapInner('<div class="fp-scrollable" />');
+						element.wrapInner('<div class="' + classNames.scrollable + '" />');
 					}
 
-					element.find('.fp-scrollable').slimScroll({
+					element.find(selectors.scrollable).slimScroll({
 						allowPageScroll: true,
 						height: scrollHeight + 'px',
 						size: '10px',
@@ -1584,13 +1659,13 @@
 		}
 
 		function removeSlimScroll(element){
-			element.find('.fp-scrollable').children().first().unwrap().unwrap();
-			element.find('.slimScrollBar').remove();
-			element.find('.slimScrollRail').remove();
+			element.find(selectors.scrollable).children().first().unwrap().unwrap();
+			element.find(selectors.slimScrollBar).remove();
+			element.find(selectors.slimScrollRail).remove();
 		}
 
 		function addTableClass(element){
-			element.addClass('fp-table').wrapInner('<div class="fp-tableCell" style="height:' + getTableHeight(element) + 'px;" />');
+			element.addClass(classNames.table).wrapInner('<div class="' + classNames.tableCell + '" style="height:' + getTableHeight(element) + 'px;" />');
 		}
 
 		function getTableHeight(element){
@@ -1598,8 +1673,8 @@
 
 			if(options.paddingTop || options.paddingBottom){
 				var section = element;
-				if(!section.hasClass('fp-section')){
-					section = element.closest('.fp-section');
+				if(!section.hasClass(classNames.section)){
+					section = element.closest(selectors.section);
 				}
 
 				var paddings = parseInt(section.css('padding-top')) + parseInt(section.css('padding-bottom'));
@@ -1623,7 +1698,7 @@
 
 			//syncronously removing the class after the animation has been applied.
 			setTimeout(function(){
-				container.removeClass('fp-notransition');
+				container.removeClass(classNames.notTransition);
 			},10);
 		}
 
@@ -1641,12 +1716,12 @@
 			if(isNaN(destiny)){
 				section = $('[data-anchor="'+destiny+'"]');
 			}else{
-				section = $('.fp-section').eq( (destiny -1) );
+				section = $(selectors.section).eq( (destiny -1) );
 			}
 
 
 			//we need to scroll to the section and then to the slide
-			if (destiny !== lastScrolledDestiny && !section.hasClass('active')){
+			if (destiny !== lastScrolledDestiny && !section.hasClass(classNames.active)){
 				scrollPage(section, function(){
 					scrollSlider(section, slide);
 				});
@@ -1662,11 +1737,11 @@
 		*/
 		function scrollSlider(section, slide){
 			if(typeof slide != 'undefined'){
-				var slides = section.find('.fp-slides');
+				var slides = section.find(selectors.slideWrapper);
 				var destiny =  slides.find('[data-anchor="'+slide+'"]');
 
 				if(!destiny.length){
-					destiny = slides.find('.fp-slide').eq(slide);
+					destiny = slides.find(selectors.slide).eq(slide);
 				}
 
 				if(destiny.length){
@@ -1679,8 +1754,8 @@
 		* Creates a landscape navigation bar with dots for horizontal sliders.
 		*/
 		function addSlidesNavigation(section, numSlides){
-			section.append('<div class="fp-slidesNav"><ul></ul></div>');
-			var nav = section.find('.fp-slidesNav');
+			section.append('<div class="' + classNames.slidesNav + '"><ul></ul></div>');
+			var nav = section.find(selectors.slidesNav);
 
 			//top or bottom
 			nav.addClass(options.slidesNavPosition);
@@ -1692,7 +1767,7 @@
 			//centering it
 			nav.css('margin-left', '-' + (nav.width()/2) + 'px');
 
-			nav.find('li').first().find('a').addClass('active');
+			nav.find('li').first().find('a').addClass(classNames.active);
 		}
 
 
@@ -1765,10 +1840,10 @@
 			text = text.replace('/', '-').replace('#','');
 
 			//removing previous anchor classes
-			$('body')[0].className = $('body')[0].className.replace(/\b\s?fp-viewing-[^\s]+\b/g, '');
+			$(selectors.body)[0].className = $(selectors.body)[0].className.replace(/\b\s?fp-viewing-[^\s]+\b/g, '');
 
 			//adding the current anchor
-			$('body').addClass('fp-viewing-' + text);
+			$(selectors.body).addClass(classNames.viewingPrefix + text);
 		}
 
 		/**
@@ -1893,7 +1968,7 @@
 
 		function silentLandscapeScroll(activeSlide){
 			FP.setScrollingSpeed (0, 'internal');
-			landscapeScroll(activeSlide.closest('.fp-slides'), activeSlide);
+			landscapeScroll(activeSlide.closest(selectors.slideWrapper), activeSlide);
 			FP.setScrollingSpeed(originals.scrollingSpeed, 'internal');
 		}
 
@@ -1937,7 +2012,7 @@
 			FP.setAutoScrolling(false, 'internal');
 			FP.setAllowScrolling(false);
 			FP.setKeyboardScrolling(false);
-			container.addClass('fp-destroyed');
+			container.addClass(classNames.destroyed);
 
 			$(window)
 				.off('scroll', scrollHandler)
@@ -1945,15 +2020,15 @@
 				.off('resize', resizeHandler);
 
 			$(document)
-				.off('click', '#fp-nav a')
-				.off('mouseenter', '#fp-nav li')
-				.off('mouseleave', '#fp-nav li')
-				.off('click', '.fp-slidesNav a')
+				.off('click', selectors.sectionNavLinks)
+				.off('mouseenter', selectors.sectionNavListItem)
+				.off('mouseleave', selectors.sectionNavListItem)
+				.off('click', selectors.slidesNavLinks)
 				.off('mouseover', options.normalScrollElements)
 				.off('mouseout', options.normalScrollElements);
 
-			$('.fp-section')
-				.off('click', '.fp-controlArrow');
+			$(selectors.section)
+				.off('click', selectors.slideArrow);
 
 			//lets make a mess!
 			if(all){
@@ -1968,16 +2043,16 @@
 			//reseting the `top` or `translate` properties to 0
 			silentScroll(0);
 
-			$('#fp-nav, .fp-slidesNav, .fp-controlArrow').remove();
+			$(selectors.controls).remove();
 
 			//removing inline styles
-			$('.fp-section').css( {
+			$(selectors.section).css( {
 				'height': '',
 				'background-color' : '',
 				'padding': ''
 			});
 
-			$('.fp-slide').css( {
+			$(selectors.slide).css( {
 				'width': ''
 			});
 
@@ -1989,22 +2064,22 @@
 			});
 
 			//removing added classes
-			$('.fp-section, .fp-slide').each(function(){
+			$(selectors.sectionsAndSlides).each(function(){
 				removeSlimScroll($(this));
-				$(this).removeClass('fp-table active');
+				$(this).removeClass(classNames.tableActive);
 			});
 
 			removeAnimation(container);
-			removeAnimation(container.find('.fp-easing'));
+			removeAnimation(container.find(selectors.easing));
 
 			//Unwrapping content
-			container.find('.fp-tableCell, .fp-slidesContainer, .fp-slides').each(function(){
+			container.find(selectors.wrappedContent).each(function(){
 				//unwrap not being use in case there's no child element inside and its just text
 				$(this).replaceWith(this.childNodes);
 			});
 
 			//scrolling the page to the top with no animation
-			$('html, body').scrollTop(0);
+			$(selectors.htmlBody).scrollTop(0);
 		}
 
 		/*
