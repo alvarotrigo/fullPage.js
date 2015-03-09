@@ -13,60 +13,60 @@
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
 			//navigation
-			'menu': false,
-			'anchors':[],
-			'navigation': false,
-			'navigationPosition': 'right',
-			'navigationTooltips': [],
-			'slidesNavigation': false,
-			'slidesNavPosition': 'bottom',
-			'scrollBar': false,
+			menu: false,
+			anchors:[],
+			navigation: false,
+			navigationPosition: 'right',
+			navigationTooltips: [],
+			slidesNavigation: false,
+			slidesNavPosition: 'bottom',
+			scrollBar: false,
 
 			//scrolling
-			'css3': true,
-			'scrollingSpeed': 700,
-			'autoScrolling': true,
-			'fitToSection': true,
-			'easing': 'easeInOutCubic',
-			'easingcss3': 'ease',
-			'loopBottom': false,
-			'loopTop': false,
-			'loopHorizontal': true,
-			'continuousVertical': false,
-			'normalScrollElements': null,
-			'scrollOverflow': false,
-			'touchSensitivity': 5,
-			'normalScrollElementTouchThreshold': 5,
+			css3: true,
+			scrollingSpeed: 700,
+			autoScrolling: true,
+			fitToSection: true,
+			easing: 'easeInOutCubic',
+			easingcss3: 'ease',
+			loopBottom: false,
+			loopTop: false,
+			loopHorizontal: true,
+			continuousVertical: false,
+			normalScrollElements: null,
+			scrollOverflow: false,
+			touchSensitivity: 5,
+			normalScrollElementTouchThreshold: 5,
 
 			//Accessibility
-			'keyboardScrolling': true,
-			'animateAnchor': true,
-			'recordHistory': true,
+			keyboardScrolling: true,
+			animateAnchor: true,
+			recordHistory: true,
 
 			//design
-			'controlArrows': true,
-			'controlArrowColor': '#fff',
-			'verticalCentered': true,
-			'resize': false,
-			'sectionsColor' : [],
-			'paddingTop': 0,
-			'paddingBottom': 0,
-			'fixedElements': null,
-			'responsive': 0,
+			controlArrows: true,
+			controlArrowColor: '#fff',
+			verticalCentered: true,
+			resize: false,
+			sectionsColor : [],
+			paddingTop: 0,
+			paddingBottom: 0,
+			fixedElements: null,
+			responsive: 0,
 
 			//Custom selectors
-			'sectionSelector': '.section',
-			'slideSelector': '.slide',
+			sectionSelector: '.section',
+			slideSelector: '.slide',
 
 
 			//events
-			'afterLoad': null,
-			'onLeave': null,
-			'afterRender': null,
-			'afterResize': null,
-			'afterReBuild': null,
-			'afterSlideLoad': null,
-			'onSlideLeave': null
+			afterLoad: null,
+			onLeave: null,
+			afterRender: null,
+			afterResize: null,
+			afterReBuild: null,
+			afterSlideLoad: null,
+			onSlideLeave: null
 		}, options);
 
 		displayWarnings();
