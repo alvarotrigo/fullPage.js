@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.9
+ * fullPage 2.6.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -460,34 +460,37 @@
 
 			responsive();
 
-			//getting the anchor link in the URL and deleting the `#`
-			var value =  window.location.hash.replace('#', '').split('/');
-			var destiny = value[0];
+			//for animateAnchor:false
+			if(!options.animateAnchor){
+				//getting the anchor link in the URL and deleting the `#`
+				var value =  window.location.hash.replace('#', '').split('/');
+				var destiny = value[0];
 
-			if(destiny.length){
-				var section = $('[data-anchor="'+destiny+'"]');
+				if(destiny.length){
+					var section = $('[data-anchor="'+destiny+'"]');
 
-				if(!options.animateAnchor && section.length){
+					if(section.length){
+						if(options.autoScrolling){
+							silentScroll(section.position().top);
+						}
+						else{
+							silentScroll(0);
 
-					if(options.autoScrolling){
-						silentScroll(section.position().top);
+							//scrolling the page to the section with no animation
+							$('html, body').scrollTop(section.position().top);
+						}
+						activateMenuAndNav(destiny, null);
+
+						$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index('.fp-section') + 1));
+
+						//updating the active class
+						section.addClass('active').siblings().removeClass('active');
 					}
-					else{
-						silentScroll(0);
-						setBodyClass(destiny);
-
-						//scrolling the page to the section with no animation
-						$('html, body').scrollTop(section.position().top);
-					}
-					activateMenuAndNav(destiny, null);
-
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index('.fp-section') + 1));
-
-					//updating the active class
-					section.addClass('active').siblings().removeClass('active');
 				}
 			}
 
+			//setting the class for the body element
+			setBodyClass();
 
 			$(window).on('load', function() {
 				scrollToAnchor();
@@ -823,13 +826,16 @@
 		 * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
 		 * http://www.sitepoint.com/html5-javascript-mouse-wheel/
 		 */
+		var prevTime = new Date().getTime();
+
 		function MouseWheelHandler(e) {
+			var curTime = new Date().getTime();
+
 			if(options.autoScrolling){
 				// cross-browser wheel delta
 				e = window.event || e;
 				var value = e.wheelDelta || -e.deltaY || -e.detail;
 				var delta = Math.max(-1, Math.min(1, value));
-
 
 				//Limiting the array to 150 (lets not waist memory!)
 				if(scrollings.length > 149){
@@ -847,12 +853,18 @@
 				var activeSection = $('.fp-section.active');
 				var scrollable = isScrollable(activeSection);
 
+				//time difference between the last scroll and the current one
+				var timeDiff = curTime-prevTime;
+				prevTime = curTime;
+
 				if(canScroll){
 					var averageEnd = getAverage(scrollings, 10);
 					var averageMiddle = getAverage(scrollings, 70);
 					var isAccelerating = averageEnd >= averageMiddle;
+					var isKineticScrolling = timeDiff <= 30;
 
-					if(isAccelerating){
+					// if its kinetic scrolling, we make sure its accelering (to avoid double swipes)
+					if((isAccelerating && isKineticScrolling) || !isKineticScrolling){
 						//scrolling down?
 						if (delta < 0) {
 							scrolling('down', scrollable);
@@ -1294,7 +1306,7 @@
 			var sectionIndex = section.index('.fp-section');
 			var anchorLink = section.data('anchor');
 			var slidesNav = section.find('.fp-slidesNav');
-			var slideAnchor = destiny.data('anchor');
+			var slideAnchor = getSlideAnchor(destiny);
 
 			//caching the value of isResizing at the momment the function is called
 			//because it will be checked later inside a setTimeout and the value might change
@@ -1312,11 +1324,6 @@
 			}
 
 			destiny.addClass('active').siblings().removeClass('active');
-
-
-			if(typeof slideAnchor === 'undefined'){
-				slideAnchor = slideIndex;
-			}
 
 			if(!options.loopHorizontal && options.controlArrows){
 				//hidding it for the fist slide, showing for the rest
@@ -1729,15 +1736,9 @@
 				else{
 					setUrlHash(anchorLink);
 				}
+			}
 
-				setBodyClass(location.hash);
-			}
-			else if(typeof slideIndex !== 'undefined'){
-					setBodyClass(sectionIndex + '-' + slideIndex);
-			}
-			else{
-				setBodyClass(String(sectionIndex));
-			}
+			setBodyClass();
 		}
 
 		/**
@@ -1758,9 +1759,42 @@
 		}
 
 		/**
+		* Gets the anchor for the given slide. Its index will be used if there's none.
+		*/
+		function getSlideAnchor(slide){
+			var slideAnchor = slide.data('anchor');
+			var slideIndex = slide.index('.fp-slide');
+
+			//Slide without anchor link? We take the index instead.
+			if(typeof slideAnchor === 'undefined'){
+				slideAnchor = slideIndex;
+			}
+
+			return slideAnchor;
+		}
+
+		/**
 		* Sets a class for the body of the page depending on the active section / slide
 		*/
-		function setBodyClass(text){
+		function setBodyClass(){
+			var section = $('.fp-section.active');
+			var slide = section.find('.fp-slide.active');
+
+			var sectionAnchor = section.data('anchor');
+			var slideAnchor = getSlideAnchor(slide);
+
+			var sectionIndex = section.index('.fp-section');
+
+			var text = String(sectionIndex);
+
+			if(options.anchors.length){
+				text = sectionAnchor;
+			}
+
+			if(slide.length){
+				text = text + '-' + slideAnchor;
+			}
+
 			//changing slash for dash to make it a valid CSS style
 			text = text.replace('/', '-').replace('#','');
 
@@ -1887,6 +1921,12 @@
 
 			events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
 			events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+
+			//in touch devices with scrollBar:true, e.pageY is detected, but we have to deal with touch events. #1008
+			if(isTouch && isReallyTouch(e)){
+				events.y = e.touches[0].pageY;
+				events.x = e.touches[0].pageX;
+			}
 
 			return events;
 		}
