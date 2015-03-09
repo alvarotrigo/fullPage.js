@@ -1,5 +1,5 @@
 /**
- * fullPage 2.5.7
+ * fullPage 2.6.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -85,7 +85,6 @@ html, body {
 }
 .fp-scrollable {
     overflow: scroll;
-
 }
 .fp-notransition {
     -webkit-transition: none !important;
@@ -144,20 +143,36 @@ html, body {
     text-decoration: none;
 }
 #fp-nav ul li a.active span,
-.fp-slidesNav ul li a.active span {
-    background: #333;
-}
+.fp-slidesNav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li:hover a.active span{
+    height: 12px;
+    width: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 100%;
+ }
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
-    top: 2px;
-    left: 2px;
-    width: 8px;
-    height: 8px;
-    border: 1px solid #000;
-    background: rgba(0, 0, 0, 0);
     border-radius: 50%;
     position: absolute;
     z-index: 1;
+    height: 4px;
+    width: 4px;
+    border: 0;
+    background: #333;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+#fp-nav ul li:hover a span,
+.fp-slidesNav ul li:hover a span{
+    width: 10px;
+    height: 10px;
+    margin: -5px 0px 0px -5px;
 }
 #fp-nav ul li .fp-tooltip {
     position: absolute;
