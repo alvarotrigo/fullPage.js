@@ -87,60 +87,60 @@
 		// Create some defaults, extending them with any options that were provided
 		options = $.extend({
 			//navigation
-			'menu': false,
-			'anchors':[],
-			'navigation': false,
-			'navigationPosition': 'right',
-			'navigationTooltips': [],
-			'slidesNavigation': false,
-			'slidesNavPosition': 'bottom',
-			'scrollBar': false,
+			menu: false,
+			anchors:[],
+			navigation: false,
+			navigationPosition: 'right',
+			navigationTooltips: [],
+			slidesNavigation: false,
+			slidesNavPosition: 'bottom',
+			scrollBar: false,
 
 			//scrolling
-			'css3': true,
-			'scrollingSpeed': 700,
-			'autoScrolling': true,
-			'fitToSection': true,
-			'easing': 'easeInOutCubic',
-			'easingcss3': 'ease',
-			'loopBottom': false,
-			'loopTop': false,
-			'loopHorizontal': true,
-			'continuousVertical': false,
-			'normalScrollElements': null,
-			'scrollOverflow': false,
-			'touchSensitivity': 5,
-			'normalScrollElementTouchThreshold': 5,
+			css3: true,
+			scrollingSpeed: 700,
+			autoScrolling: true,
+			fitToSection: true,
+			easing: 'easeInOutCubic',
+			easingcss3: 'ease',
+			loopBottom: false,
+			loopTop: false,
+			loopHorizontal: true,
+			continuousVertical: false,
+			normalScrollElements: null,
+			scrollOverflow: false,
+			touchSensitivity: 5,
+			normalScrollElementTouchThreshold: 5,
 
 			//Accessibility
-			'keyboardScrolling': true,
-			'animateAnchor': true,
-			'recordHistory': true,
+			keyboardScrolling: true,
+			animateAnchor: true,
+			recordHistory: true,
 
 			//design
-			'controlArrows': true,
-			'controlArrowColor': '#fff',
-			'verticalCentered': true,
-			'resize': false,
-			'sectionsColor' : [],
-			'paddingTop': 0,
-			'paddingBottom': 0,
-			'fixedElements': null,
-			'responsive': 0,
+			controlArrows: true,
+			controlArrowColor: '#fff',
+			verticalCentered: true,
+			resize: false,
+			sectionsColor : [],
+			paddingTop: 0,
+			paddingBottom: 0,
+			fixedElements: null,
+			responsive: 0,
 
 			//Custom selectors
-			'sectionSelector': SECTION_CUSTOM_SEL,
-			'slideSelector': SLIDE_CUSTOM_SEL,
+			sectionSelector: SECTION_CUSTOM_SEL,
+			slideSelector: SLIDE_CUSTOM_SEL,
 
 
 			//events
-			'afterLoad': null,
-			'onLeave': null,
-			'afterRender': null,
-			'afterResize': null,
-			'afterReBuild': null,
-			'afterSlideLoad': null,
-			'onSlideLeave': null
+			afterLoad: null,
+			onLeave: null,
+			afterRender: null,
+			afterResize: null,
+			afterReBuild: null,
+			afterSlideLoad: null,
+			onSlideLeave: null
 		}, options);
 
 		displayWarnings();
@@ -533,34 +533,37 @@
 
 			responsive();
 
-			//getting the anchor link in the URL and deleting the `#`
-			var value =  window.location.hash.replace('#', '').split('/');
-			var destiny = value[0];
+			//for animateAnchor:false
+			if(!options.animateAnchor){
+				//getting the anchor link in the URL and deleting the `#`
+				var value =  window.location.hash.replace('#', '').split('/');
+				var destiny = value[0];
 
-			if(destiny.length){
-				var section = $('[data-anchor="'+destiny+'"]');
+				if(destiny.length){
+					var section = $('[data-anchor="'+destiny+'"]');
 
-				if(!options.animateAnchor && section.length){
+					if(section.length){
+						if(options.autoScrolling){
+							silentScroll(section.position().top);
+						}
+						else{
+							silentScroll(0);
 
-					if(options.autoScrolling){
-						silentScroll(section.position().top);
+							//scrolling the page to the section with no animation
+							$htmlBody.scrollTop(section.position().top);
+						}
+						activateMenuAndNav(destiny, null);
+
+						$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index(SECTION_SEL) + 1));
+
+						//updating the active class
+						section.addClass(ACTIVE).siblings().removeClass(ACTIVE);
 					}
-					else{
-						silentScroll(0);
-						setBodyClass(destiny);
-
-						//scrolling the page to the section with no animation
-						$htmlBody.scrollTop(section.position().top);
-					}
-					activateMenuAndNav(destiny, null);
-
-					$.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index(SECTION_SEL) + 1));
-
-					//updating the active class
-					section.addClass(ACTIVE).siblings().removeClass(ACTIVE);
 				}
 			}
 
+			//setting the class for the body element
+			setBodyClass();
 
 			$window.on('load', function() {
 				scrollToAnchor();
@@ -867,7 +870,7 @@
 
 			//stopping the auto scroll to adjust to a section
 			if(options.fitToSection){
-				$('html,body').stop();
+				$htmlBody.stop();
 			}
 
 			if(isReallyTouch(e)){
@@ -896,13 +899,16 @@
 		 * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
 		 * http://www.sitepoint.com/html5-javascript-mouse-wheel/
 		 */
+		var prevTime = new Date().getTime();
+
 		function MouseWheelHandler(e) {
+			var curTime = new Date().getTime();
+
 			if(options.autoScrolling){
 				// cross-browser wheel delta
 				e = window.event || e;
 				var value = e.wheelDelta || -e.deltaY || -e.detail;
 				var delta = Math.max(-1, Math.min(1, value));
-
 
 				//Limiting the array to 150 (lets not waist memory!)
 				if(scrollings.length > 149){
@@ -920,12 +926,18 @@
 				var activeSection = $(SECTION_ACTIVE_SEL);
 				var scrollable = isScrollable(activeSection);
 
+				//time difference between the last scroll and the current one
+				var timeDiff = curTime-prevTime;
+				prevTime = curTime;
+
 				if(canScroll){
 					var averageEnd = getAverage(scrollings, 10);
 					var averageMiddle = getAverage(scrollings, 70);
 					var isAccelerating = averageEnd >= averageMiddle;
+					var isKineticScrolling = timeDiff <= 30;
 
-					if(isAccelerating){
+					// if its kinetic scrolling, we make sure its accelering (to avoid double swipes)
+					if((isAccelerating && isKineticScrolling) || !isKineticScrolling){
 						//scrolling down?
 						if (delta < 0) {
 							scrolling('down', scrollable);
@@ -942,7 +954,7 @@
 
 			if(options.fitToSection){
 				//stopping the auto scroll to adjust to a section
-				$('html,body').stop();
+				$htmlBody.stop();
 			}
 		}
 
@@ -1367,7 +1379,7 @@
 			var sectionIndex = section.index(SECTION_SEL);
 			var anchorLink = section.data('anchor');
 			var slidesNav = section.find(SLIDE_NAV_SEL);
-			var slideAnchor = destiny.data('anchor');
+			var slideAnchor = getSlideAnchor(destiny);
 
 			//caching the value of isResizing at the momment the function is called
 			//because it will be checked later inside a setTimeout and the value might change
@@ -1385,11 +1397,6 @@
 			}
 
 			destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-
-
-			if(typeof slideAnchor === 'undefined'){
-				slideAnchor = slideIndex;
-			}
 
 			if(!options.loopHorizontal && options.controlArrows){
 				//hidding it for the fist slide, showing for the rest
@@ -1802,15 +1809,9 @@
 				else{
 					setUrlHash(anchorLink);
 				}
+			}
 
-				setBodyClass(location.hash);
-			}
-			else if(typeof slideIndex !== 'undefined'){
-					setBodyClass(sectionIndex + '-' + slideIndex);
-			}
-			else{
-				setBodyClass(String(sectionIndex));
-			}
+			setBodyClass();
 		}
 
 		/**
@@ -1831,9 +1832,42 @@
 		}
 
 		/**
+		* Gets the anchor for the given slide. Its index will be used if there's none.
+		*/
+		function getSlideAnchor(slide){
+			var slideAnchor = slide.data('anchor');
+			var slideIndex = slide.index(SLIDE_SEL);
+
+			//Slide without anchor link? We take the index instead.
+			if(typeof slideAnchor === 'undefined'){
+				slideAnchor = slideIndex;
+			}
+
+			return slideAnchor;
+		}
+
+		/**
 		* Sets a class for the body of the page depending on the active section / slide
 		*/
-		function setBodyClass(text){
+		function setBodyClass(){
+			var section = $(SECTION_ACTIVE_SEL);
+			var slide = section.find(SLIDE_ACTIVE_SEL);
+
+			var sectionAnchor = section.data('anchor');
+			var slideAnchor = getSlideAnchor(slide);
+
+			var sectionIndex = section.index(SECTION_SEL);
+
+			var text = String(sectionIndex);
+
+			if(options.anchors.length){
+				text = sectionAnchor;
+			}
+
+			if(slide.length){
+				text = text + '-' + slideAnchor;
+			}
+
 			//changing slash for dash to make it a valid CSS style
 			text = text.replace('/', '-').replace('#','');
 
@@ -1960,6 +1994,12 @@
 
 			events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
 			events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+
+			//in touch devices with scrollBar:true, e.pageY is detected, but we have to deal with touch events. #1008
+			if(isTouch && isReallyTouch(e)){
+				events.y = e.touches[0].pageY;
+				events.x = e.touches[0].pageX;
+			}
 
 			return events;
 		}
