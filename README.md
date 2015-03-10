@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.5.9-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.6.0-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
@@ -560,6 +560,7 @@ Example:
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
+- [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
@@ -575,34 +576,38 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
-- https://www.xone.vodafone.com
 - http://www.saltaboombox.com.ar
 - http://snapzheimer.org/
+- http://www.battlefield.com/
+- http://www.kibey.com/
 - http://www.newjumoconcept.com/
 - http://promo.prestigio.com/grace1/
 - http://www.mi.com/shouhuan
 - https://moneytree.jp/
+- http://torchbrowser.com/
 - http://leafcutter.com.au/
+- http://thekorner.fr/
+- http://ymcadc.org/AnnualReport/
 - http://www.restaurantwoods.nl/
+- http://lingualeo.com/
 - http://www.getikto.com/
 - http://charlotteaimes.com/
 - http://collection.madeofsundays.com
 - http://thiswasmybest.com/
 - http://jacoberiksson.se/
-- http://patuque.com/santateresa
-- http://ymcadc.org/AnnualReport/
+- http://coppertino.com/
+- https://cloudmagic.com/
 - http://www.dividendsolar.com/
 - http://www.thespecialists.be
 - http://brianingle.webflow.com/
 - http://lawinenstift.com/
 - http://wtfdesign.pl/
-- http://thekorner.fr/
+- http://www.swenk.me/
 - http://educationaboveall.org/
 - http://bnacademy.com.au/
 - http://rockercreative.com/
 - http://wantnova.com/
 - http://usescribe.com/
-- http://www.swenk.me/
 - http://lucilecazanave.com/
 - http://overallstudio.co.il/
 - http://boxx.hk/
@@ -619,16 +624,11 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.jukstapoz.com/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.omqcomics.com/
-- http://www.matrimonia.rs/
 - http://www.carlphot.com/
 - http://medissix.com/
-- http://coppertino.com/
 - http://trasmissione-energia.terna.it/
 - http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
-- http://rodrigo.maroto.me
-- http://azul257.com.mx
-- http://acuity-prod.com/
 - http://www.kesstrio.com
 - http://willontheway.com/
 - http://www.karmaffne.com/
@@ -639,13 +639,11 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://spell-star.appspot.com/
 - http://yizeng.me/
 - http://neolearning.eu/
-- http://sunfishlabs.com/
 - http://unabridgedsoftware.com/
 - http://wc2014.plnwrx.com/
 - http://organice.io/
 - http://alchemy-research.com/
 - http://www.cima-ecuador.com/
-- http://www.rienpipe.es
 - http://atlanticcorp.us/
 - http://moysport.ru/
 - http://www.norttilaakso.fi/
@@ -654,7 +652,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://themify.me/demo/#theme=fullpane
 - http://bragdonfarm.com/
 - http://www.paperdeermusic.com/
-- http://vfwpost1.org/
 - http://dancingroad.com
 - http://www.camanihome.com/
 - http://www.exapoint.ch/
