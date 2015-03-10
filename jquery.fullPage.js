@@ -1361,7 +1361,7 @@
 		 * Scrolling horizontally when clicking on the slider controls.
 		 */
 		$(SECTION_SEL).on('click touchstart', SLIDE_ARROW_SEL, function() {
-			if ($(this).hasClass(class_prev)) {
+			if ($(this).hasClass(SLIDE_PREV)) {
 				FP.moveSlideLeft();
 			} else {
 				FP.moveSlideRight();
@@ -2111,7 +2111,7 @@
 			removeAnimation(container.find(EASING_SEL));
 
 			//Unwrapping content
-			container.find(TABLE_CELL_SEL + ', ' + SLIDE_CONTAINER_SEL + ', ' + SLIDE_WRAPPER).each(function(){
+			container.find(TABLE_CELL_SEL + ', ' + SLIDE_CONTAINER_SEL + ', ' + SLIDE_WRAPPER_SEL).each(function(){
 				//unwrap not being use in case there's no child element inside and its just text
 				$(this).replaceWith(this.childNodes);
 			});
