@@ -80,6 +80,7 @@
 
 
 		function init(callback){
+
 			setMouseWheelScrolling(true);
 			addTouchHandler();
 			addResizeHandler();
@@ -145,6 +146,9 @@
 					var newHTML = '<div class="fp-slides"><div class="fp-slidesContainer">' + slidesHTML + '</div></div>';
 					section.innerHTML = newHTML;
 
+					//getting again the NEW dom elements after innerHTML
+					slides = getQueriesOnElement(section, '.fp-slide');
+
 					setCss(getQueryOnElement(section, '.fp-slidesContainer'), 'width',  sliderWidth + '%');
 
 					if(options.controlArrows){
@@ -155,6 +159,7 @@
 						addSlidesNavigation(section, numSlides);
 					}
 
+
 					for(var a = 0; a<slides.length; a++){
 						var currentSlide = slides[a];
 						setCss(currentSlide, 'width', slideWidth + '%');
@@ -163,8 +168,9 @@
 					var startingSlide = getQueryOnElement(section, '.fp-slide.active');
 
 					//if the slide won#t be an starting point, the default will be the first one
-					if(typeof startingSlide === 'undefined'){
+					if(typeof startingSlide !== null){
 						addClass(slides[0], 'active');
+
 					}
 
 					//is there a starting point for a non-starting section?
@@ -174,6 +180,7 @@
 
 				}
 			}
+
 			callback();
 		}
 
@@ -235,22 +242,24 @@
 		}
 
 
+		/* --------------- Javascript helpers  ---------------*/
+
 		/**
-	    * Replacement of jQuery extend method.
-	 	*/
-	    function extend(defaultOptions, options){
-	   		//creating the object if it doesnt exist
-	   		if(typeof(options) !== 'object'){
-	   			options = {};
-	   		}
+		* Replacement of jQuery extend method.
+		*/
+		function extend(defaultOptions, options){
+			//creating the object if it doesnt exist
+			if(typeof(options) !== 'object'){
+				options = {};
+			}
 
-		    for(var key in options){
-		        if(defaultOptions.hasOwnProperty(key)){
-		            defaultOptions[key] = options[key];
-		        }
-		    }
+			for(var key in options){
+				if(defaultOptions.hasOwnProperty(key)){
+					defaultOptions[key] = options[key];
+				}
+			}
 
-		    return defaultOptions;
+			return defaultOptions;
 		}
 
 		function getById(element){
@@ -286,13 +295,79 @@
 		}
 
 		function getNodeIndex(node) {
-		    var index = 0;
-		    while ( (node = node.previousSibling) ) {
-		        if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
-		            index++;
-		        }
-		    }
-		    return index;
+			var index = 0;
+			while ( (node = node.previousSibling) ) {
+				if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
+					index++;
+				}
+			}
+			return index;
+		}
+
+		function toggle(element, display) {
+			if(typeof display!== 'undefined'){
+				if(display){
+					element.style.display = 'block';
+				}else{
+					element.style.display = 'none';
+				}
+			}
+			else{
+				if( element.style.display == 'block' ) {
+					element.style.display = 'none';
+				} else {
+					element.style.display = 'block';
+				}
+			}
+
+			return element;
+		}
+
+		//http://jaketrent.com/post/addremove-classes-raw-javascript/
+		function hasClass(ele,cls) {
+			return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+		}
+
+		function removeClass(element, className) {
+			if (element && hasClass(element,className)) {
+				var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');
+				element.className=element.className.replace(reg,'');
+			}
+		}
+
+		function addClass(element, className) {
+			if (element && !hasClass(element,className)) {
+				element.className += ' '+className;
+			}
+		}
+
+		//http://stackoverflow.com/questions/22100853/dom-pure-javascript-solution-to-jquery-closest-implementation
+		function closest(el, fn) {
+			return el && (
+				fn(el) ? el : closest(el.parentNode, fn)
+			);
+		}
+
+		function getWindowHeight(){
+			return  'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+		}
+
+		function clone(obj) {
+			if (null === obj || 'object' !== typeof obj){
+				return obj;
+			}
+			var copy = obj.constructor();
+
+			for (var attr in obj) {
+				if (obj.hasOwnProperty(attr)){
+					copy[attr] = obj[attr];
+				}
+			}
+			return copy;
+		}
+
+		function preventDefault(event){
+			event.preventDefault ? event.preventDefault() : event.returnValue = false;
 		}
 
 		function isFunction(functionToCheck) {
@@ -311,28 +386,32 @@
 			}
 		}
 
+		/**
+		* Simulates the animated scrollTop of jQuery. Used only when css3:false.
+		* http://stackoverflow.com/a/16136789/1081396
+		*/
 		function scrollTo(element, to, duration, callback) {
 			var start = getScrolledPosition(element);
-		    var change = to - start;
-		    var currentTime = 0;
-		    var increment = 20;
-		    activeAnimation = true;
+			var change = to - start;
+			var currentTime = 0;
+			var increment = 20;
+			activeAnimation = true;
 
-		    var animateScroll = function(){
-		    	if(activeAnimation){ //in order to stope it from other function whenever we want
-			        currentTime += increment;
-			        var val = Math.easeInOutCubic(currentTime, start, change, duration);
+			var animateScroll = function(){
+				if(activeAnimation){ //in order to stope it from other function whenever we want
+					currentTime += increment;
+					var val = Math.easeInOutCubic(currentTime, start, change, duration);
 
-			        setScrolling(element, val);
+					setScrolling(element, val);
 
-			        if(currentTime < duration) {
-			            setTimeout(animateScroll, increment);
-			        }else if(typeof callback !== 'undefined'){
-			        	 callback();
-			        }
-			    }
-		    };
-		    animateScroll();
+					if(currentTime < duration) {
+						setTimeout(animateScroll, increment);
+					}else if(typeof callback !== 'undefined'){
+						 callback();
+					}
+				}
+			};
+			animateScroll();
 		}
 
 		//http://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
@@ -341,33 +420,53 @@
 			return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 		}
 
-		function getScrolledPosition(element){
-			//gets the scrolling position
-			if(!options.autoScrolling  || options.scrollBar){
-		    	return getScrollTop();
-		    }
+		//http://stackoverflow.com/questions/4378784/how-to-find-all-siblings-of-currently-selected-object
+		function getAllSiblings(elem, filter) {
+			var sibs = [];
+			elem = elem.parentNode.firstChild;
+			do {
+				if (!filter || filter(elem)) sibs.push(elem);
+			} while (elem = elem.nextSibling);
 
-		    //gets the top property of the wrapper
-			return element.offsetTop;
+			return sibs;
+		}
+
+		/* --------------- END Javascript helpers  ---------------*/
+
+
+		/**
+		* Getting the position of the element to scroll when using jQuery animations
+		*/
+		function getScrolledPosition(element){
+			var position;
+			if(hasClass(element, 'fp-slides')){
+				position = element.scrollLeft;
+			}
+			else if(!options.autoScrolling  || options.scrollBar){
+				position = getScrollTop();
+			}
+			else{
+				position = element.offsetTop;
+			}
+
+			//gets the top property of the wrapper
+			return position
 		}
 
 		function setScrolling(element, val){
-		    if(!options.autoScrolling || options.scrollBar){
-		    	element.scrollTo(0, val);
-		    }else{
-		    	 element.style.top = val + 'px';
-		    }
-		}
+			if(!options.autoScrolling || options.scrollBar || hasClass(element, 'fp-slides')){
 
-		//http://stackoverflow.com/questions/4378784/how-to-find-all-siblings-of-currently-selected-object
-		function getAllSiblings(elem, filter) {
-		    var sibs = [];
-		    elem = elem.parentNode.firstChild;
-		    do {
-		        if (!filter || filter(elem)) sibs.push(elem);
-		    } while (elem = elem.nextSibling);
-
-		    return sibs;
+				//scrolling horizontally through the slides?
+				if(hasClass(element, 'fp-slides')){
+					element.scrollLeft = val;
+				}
+				//vertical scroll
+				else{
+					element.scrollTo(0, val);
+				}
+			}else{
+				 element.style.top = val + 'px';
+			}
 		}
 
 		function setAutoScrolling(value, type){
@@ -450,7 +549,7 @@
 			var nextSibling = element.nextSibling;
 
 			while(nextSibling && nextSibling.nodeType != 1) {
-			    nextSibling = nextSibling.nextSibling;
+				nextSibling = nextSibling.nextSibling;
 			}
 
 			return nextSibling;
@@ -458,13 +557,13 @@
 
 
 		function prev(element){
-			var nextSibling = element.previousSibling;
+			var prevSibling = element.previousSibling;
 
-			while(nextSibling && nextSibling.nodeType != 1) {
-			    nextSibling = nextSibling.previousSibling;
+			while(prevSibling && prevSibling.nodeType != 1) {
+				prevSibling = prevSibling.previousSibling;
 			}
 
-			return nextSibling;
+			return prevSibling;
 		}
 
 		function moveSectionUp(){
@@ -507,27 +606,6 @@
 			moveSlide('prev');
 		}
 
-		function getWindowHeight(){
-			return  'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
-		}
-
-		function clone(obj) {
-			if (null === obj || 'object' !== typeof obj){
-				return obj;
-			}
-			var copy = obj.constructor();
-
-			for (var attr in obj) {
-				if (obj.hasOwnProperty(attr)){
-					copy[attr] = obj[attr];
-				}
-			}
-			return copy;
-		}
-
-		function preventDefault(event){
-			event.preventDefault ? event.preventDefault() : event.returnValue = false;
-		}
 
 		/**
 		 * When resizing is finished, we adjust the slides sizes and positions
@@ -557,7 +635,6 @@
 			//isn't it the first section?
 			if(getNodeIndex(activeSection)){
 				//adjusting the position for the current section
-				console.log(activeSection.offsetTop);
 				silentScroll(activeSection.offsetTop);
 			}
 
@@ -784,14 +861,14 @@
 					//if movement in the X axys is greater than in the Y and the currect section has slides...
 					if ( slides && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
-					    //is the movement greater than the minimum resistance to scroll?
-					    if (Math.abs(touchStartX - touchEndX) > (window.offsetWidth / 100 * options.touchSensitivity)) {
-					        if (touchStartX > touchEndX) {
-					            moveSlideRight(); //next
-					        } else {
-				            	moveSlideLeft(); //prev
-					        }
-					    }
+						//is the movement greater than the minimum resistance to scroll?
+						if (Math.abs(touchStartX - touchEndX) > (window.offsetWidth / 100 * options.touchSensitivity)) {
+							if (touchStartX > touchEndX) {
+								moveSlideRight(); //next
+							} else {
+								moveSlideLeft(); //prev
+							}
+						}
 					}
 
 					//vertical scrolling (only when autoScrolling is enabled)
@@ -902,39 +979,38 @@
 		}
 
 		function moveSlide(direction){
-		    var activeSection = getQuery('.fp-section.active');
-		    var slides = getQueryOnElement(activeSection, '.fp-slides');
+			var activeSection = getQuery('.fp-section.active');
+			var slides = getQueryOnElement(activeSection, '.fp-slides');
 
-		    // more than one slide needed and nothing should be sliding
+			// more than one slide needed and nothing should be sliding
 			if (!slides|| slideMoving) {
-			    return;
+				return;
 			}
 
-		    var currentSlide = getQueryOnElement(slides, '.fp-slide.active');
-		    var destiny = null;
+			var currentSlide = getQueryOnElement(slides, '.fp-slide.active');
+			var destiny = null;
+			if(direction === 'prev'){
+				destiny = prev(currentSlide);
+			}else{
+				destiny = next(currentSlide);
+			}
 
-		    if(direction === 'prev'){
-		        destiny = prev(currentSlide);
-		    }else{
-		        destiny = next(currentSlide);
-		    }
-
-		    //isn't there a next slide in the secuence?
+			//isn't there a next slide in the secuence?
 			if(!destiny){
 				//respect loopHorizontal settin
 				if (!options.loopHorizontal) return;
 
 				var siblings = getAllSiblings(currentSlide);
-			    if(direction === 'prev'){
-			        destiny = siblings[siblings.length - 1]; //last
-			    }else{
-			        destiny = siblings[0]; //first
-			    }
+				if(direction === 'prev'){
+					destiny = siblings[siblings.length - 1]; //last
+				}else{
+					destiny = siblings[0]; //first
+				}
 			}
 
-		    slideMoving = true;
+			slideMoving = true;
 
-		    landscapeScroll(slides, destiny);
+			landscapeScroll(slides, destiny);
 		}
 
 
@@ -1184,12 +1260,12 @@
 
 				//equivalent to:   var slides = $(this).closest('.fp-section').find('.fp-slides');
 				var section = closest(this, function (el) {
-				    return el.className === '.fp-section';
+					return hasClass(e1, 'fp-section');
 				});
 				var slides = getQueryOnElement(section, '.fp-slides');
 
 				var li = closest(this, function (el) {
-				    return el.tagName === 'li';
+					return el.tagName === 'li';
 				});
 				var liIndex = getNodeIndex(li);
 				var destiny = getQueriesOnElement(slides, '.fp-slide')[liIndex];
@@ -1213,21 +1289,25 @@
 		* Scrolls horizontal sliders.
 		*/
 		function landscapeScroll(slides, destiny){
-			/*var slidesContainer = getQueryOnElement(slides'.fp-slidesContainer').parent();
-			var slideIndex = destiny.index();
-			var section = slides.closest('.fp-section');
-			var sectionIndex = section.index('.fp-section');
-			var anchorLink = section.data('anchor');
-			var slidesNav = section.find('.fp-slidesNav');
-			var slideAnchor = destiny.data('anchor');
+			var slideIndex = getNodeIndex(destiny);
+
+			//equivalent to slides.closest('.fp-section')
+			var section = closest(slides, function(e1){
+				return hasClass(e1, 'fp-section');
+			});
+
+			var sectionIndex = getNodeIndex(section);
+			var anchorLink = section.getAttribute('data-anchor');
+			var slidesNav = getQueryOnElement(section, '.fp-slidesNav');
+			var slideAnchor = destiny.getAttribute('data-anchor');
 
 			//caching the value of isResizing at the momment the function is called
 			//because it will be checked later inside a setTimeout and the value might change
 			var localIsResizing = isResizing;
 
 			if(options.onSlideLeave){
-				var prevSlide = section.find('.fp-slide.active');
-				var prevSlideIndex = prevSlide.index();
+				var prevSlide = getQueryOnElement(section, '.fp-slide.active');
+				var prevSlideIndex = getNodeIndex(prevSlide);
 				var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
 				//if the site is not just resizing and readjusting the slides
@@ -1236,7 +1316,13 @@
 				}
 			}
 
-			destiny.addClass('active').siblings().removeClass('active');
+			var siblings = getQueriesOnElement(section, '.fp-slide');
+
+			for(var s=0; s<siblings.length; s++){
+				removeClass(siblings[s], 'active');
+			}
+
+			addClass(destiny, 'active');
 
 
 			if(typeof slideAnchor === 'undefined'){
@@ -1245,14 +1331,14 @@
 
 			if(!options.loopHorizontal && options.controlArrows){
 				//hidding it for the fist slide, showing for the rest
-				section.find('.fp-controlArrow.fp-prev').toggle(slideIndex!=0);
+				toggle(getQueryOnElement(section, '.fp-controlArrow.fp-prev'), slideIndex!=0);
 
 				//hidding it for the last slide, showing for the rest
-				section.find('.fp-controlArrow.fp-next').toggle(!destiny.is(':last-child'));
+				toggle(getQueryOnElement(section, '.fp-controlArrow.fp-next'), !destiny.is(':last-child'));
 			}
 
 			//only changing the URL if the slides are in the current section (not for resize re-adjusting)
-			if(section.hasClass('active')){
+			if(hasClass(section, 'active')){
 				setState(slideIndex, slideAnchor, anchorLink, sectionIndex);
 			}
 
@@ -1267,31 +1353,33 @@
 
 			if(options.css3){
 				var translate3d = 'translate3d(-' + destiny.offsetLeft + 'px, 0px, 0px)';
+				var slidesContainer = getQueryOnElement(slides, '.fp-slidesContainer');
 
-				addAnimation(slides.find('.fp-slidesContainer'), options.scrollingSpeed>0).css(getTransforms(translate3d));
+				addAnimation(slidesContainer, options.scrollingSpeed>0);
+				setTransforms(slidesContainer, translate3d);
 
 				setTimeout(function(){
 					afterSlideLoads();
 				}, options.scrollingSpeed, options.easing);
 			}else{
-				slidesContainer.animate({
-					scrollLeft : destiny.offsetLeft
-				}, options.scrollingSpeed, options.easing, function() {
-
+				scrollTo(slides, destiny.offsetLeft, options.scrollingSpeed, function(){
 					afterSlideLoads();
 				});
 			}
 
-			slidesNav.find('.active').removeClass('active');
-			slidesNav.find('li').eq(slideIndex).find('a').addClass('active');
-			*/
+			if(options.slidesNavigation){
+				removeClass(getQueryOnElement(slidesNav, '.active'), 'active');
+				var activeNavLi = getQueriesOnElement(slidesNav, 'li')[slideIndex];
+				var activeLink = getQueryOnElement(activeNavLi, 'a');
+				addClass(activeLink, 'active');
+			}
 		}
 
-	    //when resizing the site, we adjust the heights of the sections
-	    var previousHeight = windowsHeight;
-	    var resizeId;
-	    function resizeHandler(){
-	    	// rebuild immediately on touch devices
+		//when resizing the site, we adjust the heights of the sections
+		var previousHeight = windowsHeight;
+		var resizeId;
+		function resizeHandler(){
+			// rebuild immediately on touch devices
 			if (isTouchDevice) {
 
 				//if the keyboard is visible
@@ -1300,47 +1388,22 @@
 
 					//making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
 					if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-			        	reBuild(true);
-			        	previousHeight = currentHeight;
-			        }
-		        }
-	      	}else{
-	      		//in order to call the functions only when the resize is finished
-	    		//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-	      		clearTimeout(resizeId);
+						reBuild(true);
+						previousHeight = currentHeight;
+					}
+				}
+			}else{
+				//in order to call the functions only when the resize is finished
+				//http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
+				clearTimeout(resizeId);
 
-	        	resizeId = setTimeout(function(){
-	        		reBuild(true);
-	        	}, 500);
-	      	}
-	    }
-
-	    //http://jaketrent.com/post/addremove-classes-raw-javascript/
-	    function hasClass(ele,cls) {
-			return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
-		}
-
-		function removeClass(element, className) {
-			if (element && hasClass(element,className)) {
-				var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');
-				element.className=element.className.replace(reg,'');
+				resizeId = setTimeout(function(){
+					reBuild(true);
+				}, 500);
 			}
 		}
 
-		function addClass(element, className) {
-			if (element && !hasClass(element,className)) {
-				element.className += ' '+className;
-			}
-		}
-
-		//http://stackoverflow.com/questions/22100853/dom-pure-javascript-solution-to-jquery-closest-implementation
-		function closest(el, fn) {
-		    return el && (
-		        fn(el) ? el : closest(el.parentNode, fn)
-		    );
-		}
-
-	    /**
+		/**
 		* Adds transition animations for the given element
 		*/
 		function addAnimation(element){
@@ -1351,7 +1414,7 @@
 			setCss(element, '-webkit-transition', transition);
 			setCss(element, 'transition', transition);
 
-	   		return element;
+			return element;
 		}
 
 		/**
@@ -1471,7 +1534,7 @@
 			var section;
 
 			if (typeof slide === 'undefined') {
-			    slide = 0;
+				slide = 0;
 			}
 
 			if(isNaN(destiny)){
@@ -1683,14 +1746,14 @@
 
 		function addHandler(element, method, normal, oldIE, firefox){
 			if(element.addEventListener){
-		    	element.addEventListener(normal, method, false); //IE9, Chrome, Safari, Oper
+				element.addEventListener(normal, method, false); //IE9, Chrome, Safari, Oper
 
-		    	if(typeof firefox !== 'undefined'){
-		    		element.addEventListener(firefox, method, false); //Firefox
-		    	}
-		    }else{
-		    	element.attachEvent(oldIE, method);  //IE 6/7/8
-		    }
+				if(typeof firefox !== 'undefined'){
+					element.addEventListener(firefox, method, false); //Firefox
+				}
+			}else{
+				element.attachEvent(oldIE, method);  //IE 6/7/8
+			}
 		}
 
 
@@ -1761,7 +1824,7 @@
 
 			//equivalent to:   activeSlide.closest('.fp-slides')
 			var slides = closest(activeSlide, function (el) {
-			    return el.className === '.fp-slides';
+				return hasClass(el, 'fp-slides');
 			});
 
 			landscapeScroll(slides, activeSlide);
