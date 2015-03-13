@@ -187,7 +187,8 @@ html, body {
     opacity: 0;
     width: 0;
 }
-#fp-nav ul li:hover .fp-tooltip {
+#fp-nav ul li:hover .fp-tooltip,
+#fp-nav.fp-show-active a.active + .fp-tooltip {
     -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
     width: auto;

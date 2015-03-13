@@ -41,6 +41,7 @@
     var SECTION_NAV =           'fp-nav';
     var SECTION_NAV_SEL =       '#' + SECTION_NAV;
     var SECTION_NAV_TOOLTIP =   'fp-tooltip';
+    var SHOW_ACTIVE_TOOLTIP =   'fp-show-active';
 
     // slide
     var SLIDE_DEFAULT_SEL =     '.slide';
@@ -87,6 +88,7 @@
             navigation: false,
             navigationPosition: 'right',
             navigationTooltips: [],
+            showActiveTooltip: false,
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
             scrollBar: false,
@@ -590,7 +592,9 @@
             $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
             nav = $(SECTION_NAV_SEL);
 
-            nav.addClass(options.navigationPosition);
+            nav.addClass(function() {
+                return options.showActiveTooltip ? SHOW_ACTIVE_TOOLTIP + ' ' + options.navigationPosition : options.navigationPosition;
+            });
 
             for (var i = 0; i < $(SECTION_SEL).length; i++) {
                 var link = '';
@@ -928,9 +932,8 @@
                 //haven't they scrolled in a while?
                 //(enough to be consider a different scrolling action to scroll another section)
                 if(timeDiff > 200){
-                	//emptying the array, we dont care about old scrollings for our averages
-                	scrollings = [];
-                	console.log("borro!!!");
+                    //emptying the array, we dont care about old scrollings for our averages
+                    scrollings = [];
                 }
 
                 if(canScroll){

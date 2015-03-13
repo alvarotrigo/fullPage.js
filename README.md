@@ -109,6 +109,7 @@ $(document).ready(function() {
 		navigation: false,
 		navigationPosition: 'right',
 		navigationTooltips: ['firstSlide', 'secondSlide'],
+		showActiveTooltips: false,
 		slidesNavigation: true,
 		slidesNavPosition: 'bottom',
 
@@ -265,6 +266,8 @@ $('#fullpage').fullpage({
 - `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
 - `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`.
+
+- `showActiveTooltip`: (default `false`) Shows a persistent tooltip for the actively viewed section in the vertical navigation.
 
 - `slidesNavigation`: (default `false`) If set to `true` it will show a navigation bar made up of small circles for each landscape slider on the site.
 
