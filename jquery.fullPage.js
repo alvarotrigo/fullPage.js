@@ -1,5 +1,5 @@
 /**
- * fullPage 2.6.0
+ * fullPage 2.6.1
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -642,10 +642,10 @@
             if(!options.autoScrolling || options.scrollBar){
                 var currentScroll = $window.scrollTop();
                 var visibleSectionIndex = 0;
-                var initial = Math.abs(currentScroll - document.getElementsByClassName(SECTION)[0].offsetTop);
+                var initial = Math.abs(currentScroll - document.querySelectorAll(SECTION_SEL)[0].offsetTop);
 
                 //taking the section which is showing more content in the viewport
-                var sections =  document.getElementsByClassName(SECTION);
+                var sections =  document.querySelectorAll(SECTION_SEL);
                 for (var i = 0; i < sections.length; ++i) {
                     var section = sections[i];
 
@@ -925,14 +925,21 @@
                 var timeDiff = curTime-prevTime;
                 prevTime = curTime;
 
+                //haven't they scrolled in a while?
+                //(enough to be consider a different scrolling action to scroll another section)
+                if(timeDiff > 200){
+                	//emptying the array, we dont care about old scrollings for our averages
+                	scrollings = [];
+                	console.log("borro!!!");
+                }
+
                 if(canScroll){
                     var averageEnd = getAverage(scrollings, 10);
                     var averageMiddle = getAverage(scrollings, 70);
                     var isAccelerating = averageEnd >= averageMiddle;
-                    var isKineticScrolling = timeDiff <= 30;
 
-                    // if its kinetic scrolling, we make sure its accelering (to avoid double swipes)
-                    if((isAccelerating && isKineticScrolling) || !isKineticScrolling){
+                    //to avoid double swipes...
+                    if(isAccelerating){
                         //scrolling down?
                         if (delta < 0) {
                             scrolling('down', scrollable);
@@ -1212,11 +1219,10 @@
             }
         }
 
-
         /**
          * Sliding with arrow keys, both, vertical and horizontal
          */
-        $window.keydown(keydownHandler);
+        $document.keydown(keydownHandler);
 
         var keydownId;
         function keydownHandler(e) {
@@ -1230,8 +1236,8 @@
 
                 //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
                 var keyControls = [40, 38, 32, 33, 34];
-                if(keyControls.indexOf(keyCode) > -1){
-                        e.preventDefault();
+                if($.inArray(keyCode, keyControls) > -1){
+                    e.preventDefault();
                 }
 
                 keydownId = setTimeout(function(){
