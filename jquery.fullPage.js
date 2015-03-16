@@ -1876,10 +1876,11 @@
             text = text.replace('/', '-').replace('#','');
 
             //removing previous anchor classes
-            $body[0].className = $body[0].className.replace(/\b\s?fp-viewing-[^\s]+\b/g, '');
+            var classRe = new RegExp('\\b\\s?' + VIEWING_PREFIX + '-[^\\s]+\\b', "g");
+            $body[0].className = $body[0].className.replace(classRe, '');
 
             //adding the current anchor
-            $body.addClass(VIEWING_PREFIX + text);
+            $body.addClass(VIEWING_PREFIX + '-' + text);
         }
 
         /**
