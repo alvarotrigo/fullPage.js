@@ -430,8 +430,12 @@
 
             $(this).css('height', windowsHeight + 'px');
 
-            if(options.paddingTop || options.paddingBottom){
-                $(this).css('padding', options.paddingTop  + ' 0 ' + options.paddingBottom + ' 0');
+            if(options.paddingTop){
+                $(this).css('padding-top', options.paddingTop);
+            }
+            
+            if(options.paddingBottom){
+                $(this).css('padding-bottom', options.paddingBottom);
             }
 
             if (typeof options.sectionsColor[index] !==  'undefined') {
