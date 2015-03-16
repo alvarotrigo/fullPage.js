@@ -1,11 +1,10 @@
 /**
- * fullPage 2.6.1
+ * fullPage 2.6.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
  * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
  */
-
 (function($, window, document, Math, undefined) {
     'use strict';
 
@@ -53,7 +52,6 @@
     var SLIDES_CONTAINER =      'fp-slidesContainer';
     var SLIDES_CONTAINER_SEL =  '.' + SLIDES_CONTAINER;
     var TABLE =                 'fp-table';
-    var TABLE_ACTIVE =          TABLE + ' ' + ACTIVE;
 
     // slide nav
     var SLIDES_NAV =            'fp-slidesNav';
@@ -433,7 +431,7 @@
             if(options.paddingTop){
                 $(this).css('padding-top', options.paddingTop);
             }
-            
+
             if(options.paddingBottom){
                 $(this).css('padding-bottom', options.paddingBottom);
             }
@@ -1381,7 +1379,6 @@
         */
         function landscapeScroll(slides, destiny){
             var destinyPos = destiny.position();
-            var slidesContainer = slides.find(SLIDES_CONTAINER_SEL).parent();
             var slideIndex = destiny.index();
             var section = slides.closest(SECTION_SEL);
             var sectionIndex = section.index(SECTION_SEL);
@@ -1437,7 +1434,7 @@
                     afterSlideLoads();
                 }, options.scrollingSpeed, options.easing);
             }else{
-                slidesContainer.animate({
+                slides.animate({
                     scrollLeft : destinyPos.left
                 }, options.scrollingSpeed, options.easing, function() {
 
@@ -2113,7 +2110,7 @@
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
                 removeSlimScroll($(this));
-                $(this).removeClass(TABLE_ACTIVE);
+                $(this).removeClass(TABLE + ' ' + ACTIVE);
             });
 
             removeAnimation(container);
