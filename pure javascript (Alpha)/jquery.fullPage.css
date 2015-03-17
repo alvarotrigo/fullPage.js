@@ -1,5 +1,5 @@
 /**
- * fullPage 2.4.6
+ * fullPage Pure Javascript v.0.0.4 (Alpha) - Not support given until Beta version.
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -142,20 +142,30 @@ html, body {
     text-decoration: none;
 }
 #fp-nav ul li a.active span,
-.fp-slidesNav ul li a.active span {
-    background: #333;
+.fp-slidesNav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li:hover a.active span{
+    height: 12px;
+    width: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 100%;
 }
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
-    top: 2px;
-    left: 2px;
-    width: 8px;
-    height: 8px;
-    border: 1px solid #000;
-    background: rgba(0, 0, 0, 0);
     border-radius: 50%;
     position: absolute;
     z-index: 1;
+    height: 4px;
+    width: 4px;
+    border: 0;
+    background: #333;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 #fp-nav ul li .fp-tooltip {
     position: absolute;
@@ -170,7 +180,8 @@ html, body {
     opacity: 0;
     width: 0;
 }
-#fp-nav ul li:hover .fp-tooltip {
+#fp-nav ul li:hover .fp-tooltip,
+#fp-nav.fp-show-active a.active + .fp-tooltip{
     -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
     width: auto;

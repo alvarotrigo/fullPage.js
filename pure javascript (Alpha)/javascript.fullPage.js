@@ -1,11 +1,10 @@
 /**
- * fullPage Pure Javascript v.0.0.3 (Alpha) - Not support given until Beta version.
+ * fullPage Pure Javascript v.0.0.4 (Alpha) - Not support given until Beta version.
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
-
 (function(window, document, undefined){
     'use strict';
 
@@ -69,6 +68,7 @@
             navigationPosition: 'right',
             navigationColor: '#000',
             navigationTooltips: [],
+            showActiveTooltip: false,
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
             scrollBar: false,
@@ -778,6 +778,10 @@
 
             setCss(nav, 'color', options.navigationColor);
             addClass(nav, options.navigationPosition);
+
+            if(options.showActiveTooltip){
+                addClass(nav, SHOW_ACTIVE_TOOLTIP);
+            }
 
             var li = '';
 
@@ -1933,6 +1937,12 @@
 
             events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
             events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
+
+            //in touch devices with scrollBar:true, e.pageY is detected, but we have to deal with touch events. #1008
+            if(isTouch && isReallyTouch(e)){
+                events.y = e.touches[0].pageY;
+                events.x = e.touches[0].pageX;
+            }
 
             return events;
         }
