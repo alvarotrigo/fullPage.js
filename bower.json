@@ -29,6 +29,6 @@
     "examples"
   ],
   "dependencies": {
-      "jquery": "2.x"
+      "jquery": "^2.x.x"
     }
 }
