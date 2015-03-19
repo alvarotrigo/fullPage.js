@@ -32,7 +32,7 @@ fullpage('#fullpage', {
 
 A more complex initialization with all options set could look like this:
 ```javascript
-fullpage('#fullpage', {
+fullpage.initialize('#fullpage', {
 	//navigation
 	'menu': false,
 	'anchors':[],
@@ -73,4 +73,17 @@ fullpage('#fullpage', {
 	'afterSlideLoad': null,
 	'onSlideLeave': null
 });
+```
+
+Functions has the same syntax and functionality than in the jQuery version, but they should be called like so:
+
+```javascript
+//calling a function from the pure Javascript version of fullPage.js
+fullpage.moveSectionDown();
+```
+
+In contrast with the calls from the the jQuery version of fullPage.js:
+```javascript
+//calling a function from the jQuery version of fullPage.js
+$.fn.fullpage.moveSectionDown();
 ```
