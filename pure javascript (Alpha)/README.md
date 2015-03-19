@@ -22,7 +22,7 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 Example of initialization:
 
 ```javascript
-fullpage('#fullpage', {
+fullpage.initialize('#fullpage', {
 	anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
 	menu: '#menu',
 	css3:false
