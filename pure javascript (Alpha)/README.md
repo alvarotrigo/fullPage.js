@@ -1,6 +1,7 @@
 # fullPage.js pure Javascript version
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
+
 ![javascript.fullPage.js version](http://img.shields.io/badge/fullPage.js-v0.0.5-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 6Kb gziped!
