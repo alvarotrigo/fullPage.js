@@ -1,5 +1,5 @@
 /**
- * fullPage 2.6.0
+ * fullPage Pure Javascript v.0.0.4 (Alpha) - Not support given until Beta version.
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -28,6 +28,7 @@ html, body {
     -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
     -moz-box-sizing: border-box; /* <=28 */
     box-sizing: border-box;
+    height:100%;
 }
 .fp-slide {
     float: left;
@@ -48,6 +49,7 @@ html, body {
     display: table;
     table-layout:fixed;
     width: 100%;
+    height:100%;
 }
 .fp-tableCell {
     display: table-cell;
@@ -68,9 +70,6 @@ html, body {
     height: 0;
     border-style: solid;
     margin-top: -38px;
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
 }
 .fp-controlArrow.fp-prev {
     left: 15px;
@@ -85,6 +84,7 @@ html, body {
 }
 .fp-scrollable {
     overflow: scroll;
+
 }
 .fp-notransition {
     -webkit-transition: none !important;
@@ -96,7 +96,6 @@ html, body {
     margin-top: -32px;
     top: 50%;
     opacity: 1;
-    -webkit-transform: translate3d(0,0,0);
 }
 #fp-nav.right {
     right: 17px;
@@ -150,7 +149,7 @@ html, body {
     width: 12px;
     margin: -6px 0 0 -6px;
     border-radius: 100%;
- }
+}
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
     border-radius: 50%;
@@ -168,12 +167,6 @@ html, body {
     -o-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
 }
-#fp-nav ul li:hover a span,
-.fp-slidesNav ul li:hover a span{
-    width: 10px;
-    height: 10px;
-    margin: -5px 0px 0px -5px;
-}
 #fp-nav ul li .fp-tooltip {
     position: absolute;
     top: -2px;
@@ -188,7 +181,7 @@ html, body {
     width: 0;
 }
 #fp-nav ul li:hover .fp-tooltip,
-#fp-nav.fp-show-active a.active + .fp-tooltip {
+#fp-nav.fp-show-active a.active + .fp-tooltip{
     -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
     width: auto;
