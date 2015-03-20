@@ -3,14 +3,14 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>fullPage.js One Page Scroll Sites</title>
+	<title>fullPage.js - Pure Javascript version</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
-	<meta name="description" content="fullPage plugin by Alvaro Trigo. Create fullscreen pages fast and simple. One page scroll like iPhone website." />
-	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple" />
+	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
+	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
 	<meta name="Resource-type" content="Document" />
 
 
-	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="javascript.fullPage.css" />
 
 	<style>
 		/* Reset CSS
@@ -141,10 +141,14 @@
 			</div>
 		</div>
 		<div class="slide" id="slide2">
-			<h1>Slides!</h1>
+			<div class="content">
+				<h1>Slides too!</h1>
+			</div>
 		</div>
 		<div class="slide" id="slide2">
-			<h1>More slides!</h1>
+			<div class="content">
+				<h1>More slides!</h1>
+			</div>
 		</div>
 	</div>
 	<div class="section" id="section2">
@@ -157,11 +161,12 @@
 
 <script type="text/javascript" src="javascript.fullPage.js"></script>
 <script type="text/javascript">
-	fullpage('#fullpage', {
+	fullpage.initialize('#fullpage', {
 		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
 		menu: '#menu',
 		css3:true
 	});
+
 </script>
 
 </body>
