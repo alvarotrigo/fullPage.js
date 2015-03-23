@@ -15,7 +15,19 @@ Invite me to a coffee
 ## Introduction
 
 This is in Alpha version and support for it won't be provided yet.
-This light version of fullpage.js won't provide some options available in the jQuery version such as `scrollOverflow`, `verticalCentered`, `continuousVertical`...
+This light version of fullpage.js won't provide some options available in the jQuery version such as:
+- `scrollOverflow`
+- `verticalCentered`
+- `continuousVertical`
+- `loopBottom`
+- `loopTop`
+- `normalScrollElements`
+- `normalScrollElementTouchThreshold`
+- `controlArrowColor`
+- `sectionsColor`
+- `paddingTop`
+- `paddingBottom`
+- `fixedElements`
 
 
 ## Compatibility
@@ -24,6 +36,10 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 
 
 ## Usage
+As you can see in the [demo file](https://github.com/alvarotrigo/fullPage.js/blob/master/pure%20javascript%20(Alpha)/demo.html), you will need to include:
+
+- javascript.fullPage.js (or its minified version)
+- javascript.fullPage.css
 
 Example of initialization:
 
