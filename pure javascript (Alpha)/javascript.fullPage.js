@@ -1,5 +1,5 @@
 /**
- * fullPage Pure Javascript v.0.0.5 (Alpha) - Not support given until Beta version.
+ * fullPage Pure Javascript v.0.0.6 (Alpha) - Not support given until Beta version.
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -325,9 +325,12 @@
             }
         }
 
-        addHandler(document.body, scrollToAnchor, 'load', 'onload', 'load');
-    }
+        //setting the class for the body element
+        setBodyClass();
 
+        //support for IE > 8
+        addHandler(document, scrollToAnchor, 'DOMContentLoaded', 'DOMContentLoaded', 'DOMContentLoaded');
+    }
 
     /* --------------- Javascript helpers  ---------------*/
 
@@ -1288,6 +1291,7 @@
     * Scrolls to the anchor in the URL when loading the site
     */
     function scrollToAnchor(){
+        console.log("va");
         //getting the anchor link in the URL and deleting the `#`
         var value =  window.location.hash.replace('#', '').split('/');
         var section = value[0];
@@ -1298,18 +1302,24 @@
         }
     }
 
-//  window.onhashchange = hashChangeHandler;
-
     //detecting any change on the URL to scroll to the given anchor link
     //(a way to detect back history button as we play with the hashes on the URL)
-        if (document.addEventListener) {
-            window.addEventListener('hashchange', hashChangeHandler, false); //IE9, Chrome, Safari, Oper
-        } else {
-            window.attachEvent('onhashchange', hashChangeHandler); //IE 6/7/8
+    if (document.addEventListener) {
+        window.addEventListener('hashchange', hashChangeHandler, false); //IE9, Chrome, Safari, Oper
+    } else {
+        window.attachEvent('onhashchange', hashChangeHandler); //IE 6/7/8
+    }
+
+    function arrowsHandler(event){
+        var element = this;
+
+        //IE 8 (using attach event...)
+        //http://stackoverflow.com/a/4590231/1081396
+        if(element.self == window ){
+            element = event.target || event.srcElement;
         }
 
-    function arrowsHandler(){
-        if (hasClass(this, SLIDES_PREV)) {
+        if (hasClass(element, SLIDES_PREV)) {
             moveSlideLeft();
         } else {
             moveSlideRight();
@@ -1461,7 +1471,7 @@
         var sectionIndex = getNodeIndex(section);
         var anchorLink = section.getAttribute('data-anchor');
         var slidesNav = $(SLIDES_NAV_SEL, section);
-        var slideAnchor = destiny.getAttribute('data-anchor');
+        var slideAnchor = getSlideAnchor(destiny);
 
         //caching the value of isResizing at the momment the function is called
         //because it will be checked later inside a setTimeout and the value might change
@@ -1487,9 +1497,6 @@
         addClass(destiny, ACTIVE);
 
 
-        if(typeof slideAnchor === 'undefined'){
-            slideAnchor = slideIndex;
-        }
 
         if(!options.loopHorizontal && options.controlArrows){
             //hidding it for the fist slide, showing for the rest
@@ -1784,14 +1791,8 @@
                 setUrlHash(anchorLink);
             }
 
-            setBodyClass(location.hash);
         }
-        else if(typeof slideIndex !== 'undefined'){
-                setBodyClass(sectionIndex + '-' + slideIndex);
-        }
-        else{
-            setBodyClass(String(sectionIndex));
-        }
+        setBodyClass();
     }
 
     /**
@@ -1812,9 +1813,41 @@
     }
 
     /**
+    * Gets the anchor for the given slide. Its index will be used if there's none.
+    */
+    function getSlideAnchor(slide){
+        var slideAnchor = slide.getAttribute('data-anchor');
+        var slideIndex = getNodeIndex(slide);
+
+        //Slide without anchor link? We take the index instead.
+        if(!slideAnchor){
+            slideAnchor = slideIndex;
+        }
+
+        return slideAnchor;
+    }
+
+    /**
     * Sets a class for the body of the page depending on the active section / slide
     */
     function setBodyClass(text){
+        var section = $(SECTION_ACTIVE_SEL);
+        var slide = $(SLIDE_ACTIVE_SEL, section);
+
+        var sectionAnchor = section.getAttribute('data-anchor');
+        var sectionIndex = getNodeIndex(section);
+
+        var text = String(sectionIndex);
+
+        if(options.anchors.length){
+            text = sectionAnchor;
+        }
+
+        if(slide){
+            var slideAnchor = getSlideAnchor(slide);
+            text = text + '-' + slideAnchor;
+        }
+
         //changing slash for dash to make it a valid CSS style
         text = text.replace('/', '-').replace('#','');
 
