@@ -28,6 +28,7 @@ Let's make this a great plugin to make people's lives easier!
 ## Compatibility
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12, etc.
 It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
+It also provides touch support for mobile phones, tablets and touch screen computers.
 
 ## Usage
 As you can see in the example files, you will need to include:
