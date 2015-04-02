@@ -1,5 +1,5 @@
 /**
- * fullPage Pure Javascript v.0.0.6 (Alpha) - Not support given until Beta version.
+ * fullPage Pure Javascript v.0.0.7 (Alpha) - Not support given until Beta version.
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -156,11 +156,6 @@
         removeClass(container, DESTROYED); //in case it was destroyed before initilizing it again
         displayWarnings();
 
-        setMouseWheelScrolling(true);
-        addTouchHandler();
-        addResizeHandler();
-        addScrollHandler();
-
         //if css3 is not supported, it will use jQuery animations
         if(options.css3){
             options.css3 = support3d();
@@ -179,6 +174,11 @@
         else{
             showError('error', 'Error! Fullpage.js needs to be initialized with a selector. For example: fullpage(\'#fullpage\');');
         }
+
+        setMouseWheelScrolling(true);
+        addTouchHandler();
+        addResizeHandler();
+        addScrollHandler();
 
         //adding internal class names to void problem with common ones
         var originalSections = $$(options.sectionSelector);
@@ -219,7 +219,7 @@
             }
 
             // if there's any slide
-            if (numSlides > 1) {
+            if (numSlides > 0) {
                 var sliderWidth = numSlides * 100;
                 var slideWidth = 100 / numSlides;
 
@@ -232,7 +232,7 @@
 
                 setCss($(SLIDES_CONTAINER_SEL, section), 'width',  sliderWidth + '%');
 
-                if(options.controlArrows){
+                if(options.controlArrows && numSlides > 1){
                     createSlideArrows(section);
                 }
 
@@ -442,6 +442,10 @@
         return el && (
             fn(el) ? el : closest(el.parentNode, fn)
         );
+    }
+
+    function getWindowWidth(){
+        return  'innerWidth' in window ? window.innerWidth : document.documentElement.offsetWidth;
     }
 
     function getWindowHeight(){
@@ -751,7 +755,7 @@
             var slides = $$(SLIDE_SEL, section);
 
             //adjusting the position fo the FULL WIDTH slides...
-            if (slidesWrap && slides.length) {
+            if (slidesWrap && slides.length > 1) {
                 landscapeScroll(slidesWrap, $(SLIDE_ACTIVE_SEL, slidesWrap));
             }
         }
@@ -973,7 +977,8 @@
     * used one to determine the direction.
     */
     function touchMoveHandler(event){
-        var e = event.originalEvent;
+
+        var e = window.event || e || e.originalEvent;
 
         if(isReallyTouch(e)){
             if(options.autoScrolling){
@@ -994,7 +999,7 @@
                 if ( slides && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartX - touchEndX) > (window.offsetWidth / 100 * options.touchSensitivity)) {
+                    if (Math.abs(touchStartX - touchEndX) > (getWindowWidth() / 100 * options.touchSensitivity)) {
                         if (touchStartX > touchEndX) {
                             moveSlideRight(); //next
                         } else {
@@ -1007,7 +1012,7 @@
                 else if(options.autoScrolling){
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartY - touchEndY) > (window.offsetHeight/ 100 * options.touchSensitivity)) {
+                    if (Math.abs(touchStartY - touchEndY) > (getWindowHeight()/ 100 * options.touchSensitivity)) {
                         if (touchStartY > touchEndY) {
                             scrolling('down');
                         } else if (touchEndY > touchStartY) {
@@ -1029,7 +1034,7 @@
     }
 
     function touchStartHandler(event){
-        var e = event.originalEvent;
+        var e = window.event || e || e.originalEvent;
 
         //stopping the auto scroll to adjust to a section
         if(options.fitToSection){
@@ -1291,7 +1296,6 @@
     * Scrolls to the anchor in the URL when loading the site
     */
     function scrollToAnchor(){
-        console.log("va");
         //getting the anchor link in the URL and deleting the `#`
         var value =  window.location.hash.replace('#', '').split('/');
         var section = value[0];
@@ -1897,11 +1901,13 @@
     * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
     */
     function removeMouseWheelHandler(){
+        var wrapper = $(WRAPPER_SEL);
+
         if (document.addEventListener) {
-            document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-            document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+            wrapper.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+            wrapper.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
         } else {
-            document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+            wrapper.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
         }
     }
 
@@ -1911,7 +1917,7 @@
     * After this function is called, the mousewheel and trackpad movements will scroll through sections
     */
     function addMouseWheelHandler(){
-        addHandler(document, MouseWheelHandler, 'mousewheel', 'onmousewheel', 'wheel');
+        addHandler($(WRAPPER_SEL), MouseWheelHandler, 'mousewheel', 'onmousewheel', 'wheel');
     }
 
     function addResizeHandler(){
@@ -1940,15 +1946,19 @@
     */
     function addTouchHandler(){
         if(isTouchDevice || isTouch){
+            var wrapper = $(WRAPPER_SEL);
             if (document.addEventListener) {
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                document.removeEventListener('touchstart ' + MSPointer.down);
-                document.removeEventListener('touchmove ' + MSPointer.move);
+                wrapper.removeEventListener('touchstart');
+                wrapper.removeEventListener(MSPointer.down);
 
-                document.addEventListener('touchstart ' + MSPointer.down, touchStartHandler);
-                document.addEventListener('touchmove ' + MSPointer.move, touchMoveHandler);
+                wrapper.removeEventListener('touchmove');
+                wrapper.removeEventListener(MSPointer.move);
+
+                addListenerMulti(wrapper, 'touchstart ' + MSPointer.down, touchStartHandler);
+                addListenerMulti(wrapper, 'touchmove ' + MSPointer.move, touchMoveHandler);
             }
         }
     }
@@ -1958,12 +1968,17 @@
     */
     function removeTouchHandler(){
         if(isTouchDevice || isTouch){
-            if (document.addEventListener) {
+            var wrapper = $(WRAPPER_SEL);
+
+            if (wrapper.addEventListener) {
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                document.removeEventListener('touchstart ' + MSPointer.down);
-                document.removeEventListener('touchmove ' + MSPointer.move);
+                wrapper.removeEventListener('touchstart');
+                wrapper.removeEventListener(MSPointer.down);
+
+                wrapper.removeEventListener('touchmove');
+                wrapper.removeEventListener(MSPointer.move);
             }
         }
     }
