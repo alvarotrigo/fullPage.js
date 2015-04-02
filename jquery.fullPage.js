@@ -1,5 +1,5 @@
 /**
- * fullPage 2.6.2
+ * fullPage 2.6.3
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -235,7 +235,8 @@
         */
         FP.setAllowScrolling = function (value, directions){
             if(typeof directions != 'undefined'){
-                directions = directions.replace(' ', '').split(',');
+                directions = directions.replace(/ /g,'').split(',');
+
                 $.each(directions, function (index, direction){
                     setIsScrollable(value, direction);
                 });
@@ -346,7 +347,7 @@
                 }
 
                 //adjusting the position fo the FULL WIDTH slides...
-                if (slides.length) {
+                if (slides.length > 1) {
                     landscapeScroll(slidesWrap, slidesWrap.find(SLIDE_ACTIVE_SEL));
                 }
             });
@@ -380,14 +381,6 @@
         var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
         var originals = $.extend(true, {}, options); //deep copy
 
-        FP.setAllowScrolling(true);
-        container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
-
-        //if css3 is not supported, it will use jQuery animations
-        if(options.css3){
-            options.css3 = support3d();
-        }
-
         if($(this).length){
             container.css({
                 'height': '100%',
@@ -397,11 +390,19 @@
             //adding a class to recognize the container internally in the code
             container.addClass(WRAPPER);
         }
-
         //trying to use fullpage without a selector?
         else{
             showError('error', 'Error! Fullpage.js needs to be initialized with a selector. For example: $(\'#myContainer\').fullpage();');
         }
+
+        //if css3 is not supported, it will use jQuery animations
+        if(options.css3){
+            options.css3 = support3d();
+        }
+
+        FP.setAllowScrolling(true);
+        container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
+
 
         //adding internal class names to void problem with common ones
         $(options.sectionSelector).each(function(){
@@ -450,7 +451,7 @@
             }
 
             // if there's any slide
-            if (numSlides > 1) {
+            if (numSlides > 0) {
                 var sliderWidth = numSlides * 100;
                 var slideWidth = 100 / numSlides;
 
@@ -459,7 +460,7 @@
 
                 $(this).find(SLIDES_CONTAINER_SEL).css('width', sliderWidth + '%');
 
-                if(options.controlArrows){
+                if(options.controlArrows && numSlides > 1){
                     createSlideArrows($(this));
                 }
 
@@ -1178,6 +1179,7 @@
             continuousVerticalFixSectionOrder(v);
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
+
             canScroll = true;
 
             setTimeout(function () {
@@ -1841,7 +1843,7 @@
         */
         function getSlideAnchor(slide){
             var slideAnchor = slide.data('anchor');
-            var slideIndex = slide.index(SLIDE_SEL);
+            var slideIndex = slide.index();
 
             //Slide without anchor link? We take the index instead.
             if(typeof slideAnchor === 'undefined'){
@@ -1922,11 +1924,12 @@
         * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
         */
         function removeMouseWheelHandler(){
+            var wrapper = $(WRAPPER_SEL)[0];
             if (document.addEventListener) {
-                document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+                wrapper.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                wrapper.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
             } else {
-                document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                wrapper.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
 
@@ -1936,11 +1939,12 @@
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
         */
         function addMouseWheelHandler(){
+            var wrapper = $(WRAPPER_SEL)[0];
             if (document.addEventListener) {
-                document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
+                wrapper.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                wrapper.addEventListener('wheel', MouseWheelHandler, false); //Firefox
             } else {
-                document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                wrapper.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
 
@@ -1953,8 +1957,8 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                $document.off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
-                $document.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
+                $(WRAPPER_SEL).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
+                $(WRAPPER_SEL).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
             }
         }
 
@@ -1966,8 +1970,8 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                $document.off('touchstart ' + MSPointer.down);
-                $document.off('touchmove ' + MSPointer.move);
+                $(WRAPPER_SEL).off('touchstart ' + MSPointer.down);
+                $(WRAPPER_SEL).off('touchmove ' + MSPointer.move);
             }
         }
 
