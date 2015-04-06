@@ -1564,15 +1564,15 @@
          */
         function activateMenuElement(name){
             if(options.menu){
-				var activatedBefore = $(options.menu).find(ACTIVE_SEL);
-				var classList = activatedBefore.attr('class');
-				var newClassList = classList ? classList.replace(ACTIVE, '') : '';
-				activatedBefore.attr('class', newClassList);
+		var activatedBefore = $(options.menu).find(ACTIVE_SEL);
+		var classList = activatedBefore.attr('class');
+		var newClassList = classList ? classList.replace(ACTIVE, '') : '';
+		activatedBefore.attr('class', newClassList);
 				
                 var toBeActivated = $(options.menu).find('[data-menuanchor="'+name+'"]');
-				var classList = toBeActivated.attr('class');
-				var newClassList = (classList ? classList + ' ' : '') + ACTIVE;
-				toBeActivated.attr('class', newClassList);
+		var classList = toBeActivated.attr('class');
+		var newClassList = (classList ? classList + ' ' : '') + ACTIVE;
+		toBeActivated.attr('class', newClassList);
             }
         }
 
