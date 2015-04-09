@@ -66,7 +66,7 @@ If you prefer to use a CDN to load the needed files, fullPage.js is in CDNJS:
 https://cdnjs.com/libraries/fullpage.js
 
 ###Required HTML structure
-Each section will be defined with a `div` containing the `section` class.
+Each section will be defined with an element containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 ```html
 <div id="fullpage">
@@ -81,7 +81,7 @@ If you want to define a different starting point rather than the first section o
 <div class="section active">Some section</div>
 ```
 
-In order to create a landscape slider within a section, each slide will be defined with another `div`:
+In order to create a landscape slider within a section, each slide will be defined by default with an element containing the `slide` class:
 ```html
 <div class="section">
 	<div class="slide"> Slide 1 </div>
