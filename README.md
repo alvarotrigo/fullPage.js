@@ -6,7 +6,7 @@
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
-A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites).
+A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites or onepage sites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
@@ -36,7 +36,7 @@ As you can see in the example files, you will need to include:
  - The JavaScript file `jquery.fullPage.js` (or its minified version `jquery.fullPage.min.js`)
  - The css file `jquery.fullPage.css`
 
- **Optionally**, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing`) or the one included by default in fullPage.js (`easeInQuart`).
+ **Optionally**, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing` and `easeInOutCubic`) or the one included by default in fullPage.js (`easeInQuart`).
 
 ### Install using bower:
 **Optionally**, you can install fullPage.js with bower if you prefer:
@@ -51,11 +51,11 @@ bower install fullpage.js
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- This following line is needed only in case of using other easing effect rather than "linear", "swing" or "easeInQuart". You can also add the full jQuery UI instead of this file if you prefer -->
+<!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
 <script src="vendors/jquery.easings.min.js"></script>
 
 
-<!-- This following line needed in the case of using the plugin option `scrollOverflow:true` -->
+<!-- This following line is only necessary in the case of using the plugin option `scrollOverflow:true` -->
 <script type="text/javascript" src="vendors/jquery.slimscroll.min.js"></script>
 
 <script type="text/javascript" src="jquery.fullPage.js"></script>
@@ -163,12 +163,9 @@ $(document).ready(function() {
 });
 ```
 
-### Advance usage
-In order to create links to certain slides inside a section, you could do it in two ways:
-
-#### Using anchor links
+### Creating links to sections or slides
 If you are using fullPage.js with anchor links for the sections (using the `anchors` option), then you will be able to use anchor links also to navigate directly to a certain slide inside a section.
-For example: http://alvarotrigo.com/fullPage/#secondPage/2
+For example: http://alvarotrigo.com/fullPage/#secondPage/2 (which is the URL you will see once you access to that section/slide manually)
 
 You can do it by using the index of the slide (starting by 0), or if you prefer, you can create custom anchor links for them by using the attribute `data-anchor` in each slide. For example:
 
@@ -180,6 +177,7 @@ You can do it by using the index of the slide (starting by 0), or if you prefer,
     <div class="slide" data-anchor="slide4"> Slide 4 </div>
 </div>
 ```
+In this last case, the URL we will use would end up in `#secondPage/slide3`.
 
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
@@ -291,6 +289,7 @@ In case of setting it to `true`, it requires the vendor plugin [`jquery.slimscro
 - `responsive`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined width in pixels. A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's width is less than 900 the plugin will scroll like a normal site.
 
 ## Methods
+You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
 
 ### moveSectionUp()
 Scrolls one section up:
@@ -409,6 +408,8 @@ $.fn.fullpage.reBuild();
 
 
 ## Callbacks
+You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
+
 ###afterLoad (`anchorLink`, `index`)
 Callback fired once the sections have been loaded, after the scrolling has ended.
 Parameters:
