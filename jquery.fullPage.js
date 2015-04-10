@@ -1,5 +1,5 @@
 /**
- * fullPage 2.6.3
+ * fullPage 2.6.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -22,6 +22,7 @@
     var RESPONSIVE =            'fp-responsive';
     var NO_TRANSITION =         'fp-notransition';
     var DESTROYED =             'fp-destroyed';
+    var ENABLED =               'fp-enabled';
     var VIEWING_PREFIX =        'fp-viewing';
     var ACTIVE =                'active';
     var ACTIVE_SEL =            '.' + ACTIVE;
@@ -389,6 +390,7 @@
 
             //adding a class to recognize the container internally in the code
             container.addClass(WRAPPER);
+            $('html').addClass(ENABLED);
         }
         //trying to use fullpage without a selector?
         else{
@@ -1924,12 +1926,11 @@
         * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
         */
         function removeMouseWheelHandler(){
-            var wrapper = $(WRAPPER_SEL)[0];
             if (document.addEventListener) {
-                wrapper.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                wrapper.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+                document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
             } else {
-                wrapper.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
 
@@ -1939,12 +1940,11 @@
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
         */
         function addMouseWheelHandler(){
-            var wrapper = $(WRAPPER_SEL)[0];
             if (document.addEventListener) {
-                wrapper.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                wrapper.addEventListener('wheel', MouseWheelHandler, false); //Firefox
+                document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
             } else {
-                wrapper.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
 
