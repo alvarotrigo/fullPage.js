@@ -30,6 +30,6 @@
     "examples"
   ],
   "dependencies": {
-      "jquery": "1.x"
+      "jquery": "^2.x.x"
     }
 }
