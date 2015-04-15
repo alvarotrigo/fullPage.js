@@ -1430,7 +1430,7 @@
             };
 
             if(options.css3){
-                var translate3d = 'translate3d(-' + destinyPos.left + 'px, 0px, 0px)';
+                var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';
 
                 addAnimation(slides.find(SLIDES_CONTAINER_SEL), options.scrollingSpeed>0).css(getTransforms(translate3d));
 
@@ -1439,7 +1439,7 @@
                 }, options.scrollingSpeed, options.easing);
             }else{
                 slides.animate({
-                    scrollLeft : destinyPos.left
+                    scrollLeft : Math.round(destinyPos.left)
                 }, options.scrollingSpeed, options.easing, function() {
 
                     afterSlideLoads();
