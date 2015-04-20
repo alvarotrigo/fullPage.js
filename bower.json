@@ -30,6 +30,6 @@
     "examples"
   ],
   "dependencies": {
-      "jquery": "1.x"
+      "jquery": ">=1.6.0"
     }
 }
