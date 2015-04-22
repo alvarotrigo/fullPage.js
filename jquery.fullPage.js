@@ -8,6 +8,21 @@
 (function($, window, document, Math, undefined) {
     'use strict';
 
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
     // keeping central set of classnames and selectors
     var WRAPPER =               'fullpage-wrapper';
     var WRAPPER_SEL =           '.' + WRAPPER;
@@ -17,8 +32,10 @@
     var SCROLLABLE_SEL =        '.' + SCROLLABLE;
     var SLIMSCROLL_BAR_SEL =    '.slimScrollBar';
     var SLIMSCROLL_RAIL_SEL =   '.slimScrollRail';
+    var NAVIGATING =            'fp-navigating';
 
     // util
+    var TOUCH =                 'fp-touch';
     var RESPONSIVE =            'fp-responsive';
     var NO_TRANSITION =         'fp-notransition';
     var DESTROYED =             'fp-destroyed';
@@ -518,6 +535,10 @@
                 nav.find('li').eq($(SECTION_ACTIVE_SEL).index(SECTION_SEL)).find('a').addClass(ACTIVE);
             }
 
+            if (isTouchDevice || isTouch) {
+                container.addClass(TOUCH);
+            }
+
             //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
             if(options.menu && options.css3 && $(options.menu).closest(WRAPPER_SEL).length){
                 $(options.menu).appendTo($body);
@@ -746,10 +767,18 @@
         * Determines the way of scrolling up or down:
         * by 'automatically' scrolling a section or by using the default and normal scrolling.
         */
-        function scrolling(type, scrollable){
+        function scrolling(type, scrollable, options){
+            options || (options = {});
+
             if (!isScrollAllowed[type]){
+                if (options.touchEvent) {
+                    options.touchEvent.preventDefault();
+                    options.touchEvent.stopPropagation();
+                    options.touchEvent.stopImmediatePropagation();
+                }
                 return;
             }
+
             var check, scrollSection;
 
             if(type == 'down'){
@@ -763,6 +792,11 @@
             if(scrollable.length > 0 ){
                 //is the scrollbar at the start/end of the scroll?
                 if(isScrolled(check, scrollable)){
+                    if (options.touchEvent) {
+                        options.touchEvent.preventDefault();
+                        options.touchEvent.stopPropagation();
+                        options.touchEvent.stopImmediatePropagation();
+                    }
                     scrollSection();
                 }else{
                     return true;
@@ -791,13 +825,16 @@
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (!checkParentForNormalScrollElement(event.target) && isReallyTouch(e) ) {
 
-                if(options.autoScrolling){
-                    //preventing the easing on iOS devices
-                    event.preventDefault();
-                }
-
                 var activeSection = $(SECTION_ACTIVE_SEL);
                 var scrollable = isScrollable(activeSection);
+                if(options.autoScrolling){
+                    //preventing the easing on iOS devices
+                    if (!scrollable.length) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        event.stopImmediatePropagation();
+                    }
+                }
 
                 if (canScroll && !slideMoving) { //if theres any #
                     var touchEvents = getEventsPage(e);
@@ -828,9 +865,9 @@
                         //is the movement greater than the minimum resistance to scroll?
                         if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
-                                scrolling('down', scrollable);
+                                scrolling('down', scrollable, { touchEvent: event });
                             } else if (touchEndY > touchStartY) {
-                                scrolling('up', scrollable);
+                                scrolling('up', scrollable, { touchEvent: event });
                             }
                         }
                     }
@@ -1394,13 +1431,15 @@
             //because it will be checked later inside a setTimeout and the value might change
             var localIsResizing = isResizing;
 
-            if(options.onSlideLeave){
-                var prevSlide = section.find(SLIDE_ACTIVE_SEL);
-                var prevSlideIndex = prevSlide.index();
-                var xMovement = getXmovement(prevSlideIndex, slideIndex);
+            var prevSlide = section.find(SLIDE_ACTIVE_SEL);
+            var prevSlideIndex = prevSlide.index();
+            var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
-                //if the site is not just resizing and readjusting the slides
-                if(!localIsResizing && xMovement!=='none'){
+            //if the site is not just resizing and readjusting the slides
+            if(!localIsResizing && xMovement!=='none'){
+                container.addClass(NAVIGATING);
+
+                if(options.onSlideLeave){
                     $.isFunction( options.onSlideLeave ) && options.onSlideLeave.call( prevSlide, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement);
                 }
             }
@@ -1423,6 +1462,7 @@
             var afterSlideLoads = function(){
                 //if the site is not just resizing and readjusting the slides
                 if(!localIsResizing){
+                    container.removeClass(NAVIGATING);
                     $.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
                 }
                 //letting them slide again
@@ -1654,12 +1694,14 @@
                         element.wrapInner('<div class="' + SCROLLABLE + '" />');
                     }
 
-                    element.find(SCROLLABLE_SEL).slimScroll({
-                        allowPageScroll: true,
-                        height: scrollHeight + 'px',
-                        size: '10px',
-                        alwaysVisible: true
-                    });
+                    if (!isTouchDevice && !isTouch) {
+                        element.find(SCROLLABLE_SEL).slimScroll({
+                            allowPageScroll: true,
+                            height: scrollHeight + 'px',
+                            size: '10px',
+                            alwaysVisible: true
+                        });
+                    }
                 }
             }
 
@@ -1919,18 +1961,21 @@
             return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
         }
 
-
+        var debouncedWheelHandler;
 
         /**
         * Removes the auto scrolling action fired by the mouse wheel and trackpad.
         * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
         */
         function removeMouseWheelHandler(){
+            if (!debouncedWheelHandler) {
+                return;
+            }
             if (document.addEventListener) {
-                document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+                document.removeEventListener('mousewheel', debouncedWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.removeEventListener('wheel', debouncedWheelHandler, false); //Firefox
             } else {
-                document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                document.detachEvent('onmousewheel', debouncedWheelHandler); //IE 6/7/8
             }
         }
 
@@ -1940,11 +1985,14 @@
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
         */
         function addMouseWheelHandler(){
+
+            debouncedWheelHandler = debounce(MouseWheelHandler, 50, true);
+
             if (document.addEventListener) {
-                document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
+                document.addEventListener('mousewheel', debouncedWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.addEventListener('wheel', debouncedWheelHandler, false); //Firefox
             } else {
-                document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+                document.attachEvent('onmousewheel', debouncedWheelHandler); //IE 6/7/8
             }
         }
 
