@@ -1961,21 +1961,21 @@
             return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
         }
 
-        var debouncedWheelHandler;
+        var addedWheelHandler;
 
         /**
         * Removes the auto scrolling action fired by the mouse wheel and trackpad.
         * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
         */
         function removeMouseWheelHandler(){
-            if (!debouncedWheelHandler) {
+            if (!addedWheelHandler) {
                 return;
             }
             if (document.addEventListener) {
-                document.removeEventListener('mousewheel', debouncedWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.removeEventListener('wheel', debouncedWheelHandler, false); //Firefox
+                document.removeEventListener('mousewheel', addedWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.removeEventListener('wheel', addedWheelHandler, false); //Firefox
             } else {
-                document.detachEvent('onmousewheel', debouncedWheelHandler); //IE 6/7/8
+                document.detachEvent('onmousewheel', addedWheelHandler); //IE 6/7/8
             }
         }
 
@@ -1986,13 +1986,17 @@
         */
         function addMouseWheelHandler(){
 
-            debouncedWheelHandler = debounce(MouseWheelHandler, 50, true);
+            if (options.scrollOverflow) {
+                addedWheelHandler = debounce(MouseWheelHandler, 50, true);
+            } else {
+                addedWheelHandler = MouseWheelHandler;
+            }
 
             if (document.addEventListener) {
-                document.addEventListener('mousewheel', debouncedWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.addEventListener('wheel', debouncedWheelHandler, false); //Firefox
+                document.addEventListener('mousewheel', addedWheelHandler, false); //IE9, Chrome, Safari, Oper
+                document.addEventListener('wheel', addedWheelHandler, false); //Firefox
             } else {
-                document.attachEvent('onmousewheel', debouncedWheelHandler); //IE 6/7/8
+                document.attachEvent('onmousewheel', addedWheelHandler); //IE 6/7/8
             }
         }
 
