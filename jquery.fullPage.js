@@ -5,7 +5,16 @@
  *
  * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
  */
-(function($, window, document, Math, undefined) {
+(function(factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'));
+    } else {
+        factory(jQuery);
+    }
+})(function($) {
     'use strict';
 
     // keeping central set of classnames and selectors
@@ -2169,4 +2178,4 @@
             console && console[type] && console[type]('fullPage: ' + text);
         }
     };
-})(jQuery, window, document, Math);
+});
