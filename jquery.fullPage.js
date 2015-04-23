@@ -5,7 +5,18 @@
  *
  * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
  */
-(function($, window, document, Math, undefined) {
+(function(global, factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], function($) {
+          return factory($, global, global.document, global.Math);
+        });
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'), global, global.document, global.Math);
+    } else {
+        factory(jQuery, global, global.document, global.Math);
+    }
+})(typeof window !== 'undefined' ? window : this, function($, window, document, Math, undefined) {
     'use strict';
 
     // keeping central set of classnames and selectors
@@ -2169,4 +2180,4 @@
             console && console[type] && console[type]('fullPage: ' + text);
         }
     };
-})(jQuery, window, document, Math);
+});
