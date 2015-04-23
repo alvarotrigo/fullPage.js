@@ -345,7 +345,7 @@
                     $(this).find(TABLE_CELL_SEL).css('height', getTableHeight($(this)) + 'px');
                 }
 
-                $(this).css('height', windowsHeight + 'px');
+                $(this).css('height', '100%');
 
                 //resizing the scrolling divs
                 if(options.scrollOverflow){
