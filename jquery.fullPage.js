@@ -342,7 +342,7 @@
 
                 //adjusting the height of the table-cell for IE and Firefox
                 if(options.verticalCentered){
-                    $(this).find(TABLE_CELL_SEL).css('height', getTableHeight($(this)) + 'px');
+                    $(this).find(TABLE_CELL_SEL).css('height', '100%');
                 }
 
                 $(this).css('height', '100%');
