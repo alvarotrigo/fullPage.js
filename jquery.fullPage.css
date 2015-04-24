@@ -87,9 +87,21 @@ html.fp-enabled,
 .fp-scrollable {
     overflow: scroll;
 }
+.fp-touch .fp-scrollable {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+}
 .fp-notransition {
     -webkit-transition: none !important;
     transition: none !important;
+}
+.fp-navigating .fp-scrollable {
+    overflow-y: hidden !important;
+}
+.fp-navigating .slimScrollBar {
+    display: none !important;
 }
 #fp-nav {
     position: fixed;
@@ -105,7 +117,7 @@ html.fp-enabled,
 #fp-nav.left {
     left: 17px;
 }
-.fp-slidesNav{
+.fp-slidesNav {
     position: absolute;
     z-index: 4;
     left: 50%;
