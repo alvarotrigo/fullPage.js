@@ -79,7 +79,17 @@
 
 			$('#moveTo').click(function(e){
 				e.preventDefault();
-				$.fn.fullpage.moveTo(3, 2);
+				$.fn.fullpage.moveTo(2, 3);
+			});
+
+			$('#silentMoveTo').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.silentMoveTo(2);
+			});
+
+			$('#silentMoveToSlide').click(function(e){
+				e.preventDefault();
+				$.fn.fullpage.silentMoveTo(2, 3);
 			});
 
 			$('#moveSlideRight').click(function(e){
@@ -212,7 +222,9 @@
 <div id="actions">
 	<a id="moveSectionUp" href="#">moveSectionUp</a>
 	<a id="moveSectionDown" href="#">moveSectionDown</a>
-	<a id="moveTo" href="#">moveTo(3,2)</a>
+	<a id="silentMoveTo" href="#">silentMoveTo(2)</a>
+	<a id="moveTo" href="#">moveTo(2,3)</a>
+	<a id="silentMoveToSlide" href="#">silentMoveTo(2,3)</a>
 	<a id="moveSlideRight" href="#">moveSlideRight</a>
 	<a id="moveSlideLeft" href="#">moveSlideLeft</a>
 	<a id="setAutoScrollingTrue" href="#">setAutoScrolling(true)</a>
@@ -241,8 +253,8 @@
 		<div class="slide" id ="slide1.1">
 			<h1>Section 1</h1>
 		</div>
-		<div class="slide" id ="slide1.2"><h1>Slide 1.2</h1></div>
-		<div class="slide" id ="slide1.3"><h1>Slide 1.3</h1></div>
+		<div class="slide" id="slide1.2"><h1>Slide 1.2</h1></div>
+		<div class="slide" id="slide1.3"><h1>Slide 1.3</h1></div>
 		</div>
 	<div class="section" id="section1">
 		<div class="slide"><h1>Section 2</h1></div>
