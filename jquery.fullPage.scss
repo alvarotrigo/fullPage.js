@@ -6,6 +6,12 @@
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  * Contribution by Jhony0311
  */
+
+$fp-controlArrow_size: 50px;
+$fp-controlArrow_thickness: 15px;
+$fp-controlArrow_background-color: rgba(255,255,255,0.5);
+$fp-controlArrow_background-color_hover: #fff;
+
 html, body {
     margin: 0;
     padding: 0;
@@ -67,23 +73,34 @@ html, body {
     cursor: pointer;
     width: 0;
     height: 0;
-    border-style: solid;
-    margin-top: -38px;
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    margin: -38px 50px 50px;
+    display: inline-block;
+    width: $fp-controlArrow_size;
+    height: $fp-controlArrow_size;
+    border-bottom: $fp-controlArrow_thickness solid $fp-controlArrow_background-color;
+    -webkit-transition: border-color 0.5s;
+    transition: border-color 0.5s;
 
     &.fp-prev {
         left: 15px;
-        width: 0;
-        border-width: 38.5px 34px 38.5px 0;
-        border-color: transparent #fff transparent transparent;
+        border-left: $fp-controlArrow_thickness solid $fp-controlArrow_background-color;
+        -ms-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        &:hover {
+          border-color: $fp-controlArrow_background-color_hover;
+        }
     }
 
     &.fp-next {
         right: 15px;
-        border-width: 38.5px 0 38.5px 34px;
-        border-color: transparent transparent transparent #fff;
+        border-right: $fp-controlArrow_thickness solid $fp-controlArrow_background-color;
+        -ms-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        &:hover {
+          border-color: $fp-controlArrow_background-color_hover;
+        }
     }
 }
 .fp-scrollable {
@@ -183,7 +200,7 @@ html, body {
     opacity: 1;
     -webkit-transform: translate3d(0,0,0);
     &.right {
-       right: 17px; 
+       right: 17px;
     }
     &.left {
         left: 17px
