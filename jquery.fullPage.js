@@ -1,5 +1,5 @@
 /**
- * fullPage 2.6.4
+ * fullPage 2.6.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -159,6 +159,10 @@
         //TO BE REMOVED in future versions. Maintained temporaly for backwards compatibility.
         $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
 
+        /**
+        * Sets the autoScroll option.
+        * It changes the scroll bar visibility and the history of the site as a result.
+        */
         FP.setAutoScrolling = function(value, type){
             setVariableState('autoScrolling', value, type);
 
@@ -269,6 +273,9 @@
             options.keyboardScrolling = value;
         };
 
+        /**
+        * Moves the page up one section.
+        */
         FP.moveSectionUp = function(){
             var prev = $(SECTION_ACTIVE_SEL).prev(SECTION_SEL);
 
@@ -282,6 +289,9 @@
             }
         };
 
+        /**
+        * Moves the page down one section.
+        */
         FP.moveSectionDown = function (){
             var next = $(SECTION_ACTIVE_SEL).next(SECTION_SEL);
 
@@ -296,26 +306,40 @@
             }
         };
 
-        FP.moveTo = function (section, slide){
-            var destiny = '';
+        /**
+        * Moves the page to the given section and slide with no animation.
+        * Anchors or index positions can be used as params.
+        */
+        FP.silentMoveTo = function(sectionAnchor, slideAnchor){
+            FP.setScrollingSpeed (0, 'internal');
+            FP.moveTo(sectionAnchor, slideAnchor)
+            FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
+        };
 
-            if(isNaN(section)){
-                destiny = $('[data-anchor="'+section+'"]');
-            }else{
-                destiny = $(SECTION_SEL).eq( (section -1) );
-            }
+        /**
+        * Moves the page to the given section and slide.
+        * Anchors or index positions can be used as params.
+        */
+        FP.moveTo = function (sectionAnchor, slideAnchor){
+            var destiny = getSectionByAnchor(sectionAnchor);
 
-            if (typeof slide !== 'undefined'){
-                scrollPageAndSlide(section, slide);
+            if (typeof slideAnchor !== 'undefined'){
+                scrollPageAndSlide(sectionAnchor, slideAnchor);
             }else if(destiny.length > 0){
                 scrollPage(destiny);
             }
         };
 
+        /**
+        * Slides right the slider of the active section.
+        */
         FP.moveSlideRight = function(){
             moveSlide('next');
         };
 
+        /**
+        * Slides left the slider of the active section.
+        */
         FP.moveSlideLeft = function(){
             moveSlide('prev');
         };
@@ -331,7 +355,7 @@
             var windowsWidth = $window.width();
             windowsHeight = $window.height();  //updating global var
 
-            //text and images resizing
+            //text resizing
             if (options.resize) {
                 resizeMe(windowsHeight, windowsWidth);
             }
@@ -365,11 +389,12 @@
             });
 
             var activeSection = $(SECTION_ACTIVE_SEL);
+            var sectionIndex = activeSection.index(SECTION_SEL);
 
             //isn't it the first section?
-            if(activeSection.index(SECTION_SEL)){
+            if(sectionIndex){
                 //adjusting the position for the current section
-                scrollPage(activeSection);
+                FP.silentMoveTo(sectionIndex + 1);
             }
 
             isResizing = false;
@@ -390,6 +415,7 @@
         var canScroll = true;
         var scrollings = [];
         var nav;
+        var controlPressed;
         var isScrollAllowed = { 'up':true, 'down':true, 'left':true, 'right':true };
         var originals = $.extend(true, {}, options); //deep copy
 
@@ -430,6 +456,7 @@
             addVerticalNavigation();
         }
 
+        //styling the sections
         $(SECTION_SEL).each(function(index){
             var that = $(this);
             var slides = $(this).find(SLIDE_SEL);
@@ -541,7 +568,7 @@
                 //after DOM and images are loaded
                 $window.on('load', createSlimScrollingHandler);
             }else{
-                $.isFunction( options.afterRender ) && options.afterRender.call(container);
+                afterRenderActions();
             }
 
             responsive();
@@ -633,6 +660,9 @@
             }
         }
 
+        /**
+        * Creates the slim scroll scrollbar for the sections and slides inside them.
+        */
         function createSlimScrollingHandler(){
             $(SECTION_SEL).each(function(){
                 var slides = $(this).find(SLIDE_SEL);
@@ -646,6 +676,19 @@
                 }
 
             });
+            afterRenderActions();
+        }
+
+        /**
+        * Actions and callbacks to fire afterRender
+        */
+        function afterRenderActions(){
+            var section = $(SECTION_ACTIVE_SEL);
+
+            //to solve a bug with slimScroll vendor #1037, #553
+            section.find('.fp-scrollable').mouseover();
+
+            $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call( this);
         }
 
@@ -880,6 +923,9 @@
             return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
         }
 
+        /**
+        * Handler for the touch start event.
+        */
         function touchStartHandler(event){
             var e = event.originalEvent;
 
@@ -895,6 +941,9 @@
             }
         }
 
+        /**
+        * Gets the average of the last `number` elements of the given array.
+        */
         function getAverage(elements, number){
             var sum = 0;
 
@@ -919,7 +968,8 @@
         function MouseWheelHandler(e) {
             var curTime = new Date().getTime();
 
-            if(options.autoScrolling){
+            //autoscrolling and not zooming?
+            if(options.autoScrolling && !controlPressed){
                 // cross-browser wheel delta
                 e = window.event || e;
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
@@ -979,6 +1029,9 @@
             }
         }
 
+        /**
+        * Slides a slider to the given direction.
+        */
         function moveSlide(direction){
             var activeSection = $(SECTION_ACTIVE_SEL);
             var slides = activeSection.find(SLIDES_WRAPPER_SEL);
@@ -1020,7 +1073,7 @@
         */
         function keepSlidesPosition(){
             $(SLIDE_ACTIVE_SEL).each(function(){
-                silentLandscapeScroll($(this));
+                silentLandscapeScroll($(this), 'internal');
             });
         }
 
@@ -1096,9 +1149,15 @@
                 var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
                 transformContainer(translate3d, true);
 
-                setTimeout(function () {
+                //even when the scrollingSpeed is 0 there's a little delay, which might cause the
+                //scrollingSpeed to change in case of using silentMoveTo();
+                if(options.scrollingSpeed){
+                    setTimeout(function () {
+                        afterSectionLoads(v);
+                    }, options.scrollingSpeed);
+                }else{
                     afterSectionLoads(v);
-                }, options.scrollingSpeed);
+                }
             }
 
             // using jQuery animate
@@ -1190,14 +1249,15 @@
         */
         function afterSectionLoads (v){
             continuousVerticalFixSectionOrder(v);
+
+            v.element.find('.fp-scrollable').mouseover();
+
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
 
             canScroll = true;
 
-            setTimeout(function () {
-                $.isFunction(v.callback) && v.callback.call(this);
-            }, 600);
+            $.isFunction(v.callback) && v.callback.call(this);
         }
 
         /**
@@ -1244,9 +1304,15 @@
          */
         $document.keydown(keydownHandler);
 
+        //to prevent scrolling while zooming
+        $document.keyup(function(e){
+            controlPressed = e.ctrlKey;
+        });
+
         var keydownId;
         function keydownHandler(e) {
             clearTimeout(keydownId);
+            controlPressed = e.ctrlKey;
 
             var activeElement = $(document.activeElement);
 
@@ -1266,9 +1332,11 @@
             }
         }
 
+        /**
+        * Keydown event
+        */
         function onkeydown(e){
             var shiftPressed = e.shiftKey;
-
             switch (e.which) {
                 //up
                 case 38:
@@ -1368,6 +1436,10 @@
             landscapeScroll(slides, destiny);
         });
 
+        /**
+        * Applying normalScroll elements.
+        * Ignoring the scrolls over the specified selectors.
+        */
         if(options.normalScrollElements){
             $document.on('mouseenter', options.normalScrollElements, function () {
                 FP.setMouseWheelScrolling(false);
@@ -1383,9 +1455,13 @@
          */
         $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, function() {
             if ($(this).hasClass(SLIDES_PREV)) {
-                FP.moveSlideLeft();
+                if(isScrollAllowed.left){
+                    FP.moveSlideLeft();
+                }
             } else {
-                FP.moveSlideRight();
+                if(isScrollAllowed.right){
+                    FP.moveSlideRight();
+                }
             }
         });
 
@@ -1491,7 +1567,7 @@
 
                 resizeId = setTimeout(function(){
                     FP.reBuild(true);
-                }, 500);
+                }, 350);
             }
         }
 
@@ -1727,23 +1803,43 @@
             },10);
         }
 
+        /**
+        * Gets a section by its anchor / index
+        */
+        function getSectionByAnchor(sectionAnchor){
+            //section
+            var section = $(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
+            if(!section.length){
+                section = $(SECTION_SEL).eq( (sectionAnchor -1) );
+            }
+
+            return section;
+        }
 
         /**
-        * Scrolls to the given section and slide
+        * Gets a slide inside a given section by its anchor / index
+        */
+        function getSlideByAnchor(slideAnchor, section){
+            var slides = section.find(SLIDES_WRAPPER_SEL);
+            var slide =  slides.find(SLIDE_SEL + '[data-anchor="'+slideAnchor+'"]');
+
+            if(!slide.length){
+                slide = slides.find(SLIDE_SEL).eq(slideAnchor);
+            }
+
+            return slide;
+        }
+
+        /**
+        * Scrolls to the given section and slide anchors
         */
         function scrollPageAndSlide(destiny, slide){
-            var section;
+            var section = getSectionByAnchor(destiny);
 
+            //default slide
             if (typeof slide === 'undefined') {
                 slide = 0;
             }
-
-            if(isNaN(destiny)){
-                section = $('[data-anchor="'+destiny+'"]');
-            }else{
-                section = $(SECTION_SEL).eq( (destiny -1) );
-            }
-
 
             //we need to scroll to the section and then to the slide
             if (destiny !== lastScrolledDestiny && !section.hasClass(ACTIVE)){
@@ -1760,14 +1856,10 @@
         /**
         * Scrolls the slider to the given slide destination for the given section
         */
-        function scrollSlider(section, slide){
-            if(typeof slide != 'undefined'){
+        function scrollSlider(section, slideAnchor){
+            if(typeof slideAnchor !== 'undefined'){
                 var slides = section.find(SLIDES_WRAPPER_SEL);
-                var destiny =  slides.find('[data-anchor="'+slide+'"]');
-
-                if(!destiny.length){
-                    destiny = slides.find(SLIDE_SEL).eq(slide);
-                }
+                var destiny =  getSlideByAnchor(slideAnchor, section);
 
                 if(destiny.length){
                     landscapeScroll(slides, destiny);
@@ -1930,8 +2022,6 @@
             return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
         }
 
-
-
         /**
         * Removes the auto scrolling action fired by the mouse wheel and trackpad.
         * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
@@ -1945,7 +2035,6 @@
             }
         }
 
-
         /**
         * Adds the auto scrolling action for the mouse wheel and trackpad.
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
@@ -1958,7 +2047,6 @@
                 document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
         }
-
 
         /**
         * Adds the possibility to auto scroll through sections on touch devices.
@@ -1986,7 +2074,6 @@
             }
         }
 
-
         /*
         * Returns and object with Microsoft pointers (for IE<11 and for IE >= 11)
         * http://msdn.microsoft.com/en-us/library/ie/dn304886(v=vs.85).aspx
@@ -2006,6 +2093,7 @@
 
             return pointer;
         }
+
         /**
         * Gets the pageX and pageY properties depending on the browser.
         * https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
@@ -2025,12 +2113,29 @@
             return events;
         }
 
-        function silentLandscapeScroll(activeSlide){
+        /**
+        * Slides silently (with no animation) the active slider to the given slide.
+        */
+        function silentLandscapeScroll(activeSlide, noCallbacks){
             FP.setScrollingSpeed (0, 'internal');
+
+            if(typeof noCallbacks !== 'undefined'){
+                //preventing firing callbacks afterSlideLoad etc.
+                isResizing = true;
+            }
+
             landscapeScroll(activeSlide.closest(SLIDES_WRAPPER_SEL), activeSlide);
+
+            if(typeof noCallbacks !== 'undefined'){
+                isResizing = false;
+            }
+
             FP.setScrollingSpeed(originals.scrollingSpeed, 'internal');
         }
 
+        /**
+        * Scrolls silently (with no animation) the page to the given Y position.
+        */
         function silentScroll(top){
             if(options.scrollBar){
                 container.scrollTop(top);
@@ -2044,6 +2149,9 @@
             }
         }
 
+        /**
+        * Returns the cross-browser transform string.
+        */
         function getTransforms(translate3d){
             return {
                 '-webkit-transform': translate3d,
@@ -2053,6 +2161,9 @@
             };
         }
 
+        /**
+        * Allowing or disallowing the mouse/swipe scroll in a given direction. (not for keyboard)
+        */
         function setIsScrollable(value, direction){
             switch (direction){
                 case 'up': isScrollAllowed.up = value; break;
@@ -2062,7 +2173,6 @@
                 case 'all': FP.setAllowScrolling(value);
             }
         }
-
 
         /*
         * Destroys fullpage.js plugin events and optinally its html markup and styles
@@ -2176,6 +2286,9 @@
             });
         }
 
+        /**
+        * Shows a message in the console of the given type.
+        */
         function showError(type, text){
             console && console[type] && console[type]('fullPage: ' + text);
         }
