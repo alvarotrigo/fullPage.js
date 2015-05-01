@@ -136,7 +136,8 @@
             afterResize: null,
             afterReBuild: null,
             afterSlideLoad: null,
-            onSlideLeave: null
+            onSlideLeave: null,
+            onBeforeMoveSlide: null
         }, options);
 
         displayWarnings();
@@ -984,6 +985,14 @@
                 destiny = currentSlide.prev(SLIDE_SEL);
             }else{
                 destiny = currentSlide.next(SLIDE_SEL);
+            }
+
+            // before slide move callback
+            if (options.onBeforeMoveSlide && $.isFunction( options.onBeforeMoveSlide ))
+            {
+                if (options.onBeforeMoveSlide.call(this, direction, currentSlide, destiny, slides, activeSection) === false) {
+                    return;
+                }
             }
 
             //isn't there a next slide in the secuence?
