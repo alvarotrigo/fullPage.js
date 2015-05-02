@@ -342,6 +342,7 @@ Exactly the same as [`moveTo`](https://github.com/alvarotrigo/fullPage.js#moveto
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
+```
 ---
 ### moveSlideRight()
 Scrolls the horizontal slider of the current section to the next slide:
