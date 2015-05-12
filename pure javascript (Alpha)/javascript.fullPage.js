@@ -112,6 +112,7 @@
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
             scrollBar: false,
+            forceDirection: false,
 
             //scrolling
             css3: true,
@@ -1138,6 +1139,9 @@
             return;
         }
 
+        //there's no turning back!
+        if (direction === 'prev' && options.forceDirection) return;
+
         var currentSlide = $(SLIDE_ACTIVE_SEL, slides);
         var destiny = null;
         if(direction === 'prev'){
@@ -1182,6 +1186,22 @@
     */
     function scrollPage(element, callback, isMovementUp){
         if(element === null){ return; } //there's no element to scroll, leaving the function
+
+        // there's no turning back!
+        if (options.forceDirection) {
+            if (isMovementUp) return;
+            if (arguments.length <= 2) return;  // no skipping through navigation
+
+            // prevent downward movement if we haven't visited all slides and forceDirection
+            var activeSection = $(SECTION_ACTIVE_SEL);
+            var slides = $(SLIDES_WRAPPER_SEL, activeSection);
+            var currentSlide = $(SLIDE_ACTIVE_SEL, slides);
+            var destiny = next(currentSlide);
+            if (slides && destiny) {
+                return;
+            }
+        }
+
         //local variables
         var v = {
             element: element,
@@ -1504,10 +1524,10 @@
 
         if(!options.loopHorizontal && options.controlArrows){
             //hidding it for the fist slide, showing for the rest
-            toggle($(SLIDES_ARROW_PREV_SEL, section), slideIndex!==0);
+            toggle($(SLIDES_ARROW_PREV_SEL, section), slideIndex!==0 && !options.forceDirection);
 
             //hidding it for the last slide, showing for the rest
-            toggle($(SLIDES_ARROW_NEXT_SEL, section), !destiny.is(':last-child'));
+            toggle($(SLIDES_ARROW_NEXT_SEL, section), !!destiny.nextElementSibling);
         }
 
         //only changing the URL if the slides are in the current section (not for resize re-adjusting)
