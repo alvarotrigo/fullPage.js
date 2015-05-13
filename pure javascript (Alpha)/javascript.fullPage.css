@@ -5,7 +5,8 @@
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
-html, body {
+html.fp-enabled,
+.fp-enabled body {
     margin: 0;
     padding: 0;
     overflow:hidden;
