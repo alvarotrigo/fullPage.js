@@ -1754,7 +1754,7 @@
         ul.innerHTML = ul.innerHTML + list;
 
         //centering it
-        setCss(nav, 'margin-left', '-' + (nav.offsetWidth()/2) + 'px');
+        setCss(nav, 'margin-left', '-' + (nav.offsetWidth/2) + 'px');
 
         var firstLi = $$('li', nav)[0];
         addClass( $('a', firstLi), ACTIVE);
