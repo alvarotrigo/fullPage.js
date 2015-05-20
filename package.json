@@ -1,6 +1,6 @@
 {
-  "name": "fullPage.js",
-  "version": "2.6.4",
+  "name": "fullpage.js",
+  "version": "2.6.5",
   "description": "Create  beautiful fullscreen scrolling websites",
   "main": "jquery.fullPage.js",
   "scripts": {
@@ -32,5 +32,6 @@
   "bugs": {
     "url": "https://github.com/alvarotrigo/fullPage.js/issues"
   },
-  "homepage": "https://github.com/alvarotrigo/fullPage.js"
+  "homepage": "https://github.com/alvarotrigo/fullPage.js",
+  "namespace": "$.fn.fullpage"
 }
