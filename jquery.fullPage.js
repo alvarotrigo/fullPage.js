@@ -1,5 +1,5 @@
 /**
- * fullPage 2.6.5
+ * fullPage 2.6.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -2030,6 +2030,7 @@
             if (document.addEventListener) {
                 document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
                 document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+                document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //Old Firefox
             } else {
                 document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
@@ -2043,6 +2044,7 @@
             if (document.addEventListener) {
                 document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
                 document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
+                document.addEventListener('DOMMouseScroll', MouseWheelHandler, false); //Old Firefox
             } else {
                 document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
