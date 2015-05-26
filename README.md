@@ -609,7 +609,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
 - http://www.saltaboombox.com.ar
-- http://snapzheimer.org/
 - http://www.battlefield.com/
 - http://www.kibey.com/
 - http://www.newjumoconcept.com/
@@ -628,7 +627,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://collection.madeofsundays.com
 - http://thiswasmybest.com/
 - http://jacoberiksson.se/
-- http://coppertino.com/
 - https://cloudmagic.com/
 - http://www.dividendsolar.com/
 - http://www.thespecialists.be
@@ -636,6 +634,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://lawinenstift.com/
 - http://wtfdesign.pl/
 - http://www.swenk.me/
+- http://duis.co/
 - http://educationaboveall.org/
 - http://bnacademy.com.au/
 - http://rockercreative.com/
