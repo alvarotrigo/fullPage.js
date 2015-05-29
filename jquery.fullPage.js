@@ -40,6 +40,7 @@
 
     // section
     var SECTION_DEFAULT_SEL =   '.section';
+    var SECTION_AUTOHEIGHT =    'section-autoHeight';
     var SECTION =               'fp-section';
     var SECTION_SEL =           '.' + SECTION;
     var SECTION_ACTIVE_SEL =    SECTION_SEL + ACTIVE_SEL;
@@ -138,7 +139,7 @@
             //Custom selectors
             sectionSelector: SECTION_DEFAULT_SEL,
             slideSelector: SLIDE_DEFAULT_SEL,
-
+            sectionAutoHeightSelector: SECTION_AUTOHEIGHT,
 
             //events
             afterLoad: null,
@@ -364,12 +365,14 @@
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
                 var slides = $(this).find(SLIDE_SEL);
 
-                //adjusting the height of the table-cell for IE and Firefox
-                if(options.verticalCentered){
-                    $(this).find(TABLE_CELL_SEL).css('height', getTableHeight($(this)) + 'px');
-                }
+                if (!$(this).hasClass(options.sectionAutoHeightSelector)) {
+                    //adjusting the height of the table-cell for IE and Firefox
+                    if(options.verticalCentered){
+                        $(this).find(TABLE_CELL_SEL).css('height', getTableHeight($(this)) + 'px');
+                    }
 
-                $(this).css('height', windowsHeight + 'px');
+                    $(this).css('height', windowsHeight + 'px');
+                }
 
                 //resizing the scrolling divs
                 if(options.scrollOverflow){
@@ -461,13 +464,16 @@
             var that = $(this);
             var slides = $(this).find(SLIDE_SEL);
             var numSlides = slides.length;
+            var isAutoHeight = $(this).hasClass(options.sectionAutoHeightSelector);
 
             //if no active section is defined, the 1st one will be the default one
             if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
                 $(this).addClass(ACTIVE);
             }
 
-            $(this).css('height', windowsHeight + 'px');
+            if (!isAutoHeight) {
+                $(this).css('height', windowsHeight + 'px');
+            }
 
             if(options.paddingTop){
                 $(this).css('padding-top', options.paddingTop);
@@ -530,7 +536,7 @@
 
             }else{
                 if(options.verticalCentered){
-                    addTableClass($(this));
+                    addTableClass($(this), isAutoHeight);
                 }
             }
 
@@ -1084,13 +1090,15 @@
             var dest = element.position();
             if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
+            var dtop = element.hasClass(options.sectionAutoHeightSelector) ? (dest.top - windowsHeight + element.height()) : dest.top;
+
             //local variables
             var v = {
                 element: element,
                 callback: callback,
                 isMovementUp: isMovementUp,
                 dest: dest,
-                dtop: dest.top,
+                dtop: dtop,
                 yMovement: getYmovement(element),
                 anchorLink: element.data('anchor'),
                 sectionIndex: element.index(SECTION_SEL),
@@ -1765,8 +1773,12 @@
             element.find(SLIMSCROLL_RAIL_SEL).remove();
         }
 
-        function addTableClass(element){
-            element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+        function addTableClass(element, isAutoHeight){
+            if (isAutoHeight) {
+                element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" />');
+            } else {
+                element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+            }
         }
 
         function getTableHeight(element){
