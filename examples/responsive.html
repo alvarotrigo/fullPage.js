@@ -61,7 +61,13 @@
 				navigation: true,
 				navigationPosition: 'right',
 				navigationTooltips: ['First page', 'Second page', 'Third and last page'],
-				responsive: 900
+				responsive: function() {
+                    if($(document).width() <= 900) {
+                        return true;
+                    }
+
+                    return false;
+                }
 			});
 		});
 	</script>
