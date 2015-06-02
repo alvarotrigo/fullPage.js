@@ -68,7 +68,7 @@ npm install fullpage.js
 
 ###Optional use of CDN
 If you prefer to use a CDN to load the needed files, fullPage.js is in CDNJS:
-https://cdnjs.com/libraries/fullpage.js
+https://cdnjs.com/libraries/fullPage.js
 
 ###Required HTML structure
 Each section will be defined with an element containing the `section` class.
