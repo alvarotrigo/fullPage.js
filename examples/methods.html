@@ -158,6 +158,16 @@
 				e.preventDefault();
 				$.fn.fullpage.reBuild();
 			});
+
+			$('#setLockAnchorsTrue').click(function(e){
+				e.preventDefault;
+				$.fn.fullpage.setLockAnchors(true);
+			})
+
+			$('#setLockAnchorsFalse').click(function(e){
+				e.preventDefault;
+				$.fn.fullpage.setLockAnchors(false);
+			})
         });
     </script>
 
@@ -238,6 +248,8 @@
 	<a id="destroy" href="#">destroy('all')</a>
 	<a id="undestroy" href="#">undestroy</a>
 	<a id="reBuild" href="#">reBuild</a>
+	<a id="setLockAnchorsTrue" href="#">setLockAnchors(true)</a>
+	<a id="setLockAnchorsFalse" href="#">setLockAnchors(false)</a>
 </div>
 
 
