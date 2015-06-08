@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.6.5-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.6.6-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -113,11 +113,12 @@ $(document).ready(function() {
 	$('#fullpage').fullpage({
 		//Navigation
 		menu: false,
+		lockAnchors: false,
 		anchors:['firstPage', 'secondPage'],
 		navigation: false,
 		navigationPosition: 'right',
 		navigationTooltips: ['firstSlide', 'secondSlide'],
-		showActiveTooltips: false,
+		showActiveTooltip: false,
 		slidesNavigation: true,
 		slidesNavPosition: 'bottom',
 
@@ -218,6 +219,8 @@ $('#fullpage').fullpage({
 ```
 
 - `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. The position of the anchors in the array will define to which sections the anchor is applied. (second position for second section and so on). Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).
+
+- `lockAnchors`: (default `false`). Determines whether anchors in the URL will have any effect at all in the plugin. You can still using anchors internally for your own functions and callbacks, but they won't have any effect in the scrolling of the site. Useful if you want to combine fullPage.js with other plugins using anchor in the URL.
 
 **Important** It is helpful to understand that the values in the `anchors` option array correlate directly to the element with the class of `.section` by it's position in the markup.
 
@@ -371,8 +374,16 @@ Sets the value for the option `fitToSection` determining whether to fit the sect
 $.fn.fullpage.setFitToSection(false);
 ```
 ---
+### setLockAnchors(boolean)
+Sets the value for the option `lockAnchors` determining whether anchors will have any effect in the URL or not.
+
+```javascript
+$.fn.fullpage.setLockAnchors(false);
+```
+---
 ### setAllowScrolling(boolean, [directions])
-Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default).
+Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default). Note this won't disable the keyboard scrolling. You
+would need to use `setKeyboardScrolling` for it.
 
 - `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
 
@@ -388,11 +399,20 @@ $.fn.fullpage.setAllowScrolling(false, 'down');
 $.fn.fullpage.setAllowScrolling(false, 'down, right');
 ```
 ---
-### setKeyboardScrolling(boolean)
+### setKeyboardScrolling(boolean, [directions])
 Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys (which is active by default).
 
+- `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
+
 ```javascript
+//disabling all keyboard scrolling
 $.fn.fullpage.setKeyboardScrolling(false);
+
+//disabling keyboard scrolling down
+$.fn.fullpage.setKeyboardScrolling(false, 'down');
+
+//disabling keyboard scrolling down and right
+$.fn.fullpage.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
@@ -431,6 +451,18 @@ Ideal to use in combination with AJAX calls or external changes in the DOM struc
 $.fn.fullpage.reBuild();
 ```
 
+##Lazy Loading
+fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
+When using lazy loading, all these elements will only get loaded when entering in the viewport.
+To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
+
+```
+<img data-src="image.png">
+<video>
+	<source data-src="video.webm" type="video/webm" />
+    <source data-src="video.mp4" type="video/mp4" />
+</video>
+ ```
 
 ## Callbacks
 You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
@@ -489,6 +521,20 @@ Example:
 
 			else if(index == 2 && direction == 'up'){
 				alert("Going to section 1!");
+			}
+		}
+	});
+```
+
+####Cancelling the scroll before it takes place
+You can cancel the scroll by returning `false` on the `onLeave` callback:
+
+```javascript
+	$('#fullpage').fullpage({
+		onLeave: function(index, nextIndex, direction){
+			//it won't scroll if the destination is the 3rd section
+			if(nextIndex == 3){
+				return false;
 			}
 		}
 	});
@@ -558,7 +604,7 @@ Example:
 
 
 ---
-###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`)
+###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextindex`)
 This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
 Parameters:
 
@@ -566,13 +612,14 @@ Parameters:
 - `index`: index of the section. Starting from 1.
 - `slideIndex`: index of the slide. **Starting from 0.**
 - `direction`: takes the values `right` or `left` depending on the scrolling direction.
+- `nextIndex`: index of the destination slide. **Starting from 0.**
 
 
 Example:
 
 ```javascript
 	$('#fullpage').fullpage({
-		onSlideLeave: function( anchorLink, index, slideIndex, direction){
+		onSlideLeave: function( anchorLink, index, slideIndex, direction, nextIndex){
 			var leavingSlide = $(this);
 
 			//leaving the first slide of the 2nd Section to the right
@@ -587,6 +634,10 @@ Example:
 		}
 	});
 ```
+
+####Cancelling a move before it takes place
+You can cancel a move by returning `false` on the `onSlideLeave` callback. Same as with `onLeave`.
+
 #Resources
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
@@ -636,6 +687,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.swenk.me/
 - http://duis.co/
 - http://educationaboveall.org/
+- http://camfindapp.com/
 - http://bnacademy.com.au/
 - http://rockercreative.com/
 - http://wantnova.com/
