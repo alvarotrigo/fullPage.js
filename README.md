@@ -152,7 +152,8 @@ $(document).ready(function() {
 		paddingTop: '3em',
 		paddingBottom: '10px',
 		fixedElements: '#header, .footer',
-		responsive: 0,
+		responsiveWidth: 0,
+		responsiveHeight: 0,
 
 		//Custom selectors
 		sectionSelector: '.section',
@@ -164,7 +165,7 @@ $(document).ready(function() {
 		afterRender: function(){},
 		afterResize: function(){},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
-		onSlideLeave: function(anchorLink, index, slideIndex, direction){}
+		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
 	});
 });
 ```
@@ -307,7 +308,9 @@ In case of setting it to `true`, it requires the vendor plugin [`jquery.slimscro
 
 - `slideSelector`: (default `.slide`)  Defines the jQuery selector used for the plugin slides.  It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
 
-- `responsive`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined width in pixels. A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's width is less than 900 the plugin will scroll like a normal site.
+- `responsiveWidth`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined width in pixels. A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's width is less than 900 the plugin will scroll like a normal site.
+
+- `responsiveHeight`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined height in pixels. A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's height is less than 900 the plugin will scroll like a normal site.
 
 ## Methods
 You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
@@ -500,6 +503,7 @@ Example:
 ---
 ###onLeave (`index`, `nextIndex`, `direction`)
 This callback is fired once the user leaves a section, in the transition to the new section.
+Returning `false` will cancel the move before it takes place.
 
 Parameters:
 
@@ -604,22 +608,24 @@ Example:
 
 
 ---
-###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextindex`)
+###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextSlideIndex`)
 This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
+Returning `false` will cancel the move before it takes place.
+
 Parameters:
 
 - `anchorLink`: anchorLink corresponding to the section.
 - `index`: index of the section. Starting from 1.
 - `slideIndex`: index of the slide. **Starting from 0.**
 - `direction`: takes the values `right` or `left` depending on the scrolling direction.
-- `nextIndex`: index of the destination slide. **Starting from 0.**
+- `nextSlideIndex`: index of the destination slide. **Starting from 0.**
 
 
 Example:
 
 ```javascript
 	$('#fullpage').fullpage({
-		onSlideLeave: function( anchorLink, index, slideIndex, direction, nextIndex){
+		onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
 			var leavingSlide = $(this);
 
 			//leaving the first slide of the 2nd Section to the right
