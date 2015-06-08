@@ -58,10 +58,7 @@
 			$('#fullpage').fullpage({
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
 				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
-				navigation: true,
-				navigationPosition: 'right',
-				navigationTooltips: ['First page', 'Second page', 'Third and last page'],
-				responsive: 900
+				responsiveHeight: 600
 			});
 		});
 	</script>
@@ -99,7 +96,7 @@
 	<div class="section " id="section0">
 		<div class="intro">
 			<h1>Responsive</h1>
-			<p>This example will turn to normal scroll when the window size gets smaller than 900px</p>
+			<p>This example will turn to normal scroll when the window size gets smaller than 600px height</p>
 		</div>
 	</div>
 	<div class="section" id="section1">
@@ -110,7 +107,7 @@
 		</div>
 
 	    <div class="slide" id="slide2">
-			<h1>This example uses responsive: 900</h1>
+			<h1>This example uses responsiveHeight: 600</h1>
 		</div>
 
 	</div>
