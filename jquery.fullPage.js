@@ -1,7 +1,7 @@
-/**
+/*!
  * fullPage 2.6.6
  * https://github.com/alvarotrigo/fullPage.js
- * MIT licensed
+ * @license MIT licensed
  *
  * Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
  */
@@ -737,6 +737,7 @@
 
             solveBugSlimScroll(section);
             lazyLoad(section);
+            playMedia(section);
 
             $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call( this);
@@ -811,6 +812,7 @@
                         $.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
 
                         $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
+                        lazyLoad(currentSection);
 
                         activateMenuAndNav(anchorLink, sectionIndex - 1);
 
