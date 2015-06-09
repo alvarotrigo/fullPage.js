@@ -684,6 +684,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://collection.madeofsundays.com
 - http://thiswasmybest.com/
 - http://jacoberiksson.se/
+- http://www.boxreload.com/
 - https://cloudmagic.com/
 - http://www.dividendsolar.com/
 - http://www.thespecialists.be
