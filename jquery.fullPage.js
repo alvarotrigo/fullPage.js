@@ -1042,7 +1042,7 @@
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
                 var delta = Math.max(-1, Math.min(1, value));
 
-                //Limiting the array to 150 (lets not waist memory!)
+                //Limiting the array to 150 (lets not waste memory!)
                 if(scrollings.length > 149){
                     scrollings.shift();
                 }
