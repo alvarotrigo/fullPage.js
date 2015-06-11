@@ -1038,7 +1038,7 @@
             //autoscrolling and not zooming?
             if(options.autoScrolling && !controlPressed){
                 // cross-browser wheel delta
-                e = window.event || e;
+                e = e || window.event;
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
                 var delta = Math.max(-1, Math.min(1, value));
 
