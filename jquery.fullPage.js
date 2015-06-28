@@ -568,7 +568,7 @@
 
                 var startingSlide = that.find(SLIDE_ACTIVE_SEL);
 
-                //if the slide won#t be an starting point, the default will be the first one
+                //if the slide won't be an starting point, the default will be the first one
                 if(!startingSlide.length){
                     slides.eq(0).addClass(ACTIVE);
                 }
