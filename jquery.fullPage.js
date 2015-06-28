@@ -1342,8 +1342,8 @@
         */
         function lazyLoad(destiny){
             //Lazy loading images, videos and audios
-            var slide = $('.fp-slide.active', destiny);
-            if( slide ) {
+            var slide = destiny.find(SLIDE_ACTIVE_SEL);
+            if( slide.length ) {
                 destiny = $(slide);
             }
             destiny.find('img[data-src], video[data-src], audio[data-src]').each(function(){
@@ -1638,7 +1638,7 @@
             }
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-            lazyLoad(section);
+            lazyLoad(destiny);
 
             if(!options.loopHorizontal && options.controlArrows){
                 //hidding it for the fist slide, showing for the rest
