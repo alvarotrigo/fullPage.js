@@ -1123,7 +1123,7 @@
 
             //isn't there a next slide in the secuence?
             if(!destiny.length){
-                //respect loopHorizontal settin
+                //respect loopHorizontal setting
                 if (!options.loopHorizontal) return;
 
                 if(direction === 'prev'){
