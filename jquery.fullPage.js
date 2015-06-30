@@ -740,7 +740,7 @@
             playMedia(section);
 
             $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
-            $.isFunction( options.afterRender ) && options.afterRender.call( this);
+            $.isFunction( options.afterRender ) && options.afterRender.call(container);
         }
 
 
