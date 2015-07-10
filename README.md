@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.6.6-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.6.7-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -73,6 +73,8 @@ https://cdnjs.com/libraries/fullPage.js
 ###Required HTML structure
 Each section will be defined with an element containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
+
+Sections should be placed inside a wrapper (`<div id="fullpage">` in this case). The wrapper can not be the `body` element.
 ```html
 <div id="fullpage">
 	<div class="section">Some section</div>
@@ -191,10 +193,10 @@ We could have used a custom anchor for the slide instead of its index if we woul
 
 ```html
 <div class="section">
-    <div class="slide" data-anchor="slide1"> Slide 1 </div>
-    <div class="slide" data-anchor="slide2"> Slide 2 </div>
-    <div class="slide" data-anchor="slide3"> Slide 3 </div>
-    <div class="slide" data-anchor="slide4"> Slide 4 </div>
+	<div class="slide" data-anchor="slide1"> Slide 1 </div>
+	<div class="slide" data-anchor="slide2"> Slide 2 </div>
+	<div class="slide" data-anchor="slide3"> Slide 3 </div>
+	<div class="slide" data-anchor="slide4"> Slide 4 </div>
 </div>
 ```
 In this last case, the URL we would use would be `#secondPage/slide3`, which is the equivalent to our previous `#secondPage/2`.
@@ -215,11 +217,11 @@ In this last case, the URL we would use would be `#secondPage/slide3`, which is 
 Example:
 ```javascript
 $('#fullpage').fullpage({
-    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
 
-- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. The position of the anchors in the array will define to which sections the anchor is applied. (second position for second section and so on). Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** if you use anchors, they can not have the same value as any ID element on the site (or NAME element for IE).
+- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Anchors value should be unique. The position of the anchors in the array will define to which sections the anchor is applied. (second position for second section and so on). Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** anchors can not have the same value as any ID element on the site (or NAME element for IE).
 
 - `lockAnchors`: (default `false`). Determines whether anchors in the URL will have any effect at all in the plugin. You can still using anchors internally for your own functions and callbacks, but they won't have any effect in the scrolling of the site. Useful if you want to combine fullPage.js with other plugins using anchor in the URL.
 
@@ -269,16 +271,16 @@ This won't generate a menu but will just add the `active` class to the element i
 In order to link the elements of the menu with the sections, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as used within the sections. Example:
 ```html
 <ul id="myMenu">
-    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-    <li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-    <li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-    <li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
 </ul>
 ```
 ```javascript
 $('#fullpage').fullpage({
-    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-    menu: '#myMenu'
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
 });
 ```
 
@@ -463,7 +465,7 @@ To enable lazy loading all you need to do is change your `src` attribute to `dat
 <img data-src="image.png">
 <video>
 	<source data-src="video.webm" type="video/webm" />
-    <source data-src="video.mp4" type="video/mp4" />
+	<source data-src="video.mp4" type="video/mp4" />
 </video>
  ```
 

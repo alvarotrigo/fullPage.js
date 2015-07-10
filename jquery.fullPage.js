@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.6.6
+ * fullPage 2.6.7
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -467,6 +467,14 @@
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
         var originals = $.extend(true, {}, options); //deep copy
 
+        //timeouts
+        var resizeId;
+        var afterSectionLoadsId;
+        var afterSlideLoadsId;
+        var scrollId;
+        var scrollId2;
+        var keydownId;
+
         if($(this).length){
             container.css({
                 'height': '100%',
@@ -476,10 +484,6 @@
             //adding a class to recognize the container internally in the code
             container.addClass(WRAPPER);
             $('html').addClass(ENABLED);
-        }
-        //trying to use fullpage without a selector?
-        else{
-            showError('error', 'Error! Fullpage.js needs to be initialized with a selector. For example: $(\'#myContainer\').fullpage();');
         }
 
         //if css3 is not supported, it will use jQuery animations
@@ -758,8 +762,7 @@
             scrollableWrap.mouseover();
         }
 
-        var scrollId;
-        var scrollId2;
+
         var isScrolling = false;
 
         //when scrolling...
@@ -1226,7 +1229,7 @@
                 //even when the scrollingSpeed is 0 there's a little delay, which might cause the
                 //scrollingSpeed to change in case of using silentMoveTo();
                 if(options.scrollingSpeed){
-                    setTimeout(function () {
+                    afterSectionLoadsId = setTimeout(function () {
                         afterSectionLoads(v);
                     }, options.scrollingSpeed);
                 }else{
@@ -1667,7 +1670,7 @@
 
                 addAnimation(slides.find(SLIDES_CONTAINER_SEL), options.scrollingSpeed>0).css(getTransforms(translate3d));
 
-                setTimeout(function(){
+                afterSlideLoadsId = setTimeout(function(){
                     afterSlideLoads();
                 }, options.scrollingSpeed, options.easing);
             }else{
@@ -1687,7 +1690,6 @@
         $window.resize(resizeHandler);
 
         var previousHeight = windowsHeight;
-        var resizeId;
         function resizeHandler(){
             //checking if it needs to get responsive
             responsive();
@@ -2252,7 +2254,7 @@
             events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
 
             //in touch devices with scrollBar:true, e.pageY is detected, but we have to deal with touch events. #1008
-            if(isTouch && isReallyTouch(e)){
+            if(isTouch && isReallyTouch(e) && options.scrollBar){
                 events.y = e.touches[0].pageY;
                 events.x = e.touches[0].pageX;
             }
@@ -2335,6 +2337,12 @@
             FP.setAllowScrolling(false);
             FP.setKeyboardScrolling(false);
             container.addClass(DESTROYED);
+
+            clearTimeout(afterSlideLoadsId);
+            clearTimeout(afterSectionLoadsId);
+            clearTimeout(resizeId);
+            clearTimeout(scrollId);
+            clearTimeout(scrollId2);
 
             $window
                 .off('scroll', scrollHandler)
@@ -2426,6 +2434,11 @@
                 options.continuousVertical = false;
                 showError('warn', 'Option `loopTop/loopBottom` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
             }
+
+            if(options.scrollBar && options.scrollOverflow){
+                showError('warn', 'Option `scrollBar` is mutually exclusive with `scrollOverflow`. Sections with scrollOverflow might not work well in Firefox');
+            }
+
             if(options.continuousVertical && options.scrollBar){
                 options.continuousVertical = false;
                 showError('warn', 'Option `scrollBar` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
