@@ -2078,7 +2078,7 @@
         */
         function setUrlHash(url){
             if(options.recordHistory){
-                location.hash = url;
+                location.href = '#' + url;
             }else{
                 //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
                 if(isTouchDevice || isTouch){
