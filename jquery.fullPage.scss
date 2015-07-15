@@ -1,12 +1,13 @@
 /**
- * fullPage 2.6.0
+ * fullPage 2.6.6
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  * Contribution by Jhony0311
  */
-html, body {
+html.fp-enabled,
+.fp-enabled body {
     margin: 0;
     padding: 0;
     overflow:hidden;
