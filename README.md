@@ -17,9 +17,19 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 Invite me to a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
-Customizations of the plugin available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
+Customizations of the plugin and urgent changes are available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
 
 Would you like to have a website using fullpage.js functionality but you don't know how to use it? I can do it for you for a reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
+
+- [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
+- [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
+- [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
+- [Options](https://github.com/alvarotrigo/fullPage.js#options)
+- [Methods](https://github.com/alvarotrigo/fullPage.js#methods)
+- [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
+- [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
+- [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
+- [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
 
 ## Introduction
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
@@ -318,19 +328,19 @@ In case of setting it to `true`, it requires the vendor plugin [`jquery.slimscro
 You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
 
 ### moveSectionUp()
-Scrolls one section up:
+[Demo](http://codepen.io/alvarotrigo/pen/GJXNMN) Scrolls one section up:
 ```javascript
 $.fn.fullpage.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
-Scrolls one section down:
+[Demo](http://codepen.io/alvarotrigo/pen/jPvVZx) Scrolls one section down:
 ```javascript
 $.fn.fullpage.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
+[Demo](http://codepen.io/alvarotrigo/pen/doqOmY) Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
 $.fn.fullpage.moveTo('firstSlide', 2);
@@ -346,6 +356,7 @@ $.fn.fullpage.moveTo(3);
 ```
 ---
 ### silentMoveTo(section, slide)
+[Demo](http://codepen.io/alvarotrigo/pen/doqOeY)
 Exactly the same as [`moveTo`](https://github.com/alvarotrigo/fullPage.js#movetosection-slide) but in this case it performs the scroll without animation. A direct jump to the destination.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
@@ -353,19 +364,21 @@ $.fn.fullpage.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
+[Demo](http://codepen.io/alvarotrigo/pen/Wvgoyz)
 Scrolls the horizontal slider of the current section to the next slide:
 ```javascript
 $.fn.fullpage.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
+[Demo](http://codepen.io/alvarotrigo/pen/gpdLjW)
 Scrolls the horizontal slider of the current section to the previous slide:
 ```javascript
 $.fn.fullpage.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
-Sets the scrolling configuration in real time.
+[Demo](http://codepen.io/alvarotrigo/pen/rVZWrR) Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site. Be careful when combining this option with `scrollOverflow` set to true, as it might be difficult to scroll using the mouse wheel or the trackpad when the section is scrollable.
 
 ```javascript
@@ -373,6 +386,7 @@ $.fn.fullpage.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
+[Demo](http://codepen.io/alvarotrigo/pen/GJXNYm)
 Sets the value for the option `fitToSection` determining whether to fit the section in the screen or not.
 
 ```javascript
@@ -380,6 +394,7 @@ $.fn.fullpage.setFitToSection(false);
 ```
 ---
 ### setLockAnchors(boolean)
+[Demo](http://codepen.io/alvarotrigo/pen/yNxVRQ)
 Sets the value for the option `lockAnchors` determining whether anchors will have any effect in the URL or not.
 
 ```javascript
@@ -387,7 +402,7 @@ $.fn.fullpage.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default). Note this won't disable the keyboard scrolling. You
+[Demo](http://codepen.io/alvarotrigo/pen/EjeNdq) Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures (which is active by default). Note this won't disable the keyboard scrolling. You
 would need to use `setKeyboardScrolling` for it.
 
 - `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
@@ -405,7 +420,7 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
-Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys (which is active by default).
+[Demo](http://codepen.io/alvarotrigo/pen/GJXNwm) Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys (which is active by default).
 
 - `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
 
@@ -421,21 +436,21 @@ $.fn.fullpage.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
-Defines whether to record the history for each hash change in the URL.
+[Demo](http://codepen.io/alvarotrigo/pen/rVZWQb) Defines whether to record the history for each hash change in the URL.
 
 ```javascript
 $.fn.fullpage.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-Defines the scrolling speed in milliseconds.
+[Demo](http://codepen.io/alvarotrigo/pen/NqLbeY) Defines the scrolling speed in milliseconds.
 
 ```javascript
 $.fn.fullpage.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-Destroys the plugin events and optionally its HTML markup and styles.
+[Demo](http://codepen.io/alvarotrigo/pen/bdxBzv) Destroys the plugin events and optionally its HTML markup and styles.
 Ideal to use when using AJAX to load content. ()
 
 - `type`: can be empty or `all`. If `all` is passed, the HTML markup and styles used by fullpage.js will be removed. This way the original HTML markup, the one used before any plugin modification is made, will be maintained.
@@ -457,7 +472,7 @@ $.fn.fullpage.reBuild();
 ```
 
 ##Lazy Loading
-fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
+[Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
 When using lazy loading, all these elements will only get loaded when entering in the viewport.
 To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
 
@@ -470,7 +485,7 @@ To enable lazy loading all you need to do is change your `src` attribute to `dat
  ```
 
 ## Callbacks
-You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
 
 ###afterLoad (`anchorLink`, `index`)
 Callback fired once the sections have been loaded, after the scrolling has ended.
