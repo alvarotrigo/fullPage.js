@@ -138,6 +138,7 @@ $(document).ready(function() {
 		scrollingSpeed: 700,
 		autoScrolling: true,
 		fitToSection: true,
+		fitToSectionDelay: 1000,
 		scrollBar: false,
 		easing: 'easeInOutCubic',
 		easingcss3: 'ease',
@@ -252,6 +253,9 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
 - `fitToSection`: (default `true`). Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
+
+- `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
+the fitting by the configured milliseconds.
 
 - `scrollBar`: (default `false`). Determines whether to use scrollbar for the site or not. In case of using scroll bar, the `autoScrolling` functionality will still working as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
 
