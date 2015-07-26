@@ -659,10 +659,11 @@
             //setting the class for the body element
             setBodyClass();
 
-            $window.on('load', function() {
+            if (document.readyState != "complete") {
+                $window.on('load', scrollToAnchor);
+            } else {
                 scrollToAnchor();
-            });
-
+            }
         });
 
 
