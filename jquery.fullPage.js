@@ -224,6 +224,9 @@
         */
         FP.setScrollingSpeed = function(value, type){
             setVariableState('scrollingSpeed', value, type);
+            if (type !== 'internal' && options.css3) {
+                addAnimation(container);
+            }
         };
 
         /**
