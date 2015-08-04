@@ -2398,6 +2398,16 @@
                 'height': ''
             });
 
+            // remove .fp-enabled class
+            $('html').removeClass(ENABLED);
+
+            // remove all of the .fp-viewing- classes
+            $.each($body.get(0).className.split(/\s+/), function (index, className) {
+                if (className.indexOf(VIEWING_PREFIX) === 0) {
+                    $body.removeClass(className);
+                }
+            });
+
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
                 removeSlimScroll($(this));
