@@ -2393,6 +2393,11 @@
                 'touch-action': ''
             });
 
+            $htmlBody.css({
+                'overflow': '',
+                'height': ''
+            });
+
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
                 removeSlimScroll($(this));

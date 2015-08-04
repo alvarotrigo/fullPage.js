@@ -327,4 +327,24 @@ QUnit.test( "Testing silentMoveTo", function( assert ) {
     done();
 });
 
+QUnit.test(".destroy('all') removes all inline CSS", function (assert) {
+    var $SECTION_SEL = $(SECTION_SEL),
+        $SLIDE_SEL = $(SLIDE_SEL),
+        $html = $('html'), // listed separately because we should check each individually
+        $body = $('body');
+
+    $.fn.fullpage.destroy('all');
+
+    // and make sure we cleaned it up. note: this requires checking the uncomputed
+    // CSS or jQuery will give us computed values, which are unhelpful here
+    assert.equal($SECTION_SEL.get(0).style.height, '', SECTION_SEL + ' should have an empty string height');
+    assert.equal($SECTION_SEL.get(0).style.backgroundColor, '', SECTION_SEL + ' should have an empty string background-color');
+    assert.equal($SECTION_SEL.get(0).style.padding, '', SECTION_SEL + ' should have an empty string padding');
+    assert.equal($SLIDE_SEL.get(0).style.width, '', SLIDE_SEL + ' should have an empty string width');
+    assert.equal($html.get(0).style.overflow, '', 'html should have an empty string overflow');
+    assert.equal($html.get(0).style.height, '', 'html should have an empty string height');
+    assert.equal($body.get(0).style.overflow, '', 'body should have an empty string overflow');
+    assert.equal($body.get(0).style.height, '', 'body should have an empty string height');
+});
+
 // MORE TO DO
