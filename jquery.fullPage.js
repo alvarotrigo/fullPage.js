@@ -479,47 +479,47 @@
         var keydownId;
 
         if($(this).length){
-        	init();
+            init();
         }
 
         function init(){
-			container.css({
-				'height': '100%',
-				'position': 'relative'
-			});
+            container.css({
+                'height': '100%',
+                'position': 'relative'
+            });
 
-			//adding a class to recognize the container internally in the code
-			container.addClass(WRAPPER);
-			$('html').addClass(ENABLED);
+            //adding a class to recognize the container internally in the code
+            container.addClass(WRAPPER);
+            $('html').addClass(ENABLED);
 
-			//if css3 is not supported, it will use jQuery animations
-	        if(options.css3){
-	            options.css3 = support3d();
-	        }
+            //if css3 is not supported, it will use jQuery animations
+            if(options.css3){
+                options.css3 = support3d();
+            }
 
-	        FP.setAllowScrolling(true);
-	        container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
+            FP.setAllowScrolling(true);
+            container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
-	        addInternalSelectors();
+            addInternalSelectors();
 
-	        //styling the sections / slides / menu
-	        $(SECTION_SEL).each(function(index){
-	        	var section = $(this);
-	        	var slides = section.find(SLIDE_SEL);
-            	var numSlides = slides.length;
+            //styling the sections / slides / menu
+            $(SECTION_SEL).each(function(index){
+                var section = $(this);
+                var slides = section.find(SLIDE_SEL);
+                var numSlides = slides.length;
 
-	            styleSection(section, index);
-	            styleMenu(section, index);
+                styleSection(section, index);
+                styleMenu(section, index);
 
-	            // if there's any slide
-	            if (numSlides > 0) {
-	                styleSlides(section, slides, numSlides);
-	            }else{
-	                if(options.verticalCentered){
-	                    addTableClass(section);
-	                }
-	            }
-	        });
+                // if there's any slide
+                if (numSlides > 0) {
+                    styleSlides(section, slides, numSlides);
+                }else{
+                    if(options.verticalCentered){
+                        addTableClass(section);
+                    }
+                }
+            });
 
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
@@ -538,7 +538,7 @@
 
             //vertical centered of the navigation + active bullet 
             if(options.navigation){
-	            addVerticalNavigation();
+                addVerticalNavigation();
             }
 
             if(options.scrollOverflow){
@@ -594,7 +594,7 @@
         * Styles the horizontal slides for a section.
         */
         function styleSlides(section, slides, numSlides){
-        	var sliderWidth = numSlides * 100;
+            var sliderWidth = numSlides * 100;
             var slideWidth = 100 / numSlides;
 
             slides.wrapAll('<div class="' + SLIDES_CONTAINER + '" />');
@@ -661,7 +661,7 @@
         * Sets the data-anchor attributes to the menu elements and activates the current one.
         */
         function styleMenu(section, index){
-        	if (typeof options.anchors[index] !== 'undefined') {
+            if (typeof options.anchors[index] !== 'undefined') {
                 section.attr('data-anchor', options.anchors[index]);
 
                 //activating the menu / nav element on load
@@ -681,13 +681,13 @@
         * keeping the link with the style sheet. 
         */
         function addInternalSelectors(){
-        	//adding internal class names to void problem with common ones
-	        $(options.sectionSelector).each(function(){
-	            $(this).addClass(SECTION);
-	        });
-	        $(options.slideSelector).each(function(){
-	            $(this).addClass(SLIDE);
-	        });
+            //adding internal class names to void problem with common ones
+            $(options.sectionSelector).each(function(){
+                $(this).addClass(SECTION);
+            });
+            $(options.slideSelector).each(function(){
+                $(this).addClass(SLIDE);
+            });
         }
 
         /**
@@ -710,7 +710,7 @@
         * Creates a vertical navigation bar.
         */
         function addVerticalNavigation(){
-        	var nav = $(SECTION_NAV_SEL);
+            var nav = $(SECTION_NAV_SEL);
             $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
 
             nav.addClass(function() {
