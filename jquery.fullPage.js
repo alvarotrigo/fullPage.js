@@ -83,6 +83,9 @@
     var $window = $(window);
     var $document = $(document);
 
+    var afterSectionLoadsId;
+    var afterSlideLoadsId;
+
     $.fn.fullpage = function(options) {
 
         // common jQuery objects
@@ -476,119 +479,48 @@
         var keydownId;
 
         if($(this).length){
-            container.css({
-                'height': '100%',
-                'position': 'relative'
-            });
-
-            //adding a class to recognize the container internally in the code
-            container.addClass(WRAPPER);
-            $('html').addClass(ENABLED);
+        	init();
         }
 
-        //if css3 is not supported, it will use jQuery animations
-        if(options.css3){
-            options.css3 = support3d();
-        }
+        function init(){
+			container.css({
+				'height': '100%',
+				'position': 'relative'
+			});
 
-        FP.setAllowScrolling(true);
-        container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
+			//adding a class to recognize the container internally in the code
+			container.addClass(WRAPPER);
+			$('html').addClass(ENABLED);
 
+			//if css3 is not supported, it will use jQuery animations
+	        if(options.css3){
+	            options.css3 = support3d();
+	        }
 
-        //adding internal class names to void problem with common ones
-        $(options.sectionSelector).each(function(){
-            $(this).addClass(SECTION);
-        });
-        $(options.slideSelector).each(function(){
-            $(this).addClass(SLIDE);
-        });
+	        FP.setAllowScrolling(true);
+	        container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
-        //creating the navigation dots
-        if (options.navigation) {
-            addVerticalNavigation();
-        }
+	        addInternalSelectors();
 
-        //styling the sections
-        $(SECTION_SEL).each(function(index){
-            var that = $(this);
-            var slides = $(this).find(SLIDE_SEL);
-            var numSlides = slides.length;
+	        //styling the sections / slides / menu
+	        $(SECTION_SEL).each(function(index){
+	        	var section = $(this);
+	        	var slides = section.find(SLIDE_SEL);
+            	var numSlides = slides.length;
 
-            //if no active section is defined, the 1st one will be the default one
-            if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
-                $(this).addClass(ACTIVE);
-            }
+	            styleSection(section, index);
+	            styleMenu(section, index);
 
-            $(this).css('height', windowsHeight + 'px');
+	            // if there's any slide
+	            if (numSlides > 0) {
+	                styleSlides(section, slides, numSlides);
+	            }else{
+	                if(options.verticalCentered){
+	                    addTableClass(section);
+	                }
+	            }
+	        });
 
-            if(options.paddingTop){
-                $(this).css('padding-top', options.paddingTop);
-            }
-
-            if(options.paddingBottom){
-                $(this).css('padding-bottom', options.paddingBottom);
-            }
-
-            if (typeof options.sectionsColor[index] !==  'undefined') {
-                $(this).css('background-color', options.sectionsColor[index]);
-            }
-
-            if (typeof options.anchors[index] !== 'undefined') {
-                $(this).attr('data-anchor', options.anchors[index]);
-
-                //activating the menu / nav element on load
-                if($(this).hasClass(ACTIVE)){
-                    activateMenuAndNav(options.anchors[index], index);
-                }
-            }
-
-            // if there's any slide
-            if (numSlides > 0) {
-                var sliderWidth = numSlides * 100;
-                var slideWidth = 100 / numSlides;
-
-                slides.wrapAll('<div class="' + SLIDES_CONTAINER + '" />');
-                slides.parent().wrap('<div class="' + SLIDES_WRAPPER + '" />');
-
-                $(this).find(SLIDES_CONTAINER_SEL).css('width', sliderWidth + '%');
-
-                if(numSlides > 1){
-                    if(options.controlArrows){
-                        createSlideArrows($(this));
-                    }
-
-                    if(options.slidesNavigation){
-                        addSlidesNavigation($(this), numSlides);
-                    }
-                }
-
-                slides.each(function(index) {
-                    $(this).css('width', slideWidth + '%');
-
-                    if(options.verticalCentered){
-                        addTableClass($(this));
-                    }
-                });
-
-                var startingSlide = that.find(SLIDE_ACTIVE_SEL);
-
-                //if the slide won't be an starting point, the default will be the first one
-                if(!startingSlide.length){
-                    slides.eq(0).addClass(ACTIVE);
-                }
-
-                //is there a starting point for a non-starting section?
-                else{
-                    silentLandscapeScroll(startingSlide);
-                }
-
-            }else{
-                if(options.verticalCentered){
-                    addTableClass($(this));
-                }
-            }
-
-        }).promise().done(function(){
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
             //the starting point is a slide?
@@ -604,15 +536,9 @@
                 $(options.fixedElements).appendTo($body);
             }
 
-            //vertical centered of the navigation + first bullet active
+            //vertical centered of the navigation + active bullet 
             if(options.navigation){
-                nav.css('margin-top', '-' + (nav.height()/2) + 'px');
-                nav.find('li').eq($(SECTION_ACTIVE_SEL).index(SECTION_SEL)).find('a').addClass(ACTIVE);
-            }
-
-            //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
-            if(options.menu && options.css3 && $(options.menu).closest(WRAPPER_SEL).length){
-                $(options.menu).appendTo($body);
+	            addVerticalNavigation();
             }
 
             if(options.scrollOverflow){
@@ -662,9 +588,107 @@
             $window.on('load', function() {
                 scrollToAnchor();
             });
+        }
 
-        });
+        /**
+        * Styles the horizontal slides for a section.
+        */
+        function styleSlides(section, slides, numSlides){
+        	var sliderWidth = numSlides * 100;
+            var slideWidth = 100 / numSlides;
 
+            slides.wrapAll('<div class="' + SLIDES_CONTAINER + '" />');
+            slides.parent().wrap('<div class="' + SLIDES_WRAPPER + '" />');
+
+            section.find(SLIDES_CONTAINER_SEL).css('width', sliderWidth + '%');
+
+            if(numSlides > 1){
+                if(options.controlArrows){
+                    createSlideArrows(section);
+                }
+
+                if(options.slidesNavigation){
+                    addSlidesNavigation(section, numSlides);
+                }
+            }
+
+            slides.each(function(index) {
+                $(this).css('width', slideWidth + '%');
+
+                if(options.verticalCentered){
+                    addTableClass($(this));
+                }
+            });
+
+            var startingSlide = section.find(SLIDE_ACTIVE_SEL);
+
+            //if the slide won't be an starting point, the default will be the first one
+            if(!startingSlide.length){
+                slides.eq(0).addClass(ACTIVE);
+            }
+
+            //is there a starting point for a non-starting section?
+            else{
+                silentLandscapeScroll(startingSlide);
+            }
+        }
+
+        /**
+        * Styling vertical sections
+        */
+        function styleSection(section, index){
+            //if no active section is defined, the 1st one will be the default one
+            if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
+                section.addClass(ACTIVE);
+            }
+
+            section.css('height', windowsHeight + 'px');
+
+            if(options.paddingTop){
+                section.css('padding-top', options.paddingTop);
+            }
+
+            if(options.paddingBottom){
+                section.css('padding-bottom', options.paddingBottom);
+            }
+
+            if (typeof options.sectionsColor[index] !==  'undefined') {
+                section.css('background-color', options.sectionsColor[index]);
+            }
+        }
+
+        /**
+        * Sets the data-anchor attributes to the menu elements and activates the current one.
+        */
+        function styleMenu(section, index){
+        	if (typeof options.anchors[index] !== 'undefined') {
+                section.attr('data-anchor', options.anchors[index]);
+
+                //activating the menu / nav element on load
+                if(section.hasClass(ACTIVE)){
+                    activateMenuAndNav(options.anchors[index], index);
+                }
+            }
+
+            //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
+            if(options.menu && options.css3 && $(options.menu).closest(WRAPPER_SEL).length){
+                $(options.menu).appendTo($body);
+            }
+        }
+
+        /**
+        * Adds internal classes to be able to provide customizable selectors 
+        * keeping the link with the style sheet. 
+        */
+        function addInternalSelectors(){
+        	//adding internal class names to void problem with common ones
+	        $(options.sectionSelector).each(function(){
+	            $(this).addClass(SECTION);
+	        });
+	        $(options.slideSelector).each(function(){
+	            $(this).addClass(SLIDE);
+	        });
+        }
 
         /**
         * Creates the control arrows for the given section
@@ -686,8 +710,8 @@
         * Creates a vertical navigation bar.
         */
         function addVerticalNavigation(){
+        	var nav = $(SECTION_NAV_SEL);
             $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
-            nav = $(SECTION_NAV_SEL);
 
             nav.addClass(function() {
                 return options.showActiveTooltip ? SHOW_ACTIVE_TOOLTIP + ' ' + options.navigationPosition : options.navigationPosition;
@@ -712,6 +736,12 @@
 
                 nav.find('ul').append(li);
             }
+
+            //centering it vertically 
+            $(SECTION_NAV_SEL).css('margin-top', '-' + ($(SECTION_NAV_SEL).height()/2) + 'px');
+
+            //activating the current active section
+            $(SECTION_NAV_SEL).find('li').eq($(SECTION_ACTIVE_SEL).index(SECTION_SEL)).find('a').addClass(ACTIVE);
         }
 
         /**
@@ -2359,6 +2389,9 @@
 
             $(SECTION_SEL)
                 .off('click', SLIDES_ARROW_SEL);
+
+            clearTimeout(afterSlideLoadsId);
+            clearTimeout(afterSectionLoadsId);
 
             //lets make a mess!
             if(all){
