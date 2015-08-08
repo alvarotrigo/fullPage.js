@@ -710,10 +710,9 @@
         * Creates a vertical navigation bar.
         */
         function addVerticalNavigation(){
-            var nav = $(SECTION_NAV_SEL);
             $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
 
-            nav.addClass(function() {
+            $(SECTION_NAV_SEL).addClass(function() {
                 return options.showActiveTooltip ? SHOW_ACTIVE_TOOLTIP + ' ' + options.navigationPosition : options.navigationPosition;
             });
 
@@ -734,7 +733,7 @@
 
                 li += '</li>';
 
-                nav.find('ul').append(li);
+                $(SECTION_NAV_SEL).find('ul').append(li);
             }
 
             //centering it vertically 
