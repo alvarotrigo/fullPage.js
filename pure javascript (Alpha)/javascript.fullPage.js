@@ -119,6 +119,7 @@
             scrollingSpeed: 700,
             autoScrolling: true,
             fitToSection: true,
+            fitToSectionDelay: 1000,
             easingcss3: 'ease',
             loopHorizontal: true,
             touchSensitivity: 5,
@@ -975,7 +976,7 @@
                         scrollPage(currentSection);
                         isResizing = false;
                     }
-                }, 1000);
+                }, options.fitToSectionDelay);
             }
         }
     }
