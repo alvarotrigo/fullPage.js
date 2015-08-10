@@ -2,12 +2,14 @@
 var sectionLoaded = [];
 var ACTIVE =                'active';
 var ACTIVE_SEL =            '.' + ACTIVE;
+var ENABLED =               'fp-enabled';
 var SECTION =               'fp-section';
 var SECTION_SEL =           '.' + SECTION;
 var SECTION_ACTIVE_SEL =    SECTION_SEL + ACTIVE_SEL;
 var SLIDE =                 'fp-slide';
 var SLIDE_SEL =             '.' + SLIDE;
 var SLIDE_ACTIVE_SEL =      SLIDE_SEL + ACTIVE_SEL;
+var VIEWING_PREFIX =        'fp-viewing';
 
 // "Loaded" flag for each section to fill "onLoad"
 $('.section').each(function(index){
@@ -327,7 +329,7 @@ QUnit.test( "Testing silentMoveTo", function( assert ) {
     done();
 });
 
-QUnit.test(".destroy('all') removes all inline CSS", function (assert) {
+QUnit.test(".destroy('all') removes all inline CSS and fullpage classes", function (assert) {
     var $SECTION_SEL = $(SECTION_SEL),
         $SLIDE_SEL = $(SLIDE_SEL),
         $html = $('html'), // listed separately because we should check each individually
@@ -345,6 +347,14 @@ QUnit.test(".destroy('all') removes all inline CSS", function (assert) {
     assert.equal($html.get(0).style.height, '', 'html should have an empty string height');
     assert.equal($body.get(0).style.overflow, '', 'body should have an empty string overflow');
     assert.equal($body.get(0).style.height, '', 'body should have an empty string height');
+
+    // check for <html/> classes
+    assert.equal($html.hasClass(ENABLED), false, 'html should not have the ' + ENABLED + ' class');
+
+    // check for <body/> classes
+    $.each($body.get(0).className.split(/\s+/), function (index, className) {
+        assert.equal(className.indexOf(VIEWING_PREFIX), -1, 'body should not have a ' + VIEWING_PREFIX + '-* class');
+    });
 });
 
 // MORE TO DO
