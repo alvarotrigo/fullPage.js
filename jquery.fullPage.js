@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.6.7.1
+ * fullPage 2.6.8
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -47,6 +47,7 @@
     var SECTION_LAST_SEL =      SECTION_SEL + ':last';
     var TABLE_CELL =            'fp-tableCell';
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
+    var AUTO_HEIGHT =       'fp-auto-height';
 
     // section nav
     var SECTION_NAV =           'fp-nav';
@@ -498,6 +499,13 @@
                 options.css3 = support3d();
             }
 
+            //no anchors option? Checking for them in the DOM attributes
+            if(!options.anchors.length){
+                options.anchors = $('[data-anchor]').map(function(){
+                    return $(this).data('anchor').toString();
+                }).get();
+            }
+
             FP.setAllowScrolling(true);
             container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
@@ -537,7 +545,7 @@
                 $(options.fixedElements).appendTo($body);
             }
 
-            //vertical centered of the navigation + active bullet 
+            //vertical centered of the navigation + active bullet
             if(options.navigation){
                 addVerticalNavigation();
             }
@@ -678,8 +686,8 @@
         }
 
         /**
-        * Adds internal classes to be able to provide customizable selectors 
-        * keeping the link with the style sheet. 
+        * Adds internal classes to be able to provide customizable selectors
+        * keeping the link with the style sheet.
         */
         function addInternalSelectors(){
             //adding internal class names to void problem with common ones
@@ -711,8 +719,8 @@
         * Creates a vertical navigation bar.
         */
         function addVerticalNavigation(){
-            var nav = $(SECTION_NAV_SEL);
             $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
+            var nav = $(SECTION_NAV_SEL);
 
             nav.addClass(function() {
                 return options.showActiveTooltip ? SHOW_ACTIVE_TOOLTIP + ' ' + options.navigationPosition : options.navigationPosition;
@@ -738,7 +746,7 @@
                 nav.find('ul').append(li);
             }
 
-            //centering it vertically 
+            //centering it vertically
             $(SECTION_NAV_SEL).css('margin-top', '-' + ($(SECTION_NAV_SEL).height()/2) + 'px');
 
             //activating the current active section
@@ -1186,13 +1194,16 @@
             var dest = element.position();
             if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
+            //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
+            var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
+
             //local variables
             var v = {
                 element: element,
                 callback: callback,
                 isMovementUp: isMovementUp,
                 dest: dest,
-                dtop: dest.top,
+                dtop: dtop,
                 yMovement: getYmovement(element),
                 anchorLink: element.data('anchor'),
                 sectionIndex: element.index(SECTION_SEL),
@@ -1380,9 +1391,14 @@
             if( slide.length ) {
                 destiny = $(slide);
             }
-            destiny.find('img[data-src], video[data-src], audio[data-src]').each(function(){
+
+            destiny.find('img[data-src], source[data-src], audio[data-src]').each(function(){
                 $(this).attr('src', $(this).data('src'));
                 $(this).removeAttr('data-src');
+
+                if($(this).is('source')){
+                    $(this).closest('video').get(0).load();
+                }
             });
         }
 
