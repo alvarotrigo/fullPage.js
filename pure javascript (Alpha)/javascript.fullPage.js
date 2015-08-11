@@ -2009,11 +2009,11 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                wrapper.removeEventListener('touchstart');
-                wrapper.removeEventListener(MSPointer.down);
+                wrapper.removeEventListener('touchstart', touchStartHandler);
+                wrapper.removeEventListener(MSPointer.down, touchStartHandler);
 
-                wrapper.removeEventListener('touchmove');
-                wrapper.removeEventListener(MSPointer.move);
+                wrapper.removeEventListener('touchmove', touchMoveHandler);
+                wrapper.removeEventListener(MSPointer.move, touchMoveHandler);
 
                 addListenerMulti(wrapper, 'touchstart ' + MSPointer.down, touchStartHandler);
                 addListenerMulti(wrapper, 'touchmove ' + MSPointer.move, touchMoveHandler);
@@ -2032,11 +2032,11 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                wrapper.removeEventListener('touchstart');
-                wrapper.removeEventListener(MSPointer.down);
+                wrapper.removeEventListener('touchstart', touchStartHandler);
+                wrapper.removeEventListener(MSPointer.down, touchStartHandler);
 
-                wrapper.removeEventListener('touchmove');
-                wrapper.removeEventListener(MSPointer.move);
+                wrapper.removeEventListener('touchmove', touchMoveHandler);
+                wrapper.removeEventListener(MSPointer.move, touchMoveHandler);
             }
         }
     }
