@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.6.8
+ * fullPage 2.6.8.1
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -1187,75 +1187,83 @@
             });
         }
 
+        //IE < 10 pollify for requestAnimationFrame
+        window.requestAnimFrame = function(){
+            return window.requestAnimationFrame || function(callback){ callback() }
+        }();
+
         /**
         * Scrolls the site to the given element and scrolls to the slide if a callback is given.
         */
         function scrollPage(element, callback, isMovementUp){
-            var dest = element.position();
-            if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
+            //requestAnimFrame is used in order to prevent a Chrome 44 bug (http://stackoverflow.com/a/31961816/1081396)
+            requestAnimFrame(function(){
+                var dest = element.position();
+                if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
-            //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
-            var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
+                //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
+                var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
 
-            //local variables
-            var v = {
-                element: element,
-                callback: callback,
-                isMovementUp: isMovementUp,
-                dest: dest,
-                dtop: dtop,
-                yMovement: getYmovement(element),
-                anchorLink: element.data('anchor'),
-                sectionIndex: element.index(SECTION_SEL),
-                activeSlide: element.find(SLIDE_ACTIVE_SEL),
-                activeSection: $(SECTION_ACTIVE_SEL),
-                leavingSection: $(SECTION_ACTIVE_SEL).index(SECTION_SEL) + 1,
+                //local variables
+                var v = {
+                    element: element,
+                    callback: callback,
+                    isMovementUp: isMovementUp,
+                    dest: dest,
+                    dtop: dtop,
+                    yMovement: getYmovement(element),
+                    anchorLink: element.data('anchor'),
+                    sectionIndex: element.index(SECTION_SEL),
+                    activeSlide: element.find(SLIDE_ACTIVE_SEL),
+                    activeSection: $(SECTION_ACTIVE_SEL),
+                    leavingSection: $(SECTION_ACTIVE_SEL).index(SECTION_SEL) + 1,
 
-                //caching the value of isResizing at the momment the function is called
-                //because it will be checked later inside a setTimeout and the value might change
-                localIsResizing: isResizing
-            };
+                    //caching the value of isResizing at the momment the function is called
+                    //because it will be checked later inside a setTimeout and the value might change
+                    localIsResizing: isResizing
+                };
 
-            //quiting when destination scroll is the same as the current one
-            if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop)){ return; }
+                //quiting when destination scroll is the same as the current one
+                if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop)){ return; }
 
-            if(v.activeSlide.length){
-                var slideAnchorLink = v.activeSlide.data('anchor');
-                var slideIndex = v.activeSlide.index();
-            }
-
-            // If continuousVertical && we need to wrap around
-            if (options.autoScrolling && options.continuousVertical && typeof (v.isMovementUp) !== "undefined" &&
-                ((!v.isMovementUp && v.yMovement == 'up') || // Intending to scroll down but about to go up or
-                (v.isMovementUp && v.yMovement == 'down'))) { // intending to scroll up but about to go down
-
-                v = createInfiniteSections(v);
-            }
-
-            //callback (onLeave) if the site is not just resizing and readjusting the slides
-            if($.isFunction(options.onLeave) && !v.localIsResizing){
-                if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
-                    return;
-                }else{
-                    stopMedia(v.activeSection);
+                if(v.activeSlide.length){
+                    var slideAnchorLink = v.activeSlide.data('anchor');
+                    var slideIndex = v.activeSlide.index();
                 }
-            }
 
-            element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+                // If continuousVertical && we need to wrap around
+                if (options.autoScrolling && options.continuousVertical && typeof (v.isMovementUp) !== "undefined" &&
+                    ((!v.isMovementUp && v.yMovement == 'up') || // Intending to scroll down but about to go up or
+                    (v.isMovementUp && v.yMovement == 'down'))) { // intending to scroll up but about to go down
 
-            //preventing from activating the MouseWheelHandler event
-            //more than once if the page is scrolling
-            canScroll = false;
+                    v = createInfiniteSections(v);
+                }
 
-            setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
+                //callback (onLeave) if the site is not just resizing and readjusting the slides
+                if($.isFunction(options.onLeave) && !v.localIsResizing){
+                    if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
+                        return;
+                    }else{
+                        stopMedia(v.activeSection);
+                    }
+                }
 
-            performMovement(v);
+                element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
 
-            //flag to avoid callingn `scrollPage()` twice in case of using anchor links
-            lastScrolledDestiny = v.anchorLink;
+                //preventing from activating the MouseWheelHandler event
+                //more than once if the page is scrolling
+                canScroll = false;
 
-            //avoid firing it twice (as it does also on scroll)
-            activateMenuAndNav(v.anchorLink, v.sectionIndex);
+                setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
+
+                performMovement(v);
+
+                //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+                lastScrolledDestiny = v.anchorLink;
+
+                //avoid firing it twice (as it does also on scroll)
+                activateMenuAndNav(v.anchorLink, v.sectionIndex);
+            });
         }
 
         /**
