@@ -136,6 +136,7 @@
             verticalCentered: true,
             resize: false,
             sectionsColor : [],
+            sectionsBackground : [],
             paddingTop: 0,
             paddingBottom: 0,
             fixedElements: null,
@@ -663,6 +664,9 @@
 
             if (typeof options.sectionsColor[index] !==  'undefined') {
                 section.css('background-color', options.sectionsColor[index]);
+            }
+            if (typeof options.sectionsBackground[index] !==  'undefined') {
+                section.css('background-image', 'url('+options.sectionsBackground[index]+')');
             }
         }
 
