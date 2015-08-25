@@ -2073,7 +2073,9 @@
         * Creates a landscape navigation bar with dots for horizontal sliders.
         */
         function addSlidesNavigation(section, numSlides){
-            section.append('<div class="' + SLIDES_NAV + '"><ul></ul></div>');
+            if (section.find(SLIDES_NAV_SEL).length == 0) {
+                section.append('<div class="' + SLIDES_NAV + '"><ul></ul></div>');
+            }
             var nav = section.find(SLIDES_NAV_SEL);
 
             //top or bottom
