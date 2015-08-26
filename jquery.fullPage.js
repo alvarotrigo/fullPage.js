@@ -1196,10 +1196,13 @@
         * Scrolls the site to the given element and scrolls to the slide if a callback is given.
         */
         function scrollPage(element, callback, isMovementUp){
-            //requestAnimFrame is used in order to prevent a Chrome 44 bug (http://stackoverflow.com/a/31961816/1081396)
-            requestAnimFrame(function(){
+            //Local Variables need to be cached outside of the requestAnimFrame or they will not be set until a later point
+            //at which they may be different.
+            
                 var dest = element.position();
-                if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
+
+                //there's no element to scroll, leaving the function
+                if(typeof dest === 'undefined'){ return; }
 
                 //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
                 var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
@@ -1223,8 +1226,12 @@
                     localIsResizing: isResizing
                 };
 
-                //quiting when destination scroll is the same as the current one
-                if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop)){ return; }
+            //requestAnimFrame is used in order to prevent a Chrome 44 bug (http://stackoverflow.com/a/31961816/1081396)
+            requestAnimFrame(function(){
+
+                //quiting when destination scroll is the same as the current one 
+                //Note: must check localIsResizing as the isResizing var may change by the time this is run.
+                if((v.activeSection.is(element) && !v.localIsResizing) || (options.scrollBar && $window.scrollTop() === v.dtop)){ return; }
 
                 if(v.activeSlide.length){
                     var slideAnchorLink = v.activeSlide.data('anchor');
