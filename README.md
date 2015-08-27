@@ -40,6 +40,7 @@ It works with browsers with CSS3 support and with the ones which don't have it, 
 It also provides touch support for mobile phones, tablets and touch screen computers.
 
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack.png)](http://www.browserstack.com/)
+
 Special thanks to [Browserstack](http://www.browserstack.com/) for supporting fullpage.js.
 
 ## Usage
