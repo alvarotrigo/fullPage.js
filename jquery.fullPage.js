@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.6.9
+ * fullPage 2.7.0
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -48,6 +48,7 @@
     var TABLE_CELL =            'fp-tableCell';
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
     var AUTO_HEIGHT =       'fp-auto-height';
+    var AUTO_HEIGHT_SEL =   '.fp-auto-height';
 
     // section nav
     var SECTION_NAV =           'fp-nav';
@@ -323,13 +324,6 @@
             }
 
             if(next.length){
-                // before slide move callback
-                if(options.onBeforeMoveSection && $.isFunction( options.onBeforeMoveSection )){
-                    if(options.onBeforeMoveSection.call(this, direction, currentSlide, destiny, slides, activeSection) === false){
-                        return;
-                    }
-                }
-
                 scrollPage(next, null, false);
             }
         };
@@ -339,9 +333,15 @@
         * Anchors or index positions can be used as params.
         */
         FP.silentMoveTo = function(sectionAnchor, slideAnchor){
-            FP.setScrollingSpeed (0, 'internal');
+            requestAnimFrame(function(){
+                FP.setScrollingSpeed (0, 'internal');
+            });
+
             FP.moveTo(sectionAnchor, slideAnchor)
-            FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
+
+            requestAnimFrame(function(){
+                FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
+            });
         };
 
         /**
@@ -378,7 +378,9 @@
         FP.reBuild = function(resizing){
             if(container.hasClass(DESTROYED)){ return; }  //nothing to do if the plugin was destroyed
 
-            isResizing = true;
+            requestAnimFrame(function(){
+                isResizing = true;
+            });
 
             var windowsWidth = $window.width();
             windowsHeight = $window.height();  //updating global var
@@ -461,6 +463,7 @@
         var container = $(this);
         var windowsHeight = $window.height();
         var isResizing = false;
+        var isWindowFocused = true;
         var lastScrolledDestiny;
         var lastScrolledSlide;
         var canScroll = true;
@@ -632,13 +635,11 @@
             var startingSlide = section.find(SLIDE_ACTIVE_SEL);
 
             //if the slide won't be an starting point, the default will be the first one
-            if(!startingSlide.length){
+            //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
+            if( startingSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && startingSlide.index() !== 0))){
+                 silentLandscapeScroll(startingSlide);
+            }else{
                 slides.eq(0).addClass(ACTIVE);
-            }
-
-            //is there a starting point for a non-starting section?
-            else{
-                silentLandscapeScroll(startingSlide);
             }
         }
 
@@ -832,9 +833,10 @@
                 currentSection = $(sections).eq(visibleSectionIndex);
             }
 
+            //setting the visible section as active when manually scrolling
             if(!options.autoScrolling || options.scrollBar){
                 //executing only once the first time we reach the section
-                if(!currentSection.hasClass(ACTIVE)){
+                if(!currentSection.hasClass(ACTIVE) && !currentSection.hasClass(AUTO_HEIGHT)){
                     isScrolling = true;
                     var leavingSection = $(SECTION_ACTIVE_SEL);
                     var leavingSectionIndex = leavingSection.index(SECTION_SEL) + 1;
@@ -855,6 +857,8 @@
 
                         $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
                         lazyLoad(currentSection);
+
+                        FP.setFitToSection(!currentSection.hasClass(AUTO_HEIGHT));
 
                         activateMenuAndNav(anchorLink, sectionIndex - 1);
 
@@ -878,13 +882,17 @@
                     clearTimeout(scrollId2);
 
                     scrollId2 = setTimeout(function(){
-                        if(canScroll){
+                        //checking fitToSection again in case it was set to false before the timeout delay
+                        if(canScroll && options.fitToSection){
                             //allows to scroll to an active section and
                             //if the section is already active, we prevent firing callbacks
                             if($(SECTION_ACTIVE_SEL).is(currentSection)){
-                                isResizing = true;
+                                requestAnimFrame(function(){
+                                    isResizing = true;
+                                });
                             }
                             scrollPage(currentSection);
+
                             isResizing = false;
                         }
                     }, options.fitToSectionDelay);
@@ -1224,7 +1232,7 @@
                 };
 
                 //quiting when destination scroll is the same as the current one
-                if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop)){ return; }
+                if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop && !element.hasClass(AUTO_HEIGHT) )){ return; }
 
                 if(v.activeSlide.length){
                     var slideAnchorLink = v.activeSlide.data('anchor');
@@ -1249,6 +1257,7 @@
                 }
 
                 element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+                lazyLoad(element);
 
                 //preventing from activating the MouseWheelHandler event
                 //more than once if the page is scrolling
@@ -1379,10 +1388,11 @@
 
             v.element.find('.fp-scrollable').mouseover();
 
+            FP.setFitToSection(!v.element.hasClass(AUTO_HEIGHT));
+
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
 
-            lazyLoad(v.element);
             playMedia(v.element)
 
             canScroll = true;
@@ -1484,11 +1494,14 @@
 
         //to prevent scrolling while zooming
         $document.keyup(function(e){
-            controlPressed = e.ctrlKey;
+            if(isWindowFocused){ //the keyup gets fired on new tab ctrl + t in Firefox
+                controlPressed = e.ctrlKey;
+            }
         });
 
         //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
         $(window).blur(function() {
+            isWindowFocused = false;
             controlPressed = false;
         });
 
@@ -1510,6 +1523,8 @@
                     e.preventDefault();
                 }
 
+                controlPressed = e.ctrlKey;
+
                 keydownId = setTimeout(function(){
                     onkeydown(e);
                 },150);
@@ -1521,7 +1536,6 @@
         */
         function onkeydown(e){
             var shiftPressed = e.shiftKey;
-            controlPressed = e.ctrlKey;
 
             switch (e.which) {
                 //up
@@ -1696,7 +1710,9 @@
             }
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-            lazyLoad(destiny);
+            if(!localIsResizing){
+                lazyLoad(destiny);
+            }
 
             if(!options.loopHorizontal && options.controlArrows){
                 //hidding it for the fist slide, showing for the rest

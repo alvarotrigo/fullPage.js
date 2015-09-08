@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.6.9-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.0-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -199,6 +199,7 @@ $(document).ready(function() {
 	$('#fullpage').fullpage({
 		anchors:['firstPage', 'secondPage', 'thirdPage']
 	});
+});
 ```
 
 The anchor at the end of the URL `#secondPage/2` defines the section and slide of destination respectively. In the previous URL, the section of destination will be the one defined with the anchor `secondPage` and the slide will be the 2nd slide, as we are using the index `2` for it. (the fist slide of a section has index 0, as technically it is a section).
