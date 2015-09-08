@@ -427,7 +427,9 @@
                 FP.silentMoveTo(sectionIndex + 1);
             }
 
-            isResizing = false;
+            requestAnimFrame(function(){
+                isResizing = false;
+            });
             $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container);
             $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container);
         };
