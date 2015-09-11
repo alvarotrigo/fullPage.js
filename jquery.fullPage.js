@@ -2189,19 +2189,18 @@
             var slideAnchor = getSlideAnchor(slide);
 
             var sectionIndex = section.index(SECTION_SEL);
+            
+            var text = sectionIndex;
 
-            var text = String(sectionIndex);
-
-            if(options.anchors.length){
+            if (options.anchors.length) {
                 text = sectionAnchor;
             }
 
-            if(slide.length){
+            text = String(text);
+
+            if (slide.length) {
                 text = text + '-' + slideAnchor;
             }
-            
-            //force string
-            text = '' + text;
 
             //changing slash for dash to make it a valid CSS style
             text = text.replace('/', '-').replace('#','');
