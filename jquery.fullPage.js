@@ -2199,6 +2199,9 @@
             if(slide.length){
                 text = text + '-' + slideAnchor;
             }
+            
+            //force string
+            text = '' + text;
 
             //changing slash for dash to make it a valid CSS style
             text = text.replace('/', '-').replace('#','');
