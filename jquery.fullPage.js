@@ -2405,7 +2405,7 @@
         }
 
         /*
-        * Destroys fullpage.js plugin events and optinally its html markup and styles
+        * Destroys fullpage.js plugin events and optionally its html markup and styles
         */
         FP.destroy = function(all){
             FP.setAutoScrolling(false, 'internal');
