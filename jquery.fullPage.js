@@ -414,7 +414,13 @@
 
                 //adjusting the position fo the FULL WIDTH slides...
                 if (slides.length > 1) {
-                    landscapeScroll(slidesWrap, slidesWrap.find(SLIDE_ACTIVE_SEL));
+                    // check if we need to scroll without animation after resize
+                    if (resizing) {
+                        silentLandscapeScroll(slidesWrap.find(SLIDE_ACTIVE_SEL));
+                    }
+                    else {
+                        landscapeScroll(slidesWrap, slidesWrap.find(SLIDE_ACTIVE_SEL));
+                    }
                 }
             });
 
