@@ -928,9 +928,18 @@
             if(type == 'down'){
                 check = 'bottom';
                 scrollSection = FP.moveSectionDown;
-            }else{
+            }
+            else if(type == 'up'){
                 check = 'top';
                 scrollSection = FP.moveSectionUp;
+            }
+            else if(type == 'left'){
+                check = 'left';
+                scrollSection = FP.moveSlideLeft;
+            }
+            else if(type == 'right'){
+                check = 'right';
+                scrollSection = FP.moveSlideRight;
             }
 
             if(scrollable.length > 0 ){
@@ -1092,7 +1101,9 @@
                 // cross-browser wheel delta
                 e = e || window.event;
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
+                var valueX = -e.deltaX;
                 var delta = Math.max(-1, Math.min(1, value));
+                var deltaX = Math.max(-1, Math.min(1, valueX));
 
                 //Limiting the array to 150 (lets not waste memory!)
                 if(scrollings.length > 149){
@@ -1121,7 +1132,15 @@
                     scrollings = [];
                 }
 
-                if(canScroll){
+                if(deltaX != 0) {
+                    if(deltaX < 0) {
+                        scrolling('left', scrollable);
+                    }
+                    else if(deltaX > 0) {
+                        scrolling('right', scrollable);
+                    }
+                }
+                else if(canScroll){
                     var averageEnd = getAverage(scrollings, 10);
                     var averageMiddle = getAverage(scrollings, 70);
                     var isAccelerating = averageEnd >= averageMiddle;
