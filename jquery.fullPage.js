@@ -85,9 +85,6 @@
     var $window = $(window);
     var $document = $(document);
 
-    var afterSectionLoadsId;
-    var afterSlideLoadsId;
-
     $.fn.fullpage = function(options) {
 
         // common jQuery objects
@@ -836,10 +833,8 @@
 
                 //geting the last one, the current one on the screen
                 currentSection = $(sections).eq(visibleSectionIndex);
-            }
 
-            //setting the visible section as active when manually scrolling
-            if(!options.autoScrolling || options.scrollBar){
+                //setting the visible section as active when manually scrolling
                 //executing only once the first time we reach the section
                 if(!currentSection.hasClass(ACTIVE) && !currentSection.hasClass(AUTO_HEIGHT)){
                     isScrolling = true;
