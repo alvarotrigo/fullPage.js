@@ -182,7 +182,7 @@
                     'height' : '100%'
                 });
 
-                FP.setRecordHistory(options.recordHistory, 'internal');
+                FP.setRecordHistory(originals.recordHistory, 'internal');
 
                 //for IE touch devices
                 container.css({
@@ -498,6 +498,9 @@
             //adding a class to recognize the container internally in the code
             container.addClass(WRAPPER);
             $('html').addClass(ENABLED);
+
+            //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
+            windowsHeight = $window.height(); 
 
             //if css3 is not supported, it will use jQuery animations
             if(options.css3){
@@ -859,8 +862,6 @@
 
                         $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
                         lazyLoad(currentSection);
-
-                        FP.setFitToSection(!currentSection.hasClass(AUTO_HEIGHT));
 
                         activateMenuAndNav(anchorLink, sectionIndex - 1);
 
