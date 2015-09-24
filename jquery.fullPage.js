@@ -472,6 +472,10 @@
         var isScrollAllowed = {};
         isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
+        var initialSection = $(SECTION_ACTIVE_SEL);
+        var initialSlide = initialSection.find(SLIDE_ACTIVE_SEL);
+        var initialUrl;
+        var isLandingPage = false;
         var originals = $.extend(true, {}, options); //deep copy
 
         //timeouts
@@ -517,34 +521,7 @@
 
             responsive();
 
-            //for animateAnchor:false
-            if(!options.animateAnchor){
-                //getting the anchor link in the URL and deleting the `#`
-                var value =  window.location.hash.replace('#', '').split('/');
-                var destiny = value[0];
-
-                if(destiny.length){
-                    var section = $('[data-anchor="'+destiny+'"]');
-
-                    if(section.length){
-                        if(options.autoScrolling){
-                            silentScroll(section.position().top);
-                        }
-                        else{
-                            silentScroll(0);
-
-                            //scrolling the page to the section with no animation
-                            $htmlBody.scrollTop(section.position().top);
-                        }
-                        activateMenuAndNav(destiny, null);
-
-                        $.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index(SECTION_SEL) + 1));
-
-                        //updating the active class
-                        section.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-                    }
-                }
-            }
+            initialUrl = getInitialUrlAnchors();
 
             //setting the class for the body element
             setBodyClass();
@@ -646,9 +623,11 @@
             //if the slide won't be an starting point, the default will be the first one
             //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
             if( startingSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && startingSlide.index() !== 0))){
-                 silentLandscapeScroll(startingSlide);
+                silentLandscapeScroll(startingSlide);
+                initialSlide = startingSlide;
             }else{
                 slides.eq(0).addClass(ACTIVE);
+                initialSlide = slides.eq(0);
             }
         }
 
@@ -659,6 +638,7 @@
             //if no active section is defined, the 1st one will be the default one
             if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
                 section.addClass(ACTIVE);
+                initialSection = section;
             }
 
             section.css('height', windowsHeight + 'px');
@@ -674,6 +654,10 @@
             if (typeof options.sectionsColor[index] !==  'undefined') {
                 section.css('background-color', options.sectionsColor[index]);
             }
+
+            if (typeof options.anchors[index] !== 'undefined') {
+                section.attr('data-anchor', options.anchors[index]);
+            }
         }
 
         /**
@@ -681,8 +665,6 @@
         */
         function styleMenu(section, index){
             if (typeof options.anchors[index] !== 'undefined') {
-                section.attr('data-anchor', options.anchors[index]);
-
                 //activating the menu / nav element on load
                 if(section.hasClass(ACTIVE)){
                     activateMenuAndNav(options.anchors[index], index);
@@ -1464,7 +1446,11 @@
             var slide = value[1];
 
             if(section){  //if theres any #
-                scrollPageAndSlide(section, slide);
+                if(options.animateAnchor){
+                    scrollPageAndSlide(section, slide);
+                }else{
+                    FP.silentMoveTo(section, slide);
+                }
             }
         }
 
@@ -1489,6 +1475,15 @@
                     if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
                         scrollPageAndSlide(section, slide);
                     }
+                }else{
+                    section = getAnchor(initialSection);
+                    if (isFirstScrollMove){
+                        slide = initialSection.find(SLIDE_ACTIVE_SEL);
+                    }else{
+                        slide = getAnchor(initialSlide);
+                    }
+                    isLandingPage = true;
+                    scrollPageAndSlide(section, slide);
                 }
             }
         }
@@ -1693,7 +1688,7 @@
             var sectionIndex = section.index(SECTION_SEL);
             var anchorLink = section.data('anchor');
             var slidesNav = section.find(SLIDES_NAV_SEL);
-            var slideAnchor = getSlideAnchor(destiny);
+            var slideAnchor = getAnchor(destiny);
 
             //caching the value of isResizing at the momment the function is called
             //because it will be checked later inside a setTimeout and the value might change
@@ -2155,7 +2150,9 @@
         */
         function setUrlHash(url){
             if(options.recordHistory){
-                location.hash = url;
+                if(!isLandingPage || url != initialUrl){
+                    location.hash = url;
+                }
             }else{
                 //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
                 if(isTouchDevice || isTouch){
@@ -2168,18 +2165,38 @@
         }
 
         /**
-        * Gets the anchor for the given slide. Its index will be used if there's none.
+        * Gets the URL hash for the initial active section and slide.
         */
-        function getSlideAnchor(slide){
-            var slideAnchor = slide.data('anchor');
-            var slideIndex = slide.index();
+        function getInitialUrlAnchors(){
+            var sectionAnchor = getAnchor(initialSection);
+            var url;
 
-            //Slide without anchor link? We take the index instead.
-            if(typeof slideAnchor === 'undefined'){
-                slideAnchor = slideIndex;
+            //is not the 1st slide in the section?
+            if(typeof initialSlide !== 'undefined' && initialSlide.index()){
+                var slideAnchor = getAnchor(initialSlide);
+                url = sectionAnchor + '/' + slideAnchor;
+            }
+            //initial slide won't display the anchor in the URL.
+            else{
+                url = sectionAnchor;
             }
 
-            return slideAnchor;
+            return url;
+        }
+
+        /**
+        * Gets the anchor for the given slide / section. Its index will be used if there's none.
+        */
+        function getAnchor(element){
+            var anchor = element.data('anchor');
+            var index = element.index();
+
+            //Slide without anchor link? We take the index instead.
+            if(typeof anchor === 'undefined'){
+                anchor = index;
+            }
+
+            return anchor;
         }
 
         /**
@@ -2190,7 +2207,7 @@
             var slide = section.find(SLIDE_ACTIVE_SEL);
 
             var sectionAnchor = section.data('anchor');
-            var slideAnchor = getSlideAnchor(slide);
+            var slideAnchor = getAnchor(slide);
 
             var sectionIndex = section.index(SECTION_SEL);
 
