@@ -184,7 +184,7 @@ html.fp-enabled,
     opacity: 1;
     -webkit-transform: translate3d(0,0,0);
     &.right {
-       right: 17px; 
+       right: 17px;
     }
     &.left {
         left: 17px
@@ -231,4 +231,9 @@ html.fp-enabled,
 }
 .fp-slidesNav ul li {
     display: inline-block;
+}
+.fp-auto-height.fp-section,
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell{
+    height: auto !important;
 }
