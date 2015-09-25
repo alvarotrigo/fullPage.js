@@ -232,3 +232,8 @@ html.fp-enabled,
 .fp-slidesNav ul li {
     display: inline-block;
 }
+.fp-auto-height.fp-section,
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell{
+    height: auto !important;
+}
