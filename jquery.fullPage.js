@@ -472,10 +472,6 @@
         var isScrollAllowed = {};
         isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
-        var initialSection = $(SECTION_ACTIVE_SEL);
-        var initialSlide = initialSection.find(SLIDE_ACTIVE_SEL);
-        var initialUrl;
-        var isLandingPage = false;
         var originals = $.extend(true, {}, options); //deep copy
 
         //timeouts
@@ -520,8 +516,6 @@
             }
 
             responsive();
-
-            initialUrl = getInitialUrlAnchors();
 
             //setting the class for the body element
             setBodyClass();
@@ -624,10 +618,8 @@
             //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
             if( startingSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && startingSlide.index() !== 0))){
                 silentLandscapeScroll(startingSlide);
-                initialSlide = startingSlide;
             }else{
                 slides.eq(0).addClass(ACTIVE);
-                initialSlide = slides.eq(0);
             }
         }
 
@@ -638,7 +630,6 @@
             //if no active section is defined, the 1st one will be the default one
             if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
                 section.addClass(ACTIVE);
-                initialSection = section;
             }
 
             section.css('height', windowsHeight + 'px');
@@ -1464,10 +1455,12 @@
                 var section = value[0];
                 var slide = value[1];
 
-                if(section.length){
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
                     var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined' && !slideMoving);
+
+
+                if(section.length){
 
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
@@ -1475,15 +1468,6 @@
                     if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
                         scrollPageAndSlide(section, slide);
                     }
-                }else{
-                    section = getAnchor(initialSection);
-                    if (isFirstScrollMove){
-                        slide = initialSection.find(SLIDE_ACTIVE_SEL);
-                    }else{
-                        slide = getAnchor(initialSlide);
-                    }
-                    isLandingPage = true;
-                    scrollPageAndSlide(section, slide);
                 }
             }
         }
@@ -2150,9 +2134,7 @@
         */
         function setUrlHash(url){
             if(options.recordHistory){
-                if(!isLandingPage || url != initialUrl){
-                    location.hash = url;
-                }
+                location.hash = url;
             }else{
                 //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
                 if(isTouchDevice || isTouch){
@@ -2162,26 +2144,6 @@
                     window.location.replace( baseUrl + '#' + url );
                 }
             }
-        }
-
-        /**
-        * Gets the URL hash for the initial active section and slide.
-        */
-        function getInitialUrlAnchors(){
-            var sectionAnchor = getAnchor(initialSection);
-            var url;
-
-            //is not the 1st slide in the section?
-            if(typeof initialSlide !== 'undefined' && initialSlide.index()){
-                var slideAnchor = getAnchor(initialSlide);
-                url = sectionAnchor + '/' + slideAnchor;
-            }
-            //initial slide won't display the anchor in the URL.
-            else{
-                url = sectionAnchor;
-            }
-
-            return url;
         }
 
         /**
