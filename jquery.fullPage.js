@@ -2168,16 +2168,12 @@
             var section = $(SECTION_ACTIVE_SEL);
             var slide = section.find(SLIDE_ACTIVE_SEL);
 
-            var sectionAnchor = section.data('anchor');
+            var sectionAnchor = getAnchor(section);
             var slideAnchor = getAnchor(slide);
 
             var sectionIndex = section.index(SECTION_SEL);
 
-            var text = String(sectionIndex);
-
-            if(options.anchors.length){
-                text = sectionAnchor;
-            }
+            var text = String(sectionAnchor);
 
             if(slide.length){
                 text = text + '-' + slideAnchor;
