@@ -85,6 +85,8 @@
     var $window = $(window);
     var $document = $(document);
 
+    var defaultScrollHandler;
+
     $.fn.fullpage = function(options) {
 
         // common jQuery objects
@@ -120,6 +122,7 @@
             continuousVertical: false,
             normalScrollElements: null,
             scrollOverflow: false,
+            scrollOverflowHandler: defaultScrollHandler,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
 
@@ -761,27 +764,14 @@
         function afterRenderActions(){
             var section = $(SECTION_ACTIVE_SEL);
 
-            solveBugSlimScroll(section);
+            if(options.scrollOverflowHandler.afterRender){
+                options.scrollOverflowHandler.afterRender(section);
+            }
             lazyLoad(section);
             playMedia(section);
 
             $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call(container);
-        }
-
-
-        /**
-        * Solves a bug with slimScroll vendor library #1037, #553
-        */
-        function solveBugSlimScroll(section){
-            var slides = section.find('SLIDES_WRAPPER');
-            var scrollableWrap = section.find(SCROLLABLE_SEL);
-
-            if(slides.length){
-                scrollableWrap = slides.find(SLIDE_ACTIVE_SEL);
-            }
-
-            scrollableWrap.mouseover();
         }
 
 
@@ -878,19 +868,6 @@
             }
         }
 
-
-        /**
-        * Determines whether the active section or slide is scrollable through and scrolling bar
-        */
-        function isScrollable(activeSection){
-            //if there are landscape slides, we check if the scrolling bar is in the current one or not
-            if(activeSection.find(SLIDES_WRAPPER_SEL).length){
-                return activeSection.find(SLIDE_ACTIVE_SEL).find(SCROLLABLE_SEL);
-            }
-
-            return activeSection.find(SCROLLABLE_SEL);
-        }
-
         /**
         * Determines the way of scrolling up or down:
         * by 'automatically' scrolling a section or by using the default and normal scrolling.
@@ -911,7 +888,7 @@
 
             if(scrollable.length > 0 ){
                 //is the scrollbar at the start/end of the scroll?
-                if(isScrolled(check, scrollable)){
+                if(options.scrollOverflowHandler.isScrolled(check, scrollable)){
                     scrollSection();
                 }else{
                     return true;
@@ -946,7 +923,7 @@
                 }
 
                 var activeSection = $(SECTION_ACTIVE_SEL);
-                var scrollable = isScrollable(activeSection);
+                var scrollable = options.scrollOverflowHandler.scrollable(activeSection);
 
                 if (canScroll && !slideMoving) { //if theres any #
                     var touchEvents = getEventsPage(e);
@@ -1085,7 +1062,7 @@
                 }
 
                 var activeSection = $(SECTION_ACTIVE_SEL);
-                var scrollable = isScrollable(activeSection);
+                var scrollable = options.scrollOverflowHandler.scrollable(activeSection);
 
                 //time difference between the last scroll and the current one
                 var timeDiff = curTime-prevTime;
@@ -1867,17 +1844,6 @@
         }
 
         /**
-        * Return a boolean depending on whether the scrollable element is at the end or at the start of the scrolling
-        * depending on the given type.
-        */
-        function isScrolled(type, scrollable){
-            if(type === 'top'){
-                return !scrollable.scrollTop();
-            }else if(type === 'bottom'){
-                return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
-            }
-        }
-
         /**
         * Retuns `up` or `down` depending on the scrolling movement to reach its destination
         * from the current section.
@@ -1913,14 +1879,16 @@
             //needed to make `scrollHeight` work under Opera 12
             element.css('overflow', 'hidden');
 
+            var scrollOverflowHandler = options.scrollOverflowHandler;
+            var wrap = scrollOverflowHandler.wrapContent();
             //in case element is a slide
             var section = element.closest(SECTION_SEL);
-            var scrollable = element.find(SCROLLABLE_SEL);
+            var scrollable = scrollOverflowHandler.scrollable(element);
             var contentHeight;
 
             //if there was scroll, the contentHeight will be the one in the scrollable section
             if(scrollable.length){
-                contentHeight = scrollable.get(0).scrollHeight;
+                contentHeight = scrollOverflowHandler.scrollHeight(element);
             }else{
                 contentHeight = element.get(0).scrollHeight;
                 if(options.verticalCentered){
@@ -1934,38 +1902,25 @@
             if ( contentHeight > scrollHeight) {
                 //was there already an scroll ? Updating it
                 if(scrollable.length){
-                    scrollable.css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+                    scrollOverflowHandler.update(element, scrollHeight);
                 }
                 //creating the scrolling
                 else{
                     if(options.verticalCentered){
-                        element.find(TABLE_CELL_SEL).wrapInner('<div class="' + SCROLLABLE + '" />');
+                        element.find(TABLE_CELL_SEL).wrapInner(wrap);
                     }else{
-                        element.wrapInner('<div class="' + SCROLLABLE + '" />');
+                        element.wrapInner(wrap);
                     }
-
-                    element.find(SCROLLABLE_SEL).slimScroll({
-                        allowPageScroll: true,
-                        height: scrollHeight + 'px',
-                        size: '10px',
-                        alwaysVisible: true
-                    });
+                    scrollOverflowHandler.create(element, scrollHeight);
                 }
             }
-
             //removing the scrolling when it is not necessary anymore
             else{
-                removeSlimScroll(element);
+                scrollOverflowHandler.remove(element);
             }
 
             //undo
             element.css('overflow', '');
-        }
-
-        function removeSlimScroll(element){
-            element.find(SCROLLABLE_SEL).children().first().unwrap().unwrap();
-            element.find(SLIMSCROLL_BAR_SEL).remove();
-            element.find(SLIMSCROLL_RAIL_SEL).remove();
         }
 
         function addTableClass(element){
@@ -2547,4 +2502,128 @@
             console && console[type] && console[type]('fullPage: ' + text);
         }
     };
+
+    /**
+     * An object to handle overflow scrolling.
+     * This uses jquery.slimScroll to accomplish overflow scrolling.
+     * It is possible to pass in an alternate scrollOverflowHandler
+     * to the fullpage.js option that implements the same functions
+     * as this handler.
+     *
+     * @type {Object}
+     */
+    var slimScrollHandler = {
+        /**
+         * Optional function called after each render.
+         *
+         * Solves a bug with slimScroll vendor library #1037, #553
+         *
+         * @param  {object} section jQuery object containing rendered section
+         */
+        afterRender: function(section){
+            var slides = section.find('SLIDES_WRAPPER');
+            var scrollableWrap = section.find(SCROLLABLE_SEL);
+
+            if(slides.length){
+                scrollableWrap = slides.find(SLIDE_ACTIVE_SEL);
+            }
+
+            scrollableWrap.mouseover();
+        },
+
+        /**
+         * Called when overflow scrolling is needed for a section.
+         *
+         * @param  {Object} element      jQuery object containing current section
+         * @param  {Number} scrollHeight Current window height in pixels
+         */
+        create: function(element, scrollHeight){
+            element.find(SCROLLABLE_SEL).slimScroll({
+                allowPageScroll: true,
+                height: scrollHeight + 'px',
+                size: '10px',
+                alwaysVisible: true
+            });
+        },
+
+        /**
+         * Return a boolean depending on whether the scrollable element is a
+         * the end or at the start of the scrolling depending on the given type.
+         *
+         * @param  {String}  type       Either 'top' or 'bottom'
+         * @param  {Object}  scrollable jQuery object for the scrollable element
+         * @return {Boolean}
+         */
+        isScrolled: function(type, scrollable){
+            if(type === 'top'){
+                return !scrollable.scrollTop();
+            }else if(type === 'bottom'){
+                return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+            }
+        },
+
+        /**
+         * Returns the scrollable element for the given section.
+         * If there are landscape slides, will only return a scrollable element
+         * if it is in the active slide.
+         *
+         * @param  {Object}  activeSection jQuery object containing current section
+         * @return {Boolean}
+         */
+        scrollable: function(activeSection){
+            // if there are landscape slides, we check if the scrolling bar is in the current one or not
+            if(activeSection.find(SLIDES_WRAPPER_SEL).length){
+                return activeSection.find(SLIDE_ACTIVE_SEL).find(SCROLLABLE_SEL);
+            }
+            return activeSection.find(SCROLLABLE_SEL);
+        },
+
+        /**
+         * Returns the scroll height of the wrapped content.
+         * If this is larger than the window height minus section padding,
+         * overflow scrolling is needed.
+         *
+         * @param  {Object} element jQuery object containing current section
+         * @return {Number}
+         */
+        scrollHeight: function(element){
+            return element.find(SCROLLABLE_SEL).get(0).scrollHeight;
+        },
+
+        /**
+         * Called when overflow scrolling is no longer needed for a section.
+         *
+         * @param  {Object} element      jQuery object containing current section
+         */
+        remove: function(element){
+            element.find(SCROLLABLE_SEL).children().first().unwrap().unwrap();
+            element.find(SLIMSCROLL_BAR_SEL).remove();
+            element.find(SLIMSCROLL_RAIL_SEL).remove();
+        },
+
+        /**
+         * Called when overflow scrolling has already been setup but the
+         * window height has potentially changed.
+         *
+         * @param  {Object} element      jQuery object containing current section
+         * @param  {Number} scrollHeight Current window height in pixels
+         */
+        update: function(element, scrollHeight){
+            element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+        },
+
+        /**
+         * Called to get any additional elements needed to wrap the section
+         * content in order to facilitate overflow scrolling.
+         *
+         * @return {String|Object} Can be a string containing HTML,
+         *                         a DOM element, or jQuery object.
+         */
+        wrapContent: function(){
+            return '<div class="' + SCROLLABLE + '"></div>';
+        }
+    };
+
+    defaultScrollHandler = slimScrollHandler;
+
 });
