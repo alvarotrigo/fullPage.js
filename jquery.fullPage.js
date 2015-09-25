@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.1
+ * fullPage 2.7.2
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -84,9 +84,6 @@
 
     var $window = $(window);
     var $document = $(document);
-
-    var afterSectionLoadsId;
-    var afterSlideLoadsId;
 
     $.fn.fullpage = function(options) {
 
@@ -182,7 +179,7 @@
                     'height' : '100%'
                 });
 
-                FP.setRecordHistory(options.recordHistory, 'internal');
+                FP.setRecordHistory(originals.recordHistory, 'internal');
 
                 //for IE touch devices
                 container.css({
@@ -490,15 +487,6 @@
         }
 
         function init(){
-            container.css({
-                'height': '100%',
-                'position': 'relative'
-            });
-
-            //adding a class to recognize the container internally in the code
-            container.addClass(WRAPPER);
-            $('html').addClass(ENABLED);
-
             //if css3 is not supported, it will use jQuery animations
             if(options.css3){
                 options.css3 = support3d();
@@ -512,11 +500,49 @@
             }
 
             FP.setAllowScrolling(true);
+            prepareDom();
+
+            //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
+            windowsHeight = $window.height();
+
+            FP.setAutoScrolling(options.autoScrolling, 'internal');
+
+            //the starting point is a slide?
+            var activeSlide = $(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL);
+
+            //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
+            if( activeSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && activeSlide.index() !== 0))){
+                silentLandscapeScroll(activeSlide);
+            }
+
+            responsive();
+
+            //setting the class for the body element
+            setBodyClass();
+
+            $window.on('load', function() {
+                scrollToAnchor();
+            });
+        }
+
+        /**
+        * Works over the DOM structure to set it up for the current fullpage optionss.
+        */
+        function prepareDom(){
+            container.css({
+                'height': '100%',
+                'position': 'relative'
+            });
+
+            //adding a class to recognize the container internally in the code
+            container.addClass(WRAPPER);
+            $('html').addClass(ENABLED);
+
             container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
             addInternalSelectors();
 
-            //styling the sections / slides / menu
+             //styling the sections / slides / menu
             $(SECTION_SEL).each(function(index){
                 var section = $(this);
                 var slides = section.find(SLIDE_SEL);
@@ -534,16 +560,6 @@
                     }
                 }
             });
-
-            FP.setAutoScrolling(options.autoScrolling, 'internal');
-
-            //the starting point is a slide?
-            var activeSlide = $(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL);
-
-            //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
-            if( activeSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && activeSlide.index() !== 0))){
-                silentLandscapeScroll(activeSlide);
-            }
 
             //fixed elements need to be moved out of the plugin container due to problems with CSS3.
             if(options.fixedElements && options.css3){
@@ -564,44 +580,6 @@
             }else{
                 afterRenderActions();
             }
-
-            responsive();
-
-            //for animateAnchor:false
-            if(!options.animateAnchor){
-                //getting the anchor link in the URL and deleting the `#`
-                var value =  window.location.hash.replace('#', '').split('/');
-                var destiny = value[0];
-
-                if(destiny.length){
-                    var section = $('[data-anchor="'+destiny+'"]');
-
-                    if(section.length){
-                        if(options.autoScrolling){
-                            silentScroll(section.position().top);
-                        }
-                        else{
-                            silentScroll(0);
-
-                            //scrolling the page to the section with no animation
-                            $htmlBody.scrollTop(section.position().top);
-                        }
-                        activateMenuAndNav(destiny, null);
-
-                        $.isFunction( options.afterLoad ) && options.afterLoad.call( section, destiny, (section.index(SECTION_SEL) + 1));
-
-                        //updating the active class
-                        section.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-                    }
-                }
-            }
-
-            //setting the class for the body element
-            setBodyClass();
-
-            $window.on('load', function() {
-                scrollToAnchor();
-            });
         }
 
         /**
@@ -639,7 +617,7 @@
             //if the slide won't be an starting point, the default will be the first one
             //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
             if( startingSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && startingSlide.index() !== 0))){
-                 silentLandscapeScroll(startingSlide);
+                silentLandscapeScroll(startingSlide);
             }else{
                 slides.eq(0).addClass(ACTIVE);
             }
@@ -667,6 +645,10 @@
             if (typeof options.sectionsColor[index] !==  'undefined') {
                 section.css('background-color', options.sectionsColor[index]);
             }
+
+            if (typeof options.anchors[index] !== 'undefined') {
+                section.attr('data-anchor', options.anchors[index]);
+            }
         }
 
         /**
@@ -674,8 +656,6 @@
         */
         function styleMenu(section, index){
             if (typeof options.anchors[index] !== 'undefined') {
-                section.attr('data-anchor', options.anchors[index]);
-
                 //activating the menu / nav element on load
                 if(section.hasClass(ACTIVE)){
                     activateMenuAndNav(options.anchors[index], index);
@@ -833,10 +813,8 @@
 
                 //geting the last one, the current one on the screen
                 currentSection = $(sections).eq(visibleSectionIndex);
-            }
 
-            //setting the visible section as active when manually scrolling
-            if(!options.autoScrolling || options.scrollBar){
+                //setting the visible section as active when manually scrolling
                 //executing only once the first time we reach the section
                 if(!currentSection.hasClass(ACTIVE) && !currentSection.hasClass(AUTO_HEIGHT)){
                     isScrolling = true;
@@ -859,8 +837,6 @@
 
                         $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
                         lazyLoad(currentSection);
-
-                        FP.setFitToSection(!currentSection.hasClass(AUTO_HEIGHT));
 
                         activateMenuAndNav(anchorLink, sectionIndex - 1);
 
@@ -1093,6 +1069,7 @@
                 e = e || window.event;
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
                 var delta = Math.max(-1, Math.min(1, value));
+                var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY));
 
                 //Limiting the array to 150 (lets not waste memory!)
                 if(scrollings.length > 149){
@@ -1127,7 +1104,7 @@
                     var isAccelerating = averageEnd >= averageMiddle;
 
                     //to avoid double swipes...
-                    if(isAccelerating){
+                    if(isAccelerating && isScrollingVertically){
                         //scrolling down?
                         if (delta < 0) {
                             scrolling('down', scrollable);
@@ -1460,7 +1437,11 @@
             var slide = value[1];
 
             if(section){  //if theres any #
-                scrollPageAndSlide(section, slide);
+                if(options.animateAnchor){
+                    scrollPageAndSlide(section, slide);
+                }else{
+                    FP.silentMoveTo(section, slide);
+                }
             }
         }
 
@@ -1474,10 +1455,12 @@
                 var section = value[0];
                 var slide = value[1];
 
-                if(section.length){
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
                     var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined' && !slideMoving);
+
+
+                if(section.length){
 
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
@@ -1689,7 +1672,7 @@
             var sectionIndex = section.index(SECTION_SEL);
             var anchorLink = section.data('anchor');
             var slidesNav = section.find(SLIDES_NAV_SEL);
-            var slideAnchor = getSlideAnchor(destiny);
+            var slideAnchor = getAnchor(destiny);
 
             //caching the value of isResizing at the momment the function is called
             //because it will be checked later inside a setTimeout and the value might change
@@ -2164,18 +2147,18 @@
         }
 
         /**
-        * Gets the anchor for the given slide. Its index will be used if there's none.
+        * Gets the anchor for the given slide / section. Its index will be used if there's none.
         */
-        function getSlideAnchor(slide){
-            var slideAnchor = slide.data('anchor');
-            var slideIndex = slide.index();
+        function getAnchor(element){
+            var anchor = element.data('anchor');
+            var index = element.index();
 
             //Slide without anchor link? We take the index instead.
-            if(typeof slideAnchor === 'undefined'){
-                slideAnchor = slideIndex;
+            if(typeof anchor === 'undefined'){
+                anchor = index;
             }
 
-            return slideAnchor;
+            return anchor;
         }
 
         /**
@@ -2185,20 +2168,14 @@
             var section = $(SECTION_ACTIVE_SEL);
             var slide = section.find(SLIDE_ACTIVE_SEL);
 
-            var sectionAnchor = section.data('anchor');
-            var slideAnchor = getSlideAnchor(slide);
+            var sectionAnchor = getAnchor(section);
+            var slideAnchor = getAnchor(slide);
 
             var sectionIndex = section.index(SECTION_SEL);
-            
-            var text = sectionIndex;
 
-            if (options.anchors.length) {
-                text = sectionAnchor;
-            }
+            var text = String(sectionAnchor);
 
-            text = String(text);
-
-            if (slide.length) {
+            if(slide.length){
                 text = text + '-' + slideAnchor;
             }
 
@@ -2252,7 +2229,7 @@
             if (document.addEventListener) {
                 document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
                 document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
-                document.removeEventListener('DOMMouseScroll', MouseWheelHandler, false); //old Firefox
+                document.removeEventListener('MozMousePixelScroll', MouseWheelHandler, false); //old Firefox
             } else {
                 document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
             }
@@ -2261,14 +2238,32 @@
         /**
         * Adds the auto scrolling action for the mouse wheel and trackpad.
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
+        * https://developer.mozilla.org/en-US/docs/Web/Events/wheel
         */
         function addMouseWheelHandler(){
-            if (document.addEventListener) {
-                document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
-                document.addEventListener('DOMMouseScroll', MouseWheelHandler, false); //Old Firefox
-            } else {
-                document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+            var prefix = '';
+            var _addEventListener;
+
+            if (window.addEventListener){
+                _addEventListener = "addEventListener";
+            }else{
+                _addEventListener = "attachEvent";
+                prefix = 'on';
+            }
+
+             // detect available wheel event
+            var support = 'onwheel' in document.createElement('div') ? 'wheel' : // Modern browsers support "wheel"
+                      document.onmousewheel !== undefined ? 'mousewheel' : // Webkit and IE support at least "mousewheel"
+                      'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
+
+
+            if(support == 'DOMMouseScroll'){
+                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, false);
+            }
+
+            //handle MozMousePixelScroll in older Firefox
+            else{
+                document[ _addEventListener ](prefix + support, MouseWheelHandler, false);
             }
         }
 
@@ -2405,7 +2400,7 @@
         }
 
         /*
-        * Destroys fullpage.js plugin events and optionally its html markup and styles
+        * Destroys fullpage.js plugin events and optinally its html markup and styles
         */
         FP.destroy = function(all){
             FP.setAutoScrolling(false, 'internal');
