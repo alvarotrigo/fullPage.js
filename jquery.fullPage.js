@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.2
+ * fullPage 2.7.3
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -269,6 +269,7 @@
                 });
             }
             else if(value){
+
                 FP.setMouseWheelScrolling(true);
                 addTouchHandler();
             }else{
@@ -499,8 +500,8 @@
                 }).get();
             }
 
-            FP.setAllowScrolling(true);
             prepareDom();
+            FP.setAllowScrolling(true);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
             windowsHeight = $window.height();
