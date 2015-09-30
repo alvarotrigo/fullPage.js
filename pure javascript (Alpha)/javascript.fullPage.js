@@ -123,6 +123,7 @@
             easingcss3: 'ease',
             loopHorizontal: true,
             touchSensitivity: 5,
+            minDelta: 20,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1113,6 +1114,11 @@
 
             var value = e.wheelDelta || -e.deltaY || -e.detail;
             var delta = Math.max(-1, Math.min(1, value));
+
+            //Make sure user intended to scroll
+            if (Math.abs(value) < options.minDelta) {
+                return;
+            }
 
             //Limiting the array to 150 (lets not waist memory!)
             if(scrollings.length > 149){
