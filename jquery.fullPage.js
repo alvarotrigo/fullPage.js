@@ -122,6 +122,7 @@
             scrollOverflow: false,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            minDelta: 20,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1073,6 +1074,11 @@
                 var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
                 var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
 
+                //Make sure user intended to scroll
+                if (Math.abs(value) < options.minDelta) {
+                    return;
+                }
+
                 //Limiting the array to 150 (lets not waste memory!)
                 if(scrollings.length > 149){
                     scrollings.shift();
@@ -1182,7 +1188,7 @@
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                window.requestAnimationFrame || 
+                window.requestAnimationFrame ||
                 function(callback){ callback() }
         }();
 
