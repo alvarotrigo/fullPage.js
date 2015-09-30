@@ -1178,7 +1178,12 @@
 
         //IE < 10 pollify for requestAnimationFrame
         window.requestAnimFrame = function(){
-            return window.requestAnimationFrame || function(callback){ callback() }
+            return window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                window.requestAnimationFrame || 
+                function(callback){ callback() }
         }();
 
         /**
