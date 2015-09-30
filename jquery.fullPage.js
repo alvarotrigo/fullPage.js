@@ -1075,7 +1075,7 @@
                 var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
 
                 //Make sure user intended to scroll
-                if (Math.abs(value) < options.minDelta) {
+                if (options.lockAnchors && Math.abs(value) < options.minDelta) {
                     return;
                 }
 

@@ -1116,7 +1116,7 @@
             var delta = Math.max(-1, Math.min(1, value));
 
             //Make sure user intended to scroll
-            if (Math.abs(value) < options.minDelta) {
+            if (options.lockAnchors && Math.abs(value) < options.minDelta) {
                 return;
             }
 
