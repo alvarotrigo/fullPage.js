@@ -7,10 +7,15 @@ var minifyCss = require('gulp-minify-css');
 
 gulp.task('sass', function() {
     gulp.src('./jquery.fullpage.scss')
-        .pipe(sourcemaps.init())
         .pipe(sass({
             outputStyle: 'expanded'
         }))
+        .pipe(gulp.dest('.'));
+});
+
+gulp.task('css', function() {
+    gulp.src('./jquery.fullpage.css')
+        .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
         .pipe(minifyCss({
             compatibility: 'ie8',
@@ -34,4 +39,4 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('default', ['sass', 'js']);
+gulp.task('default', ['sass', 'css', 'js']);

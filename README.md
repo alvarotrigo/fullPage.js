@@ -20,16 +20,17 @@ Customizations of the plugin and urgent changes are available upon request for s
 
 Would you like to have a website using fullpage.js functionality but you don't know how to use it? I can do it for you for a reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
 
-- [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
-- [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
-- [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
-- [Options](https://github.com/alvarotrigo/fullPage.js#options)
-- [Methods](https://github.com/alvarotrigo/fullPage.js#methods)
-- [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
-- [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
-- [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
-- [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
-- [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
+- [Introduction](#introduction)
+- [Compatibility](#compatibility)
+- [Usage](#usage)
+- [Options](#options)
+- [Methods](#methods)
+- [Lazy loading](#lazy-loading)
+- [Creating smaller sections](#creating-smaller-sections)
+- [Callbacks](#callbacks)
+- [Build tasks](#build-tasks)
+- [Resources](#resources)
+- [Who is using fullpage.js](#who-is-using-fullpagejs)
 
 ## Introduction
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
@@ -380,7 +381,7 @@ $.fn.fullpage.moveTo(3);
 ---
 ### silentMoveTo(section, slide)
 [Demo](http://codepen.io/alvarotrigo/pen/doqOeY)
-Exactly the same as [`moveTo`](https://github.com/alvarotrigo/fullPage.js#movetosection-slide) but in this case it performs the scroll without animation. A direct jump to the destination.
+Exactly the same as [`moveTo`](#movetosection-slide) but in this case it performs the scroll without animation. A direct jump to the destination.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
@@ -683,6 +684,39 @@ Example:
 
 ####Cancelling a move before it takes place
 You can cancel a move by returning `false` on the `onSlideLeave` callback. Same as with `onLeave`.
+
+#Build tasks
+This gives the ability to compile the SCSS file to CSS as well compress and generate source-maps for the CSS and JS files.
+
+##Installing dependencies
+You must have `node` amd `npm` installed in order to run the compile and compress tasks.
+
+Terminal:
+```
+// (Optional) Install Gulp module globally
+npm install gulp -g
+
+// Install fullpage's build dependencies
+npm install
+```
+
+##Task commands
+
+Terminal:
+```
+// Only compile the SCSS
+gulp scss
+
+// Only compress the CSS
+gulp css
+
+// Only compress the JS
+gulp js
+
+// Runs all three tasks
+gulp
+```
+
 
 #Resources
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
