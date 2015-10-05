@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.2
+ * fullPage 2.7.4
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -502,8 +502,8 @@
                 }).get();
             }
 
-            FP.setAllowScrolling(true);
             prepareDom();
+            FP.setAllowScrolling(true);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
             windowsHeight = $window.height();
@@ -861,7 +861,9 @@
                             }
                             scrollPage(currentSection);
 
-                            isResizing = false;
+                            requestAnimFrame(function(){
+                                isResizing = false;
+                            });
                         }
                     }, options.fitToSectionDelay);
                 }
@@ -1046,7 +1048,9 @@
                 e = e || window.event;
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
                 var delta = Math.max(-1, Math.min(1, value));
-                var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY));
+
+                var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
+                var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
 
                 //Limiting the array to 150 (lets not waste memory!)
                 if(scrollings.length > 149){
@@ -1153,7 +1157,12 @@
 
         //IE < 10 pollify for requestAnimationFrame
         window.requestAnimFrame = function(){
-            return window.requestAnimationFrame || function(callback){ callback() }
+            return window.requestAnimationFrame || 
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function(callback){ callback() }
         }();
 
         /**
@@ -1343,8 +1352,6 @@
             continuousVerticalFixSectionOrder(v);
 
             v.element.find('.fp-scrollable').mouseover();
-
-            FP.setFitToSection(!v.element.hasClass(AUTO_HEIGHT));
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
@@ -1760,17 +1767,18 @@
             var widthLimit = options.responsive || options.responsiveWidth; //backwards compatiblity
             var heightLimit = options.responsiveHeight;
 
-            if(widthLimit){
-                FP.setResponsive($window.width() < widthLimit);
+            //only calculating what we need. Remember its called on the resize event.
+            var isBreakingPointWidth = widthLimit && $window.width() < widthLimit;
+            var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
+
+            if(widthLimit && heightLimit){
+                FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
             }
-
-            if(heightLimit){
-                var isResponsive = container.hasClass(RESPONSIVE);
-
-                //if its not already in responsive mode because of the `width` limit
-                if(!isResponsive){
-                    FP.setResponsive($window.height() < heightLimit);
-                }
+            else if(widthLimit){
+                FP.setResponsive(isBreakingPointWidth);
+            }
+            else if(heightLimit){
+                FP.setResponsive(isBreakingPointHeight);
             }
         }
 

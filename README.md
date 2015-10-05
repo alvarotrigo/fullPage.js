@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.2-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.4-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -694,9 +694,11 @@ You can cancel a move by returning `false` on the `onSlideLeave` callback. Same 
 ## Who is using fullPage.js
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
+[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google.png)](http://www.yourprimer.com/)
 [![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)](http://www.sony-asia.com/microsite/mdr-10/)
 ![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)
 [![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)](http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins)
+[![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)](http://www.battlefield.com/)
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
 [![matrimonia](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/matrimonia.png)](http://www.matrimonia.rs/)
@@ -706,6 +708,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
 - http://www.saltaboombox.com.ar
+- http://www.yourprimer.com/
 - http://www.battlefield.com/
 - http://www.kibey.com/
 - http://www.newjumoconcept.com/
