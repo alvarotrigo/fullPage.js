@@ -28,6 +28,7 @@ Would you like to have a website using fullpage.js functionality but you don't k
 - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
 - [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
 - [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
+- [Build tasks](https://github.com/alvarotrigo/fullPage.js#build-tasks)
 - [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
 - [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
 
@@ -683,6 +684,39 @@ Example:
 
 ####Cancelling a move before it takes place
 You can cancel a move by returning `false` on the `onSlideLeave` callback. Same as with `onLeave`.
+
+#Build tasks
+This gives the ability to compile the SCSS file to CSS as well compress and generate source-maps for the CSS and JS files.
+
+##Installing dependencies
+You must have `node` amd `npm` installed in order to run the compile and compress tasks.
+
+Terminal:
+```
+// (Optional) Install Gulp module globally
+npm install gulp -g
+
+// Install fullpage's build dependencies
+npm install
+```
+
+##Task commands
+
+Terminal:
+```
+// Only compile the SCSS
+gulp scss
+
+// Only compress the CSS
+gulp css
+
+// Only compress the JS
+gulp js
+
+// Runs all three tasks
+gulp
+```
+
 
 #Resources
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
