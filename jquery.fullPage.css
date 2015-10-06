@@ -207,42 +207,6 @@ html.fp-enabled,
     height: auto !important;
 }
 
-/*
-@media print {
-
-    html,
-    body {
-        overflow: visible !important;
-        height: auto !important;
-    }
-
-    .fullpage-wrapper {
-        height: auto !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
-    .fp-section {
-        height: auto !important;
-    }
-
-    .fp-slidesContainer {
-        width: auto !important;
-        transition: none !important;
-        transform: none !important;
-    }
-
-    .fp-slides,
-    .fp-slides * {
-        position: static !important;
-    }
-
-    .fp-slide {
-        width: auto !important;
-    }
-}
-*/
-
 @media print {
     html.fp-enabled,
     .fp-enabled body{
