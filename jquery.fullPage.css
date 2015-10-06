@@ -4,7 +4,6 @@
  * MIT licensed
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
- * Contribution by Jhony0311
  */
 html.fp-enabled,
 .fp-enabled body {
@@ -34,8 +33,7 @@ html.fp-enabled,
 .fp-slide {
     float: left;
 }
-.fp-slide,
-.fp-slidesContainer {
+.fp-slide, .fp-slidesContainer {
     height: 100%;
     display: block;
 }
@@ -47,8 +45,7 @@ html.fp-enabled,
     -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
     transition: all 0.3s ease-out;
 }
-.fp-section.fp-table,
-.fp-slide.fp-table {
+.fp-section.fp-table, .fp-slide.fp-table {
     display: table;
     table-layout:fixed;
     width: 100%;
@@ -108,7 +105,7 @@ html.fp-enabled,
 #fp-nav.left {
     left: 17px;
 }
-.fp-slidesNav {
+.fp-slidesNav{
     position: absolute;
     z-index: 4;
     left: 50%;
@@ -206,7 +203,7 @@ html.fp-enabled,
 }
 .fp-auto-height.fp-section,
 .fp-auto-height .fp-slide,
-.fp-auto-height .fp-tableCell {
+.fp-auto-height .fp-tableCell{
     height: auto !important;
 }
 
