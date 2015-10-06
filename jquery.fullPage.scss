@@ -130,6 +130,21 @@ html.fp-enabled,
             cursor: pointer;
             text-decoration: none;
 
+            &.active span {
+                height: 12px;
+                width: 12px;
+                margin: -6px 0 0 -6px;
+                border-radius: 100%;
+
+                #fp-nav ul li:hover &,
+                #fp-slidesNav ul li:hover & {
+                    height: 12px;
+                    width: 12px;
+                    margin: -6px 0 0 -6px;
+                    border-radius: 100%;
+                }
+            }
+
             span {
                 border-radius: 50%;
                 position: absolute;
@@ -149,6 +164,7 @@ html.fp-enabled,
         }
 
         &:hover {
+
             a {
                 span {
                     width: 10px;
@@ -158,15 +174,6 @@ html.fp-enabled,
             }
         }
 
-        &,
-        &:hover {
-            a.active span {
-                height: 12px;
-                width: 12px;
-                margin: -6px 0 0 -6px;
-                border-radius: 100%;
-            }
-        }
     }
 }
 #fp-nav {
@@ -205,9 +212,16 @@ html.fp-enabled,
 
                 }
             }
+            &:hover {
+                .fp-tooltip {
+                    -webkit-transition: opacity 0.2s ease-in;
+                    transition: opacity 0.2s ease-in;
+                    width: auto;
+                    opacity: 1;
+                }
+            }
         }
     }
-    ul li:hover .fp-tooltip,
     &.fp-show-active a.active + .fp-tooltip {
         -webkit-transition: opacity 0.2s ease-in;
         transition: opacity 0.2s ease-in;
