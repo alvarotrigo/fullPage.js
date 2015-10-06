@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.3
+ * fullPage 2.7.4
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -872,7 +872,9 @@
                             }
                             scrollPage(currentSection);
 
-                            isResizing = false;
+                            requestAnimFrame(function(){
+                                isResizing = false;
+                            });
                         }
                     }, options.fitToSectionDelay);
                 }
@@ -1178,7 +1180,12 @@
 
         //IE < 10 pollify for requestAnimationFrame
         window.requestAnimFrame = function(){
-            return window.requestAnimationFrame || function(callback){ callback() }
+            return window.requestAnimationFrame || 
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function(callback){ callback() }
         }();
 
         /**
@@ -1368,8 +1375,6 @@
             continuousVerticalFixSectionOrder(v);
 
             v.element.find('.fp-scrollable').mouseover();
-
-            FP.setFitToSection(!v.element.hasClass(AUTO_HEIGHT));
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
@@ -1785,17 +1790,18 @@
             var widthLimit = options.responsive || options.responsiveWidth; //backwards compatiblity
             var heightLimit = options.responsiveHeight;
 
-            if(widthLimit){
-                FP.setResponsive($window.width() < widthLimit);
+            //only calculating what we need. Remember its called on the resize event.
+            var isBreakingPointWidth = widthLimit && $window.width() < widthLimit;
+            var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
+            
+            if(widthLimit && heightLimit){
+                FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
             }
-
-            if(heightLimit){
-                var isResponsive = container.hasClass(RESPONSIVE);
-
-                //if its not already in responsive mode because of the `width` limit
-                if(!isResponsive){
-                    FP.setResponsive($window.height() < heightLimit);
-                }
+            else if(widthLimit){
+                FP.setResponsive(isBreakingPointWidth);
+            }
+            else if(heightLimit){
+                FP.setResponsive(isBreakingPointHeight);
             }
         }
 
