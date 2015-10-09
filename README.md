@@ -10,7 +10,7 @@ A simple and easy to use plugin to create fullscreen scrolling websites (also kn
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
 
 - [Live demo](http://alvarotrigo.com/fullPage/) - [Apple demo](http://alvarotrigo.com/fullPage/examples/apple.html)
-- [Wordpress theme](https://themify.me/member/aff/go/alvarotrigo/?cr=aHR0cHM6Ly90aGVtaWZ5Lm1lL3RoZW1lcy9mdWxscGFuZQ==)
+- [Wordpress theme](https://goo.gl/HuFudq)
 - [Blog Article](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
