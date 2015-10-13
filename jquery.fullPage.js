@@ -2534,7 +2534,7 @@
          * @param  {object} section jQuery object containing rendered section
          */
         afterRender: function(section){
-            var slides = section.find('SLIDES_WRAPPER');
+            var slides = section.find(SLIDES_WRAPPER);
             var scrollableWrap = section.find(SCROLLABLE_SEL);
 
             if(slides.length){
