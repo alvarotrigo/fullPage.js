@@ -62,6 +62,10 @@ html.fp-enabled,
     position: relative;
 }
 .fp-controlArrow {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
     position: absolute;
     z-index: 4;
     top: 50%;
