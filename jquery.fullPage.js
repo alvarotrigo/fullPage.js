@@ -360,16 +360,18 @@
 
         /**
         * Slides right the slider of the active section.
+        * Optional `section` param.
         */
-        FP.moveSlideRight = function(){
-            moveSlide('next');
+        FP.moveSlideRight = function(section){
+            moveSlide('next', section);
         };
 
         /**
         * Slides left the slider of the active section.
+        * Optional `section` param.
         */
-        FP.moveSlideLeft = function(){
-            moveSlide('prev');
+        FP.moveSlideLeft = function(section){
+            moveSlide('prev', section);
         };
 
         /**
@@ -1108,9 +1110,10 @@
 
         /**
         * Slides a slider to the given direction.
+        * Optional `section` param.
         */
-        function moveSlide(direction){
-            var activeSection = $(SECTION_ACTIVE_SEL);
+        function moveSlide(direction, section){
+            var activeSection = typeof section === 'undefined' ? $(SECTION_ACTIVE_SEL) : section;
             var slides = activeSection.find(SLIDES_WRAPPER_SEL);
             var numSlides = slides.find(SLIDE_SEL).length;
 
@@ -1157,7 +1160,7 @@
 
         //IE < 10 pollify for requestAnimationFrame
         window.requestAnimFrame = function(){
-            return window.requestAnimationFrame || 
+            return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
@@ -1635,13 +1638,15 @@
          * Scrolling horizontally when clicking on the slider controls.
          */
         $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, function() {
+            var section = $(this).closest(SECTION_SEL);
+
             if ($(this).hasClass(SLIDES_PREV)) {
                 if(isScrollAllowed.m.left){
-                    FP.moveSlideLeft();
+                    FP.moveSlideLeft(section);
                 }
             } else {
                 if(isScrollAllowed.m.right){
-                    FP.moveSlideRight();
+                    FP.moveSlideRight(section);
                 }
             }
         });
