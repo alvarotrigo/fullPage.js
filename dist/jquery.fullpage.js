@@ -812,6 +812,15 @@
                     }
                 }
 
+                // check if the end of the page is reached, needed for auto height element at bottom of the page
+                // to be detected as active element
+                var lastSection = sections[sections.length - 1];
+                var lastSectionBottom = lastSection.offsetTop + lastSection.clientHeight;
+                var windowBottom = currentScroll + $(window).height();
+                if (windowBottom >= lastSectionBottom) {
+                    visibleSectionIndex = sections.length - 1;
+                }
+
                 //geting the last one, the current one on the screen
                 currentSection = $(sections).eq(visibleSectionIndex);
 
