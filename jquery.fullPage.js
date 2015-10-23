@@ -441,21 +441,21 @@
         * are smaller than the set limit values.
         */
         FP.setResponsive = function (active){
-            var isResponsive = container.hasClass(RESPONSIVE);
+            var isResponsive = $body.hasClass(RESPONSIVE);
 
             if(active){
                 if(!isResponsive){
                     FP.setAutoScrolling(false, 'internal');
                     FP.setFitToSection(false, 'internal');
                     $(SECTION_NAV_SEL).hide();
-                    container.addClass(RESPONSIVE);
+                    $body.addClass(RESPONSIVE);
                 }
             }
             else if(isResponsive){
                 FP.setAutoScrolling(originals.autoScrolling, 'internal');
                 FP.setFitToSection(originals.autoScrolling, 'internal');
                 $(SECTION_NAV_SEL).show();
-                container.removeClass(RESPONSIVE);
+                $body.removeClass(RESPONSIVE);
             }
         }
 
