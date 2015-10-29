@@ -122,6 +122,7 @@
             scrollOverflow: false,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            useVelocity: false,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1283,16 +1284,32 @@
                     afterSectionLoads(v);
                 }
             }
-
-            // using jQuery animate
+						
+            // using JS animation
             else{
                 var scrollSettings = getScrollSettings(v);
-
-                $(scrollSettings.element).animate(
-                    scrollSettings.options,
-                options.scrollingSpeed, options.easing).promise().done(function () { //only one single callback in case of animating  `html, body`
-                    afterSectionLoads(v);
-                });
+								
+								if (options.useVelocity) {
+										// using Velocity.js
+										$(scrollSettings.element).velocity(
+												scrollSettings.options,
+												{
+										    	duration: options.scrollingSpeed,
+													easing: options.easing
+												}
+										).promise().done(function () { //only one single callback in case of animating  `html, body`
+		                  	afterSectionLoads(v);
+		                });
+								} else {
+										// using jQuery animate
+		                $(scrollSettings.element).animate(
+												scrollSettings.options,
+												options.scrollingSpeed,
+												options.easing
+										).promise().done(function () { //only one single callback in case of animating  `html, body`
+		                  	afterSectionLoads(v);
+		                });
+								}
             }
         }
 
@@ -1737,12 +1754,30 @@
                     afterSlideLoads();
                 }, options.scrollingSpeed, options.easing);
             }else{
-                slides.animate({
-                    scrollLeft : Math.round(destinyPos.left)
-                }, options.scrollingSpeed, options.easing, function() {
-
-                    afterSlideLoads();
-                });
+	            	// using JS
+								if (options.useVelocity) {
+									console.log(slides);
+										// using Velocity.js
+										slides.find(SLIDES_CONTAINER_SEL).velocity(
+												{
+													translateZ: 0,
+													translateX: -1 * Math.round(destinyPos.left)
+												},
+												{
+										    	duration: options.scrollingSpeed,
+													easing: options.easing,
+													complete: function(){afterSlideLoads();}
+												}
+										);
+								} else {
+										// using jQuery animate
+		                slides.animate({
+		                    scrollLeft : Math.round(destinyPos.left)
+		                }, options.scrollingSpeed, options.easing, function() {
+		
+		                    afterSlideLoads();
+		                });
+								}
             }
 
             slidesNav.find(ACTIVE_SEL).removeClass(ACTIVE);
