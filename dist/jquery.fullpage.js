@@ -1756,7 +1756,6 @@
             }else{
 	            	// using JS
 								if (options.useVelocity) {
-									console.log(slides);
 										// using Velocity.js
 										slides.find(SLIDES_CONTAINER_SEL).velocity(
 												{
