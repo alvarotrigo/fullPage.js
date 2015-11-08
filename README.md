@@ -130,7 +130,7 @@ A more complex initialization with all options set could look like this:
 $(document).ready(function() {
 	$('#fullpage').fullpage({
 		//Navigation
-		menu: false,
+		menu: '#menu',
 		lockAnchors: false,
 		anchors:['firstPage', 'secondPage'],
 		navigation: false,
