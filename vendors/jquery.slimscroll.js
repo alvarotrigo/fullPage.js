@@ -250,24 +250,6 @@
           isOverBar = false;
         });
 
-        // allow scrolling on page load
-        // based on hack in http://stackoverflow.com/a/6593995/1547641
-        // Chrome seems to return an rgba() value while other browsers return
-        // the "transparent" value.
-        if (
-
-           me.css('background-color') == 'transparent' ||
-           me.css('background-color') == 'rgba(0, 0, 0, 0)'
-        ) {
-           isOverPanel = true;
-           showBar();
-           hideBar();
-        }
-        else {
-          isOverPanel = false;
-          hideBar();
-        }
-
         // show on parent mouseover
         me.hover(function(){
           isOverPanel = true;

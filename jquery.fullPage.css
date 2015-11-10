@@ -1,11 +1,12 @@
-/**
- * fullPage 2.6.0
+/*!
+ * fullPage 2.7.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
-html, body {
+html.fp-enabled,
+.fp-enabled body {
     margin: 0;
     padding: 0;
     overflow:hidden;
@@ -199,4 +200,121 @@ html, body {
 }
 #fp-nav ul li .fp-tooltip.left {
     left: 20px;
+}
+.fp-auto-height.fp-section,
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell{
+    height: auto !important;
+}
+
+@media print {
+    html.fp-enabled,
+    .fp-enabled body{
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    html {
+        background: #fff;
+        width: auto;
+        height: auto;
+        overflow: visible;
+    }
+    body {
+        background: #fff;
+        font-size: 20pt;
+        width: auto;
+        height: auto;
+        border: 0;
+        margin: 0 5%;
+        padding: 0;
+        overflow: visible;
+        float: none !important;
+    }
+
+    #fp-nav,
+    .fp-slidesNav,
+    .fp-controlArrow{
+        display: none !important;
+    }
+    /* Need to reduce the size of the fonts for printing */
+    h1 { font-size: 28pt !important;  }
+    h2 { font-size: 24pt !important; }
+    h3 { font-size: 22pt !important; }
+    h4 { font-size: 22pt !important; font-variant: small-caps; }
+    h5 { font-size: 21pt !important; }
+    h6 { font-size: 20pt !important; font-style: italic; }
+
+    .fp-section,
+    .fp-tableCell,
+    .slimScrollDiv,
+    .fp-scrollable{
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        position:relative;
+        float: none !important;
+    }
+    .fp-slidesContainer{
+        -webkit-transform: none !important;
+        -ms-transform: none !important;
+        transform: none !important;
+
+        -webkit-transition: none !important;
+           -moz-transition: none !important;
+            -ms-transition: none !important;
+                transition: none !important;
+    }
+
+    .fp-slides,
+    .fp-slidesContainer{
+        height: auto !important;
+        width: 100% !important;
+        float: none !important;
+        overflow: hidden !important;
+    }
+    .fp-slides{
+        height: 800px !important;
+        width: 800px !important;
+    }
+    .fp-slide{
+        float: none !important;
+        width: 100% !important;
+        position: static !important;
+    }
+    .fullpage-wrapper{
+         float: none !important;
+
+        -webkit-transform: none !important;
+        -ms-transform: none !important;
+        transform: none !important;
+
+      -webkit-transition: none !important;
+       -moz-transition: none !important;
+        -ms-transition: none !important;
+            transition: none !important;
+
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+
+        left: 0 !important;
+        top: 0 !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        zoom: 1 !important;
+
+        overflow: visible !important;
+        display: block !important;
+
+        text-align: left !important;
+    }
+    .fp-section{
+        page-break-after: always !important;
+    }
+    .fp-slide{
+        page-break-after: always !important;
+    }
+
 }

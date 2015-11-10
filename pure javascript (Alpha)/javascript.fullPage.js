@@ -1,5 +1,5 @@
 /**
- * fullPage Pure Javascript v.0.0.6 (Alpha) - Not support given until Beta version.
+ * fullPage Pure Javascript v.0.0.8 (Alpha) - Not support given until Beta version.
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -34,6 +34,7 @@
     var RESPONSIVE =            'fp-responsive';
     var NO_TRANSITION =         'fp-notransition';
     var DESTROYED =             'fp-destroyed';
+    var ENABLED =               'fp-enabled';
     var VIEWING_PREFIX =        'fp-viewing';
     var ACTIVE =                'active';
     var ACTIVE_SEL =            '.' + ACTIVE;
@@ -118,6 +119,7 @@
             scrollingSpeed: 700,
             autoScrolling: true,
             fitToSection: true,
+            fitToSectionDelay: 1000,
             easingcss3: 'ease',
             loopHorizontal: true,
             touchSensitivity: 5,
@@ -156,11 +158,6 @@
         removeClass(container, DESTROYED); //in case it was destroyed before initilizing it again
         displayWarnings();
 
-        setMouseWheelScrolling(true);
-        addTouchHandler();
-        addResizeHandler();
-        addScrollHandler();
-
         //if css3 is not supported, it will use jQuery animations
         if(options.css3){
             options.css3 = support3d();
@@ -174,11 +171,17 @@
 
             //adding a class to recognize the container internally in the code
             addClass(container, WRAPPER);
+            addClass($('html'), ENABLED);
         }
         //trying to use fullpage without a selector?
         else{
             showError('error', 'Error! Fullpage.js needs to be initialized with a selector. For example: fullpage(\'#fullpage\');');
         }
+
+        setMouseWheelScrolling(true);
+        addTouchHandler();
+        addResizeHandler();
+        addScrollHandler();
 
         //adding internal class names to void problem with common ones
         var originalSections = $$(options.sectionSelector);
@@ -219,7 +222,7 @@
             }
 
             // if there's any slide
-            if (numSlides > 1) {
+            if (numSlides > 0) {
                 var sliderWidth = numSlides * 100;
                 var slideWidth = 100 / numSlides;
 
@@ -232,7 +235,7 @@
 
                 setCss($(SLIDES_CONTAINER_SEL, section), 'width',  sliderWidth + '%');
 
-                if(options.controlArrows){
+                if(options.controlArrows && numSlides > 1){
                     createSlideArrows(section);
                 }
 
@@ -292,7 +295,7 @@
             addClass( $('a', activeLi), ACTIVE);
         }
 
-        isFunction( options.afterRender ) && options.afterRender.call(container);
+        afterRenderActions();
 
         //getting the anchor link in the URL and deleting the `#`
         var value =  window.location.hash.replace('#', '').split('/');
@@ -358,10 +361,6 @@
 
     function getByTag(element){
         return document.getElementsByTagName(element)[0];
-    }
-
-    function getByTags(){
-        return document.getElementsByTagName(element);
     }
 
     function css( el, props ) {
@@ -442,6 +441,10 @@
         return el && (
             fn(el) ? el : closest(el.parentNode, fn)
         );
+    }
+
+    function getWindowWidth(){
+        return  'innerWidth' in window ? window.innerWidth : document.documentElement.offsetWidth;
     }
 
     function getWindowHeight(){
@@ -533,6 +536,27 @@
     //Gets siblings
     function getAllSiblings(n) {
         return getChildren(n.parentNode.firstChild, n);
+    }
+
+    function next(element){
+        var nextSibling = element.nextSibling;
+
+        while(nextSibling && nextSibling.nodeType != 1) {
+            nextSibling = nextSibling.nextSibling;
+        }
+
+        return nextSibling;
+    }
+
+
+    function prev(element){
+        var prevSibling = element.previousSibling;
+
+        while(prevSibling && prevSibling.nodeType != 1) {
+            prevSibling = prevSibling.previousSibling;
+        }
+
+        return prevSibling;
     }
 
     /* --------------- END Javascript helpers  ---------------*/
@@ -672,27 +696,9 @@
         options.keyboardScrolling = value;
     }
 
-    function next(element){
-        var nextSibling = element.nextSibling;
-
-        while(nextSibling && nextSibling.nodeType != 1) {
-            nextSibling = nextSibling.nextSibling;
-        }
-
-        return nextSibling;
-    }
-
-
-    function prev(element){
-        var prevSibling = element.previousSibling;
-
-        while(prevSibling && prevSibling.nodeType != 1) {
-            prevSibling = prevSibling.previousSibling;
-        }
-
-        return prevSibling;
-    }
-
+    /**
+    * Moves the page up one section.
+    */
     function moveSectionUp(){
         var section = prev($(SECTION_ACTIVE_SEL));
 
@@ -701,6 +707,9 @@
         }
     }
 
+    /**
+    * Moves the page down one section.
+    */
     function moveSectionDown(){
         var section = next($(SECTION_ACTIVE_SEL));
 
@@ -709,26 +718,40 @@
         }
     }
 
-    function moveTo(section, slide){
-        var destiny = '';
+    /**
+    * Moves the page to the given section and slide with no animation.
+    * Anchors or index positions can be used as params.
+    */
+    function silentMoveTo(sectionAnchor, slideAnchor){
+        setScrollingSpeed (0, 'internal');
+        moveTo(sectionAnchor, slideAnchor)
+        setScrollingSpeed (originals.scrollingSpeed, 'internal');
+    };
 
-        if(isNaN(section)){
-            destiny = $('[data-anchor="'+section+'"]');
-        }else{
-            destiny = $$(SECTION_SEL)[section -1];
-        }
+    /**
+    * Moves the page to the given section and slide.
+    * Anchors or index positions can be used as params.
+    */
+    function moveTo(sectionAnchor, slideAnchor){
+        var destiny = getSectionByAnchor(sectionAnchor);
 
-        if (typeof slide !== 'undefined'){
-            scrollPageAndSlide(section, slide);
-        }else if(destiny.length > 0){
+        if (typeof slideAnchor !== 'undefined'){
+            scrollPageAndSlide(sectionAnchor, slideAnchor);
+        }else if(destiny){
             scrollPage(destiny);
         }
     }
 
+    /**
+    * Slides right the slider of the active section.
+    */
     function moveSlideRight(){
         moveSlide('next');
     }
 
+    /**
+    * Slides left the slider of the active section.
+    */
     function moveSlideLeft(){
         moveSlide('prev');
     }
@@ -751,7 +774,7 @@
             var slides = $$(SLIDE_SEL, section);
 
             //adjusting the position fo the FULL WIDTH slides...
-            if (slidesWrap && slides.length) {
+            if (slidesWrap && slides.length > 1) {
                 landscapeScroll(slidesWrap, $(SLIDE_ACTIVE_SEL, slidesWrap));
             }
         }
@@ -852,6 +875,16 @@
 
     }
 
+    /**
+    * Actions and callbacks to fire afterRender
+    */
+    function afterRenderActions(){
+        var section = $(SECTION_ACTIVE_SEL);
+
+        isFunction( options.afterLoad ) && options.afterLoad.call(section, section.getAttribute('data-anchor'), (getNodeIndex(section) + 1));
+        isFunction( options.afterRender ) && options.afterRender.call(container);
+    }
+
     var scrollId;
     var scrollId2;
     var isScrolling = false;
@@ -943,7 +976,7 @@
                         scrollPage(currentSection);
                         isResizing = false;
                     }
-                }, 1000);
+                }, options.fitToSectionDelay);
             }
         }
     }
@@ -973,7 +1006,8 @@
     * used one to determine the direction.
     */
     function touchMoveHandler(event){
-        var e = event.originalEvent;
+
+        var e = window.event || e || e.originalEvent;
 
         if(isReallyTouch(e)){
             if(options.autoScrolling){
@@ -994,7 +1028,7 @@
                 if ( slides && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartX - touchEndX) > (window.offsetWidth / 100 * options.touchSensitivity)) {
+                    if (Math.abs(touchStartX - touchEndX) > (getWindowWidth() / 100 * options.touchSensitivity)) {
                         if (touchStartX > touchEndX) {
                             moveSlideRight(); //next
                         } else {
@@ -1007,7 +1041,7 @@
                 else if(options.autoScrolling){
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartY - touchEndY) > (window.offsetHeight/ 100 * options.touchSensitivity)) {
+                    if (Math.abs(touchStartY - touchEndY) > (getWindowHeight()/ 100 * options.touchSensitivity)) {
                         if (touchStartY > touchEndY) {
                             scrolling('down');
                         } else if (touchEndY > touchStartY) {
@@ -1028,8 +1062,11 @@
         return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
     }
 
+    /**
+    * Handler for the touch start event.
+    */
     function touchStartHandler(event){
-        var e = event.originalEvent;
+        var e = window.event || e || e.originalEvent;
 
         //stopping the auto scroll to adjust to a section
         if(options.fitToSection){
@@ -1043,6 +1080,9 @@
         }
     }
 
+    /**
+    * Gets the average of the last `number` elements of the given array.
+    */
     function getAverage(elements, number){
         var sum = 0;
 
@@ -1124,6 +1164,9 @@
         }
     }
 
+    /**
+    * Slides a slider to the given direction.
+    */
     function moveSlide(direction){
         var activeSection = $(SECTION_ACTIVE_SEL);
         var slides = $(SLIDES_WRAPPER_SEL, activeSection);
@@ -1168,7 +1211,7 @@
     function keepSlidesPosition(){
         var activeSlides = $$(SLIDE_ACTIVE_SEL);
         for( var i =0; i<activeSlides.length; i++){
-            silentLandscapeScroll(activeSlides[i]);
+            silentLandscapeScroll(activeSlides[i], 'internal');
         }
     }
 
@@ -1238,9 +1281,15 @@
             var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
             transformContainer(translate3d, true);
 
-            setTimeout(function () {
+            //even when the scrollingSpeed is 0 there's a little delay, which might cause the
+            //scrollingSpeed to change in case of using silentMoveTo();
+            if(options.scrollingSpeed){
+                setTimeout(function () {
+                    afterSectionLoads(v);
+                }, options.scrollingSpeed);
+            }else{
                 afterSectionLoads(v);
-            }, options.scrollingSpeed);
+            }
         }
 
         // using jQuery animate
@@ -1281,9 +1330,7 @@
         isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
         canScroll = true;
 
-        setTimeout(function () {
-            isFunction(v.callback) && v.callback.call(this);
-        }, 600);
+        isFunction(v.callback) && v.callback.call(this);
     }
 
 
@@ -1291,7 +1338,6 @@
     * Scrolls to the anchor in the URL when loading the site
     */
     function scrollToAnchor(){
-        console.log("va");
         //getting the anchor link in the URL and deleting the `#`
         var value =  window.location.hash.replace('#', '').split('/');
         var section = value[0];
@@ -1521,7 +1567,7 @@
         };
 
         if(options.css3){
-            var translate3d = 'translate3d(-' + destiny.offsetLeft + 'px, 0px, 0px)';
+            var translate3d = 'translate3d(-' + Math.round(destiny.offsetLeft) + 'px, 0px, 0px)';
             var slidesContainer = $(SLIDES_CONTAINER_SEL, slides);
 
             addAnimation(slidesContainer, options.scrollingSpeed>0);
@@ -1531,7 +1577,7 @@
                 afterSlideLoads();
             }, options.scrollingSpeed, options.easing);
         }else{
-            scrollTo(slides, destiny.offsetLeft, options.scrollingSpeed, function(){
+            scrollTo(slides, Math.round(destiny.offsetLeft), options.scrollingSpeed, function(){
                 afterSlideLoads();
             });
         }
@@ -1568,7 +1614,7 @@
 
             resizeId = setTimeout(function(){
                 reBuild(true);
-            }, 500);
+            }, 350);
         }
     }
 
@@ -1677,21 +1723,41 @@
         },10);
     }
 
+    /**
+    * Gets a section by its anchor / index
+    */
+    function getSectionByAnchor(sectionAnchor){
+        //section
+        var section = $(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
+        if(!section){
+            section = $$(SECTION_SEL)[(sectionAnchor -1)];
+        }
+
+        return section;
+    }
+
+    /**
+    * Gets a slide inside a given section by its anchor / index
+    */
+    function getSlideByAnchor(slideAnchor, section){
+        var slides = $(SLIDES_WRAPPER_SEL, section);
+        var slide =  $(SLIDE_SEL + '[data-anchor="'+slideAnchor+'"]', slides);
+
+        if(slides && !slide){
+            slide = $$(SLIDE_SEL, slides)[slideAnchor];
+        }
+
+        return slide;
+    }
 
     /**
     * Scrolls to the given section and slide
     */
     function scrollPageAndSlide(destiny, slide){
-        var section;
+        var section = getSectionByAnchor(destiny);
 
         if (typeof slide === 'undefined') {
             slide = 0;
-        }
-
-        if(isNaN(destiny)){
-            section = $('[data-anchor="'+destiny+'"]');
-        }else{
-            section = $$(SECTION_SEL)[(destiny -1)];
         }
 
         //we need to scroll to the section and then to the slide
@@ -1709,14 +1775,10 @@
     /**
     * Scrolls the slider to the given slide destination for the given section
     */
-    function scrollSlider(section, slide){
-        if(typeof slide !== 'undefined'){
-            var slides = $$(SLIDES_WRAPPER_SEL, section);
-            var destiny =  $(SLIDE_SEL + '[data-anchor="'+slide+'"]', section);
-
-            if(destiny ===  null){
-                destiny = $$(SLIDE_SEL, section)[slide];
-            }
+    function scrollSlider(section, slideAnchor){
+        if(typeof slideAnchor !== 'undefined'){
+            var slides = $(SLIDES_WRAPPER_SEL, section);
+            var destiny =  getSlideByAnchor(slideAnchor, section);
 
             if(destiny){
                 landscapeScroll(slides, destiny);
@@ -1750,7 +1812,7 @@
         ul.innerHTML = ul.innerHTML + list;
 
         //centering it
-        setCss(nav, 'margin-left', '-' + (nav.offsetWidth()/2) + 'px');
+        setCss(nav, 'margin-left', '-' + (nav.offsetWidth/2) + 'px');
 
         var firstLi = $$('li', nav)[0];
         addClass( $('a', firstLi), ACTIVE);
@@ -1897,11 +1959,13 @@
     * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
     */
     function removeMouseWheelHandler(){
+        var wrapper = $(WRAPPER_SEL);
+
         if (document.addEventListener) {
-            document.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-            document.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
+            wrapper.removeEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
+            wrapper.removeEventListener('wheel', MouseWheelHandler, false); //Firefox
         } else {
-            document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+            wrapper.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
         }
     }
 
@@ -1911,7 +1975,7 @@
     * After this function is called, the mousewheel and trackpad movements will scroll through sections
     */
     function addMouseWheelHandler(){
-        addHandler(document, MouseWheelHandler, 'mousewheel', 'onmousewheel', 'wheel');
+        addHandler($(WRAPPER_SEL), MouseWheelHandler, 'mousewheel', 'onmousewheel', 'wheel');
     }
 
     function addResizeHandler(){
@@ -1940,15 +2004,19 @@
     */
     function addTouchHandler(){
         if(isTouchDevice || isTouch){
+            var wrapper = $(WRAPPER_SEL);
             if (document.addEventListener) {
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                document.removeEventListener('touchstart ' + MSPointer.down);
-                document.removeEventListener('touchmove ' + MSPointer.move);
+                wrapper.removeEventListener('touchstart', touchStartHandler);
+                wrapper.removeEventListener(MSPointer.down, touchStartHandler);
 
-                document.addEventListener('touchstart ' + MSPointer.down, touchStartHandler);
-                document.addEventListener('touchmove ' + MSPointer.move, touchMoveHandler);
+                wrapper.removeEventListener('touchmove', touchMoveHandler);
+                wrapper.removeEventListener(MSPointer.move, touchMoveHandler);
+
+                addListenerMulti(wrapper, 'touchstart ' + MSPointer.down, touchStartHandler);
+                addListenerMulti(wrapper, 'touchmove ' + MSPointer.move, touchMoveHandler);
             }
         }
     }
@@ -1958,12 +2026,17 @@
     */
     function removeTouchHandler(){
         if(isTouchDevice || isTouch){
-            if (document.addEventListener) {
+            var wrapper = $(WRAPPER_SEL);
+
+            if (wrapper.addEventListener) {
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                document.removeEventListener('touchstart ' + MSPointer.down);
-                document.removeEventListener('touchmove ' + MSPointer.move);
+                wrapper.removeEventListener('touchstart', touchStartHandler);
+                wrapper.removeEventListener(MSPointer.down, touchStartHandler);
+
+                wrapper.removeEventListener('touchmove', touchMoveHandler);
+                wrapper.removeEventListener(MSPointer.move, touchMoveHandler);
             }
         }
     }
@@ -2007,8 +2080,13 @@
         return events;
     }
 
-    function silentLandscapeScroll(activeSlide){
+    function silentLandscapeScroll(activeSlide, noCallbacks){
         setScrollingSpeed (0, 'internal');
+
+        if(typeof noCallbacks !== 'undefined'){
+            //preventing firing callbacks afterSlideLoad etc.
+            isResizing = true;
+        }
 
         //equivalent to:   activeSlide.closest(SLIDES_WRAPPER_SEL)
         var slides = closest(activeSlide, function (el) {
@@ -2016,6 +2094,11 @@
         });
 
         landscapeScroll(slides, activeSlide);
+
+        if(typeof noCallbacks !== 'undefined'){
+            isResizing = false;
+        }
+
         setScrollingSpeed(originals.scrollingSpeed, 'internal');
     }
 
@@ -2070,6 +2153,9 @@
         }
     }
 
+    /**
+    * Shows a message in the console of the given type.
+    */
     function showError(type, text){
         console && console[type] && console[type]('fullPage: ' + text);
     }
@@ -2080,6 +2166,7 @@
         moveSectionUp: moveSectionUp,
         moveSectionDown: moveSectionDown,
         moveTo: moveTo,
+        silentMoveTo: silentMoveTo,
         moveSlideRight: moveSlideRight,
         moveSlideLeft: moveSlideLeft,
         setAutoScrolling: setAutoScrolling,

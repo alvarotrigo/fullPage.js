@@ -1,5 +1,5 @@
-/**
- * fullPage Pure Javascript v.0.0.4 (Alpha) - Not support given until Beta version.
+/*!
+ * fullPage 2.7.4
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -29,7 +29,6 @@ html.fp-enabled,
     -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
     -moz-box-sizing: border-box; /* <=28 */
     box-sizing: border-box;
-    height:100%;
 }
 .fp-slide {
     float: left;
@@ -50,7 +49,6 @@ html.fp-enabled,
     display: table;
     table-layout:fixed;
     width: 100%;
-    height:100%;
 }
 .fp-tableCell {
     display: table-cell;
@@ -71,6 +69,9 @@ html.fp-enabled,
     height: 0;
     border-style: solid;
     margin-top: -38px;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 .fp-controlArrow.fp-prev {
     left: 15px;
@@ -85,7 +86,6 @@ html.fp-enabled,
 }
 .fp-scrollable {
     overflow: scroll;
-
 }
 .fp-notransition {
     -webkit-transition: none !important;
@@ -97,6 +97,7 @@ html.fp-enabled,
     margin-top: -32px;
     top: 50%;
     opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
 }
 #fp-nav.right {
     right: 17px;
@@ -150,7 +151,7 @@ html.fp-enabled,
     width: 12px;
     margin: -6px 0 0 -6px;
     border-radius: 100%;
-}
+ }
 #fp-nav ul li a span,
 .fp-slidesNav ul li a span {
     border-radius: 50%;
@@ -168,6 +169,12 @@ html.fp-enabled,
     -o-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
 }
+#fp-nav ul li:hover a span,
+.fp-slidesNav ul li:hover a span{
+    width: 10px;
+    height: 10px;
+    margin: -5px 0px 0px -5px;
+}
 #fp-nav ul li .fp-tooltip {
     position: absolute;
     top: -2px;
@@ -182,7 +189,7 @@ html.fp-enabled,
     width: 0;
 }
 #fp-nav ul li:hover .fp-tooltip,
-#fp-nav.fp-show-active a.active + .fp-tooltip{
+#fp-nav.fp-show-active a.active + .fp-tooltip {
     -webkit-transition: opacity 0.2s ease-in;
     transition: opacity 0.2s ease-in;
     width: auto;
@@ -193,4 +200,157 @@ html.fp-enabled,
 }
 #fp-nav ul li .fp-tooltip.left {
     left: 20px;
+}
+.fp-auto-height.fp-section,
+.fp-auto-height .fp-slide,
+.fp-auto-height .fp-tableCell{
+    height: auto !important;
+}
+
+/*
+@media print {
+
+    html,
+    body {
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    .fullpage-wrapper {
+        height: auto !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .fp-section {
+        height: auto !important;
+    }
+
+    .fp-slidesContainer {
+        width: auto !important;
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .fp-slides,
+    .fp-slides * {
+        position: static !important;
+    }
+
+    .fp-slide {
+        width: auto !important;
+    }
+}
+*/
+
+@media print {
+    html.fp-enabled,
+    .fp-enabled body{
+        overflow: visible !important;
+        height: auto !important;
+    }
+
+    html {
+        background: #fff;
+        width: auto;
+        height: auto;
+        overflow: visible;
+    }
+    body {
+        background: #fff;
+        font-size: 20pt;
+        width: auto;
+        height: auto;
+        border: 0;
+        margin: 0 5%;
+        padding: 0;
+        overflow: visible;
+        float: none !important;
+    }
+
+    #fp-nav,
+    .fp-slidesNav,
+    .fp-controlArrow{
+        display: none !important;
+    }
+    /* Need to reduce the size of the fonts for printing */
+    h1 { font-size: 28pt !important;  }
+    h2 { font-size: 24pt !important; }
+    h3 { font-size: 22pt !important; }
+    h4 { font-size: 22pt !important; font-variant: small-caps; }
+    h5 { font-size: 21pt !important; }
+    h6 { font-size: 20pt !important; font-style: italic; }
+
+    .fp-section,
+    .fp-tableCell,
+    .slimScrollDiv,
+    .fp-scrollable{
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        position:relative;
+        float: none !important;
+    }
+    .fp-slidesContainer{
+        -webkit-transform: none !important;
+        -ms-transform: none !important;
+        transform: none !important;
+
+        -webkit-transition: none !important;
+           -moz-transition: none !important;
+            -ms-transition: none !important;
+                transition: none !important;
+    }
+
+    .fp-slides,
+    .fp-slidesContainer{
+        height: auto !important;
+        width: 100% !important;
+        float: none !important;
+        overflow: hidden !important;
+    }
+    .fp-slides{
+        height: 800px !important;
+        width: 800px !important;
+    }
+    .fp-slide{
+        float: none !important;
+        width: 100% !important;
+        position: static !important;
+    }
+    .fullpage-wrapper{
+         float: none !important;
+
+        -webkit-transform: none !important;
+        -ms-transform: none !important;
+        transform: none !important;
+
+      -webkit-transition: none !important;
+       -moz-transition: none !important;
+        -ms-transition: none !important;
+            transition: none !important;
+
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+
+        left: 0 !important;
+        top: 0 !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+        zoom: 1 !important;
+
+        overflow: visible !important;
+        display: block !important;
+
+        text-align: left !important;
+    }
+    .fp-section{
+        page-break-after: always !important;
+    }
+    .fp-slide{
+        page-break-after: always !important;
+    }
+
 }
