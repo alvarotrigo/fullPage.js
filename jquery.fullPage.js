@@ -49,7 +49,9 @@
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
     var AUTO_HEIGHT =       'fp-auto-height';
     var AUTO_HEIGHT_SEL =   '.fp-auto-height';
-
+    var NO_PADDING_TOP = 'fp-no-padding-top';
+    var NO_PADDING_BOTTOM = 'fp-no-padding-bottom';
+    
     // section nav
     var SECTION_NAV =           'fp-nav';
     var SECTION_NAV_SEL =       '#' + SECTION_NAV;
@@ -638,11 +640,15 @@
             if(options.paddingTop){
                 section.css('padding-top', options.paddingTop);
             }
-
+            if(section.hasClass(NO_PADDING_TOP)){
+                section.css('padding-top', 0);
+            }
             if(options.paddingBottom){
                 section.css('padding-bottom', options.paddingBottom);
             }
-
+            if(section.hasClass(NO_PADDING_BOTTOM)){
+                section.css('padding-bottom', 0);
+            }
             if (typeof options.sectionsColor[index] !==  'undefined') {
                 section.css('background-color', options.sectionsColor[index]);
             }
