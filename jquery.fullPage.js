@@ -381,7 +381,7 @@
             });
 
             var windowsWidth = $window.width();
-            windowsHeight = $window.height();  //updating global var
+            windowsHeight = window.innerHeight || $window.height();  //updating global var
 
             //text resizing
             if (options.resize) {
@@ -461,7 +461,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = $window.height();
+        var windowsHeight = window.innerHeight || $window.height();
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -504,7 +504,7 @@
             FP.setAllowScrolling(true);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
+            windowsHeight = window.innerHeight || $window.height();
 
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
@@ -978,7 +978,7 @@
                     else if(options.autoScrolling){
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartY - touchEndY) > ((window.innerHeight || $window.height()) / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
                                 scrolling('down', scrollable);
                             } else if (touchEndY > touchStartY) {
@@ -1180,7 +1180,7 @@
 
         //IE < 10 pollify for requestAnimationFrame
         window.requestAnimFrame = function(){
-            return window.requestAnimationFrame || 
+            return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
@@ -1763,7 +1763,7 @@
 
                 //if the keyboard is NOT visible
                 if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
-                    var currentHeight = $window.height();
+                    var currentHeight = window.innerHeight || $window.height();
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
@@ -1792,8 +1792,8 @@
 
             //only calculating what we need. Remember its called on the resize event.
             var isBreakingPointWidth = widthLimit && $window.width() < widthLimit;
-            var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
-            
+            var isBreakingPointHeight = heightLimit && (window.innerHeight || $window.height()) < heightLimit;
+
             if(widthLimit && heightLimit){
                 FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
             }
