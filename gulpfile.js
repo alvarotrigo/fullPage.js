@@ -39,4 +39,4 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('default', ['sass', 'css', 'js']);
+gulp.task('default', ['css', 'js']);
