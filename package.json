@@ -1,6 +1,6 @@
 {
   "name": "fullpage.js",
-  "version": "2.7.2",
+  "version": "2.7.4",
   "description": "Create  beautiful fullscreen scrolling websites",
   "main": "jquery.fullPage.js",
   "scripts": {
@@ -36,5 +36,13 @@
     "url": "https://github.com/alvarotrigo/fullPage.js/issues"
   },
   "homepage": "https://github.com/alvarotrigo/fullPage.js",
-  "namespace": "$.fn.fullpage"
+  "namespace": "$.fn.fullpage",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.1"
+  }
 }
