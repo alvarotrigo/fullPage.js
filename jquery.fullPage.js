@@ -107,6 +107,7 @@
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
             scrollBar: false,
+            lazyDistance: 1,
 
             //scrolling
             css3: true,
@@ -1133,7 +1134,7 @@
 
             //isn't there a next slide in the secuence?
             if(!destiny.length){
-                //respect loopHorizontal settin
+                //respect loopHorizontal setting
                 if (!options.loopHorizontal) return;
 
                 if(direction === 'prev'){
@@ -1374,6 +1375,25 @@
             var slide = destiny.find(SLIDE_ACTIVE_SEL);
             if( slide.length ) {
                 destiny = $(slide);
+
+            if( destiny.length == 1 && destiny.filter(SLIDE_SEL).length ) {
+                // Handling a single slide.
+                if( options.lazyDistance ) {
+                    var prev = destiny.prevAll(':lt('+options.lazyDistance+')');
+                    var next = destiny.nextAll(':lt('+options.lazyDistance+')');
+
+                    // Add first/last sibling when there's no next/prev.
+                    // (does not use options.lazyDistance currently).
+                    if (options.loopHorizontal ) {
+                        if(!next.length) {
+                            next = destiny.siblings(':first');
+                        } else if(!prev.length) {
+                            prev = destiny.siblings(':last');
+                        }
+                    }
+                    destiny = destiny.add(prev).add(next);
+                }
+
             }
 
             destiny.find('img[data-src], source[data-src], audio[data-src]').each(function(){
