@@ -125,6 +125,7 @@
             scrollOverflowHandler: defaultScrollHandler,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            topOffset: 0,
 
             //Accessibility
             keyboardScrolling: true,
@@ -244,6 +245,13 @@
         */
         FP.setLockAnchors = function(value){
             options.lockAnchors = value;
+        };
+
+        /**
+        * Sets topOffset variable
+        */
+        FP.setTopOffset = function(value){
+            options.topOffset = value;
         };
 
         /**
@@ -1178,7 +1186,7 @@
                 if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
                 //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
-                var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
+                var dtop = element.hasClass(AUTO_HEIGHT) ? ( dest.top - windowsHeight + element.height() + options.topOffset ) : ( dest.top + options.topOffset );
 
                 //local variables
                 var v = {
