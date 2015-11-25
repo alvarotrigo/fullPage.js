@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.5
+ * fullPage 2.7.6 (dev)
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -1219,10 +1219,9 @@
                 if($.isFunction(options.onLeave) && !v.localIsResizing){
                     if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
                         return;
-                    }else{
-                        stopMedia(v.activeSection);
                     }
                 }
+                stopMedia(v.activeSection);
 
                 element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
                 lazyLoad(element);
@@ -2451,7 +2450,7 @@
 
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
-                removeSlimScroll($(this));
+                options.scrollOverflowHandler.remove($(this));
                 $(this).removeClass(TABLE + ' ' + ACTIVE);
             });
 
@@ -2465,6 +2464,12 @@
 
             //scrolling the page to the top with no animation
             $htmlBody.scrollTop(0);
+
+            //removing selectors
+            var usedSelectors = [SECTION, SLIDE, SLIDES_CONTAINER];
+            $.each(usedSelectors, function(index, value){
+                $('.' + value).removeClass(value);
+            });
         }
 
         /*
