@@ -384,7 +384,7 @@
                 isResizing = true;
             });
 
-            var windowsWidth = $window.width();
+            var windowsWidth = window.outerWidth;
             windowsHeight = $window.height();  //updating global var
 
             //text resizing
@@ -939,7 +939,7 @@
                     if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartX - touchEndX) > ($window.width() / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartX - touchEndX) > (window.outerWidth / 100 * options.touchSensitivity)) {
                             if (touchStartX > touchEndX) {
                                 if(isScrollAllowed.m.right){
                                     FP.moveSlideRight(); //next
@@ -1772,7 +1772,7 @@
             var heightLimit = options.responsiveHeight;
 
             //only calculating what we need. Remember its called on the resize event.
-            var isBreakingPointWidth = widthLimit && $window.width() < widthLimit;
+            var isBreakingPointWidth = widthLimit && window.outerWidth < widthLimit;
             var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
 
             if(widthLimit && heightLimit){
