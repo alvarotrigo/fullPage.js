@@ -384,8 +384,8 @@
                 isResizing = true;
             });
 
-            var windowsWidth = $window.width();
-            windowsHeight = $window.height();  //updating global var
+            var windowsWidth = window.outerWidth;
+            windowsHeight = window.outerHeight;  //updating global var
 
             //text resizing
             if (options.resize) {
@@ -465,7 +465,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = $window.height();
+        var windowsHeight = window.outerHeight;
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -508,7 +508,7 @@
             FP.setAllowScrolling(true);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
+            windowsHeight = window.outerHeight;
 
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
@@ -939,7 +939,7 @@
                     if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartX - touchEndX) > ($window.width() / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartX - touchEndX) > (window.outerWidth / 100 * options.touchSensitivity)) {
                             if (touchStartX > touchEndX) {
                                 if(isScrollAllowed.m.right){
                                     FP.moveSlideRight(); //next
@@ -956,7 +956,7 @@
                     else if(options.autoScrolling){
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartY - touchEndY) > (window.outerHeight / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
                                 scrolling('down', scrollable);
                             } else if (touchEndY > touchStartY) {
@@ -1744,7 +1744,7 @@
 
                 //if the keyboard is NOT visible
                 if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
-                    var currentHeight = $window.height();
+                    var currentHeight = window.outerHeight;
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
@@ -1772,8 +1772,8 @@
             var heightLimit = options.responsiveHeight;
 
             //only calculating what we need. Remember its called on the resize event.
-            var isBreakingPointWidth = widthLimit && $window.width() < widthLimit;
-            var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
+            var isBreakingPointWidth = widthLimit && window.outerWidth < widthLimit;
+            var isBreakingPointHeight = heightLimit && window.outerHeight < heightLimit;
 
             if(widthLimit && heightLimit){
                 FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
