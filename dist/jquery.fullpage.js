@@ -1369,11 +1369,7 @@
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
-            //Lazy loading images, videos and audios
-            var slide = destiny.find(SLIDE_ACTIVE_SEL);
-            if( slide.length ) {
-                destiny = $(slide);
-            }
+            var destiny = getSlideOrSection(destiny);
 
             destiny.find('img[data-src], source[data-src], audio[data-src]').each(function(){
                 $(this).attr('src', $(this).data('src'));
@@ -1389,6 +1385,8 @@
         * Plays video and audio elements.
         */
         function playMedia(destiny){
+            var destiny = getSlideOrSection(destiny);
+
             //playing HTML5 media elements
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
@@ -1403,6 +1401,8 @@
         * Stops video and audio elements.
         */
         function stopMedia(destiny){
+            var destiny = getSlideOrSection(destiny);
+
             //stopping HTML5 media elements
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
@@ -1411,6 +1411,18 @@
                     element.pause();
                 }
             });
+        }
+
+        /**
+        * Gets the active slide (or section) for the given section
+        */
+        function getSlideOrSection(destiny){
+            var slide = destiny.find(SLIDE_ACTIVE_SEL);
+            if( slide.length ) {
+                destiny = $(slide);
+            }
+
+            return destiny;
         }
 
         /**
@@ -1661,13 +1673,13 @@
             var anchorLink = section.data('anchor');
             var slidesNav = section.find(SLIDES_NAV_SEL);
             var slideAnchor = getAnchor(destiny);
+            var prevSlide = section.find(SLIDE_ACTIVE_SEL);
 
             //caching the value of isResizing at the momment the function is called
             //because it will be checked later inside a setTimeout and the value might change
             var localIsResizing = isResizing;
 
             if(options.onSlideLeave){
-                var prevSlide = section.find(SLIDE_ACTIVE_SEL);
                 var prevSlideIndex = prevSlide.index();
                 var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
@@ -1681,6 +1693,7 @@
                     }
                 }
             }
+            stopMedia(prevSlide);
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
             if(!localIsResizing){
@@ -1705,6 +1718,8 @@
                 if(!localIsResizing){
                     $.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
                 }
+                playMedia(destiny);
+
                 //letting them slide again
                 slideMoving = false;
             };
