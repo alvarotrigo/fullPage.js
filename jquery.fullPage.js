@@ -1179,7 +1179,8 @@
 
                 //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
                 var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
-
+                //Fixed: Scroll failing when first section be set to auto height
+                dtop = dest.top == 0 ? 0 : dtop;
                 //local variables
                 var v = {
                     element: element,
