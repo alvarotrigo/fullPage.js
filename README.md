@@ -2,7 +2,7 @@
 
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.5-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.6-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -714,7 +714,7 @@ gulp css
 // Only compress the JS
 gulp js
 
-// Runs all three tasks
+// Runs the css and js tasks (not the scss)
 gulp
 ```
 
@@ -743,8 +743,9 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
-- http://www.saltaboombox.com.ar
 - http://www.yourprimer.com/
+- http://burntmovie.com/
+- http://essenso.com/
 - http://www.battlefield.com/
 - http://www.kibey.com/
 - http://www.newjumoconcept.com/
