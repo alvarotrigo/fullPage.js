@@ -58,8 +58,8 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				menu: '#menu',
-				anchors: ['firstPage', 'secondPage', '3rdPage'],
-				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+				anchors: ['firstPage', 'firsterpage', 'secondPage', '3rdPage'],
+				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#000000'],
 				autoScrolling: false
 			});
 		});
@@ -96,6 +96,7 @@
 
 <ul id="menu">
 	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="firsterpage" class="active"><a href="#firsterpage">Firsterrr slide</a></li>
 	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
 	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
 </ul>
@@ -108,6 +109,15 @@
 			<p>With a linked menu</p>
 		</div>
 	</div>
+
+	<div class="section " id="section01">
+		<div class="intro">
+			<img src="imgs/1.png"  alt="1"/>
+			<h1>Normal scrollinger</h1>
+			<p>With a linked menuer</p>
+		</div>
+	</div>
+
 	<div class="section" id="section1">
 	    <div class="slide" id="slide1">
 			<div class="intro">
@@ -130,6 +140,7 @@
 			<p>autoScrolling:false</p>
 		</div>
 	</div>
+
 </div>
 
 </body>
