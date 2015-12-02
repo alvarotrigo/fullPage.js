@@ -486,6 +486,7 @@
         var scrollId;
         var scrollId2;
         var keydownId;
+        var checkSectionMove;
 
         if($(this).length){
             init();
@@ -783,6 +784,9 @@
         $window.on('scroll', scrollHandler);
 
         function scrollHandler(){
+
+            //cleartimeout if scrolling
+            clearTimeout(checkSectionMove);
 
             var currentSection;
 
@@ -1366,7 +1370,6 @@
             //if not a small element, and taking up fullscreen
             if(!v.element.hasClass(AUTO_HEIGHT)){
                 var $section = $('.fp-section').height();
-                var checkSectionMove;
 
                 if($section !== getWindowHeight()){
 
