@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.5
+ * fullPage 2.7.6
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -380,11 +380,12 @@
         FP.reBuild = function(resizing){
             if(container.hasClass(DESTROYED)){ return; }  //nothing to do if the plugin was destroyed
 
+            isResizing = true;
             requestAnimFrame(function(){
                 isResizing = true;
             });
 
-            var windowsWidth = $window.width();
+            var windowsWidth = window.outerWidth;
             windowsHeight = $window.height();  //updating global var
 
             //text resizing
@@ -429,6 +430,7 @@
                 FP.silentMoveTo(sectionIndex + 1);
             }
 
+            isResizing = false;
             requestAnimFrame(function(){
                 isResizing = false;
             });
@@ -499,7 +501,7 @@
 
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                options.anchors = $('[data-anchor]').map(function(){
+                options.anchors = $(options.sectionSelector + '[data-anchor]').map(function(){
                     return $(this).data('anchor').toString();
                 }).get();
             }
@@ -939,7 +941,7 @@
                     if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartX - touchEndX) > ($window.width() / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartX - touchEndX) > (window.outerWidth / 100 * options.touchSensitivity)) {
                             if (touchStartX > touchEndX) {
                                 if(isScrollAllowed.m.right){
                                     FP.moveSlideRight(); //next
@@ -1178,7 +1180,7 @@
                 if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
                 //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
-                var dtop = element.hasClass(AUTO_HEIGHT) ? (dest.top - windowsHeight + element.height()) : dest.top;
+                var dtop = element.hasClass(AUTO_HEIGHT) && dest.top ? (dest.top - windowsHeight + element.height()) : dest.top;
 
                 //local variables
                 var v = {
@@ -1219,10 +1221,9 @@
                 if($.isFunction(options.onLeave) && !v.localIsResizing){
                     if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
                         return;
-                    }else{
-                        stopMedia(v.activeSection);
                     }
                 }
+                stopMedia(v.activeSection);
 
                 element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
                 lazyLoad(element);
@@ -1370,11 +1371,7 @@
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
-            //Lazy loading images, videos and audios
-            var slide = destiny.find(SLIDE_ACTIVE_SEL);
-            if( slide.length ) {
-                destiny = $(slide);
-            }
+            var destiny = getSlideOrSection(destiny);
 
             destiny.find('img[data-src], source[data-src], audio[data-src]').each(function(){
                 $(this).attr('src', $(this).data('src'));
@@ -1390,6 +1387,8 @@
         * Plays video and audio elements.
         */
         function playMedia(destiny){
+            var destiny = getSlideOrSection(destiny);
+
             //playing HTML5 media elements
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
@@ -1404,6 +1403,8 @@
         * Stops video and audio elements.
         */
         function stopMedia(destiny){
+            var destiny = getSlideOrSection(destiny);
+
             //stopping HTML5 media elements
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
@@ -1412,6 +1413,18 @@
                     element.pause();
                 }
             });
+        }
+
+        /**
+        * Gets the active slide (or section) for the given section
+        */
+        function getSlideOrSection(destiny){
+            var slide = destiny.find(SLIDE_ACTIVE_SEL);
+            if( slide.length ) {
+                destiny = $(slide);
+            }
+
+            return destiny;
         }
 
         /**
@@ -1662,13 +1675,13 @@
             var anchorLink = section.data('anchor');
             var slidesNav = section.find(SLIDES_NAV_SEL);
             var slideAnchor = getAnchor(destiny);
+            var prevSlide = section.find(SLIDE_ACTIVE_SEL);
 
             //caching the value of isResizing at the momment the function is called
             //because it will be checked later inside a setTimeout and the value might change
             var localIsResizing = isResizing;
 
             if(options.onSlideLeave){
-                var prevSlide = section.find(SLIDE_ACTIVE_SEL);
                 var prevSlideIndex = prevSlide.index();
                 var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
@@ -1682,6 +1695,7 @@
                     }
                 }
             }
+            stopMedia(prevSlide);
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
             if(!localIsResizing){
@@ -1706,6 +1720,8 @@
                 if(!localIsResizing){
                     $.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
                 }
+                playMedia(destiny);
+
                 //letting them slide again
                 slideMoving = false;
             };
@@ -1773,7 +1789,7 @@
             var heightLimit = options.responsiveHeight;
 
             //only calculating what we need. Remember its called on the resize event.
-            var isBreakingPointWidth = widthLimit && $window.width() < widthLimit;
+            var isBreakingPointWidth = widthLimit && window.outerWidth < widthLimit;
             var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
 
             if(widthLimit && heightLimit){
@@ -1979,7 +1995,7 @@
         */
         function getSectionByAnchor(sectionAnchor){
             //section
-            var section = $(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
+            var section = container.find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
             if(!section.length){
                 section = $(SECTION_SEL).eq( (sectionAnchor -1) );
             }
@@ -2451,7 +2467,7 @@
 
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
-                removeSlimScroll($(this));
+                options.scrollOverflowHandler.remove($(this));
                 $(this).removeClass(TABLE + ' ' + ACTIVE);
             });
 
@@ -2465,6 +2481,12 @@
 
             //scrolling the page to the top with no animation
             $htmlBody.scrollTop(0);
+
+            //removing selectors
+            var usedSelectors = [SECTION, SLIDE, SLIDES_CONTAINER];
+            $.each(usedSelectors, function(index, value){
+                $('.' + value).removeClass(value);
+            });
         }
 
         /*
