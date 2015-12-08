@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.6 (dev)
+ * fullPage 2.7.6
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -380,6 +380,7 @@
         FP.reBuild = function(resizing){
             if(container.hasClass(DESTROYED)){ return; }  //nothing to do if the plugin was destroyed
 
+            isResizing = true;
             requestAnimFrame(function(){
                 isResizing = true;
             });
@@ -429,6 +430,7 @@
                 FP.silentMoveTo(sectionIndex + 1);
             }
 
+            isResizing = false;
             requestAnimFrame(function(){
                 isResizing = false;
             });
@@ -499,7 +501,7 @@
 
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                options.anchors = $('[data-anchor]').map(function(){
+                options.anchors = $(options.sectionSelector + '[data-anchor]').map(function(){
                     return $(this).data('anchor').toString();
                 }).get();
             }
@@ -1993,7 +1995,7 @@
         */
         function getSectionByAnchor(sectionAnchor){
             //section
-            var section = $(document).find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
+            var section = container.find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
             if(!section.length){
                 section = $(SECTION_SEL).eq( (sectionAnchor -1) );
             }
