@@ -386,7 +386,7 @@
             });
 
             var windowsWidth = window.outerWidth;
-            windowsHeight = $window.height();  //updating global var
+            windowsHeight = getWindowHeight();  //updating global var
 
             //text resizing
             if (options.resize) {
@@ -467,7 +467,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = $window.height();
+        var windowsHeight = getWindowHeight();
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -488,6 +488,7 @@
         var scrollId;
         var scrollId2;
         var keydownId;
+        var checkSectionMove;
 
         if($(this).length){
             init();
@@ -510,7 +511,7 @@
             FP.setAllowScrolling(true);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
+            windowsHeight = getWindowHeight();
 
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
@@ -785,6 +786,10 @@
         $window.on('scroll', scrollHandler);
 
         function scrollHandler(){
+
+            //cleartimeout if scrolling
+            clearTimeout(checkSectionMove);
+
             var currentSection;
 
             if(!options.autoScrolling || options.scrollBar){
@@ -958,7 +963,7 @@
                     else if(options.autoScrolling){
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                        if (Math.abs(touchStartY - touchEndY) > (getWindowHeight() / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
                                 scrolling('down', scrollable);
                             } else if (touchEndY > touchStartY) {
@@ -1174,6 +1179,7 @@
         * Scrolls the site to the given element and scrolls to the slide if a callback is given.
         */
         function scrollPage(element, callback, isMovementUp){
+
             //requestAnimFrame is used in order to prevent a Chrome 44 bug (http://stackoverflow.com/a/31961816/1081396)
             requestAnimFrame(function(){
                 var dest = element.position();
@@ -1248,6 +1254,7 @@
         * Performs the movement (by CSS3 or by jQuery)
         */
         function performMovement(v){
+
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
 
@@ -1344,6 +1351,7 @@
 
             silentScroll($(SECTION_ACTIVE_SEL).position().top);
 
+
             // Maintain the active slides visible in the viewport
             keepSlidesPosition();
         }
@@ -1359,6 +1367,28 @@
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
+
+
+            //if not a small element, and taking up fullscreen
+            if(!v.element.hasClass(AUTO_HEIGHT)){
+                var $section = $('.fp-section').height();
+
+                if($section !== getWindowHeight()){
+
+                    //after it's done moving for sure (because of clear timeout up above, then let's check)
+                    clearTimeout(checkSectionMove);
+
+                    checkSectionMove = setTimeout(function(){
+
+                        FP.reBuild(true);
+
+                    }, 600);
+
+                }
+            }
+
+
+
 
             playMedia(v.element)
 
@@ -1761,7 +1791,7 @@
 
                 //if the keyboard is NOT visible
                 if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
-                    var currentHeight = $window.height();
+                    var currentHeight = getWindowHeight();
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
@@ -1790,7 +1820,7 @@
 
             //only calculating what we need. Remember its called on the resize event.
             var isBreakingPointWidth = widthLimit && window.outerWidth < widthLimit;
-            var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
+            var isBreakingPointHeight = heightLimit && getWindowHeight() < heightLimit;
 
             if(widthLimit && heightLimit){
                 FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
@@ -1970,6 +2000,11 @@
             }
 
             return sectionHeight;
+        }
+
+
+        function getWindowHeight(){
+            return window.innerHeight || $window.height();
         }
 
         /**
