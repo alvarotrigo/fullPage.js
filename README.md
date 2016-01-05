@@ -8,8 +8,8 @@
 7Kb gziped!
 
 ----
-**Make sure to use the latest version 2.7.6.**
-A dangerous security issue has been found in previous versions!
+**Make sure to use the latest version 2.7.6.** A dangerous security issue has been found in previous versions!
+
 ---
 
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites or onepage sites).
