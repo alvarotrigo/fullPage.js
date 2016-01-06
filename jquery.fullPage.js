@@ -809,7 +809,7 @@
 
                 //setting the visible section as active when manually scrolling
                 //executing only once the first time we reach the section
-                if(!currentSection.hasClass(ACTIVE) && !currentSection.hasClass(AUTO_HEIGHT)){
+                if(!currentSection.hasClass(ACTIVE)){
                     isScrolling = true;
                     var leavingSection = $(SECTION_ACTIVE_SEL);
                     var leavingSectionIndex = leavingSection.index(SECTION_SEL) + 1;
