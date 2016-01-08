@@ -790,18 +790,17 @@
             if(!options.autoScrolling || options.scrollBar){
                 var currentScroll = $window.scrollTop();
                 var visibleSectionIndex = 0;
-                var initial = Math.abs(currentScroll - document.querySelectorAll(SECTION_SEL)[0].offsetTop);
+                var screen_mid = currentScroll + ($window.height() / 2.0);
 
                 //taking the section which is showing more content in the viewport
                 var sections =  document.querySelectorAll(SECTION_SEL);
                 for (var i = 0; i < sections.length; ++i) {
                     var section = sections[i];
 
-                    var current = Math.abs(currentScroll - section.offsetTop);
-
-                    if(current < initial){
+                    // Pick the the last section which passes the middle line of the screen.
+                    if (section.offsetTop <= screen_mid)
+                    {
                         visibleSectionIndex = i;
-                        initial = current;
                     }
                 }
 
@@ -810,7 +809,7 @@
 
                 //setting the visible section as active when manually scrolling
                 //executing only once the first time we reach the section
-                if(!currentSection.hasClass(ACTIVE) && !currentSection.hasClass(AUTO_HEIGHT)){
+                if(!currentSection.hasClass(ACTIVE)){
                     isScrolling = true;
                     var leavingSection = $(SECTION_ACTIVE_SEL);
                     var leavingSectionIndex = leavingSection.index(SECTION_SEL) + 1;
