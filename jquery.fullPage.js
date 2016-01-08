@@ -494,6 +494,7 @@
 
         if($(this).length){
             init();
+            bindEvents();
         }
 
         function init(){
@@ -535,6 +536,56 @@
             $window.on('load', function() {
                 scrollToAnchor();
             });
+        }
+
+        function bindEvents(){
+            //when scrolling...
+            $window.on('scroll', scrollHandler);
+
+            //detecting any change on the URL to scroll to the given anchor link
+            //(a way to detect back history button as we play with the hashes on the URL)
+            $window.on('hashchange', hashChangeHandler);
+
+            //Sliding with arrow keys, both, vertical and horizontal
+            $document.keydown(keydownHandler);
+
+            //to prevent scrolling while zooming
+            $document.keyup(keyUpHandler);
+
+            //when resizing the site, we adjust the heights of the sections, slimScroll...
+            $window.resize(resizeHandler);
+
+            //binding the mousemove when the mouse's middle button is released
+            container.mousedown(mouseDownHandler);
+
+            //unbinding the mousemove when the mouse's middle button is released
+            container.mouseup(mouseUpHandler);
+
+            //Scrolling horizontally when clicking on the slider controls.
+            $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, slideArrowHandler);
+
+            //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
+            $(window).blur(blurHandler);
+
+            //Scrolls to the section when clicking the navigation bullet
+            $document.on('click touchstart', SECTION_NAV_SEL + ' a', sectionBulletHandler);
+
+            //Scrolls the slider to the given slide destination for the given section
+            $document.on('click touchstart', SLIDES_NAV_LINK_SEL, slideBulletHandler);
+
+            /**
+            * Applying normalScroll elements.
+            * Ignoring the scrolls over the specified selectors.
+            */
+            if(options.normalScrollElements){
+                $document.on('mouseenter', options.normalScrollElements, function () {
+                    FP.setMouseWheelScrolling(false);
+                });
+
+                $document.on('mouseleave', options.normalScrollElements, function(){
+                    FP.setMouseWheelScrolling(true);
+                });
+            }
         }
 
         /**
@@ -787,11 +838,9 @@
 
 
         var isScrolling = false;
+        var lastScroll = 0;
 
         //when scrolling...
-        $window.on('scroll', scrollHandler);
-
-        var lastScroll = 0;
         function scrollHandler(){
             var currentSection;
 
@@ -1209,13 +1258,16 @@
                 function(callback){ callback() }
         }();
 
+        var previousDestTop = 0;
         function getDestinationPosition(dest, element){
-            var yMovement = getYmovement(element);
+            var position = dest.top;
 
-            if( dest.top < $window.scrollTop()){
-                return dest.top
+            if( dest.top > previousDestTop){
+                position = position - windowsHeight + element.height();
             }
-            return dest.top - windowsHeight + element.height();
+
+            previousDestTop = position;
+            return position;
         }
 
         /**
@@ -1321,7 +1373,7 @@
                 options.scrollingSpeed, options.easing).promise().done(function () { //only one single callback in case of animating  `html, body`
                     setTimeout(function(){
                         afterSectionLoads(v);
-                    },5);
+                    },30);
                 });
             }
         }
@@ -1495,10 +1547,10 @@
             }
         }
 
-        //detecting any change on the URL to scroll to the given anchor link
-        //(a way to detect back history button as we play with the hashes on the URL)
-        $window.on('hashchange', hashChangeHandler);
-
+        /**
+        * Detecting any change on the URL to scroll to the given anchor link
+        * (a way to detect back history button as we play with the hashes on the URL)
+        */
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
                 var value =  window.location.hash.replace('#', '').split('/');
@@ -1521,29 +1573,12 @@
             }
         }
 
-        /**
-         * Sliding with arrow keys, both, vertical and horizontal
-         */
-        $document.keydown(keydownHandler);
-
-        //to prevent scrolling while zooming
-        $document.keyup(function(e){
-            if(isWindowFocused){ //the keyup gets fired on new tab ctrl + t in Firefox
-                controlPressed = e.ctrlKey;
-            }
-        });
-
-        //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
-        $(window).blur(function() {
-            isWindowFocused = false;
-            controlPressed = false;
-        });
-
         var keydownId;
+
+        //Sliding with arrow keys, both, vertical and horizontal
         function keydownHandler(e) {
 
             clearTimeout(keydownId);
-
 
             var activeElement = $(':focus');
 
@@ -1563,6 +1598,67 @@
                     onkeydown(e);
                 },150);
             }
+        }
+
+        //to prevent scrolling while zooming
+        function keyUpHandler(e){
+            if(isWindowFocused){ //the keyup gets fired on new tab ctrl + t in Firefox
+                controlPressed = e.ctrlKey;
+            }
+        }
+
+        //binding the mousemove when the mouse's middle button is released
+        function mouseDownHandler(e){
+            //middle button
+            if (e.which == 2){
+                oldPageY = e.pageY;
+                container.on('mousemove', mouseMoveHandler);
+            }
+        }
+
+        //unbinding the mousemove when the mouse's middle button is released
+        function mouseUpHandler(e){
+            //middle button
+            if (e.which == 2){
+                container.off('mousemove');
+            }
+        }
+
+        //Scrolling horizontally when clicking on the slider controls.
+        function slideArrowHandler(){
+            var section = $(this).closest(SECTION_SEL);
+
+            if ($(this).hasClass(SLIDES_PREV)) {
+                if(isScrollAllowed.m.left){
+                    FP.moveSlideLeft(section);
+                }
+            } else {
+                if(isScrollAllowed.m.right){
+                    FP.moveSlideRight(section);
+                }
+            }
+        }
+
+        //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
+        function blurHandler(){
+            isWindowFocused = false;
+            controlPressed = false;
+        }
+
+        //Scrolls to the section when clicking the navigation bullet
+        function sectionBulletHandler(e){
+            e.preventDefault();
+            var index = $(this).parent().index();
+            scrollPage($(SECTION_SEL).eq(index));
+        }
+
+        //Scrolls the slider to the given slide destination for the given section
+        function slideBulletHandler(e){
+            e.preventDefault();
+            var slides = $(this).closest(SECTION_SEL).find(SLIDES_WRAPPER_SEL);
+            var destiny = slides.find(SLIDE_SEL).eq($(this).closest('li').index());
+
+            landscapeScroll(slides, destiny);
         }
 
         /**
@@ -1626,23 +1722,6 @@
             }
         }
 
-        //binding the mousemove when the mouse's middle button is released
-        container.mousedown(function(e){
-            //middle button
-            if (e.which == 2){
-                oldPageY = e.pageY;
-                container.on('mousemove', mouseMoveHandler);
-            }
-        });
-
-        //unbinding the mousemove when the mouse's middle button is released
-        container.mouseup(function(e){
-            //middle button
-            if (e.which == 2){
-                container.off('mousemove');
-            }
-        });
-
         /**
         * Detecting the direction of the mouse movement.
         * Used only for the middle button of the mouse.
@@ -1661,57 +1740,6 @@
             }
             oldPageY = e.pageY;
         }
-
-        /**
-        * Scrolls to the section when clicking the navigation bullet
-        */
-        $document.on('click touchstart', SECTION_NAV_SEL + ' a', function(e){
-            e.preventDefault();
-            var index = $(this).parent().index();
-            scrollPage($(SECTION_SEL).eq(index));
-        });
-
-        /**
-        * Scrolls the slider to the given slide destination for the given section
-        */
-        $document.on('click touchstart', SLIDES_NAV_LINK_SEL, function(e){
-            e.preventDefault();
-            var slides = $(this).closest(SECTION_SEL).find(SLIDES_WRAPPER_SEL);
-            var destiny = slides.find(SLIDE_SEL).eq($(this).closest('li').index());
-
-            landscapeScroll(slides, destiny);
-        });
-
-        /**
-        * Applying normalScroll elements.
-        * Ignoring the scrolls over the specified selectors.
-        */
-        if(options.normalScrollElements){
-            $document.on('mouseenter', options.normalScrollElements, function () {
-                FP.setMouseWheelScrolling(false);
-            });
-
-            $document.on('mouseleave', options.normalScrollElements, function(){
-                FP.setMouseWheelScrolling(true);
-            });
-        }
-
-        /**
-         * Scrolling horizontally when clicking on the slider controls.
-         */
-        $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, function() {
-            var section = $(this).closest(SECTION_SEL);
-
-            if ($(this).hasClass(SLIDES_PREV)) {
-                if(isScrollAllowed.m.left){
-                    FP.moveSlideLeft(section);
-                }
-            } else {
-                if(isScrollAllowed.m.right){
-                    FP.moveSlideRight(section);
-                }
-            }
-        });
 
         /**
         * Scrolls horizontal sliders.
@@ -1796,10 +1824,9 @@
             slidesNav.find('li').eq(slideIndex).find('a').addClass(ACTIVE);
         }
 
-        //when resizing the site, we adjust the heights of the sections, slimScroll...
-        $window.resize(resizeHandler);
-
         var previousHeight = windowsHeight;
+
+        //when resizing the site, we adjust the heights of the sections, slimScroll...
         function resizeHandler(){
             //checking if it needs to get responsive
             responsive();
