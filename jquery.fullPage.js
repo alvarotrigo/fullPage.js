@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.6
+ * fullPage 2.7.7 (Beta)
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -49,6 +49,8 @@
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
     var AUTO_HEIGHT =       'fp-auto-height';
     var AUTO_HEIGHT_SEL =   '.fp-auto-height';
+    var NORMAL_SCROLL = 'fp-normal-scroll';
+    var NORMAL_SCROLL_SEL = '.fp-normal-scroll';
 
     // section nav
     var SECTION_NAV =           'fp-nav';
@@ -107,6 +109,7 @@
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
             scrollBar: false,
+            hybrid: false,
 
             //scrolling
             css3: true,
@@ -499,6 +502,8 @@
                 options.css3 = support3d();
             }
 
+            options.scrollBar = options.scrollBar || options.hybrid;
+
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
                 options.anchors = $(options.sectionSelector + '[data-anchor]').map(function(){
@@ -768,6 +773,8 @@
         function afterRenderActions(){
             var section = $(SECTION_ACTIVE_SEL);
 
+            section.addClass('completely');
+
             if(options.scrollOverflowHandler.afterRender){
                 options.scrollOverflowHandler.afterRender(section);
             }
@@ -784,11 +791,13 @@
         //when scrolling...
         $window.on('scroll', scrollHandler);
 
+        var lastScroll = 0;
         function scrollHandler(){
             var currentSection;
 
             if(!options.autoScrolling || options.scrollBar){
                 var currentScroll = $window.scrollTop();
+                var scrollDirection = getScrollDirection(currentScroll);
                 var visibleSectionIndex = 0;
                 var screen_mid = currentScroll + ($window.height() / 2.0);
 
@@ -801,6 +810,12 @@
                     if (section.offsetTop <= screen_mid)
                     {
                         visibleSectionIndex = i;
+                    }
+                }
+
+                if(isCompletelyInViewPort(scrollDirection)){
+                    if(!$(SECTION_ACTIVE_SEL).hasClass('completely')){
+                        $(SECTION_ACTIVE_SEL).addClass('completely').siblings().removeClass('completely');
                     }
                 }
 
@@ -871,6 +886,30 @@
                     }, options.fitToSectionDelay);
                 }
             }
+        }
+
+        /**
+        * Determines whether the active section has seen in its whole or not.
+        */
+        function isCompletelyInViewPort(movement){
+            var top = $(SECTION_ACTIVE_SEL).position().top;
+            var bottom = top + $window.height();
+
+            if(movement == 'up'){
+                return bottom >= ($window.scrollTop() + $window.height());
+            }
+            return top <= $window.scrollTop();
+        }
+
+        /**
+        * Gets the directon of the the scrolling fired by the scroll event.
+        */
+        function getScrollDirection(currentScroll){
+            var direction = currentScroll > lastScroll ? 'down' : 'up';
+
+            lastScroll = currentScroll;
+
+            return direction;
         }
 
         /**
@@ -1044,9 +1083,10 @@
 
         function MouseWheelHandler(e) {
             var curTime = new Date().getTime();
+            var isNormalScroll = $('.completely').hasClass(NORMAL_SCROLL);
 
             //autoscrolling and not zooming?
-            if(options.autoScrolling && !controlPressed){
+            if(options.autoScrolling && !controlPressed && !isNormalScroll){
                 // cross-browser wheel delta
                 e = e || window.event;
                 var value = e.wheelDelta || -e.deltaY || -e.detail;
@@ -1169,6 +1209,15 @@
                 function(callback){ callback() }
         }();
 
+        function getDestinationPosition(dest, element){
+            var yMovement = getYmovement(element);
+
+            if( dest.top < $window.scrollTop()){
+                return dest.top
+            }
+            return dest.top - windowsHeight + element.height();
+        }
+
         /**
         * Scrolls the site to the given element and scrolls to the slide if a callback is given.
         */
@@ -1179,7 +1228,7 @@
                 if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
                 //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
-                var dtop = element.hasClass(AUTO_HEIGHT) && dest.top ? (dest.top - windowsHeight + element.height()) : dest.top;
+                var dtop = getDestinationPosition(dest, element);
 
                 //local variables
                 var v = {
@@ -1249,7 +1298,6 @@
         function performMovement(v){
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
-
                 var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
                 transformContainer(translate3d, true);
 
@@ -1271,7 +1319,9 @@
                 $(scrollSettings.element).animate(
                     scrollSettings.options,
                 options.scrollingSpeed, options.easing).promise().done(function () { //only one single callback in case of animating  `html, body`
-                    afterSectionLoads(v);
+                    setTimeout(function(){
+                        afterSectionLoads(v);
+                    },5);
                 });
             }
         }
@@ -1359,7 +1409,8 @@
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
 
-            playMedia(v.element)
+            playMedia(v.element);
+            v.element.addClass('completely').siblings().removeClass('completely');
 
             canScroll = true;
 
@@ -1460,7 +1511,6 @@
 
 
                 if(section.length){
-
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                     event is fired on every scroll too.*/
