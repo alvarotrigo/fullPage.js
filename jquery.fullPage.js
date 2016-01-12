@@ -56,6 +56,7 @@
     var SECTION_NAV =           'fp-nav';
     var SECTION_NAV_SEL =       '#' + SECTION_NAV;
     var SECTION_NAV_TOOLTIP =   'fp-tooltip';
+    var SECTION_NAV_TOOLTIP_SEL='.'+SECTION_NAV_TOOLTIP;
     var SHOW_ACTIVE_TOOLTIP =   'fp-show-active';
 
     // slide
@@ -539,39 +540,44 @@
         }
 
         function bindEvents(){
-            //when scrolling...
-            $window.on('scroll', scrollHandler);
+            $window
+                //when scrolling...
+                .on('scroll', scrollHandler)
 
-            //detecting any change on the URL to scroll to the given anchor link
-            //(a way to detect back history button as we play with the hashes on the URL)
-            $window.on('hashchange', hashChangeHandler);
+                //detecting any change on the URL to scroll to the given anchor link
+                //(a way to detect back history button as we play with the hashes on the URL)
+                .on('hashchange', hashChangeHandler)
 
-            //Sliding with arrow keys, both, vertical and horizontal
-            $document.keydown(keydownHandler);
+                //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
+                .blur(blurHandler)
 
-            //to prevent scrolling while zooming
-            $document.keyup(keyUpHandler);
+                //when resizing the site, we adjust the heights of the sections, slimScroll...
+                .resize(resizeHandler);
 
-            //when resizing the site, we adjust the heights of the sections, slimScroll...
-            $window.resize(resizeHandler);
+            container
+                //binding the mousemove when the mouse's middle button is released
+                .mousedown(mouseDownHandler)
 
-            //binding the mousemove when the mouse's middle button is released
-            container.mousedown(mouseDownHandler);
+                //unbinding the mousemove when the mouse's middle button is released
+                .mouseup(mouseUpHandler);
 
-            //unbinding the mousemove when the mouse's middle button is released
-            container.mouseup(mouseUpHandler);
+            $document
+                //Sliding with arrow keys, both, vertical and horizontal
+                .keydown(keydownHandler)
+
+                //to prevent scrolling while zooming
+                .keyup(keyUpHandler)
+
+                //Scrolls to the section when clicking the navigation bullet
+                .on('click touchstart', SECTION_NAV_SEL + ' a', sectionBulletHandler)
+
+                //Scrolls the slider to the given slide destination for the given section
+                .on('click touchstart', SLIDES_NAV_LINK_SEL, slideBulletHandler)
+
+                .on('click', SECTION_NAV_TOOLTIP_SEL, tooltipTextHandler);
 
             //Scrolling horizontally when clicking on the slider controls.
             $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, slideArrowHandler);
-
-            //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
-            $(window).blur(blurHandler);
-
-            //Scrolls to the section when clicking the navigation bullet
-            $document.on('click touchstart', SECTION_NAV_SEL + ' a', sectionBulletHandler);
-
-            //Scrolls the slider to the given slide destination for the given section
-            $document.on('click touchstart', SLIDES_NAV_LINK_SEL, slideBulletHandler);
 
             /**
             * Applying normalScroll elements.
@@ -1598,6 +1604,10 @@
                     onkeydown(e);
                 },150);
             }
+        }
+
+        function tooltipTextHandler(){
+            $(this).prev().trigger('click');
         }
 
         //to prevent scrolling while zooming
