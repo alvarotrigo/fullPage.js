@@ -1265,13 +1265,25 @@
         }();
 
         var previousDestTop = 0;
+        /**
+        * Returns the destination Y position based on the scrolling direction and
+        * the height of the section.
+        */
         function getDestinationPosition(dest, element){
+            //top of the desination will be at the top of the viewport
             var position = dest.top;
 
+            //scrolling down ? The bottom of the destination will be at the bottom of the viewport
             if( dest.top > previousDestTop){
-                position = position - windowsHeight + element.height();
+                position = position - windowsHeight + element.outerHeight();
             }
 
+            /*
+            Keeping record of the last scrolled position to determine the scrolling direction.
+            No conventional methods can be used as the scroll bar might not be present
+            AND the section might not be active if it is auto-height and didnt reach the middle
+            of the viewport.
+            */
             previousDestTop = position;
             return position;
         }
@@ -1285,7 +1297,6 @@
                 var dest = element.position();
                 if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
-                //auto height? Scrolling only a bit, the next element's height. Otherwise the whole viewport.
                 var dtop = getDestinationPosition(dest, element);
 
                 //local variables
