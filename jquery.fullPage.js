@@ -1582,7 +1582,7 @@
 
             var activeElement = $(':focus');
 
-            if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
+            if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') && !activeElement.hasClass('scEnabledChrome') &&
                 options.keyboardScrolling && options.autoScrolling){
                 var keyCode = e.which;
 
