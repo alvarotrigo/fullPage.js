@@ -302,7 +302,7 @@
         * Moves the page up one section.
         */
         FP.moveSectionUp = function(){
-            var prev = $(SECTION_ACTIVE_SEL).prev(SECTION_SEL);
+            var prev = $(SECTION_ACTIVE_SEL).prevAll(SECTION_SEL).last();
 
             //looping to the bottom if there's no more sections above
             if (!prev.length && (options.loopTop || options.continuousVertical)) {
@@ -318,7 +318,7 @@
         * Moves the page down one section.
         */
         FP.moveSectionDown = function (){
-            var next = $(SECTION_ACTIVE_SEL).next(SECTION_SEL);
+            var next = $(SECTION_ACTIVE_SEL).nextAll(SECTION_SEL).first();
 
             //looping to the top if there's no more sections below
             if(!next.length &&
