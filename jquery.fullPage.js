@@ -47,10 +47,10 @@
     var SECTION_LAST_SEL =      SECTION_SEL + ':last';
     var TABLE_CELL =            'fp-tableCell';
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
-    var AUTO_HEIGHT =       'fp-auto-height';
-    var AUTO_HEIGHT_SEL =   '.fp-auto-height';
-    var NORMAL_SCROLL = 'fp-normal-scroll';
-    var NORMAL_SCROLL_SEL = '.fp-normal-scroll';
+    var AUTO_HEIGHT =           'fp-auto-height';
+    var AUTO_HEIGHT_SEL =       '.fp-auto-height';
+    var NORMAL_SCROLL =         'fp-normal-scroll';
+    var NORMAL_SCROLL_SEL =     '.fp-normal-scroll';
 
     // section nav
     var SECTION_NAV =           'fp-nav';
@@ -1973,12 +1973,14 @@
             }
         }
 
+        /**
+        * Sets to active the current menu and vertical nav items.
+        */
         function activateMenuAndNav(anchor, index){
             activateMenuElement(anchor);
             activateNavDots(anchor, index);
         }
 
-        /**
         /**
         * Retuns `up` or `down` depending on the scrolling movement to reach its destination
         * from the current section.
