@@ -1388,9 +1388,20 @@
                 $(scrollSettings.element).animate(
                     scrollSettings.options,
                 options.scrollingSpeed, options.easing).promise().done(function () { //only one single callback in case of animating  `html, body`
-                    setTimeout(function(){
+                    if(options.scrollBar){
+
+                        /* Hack!
+                        The timeout prevents setting the most dominant section in the viewport as "active" when the user
+                        scrolled to a smaller section by using the mousewheel (auto scrolling) rather than draging the scroll bar.
+
+                        When using scrollBar:true It seems like the scroll events still getting propagated even after the scrolling animation has finished.
+                        */
+                        setTimeout(function(){
+                            afterSectionLoads(v);
+                        },30);
+                    }else{
                         afterSectionLoads(v);
-                    },30);
+                    }
                 });
             }
         }
@@ -1589,8 +1600,6 @@
                 }
             }
         }
-
-        var keydownId;
 
         //Sliding with arrow keys, both, vertical and horizontal
         function keydownHandler(e) {
@@ -2219,7 +2228,7 @@
             }else{
                 //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
                 if(isTouchDevice || isTouch){
-                    history.replaceState(undefined, undefined, '#' + url);
+                    window.history.replaceState(undefined, undefined, '#' + url);
                 }else{
                     var baseUrl = window.location.href.split('#')[0];
                     window.location.replace( baseUrl + '#' + url );
