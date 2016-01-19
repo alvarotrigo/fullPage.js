@@ -596,14 +596,14 @@
         function setOptionsFromDOM(){
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                options.anchors = $(options.sectionSelector).map(function(){
+                options.anchors = $(options.sectionSelector + '[data-anchor]').map(function(){
                     return $(this).data('anchor').toString();
                 }).get();
             }
 
             //no tooltipos option? Checking for them in the DOM attributes
             if(!options.navigationTooltips.length){
-                options.navigationTooltips = $(options.sectionSelector).map(function(){
+                options.navigationTooltips = $(options.sectionSelector + '[data-tooltip]').map(function(){
                     return $(this).data('tooltip').toString();
                 }).get();
             }
