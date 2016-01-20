@@ -90,6 +90,7 @@
     $.fn.fullpage = function(options) {
 
         // common jQuery objects
+        var $self = $(this);
         var $htmlBody = $('html, body');
         var $body = $('body');
 
@@ -785,10 +786,11 @@
         $window.on('scroll', scrollHandler);
 
         function scrollHandler(){
+            clearTimeout(backupTO);
             var currentSection;
 
             if(!options.autoScrolling || options.scrollBar){
-                var currentScroll = $window.scrollTop();
+                var currentScroll = $window.scrollTop() || $self.scrollTop();;
                 var visibleSectionIndex = 0;
                 var initial = Math.abs(currentScroll - document.querySelectorAll(SECTION_SEL)[0].offsetTop);
 
@@ -1042,8 +1044,12 @@
          * http://www.sitepoint.com/html5-javascript-mouse-wheel/
          */
         var prevTime = new Date().getTime();
+        var backupTO = null;
 
         function MouseWheelHandler(e) {
+            clearTimeout(backupTO);
+            backupTO = setTimeout($window.trigger.bind($window, 'scroll'));
+
             var curTime = new Date().getTime();
 
             //autoscrolling and not zooming?
