@@ -240,21 +240,21 @@ It is important to realise that it doesn't make sense to have all of your sectio
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
 
+```html
+<div class="section">Whole viewport</div>
+<div class="section fp-auto-height">Auto height</div>
+```
+
 ### State classes added by fullpage.js
 Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
 
 - The class `active` is added the current visible section and slide.
 - The class `active` is added to the current menu element (if using the `menu` option).
 - A class of the form `fp-viewing-SECTION-SLIDE` is added to the `body` element of the site. (eg: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) The `SECTION` and `SLIDE` parts will be the anchors (or indexes if no anchor is provided) of the current section and slide.
-- The class `fp-responsive` is added to the `body` element when the entering in the responsive mode (if the responsive options were used).
+- The class `fp-responsive` is added to the `body` element when the entering in the responsive mode
 - The class `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
 - The class `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
 
-
-```html
-<div class="section">Whole viewport</div>
-<div class="section fp-auto-height">Auto height</div>
-```
 
 ## Options
 
@@ -706,7 +706,7 @@ Example:
 ```
 
 ####Cancelling a move before it takes place
-You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same as when canciling movement with `onLeave`](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
+You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same as when canceling a movement with `onLeave`](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
 
 #Reporting issues
 1. Please, look for your issue before asking using the github issues search.
