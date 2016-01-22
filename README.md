@@ -35,9 +35,14 @@ Would you like to have a website using fullpage.js functionality but you don't k
 - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
 - [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
 - [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
+- [Reporting issues](https://github.com/alvarotrigo/fullPage.js#reporting-issues)
+- [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js#contributing-to-fullpagejs)
+- [Changelog](https://github.com/alvarotrigo/fullPage.js#changelog)
 - [Build tasks](https://github.com/alvarotrigo/fullPage.js#build-tasks)
 - [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
 - [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
+- [Donations](https://github.com/alvarotrigo/fullPage.js#donations)
+- [License](https://github.com/alvarotrigo/fullPage.js#license)
 
 ## Introduction
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
@@ -58,7 +63,7 @@ As you can see in the example files, you will need to include:
  - The JavaScript file `jquery.fullPage.js` (or its minified version `jquery.fullPage.min.js`)
  - The css file `jquery.fullPage.css`
 
- **Optionally**, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing` and `easeInOutCubic`) or the one included by default in fullPage.js (`easeInQuart`).
+ **Optionally**, when using `css3:false`, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing` and `easeInOutCubic`) or the one included by default in fullPage.js (`easeInQuart`).
 
 ### Install using bower or npm
 **Optionally**, you can install fullPage.js with bower or npm if you prefer:
@@ -234,6 +239,17 @@ It is possible to use sections or slides which don't take the whole viewport hei
 It is important to realise that it doesn't make sense to have all of your sections using this feature. If there is more than one section in the initial load of the site, the plugin won't scroll at all to see the next one as it will be already in the viewport.
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
+
+### State classes added by fullpage.js
+Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
+
+- The class `active` is added the current visible section and slide.
+- The class `active` is added to the current menu element (if using the `menu` option).
+- A class of the form `fp-viewing-SECTION-SLIDE` is added to the `body` element of the site. (eg: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) The `SECTION` and `SLIDE` parts will be the anchors (or indexes if no anchor is provided) of the current section and slide.
+- The class `fp-responsive` is added to the `body` element when the entering in the responsive mode (if the responsive options were used).
+- The class `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
+- The class `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
+
 
 ```html
 <div class="section">Whole viewport</div>
@@ -690,40 +706,22 @@ Example:
 ```
 
 ####Cancelling a move before it takes place
-You can cancel a move by returning `false` on the `onSlideLeave` callback. Same as with `onLeave`.
+You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same as when canciling movement with `onLeave`](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
+
+#Reporting issues
+1. Please, look for your issue before asking using the github issues search.
+2. Make sure you use the latest fullpage.js version. No support is provided for older versions.
+3. Use the [the Github Issues forum](https://github.com/alvarotrigo/fullPage.js/issues) for create issues.
+4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](http://jsfiddle.net/97tbk/418/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
+
+#Contributing to fullpage.js
+Please see [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
+
+#Changelog
+To see the list of recent changes, see [Releases section](https://github.com/alvarotrigo/fullPage.js/releases).
 
 #Build tasks
-This gives the ability to compile the SCSS file to CSS as well compress and generate source-maps for the CSS and JS files.
-
-##Installing dependencies
-You must have `node` amd `npm` installed in order to run the compile and compress tasks.
-
-Terminal:
-```
-// (Optional) Install Gulp module globally
-npm install gulp -g
-
-// Install fullpage's build dependencies
-npm install
-```
-
-##Task commands
-
-Terminal:
-```
-// Only compile the SCSS
-gulp scss
-
-// Only compress the CSS
-gulp css
-
-// Only compress the JS
-gulp js
-
-// Runs the css and js tasks (not the scss)
-gulp
-```
-
+Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 #Resources
 - [Wordpress theme](https://goo.gl/HuFudq)
@@ -828,6 +826,8 @@ Donations would be more than welcome :)
 
 
 ## License
+
+**The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification )
 
 (The MIT License)
 
