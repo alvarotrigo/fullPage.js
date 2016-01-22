@@ -30,10 +30,12 @@ Would you like to have a website using fullpage.js functionality but you don't k
 - [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
 - [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
+  - [Creating links to sections or slides](https://github.com/alvarotrigo/fullPage.js/tree/dev#creating-links-to-sections-or-slides)
+  - [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
+  - [State classes added by fullpage.js](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
+  - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
 - [Options](https://github.com/alvarotrigo/fullPage.js#options)
 - [Methods](https://github.com/alvarotrigo/fullPage.js#methods)
-- [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
-- [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
 - [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
 - [Reporting issues](https://github.com/alvarotrigo/fullPage.js#reporting-issues)
 - [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js#contributing-to-fullpagejs)
@@ -255,6 +257,18 @@ Fullpage.js adds multiple classes in different elements to keep a record of the 
 - The class `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
 - The class `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
 
+###Lazy Loading
+[Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
+When using lazy loading, all these elements will only get loaded when entering in the viewport.
+To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
+
+```
+<img data-src="image.png">
+<video>
+	<source data-src="video.webm" type="video/webm" />
+	<source data-src="video.mp4" type="video/mp4" />
+</video>
+ ```
 
 ## Options
 
@@ -498,7 +512,7 @@ $.fn.fullpage.setScrollingSpeed(700);
 ---
 ### destroy(type)
 [Demo](http://codepen.io/alvarotrigo/pen/bdxBzv) Destroys the plugin events and optionally its HTML markup and styles.
-Ideal to use when using AJAX to load content. ()
+Ideal to use when using AJAX to load content.
 
 - `type`: can be empty or `all`. If `all` is passed, the HTML markup and styles used by fullpage.js will be removed. This way the original HTML markup, the one used before any plugin modification is made, will be maintained.
 
@@ -517,19 +531,6 @@ Ideal to use in combination with AJAX calls or external changes in the DOM struc
 ```javascript
 $.fn.fullpage.reBuild();
 ```
-
-##Lazy Loading
-[Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
-When using lazy loading, all these elements will only get loaded when entering in the viewport.
-To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
-
-```
-<img data-src="image.png">
-<video>
-	<source data-src="video.webm" type="video/webm" />
-	<source data-src="video.mp4" type="video/mp4" />
-</video>
- ```
 
 ## Callbacks
 [Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
