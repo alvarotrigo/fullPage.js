@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.7
+ * fullPage 2.7.8 (Beta)
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -1285,12 +1285,24 @@
         * the height of the section.
         */
         function getDestinationPosition(dest, element){
+
             //top of the desination will be at the top of the viewport
             var position = dest.top;
+            var isScrollingDown =  dest.top > previousDestTop;
+            var sectionBottom = position - windowsHeight + element.outerHeight();
 
-            //scrolling down ? The bottom of the destination will be at the bottom of the viewport
-            if( dest.top > previousDestTop){
-                position = position - windowsHeight + element.outerHeight();
+            //is the destination element bigger than the viewport?
+            if(element.outerHeight() > windowsHeight){
+                //scrolling up?
+                if(!isScrollingDown){
+                    position = sectionBottom;
+                }
+            }
+
+            //sections equal or smaller than the viewport height AND scrolling down?
+            else if(isScrollingDown){
+                //The bottom of the destination will be at the bottom of the viewport
+                position = sectionBottom;
             }
 
             /*
