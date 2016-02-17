@@ -512,9 +512,6 @@
             prepareDom();
             FP.setAllowScrolling(true);
 
-            //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
-
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
             //the starting point is a slide?
@@ -621,6 +618,9 @@
             //adding a class to recognize the container internally in the code
             container.addClass(WRAPPER);
             $('html').addClass(ENABLED);
+
+            //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
+            windowsHeight = $window.height();
 
             container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
