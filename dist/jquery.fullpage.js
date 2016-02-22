@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.7
+ * fullPage 2.7.8
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -37,6 +37,8 @@
     var VIEWING_PREFIX =        'fp-viewing';
     var ACTIVE =                'active';
     var ACTIVE_SEL =            '.' + ACTIVE;
+    var COMPLETELY =            'fp-completely';
+    var COMPLETELY_SEL =        '.' + COMPLETELY;
 
     // section
     var SECTION_DEFAULT_SEL =   '.section';
@@ -91,6 +93,8 @@
     var defaultScrollHandler;
 
     $.fn.fullpage = function(options) {
+        //only once my friend!
+        if($('html').hasClass(ENABLED)){ displayWarnings(); return };
 
         // common jQuery objects
         var $htmlBody = $('html, body');
@@ -256,8 +260,10 @@
         FP.setMouseWheelScrolling = function (value){
             if(value){
                 addMouseWheelHandler();
+                addMiddleWheelHandler();
             }else{
                 removeMouseWheelHandler();
+                removeMiddleWheelHandler();
             }
         };
 
@@ -512,9 +518,6 @@
             prepareDom();
             FP.setAllowScrolling(true);
 
-            //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
-
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
             //the starting point is a slide?
@@ -549,13 +552,6 @@
 
                 //when resizing the site, we adjust the heights of the sections, slimScroll...
                 .resize(resizeHandler);
-
-            container
-                //binding the mousemove when the mouse's middle button is released
-                .mousedown(mouseDownHandler)
-
-                //unbinding the mousemove when the mouse's middle button is released
-                .mouseup(mouseUpHandler);
 
             $document
                 //Sliding with arrow keys, both, vertical and horizontal
@@ -621,6 +617,9 @@
             //adding a class to recognize the container internally in the code
             container.addClass(WRAPPER);
             $('html').addClass(ENABLED);
+
+            //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
+            windowsHeight = $window.height();
 
             container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
@@ -845,7 +844,7 @@
         function afterRenderActions(){
             var section = $(SECTION_ACTIVE_SEL);
 
-            section.addClass('completely');
+            section.addClass(COMPLETELY);
 
             if(options.scrollOverflowHandler.afterRender){
                 options.scrollOverflowHandler.afterRender(section);
@@ -884,8 +883,8 @@
                 }
 
                 if(isCompletelyInViewPort(scrollDirection)){
-                    if(!$(SECTION_ACTIVE_SEL).hasClass('completely')){
-                        $(SECTION_ACTIVE_SEL).addClass('completely').siblings().removeClass('completely');
+                    if(!$(SECTION_ACTIVE_SEL).hasClass(COMPLETELY)){
+                        $(SECTION_ACTIVE_SEL).addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
                     }
                 }
 
@@ -947,7 +946,7 @@
                                     isResizing = true;
                                 });
                             }
-                            scrollPage(currentSection);
+                            scrollPage($(SECTION_ACTIVE_SEL));
 
                             requestAnimFrame(function(){
                                 isResizing = false;
@@ -1153,7 +1152,7 @@
 
         function MouseWheelHandler(e) {
             var curTime = new Date().getTime();
-            var isNormalScroll = $('.completely').hasClass(NORMAL_SCROLL);
+            var isNormalScroll = $(COMPLETELY_SEL).hasClass(NORMAL_SCROLL);
 
             //autoscrolling and not zooming?
             if(options.autoScrolling && !controlPressed && !isNormalScroll){
@@ -1285,12 +1284,24 @@
         * the height of the section.
         */
         function getDestinationPosition(dest, element){
+
             //top of the desination will be at the top of the viewport
             var position = dest.top;
+            var isScrollingDown =  dest.top > previousDestTop;
+            var sectionBottom = position - windowsHeight + element.outerHeight();
 
-            //scrolling down ? The bottom of the destination will be at the bottom of the viewport
-            if( dest.top > previousDestTop){
-                position = position - windowsHeight + element.outerHeight();
+            //is the destination element bigger than the viewport?
+            if(element.outerHeight() > windowsHeight){
+                //scrolling up?
+                if(!isScrollingDown){
+                    position = sectionBottom;
+                }
+            }
+
+            //sections equal or smaller than the viewport height AND scrolling down?
+            else if(isScrollingDown){
+                //The bottom of the destination will be at the bottom of the viewport
+                position = sectionBottom;
             }
 
             /*
@@ -1505,7 +1516,7 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
 
             playMedia(v.element);
-            v.element.addClass('completely').siblings().removeClass('completely');
+            v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
 
             canScroll = true;
 
@@ -1773,13 +1784,14 @@
         */
         var oldPageY = 0;
         function mouseMoveHandler(e){
-            // moving up
             if(canScroll){
-                if (e.pageY < oldPageY){
+                // moving up
+                if (e.pageY < oldPageY && isScrollAllowed.m.up){
                     FP.moveSectionUp();
+                }
 
-                // moving downw
-                }else if(e.pageY > oldPageY){
+                // moving down
+                else if(e.pageY > oldPageY && isScrollAllowed.m.down){
                     FP.moveSectionDown();
                 }
             }
@@ -2375,6 +2387,24 @@
         }
 
         /**
+        * Binding the mousemove when the mouse's middle button is pressed
+        */
+        function addMiddleWheelHandler(){
+            container
+                .on('mousedown', mouseDownHandler)
+                .on('mouseup', mouseUpHandler);
+        }
+
+        /**
+        * Unbinding the mousemove when the mouse's middle button is released
+        */
+        function removeMiddleWheelHandler(){
+            container
+                .off('mousedown', mouseDownHandler)
+                .off('mouseup', mouseUpHandler);
+        }
+
+        /**
         * Adds the possibility to auto scroll through sections on touch devices.
         */
         function addTouchHandler(){
@@ -2629,6 +2659,11 @@
         * Displays warnings
         */
         function displayWarnings(){
+            if($('html').hasClass(ENABLED)){
+                showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
+                return;
+            }
+
             // Disable mutually exclusive settings
             if (options.continuousVertical &&
                 (options.loopTop || options.loopBottom)) {
@@ -2647,8 +2682,20 @@
 
             //anchors can not have the same value as any element ID or NAME
             $.each(options.anchors, function(index, name){
-                if($('#' + name).length || $('[name="'+name+'"]').length ){
+
+                //case insensitive selectors (http://stackoverflow.com/a/19465187/1081396)
+                var nameAttr = $document.find('[name]').filter(function() {
+                    return $(this).attr('name') && $(this).attr('name').toLowerCase() == name.toLowerCase();
+                });
+
+                var idAttr = $document.find('[id]').filter(function() {
+                    return this.id && this.id.toLowerCase() == name.toLowerCase();
+                });
+
+                if(idAttr.length || nameAttr.length ){
                     showError('error', 'data-anchor tags can not have the same value as any `id` element on the site (or `name` element for IE).');
+                    idAttr.length && showError('error', '"' + name + '" is is being used by another element `id` property');
+                    nameAttr.length && showError('error', '"' + name + '" is is being used by another element `name` property');
                 }
             });
         }
