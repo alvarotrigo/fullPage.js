@@ -100,6 +100,7 @@
         // Create some defaults, extending them with any options that were provided
         options = $.extend({
             //navigation
+            offset: 0,
             menu: false,
             anchors:[],
             lockAnchors: false,
@@ -1311,8 +1312,12 @@
             requestAnimFrame(function(){
                 var dest = element.position();
                 if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
+                var offset = options.offset;
+                if ($.isFunction(options.offset)){
+                    offset = options.offset();
+                }
 
-                var dtop = getDestinationPosition(dest, element);
+                var dtop = getDestinationPosition(dest, element) - offset;
 
                 //local variables
                 var v = {
