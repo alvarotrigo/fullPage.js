@@ -256,8 +256,10 @@
         FP.setMouseWheelScrolling = function (value){
             if(value){
                 addMouseWheelHandler();
+                addMiddleWheelHandler();
             }else{
                 removeMouseWheelHandler();
+                removeMiddleWheelHandler();
             }
         };
 
@@ -546,13 +548,6 @@
 
                 //when resizing the site, we adjust the heights of the sections, slimScroll...
                 .resize(resizeHandler);
-
-            container
-                //binding the mousemove when the mouse's middle button is released
-                .mousedown(mouseDownHandler)
-
-                //unbinding the mousemove when the mouse's middle button is released
-                .mouseup(mouseUpHandler);
 
             $document
                 //Sliding with arrow keys, both, vertical and horizontal
@@ -1785,13 +1780,14 @@
         */
         var oldPageY = 0;
         function mouseMoveHandler(e){
-            // moving up
             if(canScroll){
-                if (e.pageY < oldPageY){
+                // moving up
+                if (e.pageY < oldPageY && isScrollAllowed.m.up){
                     FP.moveSectionUp();
+                }
 
-                // moving downw
-                }else if(e.pageY > oldPageY){
+                // moving down
+                else if(e.pageY > oldPageY && isScrollAllowed.m.down){
                     FP.moveSectionDown();
                 }
             }
@@ -2384,6 +2380,24 @@
             else{
                 document[ _addEventListener ](prefix + support, MouseWheelHandler, false);
             }
+        }
+
+        /**
+        * Binding the mousemove when the mouse's middle button is pressed
+        */
+        function addMiddleWheelHandler(){
+            container
+                .on('mousedown', mouseDownHandler)
+                .on('mouseup', mouseUpHandler);
+        }
+
+        /**
+        * Unbinding the mousemove when the mouse's middle button is released
+        */
+        function removeMiddleWheelHandler(){
+            container
+                .off('mousedown', mouseDownHandler)
+                .off('mouseup', mouseUpHandler);
         }
 
         /**
