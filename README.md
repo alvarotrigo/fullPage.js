@@ -100,6 +100,8 @@ If you prefer to use a CDN to load the needed files, fullPage.js is in CDNJS:
 https://cdnjs.com/libraries/fullPage.js
 
 ###Required HTML structure
+Start your HTML document with the compulsory [HTML DOCTYPE declaration](http://www.corelangs.com/html/introduction/doctype.html) on the 1st line of your HTML code. You might have troubles with sections heights otherwise. The examples provided use HTML 5 doctype `<!DOCTYPE html>`.
+
 Each section will be defined with an element containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 
@@ -127,7 +129,6 @@ In order to create a landscape slider within a section, each slide will be defin
 </div>
 ````
 You can see a fully working example of the HTML structure in the [`demoPage.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demoPage.html).
-
 
 ###Initialization
 All you need to do is call the plugin inside a `$(document).ready` function:
