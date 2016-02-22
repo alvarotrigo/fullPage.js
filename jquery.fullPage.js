@@ -91,6 +91,8 @@
     var defaultScrollHandler;
 
     $.fn.fullpage = function(options) {
+        //only once my friend!
+        if($('html').hasClass(ENABLED)){ displayWarnings(); return };
 
         // common jQuery objects
         var $htmlBody = $('html, body');
@@ -2655,6 +2657,11 @@
         * Displays warnings
         */
         function displayWarnings(){
+            if($('html').hasClass(ENABLED)){
+                showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
+                return;
+            }
+
             // Disable mutually exclusive settings
             if (options.continuousVertical &&
                 (options.loopTop || options.loopBottom)) {
