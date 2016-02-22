@@ -942,7 +942,7 @@
                                     isResizing = true;
                                 });
                             }
-                            scrollPage(currentSection);
+                            scrollPage($(SECTION_ACTIVE_SEL));
 
                             requestAnimFrame(function(){
                                 isResizing = false;
