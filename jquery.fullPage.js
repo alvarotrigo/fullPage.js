@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.8 (Beta)
+ * fullPage 2.7.8
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -37,6 +37,8 @@
     var VIEWING_PREFIX =        'fp-viewing';
     var ACTIVE =                'active';
     var ACTIVE_SEL =            '.' + ACTIVE;
+    var COMPLETELY =            'fp-completely';
+    var COMPLETELY_SEL =        '.' + COMPLETELY;
 
     // section
     var SECTION_DEFAULT_SEL =   '.section';
@@ -842,7 +844,7 @@
         function afterRenderActions(){
             var section = $(SECTION_ACTIVE_SEL);
 
-            section.addClass('completely');
+            section.addClass(COMPLETELY);
 
             if(options.scrollOverflowHandler.afterRender){
                 options.scrollOverflowHandler.afterRender(section);
@@ -881,8 +883,8 @@
                 }
 
                 if(isCompletelyInViewPort(scrollDirection)){
-                    if(!$(SECTION_ACTIVE_SEL).hasClass('completely')){
-                        $(SECTION_ACTIVE_SEL).addClass('completely').siblings().removeClass('completely');
+                    if(!$(SECTION_ACTIVE_SEL).hasClass(COMPLETELY)){
+                        $(SECTION_ACTIVE_SEL).addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
                     }
                 }
 
@@ -1150,7 +1152,7 @@
 
         function MouseWheelHandler(e) {
             var curTime = new Date().getTime();
-            var isNormalScroll = $('.completely').hasClass(NORMAL_SCROLL);
+            var isNormalScroll = $(COMPLETELY_SEL).hasClass(NORMAL_SCROLL);
 
             //autoscrolling and not zooming?
             if(options.autoScrolling && !controlPressed && !isNormalScroll){
@@ -1514,7 +1516,7 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
 
             playMedia(v.element);
-            v.element.addClass('completely').siblings().removeClass('completely');
+            v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
 
             canScroll = true;
 

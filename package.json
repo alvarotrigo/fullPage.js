@@ -1,6 +1,6 @@
 {
   "name": "fullpage.js",
-  "version": "2.7.5",
+  "version": "2.7.8",
   "description": "Create  beautiful fullscreen scrolling websites",
   "main": "jquery.fullPage.js",
   "scripts": {
