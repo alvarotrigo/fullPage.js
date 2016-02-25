@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.8
+ * fullPage 2.7.9 (Beta)
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -2689,7 +2689,7 @@
                 });
 
                 var idAttr = $document.find('[id]').filter(function() {
-                    return this.id && this.id.toLowerCase() == name.toLowerCase();
+                    return $(this).attr('id') && $(this).attr('id').toLowerCase() == name.toLowerCase();
                 });
 
                 if(idAttr.length || nameAttr.length ){
