@@ -1,4 +1,4 @@
-    /*!
+/*!
  * fullPage 2.7.8
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
