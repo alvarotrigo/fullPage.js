@@ -1,4 +1,4 @@
-/*!
+    /*!
  * fullPage 2.7.8
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
@@ -133,6 +133,7 @@
             scrollOverflowHandler: defaultScrollHandler,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            touchScrollStep: 200,
 
             //Accessibility
             keyboardScrolling: true,
@@ -2747,6 +2748,7 @@
                 allowPageScroll: true,
                 height: scrollHeight + 'px',
                 size: '10px',
+                touchScrollStep: options.touchScrollStep,
                 alwaysVisible: true
             });
         },
