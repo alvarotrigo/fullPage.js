@@ -164,7 +164,8 @@
             afterResize: null,
             afterReBuild: null,
             afterSlideLoad: null,
-            onSlideLeave: null
+            onSlideLeave: null,
+            getDestinationPosition: null
         }, options);
 
         displayWarnings();
@@ -1284,6 +1285,12 @@
         * the height of the section.
         */
         function getDestinationPosition(dest, element){
+            // Use a user-defined handler if we have one.
+            if (options.getDestinationPosition) {
+                var position = options.getDestinationPosition(dest, element);
+                previousDestTop = position;
+                return position;
+            }
 
             //top of the desination will be at the top of the viewport
             var position = dest.top;

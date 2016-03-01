@@ -198,7 +198,8 @@ $(document).ready(function() {
 		afterRender: function(){},
 		afterResize: function(){},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
-		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){},
+ 		getDestinationPosition: function(dest, element){}
 	});
 });
 ```
@@ -705,6 +706,35 @@ Example:
 			}
 		}
 	});
+```
+
+###getDestinationPosition (`dest`, `element`)
+This callback is fired before a scroll event to calcuate the target position. Use this to optionally override the default behavior.
+
+Parameters:
+
+- `dest`: the target element's position.
+- `element`: the target element..
+
+Example:
+
+```javascript
+    $('#fullpage').fullpage({
+        getDestinationPosition: function(dest, element) {
+            // Position the element in the middle of the viewport if there's room,
+            // or at the top if there isn't.
+            var elementOffset = element.offset().top;
+            var elementHeight = element.height();
+            var windowHeight = $(window).height();
+
+            var position = elementOffset;
+            if (elementHeight < windowHeight) {
+              position = elementOffset - (windowHeight / 2 - elementHeight / 2);
+            }
+
+            return position;
+        }
+    });
 ```
 
 ####Cancelling a move before it takes place
