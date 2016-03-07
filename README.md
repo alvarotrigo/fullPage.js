@@ -238,7 +238,7 @@ Note that section anchors can also be defined in the same way, by using the `dat
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
 ### Creating smaller sections
-It is possible to use sections or slides which don't take the whole viewport height resulting in smaller sections. This is ideal for footers.
+[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) It is possible to use sections or slides which don't take the whole viewport height resulting in smaller sections. This is ideal for footers.
 It is important to realise that it doesn't make sense to have all of your sections using this feature. If there is more than one section in the initial load of the site, the plugin won't scroll at all to see the next one as it will be already in the viewport.
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
