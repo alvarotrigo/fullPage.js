@@ -7,7 +7,7 @@
  */
 (function($) {
 
-  jQuery.fn.extend({
+  $.fn.extend({
     slimScroll: function(options) {
 
       var defaults = {
@@ -472,8 +472,8 @@
     }
   });
 
-  jQuery.fn.extend({
-    slimscroll: jQuery.fn.slimScroll
+  $.fn.extend({
+    slimscroll: $.fn.slimScroll
   });
 
-})(jQuery);
+})(require('jquery'));
