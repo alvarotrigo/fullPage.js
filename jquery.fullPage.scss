@@ -106,6 +106,12 @@ html, body {
     &.top {
         top: 17px;
     }
+    &.fp-show-active a.active + .fp-slide-tooltip {
+        -webkit-transition: opacity 0.2s ease-in;
+        transition: opacity 0.2s ease-in;
+        width: auto;
+        opacity: 1;
+    }
 }
 
 #fp-nav ul,
@@ -161,6 +167,25 @@ html, body {
                 transition: all 0.1s ease-in-out;
             }
         }
+        .fp-slide-tooltip {
+            position: absolute;
+            color: #fff;
+            font-size: 14px;
+            font-family: arial, helvetica, sans-serif;
+            white-space: nowrap;
+            max-width: 220px;
+            overflow: hidden;
+            display: block;
+            opacity: 0;
+            width: 0;
+            
+            &.top {
+                top: 20px;
+            }
+            &.bottom {
+                bottom: 20px;
+            }
+        }
 
         &:hover {
 
@@ -171,10 +196,19 @@ html, body {
                     margin: -5px 0px 0px -5px;
                 }
             }
+            
+            .fp-slide-tooltip {
+                -webkit-transition: opacity 0.2s ease-in;
+                transition: opacity 0.2s ease-in;
+                width: auto;
+                opacity: 1;
+            }
+            
         }
 
     }
 }
+
 #fp-nav {
     position: fixed;
     z-index: 100;
