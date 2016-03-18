@@ -2187,5 +2187,5 @@
     };
 
     return fullpage;
-    
+
 }));
