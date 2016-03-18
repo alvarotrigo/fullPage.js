@@ -201,3 +201,28 @@ html.fp-enabled,
 #fp-nav ul li .fp-tooltip.left {
     left: 20px;
 }
+.fp-slidesNav ul li .fp-slide-tooltip {
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    white-space: nowrap;
+    max-width: 220px;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+    width: 0;
+}
+.fp-slidesNav ul li:hover .fp-slide-tooltip,
+.fp-slidesNav.fp-show-active a.active + .fp-slide-tooltip {
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    width: auto;
+    opacity: 1;
+}
+.fp-slidesNav ul li .fp-slide-tooltip.bottom {
+    bottom: 20px;
+}
+.fp-slidesNav ul li .fp-slide-tooltip.top {
+    top: 20px;
+}
