@@ -64,6 +64,7 @@
     var SLIDES_CONTAINER =      'fp-slidesContainer';
     var SLIDES_CONTAINER_SEL =  '.' + SLIDES_CONTAINER;
     var TABLE =                 'fp-table';
+    var SECTION_SLIDE_TOOLTIP = 'fp-slide-tooltip';
 
     // slide nav
     var SLIDES_NAV =            'fp-slidesNav';
@@ -102,6 +103,7 @@
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
             scrollBar: false,
+            slideTooltips: [],
 
             //scrolling
             css3: true,
@@ -1878,12 +1880,18 @@
             nav.addClass(options.slidesNavPosition);
 
             for(var i=0; i< numSlides; i++){
-                nav.find('ul').append('<li><a href="#"><span></span></a></li>');
+                var li = '<li><a href="#"><span></span></a>';
+                //add slideTooltip
+                var tooltip = options.slideTooltips[i];
+                if (typeof tooltip !== 'undefined' && tooltip !== '') {
+                    li += '<div class="' + SECTION_SLIDE_TOOLTIP + ' ' + options.slidesNavPosition + '">' + tooltip + '</div>';
+                }
+                li += '</li>';
+                nav.find('ul').append(li);
             }
 
             //centering it
             nav.css('margin-left', '-' + (nav.width()/2) + 'px');
-
             nav.find('li').first().find('a').addClass(ACTIVE);
         }
 
