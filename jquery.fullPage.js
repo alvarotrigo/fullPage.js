@@ -345,12 +345,14 @@
         FP.silentMoveTo = function(sectionAnchor, slideAnchor){
             requestAnimFrame(function(){
                 FP.setScrollingSpeed (0, 'internal');
-            });
 
-            FP.moveTo(sectionAnchor, slideAnchor)
+                requestAnimFrame(function(){
+                    FP.moveTo(sectionAnchor, slideAnchor)
 
-            requestAnimFrame(function(){
-                FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
+                    requestAnimFrame(function(){
+                        FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
+                    });
+                });
             });
         };
 
