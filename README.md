@@ -65,7 +65,7 @@ As you can see in the example files, you will need to include:
  - The JavaScript file `jquery.fullPage.js` (or its minified version `jquery.fullPage.min.js`)
  - The css file `jquery.fullPage.css`
 
- **Optionally**, when using `css3:false`, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing` and `easeInOutCubic`) or the one included by default in fullPage.js (`easeInQuart`).
+ **Optionally**, when using `css3:false`, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear` and `swing` ) or the one included by default in fullPage.js (`easeInOutCubic`).
 
 ### Install using bower or npm
 **Optionally**, you can install fullPage.js with bower or npm if you prefer:

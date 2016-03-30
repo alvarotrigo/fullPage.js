@@ -172,9 +172,6 @@
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
 
-        //TO BE REMOVED in future versions. Maintained temporaly for backwards compatibility.
-        $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
-
         /**
         * Sets the autoScroll option.
         * It changes the scroll bar visibility and the history of the site as a result.
