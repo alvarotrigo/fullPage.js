@@ -133,6 +133,7 @@
             scrollOverflowHandler: defaultScrollHandler,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            sectionsOffset: [],
 
             //Accessibility
             keyboardScrolling: true,
@@ -1324,6 +1325,14 @@
                 if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
                 var dtop = getDestinationPosition(dest, element);
+
+                var offsetIndex = element.index(SECTION_SEL);
+                if(offsetIndex > 0){
+                    var offsetValue = options.sectionsOffset[offsetIndex-1];
+                    if(offsetValue >= 0){
+                        dtop = dtop-offsetValue;
+                    }
+                }
 
                 //local variables
                 var v = {
