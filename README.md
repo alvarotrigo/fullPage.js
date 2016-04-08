@@ -746,8 +746,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)](http://www.battlefield.com/)
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
-[![matrimonia](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/matrimonia.png)](http://www.matrimonia.rs/)
-[![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/redd.png)](http://www.getredd.com/)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
@@ -773,10 +771,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://collection.madeofsundays.com
 - http://thiswasmybest.com/
 - http://www.boxreload.com/
-- http://www.thespecialists.be
-- http://brianingle.webflow.com/
 - http://lawinenstift.com/
-- http://www.swenk.me/
 - http://duis.co/
 - http://educationaboveall.org/
 - http://camfindapp.com/
@@ -786,7 +781,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://usescribe.com/
 - http://lucilecazanave.com/
 - http://boxx.hk/
-- http://medlive.com
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
@@ -794,7 +788,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.sanyang.com.tw/service/Conception/
 - http://www.batzaya.net/
 - http://www.graphicid.dk/
-- http://www.jukstapoz.com/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.carlphot.com/
 - http://medissix.com/
@@ -806,9 +799,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://fossdistillery.is
 - http://www.conversionculture.com/
 - http://ded-morozz.kiev.ua/
-- http://www.fergalkeenan.com
 - http://yizeng.me/
-- http://neolearning.eu/
 - http://unabridgedsoftware.com/
 - http://wc2014.plnwrx.com/
 - http://organice.io/
