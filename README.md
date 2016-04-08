@@ -3,7 +3,7 @@
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.8-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.7.9-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -65,7 +65,7 @@ As you can see in the example files, you will need to include:
  - The JavaScript file `jquery.fullPage.js` (or its minified version `jquery.fullPage.min.js`)
  - The css file `jquery.fullPage.css`
 
- **Optionally**, when using `css3:false`, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear`, `swing` and `easeInOutCubic`) or the one included by default in fullPage.js (`easeInQuart`).
+ **Optionally**, when using `css3:false`, you can add the [jQuery UI library](http://jqueryui.com/) in case you want to use other easing effects apart from the ones included in the jQuery library (`linear` and `swing` ) or the one included by default in fullPage.js (`easeInOutCubic`).
 
 ### Install using bower or npm
 **Optionally**, you can install fullPage.js with bower or npm if you prefer:
@@ -238,7 +238,7 @@ Note that section anchors can also be defined in the same way, by using the `dat
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
 ### Creating smaller sections
-It is possible to use sections or slides which don't take the whole viewport height resulting in smaller sections. This is ideal for footers.
+[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) It is possible to use sections or slides which don't take the whole viewport height resulting in smaller sections. This is ideal for footers.
 It is important to realise that it doesn't make sense to have all of your sections using this feature. If there is more than one section in the initial load of the site, the plugin won't scroll at all to see the next one as it will be already in the viewport.
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
@@ -731,6 +731,8 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
+- [fullPage.js angular directive](https://github.com/hellsan631/angular-fullpage.js)
+- [Angular fullPage.js - Adaptation for Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
 - [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## Who is using fullPage.js
@@ -740,16 +742,16 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)](http://www.sony-asia.com/microsite/mdr-10/)
 ![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)
 [![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)](http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins)
+[![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds.png)](https://mcdonalds.com.au/create-your-taste)
 [![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)](http://www.battlefield.com/)
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
-[![matrimonia](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/matrimonia.png)](http://www.matrimonia.rs/)
-[![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/redd.png)](http://www.getredd.com/)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
 - http://www.yourprimer.com/
+- http://mcdonalds.com.au/create-your-taste
 - http://burntmovie.com/
 - http://essenso.com/
 - http://www.battlefield.com/
@@ -769,10 +771,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://collection.madeofsundays.com
 - http://thiswasmybest.com/
 - http://www.boxreload.com/
-- http://www.thespecialists.be
-- http://brianingle.webflow.com/
 - http://lawinenstift.com/
-- http://www.swenk.me/
 - http://duis.co/
 - http://educationaboveall.org/
 - http://camfindapp.com/
@@ -782,7 +781,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://usescribe.com/
 - http://lucilecazanave.com/
 - http://boxx.hk/
-- http://medlive.com
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
@@ -790,7 +788,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.sanyang.com.tw/service/Conception/
 - http://www.batzaya.net/
 - http://www.graphicid.dk/
-- http://www.jukstapoz.com/
 - http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.carlphot.com/
 - http://medissix.com/
@@ -802,9 +799,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://fossdistillery.is
 - http://www.conversionculture.com/
 - http://ded-morozz.kiev.ua/
-- http://www.fergalkeenan.com
 - http://yizeng.me/
-- http://neolearning.eu/
 - http://unabridgedsoftware.com/
 - http://wc2014.plnwrx.com/
 - http://organice.io/

@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.8
+ * fullPage 2.7.9 (Beta)
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -172,9 +172,6 @@
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
 
-        //TO BE REMOVED in future versions. Maintained temporaly for backwards compatibility.
-        $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
-
         /**
         * Sets the autoScroll option.
         * It changes the scroll bar visibility and the history of the site as a result.
@@ -343,15 +340,9 @@
         * Anchors or index positions can be used as params.
         */
         FP.silentMoveTo = function(sectionAnchor, slideAnchor){
-            requestAnimFrame(function(){
-                FP.setScrollingSpeed (0, 'internal');
-            });
-
+            FP.setScrollingSpeed (0, 'internal');
             FP.moveTo(sectionAnchor, slideAnchor)
-
-            requestAnimFrame(function(){
-                FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
-            });
+            FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
         };
 
         /**
@@ -391,9 +382,6 @@
             if(container.hasClass(DESTROYED)){ return; }  //nothing to do if the plugin was destroyed
 
             isResizing = true;
-            requestAnimFrame(function(){
-                isResizing = true;
-            });
 
             var windowsWidth = $window.outerWidth();
             windowsHeight = $window.height();  //updating global var
@@ -441,9 +429,6 @@
             }
 
             isResizing = false;
-            requestAnimFrame(function(){
-                isResizing = false;
-            });
             $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container);
             $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container);
         };
@@ -942,15 +927,11 @@
                             //allows to scroll to an active section and
                             //if the section is already active, we prevent firing callbacks
                             if($(SECTION_ACTIVE_SEL).is(currentSection)){
-                                requestAnimFrame(function(){
-                                    isResizing = true;
-                                });
+                                isResizing = true;
                             }
                             scrollPage($(SECTION_ACTIVE_SEL));
 
-                            requestAnimFrame(function(){
-                                isResizing = false;
-                            });
+                            isResizing = false;
                         }
                     }, options.fitToSectionDelay);
                 }
@@ -1268,26 +1249,17 @@
             });
         }
 
-        //IE < 10 pollify for requestAnimationFrame
-        window.requestAnimFrame = function(){
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimationFrame ||
-                function(callback){ callback() }
-        }();
-
         var previousDestTop = 0;
         /**
         * Returns the destination Y position based on the scrolling direction and
         * the height of the section.
         */
-        function getDestinationPosition(dest, element){
+        function getDestinationPosition(element){
+            var elemPosition = element.position();
 
             //top of the desination will be at the top of the viewport
-            var position = dest.top;
-            var isScrollingDown =  dest.top > previousDestTop;
+            var position = elemPosition.top;
+            var isScrollingDown =  elemPosition.top > previousDestTop;
             var sectionBottom = position - windowsHeight + element.outerHeight();
 
             //is the destination element bigger than the viewport?
@@ -1298,8 +1270,8 @@
                 }
             }
 
-            //sections equal or smaller than the viewport height AND scrolling down?
-            else if(isScrollingDown){
+            //sections equal or smaller than the viewport height && scrolling down? ||  is resizing and its in the last section
+            else if(isScrollingDown || (isResizing && element.is(':last-child')) ){
                 //The bottom of the destination will be at the bottom of the viewport
                 position = sectionBottom;
             }
@@ -1318,73 +1290,68 @@
         * Scrolls the site to the given element and scrolls to the slide if a callback is given.
         */
         function scrollPage(element, callback, isMovementUp){
-            //requestAnimFrame is used in order to prevent a Chrome 44 bug (http://stackoverflow.com/a/31961816/1081396)
-            requestAnimFrame(function(){
-                var dest = element.position();
-                if(typeof dest === 'undefined'){ return; } //there's no element to scroll, leaving the function
+            if(typeof element === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
-                var dtop = getDestinationPosition(dest, element);
+            var dtop = getDestinationPosition(element);
 
-                //local variables
-                var v = {
-                    element: element,
-                    callback: callback,
-                    isMovementUp: isMovementUp,
-                    dest: dest,
-                    dtop: dtop,
-                    yMovement: getYmovement(element),
-                    anchorLink: element.data('anchor'),
-                    sectionIndex: element.index(SECTION_SEL),
-                    activeSlide: element.find(SLIDE_ACTIVE_SEL),
-                    activeSection: $(SECTION_ACTIVE_SEL),
-                    leavingSection: $(SECTION_ACTIVE_SEL).index(SECTION_SEL) + 1,
+            //local variables
+            var v = {
+                element: element,
+                callback: callback,
+                isMovementUp: isMovementUp,
+                dtop: dtop,
+                yMovement: getYmovement(element),
+                anchorLink: element.data('anchor'),
+                sectionIndex: element.index(SECTION_SEL),
+                activeSlide: element.find(SLIDE_ACTIVE_SEL),
+                activeSection: $(SECTION_ACTIVE_SEL),
+                leavingSection: $(SECTION_ACTIVE_SEL).index(SECTION_SEL) + 1,
 
-                    //caching the value of isResizing at the momment the function is called
-                    //because it will be checked later inside a setTimeout and the value might change
-                    localIsResizing: isResizing
-                };
+                //caching the value of isResizing at the momment the function is called
+                //because it will be checked later inside a setTimeout and the value might change
+                localIsResizing: isResizing
+            };
 
-                //quiting when destination scroll is the same as the current one
-                if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop && !element.hasClass(AUTO_HEIGHT) )){ return; }
+            //quiting when destination scroll is the same as the current one
+            if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop && !element.hasClass(AUTO_HEIGHT) )){ return; }
 
-                if(v.activeSlide.length){
-                    var slideAnchorLink = v.activeSlide.data('anchor');
-                    var slideIndex = v.activeSlide.index();
+            if(v.activeSlide.length){
+                var slideAnchorLink = v.activeSlide.data('anchor');
+                var slideIndex = v.activeSlide.index();
+            }
+
+            // If continuousVertical && we need to wrap around
+            if (options.autoScrolling && options.continuousVertical && typeof (v.isMovementUp) !== "undefined" &&
+                ((!v.isMovementUp && v.yMovement == 'up') || // Intending to scroll down but about to go up or
+                (v.isMovementUp && v.yMovement == 'down'))) { // intending to scroll up but about to go down
+
+                v = createInfiniteSections(v);
+            }
+
+            //callback (onLeave) if the site is not just resizing and readjusting the slides
+            if($.isFunction(options.onLeave) && !v.localIsResizing){
+                if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
+                    return;
                 }
+            }
+            stopMedia(v.activeSection);
 
-                // If continuousVertical && we need to wrap around
-                if (options.autoScrolling && options.continuousVertical && typeof (v.isMovementUp) !== "undefined" &&
-                    ((!v.isMovementUp && v.yMovement == 'up') || // Intending to scroll down but about to go up or
-                    (v.isMovementUp && v.yMovement == 'down'))) { // intending to scroll up but about to go down
+            element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+            lazyLoad(element);
 
-                    v = createInfiniteSections(v);
-                }
+            //preventing from activating the MouseWheelHandler event
+            //more than once if the page is scrolling
+            canScroll = false;
 
-                //callback (onLeave) if the site is not just resizing and readjusting the slides
-                if($.isFunction(options.onLeave) && !v.localIsResizing){
-                    if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
-                        return;
-                    }
-                }
-                stopMedia(v.activeSection);
+            setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
 
-                element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-                lazyLoad(element);
+            performMovement(v);
 
-                //preventing from activating the MouseWheelHandler event
-                //more than once if the page is scrolling
-                canScroll = false;
+            //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+            lastScrolledDestiny = v.anchorLink;
 
-                setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
-
-                performMovement(v);
-
-                //flag to avoid callingn `scrollPage()` twice in case of using anchor links
-                lastScrolledDestiny = v.anchorLink;
-
-                //avoid firing it twice (as it does also on scroll)
-                activateMenuAndNav(v.anchorLink, v.sectionIndex);
-            });
+            //avoid firing it twice (as it does also on scroll)
+            activateMenuAndNav(v.anchorLink, v.sectionIndex);
         }
 
         /**
@@ -1473,8 +1440,7 @@
             v.wrapAroundElements = v.activeSection;
 
             // Recalculate animation variables
-            v.dest = v.element.position();
-            v.dtop = v.dest.top;
+            v.dtop = v.element.position().top;
             v.yMovement = getYmovement(v.element);
 
             return v;
@@ -1635,6 +1601,7 @@
             var activeElement = $(':focus');
 
             if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
+                activeElement.attr('contentEditable') !== "true" && activeElement.attr('contentEditable') !== '' &&
                 options.keyboardScrolling && options.autoScrolling){
                 var keyCode = e.which;
 
@@ -2689,7 +2656,7 @@
                 });
 
                 var idAttr = $document.find('[id]').filter(function() {
-                    return this.id && this.id.toLowerCase() == name.toLowerCase();
+                    return $(this).attr('id') && $(this).attr('id').toLowerCase() == name.toLowerCase();
                 });
 
                 if(idAttr.length || nameAttr.length ){
