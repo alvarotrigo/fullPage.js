@@ -35,7 +35,7 @@
     var DESTROYED =             'fp-destroyed';
     var ENABLED =               'fp-enabled';
     var VIEWING_PREFIX =        'fp-viewing';
-    var ACTIVE =                'active';
+    var ACTIVE =                'fp-active';
     var ACTIVE_SEL =            '.' + ACTIVE;
     var COMPLETELY =            'fp-completely';
     var COMPLETELY_SEL =        '.' + COMPLETELY;
