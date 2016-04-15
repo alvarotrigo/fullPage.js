@@ -53,6 +53,8 @@
     var AUTO_HEIGHT_SEL =       '.fp-auto-height';
     var NORMAL_SCROLL =         'fp-normal-scroll';
     var NORMAL_SCROLL_SEL =     '.fp-normal-scroll';
+    var RESPONSIVE_HEIGHT =     'fp-responsive-auto-height';
+    var RESPONSIVE_HEIGHT_SEL = '.' + RESPONSIVE_HEIGHT;
 
     // section nav
     var SECTION_NAV =           'fp-nav';
@@ -99,6 +101,7 @@
         // common jQuery objects
         var $htmlBody = $('html, body');
         var $body = $('body');
+        var $responsive_height_elements = $(RESPONSIVE_HEIGHT_SEL);
 
         var FP = $.fn.fullpage;
         // Create some defaults, extending them with any options that were provided
@@ -446,6 +449,7 @@
                     FP.setFitToSection(false, 'internal');
                     $(SECTION_NAV_SEL).hide();
                     $body.addClass(RESPONSIVE);
+                    $responsive_height_elements.addClass(AUTO_HEIGHT);
                 }
             }
             else if(isResponsive){
@@ -453,6 +457,7 @@
                 FP.setFitToSection(originals.autoScrolling, 'internal');
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
+                $responsive_height_elements.removeClass(AUTO_HEIGHT);
             }
         }
 
