@@ -211,3 +211,9 @@ html.fp-enabled,
 .fp-auto-height .fp-tableCell{
     height: auto !important;
 }
+
+.fp-responsive-auto-height .fp-auto-height-responsive.fp-section,
+.fp-responsive-auto-height .fp-auto-height-responsive .fp-slide,
+.fp-responsive-auto-height .fp-auto-height-responsive .fp-tableCell {
+    height: auto !important;
+}
