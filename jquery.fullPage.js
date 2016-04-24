@@ -518,7 +518,7 @@
             //setting the class for the body element
             setBodyClass();
 
-            $window.on('load', function() {
+            $(function(){
                 scrollToAnchor();
             });
         }
