@@ -518,9 +518,10 @@
             //setting the class for the body element
             setBodyClass();
 
-            $window.on('load', function() {
+            if(document.readyState === 'complete'){
                 scrollToAnchor();
-            });
+            }
+            $window.on('load', scrollToAnchor);
         }
 
         function bindEvents(){
