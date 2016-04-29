@@ -90,7 +90,7 @@
     var $window = $(window);
     var $document = $(document);
 
-    var defaultScrollHandler;
+    var userOptions;
 
     $.fn.fullpage = function(options) {
         //only once my friend!
@@ -101,6 +101,10 @@
         var $body = $('body');
 
         var FP = $.fn.fullpage;
+
+        //transfering them to the global scope so they can be used by iScrollHandler
+        userOptions = options; 
+
         // Create some defaults, extending them with any options that were provided
         options = $.extend({
             //navigation
@@ -130,7 +134,8 @@
             continuousVertical: false,
             normalScrollElements: null,
             scrollOverflow: false,
-            scrollOverflowHandler: defaultScrollHandler,
+            scrollOverflowHandler: iscrollHandler,
+            scrollOverflowOptions: null,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
 
@@ -2676,6 +2681,14 @@
         }
     };
 
+    var iscrollOptions = $.extend({
+        scrollbars: true,
+        mouseWheel: true,
+        hideScrollbars: false,
+        fadeScrollbars: false,
+        disableMouse: true
+    }, userOptions);
+
     /**
      * An object to handle overflow scrolling.
      * This uses jquery.slimScroll to accomplish overflow scrolling.
@@ -2685,24 +2698,9 @@
      *
      * @type {Object}
      */
-    var slimScrollHandler = {
-        /**
-         * Optional function called after each render.
-         *
-         * Solves a bug with slimScroll vendor library #1037, #553
-         *
-         * @param  {object} section jQuery object containing rendered section
-         */
-        afterRender: function(section){
-            var slides = section.find(SLIDES_WRAPPER);
-            var scrollableWrap = section.find(SCROLLABLE_SEL);
-
-            if(slides.length){
-                scrollableWrap = slides.find(SLIDE_ACTIVE_SEL);
-            }
-
-            scrollableWrap.mouseover();
-        },
+    var iscrollHandler = {
+        refreshId: null,
+        iScrollInstances: [],
 
         /**
          * Called when overflow scrolling is needed for a section.
@@ -2710,12 +2708,20 @@
          * @param  {Object} element      jQuery object containing current section
          * @param  {Number} scrollHeight Current window height in pixels
          */
-        create: function(element, scrollHeight){
-            element.find(SCROLLABLE_SEL).slimScroll({
-                allowPageScroll: true,
-                height: scrollHeight + 'px',
-                size: '10px',
-                alwaysVisible: true
+        create: function(element, scrollHeight) {
+            var scrollable = element.find(SCROLLABLE_SEL);
+            scrollable.height(scrollHeight);
+            scrollable.each(function() {
+                let $this = jQuery(this);
+                var iScrollInstance = $this.data('iscrollInstance');
+                if (iScrollInstance) {
+                    $.each(iscrollHandler.iScrollInstances, function(){
+                        $(this).destroy();    
+                    });
+                }
+                iScrollInstance = new IScroll($this.get(0), iscrollOptions);
+                iscrollHandler.iScrollInstances.push(iScrollInstance);
+                $this.data('iscrollInstance', iScrollInstance);
             });
         },
 
@@ -2727,11 +2733,17 @@
          * @param  {Object}  scrollable jQuery object for the scrollable element
          * @return {Boolean}
          */
-        isScrolled: function(type, scrollable){
-            if(type === 'top'){
-                return !scrollable.scrollTop();
-            }else if(type === 'bottom'){
-                return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+        isScrolled: function(type, scrollable) {
+            var scroller = scrollable.data('iscrollInstance');
+            if (!scroller) {
+                return false;
+            }
+            if (type === 'top') {
+                // console.log('top', scroller.y, scrollable.scrollTop());
+                return scroller.y >= 0 && !scrollable.scrollTop();
+            } else if (type === 'bottom') {
+                // console.log('bottom', scroller.y, scrollable.scrollTop(), (0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight(), scrollable[0].scrollHeight);
+                return (0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
             }
         },
 
@@ -2745,7 +2757,7 @@
          */
         scrollable: function(activeSection){
             // if there are landscape slides, we check if the scrolling bar is in the current one or not
-            if(activeSection.find(SLIDES_WRAPPER_SEL).length){
+            if (activeSection.find(SLIDES_WRAPPER_SEL).length) {
                 return activeSection.find(SLIDE_ACTIVE_SEL).find(SCROLLABLE_SEL);
             }
             return activeSection.find(SCROLLABLE_SEL);
@@ -2759,8 +2771,8 @@
          * @param  {Object} element jQuery object containing current section
          * @return {Number}
          */
-        scrollHeight: function(element){
-            return element.find(SCROLLABLE_SEL).get(0).scrollHeight;
+        scrollHeight: function(element) {
+            return element.find(SCROLLABLE_SEL).children().first().get(0).scrollHeight;
         },
 
         /**
@@ -2768,10 +2780,22 @@
          *
          * @param  {Object} element      jQuery object containing current section
          */
-        remove: function(element){
-            element.find(SCROLLABLE_SEL).children().first().unwrap().unwrap();
-            element.find(SLIMSCROLL_BAR_SEL).remove();
-            element.find(SLIMSCROLL_RAIL_SEL).remove();
+        remove: function(element) {
+            var scrollable = element.find(SCROLLABLE_SEL);
+            var iscrollInstance = scrollable.data( 'iscrollInstance' );
+            if (iscrollInstance) {
+                //using a timeout in order to execute the destroy function only once when `remove` is called multiple times in a 
+                //short period of time. As we have no way to indentify the iScroll instances by the elements they belong.
+                clearTimeout(iscrollHandler.refreshId);
+                iscrollHandler.refreshId = setTimeout(function(){
+                    $.each(iscrollHandler.iScrollInstances, function(){
+                        $(this).get(0).destroy();
+                    });
+                }, 50);
+                
+                scrollable.data( 'iscrollInstance', undefined );
+            }
+            element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
 
         /**
@@ -2781,7 +2805,18 @@
          * @param  {Object} element      jQuery object containing current section
          * @param  {Number} scrollHeight Current window height in pixels
          */
-        update: function(element, scrollHeight){
+        update: function(element, scrollHeight) {
+            //using a timeout in order to execute the refresh function only once when `update` is called multiple times in a 
+            //short period of time. As we have no way to indentify the iScroll instances by the elements they belong.
+            //it also comes on handy because iScroll requires the use of timeout when using `refresh`.
+            clearTimeout(iscrollHandler.refreshId);
+            iscrollHandler.refreshId = setTimeout(function(){
+                $.each(iscrollHandler.iScrollInstances, function(){
+                    $(this).get(0).refresh();    
+                })            
+            }, 150);
+           
+            //updating the wrappers height
             element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
         },
 
@@ -2792,11 +2827,9 @@
          * @return {String|Object} Can be a string containing HTML,
          *                         a DOM element, or jQuery object.
          */
-        wrapContent: function(){
-            return '<div class="' + SCROLLABLE + '"></div>';
+        wrapContent: function() {
+            return '<div class="' + SCROLLABLE + '"><div class="fp-scroller"></div></div>';
         }
     };
-
-    defaultScrollHandler = slimScrollHandler;
 
 });
