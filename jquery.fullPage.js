@@ -39,7 +39,6 @@
     var ACTIVE_SEL =            '.' + ACTIVE;
     var COMPLETELY =            'fp-completely';
     var COMPLETELY_SEL =        '.' + COMPLETELY;
-    var RESPONSIVE_AUTO_HEIGHT = 'fp-responsive-auto-height';
 
     // section
     var SECTION_DEFAULT_SEL =   '.section';
@@ -152,7 +151,6 @@
             responsive: 0, //backwards compabitility with responsiveWiddth
             responsiveWidth: 0,
             responsiveHeight: 0,
-            responsiveAutoHeightWidth: 0,
 
             //Custom selectors
             sectionSelector: SECTION_DEFAULT_SEL,
@@ -455,19 +453,6 @@
                 FP.setFitToSection(originals.autoScrolling, 'internal');
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
-            }
-        }
-
-        FP.setAutoHeightResponsive = function(active) {
-            var isAutoHeightReponsive = $body.hasClass(RESPONSIVE_AUTO_HEIGHT);
-
-            if(active) {
-                if(!isAutoHeightReponsive) {
-                    $body.addClass(RESPONSIVE_AUTO_HEIGHT);
-                }
-            }
-            else if(isAutoHeightReponsive) {
-                    $body.removeClass(RESPONSIVE_AUTO_HEIGHT);
             }
         }
 
@@ -1903,13 +1888,9 @@
             var widthLimit = options.responsive || options.responsiveWidth; //backwards compatiblity
             var heightLimit = options.responsiveHeight;
 
-            var widthAutoHeightLimit = options.responsiveAutoHeightWidth;
-
             //only calculating what we need. Remember its called on the resize event.
             var isBreakingPointWidth = widthLimit && $window.outerWidth() < widthLimit;
             var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
-
-            var isBreakingPointAutoHeightWidth = widthAutoHeightLimit && $window.outerWidth() < widthAutoHeightLimit;
 
             if(widthLimit && heightLimit){
                 FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
@@ -1919,9 +1900,6 @@
             }
             else if(heightLimit){
                 FP.setResponsive(isBreakingPointHeight);
-            }
-            if(widthAutoHeightLimit) {
-                FP.setAutoHeightResponsive(isBreakingPointAutoHeightWidth);
             }
         }
 
