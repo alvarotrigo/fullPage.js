@@ -2712,7 +2712,7 @@
             var scrollable = element.find(SCROLLABLE_SEL);
             scrollable.height(scrollHeight);
             scrollable.each(function() {
-                let $this = jQuery(this);
+                var $this = jQuery(this);
                 var iScrollInstance = $this.data('iscrollInstance');
                 if (iScrollInstance) {
                     $.each(iscrollHandler.iScrollInstances, function(){
@@ -2735,14 +2735,13 @@
          */
         isScrolled: function(type, scrollable) {
             var scroller = scrollable.data('iscrollInstance');
+
             if (!scroller) {
                 return false;
             }
             if (type === 'top') {
-                // console.log('top', scroller.y, scrollable.scrollTop());
                 return scroller.y >= 0 && !scrollable.scrollTop();
             } else if (type === 'bottom') {
-                // console.log('bottom', scroller.y, scrollable.scrollTop(), (0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight(), scrollable[0].scrollHeight);
                 return (0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
             }
         },
