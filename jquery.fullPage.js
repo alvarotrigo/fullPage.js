@@ -581,16 +581,18 @@
         * Setting options from DOM elements if they are not provided.
         */
         function setOptionsFromDOM(){
+            var sections = container.find(options.sectionSelector);
+            
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                options.anchors = $(options.sectionSelector + '[data-anchor]').map(function(){
+                options.anchors = sections.filter('[data-anchor]').map(function(){
                     return $(this).data('anchor').toString();
                 }).get();
             }
 
             //no tooltipos option? Checking for them in the DOM attributes
             if(!options.navigationTooltips.length){
-                options.navigationTooltips = $(options.sectionSelector + '[data-tooltip]').map(function(){
+                options.navigationTooltips = sections.filter('[data-tooltip]').map(function(){
                     return $(this).data('tooltip').toString();
                 }).get();
             }
