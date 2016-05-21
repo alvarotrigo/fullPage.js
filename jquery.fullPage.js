@@ -90,7 +90,14 @@
     var $window = $(window);
     var $document = $(document);
 
-    var userOptions;
+    // Default options for iScroll.js used when using scrollOverflow
+    var iscrollOptions = {
+        scrollbars: true,
+        mouseWheel: true,
+        hideScrollbars: false,
+        fadeScrollbars: false,
+        disableMouse: true
+    };
 
     $.fn.fullpage = function(options) {
         //only once my friend!
@@ -101,9 +108,6 @@
         var $body = $('body');
 
         var FP = $.fn.fullpage;
-
-        //transfering them to the global scope so they can be used by iScrollHandler
-        userOptions = options; 
 
         // Create some defaults, extending them with any options that were provided
         options = $.extend({
@@ -173,6 +177,9 @@
         }, options);
 
         displayWarnings();
+
+        //extending iScroll options with the user custom ones
+        iscrollOptions = $.extend(iscrollOptions, userOptions.scrollOverflowOptions);
 
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
@@ -582,7 +589,7 @@
         */
         function setOptionsFromDOM(){
             var sections = container.find(options.sectionSelector);
-            
+
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
                 options.anchors = sections.filter('[data-anchor]').map(function(){
@@ -1342,10 +1349,13 @@
                     return;
                 }
             }
+
             stopMedia(v.activeSection);
 
             element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
             lazyLoad(element);
+            options.scrollOverflowHandler.onLeave();
+
 
             //preventing from activating the MouseWheelHandler event
             //more than once if the page is scrolling
@@ -1488,6 +1498,7 @@
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
+            options.scrollOverflowHandler.afterLoad();
 
             playMedia(v.element);
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
@@ -2681,15 +2692,27 @@
         function showError(type, text){
             console && console[type] && console[type]('fullPage: ' + text);
         }
-    };
+    }; //end of $.fn.fullpage
 
-    var iscrollOptions = $.extend({
-        scrollbars: true,
-        mouseWheel: true,
-        hideScrollbars: false,
-        fadeScrollbars: false,
-        disableMouse: true
-    }, userOptions);
+    /*
+    * Turns iScroll `mousewheel` option off dynamically
+    * https://github.com/cubiq/iscroll/issues/1036
+    */
+    IScroll.prototype.wheelOn = function () {
+        this.wrapper.addEventListener('wheel', this);
+        this.wrapper.addEventListener('mousewheel', this);
+        this.wrapper.addEventListener('DOMMouseScroll', this);
+    }
+
+    /*
+    * Turns iScroll `mousewheel` option on dynamically
+    * https://github.com/cubiq/iscroll/issues/1036
+    */
+    IScroll.prototype.wheelOff = function () {
+        this.wrapper.removeEventListener('wheel', this);
+        this.wrapper.removeEventListener('mousewheel', this);
+        this.wrapper.removeEventListener('DOMMouseScroll', this);
+    }
 
     /**
      * An object to handle overflow scrolling.
@@ -2705,6 +2728,26 @@
         iScrollInstances: [],
 
         /**
+        * Turns off iScroll for the destination section.
+        * When scrolling very fast on some trackpads (and Apple laptops) the inertial scrolling would
+        * scroll the destination section/slide before the sections animations ends.
+        */
+        onLeave: function(){
+            var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
+            if(typeof scroller !== 'undefined'){
+                scroller.wheelOff();
+            }
+        },
+
+        // Turns on iScroll on section load
+        afterLoad: function(){
+            var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
+            if(typeof scroller !== 'undefined'){
+                scroller.wheelOn();
+            }
+        },
+
+        /**
          * Called when overflow scrolling is needed for a section.
          *
          * @param  {Object} element      jQuery object containing current section
@@ -2712,13 +2755,14 @@
          */
         create: function(element, scrollHeight) {
             var scrollable = element.find(SCROLLABLE_SEL);
+
             scrollable.height(scrollHeight);
             scrollable.each(function() {
                 var $this = jQuery(this);
                 var iScrollInstance = $this.data('iscrollInstance');
                 if (iScrollInstance) {
                     $.each(iscrollHandler.iScrollInstances, function(){
-                        $(this).destroy();    
+                        $(this).destroy();
                     });
                 }
                 iScrollInstance = new IScroll($this.get(0), iscrollOptions);
@@ -2783,17 +2827,10 @@
          */
         remove: function(element) {
             var scrollable = element.find(SCROLLABLE_SEL);
-            var iscrollInstance = scrollable.data( 'iscrollInstance' );
-            if (iscrollInstance) {
-                //using a timeout in order to execute the destroy function only once when `remove` is called multiple times in a 
-                //short period of time. As we have no way to indentify the iScroll instances by the elements they belong.
-                clearTimeout(iscrollHandler.refreshId);
-                iscrollHandler.refreshId = setTimeout(function(){
-                    $.each(iscrollHandler.iScrollInstances, function(){
-                        $(this).get(0).destroy();
-                    });
-                }, 50);
-                
+            if (scrollable.length) {
+                var iScrollInstance = scrollable.data('iscrollInstance');
+                iScrollInstance.destroy();
+
                 scrollable.data( 'iscrollInstance', undefined );
             }
             element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
@@ -2807,16 +2844,16 @@
          * @param  {Number} scrollHeight Current window height in pixels
          */
         update: function(element, scrollHeight) {
-            //using a timeout in order to execute the refresh function only once when `update` is called multiple times in a 
-            //short period of time. As we have no way to indentify the iScroll instances by the elements they belong.
+            //using a timeout in order to execute the refresh function only once when `update` is called multiple times in a
+            //short period of time.
             //it also comes on handy because iScroll requires the use of timeout when using `refresh`.
             clearTimeout(iscrollHandler.refreshId);
             iscrollHandler.refreshId = setTimeout(function(){
                 $.each(iscrollHandler.iScrollInstances, function(){
-                    $(this).get(0).refresh();    
-                })            
+                    $(this).get(0).refresh();
+                })
             }, 150);
-           
+
             //updating the wrappers height
             element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
         },
