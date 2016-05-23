@@ -147,6 +147,7 @@
             keyboardScrolling: true,
             animateAnchor: true,
             recordHistory: true,
+            allowScrolling: true,
 
             //design
             controlArrows: true,
@@ -513,7 +514,7 @@
             setOptionsFromDOM();
 
             prepareDom();
-            FP.setAllowScrolling(true);
+            FP.setAllowScrolling(options.allowScrolling);
 
             FP.setAutoScrolling(options.autoScrolling, 'internal');
 
