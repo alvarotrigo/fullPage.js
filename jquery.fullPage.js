@@ -1514,7 +1514,7 @@
         function lazyLoad(destiny){
             var destiny = getSlideOrSection(destiny);
 
-            destiny.find('img[data-src], source[data-src], audio[data-src]').each(function(){
+            destiny.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
                 $(this).attr('src', $(this).data('src'));
                 $(this).removeAttr('data-src');
 
