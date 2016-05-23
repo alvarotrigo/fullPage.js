@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.10 (Beta)
+ * fullPage 2.7.10 (Beta) 
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
