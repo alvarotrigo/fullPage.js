@@ -654,6 +654,9 @@
                 addVerticalNavigation();
             }
 
+            enableYoutubeAPI();
+            enableVidemoAPI();
+
             if(options.scrollOverflow){
                 if(document.readyState === 'complete'){
                     createSlimScrollingHandler();
@@ -836,6 +839,35 @@
 
             });
             afterRenderActions();
+        }
+
+        /*
+        * Enables the Youtube videos API so we can control their flow if necessary.
+        */
+        function enableYoutubeAPI(){
+            container.find('iframe[src*="youtube.com/embed/"]').each(function(){
+                var sign = getUrlParamSign($(this).attr('src'));
+                $(this).attr('src', $(this).attr('src') + sign + 'enablejsapi=1');
+            });
+        }
+
+        /*
+        * Enables the Vimeo videos API so we can control their flow if necessary.
+        */
+        function enableVidemoAPI(){
+            container.find('iframe[src*="player.vimeo.com/"]').each(function(){
+                var sign = getUrlParamSign($(this).attr('src'));
+                $(this).attr('src', $(this).attr('src') + sign + 'api=1');
+            });
+        }
+
+        /*
+        * Returns the prefix sign to use for a new parameter in an existen URL.
+        *
+        * @return {String}  ? | &
+        */
+        function getUrlParamSign(url){
+            return ( !/\?/.test( url ) ) ? '?' : '&';
         }
 
         /**
@@ -1534,8 +1566,17 @@
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
 
-                if( element.hasAttribute('autoplay') && typeof element.play === 'function' ) {
+                if( element.hasAttribute('data-autoplay') && typeof element.play === 'function' ) {
                     element.play();
+                }
+            });
+
+            //youtube videos
+            destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
+                var element = $(this).get(0);
+
+                if( /youtube\.com\/embed\//.test($(this).attr('src')) && element.hasAttribute('data-autoplay')){
+                    element.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }
             });
         }
@@ -1550,8 +1591,17 @@
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
 
-                if( !element.hasAttribute('data-ignore') && typeof element.pause === 'function' ) {
+                if( !element.hasAttribute('data-keepplaying') && typeof element.pause === 'function' ) {
                     element.pause();
+                }
+            });
+
+            //youtube videos
+            destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
+                var element = $(this).get(0);
+
+                if( /youtube\.com\/embed\//.test($(this).attr('src')) && !element.hasAttribute('data-keepplaying')){
+                    $(this).get(0).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
                 }
             });
         }

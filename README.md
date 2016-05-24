@@ -34,6 +34,7 @@ Would you like to have a website using fullpage.js functionality but you don't k
   - [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
   - [State classes added by fullpage.js](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
   - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
+  - [Autoplay embedded media](https://github.com/alvarotrigo/fullPage.js#)
 - [Options](https://github.com/alvarotrigo/fullPage.js#options)
 - [Methods](https://github.com/alvarotrigo/fullPage.js#methods)
 - [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
@@ -270,6 +271,27 @@ To enable lazy loading all you need to do is change your `src` attribute to `dat
 	<source data-src="video.mp4" type="video/mp4" />
 </video>
  ```
+
+###Auto play/pause embedded media
+
+#### Play on section/slide load:
+Using the attribute `autoplay` for videos or audio, or the param `autoplay=1` for youtube iframes will result in the media element playing on page load. 
+In order to play it on section/slide load use instead the attribute `data-autoplay`. For example:
+
+```html
+<audio data-autoplay>
+	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
+</audio>
+```
+
+#### Pause on leave
+Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paused when you navigate away from a section or slide. This can be disabled by using the attribute `data-keepplaying`. For example: 
+```html
+<audio data-keepplaying>
+	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
+</audio>
+```
+
 
 ## Options
 
