@@ -182,7 +182,6 @@ $(document).ready(function() {
 		//Design
 		controlArrows: true,
 		verticalCentered: true,
-		resize : false,
 		sectionsColor : ['#ccc', '#fff'],
 		paddingTop: '3em',
 		paddingBottom: '10px',
@@ -299,8 +298,6 @@ Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paus
 - `controlArrows`: (default `true`) Determines whether to use control arrows for the slides to move right or left.
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
-
-- `resize`: (default `false`) Whether you want to resize the text when the window is resized.
 
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
