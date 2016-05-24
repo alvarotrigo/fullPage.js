@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.9
+ * fullPage 2.8.0
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -240,5 +240,11 @@ html.fp-enabled,
 .fp-auto-height.fp-section,
 .fp-auto-height .fp-slide,
 .fp-auto-height .fp-tableCell{
+    height: auto !important;
+}
+
+.fp-responsive .fp-auto-height-responsive.fp-section,
+.fp-responsive .fp-auto-height-responsive .fp-slide,
+.fp-responsive .fp-auto-height-responsive .fp-tableCell {
     height: auto !important;
 }

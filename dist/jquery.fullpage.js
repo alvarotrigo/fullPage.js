@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.9
+ * fullPage 2.8.0
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -90,7 +90,14 @@
     var $window = $(window);
     var $document = $(document);
 
-    var defaultScrollHandler;
+    // Default options for iScroll.js used when using scrollOverflow
+    var iscrollOptions = {
+        scrollbars: true,
+        mouseWheel: true,
+        hideScrollbars: false,
+        fadeScrollbars: false,
+        disableMouse: true
+    };
 
     $.fn.fullpage = function(options) {
         //only once my friend!
@@ -101,6 +108,7 @@
         var $body = $('body');
 
         var FP = $.fn.fullpage;
+
         // Create some defaults, extending them with any options that were provided
         options = $.extend({
             //navigation
@@ -130,7 +138,8 @@
             continuousVertical: false,
             normalScrollElements: null,
             scrollOverflow: false,
-            scrollOverflowHandler: defaultScrollHandler,
+            scrollOverflowHandler: iscrollHandler,
+            scrollOverflowOptions: null,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
 
@@ -168,6 +177,9 @@
         }, options);
 
         displayWarnings();
+
+        //extending iScroll options with the user custom ones
+        iscrollOptions = $.extend(iscrollOptions, options.scrollOverflowOptions);
 
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
@@ -518,9 +530,10 @@
             //setting the class for the body element
             setBodyClass();
 
-            $window.on('load', function() {
+            if(document.readyState === 'complete'){
                 scrollToAnchor();
-            });
+            }
+            $window.on('load', scrollToAnchor);
         }
 
         function bindEvents(){
@@ -575,16 +588,18 @@
         * Setting options from DOM elements if they are not provided.
         */
         function setOptionsFromDOM(){
+            var sections = container.find(options.sectionSelector);
+
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                options.anchors = $(options.sectionSelector + '[data-anchor]').map(function(){
+                options.anchors = sections.filter('[data-anchor]').map(function(){
                     return $(this).data('anchor').toString();
                 }).get();
             }
 
             //no tooltipos option? Checking for them in the DOM attributes
             if(!options.navigationTooltips.length){
-                options.navigationTooltips = $(options.sectionSelector + '[data-tooltip]').map(function(){
+                options.navigationTooltips = sections.filter('[data-tooltip]').map(function(){
                     return $(this).data('tooltip').toString();
                 }).get();
             }
@@ -638,6 +653,9 @@
             if(options.navigation){
                 addVerticalNavigation();
             }
+
+            enableYoutubeAPI();
+            enableVidemoAPI();
 
             if(options.scrollOverflow){
                 if(document.readyState === 'complete'){
@@ -821,6 +839,35 @@
 
             });
             afterRenderActions();
+        }
+
+        /*
+        * Enables the Youtube videos API so we can control their flow if necessary.
+        */
+        function enableYoutubeAPI(){
+            container.find('iframe[src*="youtube.com/embed/"]').each(function(){
+                var sign = getUrlParamSign($(this).attr('src'));
+                $(this).attr('src', $(this).attr('src') + sign + 'enablejsapi=1');
+            });
+        }
+
+        /*
+        * Enables the Vimeo videos API so we can control their flow if necessary.
+        */
+        function enableVidemoAPI(){
+            container.find('iframe[src*="player.vimeo.com/"]').each(function(){
+                var sign = getUrlParamSign($(this).attr('src'));
+                $(this).attr('src', $(this).attr('src') + sign + 'api=1');
+            });
+        }
+
+        /*
+        * Returns the prefix sign to use for a new parameter in an existen URL.
+        *
+        * @return {String}  ? | &
+        */
+        function getUrlParamSign(url){
+            return ( !/\?/.test( url ) ) ? '?' : '&';
         }
 
         /**
@@ -1334,10 +1381,13 @@
                     return;
                 }
             }
+
             stopMedia(v.activeSection);
 
             element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
             lazyLoad(element);
+            options.scrollOverflowHandler.onLeave();
+
 
             //preventing from activating the MouseWheelHandler event
             //more than once if the page is scrolling
@@ -1480,6 +1530,7 @@
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
+            options.scrollOverflowHandler.afterLoad();
 
             playMedia(v.element);
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
@@ -1495,7 +1546,7 @@
         function lazyLoad(destiny){
             var destiny = getSlideOrSection(destiny);
 
-            destiny.find('img[data-src], source[data-src], audio[data-src]').each(function(){
+            destiny.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
                 $(this).attr('src', $(this).data('src'));
                 $(this).removeAttr('data-src');
 
@@ -1515,8 +1566,17 @@
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
 
-                if( element.hasAttribute('autoplay') && typeof element.play === 'function' ) {
+                if( element.hasAttribute('data-autoplay') && typeof element.play === 'function' ) {
                     element.play();
+                }
+            });
+
+            //youtube videos
+            destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
+                var element = $(this).get(0);
+
+                if( /youtube\.com\/embed\//.test($(this).attr('src')) && element.hasAttribute('data-autoplay')){
+                    element.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }
             });
         }
@@ -1531,8 +1591,17 @@
             destiny.find('video, audio').each(function(){
                 var element = $(this).get(0);
 
-                if( !element.hasAttribute('data-ignore') && typeof element.pause === 'function' ) {
+                if( !element.hasAttribute('data-keepplaying') && typeof element.pause === 'function' ) {
                     element.pause();
+                }
+            });
+
+            //youtube videos
+            destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
+                var element = $(this).get(0);
+
+                if( /youtube\.com\/embed\//.test($(this).attr('src')) && !element.hasAttribute('data-keepplaying')){
+                    $(this).get(0).contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
                 }
             });
         }
@@ -2005,8 +2074,16 @@
             return 'right';
         }
 
-
+        /**
+        * Checks if the element needs scrollbar and if the user wants to apply it.
+        * If so it creates it.
+        *
+        * @param {Object} element   jQuery object of the section or slide
+        */
         function createSlimScrolling(element){
+            //User doesn't want scrollbar here? Sayonara baby!
+            if(element.hasClass('fp-noscroll')) return;
+
             //needed to make `scrollHeight` work under Opera 12
             element.css('overflow', 'hidden');
 
@@ -2673,7 +2750,29 @@
         function showError(type, text){
             console && console[type] && console[type]('fullPage: ' + text);
         }
-    };
+    }; //end of $.fn.fullpage
+
+    if(typeof IScroll !== 'undefined'){
+        /*
+        * Turns iScroll `mousewheel` option off dynamically
+        * https://github.com/cubiq/iscroll/issues/1036
+        */
+        IScroll.prototype.wheelOn = function () {
+            this.wrapper.addEventListener('wheel', this);
+            this.wrapper.addEventListener('mousewheel', this);
+            this.wrapper.addEventListener('DOMMouseScroll', this);
+        }
+
+        /*
+        * Turns iScroll `mousewheel` option on dynamically
+        * https://github.com/cubiq/iscroll/issues/1036
+        */
+        IScroll.prototype.wheelOff = function () {
+            this.wrapper.removeEventListener('wheel', this);
+            this.wrapper.removeEventListener('mousewheel', this);
+            this.wrapper.removeEventListener('DOMMouseScroll', this);
+        }
+    }
 
     /**
      * An object to handle overflow scrolling.
@@ -2684,23 +2783,28 @@
      *
      * @type {Object}
      */
-    var slimScrollHandler = {
+    var iscrollHandler = {
+        refreshId: null,
+        iScrollInstances: [],
+
         /**
-         * Optional function called after each render.
-         *
-         * Solves a bug with slimScroll vendor library #1037, #553
-         *
-         * @param  {object} section jQuery object containing rendered section
-         */
-        afterRender: function(section){
-            var slides = section.find(SLIDES_WRAPPER);
-            var scrollableWrap = section.find(SCROLLABLE_SEL);
-
-            if(slides.length){
-                scrollableWrap = slides.find(SLIDE_ACTIVE_SEL);
+        * Turns off iScroll for the destination section.
+        * When scrolling very fast on some trackpads (and Apple laptops) the inertial scrolling would
+        * scroll the destination section/slide before the sections animations ends.
+        */
+        onLeave: function(){
+            var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
+            if(typeof scroller !== 'undefined'){
+                scroller.wheelOff();
             }
+        },
 
-            scrollableWrap.mouseover();
+        // Turns on iScroll on section load
+        afterLoad: function(){
+            var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
+            if(typeof scroller !== 'undefined'){
+                scroller.wheelOn();
+            }
         },
 
         /**
@@ -2709,12 +2813,21 @@
          * @param  {Object} element      jQuery object containing current section
          * @param  {Number} scrollHeight Current window height in pixels
          */
-        create: function(element, scrollHeight){
-            element.find(SCROLLABLE_SEL).slimScroll({
-                allowPageScroll: true,
-                height: scrollHeight + 'px',
-                size: '10px',
-                alwaysVisible: true
+        create: function(element, scrollHeight) {
+            var scrollable = element.find(SCROLLABLE_SEL);
+
+            scrollable.height(scrollHeight);
+            scrollable.each(function() {
+                var $this = jQuery(this);
+                var iScrollInstance = $this.data('iscrollInstance');
+                if (iScrollInstance) {
+                    $.each(iscrollHandler.iScrollInstances, function(){
+                        $(this).destroy();
+                    });
+                }
+                iScrollInstance = new IScroll($this.get(0), iscrollOptions);
+                iscrollHandler.iScrollInstances.push(iScrollInstance);
+                $this.data('iscrollInstance', iScrollInstance);
             });
         },
 
@@ -2726,11 +2839,16 @@
          * @param  {Object}  scrollable jQuery object for the scrollable element
          * @return {Boolean}
          */
-        isScrolled: function(type, scrollable){
-            if(type === 'top'){
-                return !scrollable.scrollTop();
-            }else if(type === 'bottom'){
-                return scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+        isScrolled: function(type, scrollable) {
+            var scroller = scrollable.data('iscrollInstance');
+
+            if (!scroller) {
+                return false;
+            }
+            if (type === 'top') {
+                return scroller.y >= 0 && !scrollable.scrollTop();
+            } else if (type === 'bottom') {
+                return (0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
             }
         },
 
@@ -2744,7 +2862,7 @@
          */
         scrollable: function(activeSection){
             // if there are landscape slides, we check if the scrolling bar is in the current one or not
-            if(activeSection.find(SLIDES_WRAPPER_SEL).length){
+            if (activeSection.find(SLIDES_WRAPPER_SEL).length) {
                 return activeSection.find(SLIDE_ACTIVE_SEL).find(SCROLLABLE_SEL);
             }
             return activeSection.find(SCROLLABLE_SEL);
@@ -2758,8 +2876,8 @@
          * @param  {Object} element jQuery object containing current section
          * @return {Number}
          */
-        scrollHeight: function(element){
-            return element.find(SCROLLABLE_SEL).get(0).scrollHeight;
+        scrollHeight: function(element) {
+            return element.find(SCROLLABLE_SEL).children().first().get(0).scrollHeight;
         },
 
         /**
@@ -2767,10 +2885,15 @@
          *
          * @param  {Object} element      jQuery object containing current section
          */
-        remove: function(element){
-            element.find(SCROLLABLE_SEL).children().first().unwrap().unwrap();
-            element.find(SLIMSCROLL_BAR_SEL).remove();
-            element.find(SLIMSCROLL_RAIL_SEL).remove();
+        remove: function(element) {
+            var scrollable = element.find(SCROLLABLE_SEL);
+            if (scrollable.length) {
+                var iScrollInstance = scrollable.data('iscrollInstance');
+                iScrollInstance.destroy();
+
+                scrollable.data( 'iscrollInstance', undefined );
+            }
+            element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
 
         /**
@@ -2780,7 +2903,18 @@
          * @param  {Object} element      jQuery object containing current section
          * @param  {Number} scrollHeight Current window height in pixels
          */
-        update: function(element, scrollHeight){
+        update: function(element, scrollHeight) {
+            //using a timeout in order to execute the refresh function only once when `update` is called multiple times in a
+            //short period of time.
+            //it also comes on handy because iScroll requires the use of timeout when using `refresh`.
+            clearTimeout(iscrollHandler.refreshId);
+            iscrollHandler.refreshId = setTimeout(function(){
+                $.each(iscrollHandler.iScrollInstances, function(){
+                    $(this).get(0).refresh();
+                })
+            }, 150);
+
+            //updating the wrappers height
             element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
         },
 
@@ -2791,11 +2925,9 @@
          * @return {String|Object} Can be a string containing HTML,
          *                         a DOM element, or jQuery object.
          */
-        wrapContent: function(){
-            return '<div class="' + SCROLLABLE + '"></div>';
+        wrapContent: function() {
+            return '<div class="' + SCROLLABLE + '"><div class="fp-scroller"></div></div>';
         }
     };
-
-    defaultScrollHandler = slimScrollHandler;
 
 });
