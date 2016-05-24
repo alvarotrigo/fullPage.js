@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.7.10 (Beta) 
+ * fullPage 2.10.0 (Beta) 
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -2024,8 +2024,16 @@
             return 'right';
         }
 
-
+        /**
+        * Checks if the element needs scrollbar and if the user wants to apply it.
+        * If so it creates it.
+        *
+        * @param {Object} element   jQuery object of the section or slide
+        */
         function createSlimScrolling(element){
+            //User doesn't want scrollbar here? Sayonara baby!
+            if(element.hasClass('fp-noscroll')) return;
+
             //needed to make `scrollHeight` work under Opera 12
             element.css('overflow', 'hidden');
 
