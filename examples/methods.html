@@ -27,12 +27,12 @@
 	<script type="text/javascript">
 	 $(document).ready(function() {
 
-	 		function initialization(){
-	 			$('#myContainer').fullpage({
-	                sectionsColor: ['#4A6FB1', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-	                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
-	                resize: false,
-	                animateAnchor:false,
+			function initialization(){
+				$('#myContainer').fullpage({
+					sectionsColor: ['#4A6FB1', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+					anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+					resize: false,
+					animateAnchor:false,
 					scrollOverflow: true,
 					autoScrolling:true,
 					responsive: 900,
@@ -41,30 +41,30 @@
 					navigation:true,
 					continuousVertical:true,
 					paddingTop: '20px',
-	                css3: true,
+					css3: true,
 					onLeave: function(index, nextIndex, direction){
 						console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
 					},
-	       			afterLoad: function(anchorLink, index){
+					afterLoad: function(anchorLink, index){
 						console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
-	       			},
+					},
 					afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
 						console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
 					},
-	        		onSlideLeave: function(anchorLink, index, slideIndex, direction){
+					onSlideLeave: function(anchorLink, index, slideIndex, direction){
 						console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
-	        		},
-	        		afterRender: function(){
+					},
+					afterRender: function(){
 						console.log("afterRender");
-	        		},
-	        		afterResize: function(){
+					},
+					afterResize: function(){
 						console.log("afterResize");
-	        		}
-	            });
-	 		}
+					}
+				});
+			}
 
-	 		//fullPage.js initialization
-            initialization();
+			//fullPage.js initialization
+			initialization();
 
 
 			$('#moveSectionUp').click(function(e){
@@ -168,8 +168,8 @@
 				e.preventDefault;
 				$.fn.fullpage.setLockAnchors(false);
 			});
-        });
-    </script>
+		});
+	</script>
 
 	<style>
 		#actions{
@@ -271,9 +271,9 @@
 		</div>
 	<div class="section" id="section1">
 		<div class="slide"><h1>Section 2</h1></div>
-	    <div class="slide"><div class="wrap"><h1>Slide 2.1</h1></div></div>
-	    <div class="slide"><h1>Slide 2.2</h1></div>
-	    <div class="slide"><h1>Slide 2.3</h1></div>
+		<div class="slide"><div class="wrap"><h1>Slide 2.1</h1></div></div>
+		<div class="slide"><h1>Slide 2.2</h1></div>
+		<div class="slide"><h1>Slide 2.3</h1></div>
 	</div>
 	<div class="section" id="section2"><h1>Section 3</h1></div>
 	<div class="section" id="section3"><h1>Section 4</h1></div>

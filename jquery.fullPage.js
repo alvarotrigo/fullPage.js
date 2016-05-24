@@ -26,8 +26,6 @@
     // slimscroll
     var SCROLLABLE =            'fp-scrollable';
     var SCROLLABLE_SEL =        '.' + SCROLLABLE;
-    var SLIMSCROLL_BAR_SEL =    '.slimScrollBar';
-    var SLIMSCROLL_RAIL_SEL =   '.slimScrollRail';
 
     // util
     var RESPONSIVE =            'fp-responsive';
@@ -101,7 +99,7 @@
 
     $.fn.fullpage = function(options) {
         //only once my friend!
-        if($('html').hasClass(ENABLED)){ displayWarnings(); return };
+        if($('html').hasClass(ENABLED)){ displayWarnings(); return; }
 
         // common jQuery objects
         var $htmlBody = $('html, body');
@@ -152,7 +150,6 @@
             controlArrows: true,
             controlArrowColor: '#fff',
             verticalCentered: true,
-            resize: false,
             sectionsColor : [],
             paddingTop: 0,
             paddingBottom: 0,
@@ -353,7 +350,7 @@
         */
         FP.silentMoveTo = function(sectionAnchor, slideAnchor){
             FP.setScrollingSpeed (0, 'internal');
-            FP.moveTo(sectionAnchor, slideAnchor)
+            FP.moveTo(sectionAnchor, slideAnchor);
             FP.setScrollingSpeed (originals.scrollingSpeed, 'internal');
         };
 
@@ -395,13 +392,7 @@
 
             isResizing = true;
 
-            var windowsWidth = $window.outerWidth();
             windowsHeight = $window.height();  //updating global var
-
-            //text resizing
-            if (options.resize) {
-                resizeMe(windowsHeight, windowsWidth);
-            }
 
             $(SECTION_SEL).each(function(){
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
@@ -466,7 +457,7 @@
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
             }
-        }
+        };
 
         //flag to avoid very fast sliding for landscape sliders
         var slideMoving = false;
@@ -1993,26 +1984,6 @@
         }
 
         /**
-         * Resizing of the font size depending on the window size as well as some of the images on the site.
-         */
-        function resizeMe(displayHeight, displayWidth) {
-            //Standard dimensions, for which the body font size is correct
-            var preferredHeight = 825;
-            var preferredWidth = 900;
-
-            if (displayHeight < preferredHeight || displayWidth < preferredWidth) {
-                var heightPercentage = (displayHeight * 100) / preferredHeight;
-                var widthPercentage = (displayWidth * 100) / preferredWidth;
-                var percentage = Math.min(heightPercentage, widthPercentage);
-                var newFontSize = percentage.toFixed(2);
-
-                $body.css('font-size', newFontSize + '%');
-            } else {
-                $body.css('font-size', '100%');
-            }
-        }
-
-        /**
          * Activating the website navigation dots according to the given slide name.
          */
         function activateNavDots(name, sectionIndex){
@@ -2333,8 +2304,6 @@
 
             var sectionAnchor = getAnchor(section);
             var slideAnchor = getAnchor(slide);
-
-            var sectionIndex = section.index(SECTION_SEL);
 
             var text = String(sectionAnchor);
 
@@ -2761,7 +2730,7 @@
             this.wrapper.addEventListener('wheel', this);
             this.wrapper.addEventListener('mousewheel', this);
             this.wrapper.addEventListener('DOMMouseScroll', this);
-        }
+        };
 
         /*
         * Turns iScroll `mousewheel` option on dynamically
@@ -2771,7 +2740,7 @@
             this.wrapper.removeEventListener('wheel', this);
             this.wrapper.removeEventListener('mousewheel', this);
             this.wrapper.removeEventListener('DOMMouseScroll', this);
-        }
+        };
     }
 
     /**
@@ -2911,7 +2880,7 @@
             iscrollHandler.refreshId = setTimeout(function(){
                 $.each(iscrollHandler.iScrollInstances, function(){
                     $(this).get(0).refresh();
-                })
+                });
             }, 150);
 
             //updating the wrappers height
