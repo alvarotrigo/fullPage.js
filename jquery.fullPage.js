@@ -1615,8 +1615,8 @@
         function scrollToAnchor(){
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '').split('/');
-            var section = value[0];
-            var slide = value[1];
+            var section = decodeURIComponent(value[0]);
+            var slide = decodeURIComponent(value[1]);
 
             if(section){  //if theres any #
                 if(options.animateAnchor){
@@ -1634,8 +1634,8 @@
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
                 var value =  window.location.hash.replace('#', '').split('/');
-                var section = value[0];
-                var slide = value[1];
+                var section = decodeURIComponent(value[0]);
+                var slide = decodeURIComponent(value[1]);
 
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
