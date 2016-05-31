@@ -94,7 +94,7 @@
         mouseWheel: true,
         hideScrollbars: false,
         fadeScrollbars: false,
-        disableMouse: true
+        disableMouse: true,
 
         //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
         click: true 

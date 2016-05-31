@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.0
+ * fullPage 2.8.1
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -94,7 +94,10 @@
         mouseWheel: true,
         hideScrollbars: false,
         fadeScrollbars: false,
-        disableMouse: true
+        disableMouse: true,
+
+        //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
+        click: true 
     };
 
     $.fn.fullpage = function(options) {
@@ -1615,8 +1618,8 @@
         function scrollToAnchor(){
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '').split('/');
-            var section = value[0];
-            var slide = value[1];
+            var section = decodeURIComponent(value[0]);
+            var slide = decodeURIComponent(value[1]);
 
             if(section){  //if theres any #
                 if(options.animateAnchor){
@@ -1634,8 +1637,8 @@
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
                 var value =  window.location.hash.replace('#', '').split('/');
-                var section = value[0];
-                var slide = value[1];
+                var section = decodeURIComponent(value[0]);
+                var slide = decodeURIComponent(value[1]);
 
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
@@ -2763,7 +2766,8 @@
         */
         onLeave: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined'){
+
+            if(typeof scroller !== 'undefined' && scroller){
                 scroller.wheelOff();
             }
         },
@@ -2771,7 +2775,7 @@
         // Turns on iScroll on section load
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined'){
+            if(typeof scroller !== 'undefined' && scroller){
                 scroller.wheelOn();
             }
         },
@@ -2860,7 +2864,7 @@
                 var iScrollInstance = scrollable.data('iscrollInstance');
                 iScrollInstance.destroy();
 
-                scrollable.data( 'iscrollInstance', undefined );
+                scrollable.data('iscrollInstance', 'undefined');
             }
             element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
