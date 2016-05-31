@@ -3,7 +3,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
+var minifyCss = require('gulp-clean-css');
 
 gulp.task('sass', function() {
     gulp.src('./jquery.fullpage.scss')
@@ -23,7 +23,7 @@ gulp.task('css', function() {
             keepSpecialComments: '1'
         }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.'))
+        .pipe(sourcemaps.write('.')) 
         .pipe(gulp.dest('./dist'));
 });
 

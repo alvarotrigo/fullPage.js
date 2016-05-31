@@ -3,7 +3,7 @@
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.0-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.1-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -753,6 +753,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
+- [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)
 - [fullPage.js angular directive](https://github.com/hellsan631/angular-fullpage.js)
 - [Angular fullPage.js - Adaptation for Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
 - [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
