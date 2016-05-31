@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.0
+ * fullPage 2.8.1
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -2763,7 +2763,8 @@
         */
         onLeave: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined'){
+
+            if(typeof scroller !== 'undefined' && scroller){
                 scroller.wheelOff();
             }
         },
@@ -2771,7 +2772,7 @@
         // Turns on iScroll on section load
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined'){
+            if(typeof scroller !== 'undefined' && scroller){
                 scroller.wheelOn();
             }
         },
@@ -2860,7 +2861,7 @@
                 var iScrollInstance = scrollable.data('iscrollInstance');
                 iScrollInstance.destroy();
 
-                scrollable.data( 'iscrollInstance', undefined );
+                scrollable.data('iscrollInstance', 'undefined');
             }
             element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
