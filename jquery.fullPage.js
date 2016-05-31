@@ -2722,29 +2722,7 @@
         function showError(type, text){
             console && console[type] && console[type]('fullPage: ' + text);
         }
-    }; //end of $.fn.fullpage
-
-    if(typeof IScroll !== 'undefined'){
-        /*
-        * Turns iScroll `mousewheel` option off dynamically
-        * https://github.com/cubiq/iscroll/issues/1036
-        */
-        IScroll.prototype.wheelOn = function () {
-            this.wrapper.addEventListener('wheel', this);
-            this.wrapper.addEventListener('mousewheel', this);
-            this.wrapper.addEventListener('DOMMouseScroll', this);
-        };
-
-        /*
-        * Turns iScroll `mousewheel` option on dynamically
-        * https://github.com/cubiq/iscroll/issues/1036
-        */
-        IScroll.prototype.wheelOff = function () {
-            this.wrapper.removeEventListener('wheel', this);
-            this.wrapper.removeEventListener('mousewheel', this);
-            this.wrapper.removeEventListener('DOMMouseScroll', this);
-        };
-    }
+    }; //end of $.fn.fullpage  
 
     /**
      * An object to handle overflow scrolling.
@@ -2759,6 +2737,26 @@
         refreshId: null,
         iScrollInstances: [],
 
+         /*
+        * Turns iScroll `mousewheel` option off dynamically
+        * https://github.com/cubiq/iscroll/issues/1036
+        */
+        wheelOn: function(wrapper){
+            wrapper.addEventListener('wheel', this);
+            wrapper.addEventListener('mousewheel', this);
+            wrapper.addEventListener('DOMMouseScroll', this);
+        },
+
+        /*
+        * Turns iScroll `mousewheel` option on dynamically
+        * https://github.com/cubiq/iscroll/issues/1036
+        */
+        wheelOff: function(wrapper) {
+            wrapper.removeEventListener('wheel', this);
+            wrapper.removeEventListener('mousewheel', this);
+            wrapper.removeEventListener('DOMMouseScroll', this);
+        },
+
         /**
         * Turns off iScroll for the destination section.
         * When scrolling very fast on some trackpads (and Apple laptops) the inertial scrolling would
@@ -2768,7 +2766,7 @@
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
 
             if(typeof scroller !== 'undefined' && scroller){
-                scroller.wheelOff();
+                iscrollHandler.wheelOff( $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).get(0));
             }
         },
 
@@ -2776,7 +2774,7 @@
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
             if(typeof scroller !== 'undefined' && scroller){
-                scroller.wheelOn();
+                iscrollHandler.wheelOn( $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).get(0));
             }
         },
 
