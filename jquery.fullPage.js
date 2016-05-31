@@ -95,6 +95,9 @@
         hideScrollbars: false,
         fadeScrollbars: false,
         disableMouse: true
+
+        //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
+        click: true 
     };
 
     $.fn.fullpage = function(options) {
