@@ -770,6 +770,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
+[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.gif)](http://www.bugatti.com/veyron/veyron-164/)
+[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
@@ -777,7 +779,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://mcdonalds.com.au/create-your-taste
 - http://burntmovie.com/
 - http://essenso.com/
-- http://www.battlefield.com/
+- http://www.bugatti.com/veyron/veyron-164/
 - http://www.kibey.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
@@ -788,6 +790,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://torchbrowser.com/
 - http://thekorner.fr/
 - http://www.restaurantwoods.nl/
+- https://www.edarling.de/
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/
