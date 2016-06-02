@@ -1700,7 +1700,7 @@
 
         //prevent scrolling on mousedown and/or touchstart
         function interactionStartHandler(e) {
-            if (options.fitToSection) {
+            if (!options.autoScrolling && options.fitToSection) {
                 //if the page is currently scrolling, stop it
                 $htmlBody.stop();
                 //prevent fitToSection while scrollbar is mousedowned
@@ -1710,7 +1710,7 @@
 
         //enable fitToSection on mouseup and/or touchend
         function interactionEndHandler(e) {
-            if (options.fitToSection) {
+            if (!options.autoScrolling && options.fitToSection) {
                 //re-enable fitToSection
                 canScroll = true;
                 //scroll to fit whole section
