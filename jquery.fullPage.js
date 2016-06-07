@@ -97,7 +97,7 @@
         disableMouse: true,
 
         //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
-        click: true 
+        click: true
     };
 
     $.fn.fullpage = function(options) {
@@ -2591,6 +2591,28 @@
                 destroyStructure();
             }
         };
+
+        /*
+        * Renable's fullpage.js defaulting autoScrolling, allowScrolling (
+        * and subsequently ALL scroll directions), and keyboardScrolling
+        * to true; then removes the DESTROYED class and rebinds destroyed events
+        *
+        * This function should not be confused with reBuild().
+        *
+        * This function simply re-enables fullpage.js after
+        * disabling it using destroy()
+        */
+        FP.recreate = function(all) {
+             FP.setAutoScrolling(true);
+             FP.setAllowScrolling(true);
+             FP.setKeyboardScrolling(true);
+             container.removeClass(DESTROYED);
+             bindEvents();
+
+             if(all) {
+                  prepareDom();
+             }
+        }
 
         /*
         * Removes inline styles added by fullpage.js
