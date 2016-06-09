@@ -2628,9 +2628,7 @@
             $('html').removeClass(ENABLED);
 
             // remove .fp-responsive class
-            if ($body.hasClass(RESPONSIVE)) {
-              $body.removeClass(RESPONSIVE);
-            }
+            $body.removeClass(RESPONSIVE);
 
             // remove all of the .fp-viewing- classes
             $.each($body.get(0).className.split(/\s+/), function (index, className) {
