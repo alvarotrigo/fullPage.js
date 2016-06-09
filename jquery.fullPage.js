@@ -97,7 +97,7 @@
         disableMouse: true,
 
         //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
-        click: true 
+        click: true
     };
 
     $.fn.fullpage = function(options) {
@@ -2627,6 +2627,9 @@
             // remove .fp-enabled class
             $('html').removeClass(ENABLED);
 
+            // remove .fp-responsive class
+            $body.removeClass(RESPONSIVE);
+
             // remove all of the .fp-viewing- classes
             $.each($body.get(0).className.split(/\s+/), function (index, className) {
                 if (className.indexOf(VIEWING_PREFIX) === 0) {
@@ -2722,7 +2725,7 @@
         function showError(type, text){
             console && console[type] && console[type]('fullPage: ' + text);
         }
-    }; //end of $.fn.fullpage  
+    }; //end of $.fn.fullpage
 
     /**
      * An object to handle overflow scrolling.
