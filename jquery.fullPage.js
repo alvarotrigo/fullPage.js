@@ -558,7 +558,12 @@
                 //Scrolls the slider to the given slide destination for the given section
                 .on('click touchstart', SLIDES_NAV_LINK_SEL, slideBulletHandler)
 
-                .on('click', SECTION_NAV_TOOLTIP_SEL, tooltipTextHandler);
+                .on('click', SECTION_NAV_TOOLTIP_SEL, tooltipTextHandler)
+
+                //prevent fitToSection on user interaction with the screen
+                .on('mousedown touchstart', interactionStartHandler)
+
+                .on('mouseup touchend', interactionEndHandler);
 
             //Scrolling horizontally when clicking on the slider controls.
             $(SECTION_SEL).on('click touchstart', SLIDES_ARROW_SEL, slideArrowHandler);
@@ -1693,6 +1698,26 @@
             }
         }
 
+        //prevent scrolling on mousedown and/or touchstart
+        function interactionStartHandler(e) {
+            if (!options.autoScrolling && options.fitToSection) {
+                //if the page is currently scrolling, stop it
+                $htmlBody.stop();
+                //prevent fitToSection while scrollbar is mousedowned
+                canScroll = false;
+            }
+        }
+
+        //enable fitToSection on mouseup and/or touchend
+        function interactionEndHandler(e) {
+            if (!options.autoScrolling && options.fitToSection) {
+                //re-enable fitToSection
+                canScroll = true;
+                //scroll to fit whole section
+                scrollHandler();
+            }
+        }
+
         //binding the mousemove when the mouse's middle button is released
         function mouseDownHandler(e){
             //middle button
@@ -2578,7 +2603,9 @@
                 .off('mouseleave', SECTION_NAV_SEL + ' li')
                 .off('click', SLIDES_NAV_LINK_SEL)
                 .off('mouseover', options.normalScrollElements)
-                .off('mouseout', options.normalScrollElements);
+                .off('mouseout', options.normalScrollElements)
+                .off('mousedown touchstart', interactionStartHandler)
+                .off('mouseup touchend', interactionEndHandler);
 
             $(SECTION_SEL)
                 .off('click', SLIDES_ARROW_SEL);
