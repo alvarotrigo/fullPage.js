@@ -753,10 +753,10 @@
         */
         function addInternalSelectors(){
             //adding internal class names to void problem with common ones
-            $(options.sectionSelector).each(function(){
+            container.find(options.sectionSelector).each(function(){
                 $(this).addClass(SECTION);
             });
-            $(options.slideSelector).each(function(){
+            container.find(options.slideSelector).each(function(){
                 $(this).addClass(SLIDE);
             });
         }
