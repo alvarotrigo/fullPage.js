@@ -549,11 +549,15 @@ $.fn.fullpage.destroy('all');
 ---
 ### reBuild()
 Updates the DOM structure to fit the new window size or its contents.
-Ideal to use in combination with AJAX calls or external changes in the DOM structure of the site.
+ Ideal to use in combination with AJAX calls or external changes in the DOM structure of the site, specially when using `scrollOverflow:true`.
 
 ```javascript
 $.fn.fullpage.reBuild();
 ```
+---
+### setResponsive(boolean)
+[Demo](http://codepen.io/alvarotrigo/pen/WxOyLA) Sets the responsive mode of the page. When set to `true` the autoScrolling will be turned off and the result will be exactly the same one as when the `responsiveWidth` or `responsiveHeight` options  get fired.
+
 
 ## Callbacks
 [Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
