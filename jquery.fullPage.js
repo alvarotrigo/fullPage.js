@@ -2082,7 +2082,7 @@
 
             //needs scroll?
             if ( contentHeight > scrollHeight) {
-                //was there already an scroll ? Updating it
+                //did we already have an scrollbar ? Updating it
                 if(scrollable.length){
                     scrollOverflowHandler.update(element, scrollHeight);
                 }
@@ -2727,6 +2727,28 @@
         }
     }; //end of $.fn.fullpage
 
+    if(typeof IScroll !== 'undefined'){
+        /*
+        * Turns iScroll `mousewheel` option off dynamically
+        * https://github.com/cubiq/iscroll/issues/1036
+        */
+        IScroll.prototype.wheelOn = function () {
+            this.wrapper.addEventListener('wheel', this);
+            this.wrapper.addEventListener('mousewheel', this);
+            this.wrapper.addEventListener('DOMMouseScroll', this);
+        };
+
+        /*
+        * Turns iScroll `mousewheel` option on dynamically
+        * https://github.com/cubiq/iscroll/issues/1036
+        */
+        IScroll.prototype.wheelOff = function () {
+            this.wrapper.removeEventListener('wheel', this);
+            this.wrapper.removeEventListener('mousewheel', this);
+            this.wrapper.removeEventListener('DOMMouseScroll', this);
+        };
+    }
+
     /**
      * An object to handle overflow scrolling.
      * This uses jquery.slimScroll to accomplish overflow scrolling.
@@ -2740,26 +2762,6 @@
         refreshId: null,
         iScrollInstances: [],
 
-         /*
-        * Turns iScroll `mousewheel` option off dynamically
-        * https://github.com/cubiq/iscroll/issues/1036
-        */
-        wheelOn: function(wrapper){
-            wrapper.addEventListener('wheel', this);
-            wrapper.addEventListener('mousewheel', this);
-            wrapper.addEventListener('DOMMouseScroll', this);
-        },
-
-        /*
-        * Turns iScroll `mousewheel` option on dynamically
-        * https://github.com/cubiq/iscroll/issues/1036
-        */
-        wheelOff: function(wrapper) {
-            wrapper.removeEventListener('wheel', this);
-            wrapper.removeEventListener('mousewheel', this);
-            wrapper.removeEventListener('DOMMouseScroll', this);
-        },
-
         /**
         * Turns off iScroll for the destination section.
         * When scrolling very fast on some trackpads (and Apple laptops) the inertial scrolling would
@@ -2767,9 +2769,8 @@
         */
         onLeave: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-
             if(typeof scroller !== 'undefined' && scroller){
-                iscrollHandler.wheelOff( $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).get(0));
+                scroller.wheelOff();
             }
         },
 
@@ -2777,7 +2778,7 @@
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
             if(typeof scroller !== 'undefined' && scroller){
-                iscrollHandler.wheelOn( $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).get(0));
+                  scroller.wheelOn();
             }
         },
 
@@ -2799,6 +2800,7 @@
                         $(this).destroy();
                     });
                 }
+
                 iScrollInstance = new IScroll($this.get(0), iscrollOptions);
                 iscrollHandler.iScrollInstances.push(iScrollInstance);
                 $this.data('iscrollInstance', iScrollInstance);
@@ -2815,10 +2817,12 @@
          */
         isScrolled: function(type, scrollable) {
             var scroller = scrollable.data('iscrollInstance');
-
+            
+            //no scroller? 
             if (!scroller) {
-                return false;
+                return true;
             }
+
             if (type === 'top') {
                 return scroller.y >= 0 && !scrollable.scrollTop();
             } else if (type === 'bottom') {
@@ -2865,7 +2869,7 @@
                 var iScrollInstance = scrollable.data('iscrollInstance');
                 iScrollInstance.destroy();
 
-                scrollable.data('iscrollInstance', 'undefined');
+                scrollable.data('iscrollInstance', null);
             }
             element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
