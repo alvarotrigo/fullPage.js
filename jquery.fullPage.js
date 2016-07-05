@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.1
+ * fullPage 2.8.2
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -936,9 +936,11 @@
                         currentSection.addClass(ACTIVE).siblings().removeClass(ACTIVE);
 
                         $.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
-
                         $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
+
+                        stopMedia(leavingSection);
                         lazyLoad(currentSection);
+                        playMedia(currentSection);
 
                         activateMenuAndNav(anchorLink, sectionIndex - 1);
 
@@ -1518,8 +1520,6 @@
         */
         function afterSectionLoads (v){
             continuousVerticalFixSectionOrder(v);
-
-            v.element.find('.fp-scrollable').mouseover();
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
