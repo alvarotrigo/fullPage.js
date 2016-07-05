@@ -31,7 +31,7 @@ Would you like to have a website using fullpage.js functionality but you don't k
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
 - [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
   - [Creating links to sections or slides](https://github.com/alvarotrigo/fullPage.js#creating-links-to-sections-or-slides)
-  - [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
+  - [Creating smaller or bigger sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)
   - [State classes added by fullpage.js](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
   - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
   - [Autoplay embedded media](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
@@ -238,8 +238,8 @@ Note that section anchors can also be defined in the same way, by using the `dat
 
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
-### Creating smaller sections
-[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) It is possible to use sections or slides which don't take the whole viewport height resulting in smaller sections. This is ideal for footers.
+### Creating smaller or bigger sections
+[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provides a way to remove the full height restriction from its sections and slides. It is possible to create sections which height is smaller or bigger thant the viewport. This is ideal for footers.
 It is important to realise that it doesn't make sense to have all of your sections using this feature. If there is more than one section in the initial load of the site, the plugin won't scroll at all to see the next one as it will be already in the viewport.
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
@@ -249,15 +249,19 @@ To create smaller sections just use the class `fp-auto-height` in the section yo
 <div class="section fp-auto-height">Auto height</div>
 ```
 
+#### Responsive auto height sections
+A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be full height until the responsive mode gets fired. 
+
 ### State classes added by fullpage.js
 Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
 
-- The class `active` is added the current visible section and slide.
-- The class `active` is added to the current menu element (if using the `menu` option).
+- `active` is added the current visible section and slide.
+- `active` is added to the current menu element (if using the `menu` option).
 - A class of the form `fp-viewing-SECTION-SLIDE` is added to the `body` element of the site. (eg: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) The `SECTION` and `SLIDE` parts will be the anchors (or indexes if no anchor is provided) of the current section and slide.
-- The class `fp-responsive` is added to the `body` element when the entering in the responsive mode
-- The class `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
-- The class `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
+- `fp-responsive` is added to the `body` element when the entering in the responsive mode
+- `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
+- `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
+- `fp-enabled` is added to the `html` element once the libary is initalized. 
 
 ###Lazy Loading
 [Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
