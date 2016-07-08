@@ -3,14 +3,9 @@
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.1-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.2-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
-
-----
-**Make sure to use at least version 2.7.6.** A dangerous security issue has been found in previous versions!
-
----
 
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites or onepage sites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
@@ -173,6 +168,7 @@ $(document).ready(function() {
 		scrollOverflowOptions: null,
 		touchSensitivity: 15,
 		normalScrollElementTouchThreshold: 5,
+		bigSectionsDestination: null,
 
 		//Accessibility
 		keyboardScrolling: true,
@@ -351,6 +347,8 @@ the fitting by the configured milliseconds.
 - `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
 
 - `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
+
+- `bigSectionsDestination`: (default `null`) Defines how to scroll to a section which size is bigger than the viewport. By default fullPage.js scrolls to the top if you come from a section above the destination one and to the bottom if you come from a section below the destination one. Possible values are `top`, `bottom`, `null`.
 
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 

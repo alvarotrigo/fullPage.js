@@ -140,6 +140,7 @@
             scrollOverflowOptions: null,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            bigSectionsDestination: null,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1001,6 +1002,9 @@
 
             lastScroll = currentScroll;
 
+            //needed for auto-height sections to determine if we want to scroll to the top or bottom of the destination
+            previousDestTop = currentScroll;
+
             return direction;
         }
 
@@ -1303,11 +1307,12 @@
             var position = elemPosition.top;
             var isScrollingDown =  elemPosition.top > previousDestTop;
             var sectionBottom = position - windowsHeight + element.outerHeight();
+            var bigSectionsDestination = options.bigSectionsDestination;
 
             //is the destination element bigger than the viewport?
             if(element.outerHeight() > windowsHeight){
-                //scrolling up?
-                if(!isScrollingDown){
+                //scrolling up? 
+                if(!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom' ){
                     position = sectionBottom;
                 }
             }
