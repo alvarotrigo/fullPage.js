@@ -3,14 +3,9 @@
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.1-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.2-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
-
-----
-**Make sure to use at least version 2.7.6.** A dangerous security issue has been found in previous versions!
-
----
 
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites or onepage sites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
@@ -31,7 +26,7 @@ Would you like to have a website using fullpage.js functionality but you don't k
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
 - [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
   - [Creating links to sections or slides](https://github.com/alvarotrigo/fullPage.js#creating-links-to-sections-or-slides)
-  - [Creating smaller sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-sections)
+  - [Creating smaller or bigger sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)
   - [State classes added by fullpage.js](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
   - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
   - [Autoplay embedded media](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
@@ -173,6 +168,7 @@ $(document).ready(function() {
 		scrollOverflowOptions: null,
 		touchSensitivity: 15,
 		normalScrollElementTouchThreshold: 5,
+		bigSectionsDestination: null,
 
 		//Accessibility
 		keyboardScrolling: true,
@@ -238,8 +234,8 @@ Note that section anchors can also be defined in the same way, by using the `dat
 
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
-### Creating smaller sections
-[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) It is possible to use sections or slides which don't take the whole viewport height resulting in smaller sections. This is ideal for footers.
+### Creating smaller or bigger sections
+[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provides a way to remove the full height restriction from its sections and slides. It is possible to create sections which height is smaller or bigger thant the viewport. This is ideal for footers.
 It is important to realise that it doesn't make sense to have all of your sections using this feature. If there is more than one section in the initial load of the site, the plugin won't scroll at all to see the next one as it will be already in the viewport.
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
@@ -249,15 +245,19 @@ To create smaller sections just use the class `fp-auto-height` in the section yo
 <div class="section fp-auto-height">Auto height</div>
 ```
 
+#### Responsive auto height sections
+A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be full height until the responsive mode gets fired. 
+
 ### State classes added by fullpage.js
 Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
 
-- The class `active` is added the current visible section and slide.
-- The class `active` is added to the current menu element (if using the `menu` option).
+- `active` is added the current visible section and slide.
+- `active` is added to the current menu element (if using the `menu` option).
 - A class of the form `fp-viewing-SECTION-SLIDE` is added to the `body` element of the site. (eg: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) The `SECTION` and `SLIDE` parts will be the anchors (or indexes if no anchor is provided) of the current section and slide.
-- The class `fp-responsive` is added to the `body` element when the entering in the responsive mode
-- The class `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
-- The class `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
+- `fp-responsive` is added to the `body` element when the entering in the responsive mode
+- `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
+- `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
+- `fp-enabled` is added to the `html` element once the libary is initalized. 
 
 ###Lazy Loading
 [Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
@@ -348,6 +348,8 @@ the fitting by the configured milliseconds.
 
 - `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
 
+- `bigSectionsDestination`: (default `null`) Defines how to scroll to a section which size is bigger than the viewport. By default fullPage.js scrolls to the top if you come from a section above the destination one and to the bottom if you come from a section below the destination one. Possible values are `top`, `bottom`, `null`.
+
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
 
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
@@ -391,7 +393,7 @@ $('#fullpage').fullpage({
 - `slidesNavPosition`: (default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.
 
 - `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
-In case of setting it to `true`, it requires the vendor library [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/vendors) and it should be loaded before the fullPage.js plugin. For example:
+In case of setting it to `true`, it requires the vendor library [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) and it should be loaded before the fullPage.js plugin. For example:
 
 ```html
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
@@ -549,11 +551,15 @@ $.fn.fullpage.destroy('all');
 ---
 ### reBuild()
 Updates the DOM structure to fit the new window size or its contents.
-Ideal to use in combination with AJAX calls or external changes in the DOM structure of the site.
+ Ideal to use in combination with AJAX calls or external changes in the DOM structure of the site, specially when using `scrollOverflow:true`.
 
 ```javascript
 $.fn.fullpage.reBuild();
 ```
+---
+### setResponsive(boolean)
+[Demo](http://codepen.io/alvarotrigo/pen/WxOyLA) Sets the responsive mode of the page. When set to `true` the autoScrolling will be turned off and the result will be exactly the same one as when the `responsiveWidth` or `responsiveHeight` options  get fired.
+
 
 ## Callbacks
 [Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
@@ -770,6 +776,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
 [![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
+[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.gif)](http://www.bugatti.com/veyron/veyron-164/)
+[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
 
 - http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
 - http://www.sony-asia.com/microsite/mdr-10/
@@ -777,7 +785,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://mcdonalds.com.au/create-your-taste
 - http://burntmovie.com/
 - http://essenso.com/
-- http://www.battlefield.com/
+- http://www.bugatti.com/veyron/veyron-164/
 - http://www.kibey.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
@@ -788,6 +796,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://torchbrowser.com/
 - http://thekorner.fr/
 - http://www.restaurantwoods.nl/
+- https://www.edarling.de/
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/

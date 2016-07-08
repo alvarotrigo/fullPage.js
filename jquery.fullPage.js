@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.1
+ * fullPage 2.8.2
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -94,10 +94,7 @@
         mouseWheel: true,
         hideScrollbars: false,
         fadeScrollbars: false,
-        disableMouse: true,
-
-        //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
-        click: true 
+        disableMouse: true
     };
 
     $.fn.fullpage = function(options) {
@@ -143,6 +140,7 @@
             scrollOverflowOptions: null,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
+            bigSectionsDestination: null,
 
             //Accessibility
             keyboardScrolling: true,
@@ -176,7 +174,37 @@
             onSlideLeave: null
         }, options);
 
+        //flag to avoid very fast sliding for landscape sliders
+        var slideMoving = false;
+
+        var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
+        var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
+        var container = $(this);
+        var windowsHeight = $window.height();
+        var isResizing = false;
+        var isWindowFocused = true;
+        var lastScrolledDestiny;
+        var lastScrolledSlide;
+        var canScroll = true;
+        var scrollings = [];
+        var controlPressed;
+        var isScrollAllowed = {};
+        isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
+        isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
+
+        //timeouts
+        var resizeId;
+        var afterSectionLoadsId;
+        var afterSlideLoadsId;
+        var scrollId;
+        var scrollId2;
+        var keydownId;
+        var originals = $.extend(true, {}, options); //deep copy
+
         displayWarnings();
+
+        //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
+        iscrollOptions.click = isTouch; // see #2035
 
         //extending iScroll options with the user custom ones
         iscrollOptions = $.extend(iscrollOptions, options.scrollOverflowOptions);
@@ -462,34 +490,6 @@
             }
         };
 
-        //flag to avoid very fast sliding for landscape sliders
-        var slideMoving = false;
-
-        var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
-        var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
-        var container = $(this);
-        var windowsHeight = $window.height();
-        var isResizing = false;
-        var isWindowFocused = true;
-        var lastScrolledDestiny;
-        var lastScrolledSlide;
-        var canScroll = true;
-        var scrollings = [];
-        var nav;
-        var controlPressed;
-        var isScrollAllowed = {};
-        isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
-        isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
-        var originals = $.extend(true, {}, options); //deep copy
-
-        //timeouts
-        var resizeId;
-        var afterSectionLoadsId;
-        var afterSlideLoadsId;
-        var scrollId;
-        var scrollId2;
-        var keydownId;
-
         if($(this).length){
             init();
             bindEvents();
@@ -754,10 +754,10 @@
         */
         function addInternalSelectors(){
             //adding internal class names to void problem with common ones
-            $(options.sectionSelector).each(function(){
+            container.find(options.sectionSelector).each(function(){
                 $(this).addClass(SECTION);
             });
-            $(options.slideSelector).each(function(){
+            container.find(options.slideSelector).each(function(){
                 $(this).addClass(SLIDE);
             });
         }
@@ -895,16 +895,24 @@
                 var scrollDirection = getScrollDirection(currentScroll);
                 var visibleSectionIndex = 0;
                 var screen_mid = currentScroll + ($window.height() / 2.0);
+                var isAtBottom = $body.height() - $window.height() === currentScroll;
+                var sections =  document.querySelectorAll(SECTION_SEL);
+
+                //when using `auto-height` for a small last section it won't take most of the viewport
+                if(isAtBottom){
+                    visibleSectionIndex = sections.length - 1;
+                }
 
                 //taking the section which is showing more content in the viewport
-                var sections =  document.querySelectorAll(SECTION_SEL);
-                for (var i = 0; i < sections.length; ++i) {
-                    var section = sections[i];
+                else{
+                    for (var i = 0; i < sections.length; ++i) {
+                        var section = sections[i];
 
-                    // Pick the the last section which passes the middle line of the screen.
-                    if (section.offsetTop <= screen_mid)
-                    {
-                        visibleSectionIndex = i;
+                        // Pick the the last section which passes the middle line of the screen.
+                        if (section.offsetTop <= screen_mid)
+                        {
+                            visibleSectionIndex = i;
+                        }
                     }
                 }
 
@@ -937,9 +945,11 @@
                         currentSection.addClass(ACTIVE).siblings().removeClass(ACTIVE);
 
                         $.isFunction( options.onLeave ) && options.onLeave.call( leavingSection, leavingSectionIndex, sectionIndex, yMovement);
-
                         $.isFunction( options.afterLoad ) && options.afterLoad.call( currentSection, anchorLink, sectionIndex);
+
+                        stopMedia(leavingSection);
                         lazyLoad(currentSection);
+                        playMedia(currentSection);
 
                         activateMenuAndNav(anchorLink, sectionIndex - 1);
 
@@ -999,6 +1009,9 @@
             var direction = currentScroll > lastScroll ? 'down' : 'up';
 
             lastScroll = currentScroll;
+
+            //needed for auto-height sections to determine if we want to scroll to the top or bottom of the destination
+            previousDestTop = currentScroll;
 
             return direction;
         }
@@ -1302,11 +1315,12 @@
             var position = elemPosition.top;
             var isScrollingDown =  elemPosition.top > previousDestTop;
             var sectionBottom = position - windowsHeight + element.outerHeight();
+            var bigSectionsDestination = options.bigSectionsDestination;
 
             //is the destination element bigger than the viewport?
             if(element.outerHeight() > windowsHeight){
-                //scrolling up?
-                if(!isScrollingDown){
+                //scrolling up? 
+                if(!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom' ){
                     position = sectionBottom;
                 }
             }
@@ -1519,8 +1533,6 @@
         */
         function afterSectionLoads (v){
             continuousVerticalFixSectionOrder(v);
-
-            v.element.find('.fp-scrollable').mouseover();
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
@@ -2082,7 +2094,7 @@
 
             //needs scroll?
             if ( contentHeight > scrollHeight) {
-                //was there already an scroll ? Updating it
+                //did we already have an scrollbar ? Updating it
                 if(scrollable.length){
                     scrollOverflowHandler.update(element, scrollHeight);
                 }
@@ -2599,6 +2611,12 @@
             //reseting the `top` or `translate` properties to 0
             silentScroll(0);
 
+            //loading all the lazy load content
+            container.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
+                $(this).attr('src', $(this).data('src'));
+                $(this).removeAttr('data-src');
+            });
+
             $(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL).remove();
 
             //removing inline styles
@@ -2626,6 +2644,9 @@
 
             // remove .fp-enabled class
             $('html').removeClass(ENABLED);
+
+            // remove .fp-responsive class
+            $body.removeClass(RESPONSIVE);
 
             // remove all of the .fp-viewing- classes
             $.each($body.get(0).className.split(/\s+/), function (index, className) {
@@ -2766,7 +2787,6 @@
         */
         onLeave: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-
             if(typeof scroller !== 'undefined' && scroller){
                 scroller.wheelOff();
             }
@@ -2776,7 +2796,7 @@
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
             if(typeof scroller !== 'undefined' && scroller){
-                scroller.wheelOn();
+                  scroller.wheelOn();
             }
         },
 
@@ -2798,6 +2818,7 @@
                         $(this).destroy();
                     });
                 }
+
                 iScrollInstance = new IScroll($this.get(0), iscrollOptions);
                 iscrollHandler.iScrollInstances.push(iScrollInstance);
                 $this.data('iscrollInstance', iScrollInstance);
@@ -2814,10 +2835,12 @@
          */
         isScrolled: function(type, scrollable) {
             var scroller = scrollable.data('iscrollInstance');
-
+            
+            //no scroller? 
             if (!scroller) {
-                return false;
+                return true;
             }
+
             if (type === 'top') {
                 return scroller.y >= 0 && !scrollable.scrollTop();
             } else if (type === 'bottom') {
@@ -2864,7 +2887,7 @@
                 var iScrollInstance = scrollable.data('iscrollInstance');
                 iScrollInstance.destroy();
 
-                scrollable.data('iscrollInstance', 'undefined');
+                scrollable.data('iscrollInstance', null);
             }
             element.find(SCROLLABLE_SEL).children().first().children().first().unwrap().unwrap();
         },
