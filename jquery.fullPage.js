@@ -895,16 +895,24 @@
                 var scrollDirection = getScrollDirection(currentScroll);
                 var visibleSectionIndex = 0;
                 var screen_mid = currentScroll + ($window.height() / 2.0);
+                var isAtBottom = $body.height() - $window.height() === currentScroll;
+                var sections =  document.querySelectorAll(SECTION_SEL);
+
+                //when using `auto-height` for a small last section it won't take most of the viewport
+                if(isAtBottom){
+                    visibleSectionIndex = sections.length - 1;
+                }
 
                 //taking the section which is showing more content in the viewport
-                var sections =  document.querySelectorAll(SECTION_SEL);
-                for (var i = 0; i < sections.length; ++i) {
-                    var section = sections[i];
+                else{
+                    for (var i = 0; i < sections.length; ++i) {
+                        var section = sections[i];
 
-                    // Pick the the last section which passes the middle line of the screen.
-                    if (section.offsetTop <= screen_mid)
-                    {
-                        visibleSectionIndex = i;
+                        // Pick the the last section which passes the middle line of the screen.
+                        if (section.offsetTop <= screen_mid)
+                        {
+                            visibleSectionIndex = i;
+                        }
                     }
                 }
 
