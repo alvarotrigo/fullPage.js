@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.1
+ * fullPage 2.8.2
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -91,6 +91,9 @@ html.fp-enabled,
 .fp-scrollable {
     overflow: hidden;
     position: relative;
+}
+.fp-scroller{
+    overflow: hidden;
 }
 .iScrollIndicator{
     border: 0 !important;
