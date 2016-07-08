@@ -55,6 +55,7 @@
     // section nav
     var SECTION_NAV =           'fp-nav';
     var SECTION_NAV_SEL =       '#' + SECTION_NAV;
+    var SECTION_NAV_CONTAINER = 'body';
     var SECTION_NAV_TOOLTIP =   'fp-tooltip';
     var SECTION_NAV_TOOLTIP_SEL='.'+SECTION_NAV_TOOLTIP;
     var SHOW_ACTIVE_TOOLTIP =   'fp-show-active';
@@ -162,7 +163,7 @@
             //Custom selectors
             sectionSelector: SECTION_DEFAULT_SEL,
             slideSelector: SLIDE_DEFAULT_SEL,
-
+            navigationContainer: SECTION_NAV_CONTAINER,
 
             //events
             afterLoad: null,
@@ -782,7 +783,7 @@
         * Creates a vertical navigation bar.
         */
         function addVerticalNavigation(){
-            $body.append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
+            $(options.navigationContainer).append('<div id="' + SECTION_NAV + '"><ul></ul></div>');
             var nav = $(SECTION_NAV_SEL);
 
             nav.addClass(function() {
