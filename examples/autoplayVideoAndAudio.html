@@ -3,15 +3,19 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Background video - fullPage.js</title>
+    <title>Autoplay / pause media - fullPage.js</title>
     <meta name="author" content="Alvaro Trigo Lopez" />
-    <meta name="description" content="fullPage full-screen backgrounds." />
-    <meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+    <meta name="description" content="fullPage full-screen autoplay videos and audio." />
+    <meta name="keywords"  content="fullpage,jquery,demo,autoplay,video,audio,html5,paluse" />
     <meta name="Resource-type" content="Document" />
-
 
     <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+    .intro p{
+        color: #fff;
+    }
+    </style>
 
     <!--[if IE]>
         <script type="text/javascript">
@@ -19,8 +23,10 @@
         </script>
     <![endif]-->
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
 
     <script type="text/javascript" src="../jquery.fullPage.js"></script>
     <script type="text/javascript" src="examples.js"></script>
@@ -28,8 +34,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#fullpage').fullpage({
-                verticalCentered: true,
-                sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE']
+                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+                anchors: ['firstPage', 'secondPage', '3rdPage']
             });
         });
     </script>
@@ -63,38 +69,40 @@
   <option id="methods">Methods</option>
 </select>
 
+
 <div id="fullpage">
-    <div class="section " id="section0">
-        <h1>auto play/pause</h1>
-        <p>When using the tag `autoplay` in the media element fullpage.js automatically plays media elements when accessing to the section/slide in which they are</p>
+    <div class="section intro"> 
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
+      <p>
+        The video will automatically start playing as I'm usign the attribute `data-autoplay`. 
+      </p>
+      <p>
+        And because I'm not using the attribute `data-keepplaying` the video will automatically stop playing after leaving the section or slide.
+      </p>
     </div>
-    <div class="section" id="section1">
-        <div class="slide" id="slide1">
-            <h1>Videos</h1>
-            <video autoplay loop muted id="myVideo">
-                <source src="imgs/flowers.mp4" type="video/mp4">
-                <source src="imgs/flowers.webm" type="video/webm">
-                Your browser does not support the audio element.
-            </video>
+    <div class="section">
+        <div class="slide">
+          <h1>HTML 5 videos</h1>
+          <video loop muted controls="false" data-autoplay>
+            <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+          </video>   
         </div>
-        <div class="slide" id="slide2">
-            <h1>Audio</h1>
-            <audio autoplay controls="">
-                <source src="imgs/horse.ogg" type="audio/ogg">
-                <source src="imgs/horse.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <div class="slide intro">
+          <h1>In slides!</h1>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
         </div>
     </div>
-    <div class="section" id="section2">
-        <h1>Audio</h1>
-        <audio autoplay controls="">
-            <source src="imgs/horse.ogg" type="audio/ogg">
-            <source src="imgs/horse.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <div class="section">
+      <h1>Audio</h1>
+      <audio controls="" data-autoplay>
+          <source src="imgs/horse.ogg" type="audio/ogg">
+          <source src="imgs/horse.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+      </audio>
     </div>
 </div>
+
 
 </body>
 </html>

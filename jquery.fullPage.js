@@ -753,13 +753,8 @@
         * keeping the link with the style sheet.
         */
         function addInternalSelectors(){
-            //adding internal class names to void problem with common ones
-            container.find(options.sectionSelector).each(function(){
-                $(this).addClass(SECTION);
-            });
-            container.find(options.slideSelector).each(function(){
-                $(this).addClass(SLIDE);
-            });
+            container.find(options.sectionSelector).addClass(SECTION);
+            container.find(options.slideSelector).addClass(SLIDE);
         }
 
         /**
@@ -840,8 +835,7 @@
         */
         function enableYoutubeAPI(){
             container.find('iframe[src*="youtube.com/embed/"]').each(function(){
-                var sign = getUrlParamSign($(this).attr('src'));
-                $(this).attr('src', $(this).attr('src') + sign + 'enablejsapi=1');
+                addURLParam($(this), 'enablejsapi=1');
             });
         }
 
@@ -850,9 +844,16 @@
         */
         function enableVidemoAPI(){
             container.find('iframe[src*="player.vimeo.com/"]').each(function(){
-                var sign = getUrlParamSign($(this).attr('src'));
-                $(this).attr('src', $(this).attr('src') + sign + 'api=1');
+                addURLParam($(this), 'api=1');
             });
+        }
+
+        /**
+        * Adds a new parameter and its value to the `src` of a given element
+        */
+        function addURLParam(element, newParam){
+            var originalSrc = element.attr('src');
+            element.attr('src', originalSrc + getUrlParamSign(originalSrc) + newParam);
         }
 
         /*
@@ -1580,12 +1581,21 @@
             //youtube videos
             destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 var element = $(this).get(0);
-
+                
                 if( /youtube\.com\/embed\//.test($(this).attr('src')) && element.hasAttribute('data-autoplay')){
-                    element.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                    playYoutube(element);
+                    
+                    //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
+                    element.onload = function() {
+                        playYoutube(element);
+                    };
                 }
             });
         }
+
+        function playYoutube(element){
+            element.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        };
 
         /**
         * Stops video and audio elements.
