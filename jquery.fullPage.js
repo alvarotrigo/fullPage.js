@@ -1062,6 +1062,7 @@
         */
         function touchMoveHandler(event){
             var e = event.originalEvent;
+            var activeSection = $(e.target).closest(SECTION_SEL);
 
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (!checkParentForNormalScrollElement(event.target) && isReallyTouch(e) ) {
@@ -1071,7 +1072,6 @@
                     event.preventDefault();
                 }
 
-                var activeSection = $(SECTION_ACTIVE_SEL);
                 var scrollable = options.scrollOverflowHandler.scrollable(activeSection);
 
                 if (canScroll && !slideMoving) { //if theres any #
@@ -1087,11 +1087,11 @@
                         if (Math.abs(touchStartX - touchEndX) > ($window.outerWidth() / 100 * options.touchSensitivity)) {
                             if (touchStartX > touchEndX) {
                                 if(isScrollAllowed.m.right){
-                                    FP.moveSlideRight(); //next
+                                    FP.moveSlideRight(activeSection); //next
                                 }
                             } else {
                                 if(isScrollAllowed.m.left){
-                                    FP.moveSlideLeft(); //prev
+                                    FP.moveSlideLeft(activeSection); //prev
                                 }
                             }
                         }
