@@ -94,7 +94,8 @@
         mouseWheel: true,
         hideScrollbars: false,
         fadeScrollbars: false,
-        disableMouse: true
+        disableMouse: true,
+        interactiveScrollbars: true
     };
 
     $.fn.fullpage = function(options) {
