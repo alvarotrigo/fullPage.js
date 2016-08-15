@@ -372,13 +372,13 @@ the fitting by the configured milliseconds.
 
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section or should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
 
-- `continuousHorizontal`: (default `false`) [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Defines whether sliding right in the last slide should slide right to the first one or not, and if scrolling left in the first slide should slide left to the last one or not. Not compatible with `loopHorizontal`. Requires fullpage.js >= 2.8.3.
+- `continuousHorizontal`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether sliding right in the last slide should slide right to the first one or not, and if scrolling left in the first slide should slide left to the last one or not. Not compatible with `loopHorizontal`. Requires fullpage.js >= 2.8.3.
 
-- `scrollHorizontally`: (default `false`) [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Defines whether to slide horizontally within sliders by using the mouse wheel or trackpad. Ideal for story telling`. Requires fullpage.js >= 2.8.3.
+- `scrollHorizontally`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether to slide horizontally within sliders by using the mouse wheel or trackpad. Ideal for story telling`. Requires fullpage.js >= 2.8.3.
 
-- `interlockedSlides`: (default `false`) [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by 1. Requires fullpage.js >= 2.8.3.
+- `interlockedSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by 1. Requires fullpage.js >= 2.8.3.
 
-- `resetSliders`: (efault `false`). [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Deefines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
+- `resetSliders`: (efault `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Deefines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
