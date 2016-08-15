@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.2
+ * fullPage 2.8.3
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -134,6 +134,8 @@
             loopTop: false,
             loopHorizontal: true,
             continuousVertical: false,
+            continuousHorizontal: true,
+            scrollHorizontally: true,
             normalScrollElements: null,
             scrollOverflow: false,
             scrollOverflowHandler: iscrollHandler,
@@ -141,6 +143,7 @@
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
+            interlocked: null,
 
             //Accessibility
             keyboardScrolling: true,
@@ -404,7 +407,7 @@
         * Optional `section` param.
         */
         FP.moveSlideRight = function(section){
-            moveSlide('next', section);
+            moveSlide('right', section);
         };
 
         /**
@@ -412,7 +415,7 @@
         * Optional `section` param.
         */
         FP.moveSlideLeft = function(section){
-            moveSlide('prev', section);
+            moveSlide('left', section);
         };
 
         /**
@@ -440,10 +443,10 @@
                 if(options.scrollOverflow){
                     if(slides.length){
                         slides.each(function(){
-                            createSlimScrolling($(this));
+                            createScrollBar($(this));
                         });
                     }else{
-                        createSlimScrolling($(this));
+                        createScrollBar($(this));
                     }
                 }
 
@@ -490,8 +493,31 @@
             }
         };
 
+        FP.getFullpageData = function(){
+            return {
+                options: options,
+                internals: {
+                    getXmovement: getXmovement,
+                    removeAnimation: removeAnimation,
+                    getTransforms: getTransforms,
+                    lazyLoad: lazyLoad,
+                    addAnimation: addAnimation,
+                    getTransforms: getTransforms,
+                    performHorizontalMove: performHorizontalMove,
+                    silentLandscapeScroll: silentLandscapeScroll
+                }
+            };
+        };
+
         if($(this).length){
+            //Loading extensions
+            loadExtension('fp_continuousHorizontalExtension');
+            loadExtension('fp_scrollHorizontallyExtension');
+            loadExtension('fp_resetSlidersExtension');
+            loadExtension('fp_interlockedSlidesExtension');
+
             init();
+
             bindEvents();
         }
 
@@ -502,7 +528,6 @@
             }
 
             options.scrollBar = options.scrollBar || options.hybrid;
-
 
             setOptionsFromDOM();
 
@@ -576,6 +601,15 @@
                     FP.setMouseWheelScrolling(true);
                 });
             }
+        }
+
+        /**
+        * Sets a public internal function based on the extension name.
+        * @param externalName {String} Extension name with the form fp_[NAME]Extension referring to an external function.
+        */
+        function loadExtension(externalName){
+            var internalName = externalName.replace('fp_', '').replace('Extension', '');
+            FP[internalName] = typeof window[externalName] !=='undefined' ? new window[externalName]() : null;
         }
 
         /**
@@ -653,10 +687,10 @@
 
             if(options.scrollOverflow){
                 if(document.readyState === 'complete'){
-                    createSlimScrollingHandler();
+                    createScrollBarHandler();
                 }
                 //after DOM and images are loaded
-                $window.on('load', createSlimScrollingHandler);
+                $window.on('load', createScrollBarHandler);
             }else{
                 afterRenderActions();
             }
@@ -814,16 +848,16 @@
         /**
         * Creates the slim scroll scrollbar for the sections and slides inside them.
         */
-        function createSlimScrollingHandler(){
+        function createScrollBarHandler(){
             $(SECTION_SEL).each(function(){
                 var slides = $(this).find(SLIDE_SEL);
 
                 if(slides.length){
                     slides.each(function(){
-                        createSlimScrolling($(this));
+                        createScrollBar($(this));
                     });
                 }else{
-                    createSlimScrolling($(this));
+                    createScrollBar($(this));
                 }
 
             });
@@ -1025,16 +1059,13 @@
             if (!isScrollAllowed.m[type]){
                 return;
             }
-            var check, scrollSection;
+            var check = (type === 'down') ? 'bottom' : 'top';
+            var scrollSection = (type === 'down') ? FP.moveSectionDown : FP.moveSectionUp;
 
-            if(type == 'down'){
-                check = 'bottom';
-                scrollSection = FP.moveSectionDown;
-            }else{
-                check = 'top';
-                scrollSection = FP.moveSectionUp;
+            if(FP.scrollHorizontally){
+                scrollSection = FP.scrollHorizontally.getScrollSection(type, scrollSection);
             }
-
+            
             if(scrollable.length > 0 ){
                 //is the scrollbar at the start/end of the scroll?
                 if(options.scrollOverflowHandler.isScrolled(check, scrollable)){
@@ -1226,7 +1257,7 @@
                     //emptying the array, we dont care about old scrollings for our averages
                     scrollings = [];
                 }
-
+                
                 if(canScroll){
                     var averageEnd = getAverage(scrollings, 10);
                     var averageMiddle = getAverage(scrollings, 70);
@@ -1271,7 +1302,7 @@
             var currentSlide = slides.find(SLIDE_ACTIVE_SEL);
             var destiny = null;
 
-            if(direction === 'prev'){
+            if(direction === 'left'){
                 destiny = currentSlide.prev(SLIDE_SEL);
             }else{
                 destiny = currentSlide.next(SLIDE_SEL);
@@ -1282,7 +1313,7 @@
                 //respect loopHorizontal settin
                 if (!options.loopHorizontal) return;
 
-                if(direction === 'prev'){
+                if(direction === 'left'){
                     destiny = currentSlide.siblings(':last');
                 }else{
                     destiny = currentSlide.siblings(':first');
@@ -1291,7 +1322,7 @@
 
             slideMoving = true;
 
-            landscapeScroll(slides, destiny);
+            landscapeScroll(slides, destiny, direction);
         }
 
         /**
@@ -1414,7 +1445,7 @@
         }
 
         /**
-        * Performs the movement (by CSS3 or by jQuery)
+        * Performs the vertical movement (by CSS3 or by jQuery)
         */
         function performMovement(v){
             // using CSS3 translate functionality
@@ -1539,9 +1570,13 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
             options.scrollOverflowHandler.afterLoad();
 
+            if(FP.resetSliders){
+                FP.resetSliders.apply(v);
+            }
+
             playMedia(v.element);
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
-
+            
             canScroll = true;
 
             $.isFunction(v.callback) && v.callback.call(this);
@@ -1581,18 +1616,19 @@
             //youtube videos
             destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 var element = $(this).get(0);
-                
-                if( /youtube\.com\/embed\//.test($(this).attr('src')) && element.hasAttribute('data-autoplay')){
-                    playYoutube(element);
+
+                playYoutube(element);
                     
-                    //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
-                    element.onload = function() {
-                        playYoutube(element);
-                    };
-                }
+                //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
+                element.onload = function() {
+                    playYoutube(element);
+                };
             });
         }
 
+        /**
+        * Plays a youtube video
+        */
         function playYoutube(element){
             element.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
         };
@@ -1853,44 +1889,52 @@
         /**
         * Scrolls horizontal sliders.
         */
-        function landscapeScroll(slides, destiny){
-            var destinyPos = destiny.position();
-            var slideIndex = destiny.index();
+        function landscapeScroll(slides, destiny, direction){
             var section = slides.closest(SECTION_SEL);
-            var sectionIndex = section.index(SECTION_SEL);
-            var anchorLink = section.data('anchor');
-            var slidesNav = section.find(SLIDES_NAV_SEL);
-            var slideAnchor = getAnchor(destiny);
-            var prevSlide = section.find(SLIDE_ACTIVE_SEL);
+            var v = {
+                slides: slides,
+                destiny: destiny,
+                direction: direction,
+                destinyPos: destiny.position(),
+                slideIndex: destiny.index(),
+                section: section,
+                sectionIndex: section.index(SECTION_SEL),
+                anchorLink: section.data('anchor'),
+                slidesNav: section.find(SLIDES_NAV_SEL),
+                slideAnchor:  getAnchor(destiny),
+                prevSlide: section.find(SLIDE_ACTIVE_SEL),
+                prevSlideIndex: section.find(SLIDE_ACTIVE_SEL).index(),
 
-            //caching the value of isResizing at the momment the function is called
-            //because it will be checked later inside a setTimeout and the value might change
-            var localIsResizing = isResizing;
+                //caching the value of isResizing at the momment the function is called
+                //because it will be checked later inside a setTimeout and the value might change
+                localIsResizing: isResizing
+            };
+            v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
+
+            canScroll = false;
 
             if(options.onSlideLeave){
-                var prevSlideIndex = prevSlide.index();
-                var xMovement = getXmovement(prevSlideIndex, slideIndex);
 
                 //if the site is not just resizing and readjusting the slides
-                if(!localIsResizing && xMovement!=='none'){
+                if(!v.localIsResizing && v.xMovement!=='none'){
                     if($.isFunction( options.onSlideLeave )){
-                        if(options.onSlideLeave.call( prevSlide, anchorLink, (sectionIndex + 1), prevSlideIndex, xMovement, slideIndex ) === false){
+                        if(options.onSlideLeave.call( v.prevSlide, v.anchorLink, (v.sectionIndex + 1), v.prevSlideIndex, v.xMovement, v.slideIndex ) === false){
                             slideMoving = false;
                             return;
                         }
                     }
                 }
             }
-            stopMedia(prevSlide);
+            stopMedia(v.prevSlide);
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-            if(!localIsResizing){
+            if(!v.localIsResizing){
                 lazyLoad(destiny);
             }
 
             if(!options.loopHorizontal && options.controlArrows){
                 //hidding it for the fist slide, showing for the rest
-                section.find(SLIDES_ARROW_PREV_SEL).toggle(slideIndex!==0);
+                section.find(SLIDES_ARROW_PREV_SEL).toggle(v.slideIndex!==0);
 
                 //hidding it for the last slide, showing for the rest
                 section.find(SLIDES_ARROW_NEXT_SEL).toggle(!destiny.is(':last-child'));
@@ -1898,37 +1942,76 @@
 
             //only changing the URL if the slides are in the current section (not for resize re-adjusting)
             if(section.hasClass(ACTIVE)){
-                setState(slideIndex, slideAnchor, anchorLink, sectionIndex);
+                setState(v.slideIndex, v.slideAnchor, v.anchorLink, v.sectionIndex);
             }
 
-            var afterSlideLoads = function(){
-                //if the site is not just resizing and readjusting the slides
-                if(!localIsResizing){
-                    $.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
-                }
-                playMedia(destiny);
+            if(FP.continuousHorizontal){
+                FP.continuousHorizontal.apply(v);
+            }
 
-                //letting them slide again
-                slideMoving = false;
-            };
+            performHorizontalMove(slides, v, true);
+            
+            if(FP.interlockedSlides){
+                FP.interlockedSlides.apply(v);
+            }
+        }
+
+
+        function afterSlideLoads(v){
+            if(FP.continuousHorizontal){
+                FP.continuousHorizontal.afterSlideLoads(v);
+            }
+            activeSlidesNavigation(v.slidesNav, v.slideIndex);
+
+            //if the site is not just resizing and readjusting the slides
+            if(!v.localIsResizing){
+                $.isFunction( options.afterSlideLoad ) && options.afterSlideLoad.call( v.destiny, v.anchorLink, (v.sectionIndex + 1), v.slideAnchor, v.slideIndex);
+
+                //needs to be inside the condition to prevent problems with continuousVertical and scrollHorizontally
+                //and to prevent double scroll right after a windows resize
+                canScroll = true;
+            }
+
+            playMedia(v.destiny);
+
+            //letting them slide again
+            slideMoving = false;     
+
+            if(FP.interlockedSlides){
+                FP.interlockedSlides.apply(v);
+            }
+        }
+
+        /**
+        * Performs the horizontal movement. (CSS3 or jQuery)
+        * 
+        * @param fireCallback {Bool} - determines whether or not to fire the callback
+        */
+        function performHorizontalMove(slides, v, fireCallback){
+            var destinyPos = v.destinyPos;
 
             if(options.css3){
                 var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';
 
-                addAnimation(slides.find(SLIDES_CONTAINER_SEL), options.scrollingSpeed>0).css(getTransforms(translate3d));
+                addAnimation(slides.find(SLIDES_CONTAINER_SEL)).css(getTransforms(translate3d));
 
                 afterSlideLoadsId = setTimeout(function(){
-                    afterSlideLoads();
+                    fireCallback && afterSlideLoads(v);
                 }, options.scrollingSpeed, options.easing);
             }else{
                 slides.animate({
                     scrollLeft : Math.round(destinyPos.left)
                 }, options.scrollingSpeed, options.easing, function() {
 
-                    afterSlideLoads();
+                    fireCallback && afterSlideLoads(v);
                 });
             }
+        }
 
+        /**
+        * Sets the state for the horizontal bullet navigations.
+        */
+        function activeSlidesNavigation(slidesNav, slideIndex){
             slidesNav.find(ACTIVE_SEL).removeClass(ACTIVE);
             slidesNav.find('li').eq(slideIndex).find('a').addClass(ACTIVE);
         }
@@ -2009,8 +2092,8 @@
         }
 
         /**
-         * Activating the website navigation dots according to the given slide name.
-         */
+        * Activating the vertical navigation bullets according to the given slide name.
+        */
         function activateNavDots(name, sectionIndex){
             if(options.navigation){
                 $(SECTION_NAV_SEL).find(ACTIVE_SEL).removeClass(ACTIVE);
@@ -2023,8 +2106,8 @@
         }
 
         /**
-         * Activating the website main menu elements according to the given slide name.
-         */
+        * Activating the website main menu elements according to the given slide name.
+        */
         function activateMenuElement(name){
             if(options.menu){
                 $(options.menu).find(ACTIVE_SEL).removeClass(ACTIVE);
@@ -2076,7 +2159,7 @@
         *
         * @param {Object} element   jQuery object of the section or slide
         */
-        function createSlimScrolling(element){
+        function createScrollBar(element){
             //User doesn't want scrollbar here? Sayonara baby!
             if(element.hasClass('fp-noscroll')) return;
 
@@ -2450,8 +2533,9 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                $(WRAPPER_SEL).off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler);
-                $(WRAPPER_SEL).off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
+                $(WRAPPER_SEL)
+                    .off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler)
+                    .off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
             }
         }
 
@@ -2463,8 +2547,9 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                $(WRAPPER_SEL).off('touchstart ' + MSPointer.down);
-                $(WRAPPER_SEL).off('touchmove ' + MSPointer.move);
+                $(WRAPPER_SEL)
+                    .off('touchstart ' + MSPointer.down)
+                    .off('touchmove ' + MSPointer.move);
             }
         }
 
@@ -2509,6 +2594,7 @@
 
         /**
         * Slides silently (with no animation) the active slider to the given slide.
+        * @param noCallback {bool} true or defined -> no callbacks
         */
         function silentLandscapeScroll(activeSlide, noCallbacks){
             FP.setScrollingSpeed (0, 'internal');
@@ -2935,5 +3021,4 @@
             return '<div class="' + SCROLLABLE + '"><div class="fp-scroller"></div></div>';
         }
     };
-
 });
