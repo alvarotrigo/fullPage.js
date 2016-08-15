@@ -993,9 +993,8 @@
                         if(options.anchors.length){
                             //needed to enter in hashChange event when using the menu with anchor links
                             lastScrolledDestiny = anchorLink;
-
-                            setState(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
                         }
+                        setState(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
                     }
 
                     //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
