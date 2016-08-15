@@ -136,6 +136,8 @@
             continuousVertical: false,
             continuousHorizontal: true,
             scrollHorizontally: true,
+            interlockedSlides: false,
+            resetSliders: false,
             normalScrollElements: null,
             scrollOverflow: false,
             scrollOverflowHandler: iscrollHandler,
@@ -143,7 +145,6 @@
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
-            interlocked: null,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1570,7 +1571,7 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
             options.scrollOverflowHandler.afterLoad();
 
-            if(FP.resetSliders){
+            if(options.resetSliders && FP.resetSliders){
                 FP.resetSliders.apply(v);
             }
 
@@ -1951,7 +1952,7 @@
 
             performHorizontalMove(slides, v, true);
             
-            if(FP.interlockedSlides){
+            if(options.interlockedSlides && FP.interlockedSlides){
                 FP.interlockedSlides.apply(v);
             }
         }
