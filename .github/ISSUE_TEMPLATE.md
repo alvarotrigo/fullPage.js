@@ -1,7 +1,7 @@
 ### Description
 
 ### Link to isolated reproduction with no external CSS / JS
-[in jsfiddle.net or codepen.io if possible, link to personal websites won't be reviewed unless isolated reproductions are provided. Reported issues without a reproduction might be closed.]
+[Ideally in jsfiddle.net or codepen.io, links to personal websites won't be reviewed unless isolated. Reported issues without a reproduction might get closed.]
 
 ### Steps to reproduce it
 1. [First step]

@@ -3,7 +3,7 @@
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.2-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.3-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -12,7 +12,7 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
 - [Wordpress theme](https://goo.gl/HuFudq)
-- [Blog Article](http://alvarotrigo.com/blog/fullpage-jquery-plugin-for-fullscreen-scrolling-websites/)
+- [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
 Invite me to a coffee
@@ -30,6 +30,7 @@ Would you like to have a website using fullpage.js functionality but you don't k
   - [State classes added by fullpage.js](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
   - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
   - [Autoplay embedded media](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
+  - [Use extensions](https://github.com/alvarotrigo/fullPage.js#use-extensions)
 - [Options](https://github.com/alvarotrigo/fullPage.js#options)
 - [Methods](https://github.com/alvarotrigo/fullPage.js#methods)
 - [Callbacks](https://github.com/alvarotrigo/fullPage.js#callbacks)
@@ -163,6 +164,10 @@ $(document).ready(function() {
 		loopTop: false,
 		loopHorizontal: true,
 		continuousVertical: false,
+		continuousHorizontal: false,
+		scrollHorizontally: false,
+		interlockedSlides: false,
+		resetSliders: false,
 		normalScrollElements: '#element1, .element2',
 		scrollOverflow: false,
 		scrollOverflowOptions: null,
@@ -292,6 +297,17 @@ Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paus
 </audio>
 ```
 
+###Use extensions
+fullpage.js (since version 2.8.3) [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
+
+Once you adquire the extension file, you will just need to add it before fullPage.js. For example: 
+
+```html
+<script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
+<script type="text/javascript" src="fullpage/jquery.fullPage.js"></script>
+```
+
+Then you will be able to use and configure them as explained in [options](https://github.com/alvarotrigo/fullPage.js#options).
 
 ## Options
 
@@ -354,7 +370,15 @@ the fitting by the configured milliseconds.
 
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
-- `continuousVertical`: (default `false`) Defines whether scrolling down in the last section should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
+- `continuousVertical`: (default `false`) Defines whether scrolling down in the last section or should scroll down to the first one or not, and if scrolling up in the first section should scroll up to the last one or not. Not compatible with `loopTop` or `loopBottom`.
+
+- `continuousHorizontal`: (default `false`) [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Defines whether sliding right in the last slide should slide right to the first one or not, and if scrolling left in the first slide should slide left to the last one or not. Not compatible with `loopHorizontal`. Requires fullpage.js >= 2.8.3.
+
+- `scrollHorizontally`: (default `false`) [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Defines whether to slide horizontally within sliders by using the mouse wheel or trackpad. Ideal for story telling`. Requires fullpage.js >= 2.8.3.
+
+- `interlockedSlides`: (default `false`) [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by 1. Requires fullpage.js >= 2.8.3.
+
+- `resetSliders`: (efault `false`). [Extension of fullpage.js](alvarotrigo.com/fullPage/extensions/). Deefines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
@@ -399,6 +423,8 @@ In case of setting it to `true`, it requires the vendor library [`scrolloverflow
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
+
+In order to prevent fullpage.js from creating the scrollbar in certain sections or slides use the class `fp-noscroll`. For example: `<div class="section fp-noscroll">`
 
 - `scrollOverflowOptions`: when using scrollOverflow:true fullpage.js will make use of a forked and modified version of [iScroll.js libary](https://github.com/cubiq/iscroll/). You can customize the scrolling behaviour by providing fullpage.js with the iScroll.js options you want to use. Check [its documentation](http://iscrolljs.com/) for more info.
 
