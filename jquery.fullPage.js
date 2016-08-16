@@ -504,7 +504,6 @@
                     getTransforms: getTransforms,
                     lazyLoad: lazyLoad,
                     addAnimation: addAnimation,
-                    getTransforms: getTransforms,
                     performHorizontalMove: performHorizontalMove,
                     silentLandscapeScroll: silentLandscapeScroll
                 }
