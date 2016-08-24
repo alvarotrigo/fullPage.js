@@ -378,7 +378,7 @@ the fitting by the configured milliseconds.
 
 - `interlockedSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by 1. Requires fullpage.js >= 2.8.3.
 
-- `resetSliders`: (efault `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Deefines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
+- `resetSliders`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Deefines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
