@@ -29,6 +29,12 @@
 
     // util
     var RESPONSIVE =            'fp-responsive';
+
+    // 水平断点
+    var RESPONSIVE_X =          'fp-responsive-x';
+
+    // 垂直断点
+    var RESPONSIVE_Y =          'fp-responsive-y';
     var NO_TRANSITION =         'fp-notransition';
     var DESTROYED =             'fp-destroyed';
     var ENABLED =               'fp-enabled';
@@ -163,6 +169,7 @@
             responsive: 0, //backwards compabitility with responsiveWiddth
             responsiveWidth: 0,
             responsiveHeight: 0,
+            responsiveHeightValue: 0,
 
             //Custom selectors
             sectionSelector: SECTION_DEFAULT_SEL,
@@ -221,14 +228,14 @@
         * Sets the autoScroll option.
         * It changes the scroll bar visibility and the history of the site as a result.
         */
-        FP.setAutoScrolling = function(value, type){
+        FP.setAutoScrolling = function(value, type, direction){
             setVariableState('autoScrolling', value, type);
 
             var element = $(SECTION_ACTIVE_SEL);
 
             if(options.autoScrolling && !options.scrollBar){
                 $htmlBody.css({
-                    'overflow' : 'hidden',
+                    'overflowY' : 'hidden',
                     'height' : '100%'
                 });
 
@@ -428,7 +435,7 @@
 
             isResizing = true;
 
-            windowsHeight = $window.height();  //updating global var
+            windowsHeight = mixWindowsHeight();  //updating global var
 
             $(SECTION_SEL).each(function(){
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
@@ -468,30 +475,50 @@
             }
 
             isResizing = false;
-            $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container);
-            $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container);
+
+            // hack: return direction info
+            var overflowX = options.responsiveWidth - $(window).outerWidth();
+            var overflowY = options.responsiveHeight - $(window).height();
+            var overflow = {
+                x: overflowX,
+                y: overflowY
+            };
+            $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container, overflow);
+            $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container, overflow);
         };
 
         /**
         * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
         * are smaller than the set limit values.
         */
-        FP.setResponsive = function (active){
+        FP.setResponsive = function (active, direction){
             var isResponsive = $body.hasClass(RESPONSIVE);
 
             if(active){
                 if(!isResponsive){
-                    FP.setAutoScrolling(false, 'internal');
+                    FP.setAutoScrolling(false, 'internal', direction);
                     FP.setFitToSection(false, 'internal');
                     $(SECTION_NAV_SEL).hide();
                     $body.addClass(RESPONSIVE);
+                    if (direction.X) {
+                        $body.addClass(RESPONSIVE_X);
+                    }
+                    if (direction.Y) {
+                        $body.addClass(RESPONSIVE_Y);
+                    }
                 }
             }
             else if(isResponsive){
-                FP.setAutoScrolling(originals.autoScrolling, 'internal');
+                FP.setAutoScrolling(originals.autoScrolling, 'internal', direction);
                 FP.setFitToSection(originals.autoScrolling, 'internal');
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
+                if (direction.X) {
+                    $body.removeClass(RESPONSIVE_X);
+                }
+                if (direction.Y) {
+                    $body.removeClass(RESPONSIVE_Y);
+                }
             }
         };
 
@@ -648,7 +675,7 @@
             $('html').addClass(ENABLED);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
+            windowsHeight = mixWindowsHeight();
 
             container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
 
@@ -695,6 +722,15 @@
             }else{
                 afterRenderActions();
             }
+        }
+
+        /**
+         * 根据响应式参数获取屏幕高度
+         * @return {Number} window height
+         */
+        function mixWindowsHeight() {
+            var vh = $window.height();
+            return vh > options.responsiveHeight ? vh : Math.max(options.responsiveHeightValue, options.responsiveHeight);
         }
 
         /**
@@ -2020,6 +2056,9 @@
 
         //when resizing the site, we adjust the heights of the sections, slimScroll...
         function resizeHandler(){
+            // 获取自定义响应高度配置
+            var resHeight = options.responsiveHeight;
+
             //checking if it needs to get responsive
             responsive();
 
@@ -2060,14 +2099,20 @@
             var isBreakingPointWidth = widthLimit && $window.outerWidth() < widthLimit;
             var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
 
+            // 响应式方向配置对象
+            var direction = {
+                X: isBreakingPointWidth,
+                Y: isBreakingPointHeight
+            };
+
             if(widthLimit && heightLimit){
-                FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight);
+                FP.setResponsive(isBreakingPointWidth || isBreakingPointHeight, direction);
             }
             else if(widthLimit){
-                FP.setResponsive(isBreakingPointWidth);
+                FP.setResponsive(isBreakingPointWidth, direction);
             }
             else if(heightLimit){
-                FP.setResponsive(isBreakingPointHeight);
+                FP.setResponsive(isBreakingPointHeight, direction);
             }
         }
 
