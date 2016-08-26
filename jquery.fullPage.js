@@ -1620,11 +1620,15 @@
             destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 var element = $(this).get(0);
 
-                playYoutube(element);
+                if ( element.hasAttribute('data-autoplay') ){
+                    playYoutube(element);
+                }
                     
                 //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
                 element.onload = function() {
-                    playYoutube(element);
+                    if ( element.hasAttribute('data-autoplay') ){
+                        playYoutube(element);
+                    }
                 };
             });
         }
