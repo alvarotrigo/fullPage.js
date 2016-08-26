@@ -48,7 +48,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-	<script type="text/javascript" src="../vendors/jquery.slimscroll.min.js"></script>
+	<script type="text/javascript" src="../vendors/scrolloverflow.js"></script>
 
 	<script type="text/javascript" src="../jquery.fullPage.js"></script>
 	<script type="text/javascript" src="examples.js"></script>
@@ -58,7 +58,10 @@
 			$('#fullpage').fullpage({
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
 				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
-				responsiveHeight: 600
+				responsiveHeight: 600,
+				afterResponsive: function(isResponsive){
+				
+				}
 			});
 		});
 	</script>
