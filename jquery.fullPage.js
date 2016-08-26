@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.4
+ * fullPage 2.8.5
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -176,7 +176,8 @@
             afterResize: null,
             afterReBuild: null,
             afterSlideLoad: null,
-            onSlideLeave: null
+            onSlideLeave: null,
+            afterResponsive: null
         }, options);
 
         //flag to avoid very fast sliding for landscape sliders
@@ -485,6 +486,7 @@
                     FP.setFitToSection(false, 'internal');
                     $(SECTION_NAV_SEL).hide();
                     $body.addClass(RESPONSIVE);
+                    $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
                 }
             }
             else if(isResponsive){
@@ -492,6 +494,7 @@
                 FP.setFitToSection(originals.autoScrolling, 'internal');
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
+                $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
             }
         };
 
@@ -1327,7 +1330,7 @@
 
         /**
         * Maintains the active slides in the viewport
-        * (Because he `scroll` animation might get lost with some actions, such as when using continuousVertical)
+        * (Because the `scroll` animation might get lost with some actions, such as when using continuousVertical)
         */
         function keepSlidesPosition(){
             $(SLIDE_ACTIVE_SEL).each(function(){
@@ -1911,7 +1914,11 @@
             };
             v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
 
-            canScroll = false;
+            //important!! Only do it when not resizing
+            if(!v.localIsResizing){
+                //preventing from scrolling to the next/prev section when using scrollHorizontally
+                canScroll = false;
+            }
 
             if(options.onSlideLeave){
 
