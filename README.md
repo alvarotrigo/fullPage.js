@@ -52,7 +52,7 @@ fullPage.js is fully functional on all modern browsers, as well as some old ones
 It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
 It also provides touch support for mobile phones, tablets and touch screen computers.
 
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack.png)](http://www.browserstack.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
 
 Special thanks to [Browserstack](http://www.browserstack.com/) for supporting fullpage.js.
 
@@ -588,6 +588,9 @@ $.fn.fullpage.reBuild();
 ---
 ### setResponsive(boolean)
 [Demo](http://codepen.io/alvarotrigo/pen/WxOyLA) Sets the responsive mode of the page. When set to `true` the autoScrolling will be turned off and the result will be exactly the same one as when the `responsiveWidth` or `responsiveHeight` options  get fired.
+```javascript
+$.fn.fullpage.setResponsive(true);
+```
 ---
 ### responsiveSlides.toSections()
 [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Requires fullpage.js >= 2.8.5.
