@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.4
+ * fullPage 2.8.5
  * https://github.com/alvarotrigo/fullPage.js
  * MIT licensed
  *
@@ -121,6 +121,9 @@ html.fp-enabled,
     z-index: 4;
     left: 50%;
     opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 .fp-slidesNav.bottom {
     bottom: 17px;

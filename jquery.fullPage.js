@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.4
+ * fullPage 2.8.5
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -11,7 +11,7 @@
         define(['jquery'], function($) {
           return factory($, global, global.document, global.Math);
         });
-    } else if (typeof exports !== 'undefined') {
+    } else if (typeof exports === "object" && exports) {
         module.exports = factory(require('jquery'), global, global.document, global.Math);
     } else {
         factory(jQuery, global, global.document, global.Math);
@@ -163,6 +163,7 @@
             responsive: 0, //backwards compabitility with responsiveWiddth
             responsiveWidth: 0,
             responsiveHeight: 0,
+            responsiveSlides: false,
 
             //Custom selectors
             sectionSelector: SECTION_DEFAULT_SEL,
@@ -176,7 +177,8 @@
             afterResize: null,
             afterReBuild: null,
             afterSlideLoad: null,
-            onSlideLeave: null
+            onSlideLeave: null,
+            afterResponsive: null
         }, options);
 
         //flag to avoid very fast sliding for landscape sliders
@@ -485,6 +487,11 @@
                     FP.setFitToSection(false, 'internal');
                     $(SECTION_NAV_SEL).hide();
                     $body.addClass(RESPONSIVE);
+                    $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
+
+                    if(options.responsiveSlides && FP.responsiveSlides){
+                        FP.responsiveSlides.toSections();
+                    }
                 }
             }
             else if(isResponsive){
@@ -492,6 +499,11 @@
                 FP.setFitToSection(originals.autoScrolling, 'internal');
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
+                $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
+
+                if(options.responsiveSlides && FP.responsiveSlides){
+                    FP.responsiveSlides.toSlides();
+                }
             }
         };
 
@@ -505,7 +517,10 @@
                     lazyLoad: lazyLoad,
                     addAnimation: addAnimation,
                     performHorizontalMove: performHorizontalMove,
-                    silentLandscapeScroll: silentLandscapeScroll
+                    silentLandscapeScroll: silentLandscapeScroll,
+                    keepSlidesPosition: keepSlidesPosition,
+                    silentScroll: silentScroll,
+                    styleSlides: styleSlides
                 }
             };
         };
@@ -516,6 +531,7 @@
             loadExtension('fp_scrollHorizontallyExtension');
             loadExtension('fp_resetSlidersExtension');
             loadExtension('fp_interlockedSlidesExtension');
+            loadExtension('fp_responsiveSlidesExtension');
 
             init();
 
@@ -1257,7 +1273,7 @@
                     //emptying the array, we dont care about old scrollings for our averages
                     scrollings = [];
                 }
-                
+
                 if(canScroll){
                     var averageEnd = getAverage(scrollings, 10);
                     var averageMiddle = getAverage(scrollings, 70);
@@ -1327,7 +1343,7 @@
 
         /**
         * Maintains the active slides in the viewport
-        * (Because he `scroll` animation might get lost with some actions, such as when using continuousVertical)
+        * (Because the `scroll` animation might get lost with some actions, such as when using continuousVertical)
         */
         function keepSlidesPosition(){
             $(SLIDE_ACTIVE_SEL).each(function(){
@@ -1617,11 +1633,15 @@
             destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 var element = $(this).get(0);
 
-                playYoutube(element);
+                if ( element.hasAttribute('data-autoplay') ){
+                    playYoutube(element);
+                }
                     
                 //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
                 element.onload = function() {
-                    playYoutube(element);
+                    if ( element.hasAttribute('data-autoplay') ){
+                        playYoutube(element);
+                    }
                 };
             });
         }
@@ -1911,7 +1931,11 @@
             };
             v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
 
-            canScroll = false;
+            //important!! Only do it when not resizing
+            if(!v.localIsResizing){
+                //preventing from scrolling to the next/prev section when using scrollHorizontally
+                canScroll = false;
+            }
 
             if(options.onSlideLeave){
 
@@ -2211,7 +2235,10 @@
         }
 
         function addTableClass(element){
-            element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+            //In case we are styling for the 2nd time as in with reponsiveSlides
+            if(!element.hasClass(TABLE)){
+                element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+            }
         }
 
         function getTableHeight(element){
