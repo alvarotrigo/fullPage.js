@@ -588,6 +588,9 @@ $.fn.fullpage.reBuild();
 ---
 ### setResponsive(boolean)
 [Demo](http://codepen.io/alvarotrigo/pen/WxOyLA) Sets the responsive mode of the page. When set to `true` the autoScrolling will be turned off and the result will be exactly the same one as when the `responsiveWidth` or `responsiveHeight` options  get fired.
+```javascript
+$.fn.fullpage.setResponsive(true);
+```
 ---
 ### responsiveSlides.toSections()
 [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Requires fullpage.js >= 2.8.5.
