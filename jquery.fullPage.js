@@ -139,6 +139,7 @@
             scrollHorizontally: true,
             interlockedSlides: false,
             resetSliders: false,
+            fadingEffect: false,
             normalScrollElements: null,
             scrollOverflow: false,
             scrollOverflowHandler: iscrollHandler,
@@ -281,6 +282,9 @@
         * Defines the scrolling speed
         */
         FP.setScrollingSpeed = function(value, type){
+            if(type !== 'internal' && options.fadingEffect && FP.fadingEffect ){
+                FP.fadingEffect.update(value);
+            }
             setVariableState('scrollingSpeed', value, type);
         };
 
@@ -532,6 +536,7 @@
             loadExtension('fp_resetSlidersExtension');
             loadExtension('fp_interlockedSlidesExtension');
             loadExtension('fp_responsiveSlidesExtension');
+            loadExtension('fp_fadingEffectExtension');
 
             init();
 
@@ -701,6 +706,10 @@
 
             enableYoutubeAPI();
             enableVidemoAPI();
+
+            if(options.fadingEffect && FP.fadingEffect){
+                FP.fadingEffect.apply();
+            }
 
             if(options.scrollOverflow){
                 if(document.readyState === 'complete'){
