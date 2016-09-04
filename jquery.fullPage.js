@@ -286,6 +286,9 @@
                 FP.fadingEffect.update(value);
             }
             setVariableState('scrollingSpeed', value, type);
+            if (type !== 'internal' && options.css3) {
+                addAnimation(container);
+            }
         };
 
         /**
