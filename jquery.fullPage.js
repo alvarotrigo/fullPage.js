@@ -1726,14 +1726,14 @@
         function scrollToAnchor(){
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '').split('/');
-            var section = decodeURIComponent(value[0]);
-            var slide = decodeURIComponent(value[1]);
+            var sectionAnchor = decodeURIComponent(value[0]);
+            var slideAnchor = decodeURIComponent(value[1]);
 
-            if(section){  //if theres any #
+            if(sectionAnchor){  //if theres any #
                 if(options.animateAnchor){
-                    scrollPageAndSlide(section, slide);
+                    scrollPageAndSlide(sectionAnchor, slideAnchor);
                 }else{
-                    silentMoveTo(section, slide);
+                    silentMoveTo(sectionAnchor, slideAnchor);
                 }
             }
         }
@@ -1745,20 +1745,20 @@
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
                 var value =  window.location.hash.replace('#', '').split('/');
-                var section = decodeURIComponent(value[0]);
-                var slide = decodeURIComponent(value[1]);
+                var sectionAnchor = decodeURIComponent(value[0]);
+                var slideAnchor = decodeURIComponent(value[1]);
 
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
-                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined' && !slideMoving);
+                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
 
 
-                if(section.length){
+                if(sectionAnchor.length){
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                     event is fired on every scroll too.*/
-                    if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
-                        scrollPageAndSlide(section, slide);
+                    if ((sectionAnchor && sectionAnchor !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slideAnchor ))  {
+                        scrollPageAndSlide(sectionAnchor, slideAnchor);
                     }
                 }
             }
@@ -2337,6 +2337,9 @@
         */
         function scrollPageAndSlide(destiny, slide){
             var section = getSectionByAnchor(destiny);
+
+            //do nothing if there's no section with the given anchor name
+            if(!section.length) return;
 
             //default slide
             if (typeof slide === 'undefined') {
