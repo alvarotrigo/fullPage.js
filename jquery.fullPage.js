@@ -1224,6 +1224,7 @@
         * Handler for the touch start event.
         */
         function touchStartHandler(event){
+            event.preventDefault();
             var e = event.originalEvent;
 
             //stopping the auto scroll to adjust to a section
