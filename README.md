@@ -201,6 +201,7 @@ $(document).ready(function() {
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
 		afterResize: function(){},
+		afterResponsive: function(isResponsive){},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
 		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
 	});
@@ -713,6 +714,23 @@ Example:
 		afterResize: function(){
 			var pluginContainer = $(this);
 			alert("The sections have finished resizing");
+		}
+	});
+```
+---
+###afterResponsive(`isResponsive`)
+This callback is fired after fullpage.js changes from normal to responsive mode or from responsive mode to normal mode.
+
+Parameters:
+
+- `isResponsive`: boolean that determines if it enters into responsive mode (`true`) or goes back to normal mode (`false`).
+
+Example:
+
+```javascript
+	$('#fullpage').fullpage({
+		afterResponsive: function(isResponsive){
+			alert("Is responsive: " + isResponsive);
 		}
 	});
 ```
