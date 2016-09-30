@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.6
+ * fullPage 2.8.7
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -725,7 +725,6 @@
             }
 
             enableYoutubeAPI();
-            enableVidemoAPI();
 
             if(options.fadingEffect && FP.fadingEffect){
                 FP.fadingEffect.apply();
@@ -916,15 +915,6 @@
         function enableYoutubeAPI(){
             container.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 addURLParam($(this), 'enablejsapi=1');
-            });
-        }
-
-        /*
-        * Enables the Vimeo videos API so we can control their flow if necessary.
-        */
-        function enableVidemoAPI(){
-            container.find('iframe[src*="player.vimeo.com/"]').each(function(){
-                addURLParam($(this), 'api=1');
             });
         }
 
