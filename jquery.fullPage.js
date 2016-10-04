@@ -147,6 +147,8 @@
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
+            enableVerticalTouch: true,
+            enableHorizontalTouch: true,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1147,7 +1149,7 @@
                     touchEndX = touchEvents.x;
 
                     //if movement in the X axys is greater than in the Y and the currect section has slides...
-                    if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+                    if (options.enableHorizontalTouch && activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                         //is the movement greater than the minimum resistance to scroll?
                         if (Math.abs(touchStartX - touchEndX) > ($window.outerWidth() / 100 * options.touchSensitivity)) {
@@ -1167,7 +1169,7 @@
                     else if(options.autoScrolling){
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                        if (options.enableVerticalTouch && Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
                                 scrolling('down', scrollable);
                             } else if (touchEndY > touchStartY) {

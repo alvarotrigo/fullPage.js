@@ -175,6 +175,8 @@ $(document).ready(function() {
 		touchSensitivity: 15,
 		normalScrollElementTouchThreshold: 5,
 		bigSectionsDestination: null,
+		enableHorizontalTouch: true,
+		enableVerticalTouch: true,
 
 		//Accessibility
 		keyboardScrolling: true,
@@ -368,6 +370,10 @@ the fitting by the configured milliseconds.
 - `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
 
 - `bigSectionsDestination`: (default `null`) Defines how to scroll to a section which size is bigger than the viewport. By default fullPage.js scrolls to the top if you come from a section above the destination one and to the bottom if you come from a section below the destination one. Possible values are `top`, `bottom`, `null`.
+
+- `enableHorizontalTouch`: (default `true`) Defines if on mobile devices you can move horizontally by swiping
+
+- `enableVerticalTouch`: (default `true`) Defines if on mobile devices you can move horizontally by swiping
 
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard.
 
