@@ -2,7 +2,7 @@
   "name": "fullpage.js",
   "version": "2.8.6",
   "description": "Create  beautiful fullscreen scrolling websites",
-  "main": "jquery.fullPage.js",
+  "main": "dist/jquery.fullpage.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,9 +19,7 @@
   ],
   "files": [
     "vendors",
-    "jquery.fullPage.css",
-    "jquery.fullPage.js",
-    "jquery.fullPage.scss",
+    "dist",
     "package.json",
     "README.md"
   ],

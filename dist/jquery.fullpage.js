@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.6
+ * fullPage 2.8.7
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -147,6 +147,8 @@
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
+            enableVerticalTouch: true,
+            enableHorizontalTouch: true,
 
             //Accessibility
             keyboardScrolling: true,
@@ -725,7 +727,6 @@
             }
 
             enableYoutubeAPI();
-            enableVidemoAPI();
 
             if(options.fadingEffect && FP.fadingEffect){
                 FP.fadingEffect.apply();
@@ -916,15 +917,6 @@
         function enableYoutubeAPI(){
             container.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 addURLParam($(this), 'enablejsapi=1');
-            });
-        }
-
-        /*
-        * Enables the Vimeo videos API so we can control their flow if necessary.
-        */
-        function enableVidemoAPI(){
-            container.find('iframe[src*="player.vimeo.com/"]').each(function(){
-                addURLParam($(this), 'api=1');
             });
         }
 
@@ -1157,7 +1149,7 @@
                     touchEndX = touchEvents.x;
 
                     //if movement in the X axys is greater than in the Y and the currect section has slides...
-                    if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+                    if (options.enableHorizontalTouch && activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                         //is the movement greater than the minimum resistance to scroll?
                         if (Math.abs(touchStartX - touchEndX) > ($window.outerWidth() / 100 * options.touchSensitivity)) {
@@ -1177,7 +1169,7 @@
                     else if(options.autoScrolling){
 
                         //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                        if (options.enableVerticalTouch && Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
                             if (touchStartY > touchEndY) {
                                 scrolling('down', scrollable);
                             } else if (touchEndY > touchStartY) {
@@ -1224,6 +1216,7 @@
         * Handler for the touch start event.
         */
         function touchStartHandler(event){
+            event.preventDefault();
             var e = event.originalEvent;
 
             //stopping the auto scroll to adjust to a section
@@ -1725,14 +1718,14 @@
         function scrollToAnchor(){
             //getting the anchor link in the URL and deleting the `#`
             var value =  window.location.hash.replace('#', '').split('/');
-            var section = decodeURIComponent(value[0]);
-            var slide = decodeURIComponent(value[1]);
+            var sectionAnchor = decodeURIComponent(value[0]);
+            var slideAnchor = decodeURIComponent(value[1]);
 
-            if(section){  //if theres any #
+            if(sectionAnchor){  //if theres any #
                 if(options.animateAnchor){
-                    scrollPageAndSlide(section, slide);
+                    scrollPageAndSlide(sectionAnchor, slideAnchor);
                 }else{
-                    silentMoveTo(section, slide);
+                    silentMoveTo(sectionAnchor, slideAnchor);
                 }
             }
         }
@@ -1744,20 +1737,20 @@
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
                 var value =  window.location.hash.replace('#', '').split('/');
-                var section = decodeURIComponent(value[0]);
-                var slide = decodeURIComponent(value[1]);
+                var sectionAnchor = decodeURIComponent(value[0]);
+                var slideAnchor = decodeURIComponent(value[1]);
 
                     //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                     var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
-                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slide === 'undefined' && !slideMoving);
+                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
 
 
-                if(section.length){
+                if(sectionAnchor.length){
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                     event is fired on every scroll too.*/
-                    if ((section && section !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slide ))  {
-                        scrollPageAndSlide(section, slide);
+                    if ((sectionAnchor && sectionAnchor !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slideAnchor ))  {
+                        scrollPageAndSlide(sectionAnchor, slideAnchor);
                     }
                 }
             }
@@ -2336,6 +2329,9 @@
         */
         function scrollPageAndSlide(destiny, slide){
             var section = getSectionByAnchor(destiny);
+
+            //do nothing if there's no section with the given anchor name
+            if(!section.length) return;
 
             //default slide
             if (typeof slide === 'undefined') {
