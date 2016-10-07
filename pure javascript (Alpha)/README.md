@@ -16,6 +16,8 @@ Invite me to a coffee
 
 This is in Alpha version and support for it won't be provided yet.
 This light version of fullpage.js won't provide some options available in the jQuery version such as:
+- `responsiveWidth` and `responsiveHeight` 
+- `lockAnchors`
 - `scrollOverflow`
 - `verticalCentered`
 - `continuousVertical`
