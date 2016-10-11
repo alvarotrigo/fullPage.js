@@ -136,7 +136,7 @@
             loopHorizontal: true,
             continuousVertical: false,
             continuousHorizontal: true,
-            scrollHorizontally: true,
+            scrollHorizontally: false,
             interlockedSlides: false,
             resetSliders: false,
             fadingEffect: false,
@@ -2788,6 +2788,7 @@
         * Displays warnings
         */
         function displayWarnings(){
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides'];
             if($('html').hasClass(ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
@@ -2808,6 +2809,14 @@
                 options.continuousVertical = false;
                 showError('warn', 'Option `scrollBar` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
             }
+
+            //using extensions? Wrong file!
+            extensions.forEach(function(extension){
+                if(options[extension]){
+                    console.log(extension)
+                    showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js');       
+                }
+            });
 
             //anchors can not have the same value as any element ID or NAME
             $.each(options.anchors, function(index, name){
