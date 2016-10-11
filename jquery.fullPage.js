@@ -1492,6 +1492,7 @@
                 //even when the scrollingSpeed is 0 there's a little delay, which might cause the
                 //scrollingSpeed to change in case of using silentMoveTo();
                 if(options.scrollingSpeed){
+                    clearTimeout(afterSectionLoadsId);
                     afterSectionLoadsId = setTimeout(function () {
                         afterSectionLoads(v);
                     }, options.scrollingSpeed);
