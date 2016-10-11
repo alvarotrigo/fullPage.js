@@ -301,14 +301,17 @@ Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paus
 ```
 
 ###Use extensions
-fullpage.js (since version 2.8.3) [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
+fullpage.js [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
 
-Once you adquire the extension file, you will just need to add it before fullPage.js. For example: 
+Extensions requires you to use the minified file `jquery.fullpage.extensions.min.js` instead of the usual fullPage.js file (`jquery.fullpage.js`).
+Once you adquire the extension file, you will need to add it before fullPage.js. For example: 
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
-<script type="text/javascript" src="fullpage/jquery.fullPage.js"></script>
+<script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
 ```
+
+A license key will be required for each extension. [See more details about it here](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
 
 Then you will be able to use and configure them as explained in [options](https://github.com/alvarotrigo/fullPage.js#options).
 
