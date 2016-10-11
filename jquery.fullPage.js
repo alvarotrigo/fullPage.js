@@ -170,7 +170,6 @@
             sectionSelector: SECTION_DEFAULT_SEL,
             slideSelector: SLIDE_DEFAULT_SEL,
 
-
             //events
             afterLoad: null,
             onLeave: null,
@@ -179,7 +178,10 @@
             afterReBuild: null,
             afterSlideLoad: null,
             onSlideLeave: null,
-            afterResponsive: null
+            afterResponsive: null,
+
+            //lazy is optional
+            lazy: true
         }, options);
 
         //flag to avoid very fast sliding for landscape sliders
@@ -1066,7 +1068,7 @@
             }
             var check = (type === 'down') ? 'bottom' : 'top';
             var scrollSection = (type === 'down') ? moveSectionDown : moveSectionUp;
-            
+
             if(scrollable.length > 0 ){
                 //is the scrollbar at the start/end of the scroll?
                 if(options.scrollOverflowHandler.isScrolled(check, scrollable)){
@@ -1353,7 +1355,7 @@
 
             //is the destination element bigger than the viewport?
             if(element.outerHeight() > windowsHeight){
-                //scrolling up? 
+                //scrolling up?
                 if(!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom' ){
                     position = sectionBottom;
                 }
@@ -1577,7 +1579,7 @@
 
             playMedia(v.element);
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
-            
+
             canScroll = true;
 
             $.isFunction(v.callback) && v.callback.call(this);
@@ -1587,6 +1589,10 @@
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
+            if (!options.lazy) {
+              return;
+            }
+
             var panel = getSlideOrSection(destiny);
 
             panel.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
@@ -1621,7 +1627,7 @@
                 if ( element.hasAttribute('data-autoplay') ){
                     playYoutube(element);
                 }
-                    
+
                 //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
                 element.onload = function() {
                     if ( element.hasAttribute('data-autoplay') ){
@@ -1974,12 +1980,12 @@
             playMedia(v.destiny);
 
             //letting them slide again
-            slideMoving = false;     
+            slideMoving = false;
         }
 
         /**
         * Performs the horizontal movement. (CSS3 or jQuery)
-        * 
+        *
         * @param fireCallback {Bool} - determines whether or not to fire the callback
         */
         function performHorizontalMove(slides, v, fireCallback){
@@ -2819,7 +2825,7 @@
             extensions.forEach(function(extension){
                 //is the option set to true?
                 if(options[extension]){
-                    showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js');       
+                    showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js');
                 }
             });
 
@@ -2849,7 +2855,7 @@
         function showError(type, text){
             console && console[type] && console[type]('fullPage: ' + text);
         }
-        
+
     }; //end of $.fn.fullpage
 
     if(typeof IScroll !== 'undefined'){
@@ -2942,8 +2948,8 @@
          */
         isScrolled: function(type, scrollable) {
             var scroller = scrollable.data('iscrollInstance');
-            
-            //no scroller? 
+
+            //no scroller?
             if (!scroller) {
                 return true;
             }
