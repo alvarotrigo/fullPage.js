@@ -282,9 +282,6 @@
         * Defines the scrolling speed
         */
         function setScrollingSpeed(value, type){
-            if(type !== 'internal' && options.fadingEffect && FP.fadingEffect ){
-                FP.fadingEffect.update(value);
-            }
             setVariableState('scrollingSpeed', value, type);
         };
 
@@ -492,10 +489,6 @@
                     $(SECTION_NAV_SEL).hide();
                     $body.addClass(RESPONSIVE);
                     $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
-
-                    if(options.responsiveSlides && FP.responsiveSlides){
-                        FP.responsiveSlides.toSections();
-                    }
                 }
             }
             else if(isResponsive){
@@ -504,10 +497,6 @@
                 $(SECTION_NAV_SEL).show();
                 $body.removeClass(RESPONSIVE);
                 $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
-
-                if(options.responsiveSlides && FP.responsiveSlides){
-                    FP.responsiveSlides.toSlides();
-                }
             }
         };
 
@@ -549,14 +538,6 @@
             FP.setResponsive = setResponsive;
             FP.getFullpageData = getFullpageData;
             FP.destroy = destroy;
-
-            //Loading extensions
-            loadExtension('continuousHorizontal');
-            loadExtension('scrollHorizontally');
-            loadExtension('resetSliders');
-            loadExtension('interlockedSlides');
-            loadExtension('responsiveSlides');
-            loadExtension('fadingEffect');
 
             init();
 
@@ -646,15 +627,6 @@
         }
 
         /**
-        * Sets a public internal function based on the extension name.
-        * @param externalName {String} Extension name with the form fp_[NAME]Extension referring to an external function.
-        */
-        function loadExtension(internalName){
-            var externalName = 'fp_' + internalName + 'Extension';
-            FP[internalName] = typeof window[externalName] !=='undefined' ? new window[externalName]() : null;
-        }
-
-        /**
         * Setting options from DOM elements if they are not provided.
         */
         function setOptionsFromDOM(){
@@ -725,10 +697,6 @@
             }
 
             enableYoutubeAPI();
-
-            if(options.fadingEffect && FP.fadingEffect){
-                FP.fadingEffect.apply();
-            }
 
             if(options.scrollOverflow){
                 if(document.readyState === 'complete'){
@@ -1096,10 +1064,6 @@
             }
             var check = (type === 'down') ? 'bottom' : 'top';
             var scrollSection = (type === 'down') ? moveSectionDown : moveSectionUp;
-
-            if(FP.scrollHorizontally){
-                scrollSection = FP.scrollHorizontally.getScrollSection(type, scrollSection);
-            }
             
             if(scrollable.length > 0 ){
                 //is the scrollbar at the start/end of the scroll?
@@ -1607,10 +1571,6 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
             options.scrollOverflowHandler.afterLoad();
 
-            if(options.resetSliders && FP.resetSliders){
-                FP.resetSliders.apply(v);
-            }
-
             playMedia(v.element);
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
             
@@ -1990,22 +1950,11 @@
                 setState(v.slideIndex, v.slideAnchor, v.anchorLink, v.sectionIndex);
             }
 
-            if(FP.continuousHorizontal){
-                FP.continuousHorizontal.apply(v);
-            }
-
             performHorizontalMove(slides, v, true);
-            
-            if(options.interlockedSlides && FP.interlockedSlides){
-                FP.interlockedSlides.apply(v);
-            }
         }
 
 
         function afterSlideLoads(v){
-            if(FP.continuousHorizontal){
-                FP.continuousHorizontal.afterSlideLoads(v);
-            }
             activeSlidesNavigation(v.slidesNav, v.slideIndex);
 
             //if the site is not just resizing and readjusting the slides
@@ -2021,10 +1970,6 @@
 
             //letting them slide again
             slideMoving = false;     
-
-            if(FP.interlockedSlides){
-                FP.interlockedSlides.apply(v);
-            }
         }
 
         /**
