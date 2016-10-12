@@ -2817,8 +2817,8 @@
 
             //using extensions? Wrong file!
             extensions.forEach(function(extension){
+                //is the option set to true?
                 if(options[extension]){
-                    console.log(extension)
                     showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js');       
                 }
             });
