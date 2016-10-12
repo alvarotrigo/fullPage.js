@@ -39,4 +39,14 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./dist'));
 });
 
+//private file
+gulp.task('extensions', function() {
+    gulp.src('./jquery.fullpage.extensions.js')
+        .pipe(uglify({
+            preserveComments: 'license'
+        }))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('./dist'));
+});
+
 gulp.task('default', ['css', 'js']);
