@@ -269,35 +269,35 @@
                     $htmlBody.scrollTop(element.position().top);
                 }
             }
-        };
+        }
 
         /**
         * Defines wheter to record the history for each hash change in the URL.
         */
         function setRecordHistory(value, type){
             setVariableState('recordHistory', value, type);
-        };
+        }
 
         /**
         * Defines the scrolling speed
         */
         function setScrollingSpeed(value, type){
             setVariableState('scrollingSpeed', value, type);
-        };
+        }
 
         /**
         * Sets fitToSection
         */
         function setFitToSection(value, type){
             setVariableState('fitToSection', value, type);
-        };
+        }
 
         /**
         * Sets lockAnchors
         */
         function setLockAnchors(value){
             options.lockAnchors = value;
-        };
+        }
 
         /**
         * Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad.
@@ -310,7 +310,7 @@
                 removeMouseWheelHandler();
                 removeMiddleWheelHandler();
             }
-        };
+        }
 
         /**
         * Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
@@ -333,7 +333,7 @@
                 setMouseWheelScrolling(false);
                 removeTouchHandler();
             }
-        };
+        }
 
         /**
         * Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
@@ -348,7 +348,7 @@
             }else{
                 options.keyboardScrolling = value;
             }
-        };
+        }
 
         /**
         * Moves the page up one section.
@@ -364,7 +364,7 @@
             if (prev.length) {
                 scrollPage(prev, null, true);
             }
-        };
+        }
 
         /**
         * Moves the page down one section.
@@ -381,7 +381,7 @@
             if(next.length){
                 scrollPage(next, null, false);
             }
-        };
+        }
 
         /**
         * Moves the page to the given section and slide with no animation.
@@ -391,7 +391,7 @@
             setScrollingSpeed (0, 'internal');
             moveTo(sectionAnchor, slideAnchor);
             setScrollingSpeed (originals.scrollingSpeed, 'internal');
-        };
+        }
 
         /**
         * Moves the page to the given section and slide.
@@ -405,7 +405,7 @@
             }else if(destiny.length > 0){
                 scrollPage(destiny);
             }
-        };
+        }
 
         /**
         * Slides right the slider of the active section.
@@ -413,7 +413,7 @@
         */
         function moveSlideRight(section){
             moveSlide('right', section);
-        };
+        }
 
         /**
         * Slides left the slider of the active section.
@@ -421,7 +421,7 @@
         */
         function moveSlideLeft(section){
             moveSlide('left', section);
-        };
+        }
 
         /**
          * When resizing is finished, we adjust the slides sizes and positions
@@ -473,7 +473,7 @@
             isResizing = false;
             $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container);
             $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container);
-        };
+        }
 
         /**
         * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
@@ -498,7 +498,7 @@
                 $body.removeClass(RESPONSIVE);
                 $.isFunction( options.afterResponsive ) && options.afterResponsive.call( container, active);
             }
-        };
+        }
 
         function getFullpageData(){
             return {
@@ -516,7 +516,7 @@
                     styleSlides: styleSlides
                 }
             };
-        };
+        }
 
         if($(this).length){
             //public functions
@@ -974,10 +974,12 @@
                     var anchorLink  = currentSection.data('anchor');
                     var sectionIndex = currentSection.index(SECTION_SEL) + 1;
                     var activeSlide = currentSection.find(SLIDE_ACTIVE_SEL);
+                    var slideIndex;
+                    var slideAnchorLink;
 
                     if(activeSlide.length){
-                        var slideAnchorLink = activeSlide.data('anchor');
-                        var slideIndex = activeSlide.index();
+                        slideAnchorLink = activeSlide.data('anchor');
+                        slideIndex = activeSlide.index();
                     }
 
                     if(canScroll){
@@ -1380,6 +1382,8 @@
             if(typeof element === 'undefined'){ return; } //there's no element to scroll, leaving the function
 
             var dtop = getDestinationPosition(element);
+            var slideAnchorLink;
+            var slideIndex;
 
             //local variables
             var v = {
@@ -1403,8 +1407,8 @@
             if((v.activeSection.is(element) && !isResizing) || (options.scrollBar && $window.scrollTop() === v.dtop && !element.hasClass(AUTO_HEIGHT) )){ return; }
 
             if(v.activeSlide.length){
-                var slideAnchorLink = v.activeSlide.data('anchor');
-                var slideIndex = v.activeSlide.index();
+                slideAnchorLink = v.activeSlide.data('anchor');
+                slideIndex = v.activeSlide.index();
             }
 
             // If continuousVertical && we need to wrap around
@@ -1583,9 +1587,9 @@
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
-            var destiny = getSlideOrSection(destiny);
+            var panel = getSlideOrSection(destiny);
 
-            destiny.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
+            panel.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
                 $(this).attr('src', $(this).data('src'));
                 $(this).removeAttr('data-src');
 
@@ -1599,10 +1603,10 @@
         * Plays video and audio elements.
         */
         function playMedia(destiny){
-            var destiny = getSlideOrSection(destiny);
+            var panel = getSlideOrSection(destiny);
 
             //playing HTML5 media elements
-            destiny.find('video, audio').each(function(){
+            panel.find('video, audio').each(function(){
                 var element = $(this).get(0);
 
                 if( element.hasAttribute('data-autoplay') && typeof element.play === 'function' ) {
@@ -1611,7 +1615,7 @@
             });
 
             //youtube videos
-            destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
+            panel.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 var element = $(this).get(0);
 
                 if ( element.hasAttribute('data-autoplay') ){
@@ -1632,16 +1636,16 @@
         */
         function playYoutube(element){
             element.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-        };
+        }
 
         /**
         * Stops video and audio elements.
         */
         function stopMedia(destiny){
-            var destiny = getSlideOrSection(destiny);
+            var panel = getSlideOrSection(destiny);
 
             //stopping HTML5 media elements
-            destiny.find('video, audio').each(function(){
+            panel.find('video, audio').each(function(){
                 var element = $(this).get(0);
 
                 if( !element.hasAttribute('data-keepplaying') && typeof element.pause === 'function' ) {
@@ -1650,7 +1654,7 @@
             });
 
             //youtube videos
-            destiny.find('iframe[src*="youtube.com/embed/"]').each(function(){
+            panel.find('iframe[src*="youtube.com/embed/"]').each(function(){
                 var element = $(this).get(0);
 
                 if( /youtube\.com\/embed\//.test($(this).attr('src')) && !element.hasAttribute('data-keepplaying')){
@@ -1827,6 +1831,7 @@
                         moveSectionUp();
                         break;
                     }
+                /* falls through */
                 case 40:
                 case 34:
                     if(isScrollAllowed.k.down){
@@ -2694,7 +2699,7 @@
             if(all){
                 destroyStructure();
             }
-        };
+        }
 
         /*
         * Removes inline styles added by fullpage.js
