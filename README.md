@@ -3,7 +3,7 @@
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.6-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.7-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -201,6 +201,7 @@ $(document).ready(function() {
 		afterLoad: function(anchorLink, index){},
 		afterRender: function(){},
 		afterResize: function(){},
+		afterResponsive: function(isResponsive){},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
 		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
 	});
@@ -300,14 +301,17 @@ Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paus
 ```
 
 ###Use extensions
-fullpage.js (since version 2.8.3) [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
+fullpage.js [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
 
-Once you adquire the extension file, you will just need to add it before fullPage.js. For example: 
+Extensions requires you to use the minified file `jquery.fullpage.extensions.min.js` instead of the usual fullPage.js file (`jquery.fullpage.js`).
+Once you adquire the extension file, you will need to add it before fullPage.js. For example: 
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
-<script type="text/javascript" src="fullpage/jquery.fullPage.js"></script>
+<script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
 ```
+
+A license key will be required for each extension. [See more details about it here](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
 
 Then you will be able to use and configure them as explained in [options](https://github.com/alvarotrigo/fullPage.js#options).
 
@@ -319,7 +323,7 @@ Then you will be able to use and configure them as explained in [options](https:
 
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
-- `sectionsColor`:(default `none`) Define the CSS `background-color` property for each section:
+- `sectionsColor`: (default `none`) Define the CSS `background-color` property for each section.
 Example:
 ```javascript
 $('#fullpage').fullpage({
@@ -330,7 +334,7 @@ $('#fullpage').fullpage({
 - `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Anchors value should be unique. The position of the anchors in the array will define to which sections the anchor is applied. (second position for second section and so on). Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** anchors can not have the same value as any ID element on the site (or NAME element for IE).
 Now anchors can be defined directly in the HTML structure by using the attribute `data-anchor` as explained here.
 
-- `lockAnchors`: (default `false`). Determines whether anchors in the URL will have any effect at all in the plugin. You can still using anchors internally for your own functions and callbacks, but they won't have any effect in the scrolling of the site. Useful if you want to combine fullPage.js with other plugins using anchor in the URL.
+- `lockAnchors`: (default `false`) Determines whether anchors in the URL will have any effect at all in the plugin. You can still using anchors internally for your own functions and callbacks, but they won't have any effect in the scrolling of the site. Useful if you want to combine fullPage.js with other plugins using anchor in the URL.
 
 **Important** It is helpful to understand that the values in the `anchors` option array correlate directly to the element with the class of `.section` by it's position in the markup.
 
@@ -349,12 +353,12 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-- `fitToSection`: (default `true`). Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
+- `fitToSection`: (default `true`) Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
 
 - `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
 the fitting by the configured milliseconds.
 
-- `scrollBar`: (default `false`). Determines whether to use scrollbar for the site or not. In case of using scroll bar, the `autoScrolling` functionality will still working as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
+- `scrollBar`: (default `false`) Determines whether to use scrollbar for the site or not. In case of using scroll bar, the `autoScrolling` functionality will still work as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
 
 - `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header.
 
@@ -362,13 +366,13 @@ the fitting by the configured milliseconds.
 
 - `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necessary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`)
+- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`). This option should not be applied to any section/slide element itself. 
 
 - `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
 
 - `bigSectionsDestination`: (default `null`) Defines how to scroll to a section which size is bigger than the viewport. By default fullPage.js scrolls to the top if you come from a section above the destination one and to the bottom if you come from a section below the destination one. Possible values are `top`, `bottom`, `null`.
 
-- `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard
+- `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard.
 
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
@@ -412,7 +416,7 @@ $('#fullpage').fullpage({
 
 - `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
-- `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`.
+- `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`. You can also define them by using the attribute `data-tooltip` in each section if you prefer.
 
 - `showActiveTooltip`: (default `false`) Shows a persistent tooltip for the actively viewed section in the vertical navigation.
 
@@ -432,7 +436,7 @@ In order to prevent fullpage.js from creating the scrollbar in certain sections 
 
 - `scrollOverflowOptions`: when using scrollOverflow:true fullpage.js will make use of a forked and modified version of [iScroll.js libary](https://github.com/cubiq/iscroll/). You can customize the scrolling behaviour by providing fullpage.js with the iScroll.js options you want to use. Check [its documentation](http://iscrolljs.com/) for more info.
 
-- `sectionSelector`: (default `.section`) Defines the jQuery selector used for the plugin sections. It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js..
+- `sectionSelector`: (default `.section`) Defines the jQuery selector used for the plugin sections. It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
 
 - `slideSelector`: (default `.slide`)  Defines the jQuery selector used for the plugin slides.  It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
 
@@ -440,7 +444,7 @@ In order to prevent fullpage.js from creating the scrollbar in certain sections 
 
 - `responsiveHeight`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined height in pixels. A class `fp-responsive` is added to the body tag in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's height is less than 900 the plugin will scroll like a normal site.
 
-- `responsiveSlides`: (default `false` ) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
+- `responsiveSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
 
 ## Methods
 You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
@@ -717,6 +721,23 @@ Example:
 	});
 ```
 ---
+###afterResponsive(`isResponsive`)
+This callback is fired after fullpage.js changes from normal to responsive mode or from responsive mode to normal mode.
+
+Parameters:
+
+- `isResponsive`: boolean that determines if it enters into responsive mode (`true`) or goes back to normal mode (`false`).
+
+Example:
+
+```javascript
+	$('#fullpage').fullpage({
+		afterResponsive: function(isResponsive){
+			alert("Is responsive: " + isResponsive);
+		}
+	});
+```
+---
 ###afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
 Callback fired once the slide of a section have been loaded, after the scrolling has ended.
 Parameters:
@@ -809,8 +830,11 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
+- [fullPage.js React implementation](https://github.com/subtirelumihail/react-fullpage)
 - [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)
 - [fullPage.js angular directive](https://github.com/hellsan631/angular-fullpage.js)
+- [fullPage.js ember-cli addon](https://www.npmjs.com/package/ember-cli-fullpagejs)
+- [fullPage.js Rails Ruby Gem](https://rubygems.org/gems/fullpagejs-rails)
 - [Angular fullPage.js - Adaptation for Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
 - [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
