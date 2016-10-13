@@ -280,7 +280,7 @@ To enable lazy loading all you need to do is change your `src` attribute to `dat
 </video>
  ```
 
-If you already use another lazy load solution which uses `data-src` as well, you can disable the fullPage.js lazy loading by setting the option `lazy: false`.
+If you already use another lazy load solution which uses `data-src` as well, you can disable the fullPage.js lazy loading by setting the option `lazyloading: false`.
 
 ###Auto play/pause embedded media
 
