@@ -2682,15 +2682,15 @@
                 .off('resize', resizeHandler);
 
             $document
-                .off('click', SECTION_NAV_SEL + ' a')
+                .off('click touchstart', SECTION_NAV_SEL + ' a')
                 .off('mouseenter', SECTION_NAV_SEL + ' li')
                 .off('mouseleave', SECTION_NAV_SEL + ' li')
-                .off('click', SLIDES_NAV_LINK_SEL)
+                .off('click touchstart', SLIDES_NAV_LINK_SEL)
                 .off('mouseover', options.normalScrollElements)
                 .off('mouseout', options.normalScrollElements);
 
             $(SECTION_SEL)
-                .off('click', SLIDES_ARROW_SEL);
+                .off('click touchstart', SLIDES_ARROW_SEL);
 
             clearTimeout(afterSlideLoadsId);
             clearTimeout(afterSectionLoadsId);
