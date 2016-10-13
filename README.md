@@ -254,7 +254,7 @@ To create smaller sections just use the class `fp-auto-height` in the section yo
 ```
 
 #### Responsive auto height sections
-A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be full height until the responsive mode gets fired. 
+A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be full height until the responsive mode gets fired.
 
 ### State classes added by fullpage.js
 Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
@@ -265,7 +265,7 @@ Fullpage.js adds multiple classes in different elements to keep a record of the 
 - `fp-responsive` is added to the `body` element when the entering in the responsive mode
 - `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
 - `fp-destroyed` is added to the fullpage.js container when the plugin is destroyed.
-- `fp-enabled` is added to the `html` element once the libary is initalized. 
+- `fp-enabled` is added to the `html` element once the libary is initalized.
 
 ###Lazy Loading
 [Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
@@ -280,10 +280,12 @@ To enable lazy loading all you need to do is change your `src` attribute to `dat
 </video>
  ```
 
+If you already use another lazy load solution which uses `data-src` as well, you can disable the fullPage.js lazy loading by setting the option `lazyloading: false`.
+
 ###Auto play/pause embedded media
 
 #### Play on section/slide load:
-Using the attribute `autoplay` for videos or audio, or the param `autoplay=1` for youtube iframes will result in the media element playing on page load. 
+Using the attribute `autoplay` for videos or audio, or the param `autoplay=1` for youtube iframes will result in the media element playing on page load.
 In order to play it on section/slide load use instead the attribute `data-autoplay`. For example:
 
 ```html
@@ -293,7 +295,7 @@ In order to play it on section/slide load use instead the attribute `data-autopl
 ```
 
 #### Pause on leave
-Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paused when you navigate away from a section or slide. This can be disabled by using the attribute `data-keepplaying`. For example: 
+Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paused when you navigate away from a section or slide. This can be disabled by using the attribute `data-keepplaying`. For example:
 ```html
 <audio data-keepplaying>
 	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
@@ -304,7 +306,7 @@ Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paus
 fullpage.js [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
 
 Extensions requires you to use the minified file `jquery.fullpage.extensions.min.js` instead of the usual fullPage.js file (`jquery.fullpage.js`).
-Once you adquire the extension file, you will need to add it before fullPage.js. For example: 
+Once you adquire the extension file, you will need to add it before fullPage.js. For example:
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
@@ -366,7 +368,7 @@ the fitting by the configured milliseconds.
 
 - `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necessary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`). This option should not be applied to any section/slide element itself. 
+- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`). This option should not be applied to any section/slide element itself.
 
 - `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
 
@@ -445,6 +447,8 @@ In order to prevent fullpage.js from creating the scrollbar in certain sections 
 - `responsiveHeight`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined height in pixels. A class `fp-responsive` is added to the body tag in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's height is less than 900 the plugin will scroll like a normal site.
 
 - `responsiveSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
+
+- `lazy`: (default `true`) Option to disable lazy loading. It might to be disabled sometimes to avoid a conflict with another plugin.
 
 ## Methods
 You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
