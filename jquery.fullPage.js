@@ -2537,7 +2537,7 @@
         * Adds the possibility to auto scroll through sections on touch devices.
         */
         function addTouchHandler(){
-            if(isTouchDevice || isTouch){
+            if(options.autoScrolling && (isTouchDevice || isTouch)){
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
