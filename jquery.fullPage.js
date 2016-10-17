@@ -135,7 +135,7 @@
             loopTop: false,
             loopHorizontal: true,
             continuousVertical: false,
-            continuousHorizontal: true,
+            continuousHorizontal: false,
             scrollHorizontally: false,
             interlockedSlides: false,
             resetSliders: false,
@@ -2827,7 +2827,7 @@
             extensions.forEach(function(extension){
                 //is the option set to true?
                 if(options[extension]){
-                    showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js');
+                    showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js. Requested: '+ extension);
                 }
             });
 
