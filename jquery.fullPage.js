@@ -180,8 +180,7 @@
             onSlideLeave: null,
             afterResponsive: null,
 
-            //lazy loading is optional
-            lazyloading: true
+            lazyLoading: true
         }, options);
 
         //flag to avoid very fast sliding for landscape sliders
@@ -1589,20 +1588,20 @@
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
-            if (!options.lazyloading) {
+            if (!options.lazyLoading){
                 return;
             }
 
             var panel = getSlideOrSection(destiny);
-            var $el;
+            var element;
 
             panel.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
-                $el = $(this);
-                $el.attr('src', $el.data('src'));
-                $el.removeAttr('data-src');
+                element = $(this);
+                element.attr('src', element.data('src'));
+                element.removeAttr('data-src');
 
-                if($el.is('source')){
-                    $el.closest('video').get(0).load();
+                if(element.is('source')){
+                    element.closest('video').get(0).load();
                 }
             });
         }

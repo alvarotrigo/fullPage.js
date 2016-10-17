@@ -280,7 +280,7 @@ To enable lazy loading all you need to do is change your `src` attribute to `dat
 </video>
  ```
 
-If you already use another lazy load solution which uses `data-src` as well, you can disable the fullPage.js lazy loading by setting the option `lazyloading: false`.
+If you already use another lazy load solution which uses `data-src` as well, you can disable the fullPage.js lazy loading by setting the option `lazyLoading: false`.
 
 ###Auto play/pause embedded media
 
@@ -448,7 +448,7 @@ In order to prevent fullpage.js from creating the scrollbar in certain sections 
 
 - `responsiveSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
 
-- `lazy`: (default `true`) Option to disable lazy loading. It might to be disabled sometimes to avoid a conflict with another plugin.
+- `lazyLoading`: (default `true`) Lazy loading is active by default which means it will lazy load any media element containing the attribute `data-src` as detailed in the [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js#lazy-loading) . If you want to use any other lazy loading library you can disable this fullpage.js feature.
 
 ## Methods
 You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
