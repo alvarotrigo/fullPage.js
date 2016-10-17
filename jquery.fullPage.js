@@ -1429,6 +1429,7 @@
 
             stopMedia(v.activeSection);
 
+            options.scrollOverflowHandler.beforeLeave();
             element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
             lazyLoad(element);
             options.scrollOverflowHandler.onLeave();
@@ -2907,6 +2908,11 @@
             }
         },
 
+        // Turns off iScroll for the leaving section
+        beforeLeave: function(){
+            iscrollHandler.onLeave()
+        },
+
         // Turns on iScroll on section load
         afterLoad: function(){
             var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
@@ -2936,6 +2942,10 @@
 
                 iScrollInstance = new IScroll($this.get(0), iscrollOptions);
                 iscrollHandler.iScrollInstances.push(iScrollInstance);
+
+                //off by default until the section gets active
+                iScrollInstance.wheelOff();
+                
                 $this.data('iscrollInstance', iScrollInstance);
             });
         },
