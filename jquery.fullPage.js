@@ -1181,7 +1181,13 @@
         * Handler for the touch start event.
         */
         function touchStartHandler(event){
+            //preventing default bouncing in iOS 10 #2285
             event.preventDefault();
+
+            //allowing to catch click events after preventing default #2338
+            //http://stackoverflow.com/q/40094570/1081396
+            $(event.target).trigger('click');
+
             var e = event.originalEvent;
 
             //stopping the auto scroll to adjust to a section
@@ -1945,7 +1951,7 @@
             }
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
-            
+
             if(!v.localIsResizing){
                 stopMedia(v.prevSlide);
                 lazyLoad(destiny);
@@ -2945,7 +2951,7 @@
 
                 //off by default until the section gets active
                 iScrollInstance.wheelOff();
-                
+
                 $this.data('iscrollInstance', iScrollInstance);
             });
         },
