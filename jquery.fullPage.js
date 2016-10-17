@@ -1942,10 +1942,11 @@
                     }
                 }
             }
-            stopMedia(v.prevSlide);
 
             destiny.addClass(ACTIVE).siblings().removeClass(ACTIVE);
+            
             if(!v.localIsResizing){
+                stopMedia(v.prevSlide);
                 lazyLoad(destiny);
             }
 
