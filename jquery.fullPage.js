@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.7
+ * fullPage 2.8.8
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -938,9 +938,13 @@
                 var isAtBottom = $body.height() - $window.height() === currentScroll;
                 var sections =  document.querySelectorAll(SECTION_SEL);
 
-                //when using `auto-height` for a small last section it won't take most of the viewport
+                //when using `auto-height` for a small last section it won't be centered in the viewport
                 if(isAtBottom){
                     visibleSectionIndex = sections.length - 1;
+                }
+                //is at top? when using `auto-height` for a small first section it won't be centered in the viewport
+                else if(!currentScroll){
+                    visibleSectionIndex = 0;
                 }
 
                 //taking the section which is showing more content in the viewport
