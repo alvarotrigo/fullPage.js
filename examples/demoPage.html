@@ -52,7 +52,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
-	<script type="text/javascript" src="../jquery.fullPage.js"></script>
+	<script type="text/javascript" src="../jquery.fullPage.js?v=2"></script>
 	<script type="text/javascript" src="examples.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -61,6 +61,12 @@
 				 anchors: ['start-info', 'about-info', 'service-info', 'actual-info', 'contact-info'],
 				menu: '#menu',
 				scrollingSpeed: 1000
+			});
+
+			var cont = 0;
+			$(document).on('click', '.pepe', function(){
+				$(".juan").text("weeeeee" + cont);
+				cont++;
 			});
 
 		});
@@ -111,9 +117,10 @@
 		<h1>fullPage.js</h1>
 		 <input type="hidden" name="id" value="1" />
 		<p>Create Beautiful Fullscreen Scrolling Websites</p>
+		<span class="pepe" href="" style="font-size:4em;">GOOGLE</span>
 		<img src="imgs/fullPage.png" alt="fullPage" />
 	</div>
-	<div class="section active" id="section1">
+	<div class="section" id="section1">
 		<div class="slide">
 			<div class="intro">
 				<h1>Create Sliders</h1>

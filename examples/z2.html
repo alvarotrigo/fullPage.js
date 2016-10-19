@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400i|Raleway:700" rel="stylesheet">
+    <style>
+    html,body{
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    .demo{
+        height: 80%;
+        width: 100%;
+        background-color: red;
+        font-size: 5em;
+    }
+    .demo a{
+        font-size: 0.5em;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    </style>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+    <title>Heureux les curieux</title>
+</head>
+
+<body>
+    <div style="height:120%; transform: translate3d(0, -100px, 0); background: yellow">
+        <div class="demo">
+            <span></span>
+            <a class="pepe" style="position:absolute; top:200px; right: 0;" data-pepe="http://google.com">Google</a>
+        </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+
+        //adding the action to the button
+        $('.demo').on('click', function() {
+            $('.demo').find('span').text('Click fired');
+        });
+        $('.demo').on('touchstart', function(e) {
+            $('.demo').find('span').text('Touch fired');
+        });
+
+        $('.demo').on('touchmove', function(e) {
+            e.preventDefault();
+            $('.demo').find('span').text('Touch move');
+        });
+
+
+    });
+    </script>
+</body>
+
+</html>

@@ -1085,6 +1085,16 @@
             }
         }
 
+        /*
+        * Preventing bouncing in iOS #2285
+        */
+        function preventBouncing(event){
+            var e = event.originalEvent;
+            if(options.autoScrolling && isReallyTouch(e)){
+                //preventing the easing on iOS devices
+                event.preventDefault();
+            }
+        }
 
         var touchStartY = 0;
         var touchStartX = 0;
@@ -1185,13 +1195,6 @@
         * Handler for the touch start event.
         */
         function touchStartHandler(event){
-            //preventing default bouncing in iOS 10 #2285
-            event.preventDefault();
-
-            //allowing to catch click events after preventing default #2338
-            //http://stackoverflow.com/q/40094570/1081396
-            $(event.target).trigger('click');
-
             var e = event.originalEvent;
 
             //stopping the auto scroll to adjust to a section
@@ -1466,7 +1469,10 @@
         function performMovement(v){
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
-                var translate3d = 'translate3d(0px, -' + v.dtop + 'px, 0px)';
+
+                // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
+                // that's why we round it to 0.
+                var translate3d = 'translate3d(0px, -' + Math.round(v.dtop) + 'px, 0px)';
                 transformContainer(translate3d, true);
 
                 //even when the scrollingSpeed is 0 there's a little delay, which might cause the
@@ -2553,6 +2559,8 @@
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
+                $body.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, preventBouncing);
+
                 $(WRAPPER_SEL)
                     .off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler)
                     .off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
@@ -2637,15 +2645,19 @@
         * Scrolls silently (with no animation) the page to the given Y position.
         */
         function silentScroll(top){
+            // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
+            // that's why we round it to 0.
+            var roundedTop = Math.round(top);
+
             if(options.scrollBar){
-                container.scrollTop(top);
+                container.scrollTop(roundedTop);
             }
             else if (options.css3) {
-                var translate3d = 'translate3d(0px, -' + top + 'px, 0px)';
+                var translate3d = 'translate3d(0px, -' + roundedTop + 'px, 0px)';
                 transformContainer(translate3d, false);
             }
             else {
-                container.css('top', -top);
+                container.css('top', -roundedTop);
             }
         }
 
