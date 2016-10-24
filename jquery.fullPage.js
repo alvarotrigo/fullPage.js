@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.8
+ * fullPage 2.8.9
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -917,6 +917,7 @@
             }
             lazyLoad(section);
             playMedia(section);
+            options.scrollOverflowHandler.afterLoad();
 
             $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call(container);
