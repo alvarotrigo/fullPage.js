@@ -877,6 +877,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://www.mi.com/shouhuan
+- http://www.commoditiesdemystified.info/en/
 - https://moneytree.jp/
 - http://torchbrowser.com/
 - http://thekorner.fr/
