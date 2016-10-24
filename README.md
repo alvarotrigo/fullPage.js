@@ -167,6 +167,7 @@ $(document).ready(function() {
 		continuousHorizontal: false,
 		scrollHorizontally: false,
 		interlockedSlides: false,
+		offsetSections: false,
 		resetSliders: false,
 		fadingEffect: false,
 		normalScrollElements: '#element1, .element2',
@@ -385,6 +386,12 @@ the fitting by the configured milliseconds.
 - `scrollHorizontally`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether to slide horizontally within sliders by using the mouse wheel or trackpad. Ideal for story telling`. Requires fullpage.js >= 2.8.3.
 
 - `interlockedSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by 1. Requires fullpage.js >= 2.8.3.
+
+- `offsetSections`: (default `false`)[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section. Requires fullPage.js >= 2.8.8
+To define the percentage of each section the attribute `data-percentage` must be used. The centering of the section in the viewport can be determined by using a boolean value in the attribute `data-centered`. For example: 
+``` html
+    <div class="section" data-percentage="80" data-centered="true">
+```
 
 - `resetSliders`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
 
