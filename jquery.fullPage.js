@@ -502,24 +502,6 @@
             }
         }
 
-        function getFullpageData(){
-            return {
-                options: options,
-                internals: {
-                    getXmovement: getXmovement,
-                    removeAnimation: removeAnimation,
-                    getTransforms: getTransforms,
-                    lazyLoad: lazyLoad,
-                    addAnimation: addAnimation,
-                    performHorizontalMove: performHorizontalMove,
-                    silentLandscapeScroll: silentLandscapeScroll,
-                    keepSlidesPosition: keepSlidesPosition,
-                    silentScroll: silentScroll,
-                    styleSlides: styleSlides
-                }
-            };
-        }
-
         if($(this).length){
             //public functions
             FP.setAutoScrolling = setAutoScrolling;
@@ -538,7 +520,6 @@
             FP.moveSlideLeft = moveSlideLeft;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
-            FP.getFullpageData = getFullpageData;
             FP.destroy = destroy;
 
             init();
