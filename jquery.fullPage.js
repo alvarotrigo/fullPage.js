@@ -2954,7 +2954,7 @@
 
             scrollable.height(scrollHeight);
             scrollable.each(function() {
-                var $this = jQuery(this);
+                var $this = $(this);
                 var iScrollInstance = $this.data('iscrollInstance');
                 if (iScrollInstance) {
                     $.each(iscrollHandler.iScrollInstances, function(){
