@@ -1576,7 +1576,10 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
             options.scrollOverflowHandler.afterLoad();
 
-            playMedia(v.element);
+            if(!v.localIsResizing){
+                playMedia(v.element);
+            }
+
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
 
             canScroll = true;
@@ -1977,9 +1980,9 @@
                 //needs to be inside the condition to prevent problems with continuousVertical and scrollHorizontally
                 //and to prevent double scroll right after a windows resize
                 canScroll = true;
-            }
 
-            playMedia(v.destiny);
+                playMedia(v.destiny);
+            }
 
             //letting them slide again
             slideMoving = false;
