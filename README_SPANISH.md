@@ -380,7 +380,7 @@ Otras librerías puede ser usadas si se desea.
 
 - `touchSensitivity`: (default `5`) Determina cierto porcentage de la ventana del navegador a partir del cual fullpage.js registra un desplazamiento vertical.
 
-- `continuousVertical`: (default `false`) Determina si hacer scroll hacia abajo en la última sección producirá un desplazamiento hacia abajo hacia la primera sección o no, y si hacer scroll hacia arriba en la primera sección producirá un desplazamiento hacia arriba hacia la última sección. No es compatible con `loopTop` o `loopBottom`.
+- `continuousVertical`: (default `false`) Determina si hacer scroll hacia abajo en la última sección producirá un desplazamiento hacia abajo hacia la primera sección o no, y si hacer scroll hacia arriba en la primera sección producirá un desplazamiento hacia arriba hacia la última sección. No es compatible con `loopTop`, `loopBottom` y ninguna barra de desplazamiento (usando `scrollBar:true` o `autoScrolling:false`).
 
 - `continuousHorizontal`: (default `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si desplazarse hacia la derecha en la última diapositiva causará un desplazamiento hacia la derecha hacia la primera diapositiva, y si un desplazarse hacia la izquierda en la primera diapositiva causará un desplazamiento hacia la izquierda hacia la última diapositiva. No es compatible con `loopHorizontal`. 
 
