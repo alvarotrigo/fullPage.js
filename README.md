@@ -284,6 +284,8 @@ If you already use another lazy load solution which uses `data-src` as well, you
 
 ###Auto play/pause embedded media
 
+**Note**: the autoplay feature might not work on some mobile devices depending on the OS and browser (i.e. [Safari on iOS](https://webkit.org/blog/6784/new-video-policies-for-ios/) version < 10.0).
+
 #### Play on section/slide load:
 Using the attribute `autoplay` for videos or audio, or the param `autoplay=1` for youtube iframes will result in the media element playing on page load.
 In order to play it on section/slide load use instead the attribute `data-autoplay`. For example:
