@@ -2081,7 +2081,6 @@
 
             element.removeClass(NO_TRANSITION);
             return element.css({
-                '-webkit-transition': transition,
                 'transition': transition
             });
         }
@@ -2448,9 +2447,7 @@
                 has3d,
                 transforms = {
                     'webkitTransform':'-webkit-transform',
-                    'OTransform':'-o-transform',
                     'msTransform':'-ms-transform',
-                    'MozTransform':'-moz-transform',
                     'transform':'transform'
                 };
 
@@ -2649,7 +2646,6 @@
         function getTransforms(translate3d){
             return {
                 '-webkit-transform': translate3d,
-                '-moz-transform': translate3d,
                 '-ms-transform':translate3d,
                 'transform': translate3d
             };
