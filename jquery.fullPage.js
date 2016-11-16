@@ -315,7 +315,7 @@
         }
 
         /**
-        * Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
+        * Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
         * Optionally a second parameter can be used to specify the direction for which the action will be applied.
         *
         * @param directions string containing the direction or directions separated by comma.
@@ -338,7 +338,7 @@
         }
 
         /**
-        * Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
+        * Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys
         */
         function setKeyboardScrolling(value, directions){
             if(typeof directions !== 'undefined'){
@@ -631,7 +631,7 @@
         }
 
         /**
-        * Works over the DOM structure to set it up for the current fullpage optionss.
+        * Works over the DOM structure to set it up for the current fullpage options.
         */
         function prepareDom(){
             container.css({
@@ -646,7 +646,7 @@
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
             windowsHeight = $window.height();
 
-            container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
+            container.removeClass(DESTROYED); //in case it was destroyed before initializing it again
 
             addInternalSelectors();
 
