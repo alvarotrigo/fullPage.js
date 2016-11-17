@@ -287,6 +287,8 @@ Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el at
 
 ###Autoreproducir elementos multimedia
 
+**Note**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
+
 #### Reproducir al cargar la sección o diapositiva:
 Usando el atributo `autoplay` para videos y audios, o el parámetro `autoplay=1` para iframes de youtube causará que el elemento empiece a reproducirse al cargar la página web. 
 Usa el atributo `data-autplay` para comenzar a reproducirlo cuando la sección o diapositiva a la que pertenece sea visible en la ventana. Por ejemplo:
