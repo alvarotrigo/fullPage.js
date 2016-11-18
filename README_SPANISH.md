@@ -170,6 +170,7 @@ $(document).ready(function() {
 		continuousHorizontal: false,
 		scrollHorizontally: false,
 		interlockedSlides: false,
+		dragAndMove: false,
 		offsetSections: false,
 		resetSliders: false,
 		fadingEffect: false,
@@ -389,6 +390,8 @@ Otras librerías puede ser usadas si se desea.
 - `scrollHorizontally`: (default `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si moverse horizontalmente entre las diapositivas de la sección cuando se usa la ruleta del ratón o el trackpad. Ideal para contar historias. 
 
 - `interlockedSlides`: (default `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si al mover horizontalmente una sección con diapositivas ésto forzará el movimiento de otras diapositivas en otras secciones en la misma dirección. Los posibles valores son `true`, `false` o un array con las secciones que estarán interconectadas. Por ejemplo `[1,3,5]` empeznado por 1. 
+
+- `dragAndMove`: (default `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Habilita o deshabilita el desplazamiento de secciones y diapositivas usando el ratón o los dedos en dispositivos táctiles. Los posibles valores para esta opción son `false`, `true`, `fingersonly`. La opción `fingersonly` habilita esta funcionalidad sólo para el desplazamienton con los dedos en dispositivos táctiles.
 
 - `offsetSections`: (default `false`)[Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Provee una manera de usar secciones que no toman la pantalla completa sino un porcentage determinado de la misma. Ideal para mostrar a los visitantes que hay más contenido en la página mostrando parte de sección siguiente o anterior.
 Para definir el porcentage de la sección hay que hacer uso del atributo `data-percentage`. El centrado de la sección en la ventana puede definirse usando un valor booleano (true o false) en el atributo `data-centered`. (Por defecto será `true` si no se especifica) Por ejemplo:

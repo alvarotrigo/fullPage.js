@@ -138,6 +138,7 @@
             continuousHorizontal: false,
             scrollHorizontally: false,
             interlockedSlides: false,
+            dragAndMove: false,
             offsetSections: false,
             resetSliders: false,
             fadingEffect: false,
@@ -2631,7 +2632,7 @@
             // that's why we round it to 0.
             var roundedTop = Math.round(top);
 
-            if(options.scrollBar){
+            if(options.scrollBar || !options.autoScrolling){
                 container.scrollTop(roundedTop);
             }
             else if (options.css3) {
@@ -2806,7 +2807,7 @@
         * Displays warnings
         */
         function displayWarnings(){
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections'];
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove'];
             if($('html').hasClass(ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
