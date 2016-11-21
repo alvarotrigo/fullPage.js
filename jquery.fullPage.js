@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.8
+ * fullPage 2.8.9
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -138,6 +138,8 @@
             continuousHorizontal: false,
             scrollHorizontally: false,
             interlockedSlides: false,
+            dragAndMove: false,
+            offsetSections: false,
             resetSliders: false,
             fadingEffect: false,
             normalScrollElements: null,
@@ -314,7 +316,7 @@
         }
 
         /**
-        * Adds or remove the possiblity of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
+        * Adds or remove the possibility of scrolling through sections by using the mouse wheel/trackpad or touch gestures.
         * Optionally a second parameter can be used to specify the direction for which the action will be applied.
         *
         * @param directions string containing the direction or directions separated by comma.
@@ -337,7 +339,7 @@
         }
 
         /**
-        * Adds or remove the possiblity of scrolling through sections by using the keyboard arrow keys
+        * Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys
         */
         function setKeyboardScrolling(value, directions){
             if(typeof directions !== 'undefined'){
@@ -501,24 +503,6 @@
             }
         }
 
-        function getFullpageData(){
-            return {
-                options: options,
-                internals: {
-                    getXmovement: getXmovement,
-                    removeAnimation: removeAnimation,
-                    getTransforms: getTransforms,
-                    lazyLoad: lazyLoad,
-                    addAnimation: addAnimation,
-                    performHorizontalMove: performHorizontalMove,
-                    silentLandscapeScroll: silentLandscapeScroll,
-                    keepSlidesPosition: keepSlidesPosition,
-                    silentScroll: silentScroll,
-                    styleSlides: styleSlides
-                }
-            };
-        }
-
         if($(this).length){
             //public functions
             FP.setAutoScrolling = setAutoScrolling;
@@ -537,7 +521,6 @@
             FP.moveSlideLeft = moveSlideLeft;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
-            FP.getFullpageData = getFullpageData;
             FP.destroy = destroy;
 
             init();
@@ -588,7 +571,7 @@
                 //(a way to detect back history button as we play with the hashes on the URL)
                 .on('hashchange', hashChangeHandler)
 
-                //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
+                //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
                 .blur(blurHandler)
 
                 //when resizing the site, we adjust the heights of the sections, slimScroll...
@@ -640,7 +623,7 @@
                 }).get();
             }
 
-            //no tooltipos option? Checking for them in the DOM attributes
+            //no tooltips option? Checking for them in the DOM attributes
             if(!options.navigationTooltips.length){
                 options.navigationTooltips = sections.filter('[data-tooltip]').map(function(){
                     return $(this).data('tooltip').toString();
@@ -649,7 +632,7 @@
         }
 
         /**
-        * Works over the DOM structure to set it up for the current fullpage optionss.
+        * Works over the DOM structure to set it up for the current fullpage options.
         */
         function prepareDom(){
             container.css({
@@ -664,7 +647,7 @@
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
             windowsHeight = $window.height();
 
-            container.removeClass(DESTROYED); //in case it was destroyed before initilizing it again
+            container.removeClass(DESTROYED); //in case it was destroyed before initializing it again
 
             addInternalSelectors();
 
@@ -917,6 +900,7 @@
             }
             lazyLoad(section);
             playMedia(section);
+            options.scrollOverflowHandler.afterLoad();
 
             $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call(container);
@@ -1090,7 +1074,7 @@
         */
         function preventBouncing(event){
             var e = event.originalEvent;
-            if(options.autoScrolling && isReallyTouch(e)){
+            if(!checkParentForNormalScrollElement(event.target) && options.autoScrolling && isReallyTouch(e)){
                 //preventing the easing on iOS devices
                 event.preventDefault();
             }
@@ -1120,45 +1104,41 @@
                 }
 
                 var scrollable = options.scrollOverflowHandler.scrollable(activeSection);
+                var touchEvents = getEventsPage(e);
 
-                if (canScroll && !slideMoving) { //if theres any #
-                    var touchEvents = getEventsPage(e);
+                touchEndY = touchEvents.y;
+                touchEndX = touchEvents.x;
 
-                    touchEndY = touchEvents.y;
-                    touchEndX = touchEvents.x;
+                //if movement in the X axys is greater than in the Y and the currect section has slides...
+                if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
-                    //if movement in the X axys is greater than in the Y and the currect section has slides...
-                    if (activeSection.find(SLIDES_WRAPPER_SEL).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
-
-                        //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartX - touchEndX) > ($window.outerWidth() / 100 * options.touchSensitivity)) {
-                            if (touchStartX > touchEndX) {
-                                if(isScrollAllowed.m.right){
-                                    moveSlideRight(activeSection); //next
-                                }
-                            } else {
-                                if(isScrollAllowed.m.left){
-                                    moveSlideLeft(activeSection); //prev
-                                }
+                    //is the movement greater than the minimum resistance to scroll?
+                    if (!slideMoving && Math.abs(touchStartX - touchEndX) > ($window.outerWidth() / 100 * options.touchSensitivity)) {
+                        if (touchStartX > touchEndX) {
+                            if(isScrollAllowed.m.right){
+                                moveSlideRight(activeSection); //next
                             }
-                        }
-                    }
-
-                    //vertical scrolling (only when autoScrolling is enabled)
-                    else if(options.autoScrolling){
-
-                        //is the movement greater than the minimum resistance to scroll?
-                        if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
-                            if (touchStartY > touchEndY) {
-                                scrolling('down', scrollable);
-                            } else if (touchEndY > touchStartY) {
-                                scrolling('up', scrollable);
+                        } else {
+                            if(isScrollAllowed.m.left){
+                                moveSlideLeft(activeSection); //prev
                             }
                         }
                     }
                 }
-            }
 
+                //vertical scrolling (only when autoScrolling is enabled)
+                else if(options.autoScrolling && canScroll){
+
+                    //is the movement greater than the minimum resistance to scroll?
+                    if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                        if (touchStartY > touchEndY) {
+                            scrolling('down', scrollable);
+                        } else if (touchEndY > touchStartY) {
+                            scrolling('up', scrollable);
+                        }
+                    }
+                }
+            }
         }
 
         /**
@@ -1593,7 +1573,10 @@
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
             options.scrollOverflowHandler.afterLoad();
 
-            playMedia(v.element);
+            if(!v.localIsResizing){
+                playMedia(v.element);
+            }
+
             v.element.addClass(COMPLETELY).siblings().removeClass(COMPLETELY);
 
             canScroll = true;
@@ -1812,7 +1795,7 @@
             }
         }
 
-        //when opening a new tab (ctrl + t), `control` won't be pressed when comming back.
+        //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
         function blurHandler(){
             isWindowFocused = false;
             controlPressed = false;
@@ -1994,9 +1977,9 @@
                 //needs to be inside the condition to prevent problems with continuousVertical and scrollHorizontally
                 //and to prevent double scroll right after a windows resize
                 canScroll = true;
-            }
 
-            playMedia(v.destiny);
+                playMedia(v.destiny);
+            }
 
             //letting them slide again
             slideMoving = false;
@@ -2649,7 +2632,7 @@
             // that's why we round it to 0.
             var roundedTop = Math.round(top);
 
-            if(options.scrollBar){
+            if(options.scrollBar || !options.autoScrolling){
                 container.scrollTop(roundedTop);
             }
             else if (options.css3) {
@@ -2824,7 +2807,7 @@
         * Displays warnings
         */
         function displayWarnings(){
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides'];
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove'];
             if($('html').hasClass(ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
@@ -2841,13 +2824,13 @@
                 showError('warn', 'Option `scrollBar` is mutually exclusive with `scrollOverflow`. Sections with scrollOverflow might not work well in Firefox');
             }
 
-            if(options.continuousVertical && options.scrollBar){
+            if(options.continuousVertical && (options.scrollBar || !options.autoScrolling)){
                 options.continuousVertical = false;
-                showError('warn', 'Option `scrollBar` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
+                showError('warn', 'Scroll bars (`scrollBar:true` or `autoScrolling:false`) are mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
             }
 
             //using extensions? Wrong file!
-            extensions.forEach(function(extension){
+            $.each(extensions, function(index, extension){
                 //is the option set to true?
                 if(options[extension]){
                     showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js. Requested: '+ extension);
@@ -2918,16 +2901,29 @@
         refreshId: null,
         iScrollInstances: [],
 
+        // Enables or disables the mouse wheel for the active section or all slides in it
+        toggleWheel: function(value){
+            var scrollable = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL);
+            scrollable.each(function(){
+                var iScrollInstance = $(this).data('iscrollInstance');
+                if(typeof iScrollInstance !== 'undefined' && iScrollInstance){
+                    if(value){
+                        iScrollInstance.wheelOn();
+                    }
+                    else{
+                        iScrollInstance.wheelOff();
+                    }
+                }
+            });
+        },
+
         /**
         * Turns off iScroll for the destination section.
         * When scrolling very fast on some trackpads (and Apple laptops) the inertial scrolling would
         * scroll the destination section/slide before the sections animations ends.
         */
         onLeave: function(){
-            var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined' && scroller){
-                scroller.wheelOff();
-            }
+            iscrollHandler.toggleWheel(false);
         },
 
         // Turns off iScroll for the leaving section
@@ -2937,10 +2933,7 @@
 
         // Turns on iScroll on section load
         afterLoad: function(){
-            var scroller = $(SECTION_ACTIVE_SEL).find(SCROLLABLE_SEL).data('iscrollInstance');
-            if(typeof scroller !== 'undefined' && scroller){
-                  scroller.wheelOn();
-            }
+            iscrollHandler.toggleWheel(true);
         },
 
         /**
@@ -2954,7 +2947,7 @@
 
             scrollable.height(scrollHeight);
             scrollable.each(function() {
-                var $this = jQuery(this);
+                var $this = $(this);
                 var iScrollInstance = $this.data('iscrollInstance');
                 if (iScrollInstance) {
                     $.each(iscrollHandler.iScrollInstances, function(){

@@ -31,6 +31,11 @@ This light version of fullpage.js won't provide some options available in the jQ
 - `paddingBottom`
 - `fixedElements`
 
+And other features such as:
+
+- Any extension
+- `setAllowScrolling`
+
 
 ## Compatibility
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 8, 9, Opera 12, etc.
