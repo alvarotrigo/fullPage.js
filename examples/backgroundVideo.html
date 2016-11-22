@@ -58,6 +58,8 @@
 		width: 100%;
 		left: 0;
 		top: 43%;
+		-webkit-transform: translate3d(0,0,0); /* force draw to avoid text flicker in chrome */
+		        transform: translate3d(0,0,0);
 	}
 
 	/*solves problem with overflowing video in Mac with Chrome */
