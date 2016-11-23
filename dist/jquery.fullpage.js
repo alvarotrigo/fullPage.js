@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.8.9
+ * fullPage 2.9.0
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -228,6 +228,11 @@
         * It changes the scroll bar visibility and the history of the site as a result.
         */
         function setAutoScrolling(value, type){
+            //removing the transformation 
+            if(!value){
+                silentScroll(0);
+            }
+
             setVariableState('autoScrolling', value, type);
 
             var element = $(SECTION_ACTIVE_SEL);
@@ -264,8 +269,6 @@
                     '-ms-touch-action': '',
                     'touch-action': ''
                 });
-
-                silentScroll(0);
 
                 //scrolling the page to the section with no animation
                 if (element.length) {
@@ -2631,16 +2634,16 @@
             // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
             // that's why we round it to 0.
             var roundedTop = Math.round(top);
-
-            if(options.scrollBar || !options.autoScrolling){
-                container.scrollTop(roundedTop);
-            }
-            else if (options.css3) {
+            
+            if (options.css3 && options.autoScrolling && !options.scrollBar){
                 var translate3d = 'translate3d(0px, -' + roundedTop + 'px, 0px)';
                 transformContainer(translate3d, false);
             }
-            else {
+            else if(options.autoScrolling && !options.scrollBar){
                 container.css('top', -roundedTop);
+            }
+            else{
+                $htmlBody.scrollTop(roundedTop);
             }
         }
 
