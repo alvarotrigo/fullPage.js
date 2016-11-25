@@ -152,7 +152,7 @@ $(document).ready(function() {
 		navigationPosition: 'right',
 		navigationTooltips: ['firstSlide', 'secondSlide'],
 		showActiveTooltip: false,
-		slidesNavigation: true,
+		slidesNavigation: false,
 		slidesNavPosition: 'bottom',
 
 		//Scrolling
