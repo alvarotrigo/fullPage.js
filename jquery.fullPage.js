@@ -187,6 +187,7 @@
 
         //flag to avoid very fast sliding for landscape sliders
         var slideMoving = false;
+        var sectionMoving = false;
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
@@ -228,7 +229,7 @@
         * It changes the scroll bar visibility and the history of the site as a result.
         */
         function setAutoScrolling(value, type){
-            //removing the transformation 
+            //removing the transformation
             if(!value){
                 silentScroll(0);
             }
@@ -1450,6 +1451,7 @@
         * Performs the vertical movement (by CSS3 or by jQuery)
         */
         function performMovement(v){
+            sectionMoving = true;
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
 
@@ -1571,6 +1573,7 @@
         */
         function afterSectionLoads (v){
             continuousVerticalFixSectionOrder(v);
+            sectionMoving = false;
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
@@ -1746,6 +1749,8 @@
                 if($.inArray(keyCode, keyControls) > -1){
                     e.preventDefault();
                 }
+
+                if (sectionMoving) return;
 
                 controlPressed = e.ctrlKey;
 
@@ -2634,7 +2639,7 @@
             // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
             // that's why we round it to 0.
             var roundedTop = Math.round(top);
-            
+
             if (options.css3 && options.autoScrolling && !options.scrollBar){
                 var translate3d = 'translate3d(0px, -' + roundedTop + 'px, 0px)';
                 transformContainer(translate3d, false);
