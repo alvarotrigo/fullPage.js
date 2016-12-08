@@ -1747,11 +1747,6 @@
                     e.preventDefault();
                 }
 
-                //do nothing if we can not scroll or we are not using horizotnal key arrows.
-                if(!canScroll && [37,39].indexOf(e.which) < 0){
-                    return;
-                }
-
                 controlPressed = e.ctrlKey;
 
                 keydownId = setTimeout(function(){
@@ -1830,6 +1825,11 @@
         */
         function onkeydown(e){
             var shiftPressed = e.shiftKey;
+
+            //do nothing if we can not scroll or we are not using horizotnal key arrows.
+            if(!canScroll && [37,39].indexOf(e.which) < 0){
+                return;
+            }
 
             switch (e.which) {
                 //up
