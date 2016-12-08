@@ -2541,11 +2541,13 @@
         * Adds the possibility to auto scroll through sections on touch devices.
         */
         function addTouchHandler(){
-            if(options.autoScrolling && (isTouchDevice || isTouch)){
+            if(isTouchDevice || isTouch){
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                $body.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, preventBouncing);
+                if(options.autoScrolling){
+                    $body.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, preventBouncing);
+                }
 
                 $(WRAPPER_SEL)
                     .off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler)
