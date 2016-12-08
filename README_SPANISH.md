@@ -311,18 +311,17 @@ Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes 
 ###Uso de extensiones
 fullPage.js [provee varias extensiones](http://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increibles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones)
 
-Las extensiones requiren el uso del archivo comprimido `jquery.fullpage.extensions.min.js` en lugar del archivo habitual de fullPage.js (`jquery.fullpage.js`).
-Una vez adquiras el archivo correspondiente a la extensión que quieras usar, tendrás que añadirlo antes del archivo de fullPage.js. Por ejemplo:
+Las extensiones requiren el uso del archivo comprimido [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) disponible [en la carpeta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) en lugar del archivo habitual de fullPage (`jquery.fullpage.js` o `jquery.fullpage.min.js`).
+Una vez adquiras el archivo correspondiente a la extensión que quieras usar, tendrás que añadirlo antes del archivo de fullPage. Por ejemplo, si quiero usar la extension Continuous Horizontal tendré que añadir el fichero de la extension y después el fichero de fullPage version extensiones.
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
 <script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
 ```
 
-Cada extensión requiere de una licencia. [Ve más detalles sobe el uso de licencias aquí](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
+Cada extensión requiere de una licencia y de una clave de activación. [Ver más detalles sobe el uso de licencias aquí](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
 
 Luego podrás usar la extension y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones).
-
 
 ## Opciones
 
