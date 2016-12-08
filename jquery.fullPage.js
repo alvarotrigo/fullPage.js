@@ -187,7 +187,6 @@
 
         //flag to avoid very fast sliding for landscape sliders
         var slideMoving = false;
-        var sectionMoving = false;
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
@@ -1451,7 +1450,6 @@
         * Performs the vertical movement (by CSS3 or by jQuery)
         */
         function performMovement(v){
-            sectionMoving = true;
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
 
@@ -1573,7 +1571,6 @@
         */
         function afterSectionLoads (v){
             continuousVerticalFixSectionOrder(v);
-            sectionMoving = false;
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
@@ -1750,7 +1747,10 @@
                     e.preventDefault();
                 }
 
-                if (sectionMoving) return;
+                //do nothing if we can not scroll or we are not using horizotnal key arrows.
+                if(!canScroll && [37,39].indexOf(e.which) < 0){
+                    return;
+                }
 
                 controlPressed = e.ctrlKey;
 
