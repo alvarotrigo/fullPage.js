@@ -58,6 +58,14 @@
 		width: 100%;
 		left: 0;
 		top: 43%;
+
+		/* 
+		* Preventing flicker on some browsers 
+		* See http://stackoverflow.com/a/36671466/1081396  or issue #183
+		*/
+		-webkit-transform: translate3d(0,0,0);
+		-ms-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);
 	}
 
 	/*solves problem with overflowing video in Mac with Chrome */
@@ -91,13 +99,7 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				verticalCentered: true,
-				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
-				afterRender: function(){
-
-
-					//playing the video
-					$('video').get(0).play();
-				}
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE']
 			});
 		});
 	</script>
@@ -135,7 +137,7 @@
 
 <div id="fullpage">
 	<div class="section " id="section0">
-		<video autoplay loop muted id="myVideo">
+		<video id="myVideo" loop muted data-autoplay>
 			<source src="imgs/flowers.mp4" type="video/mp4">
 			<source src="imgs/flowers.webm" type="video/webm">
 		</video>
