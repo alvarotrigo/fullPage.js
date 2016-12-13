@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage2.png" /></a>
+	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage2.png?v=2" /></a>
 </p>
 
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.9-brightgreen.svg)
