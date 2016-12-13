@@ -7,6 +7,10 @@
   <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language-inactive.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language.png?v=2" /></a>
 </p>
 
+<p align="center">
+	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage2.png" /></a>
+</p>
+
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.8-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb en gzip!
@@ -15,7 +19,8 @@ Un sencillo plugin de jQuery para la creación de páginas web con scroll a pant
 Permite crear un desplazamiento a pantalla completa asi como añadir diapositivas horizontales en las secciones. 
 
 - [Vista previa - demostración](http://alvarotrigo.com/fullPage/)
-- [Template de Wordpress](https://goo.gl/HuFudq)
+- [Template de Wordpress 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+- [Template de Wordpress 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensiones de fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Preguntas frecuentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
@@ -845,7 +850,8 @@ Solo disponible en ingles :)
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 #Recursos
-- [Template de Wordpress](https://goo.gl/HuFudq)
+- [Template de Wordpress 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+- [Template de Wordpress 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](http://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
