@@ -228,7 +228,7 @@
         * It changes the scroll bar visibility and the history of the site as a result.
         */
         function setAutoScrolling(value, type){
-            //removing the transformation 
+            //removing the transformation
             if(!value){
                 silentScroll(0);
             }
@@ -1826,6 +1826,11 @@
         function onkeydown(e){
             var shiftPressed = e.shiftKey;
 
+            //do nothing if we can not scroll or we are not using horizotnal key arrows.
+            if(!canScroll && [37,39].indexOf(e.which) < 0){
+                return;
+            }
+
             switch (e.which) {
                 //up
                 case 38:
@@ -2541,11 +2546,13 @@
         * Adds the possibility to auto scroll through sections on touch devices.
         */
         function addTouchHandler(){
-            if(options.autoScrolling && (isTouchDevice || isTouch)){
+            if(isTouchDevice || isTouch){
                 //Microsoft pointers
                 var MSPointer = getMSPointer();
 
-                $body.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, preventBouncing);
+                if(options.autoScrolling){
+                    $body.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, preventBouncing);
+                }
 
                 $(WRAPPER_SEL)
                     .off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler)
@@ -2634,7 +2641,7 @@
             // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
             // that's why we round it to 0.
             var roundedTop = Math.round(top);
-            
+
             if (options.css3 && options.autoScrolling && !options.scrollBar){
                 var translate3d = 'translate3d(0px, -' + roundedTop + 'px, 0px)';
                 transformContainer(translate3d, false);

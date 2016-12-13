@@ -11,7 +11,7 @@
 	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage1.png" /></a>
 </p>
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.8.8-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.0-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb en gzip!
 
