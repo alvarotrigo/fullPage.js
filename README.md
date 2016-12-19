@@ -11,7 +11,7 @@
 	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage1.png" /></a>
 </p>
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.0-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.1-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
 
@@ -182,6 +182,7 @@ $(document).ready(function() {
 		fadingEffect: false,
 		normalScrollElements: '#element1, .element2',
 		scrollOverflow: false,
+		scrollOverflowReset: false,
 		scrollOverflowOptions: null,
 		touchSensitivity: 15,
 		normalScrollElementTouchThreshold: 5,
@@ -450,8 +451,9 @@ $('#fullpage').fullpage({
 
 - `slidesNavPosition`: (default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.
 
-- `scrollOverflow`: (default `false`) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
-In case of setting it to `true`, it requires the vendor library [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) and it should be loaded before the fullPage.js plugin. For example:
+- `scrollOverflow`: (default `false`) (not compatible with IE 8) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. When set to `true`, your content will be wrapped by the plugin. Consider using delegation or load your other scripts in the `afterRender` callback.
+In case of setting it to `true`, it requires the vendor library [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) and it should be loaded before the fullPage.js plugin.
+For example:
 
 ```html
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
@@ -459,6 +461,8 @@ In case of setting it to `true`, it requires the vendor library [`scrolloverflow
 ```
 
 In order to prevent fullpage.js from creating the scrollbar in certain sections or slides use the class `fp-noscroll`. For example: `<div class="section fp-noscroll">`
+
+- `scrollOverflowReset`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` it scrolls up the content of the section/slide with scroll bar when leaving to another vertical section. This way the section/slide will always show the start of its content even when scrolling from a section under it.
 
 - `scrollOverflowOptions`: when using scrollOverflow:true fullpage.js will make use of a forked and modified version of [iScroll.js libary](https://github.com/cubiq/iscroll/). You can customize the scrolling behaviour by providing fullpage.js with the iScroll.js options you want to use. Check [its documentation](http://iscrolljs.com/) for more info.
 

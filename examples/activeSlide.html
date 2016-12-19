@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Continuous scrolling - fullPage.js</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
+    <meta name="Resource-type" content="Document" />
+
+
+    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="../jquery.fullPage.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+              sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+              anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+              menu: '#menu',
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<ul id="menu">
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
+
+<select id="demosMenu">
+  <option selected>Choose Demo</option>
+  <option id="activeSlide">Active section and slide</option>
+  <option id="apple">Apple iPhone demo (animations)</option>
+  <option id="autoHeight">Auto height</option>
+  <option id="autoplayVideoAndAudio">Autoplay Video and Audio</option>
+  <option id="backgrounds">Background images</option>
+  <option id="backgroundsFixed">Fixed fullscreen backgrounds</option>
+  <option id="backgroundVideo">Background video</option>
+  <option id="callbacks">Callbacks</option>
+  <option id="continuousHorizontal">Continuous horizontal</option>
+  <option id="continuousVertical">Continuous vertical</option>
+  <option id="css3">CSS3</option>
+  <option id="dragAndMove">Drag And Move</option>
+  <option id="easing">Easing</option>
+  <option id="fadingEffect">Fading Effect</option>
+  <option id="fixedHeaders">Fixed headers</option>
+  <option id="gradientBackgrounds">Gradient backgrounds</option>
+  <option id="interlockedSlides">Interlocked Slides</option>
+  <option id="looping">Looping</option>
+  <option id="methods">Methods</option>
+  <option id="navigationV">Vertical navigation dots</option>
+  <option id="navigationH">Horizontal navigation dots</option>
+  <option id="noAnchor">No anchor links</option>
+  <option id="normalScroll">Normal scrolling</option>
+  <option id="normalScrollElements">Normal scroll elements</option>
+  <option id="offsetSections">Offset sections</option>
+  <option id="oneSection">One single section</option>
+  <option id="resetSliders">Reset sliders</option>
+  <option id="responsiveAutoHeight">Responsive Auto Height</option>
+  <option id="responsiveHeight">Responsive Height</option>
+  <option id="responsiveWidth">Responsive Width</option>
+  <option id="responsiveSlides">Responsive Slides</option>
+  <option id="scrollBar">Scroll bar enabled</option>
+  <option id="scrollHorizontally">Scroll horizontally</option>
+  <option id="scrollOverflow">Scroll inside sections and slides</option>
+  <option id="scrollOverflowReset">ScrollOverflow Reset</option>
+  <option id="scrollingSpeed">Scrolling speed</option>
+</select>
+
+<div id="fullpage">
+    <div class="section " id="section0">
+        <h1>fullPage.js</h1>
+        <p>Continuous Scrolling Enabled</p>
+        <img src="imgs/fullPage.png" alt="fullPage" />
+    </div>
+    <div class="section active" id="section1">
+        <div class="slide" id="slide1">
+            <div class="intro">
+                <h1>Around the world scrolling</h1>
+                <p>Go to the first section and scroll up or to the last one and scroll down to see how it works.</p>
+            </div>
+        </div>
+        <div class="slide active" id="slide2">
+            <h1>Slide 2</h1>
+        </div>
+        <div class="slide" id="slide3">
+            <h1>Slide 3</h1>
+        </div>
+
+    </div>
+    <div class="section" id="section2">
+        <div class="intro">
+            <h1>Scroll Down</h1>
+            <p>And it will animate down to the first section</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -3,41 +3,42 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Autoplay / pause media - fullPage.js</title>
+    <title>Normal Scroll Elements - fullPage.js</title>
     <meta name="author" content="Alvaro Trigo Lopez" />
-    <meta name="description" content="fullPage full-screen autoplay videos and audio." />
-    <meta name="keywords"  content="fullpage,jquery,demo,autoplay,video,audio,html5,paluse" />
+    <meta name="description" content="Normal Scroll Elements for fullPage." />
+    <meta name="keywords"  content="fullpage,jquery,demo,normoalScrollElements,overflow,scrollable,scrollbar" />
     <meta name="Resource-type" content="Document" />
 
     <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
-    <style>
-    .intro p{
-        color: #fff;
-    }
-    </style>
 
-    <!--[if IE]>
-        <script type="text/javascript">
-             var console = { log: function() {} };
-        </script>
-    <![endif]-->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
     <script type="text/javascript" src="../jquery.fullPage.js"></script>
-    <script type="text/javascript" src="examples.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#fullpage').fullpage({
-                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
-                anchors: ['firstPage', 'secondPage', '3rdPage']
+                sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+                normalScrollElements: '.scrollable-element',
             });
         });
     </script>
 
+    <style>
+        .scrollable-element{
+            height: 400px;
+            width: 600px;
+            overflow-y: scroll;
+            margin: 0 auto;
+        }
+        .box{
+            display: block;
+            background: red;
+            margin: 20px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -81,40 +82,32 @@
   <option id="scrollingSpeed">Scrolling speed</option>
 </select>
 
-
 <div id="fullpage">
-    <div class="section intro"> 
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
-      <p>
-        The video will automatically start playing as I'm usign the attribute `data-autoplay`. 
-      </p>
-      <p>
-        And because I'm not using the attribute `data-keepplaying` the video will automatically stop playing after leaving the section or slide.
-      </p>
-    </div>
-    <div class="section">
-        <div class="slide">
-          <h1>HTML 5 videos</h1>
-          <video loop muted controls="false" data-autoplay>
-            <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
-          </video>   
-        </div>
-        <div class="slide intro">
-          <h1>In slides!</h1>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
+    <div class="section active" id="section0">
+        <h1>fullPage.js</h1>
+        <p>Normal Scroll Elements</p>
+        <div class="scrollable-element">
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
         </div>
     </div>
-    <div class="section">
-      <h1>Audio</h1>
-      <audio controls="" data-autoplay>
-          <source src="imgs/horse.ogg" type="audio/ogg">
-          <source src="imgs/horse.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio>
+    <div class="section" id="section1">
+        <div class="slide"><h1>Section 2</h1></div>
+        <div class="slide"><h1>Slide 2.2</h1></div>
+        <div class="slide"><h1>Slide 2.1</h1></div>
     </div>
+    <div class="section" id="section2"><h1>Section 3</h1></div>
 </div>
-
 
 </body>
 </html>

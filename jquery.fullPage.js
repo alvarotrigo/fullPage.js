@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.0
+ * fullPage 2.9.1
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -144,6 +144,7 @@
             fadingEffect: false,
             normalScrollElements: null,
             scrollOverflow: false,
+            scrollOverflowReset: false,
             scrollOverflowHandler: iscrollHandler,
             scrollOverflowOptions: null,
             touchSensitivity: 5,
@@ -2817,7 +2818,7 @@
         * Displays warnings
         */
         function displayWarnings(){
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove'];
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset'];
             if($('html').hasClass(ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
