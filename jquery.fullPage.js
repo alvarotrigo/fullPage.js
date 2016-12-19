@@ -167,6 +167,7 @@
             responsiveWidth: 0,
             responsiveHeight: 0,
             responsiveSlides: false,
+            offsetTop: 0,
 
             //Custom selectors
             sectionSelector: SECTION_DEFAULT_SEL,
@@ -191,7 +192,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = $window.height();
+        var windowsHeight = $window.height() - options.offsetTop;
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -437,7 +438,7 @@
 
             isResizing = true;
 
-            windowsHeight = $window.height();  //updating global var
+            windowsHeight = $window.height() - options.offsetTop;  //updating global var
 
             $(SECTION_SEL).each(function(){
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
@@ -537,6 +538,11 @@
                 options.css3 = support3d();
             }
 
+            if (options.offsetTop) {
+                container.css("top", options.offsetTop);
+                container.height(container.height() - options.offsetTop);
+            }
+            
             options.scrollBar = options.scrollBar || options.hybrid;
 
             setOptionsFromDOM();
@@ -648,7 +654,7 @@
             $('html').addClass(ENABLED);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
+            windowsHeight = $window.height() - options.offsetTop;
 
             container.removeClass(DESTROYED); //in case it was destroyed before initializing it again
 
