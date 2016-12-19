@@ -11,7 +11,7 @@
 	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage1.png" /></a>
 </p>
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.0-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.1-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb en gzip!
 
@@ -181,6 +181,7 @@ $(document).ready(function() {
 		fadingEffect: false,
 		normalScrollElements: '#element1, .element2',
 		scrollOverflow: false,
+		scrollOverflowReset: false,
 		scrollOverflowOptions: null,
 		touchSensitivity: 15,
 		normalScrollElementTouchThreshold: 5,
@@ -452,6 +453,8 @@ Cuando se usa `true` esta opción requiere del uso de la librería externa [`scr
 ```
 
 Para evitar que fullPage.js crea la barra de desplazamiento en ciertas secciones o diapositivas, haz uso de la clase ` fp-noscroll`. Por ejemplo: `<div class="section fp-noscroll">`
+
+- `scrollOverflowReset`: (default `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Cuando se define a `true` fullPage.js moverá el contenido de la seccion o diapositiva hacia arriba cuando se abandone la seccion o diapositiva hacia otra sección vertical. De este modo, cuando se llega a una sección que usa barra de desplazamiento, se mostrará siempre el principio de su contenido.
 
 - `scrollOverflowOptions`: cuando se usa la opcion de scrollOverflow:true fullPage.js hará uso de una versión modificada de la [libería iScroll.js](https://github.com/cubiq/iscroll/). Puedes personalizar el comportamiento de dicho componente aportando a fullPage.js las opciones de iScroll que quieras usar haciendo uso de esta opción. Mira [la documentacion de iScroll](http://iscrolljs.com/) para más información.
 
