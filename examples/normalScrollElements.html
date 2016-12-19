@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Normal Scroll Elements - fullPage.js</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="Normal Scroll Elements for fullPage." />
+    <meta name="keywords"  content="fullpage,jquery,demo,normoalScrollElements,overflow,scrollable,scrollbar" />
+    <meta name="Resource-type" content="Document" />
+
+    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="../jquery.fullPage.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+                normalScrollElements: '.scrollable-element',
+            });
+        });
+    </script>
+
+    <style>
+        .scrollable-element{
+            height: 400px;
+            width: 600px;
+            overflow-y: scroll;
+            margin: 0 auto;
+        }
+        .box{
+            display: block;
+            background: red;
+            margin: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="fullpage">
+    <div class="section active" id="section0">
+        <h1>fullPage.js</h1>
+        <p>Normal Scroll Elements</p>
+        <div class="scrollable-element">
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+            <div class="box">Some text</div>
+        </div>
+    </div>
+    <div class="section" id="section1">
+        <div class="slide"><h1>Section 2</h1></div>
+        <div class="slide"><h1>Slide 2.2</h1></div>
+        <div class="slide"><h1>Slide 2.1</h1></div>
+    </div>
+    <div class="section" id="section2"><h1>Section 3</h1></div>
+</div>
+
+</body>
+</html>
