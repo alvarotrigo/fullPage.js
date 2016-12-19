@@ -1,6 +1,6 @@
 {
   "name": "fullpage.js",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "Create beautiful fullscreen scrolling websites",
   "main": "dist/jquery.fullpage.js",
   "scripts": {
@@ -12,10 +12,16 @@
   },
   "keywords": [
     "jquery",
+    "javacript",
     "scrolling",
     "single_page",
+    "onepage",
+    "fullpage",
+    "fullpagejs",
     "one_page",
-    "sliding"
+    "sliding",
+    "snap"
+    "scroll"
   ],
   "files": [
     "vendors",
