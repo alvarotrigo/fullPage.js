@@ -97,6 +97,11 @@
         disableMouse: true,
         interactiveScrollbars: true
     };
+    
+    // Default options for scroll-end-prevent function
+    var iscrollEndPreventOptions = {
+        delay: 0, reversal: true
+    }
 
     $.fn.fullpage = function(options) {
         //only once my friend!
@@ -147,6 +152,7 @@
             scrollOverflowReset: false,
             scrollOverflowHandler: iscrollHandler,
             scrollOverflowOptions: null,
+            scrollOverflowEndPrevent: null,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
@@ -220,6 +226,9 @@
 
         //extending iScroll options with the user custom ones
         iscrollOptions = $.extend(iscrollOptions, options.scrollOverflowOptions);
+        
+        // set the custom options of scroll-end-prevent function
+        iscrollEndPreventOptions = $.extend(iscrollEndPreventOptions, options.scrollOverflowEndPrevent);
 
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
@@ -2973,6 +2982,24 @@
                 iScrollInstance.wheelOff();
 
                 $this.data('iscrollInstance', iScrollInstance);
+                
+                // set the init values of the scroll-end-prevent function
+                $this.data('iscrollInstanceEndPreventLastY', 0);
+                $this.data('iscrollInstanceEndPreventDiriction', 0);
+                $this.data('iscrollInstanceEndPreventScrollTop', 0);
+                $this.data('iscrollInstanceEndPreventTopTime', 0);
+                $this.data('iscrollInstanceEndPreventBottomTime', 0);
+                // get the values needed of scroll-end-prevent function via the events of iScroll
+                iScrollInstance.on('scrollStart', function(){
+                    $this.data('iscrollInstanceEndPreventLastY', this.y);
+                    $this.data('iscrollInstanceEndPreventDiriction', this.directionY);
+                    $this.data('iscrollInstanceEndPreventScrollTop', $this.scrollTop());
+                    if(this.directionY > 0 ){
+                        scrollable.data('iscrollInstanceEndPreventTopTime', 0);
+                    }else{
+                        scrollable.data('iscrollInstanceEndPreventBottomTime', 0);
+                    }
+                });
             });
         },
 
@@ -2991,11 +3018,53 @@
             if (!scroller) {
                 return true;
             }
-
+            
+            var endPreventLastY = scrollable.data('iscrollInstanceEndPreventLastY');
+            var endPreventDirection = scrollable.data('iscrollInstanceEndPreventDiriction');
+            var endPreventScrollTop = scrollable.data('iscrollInstanceEndPreventScrollTop');
+            var endPreventTopTime = scrollable.data('iscrollInstanceEndPreventTopTime');
+            var endPreventBottomTime = scrollable.data('iscrollInstanceEndPreventBottomTime');
+            
+            // reversal action work with the scroll-end-prevent function?
+            if(!iscrollEndPreventOptions.reversal && 
+                ((endPreventLastY >= 0 && !endPreventScrollTop && type === 'bottom')
+                || ((0 - endPreventLastY) + endPreventScrollTop + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight && type === 'top'))
+            ){
+                if(endPreventDirection !== scroller.directionY){
+                    scrollable.data('iscrollInstanceEndPreventLastY', scroller.y);
+                    scrollable.data('iscrollInstanceEndPreventDiriction', scroller.directionY);
+                    scrollable.data('iscrollInstanceEndPreventScrollTop', scrollable.scrollTop());
+                }
+            }
+            
             if (type === 'top') {
-                return scroller.y >= 0 && !scrollable.scrollTop();
+                scrollable.data('iscrollInstanceEndPreventBottomTime', 0);
+                if(scroller.y >= 0 && !scrollable.scrollTop()){
+                    if(endPreventTopTime === 0){
+                        var time = new Date().getTime();
+                        scrollable.data('iscrollInstanceEndPreventTopTime', time);
+                        endPreventTopTime = time;
+                    }
+                    if(endPreventLastY >= 0 || new Date().getTime() - endPreventTopTime >= iscrollEndPreventOptions.delay){
+                        scrollable.data('iscrollInstanceEndPreventLastY', scroller.y);
+                        return true;
+                    }
+                }
+                return false;
             } else if (type === 'bottom') {
-                return (0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight;
+                scrollable.data('iscrollInstanceEndPreventTopTime', 0);
+                if((0 - scroller.y) + scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight){
+                    if(endPreventBottomTime === 0){
+                        var time = new Date().getTime();
+                        scrollable.data('iscrollInstanceEndPreventBottomTime', time);
+                        endPreventBottomTime = time;
+                    }
+                    if((0 - endPreventLastY) + scrollable.scrollTop() + 1 + scrollable.innerHeight() >= scrollable[0].scrollHeight || new Date().getTime() - endPreventBottomTime >= iscrollEndPreventOptions.delay){
+                        scrollable.data('iscrollInstanceEndPreventLastY', scroller.y);
+                        return true;
+                    }
+                }
+                return false;
             }
         },
 
