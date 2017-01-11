@@ -7,10 +7,6 @@
   <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language-inactive.png" /></a>
 </p>
 
-<p align="center">
-	<a href="http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html"><img src="http://alvarotrigo.com/fullPage/imgs/wodpress-y-theme-fullpage1.png" /></a>
-</p>
-
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.2-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 7Kb gziped!
@@ -19,8 +15,7 @@ A simple and easy to use plugin to create fullscreen scrolling websites (also kn
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
-- [Wordpress theme 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
-- [Wordpress theme 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
@@ -857,8 +852,7 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 #Resources
-- [Wordpress theme 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
-- [Wordpress theme 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
