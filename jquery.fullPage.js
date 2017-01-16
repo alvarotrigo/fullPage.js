@@ -2795,6 +2795,12 @@
                 $(this).replaceWith(this.childNodes);
             });
 
+            //removing the applied transition from the fullpage wrapper
+            container.css({
+                '-webkit-transition': 'none',
+                'transition': 'none'
+            });
+
             //scrolling the page to the top with no animation
             $htmlBody.scrollTop(0);
 
