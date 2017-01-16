@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.2
+ * fullPage 2.9.3
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -203,6 +203,10 @@
         var isScrollAllowed = {};
         isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
+        var events = {
+            touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer.move,
+            touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer.down
+        };
 
         //timeouts
         var resizeId;
@@ -2552,12 +2556,12 @@
                 var MSPointer = getMSPointer();
 
                 if(options.autoScrolling){
-                    $body.off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, preventBouncing);
+                    $body.off(events.touchmove).on(events.touchmove, preventBouncing);
                 }
 
                 $(WRAPPER_SEL)
-                    .off('touchstart ' +  MSPointer.down).on('touchstart ' + MSPointer.down, touchStartHandler)
-                    .off('touchmove ' + MSPointer.move).on('touchmove ' + MSPointer.move, touchMoveHandler);
+                    .off(events.touchstart).on(events.touchstart, touchStartHandler)
+                    .off(events.touchmove).on(events.touchmove, touchMoveHandler);
             }
         }
 
@@ -2570,8 +2574,8 @@
                 var MSPointer = getMSPointer();
 
                 $(WRAPPER_SEL)
-                    .off('touchstart ' + MSPointer.down)
-                    .off('touchmove ' + MSPointer.move);
+                    .off(events.touchstart)
+                    .off(events.touchmove);
             }
         }
 
