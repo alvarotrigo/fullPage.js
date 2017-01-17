@@ -947,6 +947,7 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.exapoint.ch/
 - https://life2film.com/en/
 - http://www.altamirarecovery.com/shame/
+- http://www.sintelle.fr
 
 You can find another list [here](http://libscore.com/#$.fn.fullpage).
 
