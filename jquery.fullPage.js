@@ -203,6 +203,7 @@
         var isScrollAllowed = {};
         isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
+        var MSPointer = getMSPointer();
         var events = {
             touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer.move,
             touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer.down
@@ -2552,9 +2553,6 @@
         */
         function addTouchHandler(){
             if(isTouchDevice || isTouch){
-                //Microsoft pointers
-                var MSPointer = getMSPointer();
-
                 if(options.autoScrolling){
                     $body.off(events.touchmove).on(events.touchmove, preventBouncing);
                 }
@@ -2570,9 +2568,6 @@
         */
         function removeTouchHandler(){
             if(isTouchDevice || isTouch){
-                //Microsoft pointers
-                var MSPointer = getMSPointer();
-
                 $(WRAPPER_SEL)
                     .off(events.touchstart)
                     .off(events.touchmove);
