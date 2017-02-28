@@ -897,7 +897,6 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://promo.prestigio.com/grace1/
 - http://www.mi.com/shouhuan
 - http://www.commoditiesdemystified.info/en/
-- https://moneytree.jp/
 - http://torchbrowser.com/
 - http://thekorner.fr/
 - http://www.restaurantwoods.nl/
@@ -909,10 +908,8 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://thiswasmybest.com/
 - http://www.boxreload.com/
 - http://lawinenstift.com/
-- http://duis.co/
 - http://educationaboveall.org/
 - http://camfindapp.com/
-- http://bnacademy.com.au/
 - http://rockercreative.com/
 - http://wantnova.com/
 - http://usescribe.com/
@@ -925,31 +922,23 @@ If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotri
 - http://www.sanyang.com.tw/service/Conception/
 - http://www.batzaya.net/
 - http://www.graphicid.dk/
-- http://portfolio.io.utwente.nl/student/dijkavan/
 - http://www.carlphot.com/
 - http://medissix.com/
 - http://trasmissione-energia.terna.it/
 - http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
-- http://www.karmaffne.com/
 - http://fossdistillery.is
 - http://www.conversionculture.com/
 - http://ded-morozz.kiev.ua/
-- http://yizeng.me/
 - http://unabridgedsoftware.com/
-- http://wc2014.plnwrx.com/
-- http://organice.io/
 - http://atlanticcorp.us/
 - http://moysport.ru/
-- http://wcfixtures.co.uk/
-- http://www.dopehustleinc.com/default.php
 - http://themify.me/demo/#theme=fullpane
 - http://dancingroad.com
 - http://www.camanihome.com/
 - http://www.exapoint.ch/
 - https://life2film.com/en/
-- http://www.altamirarecovery.com/shame/
 
 You can find another list [here](http://libscore.com/#$.fn.fullpage).
 
