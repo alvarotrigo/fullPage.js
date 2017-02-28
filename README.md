@@ -1,15 +1,16 @@
 # fullPage.js
-
+*The most popular and complete slider of its kind*
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif)
 
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language-inactive.png" /></a>
 </p>
-
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.2-brightgreen.svg)
+---
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.3-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
-7Kb gziped!
+[![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
+| 7Kb gziped | Created by [@imac2](https://twitter.com/imac2)
 
 A simple and easy to use plugin to create fullscreen scrolling websites (also known as single page websites or onepage sites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
@@ -198,6 +199,8 @@ $(document).ready(function() {
 		responsiveWidth: 0,
 		responsiveHeight: 0,
 		responsiveSlides: false,
+		parallax: false,
+		parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 
 		//Custom selectors
 		sectionSelector: '.section',
@@ -470,6 +473,10 @@ In order to prevent fullpage.js from creating the scrollbar in certain sections 
 - `responsiveHeight`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined height in pixels. A class `fp-responsive` is added to the body tag in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's height is less than 900 the plugin will scroll like a normal site.
 
 - `responsiveSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
+
+- `parallax`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the parallax backgrounds effects on sections / slides. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+
+- `parallaxOptions`: (default: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Allows to configure the parameters for the parallax backgrounds effect when using the option parallax:true. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
 - `lazyLoading`: (default `true`) Lazy loading is active by default which means it will lazy load any media element containing the attribute `data-src` as detailed in the [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js#lazy-loading) . If you want to use any other lazy loading library you can disable this fullpage.js feature.
 
