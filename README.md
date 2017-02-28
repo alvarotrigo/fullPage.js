@@ -23,8 +23,6 @@ Invite me to a coffee
 
 Customizations of the library and urgent changes are available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
 
-Would you like to have a website using fullpage.js functionality but you don't know how to use it? I can do it for you for a reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
-
 - [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
 - [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
