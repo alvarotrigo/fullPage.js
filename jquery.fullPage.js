@@ -916,6 +916,9 @@
             $.isFunction( options.afterRender ) && options.afterRender.call(container);
         }
 
+        /**
+        * Determines if the URL anchor destiny is the starting section (the one using 'active' class before initialization)
+        */
         function isDestinyTheStartingSection(){
             var anchors =  window.location.hash.replace('#', '').split('/');
             var destinationSection = getSectionByAnchor(decodeURIComponent(anchors[0]));
@@ -1028,13 +1031,16 @@
             }
         }
 
+        /**
+        * Fits the site to the nearest active section
+        */
         function fitToSection(){
             //checking fitToSection again in case it was set to false before the timeout delay
             if(canScroll){
                 //allows to scroll to an active section and
                 //if the section is already active, we prevent firing callbacks
                 isResizing = true;
-                
+
                 scrollPage($(SECTION_ACTIVE_SEL));
                 isResizing = false;
             }
@@ -2290,7 +2296,6 @@
         function getSectionByAnchor(sectionAnchor){
             if(!sectionAnchor) return [];
 
-            //section
             var section = container.find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
             if(!section.length){
                 section = $(SECTION_SEL).eq( sectionAnchor -1);
