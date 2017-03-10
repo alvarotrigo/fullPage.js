@@ -108,7 +108,7 @@
 
         var FP = $.fn.fullpage;
 
-        // Create some defaults, extending them with any options that were provided
+        // Creating some defaults, extending them with any options that were provided
         options = $.extend({
             //navigation
             menu: false,
@@ -1436,7 +1436,10 @@
                 }
             }
 
-            stopMedia(v.activeSection);
+            //pausing media of the leaving section (if we are not just resizing, as destinatino will be the same one)
+            if(!v.localIsResizing){
+                stopMedia(v.activeSection);
+            }
 
             options.scrollOverflowHandler.beforeLeave();
             element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
