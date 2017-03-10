@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.3
+ * fullPage 2.9.4
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -108,7 +108,7 @@
 
         var FP = $.fn.fullpage;
 
-        // Create some defaults, extending them with any options that were provided
+        // Creating some defaults, extending them with any options that were provided
         options = $.extend({
             //navigation
             menu: false,
@@ -206,6 +206,7 @@
         var canScroll = true;
         var scrollings = [];
         var controlPressed;
+        var startingSection;
         var isScrollAllowed = {};
         isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
@@ -534,6 +535,7 @@
             FP.moveTo = moveTo;
             FP.moveSlideRight = moveSlideRight;
             FP.moveSlideLeft = moveSlideLeft;
+            FP.fitToSection = fitToSection;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
             FP.destroy = destroy;
@@ -552,20 +554,9 @@
             options.scrollBar = options.scrollBar || options.hybrid;
 
             setOptionsFromDOM();
-
             prepareDom();
             setAllowScrolling(true);
-
             setAutoScrolling(options.autoScrolling, 'internal');
-
-            //the starting point is a slide?
-            var activeSlide = $(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL);
-
-            //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
-            if( activeSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && activeSlide.index() !== 0))){
-                silentLandscapeScroll(activeSlide);
-            }
-
             responsive();
 
             //setting the class for the body element
@@ -743,7 +734,7 @@
             //if the slide won't be an starting point, the default will be the first one
             //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
             if( startingSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && startingSlide.index() !== 0))){
-                silentLandscapeScroll(startingSlide);
+                silentLandscapeScroll(startingSlide, 'internal');
             }else{
                 slides.eq(0).addClass(ACTIVE);
             }
@@ -757,6 +748,7 @@
             if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
                 section.addClass(ACTIVE);
             }
+            startingSection = $(SECTION_ACTIVE_SEL);
 
             section.css('height', windowsHeight + 'px');
 
@@ -916,9 +908,22 @@
             lazyLoad(section);
             playMedia(section);
             options.scrollOverflowHandler.afterLoad();
+            
+            if(isDestinyTheStartingSection()){
+                $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
+            }
 
-            $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call(container);
+        }
+
+        /**
+        * Determines if the URL anchor destiny is the starting section (the one using 'active' class before initialization)
+        */
+        function isDestinyTheStartingSection(){
+            var anchors =  window.location.hash.replace('#', '').split('/');
+            var destinationSection = getSectionByAnchor(decodeURIComponent(anchors[0]));
+    
+            return !destinationSection.length || destinationSection.length && destinationSection.index() === startingSection.index();
         }
 
 
@@ -1017,19 +1022,27 @@
                     clearTimeout(scrollId2);
 
                     scrollId2 = setTimeout(function(){
-                        //checking fitToSection again in case it was set to false before the timeout delay
-                        if(canScroll && options.fitToSection){
-                            //allows to scroll to an active section and
-                            //if the section is already active, we prevent firing callbacks
-                            if($(SECTION_ACTIVE_SEL).is(currentSection)){
-                                isResizing = true;
-                            }
-                            scrollPage($(SECTION_ACTIVE_SEL));
-
-                            isResizing = false;
+                        //checking it again in case it changed during the delay
+                        if(options.fitToSection){
+                            fitToSection();
                         }
                     }, options.fitToSectionDelay);
                 }
+            }
+        }
+
+        /**
+        * Fits the site to the nearest active section
+        */
+        function fitToSection(){
+            //checking fitToSection again in case it was set to false before the timeout delay
+            if(canScroll){
+                //allows to scroll to an active section and
+                //if the section is already active, we prevent firing callbacks
+                isResizing = true;
+
+                scrollPage($(SECTION_ACTIVE_SEL));
+                isResizing = false;
             }
         }
 
@@ -1435,7 +1448,10 @@
                 }
             }
 
-            stopMedia(v.activeSection);
+            //pausing media of the leaving section (if we are not just resizing, as destinatino will be the same one)
+            if(!v.localIsResizing){
+                stopMedia(v.activeSection);
+            }
 
             options.scrollOverflowHandler.beforeLeave();
             element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
@@ -1600,6 +1616,16 @@
         }
 
         /**
+        * Sets the value for the given attribute from the `data-` attribute with the same suffix
+        * ie: data-srcset ==> srcset  |  data-src ==> src
+        */
+        function setSrc(element, attribute){
+            element
+                .attr(attribute, element.data(attribute))
+                .removeAttr('data-' + attribute);
+        }
+
+        /**
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
@@ -1609,11 +1635,16 @@
 
             var panel = getSlideOrSection(destiny);
             var element;
-
-            panel.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
+            
+            panel.find('img[data-src], img[data-srcset], source[data-src], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
-                element.attr('src', element.data('src'));
-                element.removeAttr('data-src');
+
+                $.each(['src', 'srcset'], function(index, type){
+                    var attribute = element.attr('data-' + type);
+                    if(typeof attribute !== 'undefined' && attribute){
+                        setSrc(element, type);
+                    }
+                });
 
                 if(element.is('source')){
                     element.closest('video').get(0).load();
@@ -1979,7 +2010,7 @@
             }
 
             //only changing the URL if the slides are in the current section (not for resize re-adjusting)
-            if(section.hasClass(ACTIVE)){
+            if(section.hasClass(ACTIVE) && !v.localIsResizing){
                 setState(v.slideIndex, v.slideAnchor, v.anchorLink, v.sectionIndex);
             }
 
@@ -2278,10 +2309,11 @@
         * Gets a section by its anchor / index
         */
         function getSectionByAnchor(sectionAnchor){
-            //section
+            if(!sectionAnchor) return [];
+
             var section = container.find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
             if(!section.length){
-                section = $(SECTION_SEL).eq( (sectionAnchor -1) );
+                section = $(SECTION_SEL).eq( sectionAnchor -1);
             }
 
             return section;
@@ -2740,8 +2772,11 @@
 
             //loading all the lazy load content
             container.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
-                $(this).attr('src', $(this).data('src'));
-                $(this).removeAttr('data-src');
+                setSrc($(this), 'src');
+            });
+
+            container.find('img[data-srcset]').each(function(){
+                setSrc($(this), 'srcset');
             });
 
             $(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL).remove();
