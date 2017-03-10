@@ -1616,6 +1616,16 @@
         }
 
         /**
+        * Sets the value for the given attribute from the `data-` attribute with the same suffix
+        * ie: data-srcset ==> srcset  |  data-src ==> src
+        */
+        function setSrc(element, attribute){
+            element
+                .attr(attribute, element.data(attribute))
+                .removeAttr('data-' + attribute);
+        }
+
+        /**
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
@@ -1625,11 +1635,16 @@
 
             var panel = getSlideOrSection(destiny);
             var element;
-
-            panel.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
+            
+            panel.find('img[data-src], img[data-srcset], source[data-src], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
-                element.attr('src', element.data('src'));
-                element.removeAttr('data-src');
+
+                $.each(['src', 'srcset'], function(index, type){
+                    var attribute = element.attr('data-' + type);
+                    if(typeof attribute !== 'undefined' && attribute){
+                        setSrc(element, type);
+                    }
+                });
 
                 if(element.is('source')){
                     element.closest('video').get(0).load();
@@ -2757,8 +2772,11 @@
 
             //loading all the lazy load content
             container.find('img[data-src], source[data-src], audio[data-src], iframe[data-src]').each(function(){
-                $(this).attr('src', $(this).data('src'));
-                $(this).removeAttr('data-src');
+                setSrc($(this), 'src');
+            });
+
+            container.find('img[data-srcset]').each(function(){
+                setSrc($(this), 'srcset');
             });
 
             $(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL).remove();
