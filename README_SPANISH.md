@@ -532,10 +532,18 @@ $.fn.fullpage.setAutoScrolling(false);
 ---
 ### setFitToSection(boolean)
 [demostración](http://codepen.io/alvarotrigo/pen/GJXNYm)
-Sets the value for the option `fitToSection` determining whether to fit the section in the screen or not.
+Determina el valor para la opción `fitToSection` definiendo si ajustar la sección más cercana a la pantalla o no.
 
 ```javascript
 $.fn.fullpage.setFitToSection(false);
+```
+---
+### fitToSection()
+[demostración](http://codepen.io/alvarotrigo/pen/JWWagj)
+Desplaza la página hacia la sección activa más cercana encajándola en la pantalla.
+
+```javascript
+$.fn.fullpage.fitToSection();
 ```
 ---
 ### setLockAnchors(boolean)

@@ -545,6 +545,14 @@ Sets the value for the option `fitToSection` determining whether to fit the sect
 $.fn.fullpage.setFitToSection(false);
 ```
 ---
+### fitToSection()
+[Demo](http://codepen.io/alvarotrigo/pen/JWWagj)
+Scrolls to the nearest active section fitting it in the viewport. 
+
+```javascript
+$.fn.fullpage.fitToSection();
+```
+---
 ### setLockAnchors(boolean)
 [Demo](http://codepen.io/alvarotrigo/pen/yNxVRQ)
 Sets the value for the option `lockAnchors` determining whether anchors will have any effect in the URL or not.
