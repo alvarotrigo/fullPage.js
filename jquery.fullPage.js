@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.3
+ * fullPage 2.9.4
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -206,6 +206,7 @@
         var canScroll = true;
         var scrollings = [];
         var controlPressed;
+        var startingSection;
         var isScrollAllowed = {};
         isScrollAllowed.m = {  'up':true, 'down':true, 'left':true, 'right':true };
         isScrollAllowed.k = $.extend(true,{}, isScrollAllowed.m);
@@ -552,20 +553,9 @@
             options.scrollBar = options.scrollBar || options.hybrid;
 
             setOptionsFromDOM();
-
             prepareDom();
             setAllowScrolling(true);
-
             setAutoScrolling(options.autoScrolling, 'internal');
-
-            //the starting point is a slide?
-            var activeSlide = $(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL);
-
-            //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
-            if( activeSlide.length &&  ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) !== 0 || ($(SECTION_ACTIVE_SEL).index(SECTION_SEL) === 0 && activeSlide.index() !== 0))){
-                silentLandscapeScroll(activeSlide);
-            }
-
             responsive();
 
             //setting the class for the body element
@@ -757,6 +747,7 @@
             if(!index && $(SECTION_ACTIVE_SEL).length === 0) {
                 section.addClass(ACTIVE);
             }
+            startingSection = $(SECTION_ACTIVE_SEL);
 
             section.css('height', windowsHeight + 'px');
 
@@ -916,9 +907,19 @@
             lazyLoad(section);
             playMedia(section);
             options.scrollOverflowHandler.afterLoad();
+            
+            if(isDestinyTheStartingSection()){
+                $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
+            }
 
-            $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             $.isFunction( options.afterRender ) && options.afterRender.call(container);
+        }
+
+        function isDestinyTheStartingSection(){
+            var anchors =  window.location.hash.replace('#', '').split('/');
+            var destinationSection = getSectionByAnchor(decodeURIComponent(anchors[0]));
+    
+            return !destinationSection.length || destinationSection.length && destinationSection.index() === startingSection.index();
         }
 
 
@@ -2278,10 +2279,12 @@
         * Gets a section by its anchor / index
         */
         function getSectionByAnchor(sectionAnchor){
+            if(!sectionAnchor) return [];
+
             //section
             var section = container.find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
             if(!section.length){
-                section = $(SECTION_SEL).eq( (sectionAnchor -1) );
+                section = $(SECTION_SEL).eq( sectionAnchor -1);
             }
 
             return section;
