@@ -95,8 +95,39 @@
         hideScrollbars: false,
         fadeScrollbars: false,
         disableMouse: true,
-        interactiveScrollbars: true
+        interactiveScrollbars: true,
+        mouseWheelSpeed: 10
     };
+
+    var scrollLimit = 3,
+        bottomPosition = scrollLimit,
+        topPosition = scrollLimit,
+        normalMargin = '-5px',
+        speed = 200,
+        // prevSlideButton = '#prevSlide',
+        // nextSlideButton = '#nextSlide',
+        wasClick = 0,
+        mapBlock = '.campus-map-wrapper',
+        disableSlideChange = 0,
+        isVisibleMenu = 0;
+        // prevSlideButtonHide = function () {
+        // 	$(prevSlideButton).hide();
+        // 	$(prevSlideButton).css({'top': '-15px', 'opacity': 0});
+        // },
+        // nextSlideButtonHide = function () {
+        // 	$(nextSlideButton).hide();
+        // 	$(nextSlideButton).css({'bottom': normalMargin, 'opacity': 0})};
+
+    $('.navbar-header').on('click', function () {
+        if (isVisibleMenu) {
+            disableSlideChange = 0;
+            isVisibleMenu = 0;
+        } else {
+            disableSlideChange = 1;
+            isVisibleMenu = 1;
+        }
+    });
+
 
     $.fn.fullpage = function(options) {
         //only once my friend!
@@ -372,33 +403,67 @@
         /**
         * Moves the page up one section.
         */
-        function moveSectionUp(){
+		function moveSectionUp(directCall){
+			directCall = typeof directCall !== 'undefined' ? directCall : 0;
             var prev = $(SECTION_ACTIVE_SEL).prev(SECTION_SEL);
-
-            //looping to the bottom if there's no more sections above
-            if (!prev.length && (options.loopTop || options.continuousVertical)) {
-                prev = $(SECTION_SEL).last();
-            }
-
-            if (prev.length) {
-                scrollPage(prev, null, true);
+            if (topPosition == (scrollLimit) || directCall == 1) {
+                go.engine.JsRequestPanel.setPanelPosition_MainPage();
+                // prevSlideButtonHide();
+                topPosition = scrollLimit;
+                bottomPosition = scrollLimit;
+                if (!prev.length && (options.loopTop || options.continuousVertical)) {
+                    prev = $(SECTION_SEL).last();
+                }
+                if (prev.length) {
+                    scrollPage(prev, null, true);
+                }
+                var prePrev = $(SECTION_ACTIVE_SEL).prev(SECTION_SEL);
+                if (!prePrev.length) {
+                    go.engine.JsMain.mainMenu_MainPage();
+                } else {
+                    go.engine.JsMain.mainMenu_MainPage(false);
+                }
+            } else if (prev.length) {
+                if (topPosition) {
+                    // $(prevSlideButton).show();
+                    // $(prevSlideButton).animate({'top': normalMargin, 'opacity': 1}, speed);
+                }
+                topPosition++;
             }
         }
 
         /**
         * Moves the page down one section.
         */
-        function moveSectionDown(){
+        function moveSectionDown(directCall){
+            directCall = typeof directCall !== 'undefined' ? directCall : 0;
             var next = $(SECTION_ACTIVE_SEL).next(SECTION_SEL);
-
-            //looping to the top if there's no more sections below
-            if(!next.length &&
-                (options.loopBottom || options.continuousVertical)){
-                next = $(SECTION_SEL).first();
-            }
-
-            if(next.length){
-                scrollPage(next, null, false);
+            if (bottomPosition == scrollLimit || directCall == 1) {
+                if (!disableSlideChange) {
+                    go.engine.JsMain.mainMenu_MainPage(false);
+                    // nextSlideButtonHide();
+                    bottomPosition = scrollLimit;
+                    topPosition = scrollLimit;
+                    //looping to the top if there's no more sections below
+                    if (!next.length &&
+                        (options.loopBottom || options.continuousVertical)) {
+                        next = $(SECTION_SEL).first();
+                    }
+                    if (next.length) {
+                        scrollPage(next, null, false);
+                        // prevent collapsing request form
+                        go.engine.JsRequestPanel.canHandleBodyClick = 0;
+                        setTimeout(function () {
+                            go.engine.JsRequestPanel.canHandleBodyClick = 1;
+                        }, 800);
+                    }
+                }
+            } else if (next.length) {
+                if (bottomPosition) {
+                    // $(nextSlideButton).show();
+                    // $(nextSlideButton).animate({'bottom': '0', 'opacity': 1}, speed);
+                }
+                bottomPosition++;
             }
         }
 
@@ -492,6 +557,9 @@
             isResizing = false;
             $.isFunction( options.afterResize ) && resizing && options.afterResize.call(container);
             $.isFunction( options.afterReBuild ) && !resizing && options.afterReBuild.call(container);
+
+            topPosition = scrollLimit;
+            bottomPosition = scrollLimit;
         }
 
         /**
@@ -1088,6 +1156,10 @@
                 //is the scrollbar at the start/end of the scroll?
                 if(options.scrollOverflowHandler.isScrolled(check, scrollable)){
                     scrollSection();
+
+                    // #26856. Убираем функционал по прокрутке карты только после тапа.
+                    // go.engine.JsMap.wasClick = false;
+                    // wasClick = 0;
                 }else{
                     return true;
                 }
@@ -1743,6 +1815,9 @@
                 }else{
                     silentMoveTo(sectionAnchor, slideAnchor);
                 }
+                if (sectionAnchor != 'index') {
+                    go.engine.JsMain.mainMenu_MainPage(false);
+                }
             }
         }
 
@@ -1851,7 +1926,13 @@
         function sectionBulletHandler(e){
             e.preventDefault();
             var index = $(this).parent().index();
-            scrollPage($(SECTION_SEL).eq(index));
+            var scrollToSection = $(SECTION_SEL).eq(index);
+            if (scrollToSection.hasClass('section1')) {
+                go.engine.JsMain.mainMenu_MainPage();
+            } else {
+                go.engine.JsMain.mainMenu_MainPage(false);
+            }
+            scrollPage(scrollToSection);
         }
 
         //Scrolls the slider to the given slide destination for the given section
@@ -3001,7 +3082,8 @@
          */
         create: function(element, scrollHeight) {
             var scrollable = element.find(SCROLLABLE_SEL);
-
+            var scrollInterval = null;
+            var scrollTimeout = null;
             scrollable.height(scrollHeight);
             scrollable.each(function() {
                 var $this = $(this);
@@ -3019,6 +3101,56 @@
                 iScrollInstance.wheelOff();
 
                 $this.data('iscrollInstance', iScrollInstance);
+                // #26856. Убираем функционал по прокрутке карты только после тапа.
+                /*$('.nav-tabs').on('click', function () {
+                 wasClick = 0;
+                 });
+                 $(mapBlock).on('click', function () {
+                 wasClick = 1;
+                 });
+                 $(mapBlock).on('touchstart', function () {
+                 if (wasClick) {
+                 iScrollInstance.disable();
+                 }
+                 disableSlideChange = 1;
+                 });
+                 $(mapBlock).on('touchend', function () {
+                 iScrollInstance.enable();
+                 disableSlideChange = 0;
+                 });*/
+
+                iScrollInstance.on('scrollStart', function () {
+                    if (this.y < 0) {
+                        // prevSlideButtonHide();
+                        topPosition = 0;
+                    }
+                    var bottomY = abs(this.y) + $(window).height(),
+                        height = $('.fp-table.active .fp-scroller').height();
+                    if (height > bottomY) {
+                        bottomPosition = 0;
+                        // nextSlideButtonHide();
+                    }
+                    // request panel
+                    if (scrollTimeout) {
+                        clearTimeout(scrollTimeout);
+                    }
+                    if (scrollInterval) {
+                        clearInterval(scrollInterval);
+                    }
+                    scrollInterval = setInterval(function () {
+                        go.engine.JsRequestPanel.setPanelPosition_MainPage(1);
+                    }, 2);
+                    go.engine.JsRequestPanel.scrollInterval = scrollInterval;
+                });
+
+                iScrollInstance.on('scrollEnd', function () {
+                    if (scrollTimeout) {
+                        clearTimeout(scrollTimeout);
+                    }
+                    scrollTimeout = setTimeout(function () {
+                        clearInterval(scrollInterval);
+                    }, 800);
+                });
             });
         },
 
@@ -3105,7 +3237,7 @@
                 $.each(iscrollHandler.iScrollInstances, function(){
                     $(this).get(0).refresh();
                 });
-            }, 150);
+            }, 300);
 
             //updating the wrappers height
             element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
