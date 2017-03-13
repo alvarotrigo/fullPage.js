@@ -422,6 +422,10 @@ IScroll.prototype = {
     },
 
     _start: function (e) {
+        // Disable dragging in desktop version.
+        if (!utils.hasTouch) {
+            return;
+        }
         // React to left mouse button only
         if ( utils.eventType[e.type] != 1 ) {
           // for button property
@@ -445,7 +449,7 @@ IScroll.prototype = {
         }
 
         if ( this.options.preventDefault && !utils.isBadAndroid && !utils.preventDefaultException(e.target, this.options.preventDefaultException) ) {
-            e.preventDefault();
+            // e.preventDefault();
         }
 
         var point = e.touches ? e.touches[0] : e,
@@ -585,7 +589,7 @@ IScroll.prototype = {
         }
 
         if ( this.options.preventDefault && !utils.preventDefaultException(e.target, this.options.preventDefaultException) ) {
-            e.preventDefault();
+            // e.preventDefault();
         }
 
         var point = e.changedTouches ? e.changedTouches[0] : e,
@@ -1125,7 +1129,7 @@ IScroll.prototype = {
                 that._execEvent('scrollEnd');
             }
             that.wheelTimeout = undefined;
-        }, 400);
+        }, 40);
 
         if ( 'deltaX' in e ) {
             if (e.deltaMode === 1) {
@@ -1650,7 +1654,7 @@ IScroll.prototype = {
             case 'click':
                 if ( this.enabled && !e._constructed ) {
                     e.preventDefault();
-                    e.stopPropagation();
+                    // e.stopPropagation();
                 }
                 break;
         }
@@ -1662,7 +1666,7 @@ function createDefaultScrollbar (direction, interactive, type) {
 
     if ( type === true ) {
         scrollbar.style.cssText = 'position:absolute;z-index:9999';
-        indicator.style.cssText = '-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:absolute;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.9);border-radius:3px';
+        indicator.style.cssText = '-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:absolute;background:rgba(0,0,0,0.3);border:0px solid rgba(255,255,255,0.9);border-radius:2px';
     }
 
     indicator.className = 'iScrollIndicator';
@@ -1675,7 +1679,7 @@ function createDefaultScrollbar (direction, interactive, type) {
         scrollbar.className = 'iScrollHorizontalScrollbar';
     } else {
         if ( type === true ) {
-            scrollbar.style.cssText += ';width:7px;bottom:2px;top:2px;right:1px';
+            scrollbar.style.cssText += ';width:4px;bottom:2px;top:2px;right:1px';
             indicator.style.width = '100%';
         }
         scrollbar.className = 'iScrollVerticalScrollbar';
