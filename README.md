@@ -7,6 +7,7 @@
 </p>
 
 ---
+
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.4-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
