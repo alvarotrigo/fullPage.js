@@ -5,7 +5,6 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language-inactive.png" /></a>
 </p>
-
 ---
 
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.4-brightgreen.svg)
@@ -14,9 +13,11 @@
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
+
+[![Wordpress Y-Theme](http://wallpapers-for-ipad.com/fullpage/imgs3/banner.png)](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
 
 ---
 
@@ -868,7 +869,8 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 #Resources
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html) 
+- [Wordpress theme 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
