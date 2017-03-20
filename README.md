@@ -675,23 +675,23 @@ In case of not having anchorLinks defined in the plugin the `index` parameter wo
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+$('#fullpage').fullpage({
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-		afterLoad: function(anchorLink, index){
-			var loadedSection = $(this);
+	afterLoad: function(anchorLink, index){
+		var loadedSection = $(this);
 
-			//using index
-			if(index == 3){
-				alert("Section 3 ended loading");
-			}
-
-			//using anchorLink
-			if(anchorLink == 'secondSlide'){
-				alert("Section 2 ended loading");
-			}
+		//using index
+		if(index == 3){
+			alert("Section 3 ended loading");
 		}
-	});
+
+		//using anchorLink
+		if(anchorLink == 'secondSlide'){
+			alert("Section 2 ended loading");
+		}
+	}
+});
 ```
 ---
 ### onLeave (`index`, `nextIndex`, `direction`)
@@ -707,34 +707,34 @@ Parameters:
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		onLeave: function(index, nextIndex, direction){
-			var leavingSection = $(this);
+$('#fullpage').fullpage({
+	onLeave: function(index, nextIndex, direction){
+		var leavingSection = $(this);
 
-			//after leaving section 2
-			if(index == 2 && direction =='down'){
-				alert("Going to section 3!");
-			}
-
-			else if(index == 2 && direction == 'up'){
-				alert("Going to section 1!");
-			}
+		//after leaving section 2
+		if(index == 2 && direction =='down'){
+			alert("Going to section 3!");
 		}
-	});
+
+		else if(index == 2 && direction == 'up'){
+			alert("Going to section 1!");
+		}
+	}
+});
 ```
 
 #### Cancelling the scroll before it takes place
 You can cancel the scroll by returning `false` on the `onLeave` callback:
 
 ```javascript
-	$('#fullpage').fullpage({
-		onLeave: function(index, nextIndex, direction){
-			//it won't scroll if the destination is the 3rd section
-			if(nextIndex == 3){
-				return false;
-			}
+$('#fullpage').fullpage({
+	onLeave: function(index, nextIndex, direction){
+		//it won't scroll if the destination is the 3rd section
+		if(nextIndex == 3){
+			return false;
 		}
-	});
+	}
+});
 ```
 
 ---
@@ -744,12 +744,12 @@ This callback is fired just after the structure of the page is generated. This i
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		afterRender: function(){
-			var pluginContainer = $(this);
-			alert("The resulting DOM structure is ready");
-		}
-	});
+$('#fullpage').fullpage({
+	afterRender: function(){
+		var pluginContainer = $(this);
+		alert("The resulting DOM structure is ready");
+	}
+});
 ```
 ---
 ### afterResize()
@@ -758,12 +758,12 @@ This callback is fired after resizing the browser's window. Just after the secti
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		afterResize: function(){
-			var pluginContainer = $(this);
-			alert("The sections have finished resizing");
-		}
-	});
+$('#fullpage').fullpage({
+	afterResize: function(){
+		var pluginContainer = $(this);
+		alert("The sections have finished resizing");
+	}
+});
 ```
 ---
 ### afterResponsive(`isResponsive`)
@@ -776,11 +776,11 @@ Parameters:
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		afterResponsive: function(isResponsive){
-			alert("Is responsive: " + isResponsive);
-		}
-	});
+$('#fullpage').fullpage({
+	afterResponsive: function(isResponsive){
+		alert("Is responsive: " + isResponsive);
+	}
+});
 ```
 ---
 ### afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
@@ -796,24 +796,24 @@ In case of not having anchorLinks defined for the slide or slides the `slideInde
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+$('#fullpage').fullpage({
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-		afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
-			var loadedSlide = $(this);
+	afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
+		var loadedSlide = $(this);
 
-			//first slide of the second section
-			if(anchorLink == 'secondPage' && slideIndex == 1){
-				alert("First slide loaded");
-			}
-
-			//second slide of the second section (supposing #secondSlide is the
-			//anchor for the second slide
-			if(index == 2 && slideIndex == 'secondSlide'){
-				alert("Second slide loaded");
-			}
+		//first slide of the second section
+		if(anchorLink == 'secondPage' && slideIndex == 1){
+			alert("First slide loaded");
 		}
-	});
+
+		//second slide of the second section (supposing #secondSlide is the
+		//anchor for the second slide
+		if(index == 2 && slideIndex == 'secondSlide'){
+			alert("Second slide loaded");
+		}
+	}
+});
 ```
 
 
@@ -834,21 +834,21 @@ Parameters:
 Example:
 
 ```javascript
-	$('#fullpage').fullpage({
-		onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
-			var leavingSlide = $(this);
+$('#fullpage').fullpage({
+	onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
+		var leavingSlide = $(this);
 
-			//leaving the first slide of the 2nd Section to the right
-			if(index == 2 && slideIndex == 0 && direction == 'right'){
-				alert("Leaving the fist slide!!");
-			}
-
-			//leaving the 3rd slide of the 2nd Section to the left
-			if(index == 2 && slideIndex == 2 && direction == 'left'){
-				alert("Going to slide 2! ");
-			}
+		//leaving the first slide of the 2nd Section to the right
+		if(index == 2 && slideIndex == 0 && direction == 'right'){
+			alert("Leaving the fist slide!!");
 		}
-	});
+
+		//leaving the 3rd slide of the 2nd Section to the left
+		if(index == 2 && slideIndex == 2 && direction == 'left'){
+			alert("Going to slide 2! ");
+		}
+	}
+});
 ```
 
 #### Cancelling a move before it takes place

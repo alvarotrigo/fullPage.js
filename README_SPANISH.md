@@ -669,23 +669,23 @@ En caso de no terner links de anclaje definidos, el parámetro `index` será el 
 Por ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+$('#fullpage').fullpage({
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-		afterLoad: function(anchorLink, index){
-			var loadedSection = $(this);
+	afterLoad: function(anchorLink, index){
+		var loadedSection = $(this);
 
-			//usando su índice
-			if(index == 3){
-				alert("Section 3 ended loading");
-			}
-
-			//usando su link de anclaje
-			if(anchorLink == 'secondSlide'){
-				alert("Section 2 ended loading");
-			}
+		//usando su índice
+		if(index == 3){
+			alert("Section 3 ended loading");
 		}
-	});
+
+		//usando su link de anclaje
+		if(anchorLink == 'secondSlide'){
+			alert("Section 2 ended loading");
+		}
+	}
+});
 ```
 ---
 ### onLeave (`index`, `nextIndex`, `direction`)
@@ -701,34 +701,34 @@ Parámetros:
 Por ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		onLeave: function(index, nextIndex, direction){
-			var leavingSection = $(this);
+$('#fullpage').fullpage({
+	onLeave: function(index, nextIndex, direction){
+		var leavingSection = $(this);
 
-			//después de abandonar la sección 2
-			if(index == 2 && direction =='down'){
-				alert("Me estoy moviendo a la sección 3!");
-			}
-
-			else if(index == 2 && direction == 'up'){
-				alert("Me estoy moviendo a la sección 1!");
-			}
+		//después de abandonar la sección 2
+		if(index == 2 && direction =='down'){
+			alert("Me estoy moviendo a la sección 3!");
 		}
-	});
+
+		else if(index == 2 && direction == 'up'){
+			alert("Me estoy moviendo a la sección 1!");
+		}
+	}
+});
 ```
 
 #### Cancelando un desplazamiento antes de que tenga lugar
 Puedes cancelar un desplazamiento si devuelves `false` en el callback `onLeave`:
 
 ```javascript
-	$('#fullpage').fullpage({
-		onLeave: function(index, nextIndex, direction){
-			//prevenimos el desplazamiento si la sección de destino es la tercera de la página
-			if(nextIndex == 3){
-				return false;
-			}
+$('#fullpage').fullpage({
+	onLeave: function(index, nextIndex, direction){
+		//prevenimos el desplazamiento si la sección de destino es la tercera de la página
+		if(nextIndex == 3){
+			return false;
 		}
-	});
+	}
+});
 ```
 
 ---
@@ -738,12 +738,12 @@ Será disparado justo después de que la estructura de la página sea generada p
 Ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		afterRender: function(){
-			var pluginContainer = $(this);
-			alert("La estructura resultante ya está lista para su uso");
-		}
-	});
+$('#fullpage').fullpage({
+	afterRender: function(){
+		var pluginContainer = $(this);
+		alert("La estructura resultante ya está lista para su uso");
+	}
+});
 ```
 ---
 ### afterResize()
@@ -752,12 +752,12 @@ Será disparado después de que la ventana del navegador sea reajustada en tama�
 Ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		afterResize: function(){
-			var pluginContainer = $(this);
-			alert("Las secciones han terminado de reajustarse");
-		}
-	});
+$('#fullpage').fullpage({
+	afterResize: function(){
+		var pluginContainer = $(this);
+		alert("Las secciones han terminado de reajustarse");
+	}
+});
 ```
 ---
 ### afterResponsive(`isResponsive`)
@@ -770,11 +770,11 @@ Parámetros:
 Ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		afterResponsive: function(isResponsive){
-			alert("Es responsive: " + isResponsive);
-		}
-	});
+$('#fullpage').fullpage({
+	afterResponsive: function(isResponsive){
+		alert("Es responsive: " + isResponsive);
+	}
+});
 ```
 ---
 ### afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
@@ -791,24 +791,24 @@ En caso de que no haya links de anclaje definidos para las diapositivas podrás 
 Ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+$('#fullpage').fullpage({
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-		afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
-			var loadedSlide = $(this);
+	afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
+		var loadedSlide = $(this);
 
-			//primera diapositiva de la segunda sección
-			if(anchorLink == 'secondPage' && slideIndex == 1){
-				alert("Primera diapositiva cargada");
-			}
-
-			//segunda diapositiva de la segunda sección (suponiendo que #secondSlide es 
-			//el link de anclaje d ela segunda diapositiva
-			if(index == 2 && slideIndex == 'secondSlide'){
-				alert("Segunda diapositiva cargada");
-			}
+		//primera diapositiva de la segunda sección
+		if(anchorLink == 'secondPage' && slideIndex == 1){
+			alert("Primera diapositiva cargada");
 		}
-	});
+
+		//segunda diapositiva de la segunda sección (suponiendo que #secondSlide es 
+		//el link de anclaje d ela segunda diapositiva
+		if(index == 2 && slideIndex == 'secondSlide'){
+			alert("Segunda diapositiva cargada");
+		}
+	}
+});
 ```
 
 
@@ -830,21 +830,21 @@ Parámetros:
 Ejemplo:
 
 ```javascript
-	$('#fullpage').fullpage({
-		onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
-			var leavingSlide = $(this);
+$('#fullpage').fullpage({
+	onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
+		var leavingSlide = $(this);
 
-			//abandonando la primera diapositiva de la segunda sección y moviendo hacia la derecha
-			if(index == 2 && slideIndex == 0 && direction == 'right'){
-				alert("Abandonando la diapositiva 1!!");
-			}
-
-			//abandonando la tercera diapositiva de la segunda sección y moviendo hacia la izquierda 
-			if(index == 2 && slideIndex == 2 && direction == 'left'){
-				alert("Yendo a la diapositiva 2! ");
-			}
+		//abandonando la primera diapositiva de la segunda sección y moviendo hacia la derecha
+		if(index == 2 && slideIndex == 0 && direction == 'right'){
+			alert("Abandonando la diapositiva 1!!");
 		}
-	});
+
+		//abandonando la tercera diapositiva de la segunda sección y moviendo hacia la izquierda 
+		if(index == 2 && slideIndex == 2 && direction == 'left'){
+			alert("Yendo a la diapositiva 2! ");
+		}
+	}
+});
 ```
 
 #### Cancelando un desplazamiento antes de que tenga lugar
