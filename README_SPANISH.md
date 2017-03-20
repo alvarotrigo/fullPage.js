@@ -6,18 +6,25 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language-inactive.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language.png?v=2" /></a>
 </p>
+
+---
+
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.4-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
-&nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
-
-Una sencilla librería Javascript para la creación de páginas web con scroll a pantalla completa. (también conocido popularmente como "single page websites" o "onepage sites")
-Permite crear un desplazamiento a pantalla completa asi como añadir diapositivas horizontales en las secciones. 
+&nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Creado por [@imac2](https://twitter.com/imac2)*
 
 - [Vista previa - demostración](http://alvarotrigo.com/fullPage/)
 - [Template de Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensiones de fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Preguntas frecuentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
+
+[![Wordpress Y-Theme](http://wallpapers-for-ipad.com/fullpage/imgs3/banner.png)](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+
+---
+
+Una sencilla librería Javascript para la creación de páginas web con scroll a pantalla completa. (también conocido popularmente como "single page websites" o "onepage sites")
+Permite crear un desplazamiento a pantalla completa asi como añadir diapositivas horizontales en las secciones. 
 
 Invítame a un café:
 [![Donate](https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
@@ -78,7 +85,7 @@ bower install fullpage.js
 npm install fullpage.js
 ```
 
-###Incluyendo los archivos:
+### Incluyendo los archivos:
 ```html
 <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
 
@@ -94,11 +101,11 @@ npm install fullpage.js
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
-###Uso opcional de un CDN
+### Uso opcional de un CDN
 Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distrubución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en CDNJS: 
 https://cdnjs.com/libraries/fullPage.js
 
-###Estructura HTML requerida
+### Estructura HTML requerida
 El documento HTML requerirá comenzar la el [HTML DOCTYPE obligatorio](http://www.corelangs.com/html/introduction/doctype.html) en la primera linea de tu archivo HTML. De lo contrario puedes tener problemas con el tamaño de las secciones y diapositivas. Todos los ejemplos disponibles aqui usan la etiqueta HTML 5 `<!DOCTYPE html>`.
 
 Cada sección se ha de definir usando la clase `section`
@@ -129,7 +136,7 @@ Puedes usar la clase `slide` para crear diapositivas horizontales dentro de una 
 ````
 Puedes ver un ejemplo totalmetne funciona de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
 
-###Inicialización
+### Inicialización
 Todo lo que neceistas hacer es llamar a fullPage.js dentro de la función `$(document).ready`.
 ```javascript
 $(document).ready(function() {
@@ -273,7 +280,7 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 - `fp-destroyed` es añadido al contenedor usado para iniciar fullPage.js cuando se destruye fullPage.js.
 - `fp-enabled` es añadido al elemento `html` una vez se ha inicializado fullPage.js.
 
-###Carga pasiva de elementos multimedia
+### Carga pasiva de elementos multimedia
 [demostración](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo e cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralentizen la carga de la página web y gasten recursos de transferencia innecesarios.
 Cuando se usa la carga pasiva de elementos, éstos solamente se cargarán cuando entren dentro de la parte visible de la ventana.
 Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data-src` tal y como se muestra a continuación:
@@ -287,7 +294,7 @@ Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data
  ```
 Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el atributo `data-src` también, puedes desactivar la carga pasiva de fullpage.js que está activa por defecto usando la opcion `lazyLoading: false`.
 
-###Autoreproducir elementos multimedia
+### Autoreproducir elementos multimedia
 
 **Note**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
 
@@ -309,7 +316,7 @@ Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes 
 </audio>
 ```
 
-###Uso de extensiones
+### Uso de extensiones
 fullPage.js [provee varias extensiones](http://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increibles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones)
 
 Las extensiones requiren el uso del archivo comprimido [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) disponible [en la carpeta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) en lugar del archivo habitual de fullPage (`jquery.fullpage.js` o `jquery.fullpage.min.js`).
@@ -650,7 +657,7 @@ $.fn.fullpage.responsiveSlides.toSlides();
 ## Callbacks
 [demostración](http://codepen.io/alvarotrigo/pen/XbPNQv) Puedes verlas en acción [aquí](http://alvarotrigo.com/fullPage/examples/callbacks.html)..
 
-###afterLoad (`anchorLink`, `index`)
+### afterLoad (`anchorLink`, `index`)
 Se dispara cuando una sección ha sido cargada completamente en la ventana, una vez el desplazamiento ha terminado.
 Parámetros:
 
@@ -681,7 +688,7 @@ Por ejemplo:
 	});
 ```
 ---
-###onLeave (`index`, `nextIndex`, `direction`)
+### onLeave (`index`, `nextIndex`, `direction`)
 Se dispara una vez que el usuario abandone la sección, durante la transición a la nueva sección.
 Si devuelves `false` el movimiento se cancelará antes de que tenga lugar.
 
@@ -710,7 +717,7 @@ Por ejemplo:
 	});
 ```
 
-####Cancelando un desplazamiento antes de que tenga lugar
+#### Cancelando un desplazamiento antes de que tenga lugar
 Puedes cancelar un desplazamiento si devuelves `false` en el callback `onLeave`:
 
 ```javascript
@@ -725,7 +732,7 @@ Puedes cancelar un desplazamiento si devuelves `false` en el callback `onLeave`:
 ```
 
 ---
-###afterRender()
+### afterRender()
 Será disparado justo después de que la estructura de la página sea generada por fullPage.js. Este callback es útil si quieres iniciar otros plugins o ejectuar cualquier otro código que requiera que la estructura de la página esté lista (ready). fullPage.js modifica la estructura DOM  de la página y por lo tanto puede que los elementos en la página se consideren dinámicos. Mira [las FAQs](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) para mas información.
 
 Ejemplo:
@@ -739,7 +746,7 @@ Ejemplo:
 	});
 ```
 ---
-###afterResize()
+### afterResize()
 Será disparado después de que la ventana del navegador sea reajustada en tamaño. Justo después de que las secciones se hayan reajustado.
 
 Ejemplo:
@@ -753,7 +760,7 @@ Ejemplo:
 	});
 ```
 ---
-###afterResponsive(`isResponsive`)
+### afterResponsive(`isResponsive`)
 Será disparado después de que fullPage.js cambie de su estado normal a "responsive" o biceversa. 
 
 Parámetros:
@@ -770,7 +777,7 @@ Ejemplo:
 	});
 ```
 ---
-###afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
+### afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
 Será disparado una vez cargue la diapositiva de una sección, después de que el desplazamiento haya terminado.
 
 Parámetros:
@@ -806,7 +813,7 @@ Ejemplo:
 
 
 ---
-###onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextSlideIndex`)
+### onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextSlideIndex`)
 Será disparado una vez el usuario abandone la diapositiva acutal para ir a otra, durante la transición hacia la nueva diapositiva. 
 Devolver `false` 
 Si devuelves `false` el movimiento se cancelará antes de que tenga lugar.
@@ -840,27 +847,28 @@ Ejemplo:
 	});
 ```
 
-####Cancelando un desplazamiento antes de que tenga lugar
+#### Cancelando un desplazamiento antes de que tenga lugar
 Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLeave`. Exáctametne igual que cuando se usa [`onLeave`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#cancelando-un-desplazamiento-antes-de-que-tenga-lugar).
 
-#Reportando problemas
+# Reportando problemas
 1. Por favor, usa el buscador en github issues para buscar tu duda o problema antes de pregunar.
 2. Asegurate de que estás usando la última versión de fullPage.js. No se provee soporte para versiones anteriores.
 3. Usa el [foro de Github](https://github.com/alvarotrigo/fullPage.js/issues) para crear la pregunta o tema y **házlo en ingles** a ser posible.
 4. **Se requerirá la reproducción aislada del problema.** Usa [jsfiddle](http://jsfiddle.net/97tbk/418/) o [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) si es posible.
 
-#Contribuir con fullPage.js
+# Contribuir con fullPage.js
 Por favor mira [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
 
-#Changelog
+# Changelog
 Para ver la lista de cambios recientes, mira [la sección de releases](https://github.com/alvarotrigo/fullPage.js/releases).
 Solo disponible en ingles :)
 
-#Build tasks
+# Build tasks
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
-#Recursos
-- [Template de Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+# Recursos
+- [Template de Wordpress 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+- [Template de Wordpress 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](http://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
