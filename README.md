@@ -854,22 +854,22 @@ Example:
 #### Cancelling a move before it takes place
 You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same as when canceling a movement with `onLeave`](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
 
-#Reporting issues
+# Reporting issues
 1. Please, look for your issue before asking using the github issues search.
 2. Make sure you use the latest fullpage.js version. No support is provided for older versions.
 3. Use the [the Github Issues forum](https://github.com/alvarotrigo/fullPage.js/issues) to create issues.
 4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](http://jsfiddle.net/97tbk/418/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
 
-#Contributing to fullpage.js
+# Contributing to fullpage.js
 Please see [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
 
-#Changelog
+# Changelog
 To see the list of recent changes, see [Releases section](https://github.com/alvarotrigo/fullPage.js/releases).
 
-#Build tasks
+# Build tasks
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
-#Resources
+# Resources
 - [Wordpress theme 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html) 
 - [Wordpress theme 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
