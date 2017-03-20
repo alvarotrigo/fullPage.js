@@ -6,18 +6,22 @@
   <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language-inactive.png" /></a>
 </p>
 
+---
+
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.4-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-A simple and easy to use libary to create fullscreen scrolling websites (also known as single page websites or onepage sites).
-It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
-
 - [Live demo](http://alvarotrigo.com/fullPage/)
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
+
+---
+
+A simple and easy to use libary to create fullscreen scrolling websites (also known as single page websites or onepage sites).
+It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
 
 Invite me to a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
