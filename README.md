@@ -14,8 +14,6 @@
 A simple and easy to use libary to create fullscreen scrolling websites (also known as single page websites or onepage sites).
 It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
 
-[![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.4-brightgreen.svg)]
-
 - [Live demo](http://alvarotrigo.com/fullPage/)
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
