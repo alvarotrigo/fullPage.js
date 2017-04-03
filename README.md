@@ -18,8 +18,6 @@
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
-[![Wordpress Y-Theme](http://wallpapers-for-ipad.com/fullpage/imgs3/banner.png)](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
-
 ---
 
 A simple and easy to use libary to create fullscreen scrolling websites (also known as single page websites or onepage sites).

@@ -19,8 +19,6 @@
 - [Extensiones de fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Preguntas frecuentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
-[![Wordpress Y-Theme](http://wallpapers-for-ipad.com/fullpage/imgs3/banner.png)](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
-
 ---
 
 Una sencilla librería Javascript para la creación de páginas web con scroll a pantalla completa. (también conocido popularmente como "single page websites" o "onepage sites")
