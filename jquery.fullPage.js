@@ -606,12 +606,12 @@
             * Ignoring the scrolls over the specified selectors.
             */
             if(options.normalScrollElements){
-                $document.on('mouseenter touchstart', options.normalScrollElements, function () {
-                    setAllowScrolling(false);
+                $document.on('mouseenter', options.normalScrollElements, function () {
+                    setMouseWheelScrolling(false);
                 });
 
-                $document.on('mouseleave touchend', options.normalScrollElements, function(){
-                    setAllowScrolling(true);
+                $document.on('mouseleave', options.normalScrollElements, function(){
+                    setMouseWheelScrolling(true);
                 });
             }
         }
