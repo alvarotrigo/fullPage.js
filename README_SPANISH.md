@@ -865,7 +865,8 @@ Solo disponible en ingles :)
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Recursos
-- [Template de Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Template de Wordpress 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+- [Template de Wordpress 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](http://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
