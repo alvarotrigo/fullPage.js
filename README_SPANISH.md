@@ -15,14 +15,14 @@
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Creado por [@imac2](https://twitter.com/imac2)*
 
 - [Vista previa - demostración](http://alvarotrigo.com/fullPage/)
-- [Template de Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+- [Template de Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensiones de fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Preguntas frecuentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
 ---
 
 Una sencilla librería Javascript para la creación de páginas web con scroll a pantalla completa. (también conocido popularmente como "single page websites" o "onepage sites")
-Permite crear un desplazamiento a pantalla completa asi como añadir diapositivas horizontales en las secciones.
+Permite crear un desplazamiento a pantalla completa asi como añadir diapositivas horizontales en las secciones. 
 
 Invítame a un café:
 [![Donate](https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
@@ -100,7 +100,7 @@ npm install fullpage.js
 ```
 
 ### Uso opcional de un CDN
-Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distrubución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en CDNJS:
+Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distrubución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en CDNJS: 
 https://cdnjs.com/libraries/fullPage.js
 
 ### Estructura HTML requerida
@@ -119,7 +119,7 @@ Las seciones tienes que estar contenidas en otro elemento (`<div id="fullpage">`
 	<div class="section">Sección 4</div>
 </div>
 ```
-Si quieres definir una sección de inicio diferente de la primera sección o la primera diapositiva de la sección, simplemente añade la clase `active` en la sección o diapositiva que quieras que sea visible inicialmente.
+Si quieres definir una sección de inicio diferente de la primera sección o la primera diapositiva de la sección, simplemente añade la clase `active` en la sección o diapositiva que quieras que sea visible inicialmente. 
 ```html
 <div class="section active">Mi sección de inicio</div>
 ```
@@ -263,7 +263,7 @@ Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en l
 <div class="section fp-auto-height">Alto automático</div>
 ```
 
-#### Secciones de tamano automático y responsive
+#### Secciones de tamano automático y responsive 
 fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
 De este modo la seccion pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opcion `responsiveWidth` o `responsiveHeight`)
 
@@ -297,7 +297,7 @@ Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el at
 **Note**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
 
 #### Reproducir al cargar la sección o diapositiva:
-Usando el atributo `autoplay` para videos y audios, o el parámetro `autoplay=1` para iframes de youtube causará que el elemento empiece a reproducirse al cargar la página web.
+Usando el atributo `autoplay` para videos y audios, o el parámetro `autoplay=1` para iframes de youtube causará que el elemento empiece a reproducirse al cargar la página web. 
 Usa el atributo `data-autplay` para comenzar a reproducirlo cuando la sección o diapositiva a la que pertenece sea visible en la ventana. Por ejemplo:
 
 ```html
@@ -360,7 +360,7 @@ Otras librerías puede ser usadas si se desea.
 
 - `loopBottom`: (por defecto  `false`) Determina si hacer scroll hacia abajo estando en la última sección te desplazá al a primera o no.
 
-- `loopHorizontal`: (por defecto  `true`) Determina si las diapositivas horizontales volverán a la primera o última diaposivia al al llegar al a última o primera respectivamente.
+- `loopHorizontal`: (por defecto  `true`) Determina si las diapositivas horizontales volverán a la primera o última diaposivia al al llegar al a última o primera respectivamente. 
 
 - `css3`: (por defecto  `true`). Determina si fullPage.js usará JavasScript o animaciones CSS3 para realizar los desplazamientos entre secciones y diapositivas. Útil para mejorar el rendimiento en tabletas y dispositivos móbiles asi como en navegadores con soporte CSS 3. Si esta opción se pone a `true` y el navegador no soporta animaciones CSS 3, fullPage.js automáticamente lo volverá a poner a `false` para usar animaciones JavaScript.
 
@@ -368,7 +368,7 @@ Otras librerías puede ser usadas si se desea.
 
 - `fitToSection`: (por defecto  `true`) Determina si "encajar" las secciones en el navegador o no. Esto tiene sentido cuando se usa `autoScrolling:false` o `scrollBar:false` o el modo responsive. Cuando se usa `true` la sección actual se desplazará en la pantalla hasta llegar el contenido den la ventana. De lo contrario el usuario podrá desplazarse libremente y parar en mitad de 2 secciones.
 
-- `fitToSectionDelay`: (por defecto  1000). Si `fitToSection` está activo, esta opción define el tiempo en milisegundos que esperará fullpage.js desde que el usuario dejó de desplazarse hasta que la sección se encaja en la ventana.
+- `fitToSectionDelay`: (por defecto  1000). Si `fitToSection` está activo, esta opción define el tiempo en milisegundos que esperará fullpage.js desde que el usuario dejó de desplazarse hasta que la sección se encaja en la ventana. 
 
 - `scrollBar`: (por defecto  `false`) Determina si usar la barra de desplazamiento del navegador o no. En caso de usarla, la funcionalidad de `autoScrolling` (de desplazamiento automático o "a saltos") funcionará como se espera. El usuario será también libre de desplazarse por la página usando la barra de navegación y fullpage.js encajará la sección cuando el desplazamiento cese siempre y cuando se use `fitToSection`.
 
@@ -390,11 +390,11 @@ Otras librerías puede ser usadas si se desea.
 
 - `continuousVertical`: (por defecto  `false`) Determina si hacer scroll hacia abajo en la última sección producirá un desplazamiento hacia abajo hacia la primera sección o no, y si hacer scroll hacia arriba en la primera sección producirá un desplazamiento hacia arriba hacia la última sección. No es compatible con `loopTop`, `loopBottom` y ninguna barra de desplazamiento (usando `scrollBar:true` o `autoScrolling:false`).
 
-- `continuousHorizontal`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si desplazarse hacia la derecha en la última diapositiva causará un desplazamiento hacia la derecha hacia la primera diapositiva, y si un desplazarse hacia la izquierda en la primera diapositiva causará un desplazamiento hacia la izquierda hacia la última diapositiva. No es compatible con `loopHorizontal`.
+- `continuousHorizontal`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si desplazarse hacia la derecha en la última diapositiva causará un desplazamiento hacia la derecha hacia la primera diapositiva, y si un desplazarse hacia la izquierda en la primera diapositiva causará un desplazamiento hacia la izquierda hacia la última diapositiva. No es compatible con `loopHorizontal`. 
 
-- `scrollHorizontally`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si moverse horizontalmente entre las diapositivas de la sección cuando se usa la ruleta del ratón o el trackpad. Ideal para contar historias.
+- `scrollHorizontally`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si moverse horizontalmente entre las diapositivas de la sección cuando se usa la ruleta del ratón o el trackpad. Ideal para contar historias. 
 
-- `interlockedSlides`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si al mover horizontalmente una sección con diapositivas ésto forzará el movimiento de otras diapositivas en otras secciones en la misma dirección. Los posibles valores son `true`, `false` o un array con las secciones que estarán interconectadas. Por ejemplo `[1,3,5]` empeznado por 1.
+- `interlockedSlides`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si al mover horizontalmente una sección con diapositivas ésto forzará el movimiento de otras diapositivas en otras secciones en la misma dirección. Los posibles valores son `true`, `false` o un array con las secciones que estarán interconectadas. Por ejemplo `[1,3,5]` empeznado por 1. 
 
 - `dragAndMove`: (por defecto  `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Habilita o deshabilita el desplazamiento de secciones y diapositivas usando el ratón o los dedos en dispositivos táctiles. Los posibles valores para esta opción son `false`, `true`, `fingersonly`. La opción `fingersonly` habilita esta funcionalidad sólo para el desplazamienton con los dedos en dispositivos táctiles.
 
@@ -515,14 +515,14 @@ $.fn.fullpage.silentMoveTo('firstSlide', 2);
 ---
 ### moveSlideRight()
 [demostración](http://codepen.io/alvarotrigo/pen/Wvgoyz)
-Desplaza el carousle de diapostivas de la sección actual hacia la siguiente diapositiva.
+Desplaza el carousle de diapostivas de la sección actual hacia la siguiente diapositiva. 
 ```javascript
 $.fn.fullpage.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
 [demostración](http://codepen.io/alvarotrigo/pen/gpdLjW)
-Desplaza el carousle de diapostivas de la sección actual hacia la diapositiva anterior.
+Desplaza el carousle de diapostivas de la sección actual hacia la diapositiva anterior. 
 ```javascript
 $.fn.fullpage.moveSlideLeft();
 ```
@@ -560,10 +560,10 @@ $.fn.fullpage.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-[demostración](http://codepen.io/alvarotrigo/pen/EjeNdq)
+[demostración](http://codepen.io/alvarotrigo/pen/EjeNdq) 
 Añade o elemina la posibilidad de desplazarse a través de las secciones o diapositivas usando la ruleta del ratón, el trackpad del portátil o con los dedos en dispositivos tátctiles. Ten en cuenta que ésto no desabilitará el desplazamiento usando el teclado. Para ello necesitarás hacer uso de `setKeyboardScrolling`.
 
-- `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o desabilitado.
+- `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o desabilitado. 
 
 ```javascript
 
@@ -580,13 +580,13 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 ### setKeyboardScrolling(boolean, [directions])
 [demostración](http://codepen.io/alvarotrigo/pen/GJXNwm) Añade o elimina la posibilidad de desplazarse a través de las secciones usando las teclas del teclado (activo por defecto).
 
-- `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o desabilitado.
+- `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o desabilitado. 
 
 ```javascript
 //desabilitando todo tipo de desplazamiento con el teclado
 $.fn.fullpage.setKeyboardScrolling(false);
 
-//desabilitando el desplazamiento hacia abajo con el teclado
+//desabilitando el desplazamiento hacia abajo con el teclado 
 $.fn.fullpage.setKeyboardScrolling(false, 'down');
 
 //desabilitando el desplazamiento hacia abajo y hacia la derecha con el teclado
@@ -601,7 +601,7 @@ $.fn.fullpage.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[demostración](http://codepen.io/alvarotrigo/pen/NqLbeY) Define la velocidad de desplazamiento en milisegundos.
+[demostración](http://codepen.io/alvarotrigo/pen/NqLbeY) Define la velocidad de desplazamiento en milisegundos. 
 
 ```javascript
 $.fn.fullpage.setScrollingSpeed(700);
@@ -611,7 +611,7 @@ $.fn.fullpage.setScrollingSpeed(700);
 [demostración](http://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo asi como cualquier estilo que haya aplicado.
 Ideal para usar cuando se usa en páginas AJAX.
 
-- `type`: (parámetro opcional) Si se define como `all` la estructura HTML creada por fullPage.js asi como cualquier estilo que haya aplicado serán eliminados. De este modo se mantendrá el HTMl original, es decir, el usado antes de que fullPage.js se iniciase.
+- `type`: (parámetro opcional) Si se define como `all` la estructura HTML creada por fullPage.js asi como cualquier estilo que haya aplicado serán eliminados. De este modo se mantendrá el HTMl original, es decir, el usado antes de que fullPage.js se iniciase. 
 
 ```javascript
 //destrozando los eventos Javascript de fullPage.js (scrolls, hashchange in the URL...)
@@ -645,7 +645,7 @@ $.fn.fullpage.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
-[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/).
+[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). 
 Desace el cambio de las diapositivas horizontales que han sido convertidas a secciones verticales. Dejándolas de nuevo como diapositivas horizontales dentro de una sección.
 
 ```javascript
@@ -759,11 +759,11 @@ $('#fullpage').fullpage({
 ```
 ---
 ### afterResponsive(`isResponsive`)
-Será disparado después de que fullPage.js cambie de su estado normal a "responsive" o biceversa.
+Será disparado después de que fullPage.js cambie de su estado normal a "responsive" o biceversa. 
 
 Parámetros:
 
-- `isResponsive`: boolean que determina si entra (`true`) o sale (`false`) del modo "responsive" hacia su modo normal.
+- `isResponsive`: boolean que determina si entra (`true`) o sale (`false`) del modo "responsive" hacia su modo normal. 
 
 Ejemplo:
 
@@ -800,7 +800,7 @@ $('#fullpage').fullpage({
 			alert("Primera diapositiva cargada");
 		}
 
-		//segunda diapositiva de la segunda sección (suponiendo que #secondSlide es
+		//segunda diapositiva de la segunda sección (suponiendo que #secondSlide es 
 		//el link de anclaje d ela segunda diapositiva
 		if(index == 2 && slideIndex == 'secondSlide'){
 			alert("Segunda diapositiva cargada");
@@ -812,8 +812,8 @@ $('#fullpage').fullpage({
 
 ---
 ### onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextSlideIndex`)
-Será disparado una vez el usuario abandone la diapositiva acutal para ir a otra, durante la transición hacia la nueva diapositiva.
-Devolver `false`
+Será disparado una vez el usuario abandone la diapositiva acutal para ir a otra, durante la transición hacia la nueva diapositiva. 
+Devolver `false` 
 Si devuelves `false` el movimiento se cancelará antes de que tenga lugar.
 
 Parámetros:
@@ -837,7 +837,7 @@ $('#fullpage').fullpage({
 			alert("Abandonando la diapositiva 1!!");
 		}
 
-		//abandonando la tercera diapositiva de la segunda sección y moviendo hacia la izquierda
+		//abandonando la tercera diapositiva de la segunda sección y moviendo hacia la izquierda 
 		if(index == 2 && slideIndex == 2 && direction == 'left'){
 			alert("Yendo a la diapositiva 2! ");
 		}
@@ -865,8 +865,7 @@ Solo disponible en ingles :)
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Recursos
-- [Template de Wordpress 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
-- [Template de Wordpress 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Template de Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](http://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
