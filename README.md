@@ -14,7 +14,7 @@
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
@@ -868,7 +868,8 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Resources
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html) 
+- [Wordpress theme 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
