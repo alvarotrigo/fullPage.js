@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Scroll to the end and prevent move-section with delay - fullPage.js</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage full-screen backgrounds." />
+    <meta name="keywords" content="fullpage,jquery,demo,screen,fullscreen,backgrounds,full-screen" />
+    <meta name="Resource-type" content="Document" />
+
+
+    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+        /* Style for our header texts
+	* --------------------------------------- */
+        
+        body {
+            font-size: 1.5em;
+        }
+        
+        h1 {
+            font-size: 3em;
+            font-family: arial, helvetica;
+            color: #fff;
+            margin: 0;
+            padding: 40px 0 0 0;
+        }
+        
+        a{color: #fff; text-decoration: underline;}
+        
+        .intro{
+            padding: 40px 0;
+        }
+        .intro p {
+            color: #fff;
+            padding:20px 40px;
+            width: 80%;
+        }
+        .intro p.desc{
+            text-align: left;
+        }
+        /* Centered texts in each section
+	* --------------------------------------- */
+        
+        .section {
+            text-align: center;
+        }
+        /* Bottom menu
+	* --------------------------------------- */
+        
+        #infoMenu li a {
+            color: #fff;
+        }
+    </style>
+
+    <!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../vendors/scrolloverflow.js"></script>
+
+    <script type="text/javascript" src="../jquery.fullPage.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
+
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				lockAnchors: true,
+				sectionsColor: ['#4A6FB1', '#939FAA', '#323539'],
+				scrollOverflow: true,
+				scrollOverflowEndPrevent: { delay: 500, reversal: false }
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+    <select id="demosMenu">
+  <option selected>Choose Demo</option>
+  <option id="activeSlide">Active section and slide</option>
+  <option id="apple">Apple iPhone demo (animations)</option>
+  <option id="autoHeight">Auto height</option>
+  <option id="autoplayVideoAndAudio">Autoplay Video and Audio</option>
+  <option id="backgrounds">Background images</option>
+  <option id="backgroundsFixed">Fixed fullscreen backgrounds</option>
+  <option id="backgroundVideo">Background video</option>
+  <option id="callbacks">Callbacks</option>
+  <option id="continuousHorizontal">Continuous horizontal</option>
+  <option id="continuousVertical">Continuous vertical</option>
+  <option id="css3">CSS3</option>
+  <option id="dragAndMove">Drag And Move</option>
+  <option id="easing">Easing</option>
+  <option id="fadingEffect">Fading Effect</option>
+  <option id="fixedHeaders">Fixed headers</option>
+  <option id="gradientBackgrounds">Gradient backgrounds</option>
+  <option id="interlockedSlides">Interlocked Slides</option>
+  <option id="looping">Looping</option>
+  <option id="methods">Methods</option>
+  <option id="navigationV">Vertical navigation dots</option>
+  <option id="navigationH">Horizontal navigation dots</option>
+  <option id="noAnchor">No anchor links</option>
+  <option id="normalScroll">Normal scrolling</option>
+  <option id="normalScrollElements">Normal scroll elements</option>
+  <option id="offsetSections">Offset sections</option>
+  <option id="oneSection">One single section</option>
+  <option id="resetSliders">Reset sliders</option>
+  <option id="responsiveAutoHeight">Responsive Auto Height</option>
+  <option id="responsiveHeight">Responsive Height</option>
+  <option id="responsiveWidth">Responsive Width</option>
+  <option id="responsiveSlides">Responsive Slides</option>
+  <option id="scrollBar">Scroll bar enabled</option>
+  <option id="scrollHorizontally">Scroll horizontally</option>
+  <option id="scrollOverflow">Scroll inside sections and slides</option>
+  <option id="scrollOverflowReset">ScrollOverflow Reset</option>
+  <option id="scrollingSpeed">Scrolling speed</option>
+</select>
+
+    <div id="fullpage">
+        <div class="section " id="section0">
+            <div class="intro">
+                <h1>Scroll to the end and prevent section-move with delay</h1>
+                <p class="desc">If you use `scrollOverflow` to scroll the higher content in Sections or Slides, you can also use `scrollOverflowEndPrevent`
+                    option to set the scroll-end-prevent function
+                </p>
+                <p class="desc">
+                    Notice, the scroll-end-prevent function works in the situation: when scroll bar is not reached the page end (top or bottom) named status (1), if the scroll bar is reached the page end (top or bottom) named status (2), <br>
+                    when status (1) => (2), the scroll-end-prevent will work, it will prevent section-move, if status (1) => (2) plus the mousewheel is not terminate, it will trigger the section-move when the time greater than or equal to the delay, which time is started when status becomed (2), <br>
+                    but if delay setted with 0, it will trigger section-move when status (1) to (2).
+                    <br>
+                    if the scroll bar is in status (2), it meaning the scroll bar is reached the page end (top or bottom), when mousewheel happend it like the status (2) => (2), well this would trigger section-move.
+                </p>
+                <p class="desc">
+                    the option `scrollOverflowEndPrevent` has two attributes named `delay` and `reversal`, `delay`(unit:ms) used to set delay time for section-move with the incessancy mousewheel when scroll bar reached the page end (top or bottom) likes status (1) => (2)<br>
+                    this page is set `delay` 500, you can also set the value with your fact. if you set it `-1`, it meaning always prevent section-move when scroll bar reached the page end (top or bottom) when status (1) => (2). <br>
+                    the default value is 0, it likes the same effects with fullpage before.
+                </p>
+                <p class="desc">
+                    the `reversal`(boolean) attribute is set to switch the situation like this: when scroll bar is in status (2), and the mousewheel dirction let it leave the page end plus change the mousewheel dirction let it reached the page end again without mousewheel terminate, <br>
+                    like status (2) => (1) => (2), when `reversal` is false, it will prevent section-move, when `reversal` is true, it will trigger section-move.
+                </p>
+                <p class="desc">
+                    this page is set `delay` 500 and `reversal` false.
+                </p>
+                <p class="desc">
+                    Finally, my English is not good, if I said unsharp, you can @lanbomo in this issue
+                    <a href="https://github.com/alvarotrigo/fullPage.js/issues/941" target="_blank">https://github.com/alvarotrigo/fullPage.js/issues/941</a>
+                </p>
+
+
+                <img src="./imgs/iphone2.png" alt="iphone" id="iphone-two" />
+
+                <p>
+                    
+                    <code>
+                        Eu nec ferri molestie consequat, vel at alia dolore putant. Labore philosophia ut vix. In vis nostrud interesset appellantur,
+                        vis et tation feugiat scripserit. Te nec noster suavitate persecuti. Diceret erroribus cu vix, alii
+                        omnes ei sit. Sea an corrumpit patrioque, virtute accumsan nominavi et usu, ex mei dolore vocibus
+                        incorrupte. Duo ea saperet tacimates. Sed possim prodesset no, per novum putent doctus ea. Eu mea
+                        magna aliquip graecis, pri corpora officiis complectitur ei, lorem saepe consetetur his ad. Meis
+                        consulatu ei vis, an altera ocurreret interesset qui. Eu ponderum comprehensam his, case antiopam
+                        pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes invenire gubergren.
+                        Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri verterem. Nam at animal pertinax
+                        efficiantur. Eu ponderum comprehensam his, case antiopam pri te. Mel ne partem consequat instructior.
+                        Ad dicunt malorum sea, ex qui omnes invenire gubergren. Ius cu autem aliquando, pri vide ornatus
+                        perpetua an, no has epicuri verterem. Nam at animal pertinax efficiantur. Eu ponderum comprehensam
+                        his, case antiopam pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes
+                        invenire gubergren. Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri verterem.
+                        Nam at animal pertinax efficiantur. Per alienum torquatos eu.
+                    </code>
+
+                </p>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="slide" id="slide1">
+                <div class="intro">
+                    <h1>Also in sections</h1>
+                    <!--<img src="./imgs/iphone-two.png" alt="iphone" id="iphone-two" />-->
+                    <p>
+                        Eu nec ferri molestie consequat, vel at alia dolore putant. Labore philosophia ut vix. In vis nostrud interesset appellantur,
+                        vis et tation feugiat scripserit. Te nec noster suavitate persecuti. Diceret erroribus cu vix, alii
+                        omnes ei sit. Sea an corrumpit patrioque, virtute accumsan nominavi et usu, ex mei dolore vocibus
+                        incorrupte. Duo ea saperet tacimates. Sed possim prodesset no, per novum putent doctus ea. Eu mea
+                        magna aliquip graecis, pri corpora officiis complectitur ei, lorem saepe consetetur his ad. Meis
+                        consulatu ei vis, an altera ocurreret interesset qui. Eu ponderum comprehensam his, case antiopam
+                        pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes invenire gubergren.
+                        Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri verterem. Nam at animal pertinax
+                        efficiantur. Eu ponderum comprehensam his, case antiopam pri te. Mel ne partem consequat instructior.
+                        Ad dicunt malorum sea, ex qui omnes invenire gubergren. Ius cu autem aliquando, pri vide ornatus
+                        perpetua an, no has epicuri verterem. Nam at animal pertinax efficiantur. Eu ponderum comprehensam
+                        his, case antiopam pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes
+                        invenire gubergren. Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri verterem.
+                        Nam at animal pertinax efficiantur. Per alienum torquatos eu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide" id="slide2">
+                <h1>Even inside slides</h1>
+            </div>
+            <div class="slide" id="slide3">
+                <div class="intro">
+                    <h1>Scrolling slide</h1>
+                    <img src="./imgs/iphone-red.png" alt="iphone" id="iphone-two" />
+                    <p>
+                        Eu nec ferri molestie consequat, vel at alia dolore putant. Labore philosophia ut vix. In vis nostrud interesset appellantur,
+                        vis et tation feugiat scripserit. Te nec noster suavitate persecuti. Diceret erroribus cu vix, alii
+                        omnes ei sit. Sea an corrumpit patrioque, virtute accumsan nominavi et usu, ex mei dolore vocibus
+                        incorrupte. Duo ea saperet tacimates. Sed possim prodesset no, per novum putent doctus ea. Eu mea
+                        magna aliquip graecis, pri corpora officiis complectitur ei, lorem saepe consetetur his ad. Meis
+                        consulatu ei vis, an altera ocurreret interesset qui. Eu ponderum comprehensam his, case antiopam
+                        pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes invenire gubergren.
+                        Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri verterem. Nam at animal pertinax
+                        efficiantur. Eu ponderum comprehensam his, case antiopam pri te. Mel ne partem consequat instructior.
+                        Ad dicunt malorum sea, ex qui omnes invenire gubergren. Ius cu autem aliquando, pri vide ornatus
+                        perpetua an, no has epicuri verterem. Nam at animal pertinax efficiantur. Eu ponderum comprehensam
+                        his, case antiopam pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes
+                        invenire gubergren. Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri verterem.
+                        Nam at animal pertinax efficiantur. Per alienum torquatos eu.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section2">
+            <div class="intro">
+                <h1>No limitations!</h1>
+                <p>Content is a priority. Even if it is so large :)</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
