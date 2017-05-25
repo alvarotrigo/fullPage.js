@@ -1752,6 +1752,9 @@
                     if ((sectionAnchor && sectionAnchor !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slideAnchor ))  {
                         scrollPageAndSlide(sectionAnchor, slideAnchor);
                     }
+                } else {
+                    // go to first slide
+                    moveTo(1);
                 }
             }
         }
@@ -2327,7 +2330,7 @@
             if(!section.length) return;
 
             //default slide
-            if (typeof slide === 'undefined') {
+            if (slide === 'undefined') {
                 slide = 0;
             }
 
