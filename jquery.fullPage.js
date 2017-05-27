@@ -201,7 +201,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = viewportSize.getHeight(); // IVO GELOV = $window.height();
+        var windowsHeight = viewportSize.getHeight(); // IVO GELOV
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -453,7 +453,7 @@
 
             isResizing = true;
 
-            windowsHeight = viewportSize.getHeight(); // IVO GELOV = $window.height();  //updating global var
+            windowsHeight = viewportSize.getHeight(); // IVO GELOV = updating global var
 
             $(SECTION_SEL).each(function(){
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
@@ -654,7 +654,7 @@
             $('html').addClass(ENABLED);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = viewportSize.getHeight(); // IVO GELOV = $window.height();
+            windowsHeight = viewportSize.getHeight(); // IVO GELOV
 
             container.removeClass(DESTROYED); //in case it was destroyed before initializing it again
 
@@ -941,8 +941,8 @@
                 var currentScroll = $window.scrollTop();
                 var scrollDirection = getScrollDirection(currentScroll);
                 var visibleSectionIndex = 0;
-                var screen_mid = currentScroll + (viewportSize.getHeight() /* IVO GELOV = $window.height() */ / 2.0);
-                var isAtBottom = $body.height() - viewportSize.getHeight() /* IVO GELOV = $window.height() */ === currentScroll;
+                var screen_mid = currentScroll + (viewportSize.getHeight() / 2.0); // IVO GELOV
+                var isAtBottom = $body.height() - viewportSize.getHeight() === currentScroll; // IVO GELOV
                 var sections =  document.querySelectorAll(SECTION_SEL);
 
                 //when using `auto-height` for a small last section it won't be centered in the viewport
@@ -1054,10 +1054,10 @@
         */
         function isCompletelyInViewPort(movement){
             var top = $(SECTION_ACTIVE_SEL).position().top;
-            var bottom = top + viewportSize.getHeight(); // IVO GELOV = $window.height();
+            var bottom = top + viewportSize.getHeight(); // IVO GELOV
 
             if(movement == 'up'){
-                return bottom >= ($window.scrollTop() + viewportSize.getHeight()); // IVO GELOV = $window.height());
+                return bottom >= ($window.scrollTop() + viewportSize.getHeight()); // IVO GELOV
             }
             return top <= $window.scrollTop();
         }
@@ -1161,7 +1161,7 @@
                 else if(options.autoScrolling && canScroll){
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartY - touchEndY) > (viewportSize.getHeight() /* IVO GELOV = $window.height()*/ / 100 * options.touchSensitivity)) 
+                    if (Math.abs(touchStartY - touchEndY) > (viewportSize.getHeight() / 100 * options.touchSensitivity)) // IVO GELOV
                     {
                         if (touchStartY > touchEndY) {
                             scrolling('down', scrollable);
@@ -2127,7 +2127,7 @@
 
             //only calculating what we need. Remember its called on the resize event.
             var isBreakingPointWidth = widthLimit && $window.outerWidth() < widthLimit;
-            var isBreakingPointHeight = heightLimit && viewportSize.getHeight() /* IVO GELOV = $window.height()*/ < heightLimit;
+            var isBreakingPointHeight = heightLimit && viewportSize.getHeight() < heightLimit; // IVO GELOV
 
             if(widthLimit && heightLimit){
                 setResponsive(isBreakingPointWidth || isBreakingPointHeight);
