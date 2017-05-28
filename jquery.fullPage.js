@@ -2080,7 +2080,6 @@
         function resizeHandler(){
             //checking if it needs to get responsive
             responsive();
-            if(document.body.classList.contains('fp-responsive')) return; // IVO GELOV
 
             // rebuild immediately on touch devices
             if (isTouchDevice) {
@@ -2088,7 +2087,7 @@
 
                 //if the keyboard is NOT visible
                 if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
-                    var currentHeight = viewportSize.getHeight(); // IVO GELOV = $window.height();
+                    var currentHeight = viewportSize.getHeight(); // IVO GELOV
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ) reBuild(true); // IVO GELOV
@@ -2098,7 +2097,6 @@
                       clearTimeout(resizeId);
       
                       resizeId = setTimeout(function(){
-                          if(document.body.classList.contains('fp-responsive')) return; // IVO GELOV
                           reBuild(true);
                       }, 350);
                       // IVO GELOV =====
@@ -2113,7 +2111,6 @@
                 clearTimeout(resizeId);
 
                 resizeId = setTimeout(function(){
-                    if(document.body.classList.contains('fp-responsive')) return; // IVO GELOV
                     reBuild(true);
                 }, 350);
             }
