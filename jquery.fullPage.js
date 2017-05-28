@@ -2098,6 +2098,7 @@
                       clearTimeout(resizeId);
       
                       resizeId = setTimeout(function(){
+                          if(document.body.classList.contains('fp-responsive')) return; // IVO GELOV
                           reBuild(true);
                       }, 350);
                       // IVO GELOV =====
@@ -2112,6 +2113,7 @@
                 clearTimeout(resizeId);
 
                 resizeId = setTimeout(function(){
+                    if(document.body.classList.contains('fp-responsive')) return; // IVO GELOV
                     reBuild(true);
                 }, 350);
             }
