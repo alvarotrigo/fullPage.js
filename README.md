@@ -14,7 +14,7 @@
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html)
+- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
@@ -405,7 +405,7 @@ the fitting by the configured milliseconds.
 - `dragAndMove`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Enables or disables the dragging and flicking of sections and slides by using mouse or fingers. Possible values are `true`, `false`, `fingersonly`. Requires fullPage.js >= 2.8.9.
 
 - `offsetSections`: (default `false`)[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section. Requires fullPage.js >= 2.8.8
-To define the percentage of each section the attribute `data-percentage` must be used. The centering of the section in the viewport can be determined by using a boolean value in the attribute `data-centered` (default to `true` if not specified). For example: 
+To define the percentage of each section the attribute `data-percentage` must be used. The centering of the section in the viewport can be determined by using a boolean value in the attribute `data-centered` (default to `true` if not specified). For example:
 ``` html
     <div class="section" data-percentage="80" data-centered="true">
 ```
@@ -552,7 +552,7 @@ $.fn.fullpage.setFitToSection(false);
 ---
 ### fitToSection()
 [Demo](http://codepen.io/alvarotrigo/pen/JWWagj)
-Scrolls to the nearest active section fitting it in the viewport. 
+Scrolls to the nearest active section fitting it in the viewport.
 
 ```javascript
 $.fn.fullpage.fitToSection();
@@ -868,8 +868,7 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Resources
-- [Wordpress theme 1](http://alvarotrigo.com/fullPage/utils/wordpress-y-theme.html) 
-- [Wordpress theme 2](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
