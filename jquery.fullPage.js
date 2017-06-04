@@ -155,6 +155,7 @@
             keyboardScrolling: true,
             animateAnchor: true,
             recordHistory: true,
+            staticUrl: false,
 
             //design
             controlArrows: true,
@@ -1833,14 +1834,18 @@
 
         //Scrolls to the section when clicking the navigation bullet
         function sectionBulletHandler(e){
-            e.preventDefault();
+            if(options.staticUrl) {
+                e.preventDefault();
+            }
             var index = $(this).parent().index();
             scrollPage($(SECTION_SEL).eq(index));
         }
 
         //Scrolls the slider to the given slide destination for the given section
         function slideBulletHandler(e){
-            e.preventDefault();
+            if(options.staticUrl) {
+                e.preventDefault();
+            }
             var slides = $(this).closest(SECTION_SEL).find(SLIDES_WRAPPER_SEL);
             var destiny = slides.find(SLIDE_SEL).eq($(this).closest('li').index());
 
@@ -2420,15 +2425,17 @@
         * Sets the URL hash.
         */
         function setUrlHash(url){
-            if(options.recordHistory){
-                location.hash = url;
-            }else{
-                //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
-                if(isTouchDevice || isTouch){
-                    window.history.replaceState(undefined, undefined, '#' + url);
+            if(!options.staticUrl) {
+                if(options.recordHistory){
+                    location.hash = url;
                 }else{
-                    var baseUrl = window.location.href.split('#')[0];
-                    window.location.replace( baseUrl + '#' + url );
+                    //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
+                    if (isTouchDevice || isTouch) {
+                        window.history.replaceState(undefined, undefined, '#' + url);
+                    } else {
+                        var baseUrl = window.location.href.split('#')[0];
+                        window.location.replace(baseUrl + '#' + url);
+                    }
                 }
             }
         }
