@@ -88,7 +88,7 @@ npm install fullpage.js
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
+<!-- This following line is optional. Only necessary if you use the plugin option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
 <script src="vendors/jquery.easings.min.js"></script>
 
 
