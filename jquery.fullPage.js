@@ -1650,6 +1650,10 @@
                     element.closest('video').get(0).load();
                 }
             });
+            destiny.find('[data-poster]').each(function(){
+                $(this).attr('poster', $(this).data('poster'));
+                $(this).removeAttr('data-poster');
+            });
         }
 
         /**
