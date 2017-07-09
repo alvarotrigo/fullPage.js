@@ -2779,6 +2779,10 @@
                 setSrc($(this), 'srcset');
             });
 
+            container.find('[data-anchor]').each(function () {
+                $(this).removeData('anchor');
+            });
+
             $(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL).remove();
 
             //removing inline styles
