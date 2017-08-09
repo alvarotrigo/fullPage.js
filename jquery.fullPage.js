@@ -539,6 +539,7 @@
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
             FP.destroy = destroy;
+            FP.getVariableState = getVariableState;
 
             init();
 
@@ -908,7 +909,7 @@
             lazyLoad(section);
             playMedia(section);
             options.scrollOverflowHandler.afterLoad();
-            
+
             if(isDestinyTheStartingSection()){
                 $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
             }
@@ -922,7 +923,7 @@
         function isDestinyTheStartingSection(){
             var anchors =  window.location.hash.replace('#', '').split('/');
             var destinationSection = getSectionByAnchor(decodeURIComponent(anchors[0]));
-    
+
             return !destinationSection.length || destinationSection.length && destinationSection.index() === startingSection.index();
         }
 
@@ -1635,7 +1636,7 @@
 
             var panel = getSlideOrSection(destiny);
             var element;
-            
+
             panel.find('img[data-src], img[data-srcset], source[data-src], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
 
@@ -2858,6 +2859,16 @@
             if(type !== 'internal'){
                 originals[variable] = value;
             }
+        }
+
+        /*
+        * Gets the state for a variable (original, and temporal)
+        */
+        function getVariableState(variable, type){
+            if(type !== 'internal'){
+                return originals[variable];
+            }
+            return options[variable];
         }
 
         /**
