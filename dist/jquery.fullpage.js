@@ -1281,8 +1281,8 @@
                     //emptying the array, we dont care about old scrollings for our averages
                     scrollings = [];
                 }
-
-                if(canScroll){
+                //avoid accidental scrolling while reading
+                if(canScroll && timeDiff > 150){
                     var averageEnd = getAverage(scrollings, 10);
                     var averageMiddle = getAverage(scrollings, 70);
                     var isAccelerating = averageEnd >= averageMiddle;
