@@ -331,7 +331,7 @@ Luego podrás usar la extension y configurarla tal y como se explica en las [opc
 
 ## Opciones
 
-- `controlArrows`: (por defecto  `true`) Determina si usar flechas de contrl en las diapostiivas para deslizar hacia la derecha o izquierda.
+- `controlArrows`: (por defecto  `true`) Determina si usar flechas de contrl en las diapositivas para deslizar hacia la derecha o izquierda.
 
 - `verticalCentered`: (por defecto  `true`) centrado vertical de las secciones y diapositivas. Cuando se usa `true`, el contenido de cada sección y diapositiva será embuelto dentro de un contenedor por la libreríá. Considera usar delegacion en eventos Javascript o usar los eventos dentro del callback `afterRender`.
 
