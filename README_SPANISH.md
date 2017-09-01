@@ -104,7 +104,7 @@ Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de di
 https://cdnjs.com/libraries/fullPage.js
 
 ### Estructura HTML requerida
-El documento HTML requerirá comenzar la el [HTML DOCTYPE obligatorio](http://www.corelangs.com/html/introduction/doctype.html) en la primera linea de tu archivo HTML. De lo contrario puedes tener problemas con el tamaño de las secciones y diapositivas. Todos los ejemplos disponibles aqui usan la etiqueta HTML 5 `<!DOCTYPE html>`.
+El documento HTML requerirá comenzar con el [HTML DOCTYPE obligatorio](http://www.corelangs.com/html/introduction/doctype.html) en la primera linea de tu archivo HTML. De lo contrario puedes tener problemas con el tamaño de las secciones y diapositivas. Todos los ejemplos disponibles aqui usan la etiqueta HTML 5 `<!DOCTYPE html>`.
 
 Cada sección se ha de definir usando la clase `section`
 La sección activa por defecto será la primera, que será tratada com la página de inicio.
@@ -132,10 +132,10 @@ Puedes usar la clase `slide` para crear diapositivas horizontales dentro de una 
 	<div class="slide"> Diapositiva 4 </div>
 </div>
 ````
-Puedes ver un ejemplo totalmetne funciona de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
+Puedes ver un ejemplo totalmente funciona de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
 
 ### Inicialización
-Todo lo que neceistas hacer es llamar a fullPage.js dentro de la función `$(document).ready`.
+Todo lo que necesitas hacer es llamar a fullPage.js dentro de la función `$(document).ready`.
 ```javascript
 $(document).ready(function() {
 	$('#fullpage').fullpage();
