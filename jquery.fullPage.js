@@ -150,6 +150,7 @@
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
+            forcedPosition: null,
 
             //Accessibility
             keyboardScrolling: true,
@@ -1373,17 +1374,23 @@
             var sectionBottom = position - windowsHeight + element.outerHeight();
             var bigSectionsDestination = options.bigSectionsDestination;
 
-            //is the destination element bigger than the viewport?
-            if(element.outerHeight() > windowsHeight){
-                //scrolling up?
-                if(!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom' ){
+            // if there is no forced position, continue as normal
+            if (!options.forcedPosition) {
+                //is the destination element bigger than the viewport?
+                if(element.outerHeight() > windowsHeight){
+                    //scrolling up?
+                    if(!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom' ){
+                        position = sectionBottom;
+                    }
+                }
+
+                //sections equal or smaller than the viewport height && scrolling down? ||  is resizing and its in the last section
+                else if(isScrollingDown || (isResizing && element.is(':last-child')) ){
+                    //The bottom of the destination will be at the bottom of the viewport
                     position = sectionBottom;
                 }
-            }
-
-            //sections equal or smaller than the viewport height && scrolling down? ||  is resizing and its in the last section
-            else if(isScrollingDown || (isResizing && element.is(':last-child')) ){
-                //The bottom of the destination will be at the bottom of the viewport
+            // only check for 'bottom'. no need to check for 'top' because that's the default position
+            } else if (options.forcedPosition === 'bottom') {
                 position = sectionBottom;
             }
 
