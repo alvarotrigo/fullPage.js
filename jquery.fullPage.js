@@ -97,6 +97,8 @@
         disableMouse: true,
         interactiveScrollbars: true
     };
+    // Default Events for iScroll.js.
+    var iscrollEvents = {};
 
     $.fn.fullpage = function(options) {
         //only once my friend!
@@ -232,6 +234,7 @@
 
         //extending iScroll options with the user custom ones
         iscrollOptions = $.extend(iscrollOptions, options.scrollOverflowOptions);
+        iscrollEvents = $.extend(iscrollEvents, options.scrollOverflowEvents);
 
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
@@ -3013,6 +3016,11 @@
                 }
 
                 iScrollInstance = new IScroll($this.get(0), iscrollOptions);
+                $.each(iscrollEvents, function(event, listener) {
+                    return function(iScrollInstance) {
+                        iScrollInstance.on(event, listener);
+                    }(iScrollInstance);
+                });
                 iscrollHandler.iScrollInstances.push(iScrollInstance);
 
                 //off by default until the section gets active
