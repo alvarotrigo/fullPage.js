@@ -544,6 +544,7 @@
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
             FP.destroy = destroy;
+            FP.getVariableState = getVariableState;
 
             init();
 
@@ -2845,6 +2846,16 @@
             if(type !== 'internal'){
                 originals[variable] = value;
             }
+        }
+
+        /*
+        * Gets the state for a variable (original, and temporal)
+        */
+        function getVariableState(variable, type){
+            if(type !== 'internal'){
+                return originals[variable];
+            }
+            return options[variable];
         }
 
         /**
