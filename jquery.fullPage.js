@@ -88,16 +88,6 @@
     var $window = $(window);
     var $document = $(document);
 
-    // Default options for iScroll.js used when using scrollOverflow
-    var iscrollOptions = {
-        scrollbars: true,
-        mouseWheel: true,
-        hideScrollbars: false,
-        fadeScrollbars: false,
-        disableMouse: true,
-        interactiveScrollbars: true
-    };
-
     $.fn.fullpage = function(options) {
         //only once my friend!
         if($('html').hasClass(ENABLED)){ displayWarnings(); return; }
@@ -145,7 +135,7 @@
             normalScrollElements: null,
             scrollOverflow: false,
             scrollOverflowReset: false,
-            scrollOverflowHandler: iscrollHandler,
+            scrollOverflowHandler: $.fn.fp_scrolloverflow ? $.fn.fp_scrolloverflow.iscrollHandler : null,
             scrollOverflowOptions: null,
             touchSensitivity: 5,
             normalScrollElementTouchThreshold: 5,
@@ -215,6 +205,7 @@
             touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer.move,
             touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer.down
         };
+        var scrollBarHandler;
 
         //timeouts
         var resizeId;
@@ -227,11 +218,7 @@
 
         displayWarnings();
 
-        //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
-        iscrollOptions.click = isTouch; // see #2035
 
-        //extending iScroll options with the user custom ones
-        iscrollOptions = $.extend(iscrollOptions, options.scrollOverflowOptions);
 
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
@@ -472,10 +459,10 @@
                 if(options.scrollOverflow){
                     if(slides.length){
                         slides.each(function(){
-                            createScrollBar($(this));
+                            scrollBarHandler.createScrollBar($(this));
                         });
                     }else{
-                        createScrollBar($(this));
+                        scrollBarHandler.createScrollBar($(this));
                     }
                 }
 
@@ -544,6 +531,12 @@
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
             FP.destroy = destroy;
+
+            //functions we want to share across files but which are not
+            //mean to be used on their own by developers
+            FP.shared ={
+                afterRenderActions: afterRenderActions
+            };
 
             init();
 
@@ -694,11 +687,7 @@
             enableYoutubeAPI();
 
             if(options.scrollOverflow){
-                if(document.readyState === 'complete'){
-                    createScrollBarHandler();
-                }
-                //after DOM and images are loaded
-                $window.on('load', createScrollBarHandler);
+                scrollBarHandler = options.scrollOverflowHandler.init(options);
             }else{
                 afterRenderActions();
             }
@@ -854,25 +843,6 @@
             $(SECTION_NAV_SEL).find('li').eq($(SECTION_ACTIVE_SEL).index(SECTION_SEL)).find('a').addClass(ACTIVE);
         }
 
-        /**
-        * Creates the slim scroll scrollbar for the sections and slides inside them.
-        */
-        function createScrollBarHandler(){
-            $(SECTION_SEL).each(function(){
-                var slides = $(this).find(SLIDE_SEL);
-
-                if(slides.length){
-                    slides.each(function(){
-                        createScrollBar($(this));
-                    });
-                }else{
-                    createScrollBar($(this));
-                }
-
-            });
-            afterRenderActions();
-        }
-
         /*
         * Enables the Youtube videos API so we can control their flow if necessary.
         */
@@ -907,12 +877,11 @@
 
             section.addClass(COMPLETELY);
 
-            if(options.scrollOverflowHandler.afterRender){
-                options.scrollOverflowHandler.afterRender(section);
-            }
             lazyLoad(section);
             playMedia(section);
-            options.scrollOverflowHandler.afterLoad();
+            if(options.scrollOverflow){
+                options.scrollOverflowHandler.afterLoad();
+            }
 
             if(isDestinyTheStartingSection()){
                 $.isFunction( options.afterLoad ) && options.afterLoad.call(section, section.data('anchor'), (section.index(SECTION_SEL) + 1));
@@ -1082,19 +1051,27 @@
         * Determines the way of scrolling up or down:
         * by 'automatically' scrolling a section or by using the default and normal scrolling.
         */
-        function scrolling(type, scrollable){
+        function scrolling(type){
             if (!isScrollAllowed.m[type]){
                 return;
             }
-            var check = (type === 'down') ? 'bottom' : 'top';
+
             var scrollSection = (type === 'down') ? moveSectionDown : moveSectionUp;
 
-            if(scrollable.length > 0 ){
-                //is the scrollbar at the start/end of the scroll?
-                if(options.scrollOverflowHandler.isScrolled(check, scrollable)){
-                    scrollSection();
+            if(options.scrollOverflow){
+                var scrollable = options.scrollOverflowHandler.scrollable($(SECTION_ACTIVE_SEL));
+                var check = (type === 'down') ? 'bottom' : 'top';
+
+                if(scrollable.length > 0 ){
+                    //is the scrollbar at the start/end of the scroll?
+                    if(options.scrollOverflowHandler.isScrolled(check, scrollable)){
+                        scrollSection();
+                    }else{
+                        return true;
+                    }
                 }else{
-                    return true;
+                    // moved up/down
+                    scrollSection();
                 }
             }else{
                 // moved up/down
@@ -1136,7 +1113,6 @@
                     event.preventDefault();
                 }
 
-                var scrollable = options.scrollOverflowHandler.scrollable(activeSection);
                 var touchEvents = getEventsPage(e);
 
                 touchEndY = touchEvents.y;
@@ -1165,9 +1141,9 @@
                     //is the movement greater than the minimum resistance to scroll?
                     if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
                         if (touchStartY > touchEndY) {
-                            scrolling('down', scrollable);
+                            scrolling('down');
                         } else if (touchEndY > touchStartY) {
-                            scrolling('up', scrollable);
+                            scrolling('up');
                         }
                     }
                 }
@@ -1252,9 +1228,6 @@
                     e.preventDefault ? e.preventDefault() : e.returnValue = false;
                 }
 
-                var activeSection = $(SECTION_ACTIVE_SEL);
-                var scrollable = options.scrollOverflowHandler.scrollable(activeSection);
-
                 //time difference between the last scroll and the current one
                 var timeDiff = curTime-prevTime;
                 prevTime = curTime;
@@ -1275,11 +1248,11 @@
                     if(isAccelerating && isScrollingVertically){
                         //scrolling down?
                         if (delta < 0) {
-                            scrolling('down', scrollable);
+                            scrolling('down');
 
                         //scrolling up?
                         }else {
-                            scrolling('up', scrollable);
+                            scrolling('up');
                         }
                     }
                 }
@@ -1437,11 +1410,16 @@
                 stopMedia(v.activeSection);
             }
 
-            options.scrollOverflowHandler.beforeLeave();
+            if(options.scrollOverflow){
+                options.scrollOverflowHandler.beforeLeave();
+            }
+
             element.addClass(ACTIVE).siblings().removeClass(ACTIVE);
             lazyLoad(element);
-            options.scrollOverflowHandler.onLeave();
 
+            if(options.scrollOverflow){
+                options.scrollOverflowHandler.onLeave();
+            }
 
             //preventing from activating the MouseWheelHandler event
             //more than once if the page is scrolling
@@ -1586,7 +1564,10 @@
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
             $.isFunction(options.afterLoad) && !v.localIsResizing && options.afterLoad.call(v.element, v.anchorLink, (v.sectionIndex + 1));
-            options.scrollOverflowHandler.afterLoad();
+
+            if(options.scrollOverflow){
+                options.scrollOverflowHandler.afterLoad();
+            }
 
             if(!v.localIsResizing){
                 playMedia(v.element);
@@ -2133,6 +2114,7 @@
         * Activating the vertical navigation bullets according to the given slide name.
         */
         function activateNavDots(name, sectionIndex){
+            console.log(name + ' vs ' + sectionIndex);
             if(options.navigation){
                 $(SECTION_NAV_SEL).find(ACTIVE_SEL).removeClass(ACTIVE);
                 if(name){
@@ -2189,63 +2171,6 @@
                 return 'left';
             }
             return 'right';
-        }
-
-        /**
-        * Checks if the element needs scrollbar and if the user wants to apply it.
-        * If so it creates it.
-        *
-        * @param {Object} element   jQuery object of the section or slide
-        */
-        function createScrollBar(element){
-            //User doesn't want scrollbar here? Sayonara baby!
-            if(element.hasClass('fp-noscroll')) return;
-
-            //needed to make `scrollHeight` work under Opera 12
-            element.css('overflow', 'hidden');
-
-            var scrollOverflowHandler = options.scrollOverflowHandler;
-            var wrap = scrollOverflowHandler.wrapContent();
-            //in case element is a slide
-            var section = element.closest(SECTION_SEL);
-            var scrollable = scrollOverflowHandler.scrollable(element);
-            var contentHeight;
-
-            //if there was scroll, the contentHeight will be the one in the scrollable section
-            if(scrollable.length){
-                contentHeight = scrollOverflowHandler.scrollHeight(element);
-            }else{
-                contentHeight = element.get(0).scrollHeight;
-                if(options.verticalCentered){
-                    contentHeight = element.find(TABLE_CELL_SEL).get(0).scrollHeight;
-                }
-            }
-
-            var scrollHeight = windowsHeight - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
-
-            //needs scroll?
-            if ( contentHeight > scrollHeight) {
-                //did we already have an scrollbar ? Updating it
-                if(scrollable.length){
-                    scrollOverflowHandler.update(element, scrollHeight);
-                }
-                //creating the scrolling
-                else{
-                    if(options.verticalCentered){
-                        element.find(TABLE_CELL_SEL).wrapInner(wrap);
-                    }else{
-                        element.wrapInner(wrap);
-                    }
-                    scrollOverflowHandler.create(element, scrollHeight, iscrollOptions);
-                }
-            }
-            //removing the scrolling when it is not necessary anymore
-            else{
-                scrollOverflowHandler.remove(element);
-            }
-
-            //undo
-            element.css('overflow', '');
         }
 
         function addTableClass(element){
@@ -2806,7 +2731,9 @@
 
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).each(function(){
-                options.scrollOverflowHandler.remove($(this));
+                if(options.scrollOverflowHandler){
+                    options.scrollOverflowHandler.remove($(this));
+                }
                 $(this).removeClass(TABLE + ' ' + ACTIVE);
             });
 
@@ -2871,6 +2798,11 @@
             if(options.continuousVertical && (options.scrollBar || !options.autoScrolling)){
                 options.continuousVertical = false;
                 showError('warn', 'Scroll bars (`scrollBar:true` or `autoScrolling:false`) are mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
+            }
+
+            if(options.scrollOverflow && !options.scrollOverflowHandler){
+                options.scrollOverflow = false;
+                showError('error', 'The option `scrollOverflow:true` requires the file `scrolloverflow.min.js`. Please include it before fullPage.js.');
             }
 
             //using extensions? Wrong file!
