@@ -218,8 +218,6 @@
 
         displayWarnings();
 
-
-
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
 
@@ -306,7 +304,7 @@
         }
 
         /**
-        * Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad.
+        * Adds or remove the possibility of scrolling through sections by using the mouse wheel or the trackpad.
         */
         function setMouseWheelScrolling(value){
             if(value){
@@ -513,6 +511,7 @@
 
         if($(this).length){
             //public functions
+            FP.version = '2.9.5';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -879,6 +878,7 @@
 
             lazyLoad(section);
             playMedia(section);
+
             if(options.scrollOverflow){
                 options.scrollOverflowHandler.afterLoad();
             }
@@ -1606,7 +1606,7 @@
             var panel = getSlideOrSection(destiny);
             var element;
 
-            panel.find('img[data-src], img[data-srcset], source[data-src], audio[data-src], iframe[data-src]').each(function(){
+            panel.find('img[data-src], img[data-srcset], source[data-src], source[data-srcset], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
 
                 $.each(['src', 'srcset'], function(index, type){
@@ -1616,7 +1616,7 @@
                     }
                 });
 
-                if(element.is('source')){
+                if(element.is('source') && element.closest('video').length){
                     element.closest('video').get(0).load();
                 }
             });
@@ -1726,10 +1726,9 @@
                 var sectionAnchor = decodeURIComponent(value[0]);
                 var slideAnchor = decodeURIComponent(value[1]);
 
-                    //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
-                    var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
-                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
-
+                //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
+                var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
+                var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
 
                 if(sectionAnchor.length){
                     /*in order to call scrollpage() only once for each destination at a time
@@ -2119,7 +2118,6 @@
         * Activating the vertical navigation bullets according to the given slide name.
         */
         function activateNavDots(name, sectionIndex){
-            console.log(name + ' vs ' + sectionIndex);
             if(options.navigation){
                 $(SECTION_NAV_SEL).find(ACTIVE_SEL).removeClass(ACTIVE);
                 if(name){
