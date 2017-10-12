@@ -1701,7 +1701,6 @@
         * Scrolls to the anchor in the URL when loading the site
         */
         function scrollToAnchor(){
-            //getting the anchor link in the URL and deleting the `#`
             var anchors =  getAnchorsURL();
             var sectionAnchor = anchors.section;
             var slideAnchor = anchors.slide;
@@ -1742,6 +1741,7 @@
 
         //gets the URL anchors (section and slide)
         function getAnchorsURL(){
+            //getting the anchor link in the URL and deleting the `#`
             var hash = window.location.hash;
             var anchorsParts =  hash.replace('#', '').split('/');
 
@@ -1968,7 +1968,7 @@
                 //if the site is not just resizing and readjusting the slides
                 if(!v.localIsResizing && v.xMovement!=='none'){
                     if($.isFunction( options.onSlideLeave )){
-                        if(options.onSlideLeave.call( v.prevSlide, v.anchorLink, (v.sectionIndex + 1), v.prevSlideIndex, v.xMovement, v.slideIndex ) === false){
+                        if(options.onSlideLeave.call( v.prevSlide, v.anchorLink, (v.sectionIndex + 1), v.prevSlideIndex, v.direction, v.slideIndex ) === false){
                             slideMoving = false;
                             return;
                         }
