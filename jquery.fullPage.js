@@ -894,8 +894,7 @@
         * Determines if the URL anchor destiny is the starting section (the one using 'active' class before initialization)
         */
         function isDestinyTheStartingSection(){
-            var anchors =  window.location.hash.replace('#', '').split('/');
-            var destinationSection = getSectionByAnchor(decodeURIComponent(anchors[0]));
+            var destinationSection = getSectionByAnchor(getAnchorsURL().section);
 
             return !destinationSection.length || destinationSection.length && destinationSection.index() === startingSection.index();
         }
@@ -1703,9 +1702,9 @@
         */
         function scrollToAnchor(){
             //getting the anchor link in the URL and deleting the `#`
-            var value =  window.location.hash.replace('#', '').split('/');
-            var sectionAnchor = decodeURIComponent(value[0]);
-            var slideAnchor = decodeURIComponent(value[1]);
+            var anchors =  getAnchorsURL();
+            var sectionAnchor = anchors.section;
+            var slideAnchor = anchors.slide;
 
             if(sectionAnchor){  //if theres any #
                 if(options.animateAnchor){
@@ -1722,9 +1721,9 @@
         */
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
-                var value =  window.location.hash.replace('#', '').split('/');
-                var sectionAnchor = decodeURIComponent(value[0]);
-                var slideAnchor = decodeURIComponent(value[1]);
+                var anchors = getAnchorsURL();
+                var sectionAnchor = anchors.section;
+                var slideAnchor = anchors.slide;
 
                 //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
                 var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
@@ -1738,6 +1737,20 @@
                         scrollPageAndSlide(sectionAnchor, slideAnchor);
                     }
                 }
+            }
+        }
+
+        //gets the URL anchors (section and slide)
+        function getAnchorsURL(){
+            var hash = window.location.hash;
+            var anchorsParts =  hash.replace('#', '').split('/');
+
+            //using / for visual reasons and not as a section/slide separator #2803
+            var isFunkyAnchor = hash.indexOf('#/') > -1;
+
+            return {
+                section: isFunkyAnchor ? '/' + anchorsParts[1] : decodeURIComponent(anchorsParts[0]),
+                slide: isFunkyAnchor ? decodeURIComponent(anchorsParts[2]) : decodeURIComponent(anchorsParts[1])
             }
         }
 
