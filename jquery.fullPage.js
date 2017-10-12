@@ -996,7 +996,11 @@
 
                     scrollId2 = setTimeout(function(){
                         //checking it again in case it changed during the delay
-                        if(options.fitToSection){
+                        if(options.fitToSection &&
+
+                            //is the destination element bigger than the viewport?
+                            $(SECTION_ACTIVE_SEL).outerHeight() <= windowsHeight
+                        ){
                             fitToSection();
                         }
                     }, options.fitToSectionDelay);
