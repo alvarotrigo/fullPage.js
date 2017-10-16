@@ -278,7 +278,6 @@ Fullpage.js adds multiple classes in different elements to keep a record of the 
 - `fp-responsive` is added to the `body` element when the entering in the responsive mode
 - `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
 - `fp-destroyed` is added to the fullpage.js container when fullPage.js is destroyed.
-- `fp-enabled` is added to the `html` element once the libary is initalized.
 
 ### Lazy Loading
 [Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.

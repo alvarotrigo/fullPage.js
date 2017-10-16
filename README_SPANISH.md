@@ -276,7 +276,6 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 - `fp-responsive` es añadido al element `body` cuando se entra en modo "responsive".
 - `fp-enabled` es añadido al elemento `html` cuando fullPage.js está activo. (y se elimina cuando se destruye)
 - `fp-destroyed` es añadido al contenedor usado para iniciar fullPage.js cuando se destruye fullPage.js.
-- `fp-enabled` es añadido al elemento `html` una vez se ha inicializado fullPage.js.
 
 ### Carga pasiva de elementos multimedia
 [demostración](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo e cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralentizen la carga de la página web y gasten recursos de transferencia innecesarios.
