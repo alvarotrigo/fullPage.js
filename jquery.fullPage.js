@@ -195,7 +195,7 @@
         //flag to avoid very fast sliding for landscape sliders
         var slideMoving = false;
         //flag to remove the Dom attribute data-anchor
-        var customAnchors = true;
+        var anchorsDefinedByUser = true;
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
@@ -623,10 +623,10 @@
         */
         function setOptionsFromDOM(){
             var sections = container.find(options.sectionSelector);
+            anchorsDefinedByUser = sections.filter('[data-anchor]').length == 0
 
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                customAnchors = false;
                 options.anchors = sections.filter('[data-anchor]').map(function(){
                     return $(this).data('anchor').toString();
                 }).get();
@@ -2784,14 +2784,12 @@
             // remove data-anchor cache for jQuery.fn.data
             container.find('[data-anchor]').each(function () {
                 $(this).removeData('anchor');
-            });
-            // remove the attribute for user-defind anchor
-            if (customAnchors) {
-                container.find('[data-anchor]').each(function () {
+                if (anchorsDefinedByUser) {
+                    // remove the attribute for user-defind anchor
                     $(this).removeAttr('data-anchor');
-                });
-            }
-
+                }
+            });
+            
             $(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL).remove();
 
             //removing inline styles
