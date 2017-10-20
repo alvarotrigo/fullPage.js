@@ -453,22 +453,13 @@
 
                 $(this).css('height', windowsHeight + 'px');
 
-                //resizing the scrolling divs
-                if(options.scrollOverflow){
-                    if(slides.length){
-                        slides.each(function(){
-                            scrollBarHandler.createScrollBar($(this));
-                        });
-                    }else{
-                        scrollBarHandler.createScrollBar($(this));
-                    }
-                }
-
                 //adjusting the position fo the FULL WIDTH slides...
                 if (slides.length > 1) {
                     landscapeScroll(slidesWrap, slidesWrap.find(SLIDE_ACTIVE_SEL));
                 }
             });
+
+            scrollBarHandler.createScrollBarForAll();
 
             var activeSection = $(SECTION_ACTIVE_SEL);
             var sectionIndex = activeSection.index(SECTION_SEL);

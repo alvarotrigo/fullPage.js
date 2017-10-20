@@ -2123,7 +2123,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 })(window, document, Math);
 
 /*!
- * fullPage 2.9.5
+ * fullPage ScrollOverflow
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -2382,6 +2382,9 @@ if ( typeof module != 'undefined' && module.exports ) {
         var TABLE_CELL =            'fp-tableCell';
         var TABLE_CELL_SEL =        '.' + TABLE_CELL;
 
+        var RESPONSIVE =            'fp-responsive';
+        var AUTO_HEIGHT_RESPONSIVE= 'fp-auto-height-responsive';
+
         /*
         * Turns iScroll `mousewheel` option off dynamically
         * https://github.com/cubiq/iscroll/issues/1036
@@ -2412,30 +2415,24 @@ if ( typeof module != 'undefined' && module.exports ) {
                 self.iscrollOptions = iscrollOptions;
 
                 if(document.readyState === 'complete'){
-                    createScrollBarHandler();
+                    createScrollBarForAll();
                 }
                 //after DOM and images are loaded
-                $(window).on('load', createScrollBarHandler);
+                $(window).on('load', createScrollBarForAll);
 
                 return self;
             };
 
             /**
-            * Creates the slim scroll scrollbar for the sections and slides inside them.
+            * Creates the scrollbar for the sections and slides in the site
             */
-            function createScrollBarHandler(){
-                $(SECTION_SEL).each(function(){
-                    var slides = $(this).find(SLIDE_SEL);
-
-                    if(slides.length){
-                        slides.each(function(){
-                            createScrollBar($(this));
-                        });
-                    }else{
-                        createScrollBar($(this));
-                    }
-
-                });
+            function createScrollBarForAll(){
+                if($('body').hasClass(RESPONSIVE)){
+                    removeResponsiveScrollOverflows();
+                }
+                else{
+                    forEachSectionAndSlide(createScrollBar);
+                }
                 $.fn.fullpage.shared.afterRenderActions();
             }
 
@@ -2496,8 +2493,38 @@ if ( typeof module != 'undefined' && module.exports ) {
                 element.css('overflow', '');
             }
 
+            /**
+            * Applies a callback function to each section in the site
+            * or the slides within them
+            */
+            function forEachSectionAndSlide(callback){
+                $(SECTION_SEL).each(function(){
+                    var slides = $(this).find(SLIDE_SEL);
+
+                    if(slides.length){
+                        slides.each(function(){
+                            callback($(this));
+                        });
+                    }else{
+                        callback($(this));
+                    }
+                });
+            }
+
+            /**
+            * Removes scrollOverflow for sections using the class `fp-auto-height-responsive`
+            */
+            function removeResponsiveScrollOverflows(){
+                var scrollOverflowHandler = self.options.scrollOverflowHandler;
+                forEachSectionAndSlide(function(element){
+                    if(element.closest(SECTION_SEL).hasClass(AUTO_HEIGHT_RESPONSIVE)){
+                        scrollOverflowHandler.remove(element);
+                    }
+                });
+            }
+
             //public functions
-            self.createScrollBar = createScrollBar;
+            self.createScrollBarForAll = createScrollBarForAll;
         }
 
         /**
@@ -2705,5 +2732,3 @@ if ( typeof module != 'undefined' && module.exports ) {
         };
     })();
 })(window, jQuery);
-
-
