@@ -1610,8 +1610,9 @@
                     }
                 });
 
-                if(element.is('source') && element.closest('video').length){
-                    element.closest('video').get(0).load();
+                if(element.is('source')){
+                    var typeToPlay = element.closest('video').length ? 'video' : 'audio';
+                    element.closest(typeToPlay).get(0).load();
                 }
             });
         }
