@@ -459,7 +459,9 @@
                 }
             });
 
-            scrollBarHandler.createScrollBarForAll();
+            if(options.scrollOverflow){
+                scrollBarHandler.createScrollBarForAll();
+            }
 
             var activeSection = $(SECTION_ACTIVE_SEL);
             var sectionIndex = activeSection.index(SECTION_SEL);
