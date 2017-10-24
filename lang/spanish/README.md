@@ -254,7 +254,7 @@ Nota que los links de anclaje en la sección también pueden definirse del mismo
 **Ten cuidado!** las etiquetas `data-anchor` no pueden tener el mismo valor que ninguna otra etiqueta ID en la página. (o `name` para Internet Explorer)
 
 ### Crear seciones más pequenas o más grandes
-[demostración](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provee un modo de eliminar la restricción de pantalla completa para secciones y diapositivas. Es posible crear secciones con una altura menor o mayor que el tamano de la ventana del navegador. Esto es especialmente útil para pies de página.
+[Demostración](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provee un modo de eliminar la restricción de pantalla completa para secciones y diapositivas. Es posible crear secciones con una altura menor o mayor que el tamano de la ventana del navegador. Esto es especialmente útil para pies de página.
 
 Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en la sección donde quieres aplicarlo. De este modo fullPage.js ajustará el tamaño al dado por el contenido de dicha sección o diapositiva.
 
@@ -264,7 +264,7 @@ Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en l
 ```
 
 #### Secciones de tamano automático y responsive
-fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
+[Demostración](https://codepen.io/alvarotrigo/pen/WZmMgZ) fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
 De este modo la seccion pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opcion `responsiveWidth` o `responsiveHeight`)
 
 ### Classes de estado añadidas por fullpage.js
@@ -278,7 +278,7 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 - `fp-destroyed` es añadido al contenedor usado para iniciar fullPage.js cuando se destruye fullPage.js.
 
 ### Carga pasiva de elementos multimedia
-[demostración](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo e cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralentizen la carga de la página web y gasten recursos de transferencia innecesarios.
+[Demostración](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo e cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralentizen la carga de la página web y gasten recursos de transferencia innecesarios.
 Cuando se usa la carga pasiva de elementos, éstos solamente se cargarán cuando entren dentro de la parte visible de la ventana.
 Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data-src` tal y como se muestra a continuación:
 
@@ -485,19 +485,19 @@ Puedes evitar que scrolloverflow se aplique en modo responsive si usas la clase 
 Puedes verlos en acción [aquí](http://alvarotrigo.com/fullPage/examples/methods.html)
 
 ### moveSectionUp()
-[demostración](http://codepen.io/alvarotrigo/pen/GJXNMN) Desplaza la página hacia arriba una sección:
+[Demostración](http://codepen.io/alvarotrigo/pen/GJXNMN) Desplaza la página hacia arriba una sección:
 ```javascript
 $.fn.fullpage.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
-[demostración](http://codepen.io/alvarotrigo/pen/jPvVZx) Desplaza la página hacia abajo una sección:
+[Demostración](http://codepen.io/alvarotrigo/pen/jPvVZx) Desplaza la página hacia abajo una sección:
 ```javascript
 $.fn.fullpage.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-[demostración](http://codepen.io/alvarotrigo/pen/doqOmY) Desplaza la página hacia la sección o diapositiva que se le indique. La primera diapositiva en una sección, que es la visible por defecto, tendrá índice 0.
+[Demostración](http://codepen.io/alvarotrigo/pen/doqOmY) Desplaza la página hacia la sección o diapositiva que se le indique. La primera diapositiva en una sección, que es la visible por defecto, tendrá índice 0.
 ```javascript
 /* Desplzando la página a la sección con el link the anclaje `firstSlide` y a la diapositiva numero 2*/
 $.fn.fullpage.moveTo('firstSlide', 2);
@@ -513,7 +513,7 @@ $.fn.fullpage.moveTo(3);
 ```
 ---
 ### silentMoveTo(section, slide)
-[demostración](http://codepen.io/alvarotrigo/pen/doqOeY)
+[Demostración](http://codepen.io/alvarotrigo/pen/doqOeY)
 Exáctamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
 ```javascript
 /* Desplzando la página a la sección con el link the anclaje `firstSlide` y a la diapositiva numero 2*/
@@ -521,21 +521,21 @@ $.fn.fullpage.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
-[demostración](http://codepen.io/alvarotrigo/pen/Wvgoyz)
+[Demostración](http://codepen.io/alvarotrigo/pen/Wvgoyz)
 Desplaza el carousle de diapostivas de la sección actual hacia la siguiente diapositiva.
 ```javascript
 $.fn.fullpage.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
-[demostración](http://codepen.io/alvarotrigo/pen/gpdLjW)
+[Demostración](http://codepen.io/alvarotrigo/pen/gpdLjW)
 Desplaza el carousle de diapostivas de la sección actual hacia la diapositiva anterior.
 ```javascript
 $.fn.fullpage.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
-[demostración](http://codepen.io/alvarotrigo/pen/rVZWrR) Permite definir la configuración de la opción `autoScrolling` después de la inicialización.
+[Demostración](http://codepen.io/alvarotrigo/pen/rVZWrR) Permite definir la configuración de la opción `autoScrolling` después de la inicialización.
 Determina si usar desplazamiento "automático" o "a saltos" o usar el desplazamiento tradicional de cualquier página.
 
 ```javascript
@@ -543,7 +543,7 @@ $.fn.fullpage.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
-[demostración](http://codepen.io/alvarotrigo/pen/GJXNYm)
+[Demostración](http://codepen.io/alvarotrigo/pen/GJXNYm)
 Determina el valor para la opción `fitToSection` definiendo si ajustar la sección más cercana a la pantalla o no.
 
 ```javascript
@@ -551,7 +551,7 @@ $.fn.fullpage.setFitToSection(false);
 ```
 ---
 ### fitToSection()
-[demostración](http://codepen.io/alvarotrigo/pen/JWWagj)
+[Demostración](http://codepen.io/alvarotrigo/pen/JWWagj)
 Desplaza la página hacia la sección activa más cercana encajándola en la pantalla.
 
 ```javascript
@@ -559,7 +559,7 @@ $.fn.fullpage.fitToSection();
 ```
 ---
 ### setLockAnchors(boolean)
-[demostración](http://codepen.io/alvarotrigo/pen/yNxVRQ)
+[Demostración](http://codepen.io/alvarotrigo/pen/yNxVRQ)
 Define el valor para la opción `lockAnchors` determinando si los links de anclaje tendrán algún efecto en la URL o no.
 
 ```javascript
@@ -567,7 +567,7 @@ $.fn.fullpage.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-[demostración](http://codepen.io/alvarotrigo/pen/EjeNdq)
+[Demostración](http://codepen.io/alvarotrigo/pen/EjeNdq)
 Añade o elemina la posibilidad de desplazarse a través de las secciones o diapositivas usando la ruleta del ratón, el trackpad del portátil o con los dedos en dispositivos tátctiles. Ten en cuenta que ésto no desabilitará el desplazamiento usando el teclado. Para ello necesitarás hacer uso de `setKeyboardScrolling`.
 
 - `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o desabilitado.
@@ -585,7 +585,7 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
-[demostración](http://codepen.io/alvarotrigo/pen/GJXNwm) Añade o elimina la posibilidad de desplazarse a través de las secciones usando las teclas del teclado (activo por defecto).
+[Demostración](http://codepen.io/alvarotrigo/pen/GJXNwm) Añade o elimina la posibilidad de desplazarse a través de las secciones usando las teclas del teclado (activo por defecto).
 
 - `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o desabilitado.
 
@@ -601,21 +601,21 @@ $.fn.fullpage.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
-[demostración](http://codepen.io/alvarotrigo/pen/rVZWQb) Determina si fullPage.js modificará la historia del navegador con cada cambio de link the anclaje (#) en la URL.
+[Demostración](http://codepen.io/alvarotrigo/pen/rVZWQb) Determina si fullPage.js modificará la historia del navegador con cada cambio de link the anclaje (#) en la URL.
 
 ```javascript
 $.fn.fullpage.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[demostración](http://codepen.io/alvarotrigo/pen/NqLbeY) Define la velocidad de desplazamiento en milisegundos.
+[Demostración](http://codepen.io/alvarotrigo/pen/NqLbeY) Define la velocidad de desplazamiento en milisegundos.
 
 ```javascript
 $.fn.fullpage.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-[demostración](http://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo asi como cualquier estilo que haya aplicado.
+[Demostración](http://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo asi como cualquier estilo que haya aplicado.
 Ideal para usar cuando se usa en páginas AJAX.
 
 - `type`: (parámetro opcional) Si se define como `all` la estructura HTML creada por fullPage.js asi como cualquier estilo que haya aplicado serán eliminados. De este modo se mantendrá el HTMl original, es decir, el usado antes de que fullPage.js se iniciase.
@@ -637,7 +637,7 @@ $.fn.fullpage.reBuild();
 ```
 ---
 ### setResponsive(boolean)
-[demostración](http://codepen.io/alvarotrigo/pen/WxOyLA) Define el modo "responsive". Cuando se define a `true` la funcionalidad de autoScrolling será desactivada tal y como sucedería si se disparasen las opciones `responsiveWidth` o `responsiveHeight`.
+[Demostración](http://codepen.io/alvarotrigo/pen/WxOyLA) Define el modo "responsive". Cuando se define a `true` la funcionalidad de autoScrolling será desactivada tal y como sucedería si se disparasen las opciones `responsiveWidth` o `responsiveHeight`.
 
 ```javascript
 $.fn.fullpage.setResponsive(true);
@@ -660,7 +660,7 @@ $.fn.fullpage.responsiveSlides.toSlides();
 ```
 
 ## Callbacks
-[demostración](http://codepen.io/alvarotrigo/pen/XbPNQv) Puedes verlas en acción [aquí](http://alvarotrigo.com/fullPage/examples/callbacks.html)..
+[Demostración](http://codepen.io/alvarotrigo/pen/XbPNQv) Puedes verlas en acción [aquí](http://alvarotrigo.com/fullPage/examples/callbacks.html)..
 
 ### afterLoad (`anchorLink`, `index`)
 Se dispara cuando una sección ha sido cargada completamente en la ventana, una vez el desplazamiento ha terminado.
