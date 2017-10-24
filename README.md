@@ -3,7 +3,9 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
 
 <p align="center">
-  <a href="https://github.com/alvarotrigo/fullPage.js"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/en-language.png" /></a><a href="https://github.com/alvarotrigo/fullPage.js/blob/dev/README_SPANISH.md#fullpagejs"><img src="https://raw.githubusercontent.com/alvarotrigo/fullPage.js/dev/examples/imgs/es-language-inactive.png" /></a>
+  <span>English</span> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/lang/spanish/#fullpagejs">Spanish</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/lang/russian/#fullpagejs">Russian</a>
 </p>
 
 ---
