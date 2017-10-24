@@ -34,23 +34,23 @@ Personalizaciones de la librería y solicitudes urgentes a pedido por un precio 
 - [Introducción](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compabitilidad](https://github.com/alvarotrigo/fullPage.js#compatibility)
 - [Uso](https://github.com/alvarotrigo/fullPage.js#uso)
-  - [Crear links a secciones y diapositivas](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#crear-links-a-secciones-y-diapositivas)
-  - [Crear secciones más pequenas o más grandes](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#crear-seciones-más-pequenas-o-más-grandes)
-  - [Classes de estado añadidas por fullpage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#classes-de-estado-añadidas-por-fullpagejs)
-  - [Carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#carga-pasiva-de-elementos-multimedia)
-  - [Autoplay de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#autoreproducir-elementos-multimedia)
-  - [Uso de extensiones](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#uso-de-extensiones)
-- [Opciones](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones)
-- [Metodos](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#métodos)
-- [Callbacks](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#callbacks)
-- [Reportar problemas](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#reportando-problemas)
-- [Contribuir a fullpage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#contribuir-con-fullpagejs)
-- [Changelog](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#changelog)
-- [Build tasks](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#build-tasks)
-- [Recursos](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#recursos)
-- [Quien usa fullpage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#quién-usa-fullpagejs)
-- [Donaciones](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#donaciones)
-- [Licencia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#licencia)
+  - [Crear links a secciones y diapositivas](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#crear-links-a-secciones-y-diapositivas)
+  - [Crear secciones más pequenas o más grandes](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#crear-seciones-más-pequenas-o-más-grandes)
+  - [Classes de estado añadidas por fullpage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#classes-de-estado-añadidas-por-fullpagejs)
+  - [Carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#carga-pasiva-de-elementos-multimedia)
+  - [Autoplay de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#autoreproducir-elementos-multimedia)
+  - [Uso de extensiones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#uso-de-extensiones)
+- [Opciones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones)
+- [Metodos](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#métodos)
+- [Callbacks](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#callbacks)
+- [Reportar problemas](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#reportando-problemas)
+- [Contribuir a fullpage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#contribuir-con-fullpagejs)
+- [Changelog](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#changelog)
+- [Build tasks](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#build-tasks)
+- [Recursos](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#recursos)
+- [Quien usa fullpage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#quién-usa-fullpagejs)
+- [Donaciones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#donaciones)
+- [Licencia](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#licencia)
 
 ## Introducción
 Las sugerencias serán más que bienvenidas, no solamente de pedidos de nuevas funcionalidades sino también de mejoras de código.
@@ -316,7 +316,7 @@ Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes 
 ```
 
 ### Uso de extensiones
-fullPage.js [provee varias extensiones](http://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increibles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones)
+fullPage.js [provee varias extensiones](http://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increibles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones)
 
 Las extensiones requiren el uso del archivo comprimido [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) disponible [en la carpeta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) en lugar del archivo habitual de fullPage (`jquery.fullpage.js` o `jquery.fullpage.min.js`).
 Una vez adquiras el archivo correspondiente a la extensión que quieras usar, tendrás que añadirlo antes del archivo de fullPage. Por ejemplo, si quiero usar la extension Continuous Horizontal tendré que añadir el fichero de la extension y después el fichero de fullPage version extensiones.
@@ -328,7 +328,7 @@ Una vez adquiras el archivo correspondiente a la extensión que quieras usar, te
 
 Cada extensión requiere de una licencia y de una clave de activación. [Ver más detalles sobe el uso de licencias aquí](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
 
-Luego podrás usar la extension y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones).
+Luego podrás usar la extension y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones).
 
 ## Opciones
 
@@ -481,7 +481,7 @@ Puedes evitar que scrolloverflow se aplique en modo responsive si usas la clase 
 
 - `parallaxOptions`: (por defecto : `{ type: 'reveal', percentage: 62, property: 'translate'}`). Permite configurar los parámetros para el efecto de parallax cuando se usa la opción `parallax:true`. [Lee más acerca de la opción parallax aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
-- `lazyLoading`: (por defecto  `true`) La carga pasiva está activa por defecto, lo que significa que cargará pasivamente cualquier elemento multimedia que contenga el atributo `data-src` como se detalla en la [carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#carga-pasiva-de-elementos-multimedia). Si quieres usar otra librería de carga pasiva puedes desabilitar esta funcionalidad usando `false`.
+- `lazyLoading`: (por defecto  `true`) La carga pasiva está activa por defecto, lo que significa que cargará pasivamente cualquier elemento multimedia que contenga el atributo `data-src` como se detalla en la [carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#carga-pasiva-de-elementos-multimedia). Si quieres usar otra librería de carga pasiva puedes desabilitar esta funcionalidad usando `false`.
 
 ## Métodos
 Puedes verlos en acción [aquí](http://alvarotrigo.com/fullPage/examples/methods.html)
@@ -516,7 +516,7 @@ $.fn.fullpage.moveTo(3);
 ---
 ### silentMoveTo(section, slide)
 [Demostración](http://codepen.io/alvarotrigo/pen/doqOeY)
-Exáctamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
+Exáctamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
 ```javascript
 /* Desplzando la página a la sección con el link the anclaje `firstSlide` y a la diapositiva numero 2*/
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
@@ -855,7 +855,7 @@ $('#fullpage').fullpage({
 ```
 
 #### Cancelando un desplazamiento antes de que tenga lugar
-Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLeave`. Exáctametne igual que cuando se usa [`onLeave`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#cancelando-un-desplazamiento-antes-de-que-tenga-lugar).
+Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLeave`. Exáctametne igual que cuando se usa [`onLeave`](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#cancelando-un-desplazamiento-antes-de-que-tenga-lugar).
 
 # Reportando problemas
 1. Por favor, usa el buscador en github issues para buscar tu duda o problema antes de pregunar.
