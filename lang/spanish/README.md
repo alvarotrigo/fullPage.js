@@ -4,7 +4,7 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
 
 <p align="center">
-  <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js#fullpagejs">English</a> |
   <span>Spanish</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/lang/russian/#fullpagejs">Russian</a>
 </p>
