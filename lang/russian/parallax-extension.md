@@ -4,11 +4,11 @@
 
 Прочтите раздел [Использование расширений](https://github.com/alvarotrigo/fullPage.js#use-extensions) перед использованием опции параллакс.
 - [Живое демо](http://alvarotrigo.com/fullPage/extensions/parallax.html)
-- [Необходимая HTML-структура](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#required-html-structure)
-- [Добавление фона](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#applying-the-background)
-- [Опции](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#options)
-  - [Эффекты параллакс](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#parallax-effect-options)
-- [Функции](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#methods)
+- [Необходимая HTML-структура](##Необходимая-html-структура)
+- [Добавление фона](#Добавление-фона)
+- [Опции](#Опции)
+  - [Эффекты параллакс](#Эффекты-параллакс)
+- [Функции](#Функции)
 
 ## Необходимая HTML-структура
 Чтобы использовать эффект параллакс в разделах и слайдах, необходимо добавить новый элемент с классом `fp-bg`. Это должен быть пустой `div`, который следует разместить как первый дочерний элемент раздела или слайда. Например:
