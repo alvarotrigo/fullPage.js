@@ -6,7 +6,7 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js#fullpagejs">English</a> |
   <span>Spanish</span> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/lang/russian/#fullpagejs">Russian</a>
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Russian</a>
 </p>
 
 ---
