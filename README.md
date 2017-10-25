@@ -895,7 +895,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google.png)](http://www.yourprimer.com/)
-[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
+[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-2.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
 [![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay.png)](http://pages.ebay.com/design/)
 ![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)
 ![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)
