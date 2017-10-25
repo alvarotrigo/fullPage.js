@@ -218,8 +218,6 @@
 
         displayWarnings();
 
-
-
         //easeInOutCubic animation included in the plugin
         $.extend($.easing,{ easeInOutCubic: function (x, t, b, c, d) {if ((t/=d/2) < 1) return c/2*t*t*t + b;return c/2*((t-=2)*t*t + 2) + b;}});
 
@@ -306,7 +304,7 @@
         }
 
         /**
-        * Adds or remove the possiblity of scrolling through sections by using the mouse wheel or the trackpad.
+        * Adds or remove the possibility of scrolling through sections by using the mouse wheel or the trackpad.
         */
         function setMouseWheelScrolling(value){
             if(value){
@@ -455,22 +453,15 @@
 
                 $(this).css('height', windowsHeight + 'px');
 
-                //resizing the scrolling divs
-                if(options.scrollOverflow){
-                    if(slides.length){
-                        slides.each(function(){
-                            scrollBarHandler.createScrollBar($(this));
-                        });
-                    }else{
-                        scrollBarHandler.createScrollBar($(this));
-                    }
-                }
-
                 //adjusting the position fo the FULL WIDTH slides...
                 if (slides.length > 1) {
                     landscapeScroll(slidesWrap, slidesWrap.find(SLIDE_ACTIVE_SEL));
                 }
             });
+
+            if(options.scrollOverflow){
+                scrollBarHandler.createScrollBarForAll();
+            }
 
             var activeSection = $(SECTION_ACTIVE_SEL);
             var sectionIndex = activeSection.index(SECTION_SEL);
@@ -513,6 +504,7 @@
 
         if($(this).length){
             //public functions
+            FP.version = '2.9.5';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -879,6 +871,7 @@
 
             lazyLoad(section);
             playMedia(section);
+
             if(options.scrollOverflow){
                 options.scrollOverflowHandler.afterLoad();
             }
@@ -894,8 +887,7 @@
         * Determines if the URL anchor destiny is the starting section (the one using 'active' class before initialization)
         */
         function isDestinyTheStartingSection(){
-            var anchors =  window.location.hash.replace('#', '').split('/');
-            var destinationSection = getSectionByAnchor(decodeURIComponent(anchors[0]));
+            var destinationSection = getSectionByAnchor(getAnchorsURL().section);
 
             return !destinationSection.length || destinationSection.length && destinationSection.index() === startingSection.index();
         }
@@ -997,7 +989,11 @@
 
                     scrollId2 = setTimeout(function(){
                         //checking it again in case it changed during the delay
-                        if(options.fitToSection){
+                        if(options.fitToSection &&
+
+                            //is the destination element bigger than the viewport?
+                            $(SECTION_ACTIVE_SEL).outerHeight() <= windowsHeight
+                        ){
                             fitToSection();
                         }
                     }, options.fitToSectionDelay);
@@ -1606,7 +1602,7 @@
             var panel = getSlideOrSection(destiny);
             var element;
 
-            panel.find('img[data-src], img[data-srcset], source[data-src], audio[data-src], iframe[data-src]').each(function(){
+            panel.find('img[data-src], img[data-srcset], source[data-src], video[data-src], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
 
                 $.each(['src', 'srcset'], function(index, type){
@@ -1617,7 +1613,8 @@
                 });
 
                 if(element.is('source')){
-                    element.closest('video').get(0).load();
+                    var typeToPlay = element.closest('video').length ? 'video' : 'audio';
+                    element.closest(typeToPlay).get(0).load();
                 }
             });
         }
@@ -1702,10 +1699,9 @@
         * Scrolls to the anchor in the URL when loading the site
         */
         function scrollToAnchor(){
-            //getting the anchor link in the URL and deleting the `#`
-            var value =  window.location.hash.replace('#', '').split('/');
-            var sectionAnchor = decodeURIComponent(value[0]);
-            var slideAnchor = decodeURIComponent(value[1]);
+            var anchors =  getAnchorsURL();
+            var sectionAnchor = anchors.section;
+            var slideAnchor = anchors.slide;
 
             if(sectionAnchor){  //if theres any #
                 if(options.animateAnchor){
@@ -1722,14 +1718,13 @@
         */
         function hashChangeHandler(){
             if(!isScrolling && !options.lockAnchors){
-                var value =  window.location.hash.replace('#', '').split('/');
-                var sectionAnchor = decodeURIComponent(value[0]);
-                var slideAnchor = decodeURIComponent(value[1]);
+                var anchors = getAnchorsURL();
+                var sectionAnchor = anchors.section;
+                var slideAnchor = anchors.slide;
 
-                    //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
-                    var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
-                    var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
-
+                //when moving to a slide in the first section for the first time (first time to add an anchor to the URL)
+                var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
+                var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
 
                 if(sectionAnchor.length){
                     /*in order to call scrollpage() only once for each destination at a time
@@ -1739,6 +1734,21 @@
                         scrollPageAndSlide(sectionAnchor, slideAnchor);
                     }
                 }
+            }
+        }
+
+        //gets the URL anchors (section and slide)
+        function getAnchorsURL(){
+            //getting the anchor link in the URL and deleting the `#`
+            var hash = window.location.hash;
+            var anchorsParts =  hash.replace('#', '').split('/');
+
+            //using / for visual reasons and not as a section/slide separator #2803
+            var isFunkyAnchor = hash.indexOf('#/') > -1;
+
+            return {
+                section: isFunkyAnchor ? '/' + anchorsParts[1] : decodeURIComponent(anchorsParts[0]),
+                slide: isFunkyAnchor ? decodeURIComponent(anchorsParts[2]) : decodeURIComponent(anchorsParts[1])
             }
         }
 
@@ -1956,7 +1966,7 @@
                 //if the site is not just resizing and readjusting the slides
                 if(!v.localIsResizing && v.xMovement!=='none'){
                     if($.isFunction( options.onSlideLeave )){
-                        if(options.onSlideLeave.call( v.prevSlide, v.anchorLink, (v.sectionIndex + 1), v.prevSlideIndex, v.xMovement, v.slideIndex ) === false){
+                        if(options.onSlideLeave.call( v.prevSlide, v.anchorLink, (v.sectionIndex + 1), v.prevSlideIndex, v.direction, v.slideIndex ) === false){
                             slideMoving = false;
                             return;
                         }
@@ -2119,7 +2129,6 @@
         * Activating the vertical navigation bullets according to the given slide name.
         */
         function activateNavDots(name, sectionIndex){
-            console.log(name + ' vs ' + sectionIndex);
             if(options.navigation){
                 $(SECTION_NAV_SEL).find(ACTIVE_SEL).removeClass(ACTIVE);
                 if(name){

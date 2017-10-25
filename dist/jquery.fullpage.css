@@ -14,16 +14,6 @@ html.fp-enabled,
     /*Avoid flicker on slides transitions for mobile phones #336 */
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-#superContainer {
-    height: 100%;
-    position: relative;
-
-    /* Touch detection for Windows 8 */
-    -ms-touch-action: none;
-
-    /* IE 11 on Windows Phone 8.1*/
-    touch-action: none;
-}
 .fp-section {
     position: relative;
     -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
