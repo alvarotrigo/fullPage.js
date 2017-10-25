@@ -23,7 +23,7 @@ gulp.task('css', function() {
             keepSpecialComments: '1'
         }))
         .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.')) 
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -37,6 +37,18 @@ gulp.task('js', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('scrolloverflow', function() {
+    gulp.src('./vendors/scrolloverflow.js')
+        .pipe(sourcemaps.init())
+        .pipe(gulp.dest('./vendors'))
+        .pipe(uglify({
+            preserveComments: 'license'
+        }))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('./vendors'));
 });
 
 //private file
