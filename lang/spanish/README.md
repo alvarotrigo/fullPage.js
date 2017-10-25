@@ -891,25 +891,25 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 ## Quién usa fullPage.js
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google.png)](http://www.yourprimer.com/)
-[![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)](http://www.sony-asia.com/microsite/mdr-10/)
+[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-2.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
+[![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay.png)](http://pages.ebay.com/design/)
+![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)
 ![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)
-[![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)](http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins)
-[![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds.png)](https://mcdonalds.com.au/create-your-taste)
-[![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)](http://www.battlefield.com/)
+![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)
+![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds.png)
+![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)
+[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
-[![scribe](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/scribe.png)](http://usescribe.com/)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
 [![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.gif)](http://www.bugatti.com/veyron/veyron-164/)
-[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
+[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
 
-- http://www.britishairways.com/en-gb/information/travel-classes/experience-our-cabins
-- http://www.sony-asia.com/microsite/mdr-10/
+- http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
+- http://pages.ebay.com/design/
 - http://www.yourprimer.com/
-- http://mcdonalds.com.au/create-your-taste
+- http://www.vogue.fr/chaumet-histoires-de-liens
 - http://burntmovie.com/
-- http://essenso.com/
 - http://www.bugatti.com/veyron/veyron-164/
-- http://www.kibey.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
@@ -926,11 +926,9 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - http://collection.madeofsundays.com
 - http://thiswasmybest.com/
 - http://www.boxreload.com/
-- http://lawinenstift.com/
 - http://educationaboveall.org/
 - http://camfindapp.com/
 - http://rockercreative.com/
-- http://wantnova.com/
 - http://usescribe.com/
 - http://lucilecazanave.com/
 - http://boxx.hk/
@@ -948,7 +946,6 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
 - http://fossdistillery.is
-- http://www.conversionculture.com/
 - http://ded-morozz.kiev.ua/
 - http://unabridgedsoftware.com/
 - http://atlanticcorp.us/
@@ -956,7 +953,6 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - http://themify.me/demo/#theme=fullpane
 - http://dancingroad.com
 - http://www.camanihome.com/
-- http://www.exapoint.ch/
 - https://life2film.com/en/
 
 Puedes encontrar otra lista más larga [aquí](http://libscore.com/#$.fn.fullpage).
