@@ -4,8 +4,8 @@
 
 <p align="center">
   <span>English</span> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/lang/spanish/#fullpagejs">Spanish</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/lang/russian/#fullpagejs">Russian</a>
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Spanish</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Russian</a>
 </p>
 
 ---
