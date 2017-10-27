@@ -2358,7 +2358,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 // scrolloverflow module
-(function (window, document, Math) {
+(function (window, document, $) {
     $.fn.fp_scrolloverflow = (function() {
 
         // keeping central set of classnames and selectors
@@ -2731,4 +2731,4 @@ if ( typeof module != 'undefined' && module.exports ) {
             iscrollHandler: iscrollHandler
         };
     })();
-})(window, jQuery);
+})(window, document, jQuery);
