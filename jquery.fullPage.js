@@ -107,6 +107,7 @@
             navigation: false,
             navigationPosition: 'right',
             navigationTooltips: [],
+            navigationColor: '#333',
             showActiveTooltip: false,
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
@@ -808,13 +809,18 @@
                 return options.showActiveTooltip ? SHOW_ACTIVE_TOOLTIP + ' ' + options.navigationPosition : options.navigationPosition;
             });
 
+            var span = $('<span></span>');
+            if (options.navigationColor){
+                span.css({ background: options.navigationColor });
+            }
+
             for (var i = 0; i < $(SECTION_SEL).length; i++) {
                 var link = '';
                 if (options.anchors.length) {
                     link = options.anchors[i];
                 }
 
-                var li = '<li><a href="#' + link + '"><span></span></a>';
+                var li = '<li><a href="#' + link + '">' + span.prop('outerHTML') + '</a>';
 
                 // Only add tooltip if needed (defined by user)
                 var tooltip = options.navigationTooltips[i];

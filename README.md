@@ -156,6 +156,7 @@ $(document).ready(function() {
 		navigation: false,
 		navigationPosition: 'right',
 		navigationTooltips: ['firstSlide', 'secondSlide'],
+		navigationColor: '#333',
 		showActiveTooltip: false,
 		slidesNavigation: false,
 		slidesNavPosition: 'bottom',
@@ -451,6 +452,8 @@ $('#fullpage').fullpage({
 - `navigationPosition`: (default `none`) It can be set to `left` or `right` and defines which position the navigation bar will be shown (if using one).
 
 - `navigationTooltips`: (default []) Defines the tooltips to show for the navigation circles in case they are being used. Example: `navigationTooltips: ['firstSlide', 'secondSlide']`. You can also define them by using the attribute `data-tooltip` in each section if you prefer.
+
+- `navigationColor`: (default `#333`) Defines the CSS color for the small circles in the navigation bar.
 
 - `showActiveTooltip`: (default `false`) Shows a persistent tooltip for the actively viewed section in the vertical navigation.
 

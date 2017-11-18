@@ -67,10 +67,11 @@
 		$(document).ready(function() {
 			$('#fullpage').fullpage({
 				anchors: ['firstPage', 'secondPage', '3rdPage'],
-				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+				sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C', '#b3a6a1'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['First page', 'Second page', 'Third and last page']
+				navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth and last page'],
+				navigationColor: '#606'
 			});
 		});
 	</script>
@@ -133,7 +134,7 @@
 			<div class="intro">
 				<h1>Clickable</h1>
 				<p>
-					You can even click on the navigation and jump directly to another section.
+					You can click on the navigation and jump directly to another section.
 				</p>
 			</div>
 		</div>
@@ -144,6 +145,14 @@
 
 	</div>
 	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Colorful</h1>
+			<p>
+				You can even give the dots a custom color.
+			</p>
+		</div>
+	</div>
+	<div class="section" id="section3">
 		<div class="intro">
 			<h1>Enjoy it</h1>
 		</div>
