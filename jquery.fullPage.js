@@ -111,6 +111,7 @@
             showActiveTooltip: false,
             slidesNavigation: false,
             slidesNavPosition: 'bottom',
+            slidesNavColor: '#333',
             scrollBar: false,
             hybrid: false,
 
@@ -2312,8 +2313,13 @@
             //top or bottom
             nav.addClass(options.slidesNavPosition);
 
+            var span = $('<span></span>');
+            if(options.slidesNavColor){
+                span.css({ background: options.slidesNavColor });
+            }
+
             for(var i=0; i< numSlides; i++){
-                nav.find('ul').append('<li><a href="#"><span></span></a></li>');
+                nav.find('ul').append('<li><a href="#">' + span.prop('outerHTML') + '</a></li>');
             }
 
             //centering it
