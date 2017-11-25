@@ -25,7 +25,7 @@
 ---
 
 Una sencilla librería Javascript para la creación de páginas web con scroll a pantalla completa. (también conocido popularmente como "single page websites" o "onepage sites")
-Permite crear un desplazamiento a pantalla completa asi como añadir diapositivas horizontales en las secciones.
+Permite crear un desplazamiento a pantalla completa así como añadir diapositivas horizontales en las secciones.
 
 Invítame a un café:
 [![Donate](https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
@@ -58,23 +58,23 @@ Las sugerencias serán más que bienvenidas, no solamente de pedidos de nuevas f
 Hagamos de fullPage.js una gran librería para facilitar la vida de las personas!
 
 ## Compatibilidad
-fullPage.js es totalmente compatible y funcional en cualquier navegador moderno asi como en algunos de los antiguos como Internet Explorer 8 y 9 u Opera 12.
-Funciona con navegadores que soportan CSS3 y con los que no lo soportan, haciendolo ideal incluso para con navegadores antiguos.
-También provee soporte táctil para dispositivos móbiles, tabletas y ordenadores con pantalla táctil.
+fullPage.js es totalmente compatible y funcional en cualquier navegador moderno así como con algunos antiguos tales como Internet Explorer 8 y 9 u Opera 12.
+Funciona con navegadores que soportan CSS3 y con los que no lo soportan, haciéndolo ideal incluso con navegadores antiguos.
+También provee soporte táctil en dispositivos móbiles, tabletas y ordenadores con pantalla táctil.
 
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](https://www.browserstack.com/)
 
-Gracias a [Browserstack](http://www.browserstack.com/) por dar soporte a fullPage.js.
+Gracias a [Browserstack](https://www.browserstack.com/) por dar soporte a fullPage.js.
 
 ## Uso
 Como podéis ver en los ejemplos disponibles, es necesario incluir:
- - [La librería de jQuery](http://jquery.com/). (1.6.0 minimum)
+ - La librería de [jQuery](http://jquery.com/). (1.6.0 minimum)
  - El archivo de JavaScript `jquery.fullPage.js` (o su versión minificada `jquery.fullPage.min.js`)
  - El archivio CSS `jquery.fullPage.css` (o su versión minificada `jquery.fullpage.min.css`)
 
-**Opcionalmente**, cuando se usa la opcion `css3:false`, puedes anadir la libreríóa de [jQuery UI](http://jqueryui.com/) en caso de que quiera susar otro efecto "easing" en lugar de los que están incluidos en la libreria de jQuery por defecto (`linear` y `swing`) o el includo en fullPage.js por defecto (`easeInOutCubic`).
+**Opcionalmente**, cuando se usa la opción `css3:false`, puedes añadir la librería de [jQuery UI](http://jqueryui.com/) en caso de que quiera usar otro efecto `easing` en lugar de los que están incluidos en la libreria de jQuery por defecto (`linear` y `swing`) o el includo en fullPage.js por defecto (`easeInOutCubic`).
 
-### Instarlar usando bower o npm
+### Instalar usando bower o npm
 **Opcionalmente**, puedes instalar fullPage.js haciendo uso de bower o npm si lo prefieres:
 
 Terminal:
@@ -92,27 +92,26 @@ npm install fullpage.js
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- Esta linea es opcional. Sólamente es necesaria si se hace uso de la opcion `css3:false` y se quiere usar otro efecto `easing` en lugar de "linear", "swing" o "easeInOutCubic". -->
+<!-- Esta línea es opcional. Solamente es necesaria si se hace uso de la opción `css3:false` y se quiere usar otro efecto `easing` en lugar de "linear", "swing" o "easeInOutCubic". -->
 <script src="vendors/jquery.easings.min.js"></script>
 
 
-<!-- Esta linea es opcional y sólamente es necesaria en caso de usar la opcion `scrollOverflow:true`. -->
+<!-- Esta línea es opcional y solamente es necesaria en caso de usar la opción `scrollOverflow:true`. -->
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
 
 <script type="text/javascript" src="jquery.fullPage.js"></script>
 ```
 
 ### Uso opcional de un CDN
-Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distrubución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en CDNJS:
-https://cdnjs.com/libraries/fullPage.js
+Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distribución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en [CDNJS](https://cdnjs.com/libraries/fullPage.js):
 
 ### Estructura HTML requerida
-El documento HTML requerirá comenzar con el [HTML DOCTYPE obligatorio](http://www.corelangs.com/html/introduction/doctype.html) en la primera linea de tu archivo HTML. De lo contrario puedes tener problemas con el tamaño de las secciones y diapositivas. Todos los ejemplos disponibles aqui usan la etiqueta HTML 5 `<!DOCTYPE html>`.
+El documento HTML requerirá comenzar con el [HTML DOCTYPE obligatorio](http://www.corelangs.com/html/introduction/doctype.html) en la primera línea de tu archivo HTML. De lo contrario puedes tener problemas con el tamaño de las secciones y diapositivas. Todos los ejemplos disponibles aqui usan la etiqueta HTML 5 `<!DOCTYPE html>`.
 
 Cada sección se ha de definir usando la clase `section`
-La sección activa por defecto será la primera, que será tratada com la página de inicio.
+La sección activa por defecto será la primera, que será tratada como la página de inicio.
 
-Las seciones tienes que estar contenidas en otro elemento (`<div id="fullpage">` en este caso). El elemento contenedor no puede ser el elemento `body` de la página.
+Las secciones tienen que estar contenidas en otro elemento (`<div id="fullpage">` en este caso). El elemento contenedor no puede ser el elemento `body` de la página.
 
 ```html
 <div id="fullpage">
@@ -135,7 +134,7 @@ Puedes usar la clase `slide` para crear diapositivas horizontales dentro de una 
 	<div class="slide"> Diapositiva 4 </div>
 </div>
 ````
-Puedes ver un ejemplo totalmente funciona de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
+Puedes ver un ejemplo totalmente funcional de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
 
 ### Inicialización
 Todo lo que necesitas hacer es llamar a fullPage.js dentro de la función `$(document).ready`.
@@ -145,7 +144,7 @@ $(document).ready(function() {
 });
 ```
 
-Una inizialización más compleja con todas las opciones definidas sería asi:
+Una inizialización más compleja con todas las opciones definidas sería así:
 ```javascript
 $(document).ready(function() {
 	$('#fullpage').fullpage({
@@ -238,7 +237,7 @@ $(document).ready(function() {
 });
 ```
 
-El link de anclaje al final de la URL `#secondPage/2` define la sección y diapositiva de destino respectivamente. In la URL anterior, la sección de destino será la que está definida con el link de anclaje `secondPage` y la diapositiva será la segunda de dicha sección porque estamos usando el índice `2` para ella. (la primera diapositiva de una sección tendrá índice 0, porque técnicamente será tratada como una sección)index 0, as technically it is a section).
+El link de anclaje al final de la URL `#secondPage/2` define la sección y diapositiva de destino respectivamente. En la URL anterior, la sección de destino será la que está definida con el link de anclaje `secondPage` y la diapositiva será la segunda de dicha sección porque estamos usando el índice `2` para ella (la primera diapositiva de una sección tendrá índice 0, porque técnicamente será tratada como una sección).
 
 Podríamos haber usado un link de anclaje personalizado para la diapositiva en lugar de su índice si hubiesemos usado el atributo `data-anchor` en la estructura HTML:
 
@@ -252,12 +251,12 @@ Podríamos haber usado un link de anclaje personalizado para la diapositiva en l
 ```
 En este último caso, la URL que usaríamos sería `#secondPage/slide3`, que es le equivalente a nuestra URL anterior `#secondPage/2`.
 
-Nota que los links de anclaje en la sección también pueden definirse del mismo modo, es decir, usando el atributo `data-anchor` siempre y cuando no hayamos definido la opcion `anchors` al iniciar fullPage.js.
+Nota que los links de anclaje en la sección también pueden definirse del mismo modo, es decir, usando el atributo `data-anchor` siempre y cuando no hayamos definido la opción `anchors` al iniciar fullPage.js.
 
-**Ten cuidado!** las etiquetas `data-anchor` no pueden tener el mismo valor que ninguna otra etiqueta ID en la página. (o `name` para Internet Explorer)
+**Ten cuidado!**, las etiquetas `data-anchor` no pueden tener el mismo valor que ninguna otra etiqueta ID en la página (o `name` para Internet Explorer).
 
-### Crear seciones más pequenas o más grandes
-[Demostración](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provee un modo de eliminar la restricción de pantalla completa para secciones y diapositivas. Es posible crear secciones con una altura menor o mayor que el tamano de la ventana del navegador. Esto es especialmente útil para pies de página.
+### Crear seciones más pequeñas o más grandes
+[Demostración](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provee un modo de eliminar la restricción de pantalla completa para secciones y diapositivas. Es posible crear secciones con una altura menor o mayor que el tamaño de la ventana del navegador. Esto es especialmente útil para pies de página.
 
 Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en la sección donde quieres aplicarlo. De este modo fullPage.js ajustará el tamaño al dado por el contenido de dicha sección o diapositiva.
 
@@ -266,22 +265,22 @@ Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en l
 <div class="section fp-auto-height">Alto automático</div>
 ```
 
-#### Secciones de tamano automático y responsive
+#### Secciones de tamaño automático y responsive
 [Demostración](https://codepen.io/alvarotrigo/pen/WZmMgZ) fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
-De este modo la seccion pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opcion `responsiveWidth` o `responsiveHeight`)
+De este modo la sección pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opción `responsiveWidth` o `responsiveHeight`)
 
 ### Classes de estado añadidas por fullpage.js
 Fullpage.js añade multiples clases en diferentes elementos para reflejar el estado en el que se encuentra la página web:
 
 - `active` es añadido en la sección o diapositiva actual.
-- `active` es añadido en el elemento actual del menu (si se usa la opcion `menu`)
-- Una clase con la forma `fp-viewing-SECCION-DIAPOSITIVA` es añadida al elemento `body` de la página. (ej: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) Las partes de `SECCION` Y `DIAPOSITVA` serán los links de anclaje (o los índices) de la sección o diapositiva actual.
+- `active` es añadido en el elemento actual del menú (si se usa la opción `menu`)
+- Una clase con la forma `fp-viewing-SECCION-DIAPOSITIVA` es añadida al elemento `body` de la página. (ej: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) Las partes de `SECCION` Y `DIAPOSITIVA` serán los links de anclaje (o los índices) de la sección o diapositiva actual.
 - `fp-responsive` es añadido al element `body` cuando se entra en modo "responsive".
 - `fp-enabled` es añadido al elemento `html` cuando fullPage.js está activo. (y se elimina cuando se destruye)
 - `fp-destroyed` es añadido al contenedor usado para iniciar fullPage.js cuando se destruye fullPage.js.
 
 ### Carga pasiva de elementos multimedia
-[Demostración](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo e cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralentizen la carga de la página web y gasten recursos de transferencia innecesarios.
+[Demostración](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo de cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralentizen la carga de la página web y gasten recursos de transferencia innecesarios.
 Cuando se usa la carga pasiva de elementos, éstos solamente se cargarán cuando entren dentro de la parte visible de la ventana.
 Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data-src` tal y como se muestra a continuación:
 
@@ -292,7 +291,7 @@ Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data
 	<source data-src="video.mp4" type="video/mp4" />
 </video>
  ```
-Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el atributo `data-src` también, puedes desactivar la carga pasiva de fullpage.js que está activa por defecto usando la opcion `lazyLoading: false`.
+Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el atributo `data-src` también, puedes desactivar la carga pasiva de fullpage.js que está activa por defecto usando la opción `lazyLoading: false`.
 
 ### Autoreproducir elementos multimedia
 
@@ -309,7 +308,7 @@ Usa el atributo `data-autplay` para comenzar a reproducirlo cuando la sección o
 ```
 
 #### Pausar al abandonar la sección o diapositiva
-Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes de Youtube serán automaticamente pausados al abandonar la sección o diapositiva a la que pertenecen. Esto puede desabilitarse usando el atributo `data-keepplaying`. Por ejemplo:
+Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes de Youtube serán automáticamente pausados al abandonar la sección o diapositiva a la que pertenecen. Esto puede desabilitarse usando el atributo `data-keepplaying`. Por ejemplo:
 ```html
 <audio data-keepplaying>
 	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
@@ -319,27 +318,28 @@ Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes 
 ### Uso de extensiones
 fullPage.js [provee varias extensiones](http://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increibles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones)
 
-Las extensiones requiren el uso del archivo comprimido [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) disponible [en la carpeta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) en lugar del archivo habitual de fullPage (`jquery.fullpage.js` o `jquery.fullpage.min.js`).
-Una vez adquiras el archivo correspondiente a la extensión que quieras usar, tendrás que añadirlo antes del archivo de fullPage. Por ejemplo, si quiero usar la extension Continuous Horizontal tendré que añadir el fichero de la extension y después el fichero de fullPage version extensiones.
+Las extensiones requieren el uso del archivo comprimido [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) disponible [en la carpeta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) en lugar del archivo habitual de fullPage (`jquery.fullpage.js` o `jquery.fullpage.min.js`).
+Una vez que obtengas el archivo correspondiente a la extensión que quieras usar, tendrás que añadirlo antes del archivo de fullPage. Por ejemplo, si quiero usar la extension `Continuous Horizontal` tendré que añadir el fichero de la extension y después el fichero de fullPage versión extensiones.
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
 <script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
 ```
 
-Cada extensión requiere de una licencia y de una clave de activación. [Ver más detalles sobe el uso de licencias aquí](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
+Cada extensión requiere de una licencia y de una clave de activación. [Ver más detalles sobre el uso de licencias aquí](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
 
-Luego podrás usar la extension y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones).
+Luego podrás usar la extensión y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones).
 
 ## Opciones
 
-- `controlArrows`: (por defecto  `true`) Determina si usar flechas de contrl en las diapostiivas para deslizar hacia la derecha o izquierda.
+- `controlArrows`: (por defecto  `true`) Determina si usar flechas de control en las diapostiivas para deslizar hacia la derecha o izquierda.
 
-- `verticalCentered`: (por defecto  `true`) centrado vertical de las secciones y diapositivas. Cuando se usa `true`, el contenido de cada sección y diapositiva será embuelto dentro de un contenedor por la libreríá. Considera usar delegacion en eventos Javascript o usar los eventos dentro del callback `afterRender`.
+- `verticalCentered`: (por defecto  `true`) centrado vertical de las secciones y diapositivas. Cuando se usa `true`, el contenido de cada sección y diapositiva será envuelto dentro de un contenedor por la librería. Considera usar delegación en eventos Javascript o usar los eventos dentro del callback `afterRender`.
 
 - `scrollingSpeed`: (por defecto  `700`) Velocidad de deslizamiento en milisegundos.
 
-- `sectionsColor`: (por defecto  `none`) Define la propiedad CSS `background-color` property para cada sección.
+- `sectionsColor`: (por defecto  `none`) Define la propiedad CSS `background-color` para cada sección.
+
 Ejemplo:
 ```javascript
 $('#fullpage').fullpage({
