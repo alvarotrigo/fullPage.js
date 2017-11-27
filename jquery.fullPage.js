@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.5
+ * fullPage 2.9.6
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -1602,7 +1602,7 @@
             var panel = getSlideOrSection(destiny);
             var element;
 
-            panel.find('img[data-src], img[data-srcset], source[data-src], video[data-src], audio[data-src], iframe[data-src]').each(function(){
+            panel.find('img[data-src], img[data-srcset], source[data-src], source[data-srcset], video[data-src], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
 
                 $.each(['src', 'srcset'], function(index, type){

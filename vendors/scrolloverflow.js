@@ -1,5 +1,5 @@
 /*!
-* Customized version of iScroll.js 0.0.2
+* Customized version of iScroll.js 0.0.3
 * It fixes bugs affecting its integration with fullpage.js
 */
 /*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -2358,7 +2358,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 // scrolloverflow module
-(function (window, document, Math) {
+(function (window, document, $) {
     $.fn.fp_scrolloverflow = (function() {
 
         // keeping central set of classnames and selectors
@@ -2731,4 +2731,4 @@ if ( typeof module != 'undefined' && module.exports ) {
             iscrollHandler: iscrollHandler
         };
     })();
-})(window, jQuery);
+})(window, document, jQuery);
