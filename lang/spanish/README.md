@@ -35,7 +35,7 @@ Personalizaciones de la librería y solicitudes urgentes -a pedido- a un precio 
 - [Introducción](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compabitilidad](https://github.com/alvarotrigo/fullPage.js#compatibility)
 - [Uso](https://github.com/alvarotrigo/fullPage.js#uso)
-  - [Crear enlaces a secciones y diapositivas](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#crear-links-a-secciones-y-diapositivas)
+  - [Crear enlaces a secciones y diapositivas](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#crear-enlaces-a-secciones-y-diapositivas)
   - [Crear secciones más pequeñas o más grandes](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#crear-seciones-más-pequenas-o-más-grandes)
   - [Clases de estado añadidas por fullpage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#classes-de-estado-añadidas-por-fullpagejs)
   - [Carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#carga-pasiva-de-elementos-multimedia)
@@ -112,7 +112,7 @@ El documento HTML requerirá comenzar con el [HTML DOCTYPE obligatorio](http://w
 Cada sección se ha de definir usando la clase `section`.
 La sección activa por defecto será la primera, que será tratada como la página de inicio.
 
-Las seciones tienes que estar contenidas en otro elemento (en este caso`<div id="fullpage">`). El elemento contenedor no puede ser el elemento `body` de la página.
+Las seciones tienen que estar contenidas en otro elemento (en este caso`<div id="fullpage">`). El elemento contenedor no puede ser el elemento `body` de la página.
 
 ```html
 <div id="fullpage">
@@ -453,7 +453,7 @@ $('#fullpage').fullpage({
 
 - `slidesNavPosition`: (por defecto `bottom`) Determina la posición que tomará la navegación para las diapositivas horizontales de la página. Admite los valores `top` y `bottom`. Tal vez quieras modificar la distancia inferior o superior usando estilos CSS así como el color de los mismos.
 
-- `scrollOverflow`: (por defecto `false`) (no compatible con IE 8) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Cuando se define a `true`, el contenido de la sección/diapositiva será empaquetado por fullPage.js en un contenedor. En estos casos, considera usar delegación o usar los eventos Javascript en el callback `afterRender`.
+- `scrollOverflow`: (por defecto `false`) (no compatible con IE 8) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Cuando se define a `true`, el contenido de la sección/diapositiva será envuelto por fullPage.js en un elemento contenedor. En estos casos, considera usar delegación o usar los eventos Javascript en el callback `afterRender`.
 Cuando se usa `true` esta opción requiere del uso de la librería externa [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) y ésta debe de ser añadida antes que fullPage.js. Por ejemplo:
 
 ```html
@@ -467,7 +467,7 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 
 - `scrollOverflowReset`: (por defecto `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Cuando se define a `true` fullPage.js moverá el contenido de la seccion o diapositiva hacia arriba cuando se abandone la seccion o diapositiva hacia otra sección vertical. De este modo, cuando se llega a una sección que usa barra de desplazamiento, se mostrará siempre el principio de su contenido.
 
-- `scrollOverflowOptions`: cuando se usa la opción de `scrollOverflow:true` fullPage.js hará uso de una versión modificada de la [librería iScroll.js](https://github.com/cubiq/iscroll/). Puedes personalizar el comportamiento de dicho componente, sumando a fullPage.js las opciones de iScroll que deseas usar haciendo uso de esta opción. Mira [la documentacion de iScroll](http://iscrolljs.com/) para más información.
+- `scrollOverflowOptions`: cuando se usa la opción de `scrollOverflow:true` fullPage.js hará uso de una versión modificada de la [librería iScroll.js](https://github.com/cubiq/iscroll/). Puedes personalizar el comportamiento de dicho componente aportando a fullPage.js las opciones de iScroll que deseas usar haciendo uso de esta opción. Mira [la documentacion de iScroll](http://iscrolljs.com/) para más información.
 
 - `sectionSelector`: (por defecto `.section`) Determina el selector de jQuery que fullPage.js usará para determinar lo que es una sección. Puede que necesites cambiarlo para evitar problemas con otras librerías que usen el mismo selector que usa fullPage.js por defecto.
 
@@ -518,7 +518,7 @@ $.fn.fullpage.moveTo(3);
 ---
 ### silentMoveTo(section, slide)
 [Demostración](https://codepen.io/alvarotrigo/pen/doqOeY)
-Exactamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#movetosection-slide) pero en este caso, el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
+Exactamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
 ```javascript
 /* Desplzando la página a la sección con el link the anclaje `firstSlide` y a la diapositiva numero 2*/
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
@@ -591,7 +591,7 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 ### setKeyboardScrolling(boolean, [directions])
 [Demostración](https://codepen.io/alvarotrigo/pen/GJXNwm) Añade o elimina la posibilidad de desplazarse a través de las secciones usando las teclas del teclado (activo por defecto).
 
-- `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de los mismos usando comas, por ejemplo: `down, right`. Determina la dirección del desplazamiento que estará habilitado o deshabilitado.
+- `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de los mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o deshabilitado.
 
 ```javascript
 //deshabilitando todo tipo de desplazamiento con el teclado
@@ -619,7 +619,7 @@ $.fn.fullpage.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-[Demostración](https://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo, así como cualquier estilo que haya aplicado.
+[Demostración](https://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo así como cualquier estilo que haya aplicado.
 Ideal para usar cuando se usa en páginas AJAX.
 
 - `type`: (parámetro opcional) Si se define como `all` la estructura HTML creada por fullPage.js así como cualquier estilo que haya aplicado serán eliminados. De este modo, se mantendrá el HTMl original, es decir, el usado antes de que fullPage.js se iniciase.
@@ -742,7 +742,7 @@ $('#fullpage').fullpage({
 
 ---
 ### afterRender()
-Será disparado justo después de que la estructura de la página sea generada por fullPage.js. Este callback es útil si quieres iniciar otros plugins o ejecutar cualquier otro código que requiera que la estructura de la página esté lista (`ready`). fullPage.js modifica la estructura DOM de la página y por lo tanto puede que los elementos en la página se consideren dinámicos. Mira [las FAQs](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) para más información.
+Será disparado justo después de que la estructura de la página sea generada por fullPage.js. Este callback es útil si quieres iniciar otros plugins o ejecutar cualquier otro código que requiera que la estructura de la página esté lista (ready). fullPage.js modifica la estructura DOM de la página y por lo tanto puede que los elementos en la página se consideren dinámicos. Mira [las FAQs](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) para más información.
 
 Ejemplo:
 
@@ -794,7 +794,7 @@ Parámetros:
 - `anchorLink`: enlace de anclaje de la sección correspondiente.
 - `index`: índice de la sección. Empezando por 1.
 - `slideAnchor`: enlace de anclaje correspondiente a la diapositiva que se acaba de cargar (en caso de que se use un enlace de anclaje).
-- `slideIndex`: índice de la diapositiva cargada. Empezando por 1: la diapositiva inicial no contará como diapositiva sino como una sección.
+- `slideIndex`: índice de la diapositiva cargada. Empezando por 1 (la diapositiva inicial no contará como diapositiva sino como una sección).
 
 En caso de que no haya enlaces de anclaje definidos para las diapositivas, podrás hacer uso del parámetro `slideIndex`.
 Ejemplo:
