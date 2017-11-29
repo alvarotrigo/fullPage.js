@@ -29,7 +29,7 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 Invite me to a coffee
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
-Customizations of the library and urgent changes are available upon request for some reasonable price. <a href="http://alvarotrigo.com/#contact-page">Contact me</a>.
+Customizations of the library and urgent changes are available upon request for some reasonable price. <a href="https://alvarotrigo.com/#contact-page">Contact me</a>.
 
 - [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
@@ -91,7 +91,7 @@ npm install fullpage.js
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
+<!-- This following line is optional. Only necessary if you use the option `css3:false` and you want to use other easing effects rather than `linear`, `swing` or `easeInOutCubic`. -->
 <script src="vendors/jquery.easings.min.js"></script>
 
 
@@ -106,7 +106,7 @@ If you prefer to use a CDN to load the needed files, fullPage.js is in CDNJS:
 https://cdnjs.com/libraries/fullPage.js
 
 ### Required HTML structure
-Start your HTML document with the compulsory [HTML DOCTYPE declaration](http://www.corelangs.com/html/introduction/doctype.html) on the 1st line of your HTML code. You might have troubles with sections heights otherwise. The examples provided use HTML 5 doctype `<!DOCTYPE html>`.
+Start your HTML document with the compulsory [HTML DOCTYPE declaration](http://www.corelangs.com/html/introduction/doctype.html) on the first line of your HTML code. You might have troubles with sections heights otherwise. The examples provided use HTML 5 doctype `<!DOCTYPE html>`.
 
 Each section will be defined with an element containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
@@ -227,7 +227,7 @@ $(document).ready(function() {
 ### Creating links to sections or slides
 If you are using fullPage.js with anchor links for the sections (using the `anchors` option or the attribute `data-anchor` in each section), then you will be able to use anchor links also to navigate directly to a certain slide inside a section.
 
-This would be an example of a link with an anchor: http://alvarotrigo.com/fullPage/#secondPage/2 (which is the URL you will see once you access to that section/slide manually)
+This would be an example of a link with an anchor: https://alvarotrigo.com/fullPage/#secondPage/2 (which is the URL you will see once you access to that section/slide manually)
 Notice the last part of the URL ends in `#secondPage/2`.
 
 Having the following initialization:
@@ -240,7 +240,7 @@ $(document).ready(function() {
 });
 ```
 
-The anchor at the end of the URL `#secondPage/2` defines the section and slide of destination respectively. In the previous URL, the section of destination will be the one defined with the anchor `secondPage` and the slide will be the 2nd slide, as we are using the index `2` for it. (the fist slide of a section has index 0, as technically it is a section).
+The anchor at the end of the URL `#secondPage/2` defines the section and slide of destination respectively. In the previous URL, the section of destination will be the one defined with the anchor `secondPage` and the slide will be the second slide, as we are using the index `2` for it (the first slide of a section has index `0`, as technically it is a section).
 
 We could have used a custom anchor for the slide instead of its index if we would have used the attribute `data-anchor` on the HTML markup like so:
 
@@ -259,7 +259,7 @@ Note that section anchors can also be defined in the same way, by using the `dat
 **Be careful!** `data-anchor` tags can not have the same value as any ID element on the site (or NAME element for IE).
 
 ### Creating smaller or bigger sections
-[Demo](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provides a way to remove the full height restriction from its sections and slides. It is possible to create sections which height is smaller or bigger than the viewport. This is ideal for footers.
+[Demo](https://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provides a way to remove the full height restriction from its sections and slides. It is possible to create sections which height is smaller or bigger than the viewport. This is ideal for footers.
 It is important to realise that it doesn't make sense to have all of your sections using this feature. If there is more than one section in the initial load of the site, fullPage.js won't scroll at all to see the next one as it will be already in the viewport.
 
 To create smaller sections just use the class `fp-auto-height` in the section you want to apply it. It will then take the height defined by your section/slide content.
@@ -277,13 +277,13 @@ Fullpage.js adds multiple classes in different elements to keep a record of the 
 
 - `active` is added the current visible section and slide.
 - `active` is added to the current menu element (if using the `menu` option).
-- A class of the form `fp-viewing-SECTION-SLIDE` is added to the `body` element of the site. (eg: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) The `SECTION` and `SLIDE` parts will be the anchors (or indexes if no anchor is provided) of the current section and slide.
-- `fp-responsive` is added to the `body` element when the entering in the responsive mode
-- `fp-enabled` is added to the `html` element when fullpage.js is enabled. (and removed when destroyed).
+- A class of the form `fp-viewing-SECTION-SLIDE` is added to the `body` element of the site. (eg: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) The `SECTION` and `SLIDE` parts will be the anchors (or indexes if no anchor is provided) of the current section and slide.
+- `fp-responsive` is added to the `body` element when the entering in the responsive mode.
+- `fp-enabled` is added to the `html` element when fullpage.js is enabled (and removed when destroyed).
 - `fp-destroyed` is added to the fullpage.js container when fullPage.js is destroyed.
 
 ### Lazy Loading
-[Demo](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
+[Demo](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provides a way to lazy load images, videos and audio elements so they won't slow down the loading of your site or unnecessarily waste data transfer.
 When using lazy loading, all these elements will only get loaded when entering in the viewport.
 To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
 
@@ -302,8 +302,8 @@ If you already use another lazy load solution which uses `data-src` as well, you
 **Note**: the autoplay feature might not work on some mobile devices depending on the OS and browser (i.e. [Safari on iOS](https://webkit.org/blog/6784/new-video-policies-for-ios/) version < 10.0).
 
 #### Play on section/slide load:
-Using the attribute `autoplay` for videos or audio, or the param `autoplay=1` for youtube iframes will result in the media element playing on page load.
-In order to play it on section/slide load use instead the attribute `data-autoplay`. For example:
+Using the attribute `autoplay` for videos or audio, or the param `autoplay=1` for Youtube iframes will result in the media element playing on page load.
+In order to play it on section/slide load use instead the attribute `data-autoplay`, For example:
 
 ```html
 <audio data-autoplay>
@@ -320,11 +320,11 @@ Embedded HTML5 `<video>` / `<audio>`  and Youtube iframes are automatically paus
 ```
 
 ### Use extensions
-fullpage.js [provides a set of extensions](http://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
+fullpage.js [provides a set of extensions](https://alvarotrigo.com/fullPage/extensions/) you can use to enhance its default features. All of them are listed as [fullpage.js options](https://github.com/alvarotrigo/fullPage.js#options).
 
 Extensions requires you to use the minified file [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) that is inside the [`dist` folder](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) instead of the usual fullPage.js file (`jquery.fullpage.js` or `jquery.fullpage.min.js`).
 
-Once you adquire the extension file, you will need to add it before fullPage. For example, if I want to use the Continuos Horizontal extension, I would have include the extension file and then the extensions version of the fullPage file.
+Once you adquire the extension file, you will need to add it before fullPage-js. For example, if I want to use the `Continuos Horizontal` extension, I would have include the extension file and then the extensions version of the fullPage file.
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
@@ -344,6 +344,7 @@ Then you will be able to use and configure them as explained in [options](https:
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
 - `sectionsColor`: (default `none`) Define the CSS `background-color` property for each section.
+
 Example:
 ```javascript
 $('#fullpage').fullpage({
@@ -351,7 +352,7 @@ $('#fullpage').fullpage({
 });
 ```
 
-- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Anchors value should be unique. The position of the anchors in the array will define to which sections the anchor is applied. (second position for second section and so on). Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** anchors can not have the same value as any ID element on the site (or NAME element for IE).
+- `anchors`: (default `[]`) Defines the anchor links (#example) to be shown on the URL for each section. Anchors value should be unique. The position of the anchors in the array will define to which sections the anchor is applied (second position for second section and so on). Using anchors forward and backward navigation will also be possible through the browser. This option also allows users to bookmark a specific section or slide. **Be careful!** anchors can not have the same value as any ID element on the site (or `NAME` element for IE).
 Now anchors can be defined directly in the HTML structure by using the attribute `data-anchor` as explained here.
 
 - `lockAnchors`: (default `false`) Determines whether anchors in the URL will have any effect at all in the library. You can still using anchors internally for your own functions and callbacks, but they won't have any effect in the scrolling of the site. Useful if you want to combine fullPage.js with other plugins using anchor in the URL.
@@ -361,7 +362,7 @@ Now anchors can be defined directly in the HTML structure by using the attribute
 - `easing`: (default `easeInOutCubic`) Defines the transition effect to use for the vertical and horizontal scrolling.
 It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jqueryui.com/) for using some of [its transitions](http://api.jqueryui.com/easings/). Other libraries could be used instead.
 
-- `easingcss3`: (default `ease`) Defines the transition effect to use in case of using `css3:true`. You can use the [pre-defined ones](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (such as `linear`, `ease-out`...) or create your own ones using the `cubic-bezier` function. You might want to use [Matthew Lein CSS Easing Animation Tool](http://matthewlein.com/ceaser/) for it.
+- `easingcss3`: (default `ease`) Defines the transition effect to use in case of using `css3:true`. You can use the [pre-defined ones](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (such as `linear`, `ease-out`...) or create your own ones using the `cubic-bezier` function. You might want to use [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) for it.
 
 - `loopTop`: (default `false`) Defines whether scrolling up in the first section should scroll to the last one or not.
 
@@ -373,22 +374,21 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-- `fitToSection`: (default `true`) Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
+- `fitToSection`: (default `true`) Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section.
 
-- `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
-the fitting by the configured milliseconds.
+- `fitToSectionDelay`: (default `1000`). If `fitToSection` is set to true, this delays the fitting by the configured milliseconds.
 
 - `scrollBar`: (default `false`) Determines whether to use scrollbar for the site or not. In case of using scroll bar, the `autoScrolling` functionality will still work as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
 
-- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header.
+- `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (`paddingTop: '10px'`, `paddingTop: '10em'`...) Useful in case of using a fixed header.
 
-- `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (paddingBottom: '10px', paddingBottom: '10em'...). Useful in case of using a fixed footer.
+- `paddingBottom`: (default `0`) Defines the bottom padding for each section with a numerical value and its measure (`paddingBottom: '10px'`, `paddingBottom: '10em'`...). Useful in case of using a fixed footer.
 
-- `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necessary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`)
+- `fixedElements`: (default `null`) Defines which elements will be taken off the scrolling structure of the plugin which is necessary when using the `css3` option to keep them fixed. It requires a string with the jQuery selectors for those elements. (For example: `fixedElements: '#element1, .element2'`).
 
-- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use. (useful for maps, scrolling divs etc.) It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`). This option should not be applied to any section/slide element itself.
+- `normalScrollElements`: (default `null`) If you want to avoid the auto scroll when scrolling over some elements, this is the option you need to use (useful for maps, scrolling divs, etc.). It requires a string with the jQuery selectors for those elements. (For example: `normalScrollElements: '#element1, .element2'`). This option should not be applied to any section/slide element itself.
 
-- `normalScrollElementTouchThreshold` : (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
+- `normalScrollElementTouchThreshold`: (default `5`) Defines the threshold for the number of hops up the html node tree Fullpage will test to see if `normalScrollElements` is a match to allow scrolling functionality on divs on a touch device. (For example: `normalScrollElementTouchThreshold: 3`)
 
 - `bigSectionsDestination`: (default `null`) Defines how to scroll to a section which size is bigger than the viewport. By default fullPage.js scrolls to the top if you come from a section above the destination one and to the bottom if you come from a section below the destination one. Possible values are `top`, `bottom`, `null`.
 
@@ -398,13 +398,13 @@ the fitting by the configured milliseconds.
 
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section or should scroll down to the first one and if scrolling up in the first section should scroll up to the last one. Not compatible with `loopTop`, `loopBottom` or any scroll bar present in the site (`scrollBar:true` or `autoScrolling:false`).
 
-- `continuousHorizontal`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether sliding right in the last slide should slide right to the first one or not, and if scrolling left in the first slide should slide left to the last one or not. Not compatible with `loopHorizontal`. Requires fullpage.js >= 2.8.3.
+- `continuousHorizontal`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether sliding right in the last slide should slide right to the first one or not, and if scrolling left in the first slide should slide left to the last one or not. Not compatible with `loopHorizontal`. Requires fullpage.js >= 2.8.3.
 
-- `scrollHorizontally`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether to slide horizontally within sliders by using the mouse wheel or trackpad. Ideal for story telling. Requires fullpage.js >= 2.8.3.
+- `scrollHorizontally`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether to slide horizontally within sliders by using the mouse wheel or trackpad. Ideal for story telling. Requires fullpage.js >= 2.8.3.
 
-- `interlockedSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by 1. Requires fullpage.js >= 2.8.3.
+- `interlockedSlides`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Determines whether moving one horizontal slider will force the sliding of sliders in other section in the same direction. Possible values are `true`, `false` or an array with the interlocked sections. For example `[1,3,5]` starting by `1`. Requires fullpage.js >= 2.8.3.
 
-- `dragAndMove`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Enables or disables the dragging and flicking of sections and slides by using mouse or fingers. Requires fullpage.js >= 2.8.9. Possible values are:
+- `dragAndMove`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Enables or disables the dragging and flicking of sections and slides by using mouse or fingers. Requires fullpage.js >= 2.8.9. Possible values are:
   - `true`: enables the feature.
   - `false`: disables the feature.
   - `vertical`: enables the feature only vertically.
@@ -412,15 +412,15 @@ the fitting by the configured milliseconds.
   - `fingersonly`: enables the feature for touch devices only.
   - `mouseonly`: enables the feature for desktop devices only (mouse and trackpad).
 
-- `offsetSections`: (default `false`)[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section. Requires fullPage.js >= 2.8.8
+- `offsetSections`: (default `false`)[Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section. Requires fullPage.js >= 2.8.8
 To define the percentage of each section the attribute `data-percentage` must be used. The centering of the section in the viewport can be determined by using a boolean value in the attribute `data-centered` (default to `true` if not specified). For example:
 ``` html
     <div class="section" data-percentage="80" data-centered="true">
 ```
 
-- `resetSliders`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
+- `resetSliders`: (default `false`). [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 2.8.3.
 
-- `fadingEffect`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether to use a fading effect or not instead of the default scrolling one. Possible values are `true`, `false`, `sections`, `slides`. It can therefore be applied just vertically or horizontally, or to both at the time. Requires fullpage.js >= 2.8.6.
+- `fadingEffect`: (default `false`). [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether to use a fading effect or not instead of the default scrolling one. Possible values are `true`, `false`, `sections`, `slides`. It can therefore be applied just vertically or horizontally, or to both at the time. Requires fullpage.js >= 2.8.6.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 
@@ -471,7 +471,7 @@ In order to prevent fullpage.js from creating the scrollbar in certain sections 
 
 You can also prevent scrolloverflow from getting applied on responsive mode when using `fp-auto-height-responsive` in the section element.
 
-- `scrollOverflowReset`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` it scrolls up the content of the section/slide with scroll bar when leaving to another vertical section. This way the section/slide will always show the start of its content even when scrolling from a section under it.
+- `scrollOverflowReset`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). When set to `true` it scrolls up the content of the section/slide with scroll bar when leaving to another vertical section. This way the section/slide will always show the start of its content even when scrolling from a section under it.
 
 - `scrollOverflowOptions`: when using scrollOverflow:true fullpage.js will make use of a forked and modified version of [iScroll.js libary](https://github.com/cubiq/iscroll/). You can customize the scrolling behaviour by providing fullpage.js with the iScroll.js options you want to use. Check [its documentation](http://iscrolljs.com/) for more info.
 
@@ -483,39 +483,39 @@ You can also prevent scrolloverflow from getting applied on responsive mode when
 
 - `responsiveHeight`: (default `0`)  A normal scroll (`autoScrolling:false`) will be used under the defined height in pixels. A class `fp-responsive` is added to the body tag in case the user wants to use it for his own responsive CSS. For example, if set to 900, whenever the browser's height is less than 900 the plugin will scroll like a normal site.
 
-- `responsiveSlides`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
+- `responsiveSlides`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 2.8.5.
 
-- `parallax`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the parallax backgrounds effects on sections / slides. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallax`: (default `false`) [Extension of fullpage.js](httsp://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the parallax backgrounds effects on sections / slides. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
 - `parallaxOptions`: (default: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Allows to configure the parameters for the parallax backgrounds effect when using the option parallax:true. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
 - `lazyLoading`: (default `true`) Lazy loading is active by default which means it will lazy load any media element containing the attribute `data-src` as detailed in the [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js#lazy-loading) . If you want to use any other lazy loading library you can disable this fullpage.js feature.
 
 ## Methods
-You can see them in action [here](http://alvarotrigo.com/fullPage/examples/methods.html)
+You can see them in action [here](https://alvarotrigo.com/fullPage/examples/methods.html)
 
 ### moveSectionUp()
-[Demo](http://codepen.io/alvarotrigo/pen/GJXNMN) Scrolls one section up:
+[Demo](https://codepen.io/alvarotrigo/pen/GJXNMN) Scrolls one section up:
 ```javascript
 $.fn.fullpage.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
-[Demo](http://codepen.io/alvarotrigo/pen/jPvVZx) Scrolls one section down:
+[Demo](https://codepen.io/alvarotrigo/pen/jPvVZx) Scrolls one section down:
 ```javascript
 $.fn.fullpage.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-[Demo](http://codepen.io/alvarotrigo/pen/doqOmY) Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
+[Demo](https://codepen.io/alvarotrigo/pen/doqOmY) Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
 ```javascript
-/*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
+/*Scrolling to the section with the anchor link `firstSlide` and to the second Slide */
 $.fn.fullpage.moveTo('firstSlide', 2);
 
 ```
 
 ```javascript
-//Scrolling to the 3rd section in the site
+//Scrolling to the third section in the site
 $.fn.fullpage.moveTo(3, 0);
 
 //Which is the same as
@@ -531,21 +531,21 @@ $.fn.fullpage.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
-[Demo](http://codepen.io/alvarotrigo/pen/Wvgoyz)
+[Demo](https://codepen.io/alvarotrigo/pen/Wvgoyz)
 Scrolls the horizontal slider of the current section to the next slide:
 ```javascript
 $.fn.fullpage.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
-[Demo](http://codepen.io/alvarotrigo/pen/gpdLjW)
+[Demo](https://codepen.io/alvarotrigo/pen/gpdLjW)
 Scrolls the horizontal slider of the current section to the previous slide:
 ```javascript
 $.fn.fullpage.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
-[Demo](http://codepen.io/alvarotrigo/pen/rVZWrR) Sets the scrolling configuration in real time.
+[Demo](https://codepen.io/alvarotrigo/pen/rVZWrR) Sets the scrolling configuration in real time.
 Defines the way the page scrolling behaves. If it is set to `true`, it will use the "automatic" scrolling, otherwise, it will use the "manual" or "normal" scrolling of the site.
 
 ```javascript
@@ -553,7 +553,7 @@ $.fn.fullpage.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
-[Demo](http://codepen.io/alvarotrigo/pen/GJXNYm)
+[Demo](https://codepen.io/alvarotrigo/pen/GJXNYm)
 Sets the value for the option `fitToSection` determining whether to fit the section in the screen or not.
 
 ```javascript
@@ -561,7 +561,7 @@ $.fn.fullpage.setFitToSection(false);
 ```
 ---
 ### fitToSection()
-[Demo](http://codepen.io/alvarotrigo/pen/JWWagj)
+[Demo](https://codepen.io/alvarotrigo/pen/JWWagj)
 Scrolls to the nearest active section fitting it in the viewport.
 
 ```javascript
@@ -577,7 +577,7 @@ $.fn.fullpage.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-[Demo](http://codepen.io/alvarotrigo/pen/EjeNdq) Adds or remove the possibility of scrolling through sections/slides by using the mouse wheel/trackpad or touch gestures (which is active by default). Note this won't disable the keyboard scrolling. You
+[Demo](https://codepen.io/alvarotrigo/pen/EjeNdq) Adds or remove the possibility of scrolling through sections/slides by using the mouse wheel/trackpad or touch gestures (which is active by default). Note this won't disable the keyboard scrolling. You
 would need to use `setKeyboardScrolling` for it.
 
 - `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
@@ -595,7 +595,7 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
-[Demo](http://codepen.io/alvarotrigo/pen/GJXNwm) Adds or remove the possibility of scrolling through sections by using the keyboard (which is active by default).
+[Demo](https://codepen.io/alvarotrigo/pen/GJXNwm) Adds or remove the possibility of scrolling through sections by using the keyboard (which is active by default).
 
 - `directions`: (optional parameter) Admitted values: `all`, `up`, `down`, `left`, `right` or a combination of them separated by commas like `down, right`. It defines the direction for which the scrolling will be enabled or disabled.
 
@@ -611,21 +611,21 @@ $.fn.fullpage.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
-[Demo](http://codepen.io/alvarotrigo/pen/rVZWQb) Defines whether to record the history for each hash change in the URL.
+[Demo](https://codepen.io/alvarotrigo/pen/rVZWQb) Defines whether to record the history for each hash change in the URL.
 
 ```javascript
 $.fn.fullpage.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[Demo](http://codepen.io/alvarotrigo/pen/NqLbeY) Defines the scrolling speed in milliseconds.
+[Demo](https://codepen.io/alvarotrigo/pen/NqLbeY) Defines the scrolling speed in milliseconds.
 
 ```javascript
 $.fn.fullpage.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-[Demo](http://codepen.io/alvarotrigo/pen/bdxBzv) Destroys the plugin events and optionally its HTML markup and styles.
+[Demo](https://codepen.io/alvarotrigo/pen/bdxBzv) Destroys the plugin events and optionally its HTML markup and styles.
 Ideal to use when using AJAX to load content.
 
 - `type`: (optional parameter) can be empty or `all`. If `all` is passed, the HTML markup and styles used by fullpage.js will be removed. This way the original HTML markup, the one used before any plugin modification is made, will be maintained.
@@ -640,20 +640,20 @@ $.fn.fullpage.destroy('all');
 ---
 ### reBuild()
 Updates the DOM structure to fit the new window size or its contents.
- Ideal to use in combination with AJAX calls or external changes in the DOM structure of the site, specially when using `scrollOverflow:true`.
+Ideal to use in combination with AJAX calls or external changes in the DOM structure of the site, specially when using `scrollOverflow:true`.
 
 ```javascript
 $.fn.fullpage.reBuild();
 ```
 ---
 ### setResponsive(boolean)
-[Demo](http://codepen.io/alvarotrigo/pen/WxOyLA) Sets the responsive mode of the page. When set to `true` the autoScrolling will be turned off and the result will be exactly the same one as when the `responsiveWidth` or `responsiveHeight` options  get fired.
+[Demo](https://codepen.io/alvarotrigo/pen/WxOyLA) Sets the responsive mode of the page. When set to `true` the `autoScrolling` will be turned off and the result will be exactly the same one as when the `responsiveWidth` or `responsiveHeight` options get fired.
 ```javascript
 $.fn.fullpage.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
-[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Requires fullpage.js >= 2.8.5.
+[Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Requires fullpage.js >= 2.8.5.
 Turns horizontal slides into vertical sections.
 
 ```javascript
@@ -661,7 +661,7 @@ $.fn.fullpage.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
-[Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Requires fullpage.js >= 2.8.5.
+[Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Requires fullpage.js >= 2.8.5.
 Turns back the original slides (now converted into vertical sections) into horizontal slides again.
 
 ```javascript
@@ -669,7 +669,7 @@ $.fn.fullpage.responsiveSlides.toSlides();
 ```
 
 ## Callbacks
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) You can see them in action [here](http://alvarotrigo.com/fullPage/examples/callbacks.html).
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) You can see them in action [here](https://alvarotrigo.com/fullPage/examples/callbacks.html).
 
 ### afterLoad (`anchorLink`, `index`)
 Callback fired once the sections have been loaded, after the scrolling has ended.
@@ -678,7 +678,7 @@ Parameters:
 - `anchorLink`: anchorLink corresponding to the section.
 - `index`: index of the section. Starting from 1.
 
-In case of not having anchorLinks defined in the plugin the `index` parameter would be the only one to use.
+In case of not having anchorLinks defined in the plugin, the `index` parameter would be the only one to use.
 
 Example:
 
@@ -708,8 +708,8 @@ Returning `false` will cancel the move before it takes place.
 
 Parameters:
 
-- `index`: index of the leaving section. Starting from 1.
-- `nextIndex`: index of the destination section. Starting from 1.
+- `index`: index of the leaving section. Starting from `1`.
+- `nextIndex`: index of the destination section. Starting from `1`.
 - `direction`: it will take the values `up` or `down` depending on the scrolling direction.
 
 Example:
@@ -796,9 +796,9 @@ Callback fired once the slide of a section have been loaded, after the scrolling
 Parameters:
 
 - `anchorLink`: anchorLink corresponding to the section.
-- `index`: index of the section. Starting from 1.
-- `slideAnchor`: anchor corresponding to the slide (in case there is)
-- `slideIndex`: index of the slide. Starting from 1. (the default slide doesn't count as slide, but as a section)
+- `index`: index of the section. Starting from `1`.
+- `slideAnchor`: anchor corresponding to the slide (in case there is).
+- `slideIndex`: index of the slide. Starting from `1` (the default slide doesn't count as slide, but as a section).
 
 In case of not having anchorLinks defined for the slide or slides the `slideIndex` parameter would be the only one to use.
 Example:
@@ -833,7 +833,7 @@ Returning `false` will cancel the move before it takes place.
 Parameters:
 
 - `anchorLink`: anchorLink corresponding to the section.
-- `index`: index of the section. Starting from 1.
+- `index`: index of the section. Starting from `1`.
 - `slideIndex`: index of the slide. **Starting from 0.**
 - `direction`: takes the values `right` or `left` depending on the scrolling direction.
 - `nextSlideIndex`: index of the destination slide. **Starting from 0.**
@@ -846,12 +846,12 @@ $('#fullpage').fullpage({
 	onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
 		var leavingSlide = $(this);
 
-		//leaving the first slide of the 2nd Section to the right
+		//leaving the first slide of the second Section to the right
 		if(index == 2 && slideIndex == 0 && direction == 'right'){
 			alert("Leaving the fist slide!!");
 		}
 
-		//leaving the 3rd slide of the 2nd Section to the left
+		//leaving the third slide of the second Section to the left
 		if(index == 2 && slideIndex == 2 && direction == 'left'){
 			alert("Going to slide 2! ");
 		}
@@ -863,10 +863,10 @@ $('#fullpage').fullpage({
 You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same as when canceling a movement with `onLeave`](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
 
 # Reporting issues
-1. Please, look for your issue before asking using the github issues search.
+1. Please, look for your issue before asking using the Github issues search.
 2. Make sure you use the latest fullpage.js version. No support is provided for older versions.
 3. Use the [the Github Issues forum](https://github.com/alvarotrigo/fullPage.js/issues) to create issues.
-4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](http://jsfiddle.net/97tbk/418/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
+4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](https://jsfiddle.net/97tbk/418/) or [codepen](https://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
 
 # Contributing to fullpage.js
 Please see [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
@@ -878,8 +878,8 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Resources
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
+- [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [CSS Easing Animation Tool - Matthew Lein](https://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
