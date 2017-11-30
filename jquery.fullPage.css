@@ -32,8 +32,10 @@ html.fp-enabled,
     height: 100%;
     overflow: hidden;
     position: relative;
-    -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
-    transition: all 0.3s ease-out;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 .fp-section.fp-table, .fp-slide.fp-table {
     display: table;
@@ -90,6 +92,8 @@ html.fp-enabled,
 }
 .fp-notransition {
     -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
     transition: none !important;
 }
 #fp-nav {
@@ -170,10 +174,10 @@ html.fp-enabled,
     left: 50%;
     top: 50%;
     margin: -2px 0 0 -2px;
-    -webkit-transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -o-transition: all 0.1s ease-in-out;
-    transition: all 0.1s ease-in-out;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
 }
 #fp-nav ul li:hover a span,
 .fp-slidesNav ul li:hover a span{
@@ -197,8 +201,10 @@ html.fp-enabled,
 }
 #fp-nav ul li:hover .fp-tooltip,
 #fp-nav.fp-show-active a.active + .fp-tooltip {
-    -webkit-transition: opacity 0.2s ease-in;
-    transition: opacity 0.2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
     width: auto;
     opacity: 1;
 }
