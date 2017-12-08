@@ -42,6 +42,7 @@
   "homepage": "https://github.com/alvarotrigo/fullPage.js",
   "namespace": "$.fn.fullpage",
   "devDependencies": {
+    "cypress": "^1.1.4",
     "gulp": "^3.9.0",
     "gulp-clean-css": "^2.0.8",
     "gulp-rename": "^1.2.2",
