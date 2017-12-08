@@ -2,3 +2,4 @@
 .idea
 bower_components/
 /node_modules
+cypress/videos
