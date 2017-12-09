@@ -11,6 +11,6 @@ script:
   ## and record all of the tests.
   ## Cypress will search for a
   ## CYPRESS_PROJECT_ID and CYPRESS_RECORD_KEY environment variables
-  - npm test -- --record
+  - npm run test:record
   ## see recording of the test run at
   ## https://dashboard.cypress.io/#/projects/p7bh2z/runs

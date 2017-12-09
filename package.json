@@ -5,10 +5,12 @@
   "main": "dist/jquery.fullpage.js",
   "scripts": {
     "test": "run-p --race start cy:run",
+    "test:record": "run-p --race start cy:run:record",
     "test:gui": "run-p --race start cy:open",
     "start": "http-server -c-1 -p 4600 --silent",
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "cy:run:record": "cypress run --record"
   },
   "repository": {
     "type": "git",
