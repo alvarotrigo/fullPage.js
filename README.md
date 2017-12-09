@@ -14,7 +14,8 @@
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
-[![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://cypress.io)
+[![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://dashboard.cypress.io/#/projects/p7bh2z/runs)
+[![Build Status](https://travis-ci.org/bahmutov/fullPage.js.svg?branch=master)](https://travis-ci.org/bahmutov/fullPage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
@@ -894,7 +895,7 @@ To see E2E tests live use
 $ npm run test:gui
 ```
 
-The Cypress runner keeps watching your test files, rerunning the tests as you are editing the spec files. Find the spec files in the [cypress/integration](cypress/integration) folder.
+The Cypress runner keeps watching your test files, rerunning the tests as you are editing the spec files. Find the spec files in the [cypress/integration](cypress/integration) folder. The tests are also running on [CI](https://travis-ci.org/bahmutov/fullPage.js) and the output and video recordings can be found on [Cypress dashboard](https://dashboard.cypress.io/#/projects/p7bh2z/runs)
 
 # Resources
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
