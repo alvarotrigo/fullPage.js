@@ -1,5 +1,7 @@
 import { Arrows, slide, checkActiveSlide, activeSlide } from '../support'
 
+/* eslint-env mocha */
+/* global cy */
 describe('simple example', () => {
   beforeEach(() => {
     cy.visit('/examples/simple')
