@@ -877,6 +877,24 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 # Build tasks
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
+# Testing
+
+To run end to end tests in a real browser (Electron / Chrome) this project uses [Cypress.io](https://github.com/cypress-io/cypress). To run tests on CI simple execute
+
+```shell
+$ npm test
+```
+
+Which starts static server (using `npm start`), runs E2E tests and then closes the server.
+
+To see E2E tests live use
+
+```shell
+$ npm run test:gui
+```
+
+The Cypress runner keeps watching your test files, rerunning the tests as you are editing the spec files. Find the spec files in the [cypress/integration](cypress/integration) folder.
+
 # Resources
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)

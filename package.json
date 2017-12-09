@@ -4,7 +4,11 @@
   "description": "Create beautiful fullscreen scrolling websites",
   "main": "dist/jquery.fullpage.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "run-p --race start cy:run",
+    "test:gui": "run-p --race start cy:open",
+    "start": "http-server -c-1 -p 4600 --silent",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -48,6 +52,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^2.1.2",
+    "http-server": "^0.10.0",
+    "npm-run-all": "^4.1.2"
   }
 }
