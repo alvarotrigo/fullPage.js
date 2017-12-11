@@ -17,12 +17,17 @@ describe('simple example', () => {
   })
 
   it('goes down to second slide', () => {
-    cy.document().its('body').trigger('keydown', { which: Arrows.down })
+    // cy.document().its('body').trigger('keydown', { which: Arrows.down })
+    cy.document().its('body').type('{downarrow}')
     cy.contains('.section', 'Only text').should('have.class', 'active')
   })
 
-  it('goes down to 4th slide', () => {
+  it('goes down to 2nd slide - auto wait', () => {
     slide.down()
+    checkActiveSlide('Only text')
+  })
+
+  it('goes down to 4th slide', () => {
     slide.down()
     slide.down()
     slide.down()

@@ -18,16 +18,21 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+/* global cy */
 
 export const Arrows = {
-  up: 38,
-  down: 40,
-  left: 37,
-  right: 39
+  up: '{uparrow}',
+  down: '{downarrow}',
+  left: '{leftarrow}',
+  right: '{rightarrow}'
 }
 
-function triggerArrow (which) {
-  cy.document().its('body').trigger('keydown', { which }).wait(1000)
+function triggerArrow (arrow) {
+  cy.document().its('body').type(arrow)
+  // wait for a second. If there was consistent _unique_ CSS selector
+  // for "transition going on", and then "transition finished"
+  // we could select on that to avoid hard coded duration
+  cy.wait(1000)
 }
 
 export const slide = {
