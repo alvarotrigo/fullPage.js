@@ -1,5 +1,5 @@
 /*!
-* Customized version of iScroll.js 0.0.3
+* Customized version of iScroll.js 0.0.4
 * It fixes bugs affecting its integration with fullpage.js
 */
 /*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -2416,9 +2416,13 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 if(document.readyState === 'complete'){
                     createScrollBarForAll();
+                    $.fn.fullpage.shared.afterRenderActions();
                 }
                 //after DOM and images are loaded
-                $(window).on('load', createScrollBarForAll);
+                $(window).on('load', function(){
+                    createScrollBarForAll();
+                    $.fn.fullpage.shared.afterRenderActions();
+                });
 
                 return self;
             };
@@ -2433,7 +2437,6 @@ if ( typeof module != 'undefined' && module.exports ) {
                 else{
                     forEachSectionAndSlide(createScrollBar);
                 }
-                $.fn.fullpage.shared.afterRenderActions();
             }
 
             /**
