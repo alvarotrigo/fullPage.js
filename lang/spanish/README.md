@@ -456,7 +456,7 @@ $('#fullpage').fullpage({
 - `slidesNavPosition`: (por defecto `bottom`) Determina la posición que tomará la navegación para las diapositivas horizontales de la página. Admite los valores `top` y `bottom`. Tal vez quieras modificar la distancia inferior o superior usando estilos CSS así como el color de los mismos.
 
 - `scrollOverflow`: (por defecto `false`) (no compatible con IE 8) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Cuando se define a `true`, el contenido de la sección/diapositiva será envuelto por fullPage.js en un elemento contenedor. En estos casos, considera usar delegación o usar los eventos Javascript en el callback `afterRender`.
-Cuando se usa `true` esta opción requiere del uso de la librería externa [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) y ésta debe de ser añadida antes que fullPage.js. Por ejemplo:
+Cuando se usa `true` esta opción requiere del uso de la librería externa [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) y ésta debe de ser añadida antes que fullPage.js, pero después de jQuery. Por ejemplo:
 
 ```html
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
