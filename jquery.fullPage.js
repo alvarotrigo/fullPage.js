@@ -143,6 +143,7 @@
 
             //Accessibility
             keyboardScrolling: true,
+            touchDeviceArrows: true,
             animateAnchor: true,
             recordHistory: true,
 
@@ -699,7 +700,13 @@
 
             if(numSlides > 1){
                 if(options.controlArrows){
-                    createSlideArrows(section);
+                    if(isTouchDevice){
+                        if(options.touchDeviceArrows){
+                            createSlideArrows(section);
+                        }
+                    }else{
+                        createSlideArrows(section);
+                    }
                 }
 
                 if(options.slidesNavigation){
