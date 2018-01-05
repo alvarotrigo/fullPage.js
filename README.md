@@ -394,6 +394,8 @@ the fitting by the configured milliseconds.
 
 - `keyboardScrolling`: (default `true`) Defines if the content can be navigated using the keyboard.
 
+- `touchDeviceArrows`: (default `true`) Defines if the control arrows should be shown for touchscreen devices like mobile phones
+
 - `touchSensitivity`: (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
 - `continuousVertical`: (default `false`) Defines whether scrolling down in the last section or should scroll down to the first one and if scrolling up in the first section should scroll up to the last one. Not compatible with `loopTop`, `loopBottom` or any scroll bar present in the site (`scrollBar:true` or `autoScrolling:false`).
