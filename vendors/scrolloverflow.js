@@ -2449,27 +2449,28 @@ if ( typeof module != 'undefined' && module.exports ) {
                 //User doesn't want scrollbar here? Sayonara baby!
                 if(element.hasClass('fp-noscroll')) return;
 
-                //needed to make `scrollHeight` work under Opera 12
+                //necessary to make `scrollHeight` work under Opera 12
                 element.css('overflow', 'hidden');
 
                 var scrollOverflowHandler = self.options.scrollOverflowHandler;
                 var wrap = scrollOverflowHandler.wrapContent();
-                //in case element is a slide
-                var section = element.closest(SECTION_SEL);
+                var section = element.closest(SECTION_SEL); //in case element is a slide
                 var scrollable = scrollOverflowHandler.scrollable(element);
                 var contentHeight;
+                var paddings = parseInt(section.css('padding-bottom')) + parseInt(section.css('padding-top'));
 
                 //if there was scroll, the contentHeight will be the one in the scrollable section
                 if(scrollable.length){
                     contentHeight = scrollOverflowHandler.scrollHeight(element);
-                }else{
-                    contentHeight = element.get(0).scrollHeight;
+                }
+                else{
+                    contentHeight = element.get(0).scrollHeight - paddings;
                     if(self.options.verticalCentered){
-                        contentHeight = element.find(TABLE_CELL_SEL).get(0).scrollHeight;
+                        contentHeight = element.find(TABLE_CELL_SEL).get(0).scrollHeight - paddings;
                     }
                 }
 
-                var scrollHeight = $(window).height() - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+                var scrollHeight = $(window).height() - paddings;
 
                 //needs scroll?
                 if ( contentHeight > scrollHeight) {
