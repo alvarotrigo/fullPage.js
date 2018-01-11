@@ -879,6 +879,7 @@ Sólo disponible en inglés :)
 
 # Recursos
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](https://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
