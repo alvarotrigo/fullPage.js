@@ -657,7 +657,7 @@
                 var numSlides = slides.length;
 
                 //caching the original styles to add them back on destroy('all')
-                $(this).data('styles', $(this).attr('style'));
+                section.data('fp-styles', section.attr('style'));
 
                 styleSection(section, index);
                 styleMenu(section, index);
@@ -2799,7 +2799,7 @@
                     options.scrollOverflowHandler.remove($(this));
                 }
                 $(this).removeClass(TABLE + ' ' + ACTIVE);
-                $(this).attr('style', $(this).data('styles'));
+                $(this).attr('style', $(this).data('fp-styles'));
             });
 
             removeAnimation(container);
