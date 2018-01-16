@@ -207,6 +207,9 @@
         };
         var scrollBarHandler;
 
+        // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
+        var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+
         //timeouts
         var resizeId;
         var afterSectionLoadsId;
@@ -647,7 +650,7 @@
 
             addInternalSelectors();
 
-             //styling the sections / slides / menu
+            //styling the sections / slides / menu
             $(SECTION_SEL).each(function(index){
                 var section = $(this);
                 var slides = section.find(SLIDE_SEL);
@@ -1754,15 +1757,19 @@
 
         //Sliding with arrow keys, both, vertical and horizontal
         function keydownHandler(e) {
-
             clearTimeout(keydownId);
 
             var activeElement = $(':focus');
+            var keyCode = e.which;
 
-            if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
+            //tab?
+            if(keyCode === 9){
+                onTab(e);
+            }
+
+            else if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
                 activeElement.attr('contentEditable') !== "true" && activeElement.attr('contentEditable') !== '' &&
                 options.keyboardScrolling && options.autoScrolling){
-                var keyCode = e.which;
 
                 //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
                 var keyControls = [40, 38, 32, 33, 34];
@@ -1907,6 +1914,46 @@
 
                 default:
                     return; // exit this handler for other keys
+            }
+        }
+
+        /**
+        * Makes sure the tab key will only focus elements within the current section/slide
+        * preventing this way from breaking the page.
+        * Based on "Modals and keyboard traps"
+        * from https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
+        */
+        function onTab(e){
+            var isShiftPressed = e.shiftKey;
+            var activeElement = $(':focus');
+            var activeSection = $(SECTION_ACTIVE_SEL);
+            var activeSlide = activeSection.find(SLIDE_ACTIVE_SEL);
+            var focusableWrapper = activeSlide.length ? activeSlide : activeSection;
+            var focusableElements = focusableWrapper.find(focusableElementsString);
+
+            function preventAndFocusFirst(e){
+                e.preventDefault();
+                return focusableElements.first().focus();
+            }
+
+            //is there an element with focus?
+            if(activeElement.length){
+                if(!activeElement.closest(SECTION_ACTIVE_SEL, SLIDE_ACTIVE_SEL).length){
+                    activeElement = preventAndFocusFirst(e);
+                }
+            }
+
+            //no element if focused? Let's focus the first one of the section/slide
+            else{
+                preventAndFocusFirst(e);
+            }
+
+            //when reached the first or last focusable element of the section/slide
+            //we prevent the tab action to keep it in the last focusable element
+            if(!isShiftPressed && activeElement.is(focusableElements.last()) ||
+                isShiftPressed && activeElement.is(focusableElements.first())
+            ){
+                e.preventDefault();
             }
         }
 
