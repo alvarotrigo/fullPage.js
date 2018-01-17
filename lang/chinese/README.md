@@ -526,7 +526,7 @@ $.fn.fullpage.moveTo(3);
 ```
 ---
 ### silentMoveTo(第节, 幻灯片)
-[示例](http://codepen.io/alvarotrigo/pen/doqOeY) 与[`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#movetosection-slide)完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
+[示例](http://codepen.io/alvarotrigo/pen/doqOeY) 与[`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#moveto%E7%AC%AC%E8%8A%82-%E5%B9%BB%E7%81%AF%E7%89%87)完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
 ```javascript
 /*滚动到锚链接`firstSlide`和第二张幻灯片的部分 */
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
