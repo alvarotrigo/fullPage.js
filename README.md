@@ -40,7 +40,7 @@ Customizations of the library and urgent changes are available upon request for 
   - [Creating smaller or bigger sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)
   - [State classes added by fullpage.js](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
   - [Lazy loading](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
-  - [Autoplay embedded media](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
+  - [Auto play/pause embedded media](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
   - [Use extensions](https://github.com/alvarotrigo/fullPage.js#use-extensions)
 - [Options](https://github.com/alvarotrigo/fullPage.js#options)
 - [Methods](https://github.com/alvarotrigo/fullPage.js#methods)
@@ -326,7 +326,7 @@ fullpage.js [provides a set of extensions](http://alvarotrigo.com/fullPage/exten
 
 Extensions requires you to use the minified file [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) that is inside the [`dist` folder](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) instead of the usual fullPage.js file (`jquery.fullpage.js` or `jquery.fullpage.min.js`).
 
-Once you adquire the extension file, you will need to add it before fullPage. For example, if I want to use the Continuos Horizontal extension, I would have include the extension file and then the extensions version of the fullPage file.
+Once you adquire the extension file, you will need to add it before fullPage. For example, if I want to use the Continuous Horizontal extension, I would have include the extension file and then the extensions version of the fullPage file.
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
@@ -375,7 +375,7 @@ It requires the file `vendors/jquery.easings.min.js` or [jQuery UI](http://jquer
 
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
-- `fitToSection`: (default `true`) Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section (when )
+- `fitToSection`: (default `true`) Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section.
 
 - `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
 the fitting by the configured milliseconds.
@@ -818,7 +818,7 @@ $('#fullpage').fullpage({
 		}
 
 		//second slide of the second section (supposing #secondSlide is the
-		//anchor for the second slide
+		//anchor for the second slide)
 		if(index == 2 && slideIndex == 'secondSlide'){
 			alert("Second slide loaded");
 		}
@@ -895,7 +895,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## Who is using fullPage.js
-If you want your page to be listed here. Please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
+If you want your page to be listed here, please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google.png)](http://www.yourprimer.com/)
 [![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-2.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
