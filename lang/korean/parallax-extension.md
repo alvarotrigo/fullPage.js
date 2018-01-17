@@ -2,10 +2,10 @@
 
 ![](https://cloud.githubusercontent.com/assets/1706326/23580315/f28edab4-00f6-11e7-90f9-81ffafd77b0e.gif)
 
-패럴랙스 옵션을 쓰시기 전에 [확장 프로그램 사용](https://github.com/alvarotrigo/fullPage.js#use-extensions)을 읽어보세요.
+패럴랙스 옵션을 쓰시기 전에 [확장 프로그램 사용](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/korean#%ED%99%95%EC%9E%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%82%AC%EC%9A%A9)을 읽어보세요.
 - [실시간 데모](http://alvarotrigo.com/fullPage/extensions/parallax.html)
-- [필요한 HTML 구조](#required-html-structure)
-- [배경 적용](#applying-the-background)
+- [필요한 HTML 구조](#%ED%95%84%EC%9A%94%ED%95%9C-html-%EA%B5%AC%EC%A1%B0)
+- [배경 적용](#%EB%B0%B0%EA%B2%BD-%EC%A0%81%EC%9A%A9)
 - [옵션](#options)
   - [패럴랙스 효과 옵션](#parallax-effect-options)
 - [방법](#methods)
@@ -65,7 +65,9 @@ CSS나 인라인 스타일을 쓰실 수 있습니다.
 | **parallax**  | (표준값 `false`). [fullPage.js의 확장](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에 패럴랙스 배경 효과를 쓸지 말지 여부를 정의합니다.  |
 | **parallaxOptions:**   | (표준값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). `parallax:true` 옵션을 쓸 때 패럴랙스 배경 효과 매개 변수를 설정할 수 있습니다.  |
 <br>
+
 ### 패럴랙스 효과 옵션
+
 [데모 페이지](http://alvarotrigo.com/fullPage/extensions/parallax.html)에서 어떻게 작동하는지 효과를 보실 수 있습니다.
 
 `parallaxOptions`에서 환경 설정 가능한 옵션의 설명을 보실 수 있습니다.
