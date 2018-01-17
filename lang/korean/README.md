@@ -3,7 +3,7 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
 
 <p align="center">
-  <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/english">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Spanish</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Russian</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">Chinese</a> |
@@ -32,26 +32,26 @@
 
 요청시 적절한 가격에 라이브러리 맞춤화와 긴급 변경이 가능합니다. <a href="http://alvarotrigo.com/#contact-page">문의하기</a>.
 
-- [소개](https://github.com/alvarotrigo/fullPage.js#introduction)
-- [호환성](https://github.com/alvarotrigo/fullPage.js#compatibility)
-- [사용법](https://github.com/alvarotrigo/fullPage.js#usage)
-  - [구역 또는 슬라이드로 가는 링크 만들기](https://github.com/alvarotrigo/fullPage.js#creating-links-to-sections-or-slides)
-  - [구역을 더 작게 또는 크게 만들기](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)
-  - [fullpage.js가 추가하는 상태 클래스](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
-  - [지연 로딩](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
-  - [미디어 자동 재생/일시정지 삽입](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
-  - [확장 프로그램 사용](https://github.com/alvarotrigo/fullPage.js#use-extensions)
-- [옵션](https://github.com/alvarotrigo/fullPage.js#options)
-- [방법](https://github.com/alvarotrigo/fullPage.js#methods)
-- [콜백](https://github.com/alvarotrigo/fullPage.js#callbacks)
-- [문제 알리기](https://github.com/alvarotrigo/fullPage.js#reporting-issues)
-- [fullpage.js에 기여하기](https://github.com/alvarotrigo/fullPage.js#contributing-to-fullpagejs)
-- [수정 일지](https://github.com/alvarotrigo/fullPage.js#changelog)
-- [구축 도전](https://github.com/alvarotrigo/fullPage.js#build-tasks)
-- [재료가 되는 도구](https://github.com/alvarotrigo/fullPage.js#resources)
-- [누가 fullPage.js를 쓰나요?](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
-- [기부](https://github.com/alvarotrigo/fullPage.js#donations)
-- [라이선스](https://github.com/alvarotrigo/fullPage.js#license)
+- [소개](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean/tree/master/lang/korean/#%EC%86%8C%EA%B0%9C)
+- [호환성](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%ED%98%B8%ED%99%98%EC%84%B1)
+- [사용법](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%82%AC%EC%9A%A9%EB%B2%95)
+  - [구역 또는 슬라이드로 가는 링크 만들기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B5%AC%EC%97%AD-%EB%98%90%EB%8A%94-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C%EB%A1%9C-%EA%B0%80%EB%8A%94-%EB%A7%81%ED%81%AC-%EB%A7%8C%EB%93%A4%EA%B8%B0)
+  - [구역을 더 작게 또는 크게 만들기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B5%AC%EC%97%AD%EC%9D%84-%EB%8D%94-%EC%9E%91%EA%B2%8C-%EB%98%90%EB%8A%94-%ED%81%AC%EA%B2%8C-%EB%A7%8C%EB%93%A4%EA%B8%B0)
+  - [fullpage.js가 추가하는 상태 클래스](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs%EA%B0%80-%EC%B6%94%EA%B0%80%ED%95%98%EB%8A%94-%EC%83%81%ED%83%9C-%ED%81%B4%EB%9E%98%EC%8A%A4)
+  - [지연 로딩](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)
+  - [미디어 자동 재생/일시정지 삽입](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%AF%B8%EB%94%94%EC%96%B4-%EC%9E%90%EB%8F%99-%EC%9E%AC%EC%83%9D%EC%9D%BC%EC%8B%9C%EC%A0%95%EC%A7%80-%EC%82%BD%EC%9E%85)
+  - [확장 프로그램 사용](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%ED%99%95%EC%9E%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EC%82%AC%EC%9A%A9)
+- [옵션](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%98%B5%EC%85%98)
+- [방법](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%B0%A9%EB%B2%95)
+- [콜백](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%BD%9C%EB%B0%B1)
+- [문제 알리기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%AC%B8%EC%A0%9C-%EC%95%8C%EB%A6%AC%EA%B8%B0)
+- [fullpage.js에 기여하기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs%EC%97%90-%EA%B8%B0%EC%97%AC%ED%95%98%EA%B8%B0)
+- [수정 일지](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%88%98%EC%A0%95-%EC%9D%BC%EC%A7%80)
+- [구축 도전](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B5%AC%EC%B6%95-%EB%8F%84%EC%A0%84)
+- [재료가 되는 도구](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%9E%AC%EB%A3%8C%EA%B0%80-%EB%90%98%EB%8A%94-%EB%8F%84%EA%B5%AC)
+- [누가 fullPage.js를 쓰나요?](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%88%84%EA%B0%80-fullpagejs%EB%A5%BC-%EC%93%B0%EB%82%98%EC%9A%94)
+- [기부](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B8%B0%EB%B6%80)
+- [라이선스](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%9D%BC%EC%9D%B4%EC%84%A0%EC%8A%A4)
 
 ## 소개
 기능 요청뿐만 아니라 코딩 스타일 개선까지 언제든 의견 제안을 매우 환영합니다.
@@ -133,7 +133,7 @@ HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelang
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
-[`demoPage.html` 파일](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demoPage.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
+[`demoPage.html` 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
 
 ### 초기 설정
 `$(document).ready` 안에 fullPage.js를 소환하시기만 하면 됩니다.
@@ -316,9 +316,9 @@ Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소
 ```
 
 ### 확장 프로그램 사용
-fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지 확장 프로그램을 지원합니다](http://alvarotrigo.com/fullPage/extensions/). 모든 확장 프로그램이 [fullpage.js 옵션](https://github.com/alvarotrigo/fullPage.js#options)으로 열거되어 있습니다.
+fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지 확장 프로그램을 지원합니다](http://alvarotrigo.com/fullPage/extensions/). 모든 확장 프로그램이 [fullpage.js 옵션](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%98%B5%EC%85%98)으로 열거되어 있습니다.
 
-확장 프로그램을 쓰시려면 보통 쓰시는 fullPage.js 파일(`jquery.fullpage.js` 또는 `jquery.fullpage.min.js`) 말고 [`dist` 폴더](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) 안에 있는 작아진 파일[`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js)을 쓰셔야 합니다.
+확장 프로그램을 쓰시려면 보통 쓰시는 fullPage.js 파일(`jquery.fullpage.js` 또는 `jquery.fullpage.min.js`) 말고 [`dist` 폴더](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) 안에 있는 작아진 파일[`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/jquery.fullpage.extensions.min.js)을 쓰셔야 합니다.
 
 확장 파일을 획득하시면 fullPage 앞에 추가하셔야 합니다. 예를 들어 연속 수평(Continuous Horizontal) 확장을 쓰신다면 확장 파일을 먼저 넣고 그 다음에 fullPage 연장 버전을 넣습니다.
 
@@ -327,9 +327,9 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 <script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
 ```
 
-각 확장 프로그램마다 활성화 키와 라이선스 키가 필요합니다. [더 상세한 사항은 여기를 참조하세요](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
+각 확장 프로그램마다 활성화 키와 라이선스 키가 필요합니다. [더 상세한 사항은 여기를 참조하세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/how-to-activate-fullpage-extension.md).
 
-그 다음 [옵션](https://github.com/alvarotrigo/fullPage.js#options)에 설명된 대로 사용하시고 설정하실 수 있습니다.
+그 다음 [옵션](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%98%B5%EC%85%98)에 설명된 대로 사용하시고 설정하실 수 있습니다.
 
 ## 옵션
 
@@ -450,7 +450,7 @@ $('#fullpage').fullpage({
 - `slidesNavPosition`: (기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
 
 - `scrollOverflow`: (기본값 `false`) (IE 8과 호환되지 않음) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 위임을 하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오시는 걸 고려해 보세요.
-`true`로 설정하시는 경우 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) 벤더 라이브러리가 필요합니다. 이 파일은 fullPage.js 플러그인 이전에 불러와야 합니다 하지만 jQuery 후에. 다음은 예시입니다.
+`true`로 설정하시는 경우 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js) 벤더 라이브러리가 필요합니다. 이 파일은 fullPage.js 플러그인 이전에 불러와야 합니다 하지만 jQuery 후에. 다음은 예시입니다.
 
 ```html
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
@@ -475,11 +475,11 @@ $('#fullpage').fullpage({
 
 - `responsiveSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정될 경우 반응형 모드가 실행되면 슬라이드가 수직 구역으로 바뀝니다. (위에 상세히 설명된 `responsiveWidth` 또는 `responsiveHeight` 옵션을 써서 구현됩니다). fullpage.js 버전이 2.8.5 이상이어야 합니다.
 
-- `parallax`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에서 패럴랙스 배경 효과를 쓸지 여부를 정의합니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallax`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에서 패럴랙스 배경 효과를 쓸지 여부를 정의합니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
-- `parallaxOptions`: (기본값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallaxOptions`: (기본값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
-- `lazyLoading`: (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js#lazy-loading)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
+- `lazyLoading`: (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
 
 ## 방법
 어떻게 작동하는지 [여기](http://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.
@@ -514,7 +514,7 @@ $.fn.fullpage.moveTo(3);
 ---
 ### silentMoveTo(구역, 슬라이드)
 [데모](http://codepen.io/alvarotrigo/pen/doqOeY)
-[`moveTo`](https://github.com/alvarotrigo/fullPage.js#movetosection-slide)와 완전히 동일하지만, 이 경우에는 애니메이션 없이 스크롤 기능을 수행합니다. 목적지로 바로 건너뜁니다.
+[`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#moveto%EA%B5%AC%EC%97%AD-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C)와 완전히 동일하지만, 이 경우에는 애니메이션 없이 스크롤 기능을 수행합니다. 목적지로 바로 건너뜁니다.
 ```javascript
 /*`firstSlide` 앵커 링크가 있는 구역과 두번째 슬라이드로 스크롤하기 */
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
@@ -846,7 +846,7 @@ $('#fullpage').fullpage({
 ```
 
 #### 실행되기 전에 이동 취소
-`onSlideLeave` 콜백에서 `false`로 되돌려서 취소하실 수 있습니다. [`onLeave` 취소와 동일합니다](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
+`onSlideLeave` 콜백에서 `false`로 되돌려서 취소하실 수 있습니다. [`onLeave` 취소와 동일합니다](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%8A%A4%ED%81%AC%EB%A1%A4%EC%9D%84-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0-%EC%A0%84-%EC%B7%A8%EC%86%8C).
 
 # 문제 알리기
 1. 문의하시기 이전에 먼저 github 검색으로 찾아보시기 바랍니다.
