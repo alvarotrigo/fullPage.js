@@ -6,9 +6,9 @@
 - [실시간 데모](http://alvarotrigo.com/fullPage/extensions/parallax.html)
 - [필요한 HTML 구조](#%ED%95%84%EC%9A%94%ED%95%9C-html-%EA%B5%AC%EC%A1%B0)
 - [배경 적용](#%EB%B0%B0%EA%B2%BD-%EC%A0%81%EC%9A%A9)
-- [옵션](#options)
-  - [패럴랙스 효과 옵션](#parallax-effect-options)
-- [방법](#methods)
+- [옵션](#%EC%98%B5%EC%85%98)
+  - [패럴랙스 효과 옵션](#%ED%8C%A8%EB%9F%B4%EB%9E%99%EC%8A%A4-%ED%9A%A8%EA%B3%BC-%EC%98%B5%EC%85%98)
+- [방법](#%EB%B0%A9%EB%B2%95)
 
 ## 필요한 HTML 구조
 구역 및 슬라이드에서 패럴랙스 효과를 쓰시려면 새로운 요소를 `fp-bg` 클래스와 함께 추가하셔야 합니다. 빈 `div`를 구역 또는 슬라이드의 첫 번째 자식 요소로 배치하셔야 하는 것입니다. 아래에 예시가 나와 있습니다.

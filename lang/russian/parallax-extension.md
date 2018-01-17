@@ -2,7 +2,7 @@
 
 ![](https://cloud.githubusercontent.com/assets/1706326/23580315/f28edab4-00f6-11e7-90f9-81ffafd77b0e.gif)
 
-Прочтите раздел [Использование расширений](https://github.com/alvarotrigo/fullPage.js#use-extensions) перед использованием опции параллакс.
+Прочтите раздел [Использование расширений](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/russian#%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B9) перед использованием опции параллакс.
 - [Живое демо](http://alvarotrigo.com/fullPage/extensions/parallax.html)
 - [Необходимая HTML-структура](#Необходимая-html-структура)
 - [Добавление фона](#Добавление-фона)

@@ -2,13 +2,13 @@
 
 ![](https://cloud.githubusercontent.com/assets/1706326/23580315/f28edab4-00f6-11e7-90f9-81ffafd77b0e.gif)
 
-使用视差选项前请先阅读 [扩展的使用](https://github.com/alvarotrigo/fullPage.js#use-extensions)。
+使用视差选项前请先阅读 [扩展的使用](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/chinese#%E4%BD%BF%E7%94%A8%E6%89%A9%E5%B1%95)。
 - [展示例子](http://alvarotrigo.com/fullPage/extensions/parallax.html)
-- [要求 HTML 结构](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#required-html-structure)
-- [应用背景](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#applying-the-background)
-- [选项](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#options)
-  - [视差效果选项](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#parallax-effect-options)
-- [方法](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#methods)
+- [要求 HTML 结构](#html)
+- [应用背景](#%E5%BA%94%E7%94%A8%E8%83%8C%E6%99%AF)
+- [选项](#%E9%80%89%E9%A1%B9)
+  - [视差效果选项](#%E8%A7%86%E5%B7%AE%E6%95%88%E6%9E%9C%E9%80%89%E9%A1%B9)
+- [方法](#%E6%96%B9%E6%B3%95)
 
 ## HTML
 为了在代码段和幻灯片中使用视差效果，必须将一个空`div`新元素添加到类`fp-bg`中，作为该代码段或幻灯片的第一个子段。 如下所示：
