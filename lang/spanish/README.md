@@ -319,7 +319,7 @@ Los elementos multimedia HTML 5 incrustados `<video>` / `<audio>` y los iframes 
 ```
 
 ### Uso de extensiones
-fullPage.js [provee varias extensiones](https://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increíbles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones)
+fullPage.js [provee varias extensiones](https://alvarotrigo.com/fullPage/extensions/) que puedes usar para mejorar sus ya increíbles efectos. Todas las extensiones están la lista de [las opciones de fullPage.js](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones)
 
 Las extensiones requieren el uso del archivo comprimido [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) disponible [en la carpeta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) en lugar del archivo habitual de fullPage (`jquery.fullpage.js` o `jquery.fullpage.min.js`).
 Una vez que obtengas el archivo correspondiente a la extensión que deseas usar, tendrás que añadirlo antes del archivo de fullPage. Por ejemplo, si deseo usar la extensión Continuous Horizontal tendré que añadir el fichero de la extension y después el fichero de fullPage versión extensiones.
@@ -331,7 +331,7 @@ Una vez que obtengas el archivo correspondiente a la extensión que deseas usar,
 
 Cada extensión requiere de una licencia y de una clave de activación. [Ver más detalles sobre el uso de licencias aquí](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
 
-Luego podrás usar la extensión y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#opciones).
+Luego podrás usar la extensión y configurarla tal y como se explica en las [opciones](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#opciones).
 
 ## Opciones
 
@@ -485,7 +485,7 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 
 - `parallaxOptions`: (por defecto: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Permite configurar los parámetros para el efecto de parallax cuando se usa la opción `parallax:true`. [Lee más acerca de la opción parallax aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
-- `lazyLoading`: (por defecto `true`) La carga pasiva está activa por defecto, lo que significa que cargará pasivamente cualquier elemento multimedia que contenga el atributo `data-src` como se detalla en la [carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#carga-pasiva-de-elementos-multimedia). Si quieres usar otra librería de carga pasiva puedes deshabilitar esta funcionalidad usando `false`.
+- `lazyLoading`: (por defecto `true`) La carga pasiva está activa por defecto, lo que significa que cargará pasivamente cualquier elemento multimedia que contenga el atributo `data-src` como se detalla en la [carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#carga-pasiva-de-elementos-multimedia). Si quieres usar otra librería de carga pasiva puedes deshabilitar esta funcionalidad usando `false`.
 
 ## Métodos
 Puedes verlos en acción [aquí](https://alvarotrigo.com/fullPage/examples/methods.html)
@@ -520,7 +520,7 @@ $.fn.fullpage.moveTo(3);
 ---
 ### silentMoveTo(section, slide)
 [Demostración](https://codepen.io/alvarotrigo/pen/doqOeY)
-Exactamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
+Exactamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
 ```javascript
 /* Desplzando la página a la sección con el link the anclaje `firstSlide` y a la diapositiva numero 2*/
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
@@ -859,7 +859,7 @@ $('#fullpage').fullpage({
 ```
 
 #### Cancelando un desplazamiento antes de que tenga lugar
-Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLeave`. Exactamente igual que cuando se usa [`onLeave`](https://github.com/alvarotrigo/fullPage.js/lang/spanish/#cancelando-un-desplazamiento-antes-de-que-tenga-lugar).
+Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLeave`. Exactamente igual que cuando se usa [`onLeave`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#cancelando-un-desplazamiento-antes-de-que-tenga-lugar).
 
 # Reportando problemas
 1. Por favor, usa el buscador en Github issues para buscar tu duda o problema antes de preguntar.
