@@ -34,26 +34,26 @@
 根据要求，可提供模块定制和紧急更改服务，价格合理。。
 <a href="http://alvarotrigo.com/#contact-page"> 联系我</a>.
 
-- [介绍](https://github.com/alvarotrigo/fullPage.js#introduction)
-- [兼容性](https://github.com/alvarotrigo/fullPage.js#compatibility)
-- [用法](https://github.com/alvarotrigo/fullPage.js#usage)
-  - [创建链接到滑块或代码段](https://github.com/alvarotrigo/fullPage.js#creating-links-to-sections-or-slides)
-  - [创建更多或更少代码段](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)
-  - [fullpage.js添加的状态类](https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs)
-  - [快速加载](https://github.com/alvarotrigo/fullPage.js#lazy-loading)
-  - [自动播放内嵌媒体](https://github.com/alvarotrigo/fullPage.js#auto-playpause-embedded-media)
-  - [使用扩展](https://github.com/alvarotrigo/fullPage.js#use-extensions)
-- [选项](https://github.com/alvarotrigo/fullPage.js#options)
-- [方法](https://github.com/alvarotrigo/fullPage.js#methods)
-- [回调](https://github.com/alvarotrigo/fullPage.js#callbacks)
-- [报告问题](https://github.com/alvarotrigo/fullPage.js#reporting-issues)
-- [完善fullpage.js](https://github.com/alvarotrigo/fullPage.js#contributing-to-fullpagejs)
-- [变更日志](https://github.com/alvarotrigo/fullPage.js#changelog)
-- [创建任务](https://github.com/alvarotrigo/fullPage.js#build-tasks)
-- [资源](https://github.com/alvarotrigo/fullPage.js#resources)
-- [谁在使用fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
-- [赞赏](https://github.com/alvarotrigo/fullPage.js#donations)
-- [许可证](https://github.com/alvarotrigo/fullPage.js#license)
+- [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E4%BB%8B%E7%BB%8D)
+- [兼容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E5%85%BC%E5%AE%B9%E6%80%A7)
+- [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E7%94%A8%E6%B3%95)
+  - [创建链接到滑块或代码段](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5%E5%88%B0%E6%AE%B5%E8%90%BD%E6%88%96%E5%B9%BB%E7%81%AF%E7%89%87)
+  - [创建更多或更少代码段](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%AE%B5%E8%90%BD)
+  - [fullpage.js添加的状态类](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E7%94%B1fullpagejs%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB)
+  - [快速加载](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)
+  - [自动播放内嵌媒体](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%9A%82%E5%81%9C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AA%92%E4%BD%93)
+  - [使用扩展](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BD%BF%E7%94%A8%E6%89%A9%E5%B1%95)
+- [选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9)
+- [方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%96%B9%E6%B3%95)
+- [回调](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#callbacks)
+- [报告问题](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8A%A5%E5%91%8A%E9%97%AE%E9%A2%98)
+- [完善fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B4%A1%E7%8C%AE%E7%BB%99fullpagejs)
+- [变更日志](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+- [创建任务](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1)
+- [资源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90)
+- [谁在使用fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B0%81%E5%9C%A8%E4%BD%BF%E7%94%A8-fullpagejs)
+- [赞赏](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8D%90%E7%8C%AE)
+- [许可证](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%AE%B8%E5%8F%AF%E8%AF%81)
 
 ## 介绍
 不仅限于提需求，也欢迎提出编码风格改进的建议。
@@ -136,7 +136,7 @@ HTML文件中的首行HTML代码必须使用[HTML DOCTYPE 声明](http://www.cor
 	<div class="slide"> 幻灯片 4 </div>
 </div>
 ````
-可以在[`demoPage.html`文件](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demoPage.html)看到完整的HTML结构的例子
+可以在[`demoPage.html`文件](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)看到完整的HTML结构的例子
 
 ### 初始化
 你所需要做的就是在`$(document).ready`函数中调用fullPage.js：
@@ -323,9 +323,9 @@ Fullpage.js在不同的元素中添加多个类来保存网站状态的记录：
 ```
 
 ### 使用扩展
-fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js#options).
+fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9).
 
-扩展需要使用在[`dist` 文件夹](https://github.com/alvarotrigo/fullPage.js/tree/master/dist)中的缩小文件 [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js)，而不是通常的fullPage.js文件 (`jquery.fullpage.js` 或 `jquery.fullpage.min.js`)。
+扩展需要使用在[`dist` 文件夹](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/)中的缩小文件 [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/jquery.fullpage.extensions.min.js)，而不是通常的fullPage.js文件 (`jquery.fullpage.js` 或 `jquery.fullpage.min.js`)。
 
 一旦你需要扩展文件，你需要在fullPage之前添加它。 例如，如果我想要使用Continuos Horizontal扩展，我将包含扩展文件，然后包含fullPage文件的扩展版本。
 
@@ -334,9 +334,9 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 <script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
 ```
 
-每个扩展都需要激活密钥和许可证密钥。[在这里看到更多细节](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
+每个扩展都需要激活密钥和许可证密钥。[在这里看到更多细节](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/how-to-activate-fullpage-extension.md).
 
-然后你就可以按照[选项](https://github.com/alvarotrigo/fullPage.js#options)的说明使用和配置它们。
+然后你就可以按照[选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9)的说明使用和配置它们。
 
 ## 选项
 
@@ -462,7 +462,7 @@ $('#fullpage').fullpage({
 - `slidesNavPosition`: （默认`bottom`）定义滑块的横向导航栏的位置。 值为`top`和`bottom`。 您可能需要修改CSS样式以确定从顶部或底部以及任何其他样式（如颜色）的距离。
 
 - `scrollOverflow`: （默认为`false`）（与IE 8不兼容）定义在内容大于它的高度的情况下是否为节/幻灯片创建滚动。 当设置为`true`时，您的内容将被插件包装。 考虑使用委托或在`afterRender`回调中加载其他脚本。
-如果设置为`true`，则需要库[`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js)。 这个文件必须在fullPage.js插件之前而非jQuery加载。
+如果设置为`true`，则需要库[`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js)。 这个文件必须在fullPage.js插件之前而非jQuery加载。
 例如：
 
 ```html
@@ -488,11 +488,11 @@ $('#fullpage').fullpage({
 
 - `responsiveSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，幻灯片将变成垂直节。 （通过使用上面详述的`responsiveWidth`或`responsiveHeight`选项）。 需要fullpage.js> = 2.8.5。
 
-- `parallax`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在节/幻灯片上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallax`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在节/幻灯片上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
-- `parallaxOptions`: （默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项parallax:true时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallaxOptions`: （默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项parallax:true时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
-- `lazyLoading`: （默认`true`）延迟加载默认是激活的，这意味着它会延迟加载包含属性`data-src`的任何媒体元素，详见[Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js＃lazy-loading)。 如果你想使用任何其他的后加载库，你可以禁用这个fullpage.js功能。
+- `lazyLoading`: （默认`true`）延迟加载默认是激活的，这意味着它会延迟加载包含属性`data-src`的任何媒体元素，详见[Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)。 如果你想使用任何其他的后加载库，你可以禁用这个fullpage.js功能。
 
 ## 方法
 你可以在[这里](http://alvarotrigo.com/fullPage/examples/methods.html)看到它们
@@ -509,7 +509,7 @@ $.fn.fullpage.moveSectionUp();
 $.fn.fullpage.moveSectionDown();
 ```
 ---
-### moveTo(section, slide)
+### moveTo(第节, 幻灯片)
 [示例](http://codepen.io/alvarotrigo/pen/doqOmY) 将页面滚动到给定节并滑动。 第一张幻灯片，默认情况下，将有索引0。
 ```javascript
 /*滚动到锚链接`firstSlide`和第二张幻灯片的部分 */
@@ -525,8 +525,8 @@ $.fn.fullpage.moveTo(3, 0);
 $.fn.fullpage.moveTo(3);
 ```
 ---
-### silentMoveTo(section, slide)
-[示例](http://codepen.io/alvarotrigo/pen/doqOeY) 与[`moveTo`](https://github.com/alvarotrigo/fullPage.js#movetosection-slide)完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
+### silentMoveTo(第节, 幻灯片)
+[示例](http://codepen.io/alvarotrigo/pen/doqOeY) 与[`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#movetosection-slide)完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
 ```javascript
 /*滚动到锚链接`firstSlide`和第二张幻灯片的部分 */
 $.fn.fullpage.silentMoveTo('firstSlide', 2);
@@ -850,7 +850,7 @@ $('#fullpage').fullpage({
 ```
 
 #### 在发生移动之前取消移动
-您可以通过在`onSlideLeave`回调中返回`false`来取消移动。 [与使用`onLeave`取消动作一样](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place)。
+您可以通过在`onSlideLeave`回调中返回`false`来取消移动。 [与使用`onLeave`取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
 
 # 报告问题
 1.请在提问之前使用github问题搜索查找您的问题。
