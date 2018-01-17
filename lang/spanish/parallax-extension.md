@@ -2,11 +2,11 @@
 
 Lee [como usar Extensiones](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#uso-de-extensiones) antes de usar la opción de parallax.
 - [Ejemplo online](http://alvarotrigo.com/fullPage/extensions/parallax.html)
-- [Estructura HTML necesaria](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#required-html-structure)
-- [Añadiendo la imagen de fondo](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#applying-the-background)
-- [Opciones](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#options)
-  - [Opciones del efecto parallax](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#parallax-effect-options)
-- [Métodos](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#methods)
+- [Estructura HTML necesaria](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md#estructura-html-necesaria)
+- [Añadiendo la imagen de fondo](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md#a%C3%B1adiendo-la-imagen-de-fondo)
+- [Opciones](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md#opciones)
+  - [Opciones del efecto parallax](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md#opciones-del-efecto-parallax)
+- [Métodos](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md#m%C3%A9todos)
 
 ## Estructura HTML necesaria
 Para usar el efecto de parallax en secciones o diapositivas, tendremos que añadir un nuevo elemento que use la clase `fp-bg`. Será un elemento `div` vacío que situaremos como primer elemento debajo de la sección o diapositiva a la que pertenece.
