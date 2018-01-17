@@ -8,7 +8,7 @@ Lee [como usar Extensiones](https://github.com/alvarotrigo/fullPage.js/tree/mast
   - [Opciones del efecto parallax](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#parallax-effect-options)
 - [Métodos](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax#methods)
 
-## HTML
+## Estructura HTML necesaria
 Para usar el efecto de parallax en secciones o diapositivas, tendremos que añadir un nuevo elemento que use la clase `fp-bg`. Será un elemento `div` vacío que situaremos como primer elemento debajo de la sección o diapositiva a la que pertenece.
 
 ```html
