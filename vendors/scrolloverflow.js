@@ -2440,6 +2440,17 @@ if ( typeof module != 'undefined' && module.exports ) {
             }
 
             /**
+            * Returns an integer representing the padding dimensions in px.
+            */
+            function getPaddings(element){
+                var section = element.closest(SECTION_SEL);
+                if(section.length){
+                    return parseInt(section.css('padding-bottom')) + parseInt(section.css('padding-top'));
+                }
+                return 0;
+            }
+
+            /**
             * Checks if the element needs scrollbar and if the user wants to apply it.
             * If so it creates it.
             *
@@ -2457,7 +2468,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                 var section = element.closest(SECTION_SEL); //in case element is a slide
                 var scrollable = scrollOverflowHandler.scrollable(element);
                 var contentHeight;
-                var paddings = parseInt(section.css('padding-bottom')) + parseInt(section.css('padding-top'));
+                var paddings = getPaddings(section);
 
                 //if there was scroll, the contentHeight will be the one in the scrollable section
                 if(scrollable.length){
@@ -2712,11 +2723,17 @@ if ( typeof module != 'undefined' && module.exports ) {
                 iscrollHandler.refreshId = setTimeout(function(){
                     $.each(iscrollHandler.iScrollInstances, function(){
                         $(this).get(0).refresh();
+
+                        //ugly hack that we are forced to use due to the timeout delay
+                        //otherwise done on the fullpage.js reBuild function
+                        $.fn.fullpage.silentMoveTo($(SECTION_ACTIVE_SEL).index() + 1);
                     });
                 }, 150);
 
                 //updating the wrappers height
-                element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+                element.find(SCROLLABLE_SEL)
+                    .css('height', scrollHeight + 'px')
+                    .parent().css('height', scrollHeight + getPaddings(element) + 'px');
             },
 
             /**
