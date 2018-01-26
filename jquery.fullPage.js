@@ -2316,7 +2316,7 @@
             if(!section.length) return;
 
             //default slide
-            if (typeof slide === 'undefined') {
+            if (typeof slide === 'undefined' || slide === 'undefined') {
                 slide = 0;
             }
 
