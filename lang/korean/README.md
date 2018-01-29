@@ -870,7 +870,6 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
 - [fullPage.js October CMS 플러그인](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js 워드프레스 플러그인](https://wordpress.org/plugins/wp-fullpage/)
-- [fullPage.js 반응 구현React implementation](https://github.com/subtirelumihail/react-fullpage)
 - [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)
 - [fullPage.js angular directive](https://github.com/hellsan631/angular-fullpage.js)
 - [fullPage.js ember-cli 애드온](https://www.npmjs.com/package/ember-cli-fullpagejs)
