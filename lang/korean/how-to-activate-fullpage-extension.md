@@ -1,3 +1,5 @@
+# fullPage.js 확장 프로그램을 활성화하는 법
+
 1. 확장 프로그램을 구매하셨을 때 이메일로 전송된 [URL](https://alvarotrigo.com/fullPage/extensions/activationKey.html)에 접속하세요. (https://alvarotrigo.com/fullPage/extensions/activationKey.html)
 1. 아이템 구매시 받으신 라이센스 키를 창에 입력하세요. 구매 확인 이메일에도 있습니다.
 1. 귀하의 제품 활성화 키를 획득하시려면 도메인 이름이 추가로 필요할 수 있습니다.
