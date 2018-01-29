@@ -1,5 +1,5 @@
 /*!
-* Customized version of iScroll.js 0.0.2
+* Customized version of iScroll.js 0.0.5
 * It fixes bugs affecting its integration with fullpage.js
 */
 /*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -2358,7 +2358,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 // scrolloverflow module
-(function (window, document, Math) {
+(function (window, document, $) {
     $.fn.fp_scrolloverflow = (function() {
 
         // keeping central set of classnames and selectors
@@ -2416,9 +2416,13 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 if(document.readyState === 'complete'){
                     createScrollBarForAll();
+                    $.fn.fullpage.shared.afterRenderActions();
                 }
                 //after DOM and images are loaded
-                $(window).on('load', createScrollBarForAll);
+                $(window).on('load', function(){
+                    createScrollBarForAll();
+                    $.fn.fullpage.shared.afterRenderActions();
+                });
 
                 return self;
             };
@@ -2433,7 +2437,17 @@ if ( typeof module != 'undefined' && module.exports ) {
                 else{
                     forEachSectionAndSlide(createScrollBar);
                 }
-                $.fn.fullpage.shared.afterRenderActions();
+            }
+
+            /**
+            * Returns an integer representing the padding dimensions in px.
+            */
+            function getPaddings(element){
+                var section = element.closest(SECTION_SEL);
+                if(section.length){
+                    return parseInt(section.css('padding-bottom')) + parseInt(section.css('padding-top'));
+                }
+                return 0;
             }
 
             /**
@@ -2446,27 +2460,28 @@ if ( typeof module != 'undefined' && module.exports ) {
                 //User doesn't want scrollbar here? Sayonara baby!
                 if(element.hasClass('fp-noscroll')) return;
 
-                //needed to make `scrollHeight` work under Opera 12
+                //necessary to make `scrollHeight` work under Opera 12
                 element.css('overflow', 'hidden');
 
                 var scrollOverflowHandler = self.options.scrollOverflowHandler;
                 var wrap = scrollOverflowHandler.wrapContent();
-                //in case element is a slide
-                var section = element.closest(SECTION_SEL);
+                var section = element.closest(SECTION_SEL); //in case element is a slide
                 var scrollable = scrollOverflowHandler.scrollable(element);
                 var contentHeight;
+                var paddings = getPaddings(section);
 
                 //if there was scroll, the contentHeight will be the one in the scrollable section
                 if(scrollable.length){
                     contentHeight = scrollOverflowHandler.scrollHeight(element);
-                }else{
-                    contentHeight = element.get(0).scrollHeight;
+                }
+                else{
+                    contentHeight = element.get(0).scrollHeight - paddings;
                     if(self.options.verticalCentered){
-                        contentHeight = element.find(TABLE_CELL_SEL).get(0).scrollHeight;
+                        contentHeight = element.find(TABLE_CELL_SEL).get(0).scrollHeight - paddings;
                     }
                 }
 
-                var scrollHeight = $(window).height() - parseInt(section.css('padding-bottom')) - parseInt(section.css('padding-top'));
+                var scrollHeight = $(window).height() - paddings;
 
                 //needs scroll?
                 if ( contentHeight > scrollHeight) {
@@ -2708,11 +2723,17 @@ if ( typeof module != 'undefined' && module.exports ) {
                 iscrollHandler.refreshId = setTimeout(function(){
                     $.each(iscrollHandler.iScrollInstances, function(){
                         $(this).get(0).refresh();
+
+                        //ugly hack that we are forced to use due to the timeout delay
+                        //otherwise done on the fullpage.js reBuild function
+                        $.fn.fullpage.silentMoveTo($(SECTION_ACTIVE_SEL).index() + 1);
                     });
                 }, 150);
 
                 //updating the wrappers height
-                element.find(SCROLLABLE_SEL).css('height', scrollHeight + 'px').parent().css('height', scrollHeight + 'px');
+                element.find(SCROLLABLE_SEL)
+                    .css('height', scrollHeight + 'px')
+                    .parent().css('height', scrollHeight + getPaddings(element) + 'px');
             },
 
             /**
@@ -2731,4 +2752,4 @@ if ( typeof module != 'undefined' && module.exports ) {
             iscrollHandler: iscrollHandler
         };
     })();
-})(window, jQuery);
+})(window, document, jQuery);
