@@ -34,12 +34,12 @@
 根据要求，可提供模块定制和紧急更改服务，价格合理。。
 <a href="http://alvarotrigo.com/#contact-page"> 联系我</a>.
 
-- [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E4%BB%8B%E7%BB%8D)
-- [兼容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E5%85%BC%E5%AE%B9%E6%80%A7)
-- [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E7%94%A8%E6%B3%95)
-  - [创建链接到段落或幻灯片](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5%E5%88%B0%E6%AE%B5%E8%90%BD%E6%88%96%E5%B9%BB%E7%81%AF%E7%89%87)
-  - [创建更小或更大的段落](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%AE%B5%E8%90%BD)
-  - [fullpage.js添加的状态类](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese//tree/master/lang/chinese/#%E7%94%B1fullpagejs%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB)
+- [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BB%8B%E7%BB%8D)
+- [兼容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%85%BC%E5%AE%B9%E6%80%A7)
+- [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E7%94%A8%E6%B3%95)
+  - [创建链接到段落或幻灯片](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5%E5%88%B0%E6%AE%B5%E8%90%BD%E6%88%96%E5%B9%BB%E7%81%AF%E7%89%87)
+  - [创建更小或更大的段落](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%AE%B5%E8%90%BD)
+  - [fullpage.js添加的状态类](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E7%94%B1fullpagejs%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB)
   - [快速加载](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)
   - [自动播放内嵌媒体](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%9A%82%E5%81%9C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AA%92%E4%BD%93)
   - [使用扩展](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BD%BF%E7%94%A8%E6%89%A9%E5%B1%95)
