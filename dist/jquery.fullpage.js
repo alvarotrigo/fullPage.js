@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.5
+ * fullPage 2.9.6
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -206,6 +206,9 @@
             touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer.down
         };
         var scrollBarHandler;
+
+        // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
+        var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
         //timeouts
         var resizeId;
@@ -647,11 +650,14 @@
 
             addInternalSelectors();
 
-             //styling the sections / slides / menu
+            //styling the sections / slides / menu
             $(SECTION_SEL).each(function(index){
                 var section = $(this);
                 var slides = section.find(SLIDE_SEL);
                 var numSlides = slides.length;
+
+                //caching the original styles to add them back on destroy('all')
+                section.data('fp-styles', section.attr('style'));
 
                 styleSection(section, index);
                 styleMenu(section, index);
@@ -888,8 +894,7 @@
         */
         function isDestinyTheStartingSection(){
             var destinationSection = getSectionByAnchor(getAnchorsURL().section);
-
-            return !destinationSection.length || destinationSection.length && destinationSection.index() === startingSection.index();
+            return !destinationSection || destinationSection.length && destinationSection.index() === startingSection.index();
         }
 
 
@@ -1602,7 +1607,7 @@
             var panel = getSlideOrSection(destiny);
             var element;
 
-            panel.find('img[data-src], img[data-srcset], source[data-src], video[data-src], audio[data-src], iframe[data-src]').each(function(){
+            panel.find('img[data-src], img[data-srcset], source[data-src], source[data-srcset], video[data-src], audio[data-src], iframe[data-src]').each(function(){
                 element = $(this);
 
                 $.each(['src', 'srcset'], function(index, type){
@@ -1730,7 +1735,10 @@
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                     event is fired on every scroll too.*/
-                    if ((sectionAnchor && sectionAnchor !== lastScrolledDestiny) && !isFirstSlideMove || isFirstScrollMove || (!slideMoving && lastScrolledSlide != slideAnchor ))  {
+                    if ((sectionAnchor && sectionAnchor !== lastScrolledDestiny) && !isFirstSlideMove
+                        || isFirstScrollMove
+                        || (!slideMoving && lastScrolledSlide != slideAnchor )){
+
                         scrollPageAndSlide(sectionAnchor, slideAnchor);
                     }
                 }
@@ -1739,30 +1747,46 @@
 
         //gets the URL anchors (section and slide)
         function getAnchorsURL(){
-            //getting the anchor link in the URL and deleting the `#`
+            var section;
+            var slide;
             var hash = window.location.hash;
-            var anchorsParts =  hash.replace('#', '').split('/');
 
-            //using / for visual reasons and not as a section/slide separator #2803
-            var isFunkyAnchor = hash.indexOf('#/') > -1;
+            if(hash.length){
+                //getting the anchor link in the URL and deleting the `#`
+                var anchorsParts =  hash.replace('#', '').split('/');
+
+                //using / for visual reasons and not as a section/slide separator #2803
+                var isFunkyAnchor = hash.indexOf('#/') > -1;
+
+                section = isFunkyAnchor ? '/' + anchorsParts[1] : decodeURIComponent(anchorsParts[0]);
+
+                var slideAnchor = isFunkyAnchor ? anchorsParts[2] : anchorsParts[1];
+                if(slideAnchor && slideAnchor.length){
+                    slide = decodeURIComponent(slideAnchor);
+                }
+            }
 
             return {
-                section: isFunkyAnchor ? '/' + anchorsParts[1] : decodeURIComponent(anchorsParts[0]),
-                slide: isFunkyAnchor ? decodeURIComponent(anchorsParts[2]) : decodeURIComponent(anchorsParts[1])
+                section: section,
+                slide: slide
             }
         }
 
         //Sliding with arrow keys, both, vertical and horizontal
         function keydownHandler(e) {
-
             clearTimeout(keydownId);
 
             var activeElement = $(':focus');
+            var keyCode = e.which;
 
-            if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
+            //tab?
+            if(keyCode === 9){
+                onTab(e);
+            }
+
+            else if(!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select') &&
                 activeElement.attr('contentEditable') !== "true" && activeElement.attr('contentEditable') !== '' &&
                 options.keyboardScrolling && options.autoScrolling){
-                var keyCode = e.which;
 
                 //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
                 var keyControls = [40, 38, 32, 33, 34];
@@ -1907,6 +1931,46 @@
 
                 default:
                     return; // exit this handler for other keys
+            }
+        }
+
+        /**
+        * Makes sure the tab key will only focus elements within the current section/slide
+        * preventing this way from breaking the page.
+        * Based on "Modals and keyboard traps"
+        * from https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
+        */
+        function onTab(e){
+            var isShiftPressed = e.shiftKey;
+            var activeElement = $(':focus');
+            var activeSection = $(SECTION_ACTIVE_SEL);
+            var activeSlide = activeSection.find(SLIDE_ACTIVE_SEL);
+            var focusableWrapper = activeSlide.length ? activeSlide : activeSection;
+            var focusableElements = focusableWrapper.find(focusableElementsString);
+
+            function preventAndFocusFirst(e){
+                e.preventDefault();
+                return focusableElements.first().focus();
+            }
+
+            //is there an element with focus?
+            if(activeElement.length){
+                if(!activeElement.closest(SECTION_ACTIVE_SEL, SLIDE_ACTIVE_SEL).length){
+                    activeElement = preventAndFocusFirst(e);
+                }
+            }
+
+            //no element if focused? Let's focus the first one of the section/slide
+            else{
+                preventAndFocusFirst(e);
+            }
+
+            //when reached the first or last focusable element of the section/slide
+            //we prevent the tab action to keep it in the last focusable element
+            if(!isShiftPressed && activeElement.is(focusableElements.last()) ||
+                isShiftPressed && activeElement.is(focusableElements.first())
+            ){
+                e.preventDefault();
             }
         }
 
@@ -2232,11 +2296,10 @@
         * Gets a section by its anchor / index
         */
         function getSectionByAnchor(sectionAnchor){
-            if(!sectionAnchor) return [];
-
             var section = container.find(SECTION_SEL + '[data-anchor="'+sectionAnchor+'"]');
             if(!section.length){
-                section = $(SECTION_SEL).eq( sectionAnchor -1);
+                var sectionIndex = typeof sectionAnchor !== 'undefined' ? sectionAnchor -1 : 0;
+                section = $(SECTION_SEL).eq(sectionIndex);
             }
 
             return section;
@@ -2246,11 +2309,10 @@
         * Gets a slide inside a given section by its anchor / index
         */
         function getSlideByAnchor(slideAnchor, section){
-            var slides = section.find(SLIDES_WRAPPER_SEL);
-            var slide =  slides.find(SLIDE_SEL + '[data-anchor="'+slideAnchor+'"]');
-
+            var slide = section.find(SLIDE_SEL + '[data-anchor="'+slideAnchor+'"]');
             if(!slide.length){
-                slide = slides.find(SLIDE_SEL).eq(slideAnchor);
+                slideAnchor = typeof slideAnchor !== 'undefined' ? slideAnchor : 0;
+                slide = section.find(SLIDE_SEL).eq(slideAnchor);
             }
 
             return slide;
@@ -2259,40 +2321,32 @@
         /**
         * Scrolls to the given section and slide anchors
         */
-        function scrollPageAndSlide(destiny, slide){
-            var section = getSectionByAnchor(destiny);
+        function scrollPageAndSlide(sectionAnchor, slideAnchor){
+            var section = getSectionByAnchor(sectionAnchor);
 
             //do nothing if there's no section with the given anchor name
             if(!section.length) return;
 
-            //default slide
-            if (typeof slide === 'undefined') {
-                slide = 0;
-            }
+            var slide = getSlideByAnchor(slideAnchor, section);
 
             //we need to scroll to the section and then to the slide
-            if (destiny !== lastScrolledDestiny && !section.hasClass(ACTIVE)){
+            if (sectionAnchor !== lastScrolledDestiny && !section.hasClass(ACTIVE)){
                 scrollPage(section, function(){
-                    scrollSlider(section, slide);
+                    scrollSlider(slide);
                 });
             }
             //if we were already in the section
             else{
-                scrollSlider(section, slide);
+                scrollSlider(slide);
             }
         }
 
         /**
         * Scrolls the slider to the given slide destination for the given section
         */
-        function scrollSlider(section, slideAnchor){
-            if(typeof slideAnchor !== 'undefined'){
-                var slides = section.find(SLIDES_WRAPPER_SEL);
-                var destiny =  getSlideByAnchor(slideAnchor, section);
-
-                if(destiny.length){
-                    landscapeScroll(slides, destiny);
-                }
+        function scrollSlider(slide){
+            if(slide.length){
+                landscapeScroll(slide.closest(SLIDES_WRAPPER_SEL), slide);
             }
         }
 
@@ -2569,8 +2623,8 @@
             events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
             events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
 
-            //in touch devices with scrollBar:true, e.pageY is detected, but we have to deal with touch events. #1008
-            if(isTouch && isReallyTouch(e) && options.scrollBar){
+            //in touch devices with scroll bar, e.pageY is detected, but we have to deal with touch events. #1008
+            if(isTouch && isReallyTouch(e) && (options.scrollBar || !options.autoScrolling)){
                 events.y = e.touches[0].pageY;
                 events.x = e.touches[0].pageX;
             }
@@ -2749,6 +2803,7 @@
                     options.scrollOverflowHandler.remove($(this));
                 }
                 $(this).removeClass(TABLE + ' ' + ACTIVE);
+                $(this).attr('style', $(this).data('fp-styles'));
             });
 
             removeAnimation(container);
