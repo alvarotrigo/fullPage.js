@@ -32,7 +32,7 @@
 
 요청시 적절한 가격에 라이브러리 맞춤화와 긴급 변경이 가능합니다. <a href="http://alvarotrigo.com/#contact-page">문의하기</a>.
 
-- [소개](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean/tree/master/lang/korean/#%EC%86%8C%EA%B0%9C)
+- [소개](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean/#%EC%86%8C%EA%B0%9C)
 - [호환성](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%ED%98%B8%ED%99%98%EC%84%B1)
 - [사용법](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%82%AC%EC%9A%A9%EB%B2%95)
   - [구역 또는 슬라이드로 가는 링크 만들기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B5%AC%EC%97%AD-%EB%98%90%EB%8A%94-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C%EB%A1%9C-%EA%B0%80%EB%8A%94-%EB%A7%81%ED%81%AC-%EB%A7%8C%EB%93%A4%EA%B8%B0)
