@@ -2405,6 +2405,16 @@ if ( typeof module != 'undefined' && module.exports ) {
             this.wrapper.removeEventListener('DOMMouseScroll', this);
         };
 
+        /**
+        * Returns an integer representing the padding dimensions in px.
+        */
+        function getPaddings(element){
+            var section = element.closest(SECTION_SEL);
+            if(section.length){
+                return parseInt(section.css('padding-bottom')) + parseInt(section.css('padding-top'));
+            }
+            return 0;
+        }
 
         function scrollBarHandler(){
             var self = this;
@@ -2437,17 +2447,6 @@ if ( typeof module != 'undefined' && module.exports ) {
                 else{
                     forEachSectionAndSlide(createScrollBar);
                 }
-            }
-
-            /**
-            * Returns an integer representing the padding dimensions in px.
-            */
-            function getPaddings(element){
-                var section = element.closest(SECTION_SEL);
-                if(section.length){
-                    return parseInt(section.css('padding-bottom')) + parseInt(section.css('padding-top'));
-                }
-                return 0;
             }
 
             /**
