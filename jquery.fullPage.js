@@ -1731,7 +1731,7 @@
                 var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
                 var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
 
-                if(sectionAnchor.length){
+                if(sectionAnchor && sectionAnchor.length){
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                     event is fired on every scroll too.*/
@@ -1946,7 +1946,7 @@
             var activeSection = $(SECTION_ACTIVE_SEL);
             var activeSlide = activeSection.find(SLIDE_ACTIVE_SEL);
             var focusableWrapper = activeSlide.length ? activeSlide : activeSection;
-            var focusableElements = focusableWrapper.find(focusableElementsString);
+            var focusableElements = focusableWrapper.find(focusableElementsString).not('[tabindex="-1"]');
 
             function preventAndFocusFirst(e){
                 e.preventDefault();
