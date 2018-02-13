@@ -16,6 +16,8 @@
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
+[![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg?style=flat-square)](https://dashboard.cypress.io/#/projects/p7bh2z/runs)
+[![Build Status](https://travis-ci.org/bahmutov/fullPage.js.svg?branch=master)](https://travis-ci.org/bahmutov/fullPage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Live demo](http://alvarotrigo.com/fullPage/)
@@ -878,6 +880,24 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 
 # Build tasks
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
+
+# Testing
+
+To run end to end tests in a real browser (Electron / Chrome) this project uses [Cypress.io](https://github.com/cypress-io/cypress). To run tests on CI simple execute
+
+```shell
+$ npm test
+```
+
+Which starts static server (using `npm start`), runs E2E tests and then closes the server.
+
+To see E2E tests live use
+
+```shell
+$ npm run test:gui
+```
+
+The Cypress runner keeps watching your test files, rerunning the tests as you are editing the spec files. Find the spec files in the [cypress/integration](cypress/integration) folder. The tests are also running on [CI](https://travis-ci.org/bahmutov/fullPage.js) and the output and video recordings can be found on [Cypress dashboard](https://dashboard.cypress.io/#/projects/p7bh2z/runs)
 
 # Resources
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
