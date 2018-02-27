@@ -2724,6 +2724,7 @@
                 .off('resize', resizeHandler);
 
             $document
+                .off('keydown', keydownHandler)
                 .off('click touchstart', SECTION_NAV_SEL + ' a')
                 .off('mouseenter', SECTION_NAV_SEL + ' li')
                 .off('mouseleave', SECTION_NAV_SEL + ' li')
