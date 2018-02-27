@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.6
+ * fullPage 2.9.7
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -2725,6 +2725,7 @@
 
             $document
                 .off('keydown', keydownHandler)
+                .off('keyup', keyUpHandler)
                 .off('click touchstart', SECTION_NAV_SEL + ' a')
                 .off('mouseenter', SECTION_NAV_SEL + ' li')
                 .off('mouseleave', SECTION_NAV_SEL + ' li')
