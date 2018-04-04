@@ -3,11 +3,11 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
 
 <p align="center">
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/english">English</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Spanish</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Russian</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">Chinese</a> |
-  <span>Korean</span>
+  <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
+  <span>한국어</span>
 </p>
 
 ---
