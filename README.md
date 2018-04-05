@@ -52,6 +52,7 @@ Customizations of the library and urgent changes are available upon request for 
 - [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
 - [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
 - [Donations](https://github.com/alvarotrigo/fullPage.js#donations)
+- [Sponsors](https://github.com/alvarotrigo/fullPage.js#sponsors)
 - [License](https://github.com/alvarotrigo/fullPage.js#license)
 
 ## Introduction
@@ -968,6 +969,9 @@ Donations would be more than welcome :)
 
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
+## Sponsors
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
 
 ## License
 
