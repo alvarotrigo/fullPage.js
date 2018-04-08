@@ -1,5 +1,5 @@
 /*!
-* Customized version of iScroll.js 0.0.7
+* Customized version of iScroll.js 0.0.8
 * It fixes bugs affecting its integration with fullpage.js
 */
 /*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -2468,7 +2468,9 @@ if ( typeof module != 'undefined' && module.exports ) {
                 var scrollable = element.find(SCROLLABLE_SEL);
                 if (scrollable.length) {
                     var iScrollInstance = scrollable.data('iscrollInstance');
-                    iScrollInstance.destroy();
+                    if(iScrollInstance){
+                        iScrollInstance.destroy();
+                    }
 
                     scrollable.data('iscrollInstance', null);
                 }
