@@ -507,7 +507,7 @@
 
         if($(this).length){
             //public functions
-            FP.version = '2.9.6';
+            FP.version = '2.9.7';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;

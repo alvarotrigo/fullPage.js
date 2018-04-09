@@ -1,5 +1,5 @@
 /*!
- * fullPage 2.9.6
+ * fullPage 2.9.7
  * https://github.com/alvarotrigo/fullPage.js
  * @license MIT licensed
  *
@@ -507,7 +507,7 @@
 
         if($(this).length){
             //public functions
-            FP.version = '2.9.5';
+            FP.version = '2.9.6';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -1393,7 +1393,14 @@
 
             //callback (onLeave) if the site is not just resizing and readjusting the slides
             if($.isFunction(options.onLeave) && !v.localIsResizing){
-                if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
+                var direction = v.yMovement;
+
+                //required for continousVertical
+                if(typeof isMovementUp !== 'undefined'){
+                    direction = isMovementUp ? 'up' : 'down';
+                }
+
+                if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), direction) === false){
                     return;
                 }
             }
@@ -1731,7 +1738,7 @@
                 var isFirstSlideMove =  (typeof lastScrolledDestiny === 'undefined');
                 var isFirstScrollMove = (typeof lastScrolledDestiny === 'undefined' && typeof slideAnchor === 'undefined' && !slideMoving);
 
-                if(sectionAnchor.length){
+                if(sectionAnchor && sectionAnchor.length){
                     /*in order to call scrollpage() only once for each destination at a time
                     It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
                     event is fired on every scroll too.*/
@@ -1946,7 +1953,7 @@
             var activeSection = $(SECTION_ACTIVE_SEL);
             var activeSlide = activeSection.find(SLIDE_ACTIVE_SEL);
             var focusableWrapper = activeSlide.length ? activeSlide : activeSection;
-            var focusableElements = focusableWrapper.find(focusableElementsString);
+            var focusableElements = focusableWrapper.find(focusableElementsString).not('[tabindex="-1"]');
 
             function preventAndFocusFirst(e){
                 e.preventDefault();
@@ -2254,7 +2261,8 @@
         function addTableClass(element){
             //In case we are styling for the 2nd time as in with reponsiveSlides
             if(!element.hasClass(TABLE)){
-                element.addClass(TABLE).wrapInner('<div class="' + TABLE_CELL + '" style="height:' + getTableHeight(element) + 'px;" />');
+                var wrapper = $('<div class="' + TABLE_CELL + '" />').height(getTableHeight(element));
+                element.addClass(TABLE).wrapInner(wrapper);
             }
         }
 
@@ -2724,6 +2732,8 @@
                 .off('resize', resizeHandler);
 
             $document
+                .off('keydown', keydownHandler)
+                .off('keyup', keyUpHandler)
                 .off('click touchstart', SECTION_NAV_SEL + ' a')
                 .off('mouseenter', SECTION_NAV_SEL + ' li')
                 .off('mouseleave', SECTION_NAV_SEL + ' li')
