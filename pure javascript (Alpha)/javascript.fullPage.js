@@ -1260,8 +1260,11 @@
         setState(slideIndex, slideAnchorLink, v.anchorLink, v.sectionIndex);
 
         //callback (onLeave) if the site is not just resizing and readjusting the slides
-        isFunction(options.onLeave) && !v.localIsResizing && options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
-
+        if(isFunction(options.onLeave) && !v.localIsResizing){
+            if(options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement) === false){
+                return;
+            }
+        }
 
         performMovement(v);
 

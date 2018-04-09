@@ -4,15 +4,15 @@
 
 <p align="center">
   <span>English</span> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Spanish</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Russian</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">Chinese</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">Korean</a>
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
 </p>
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.6-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.7-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -52,6 +52,7 @@ Customizations of the library and urgent changes are available upon request for 
 - [Resources](https://github.com/alvarotrigo/fullPage.js#resources)
 - [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
 - [Donations](https://github.com/alvarotrigo/fullPage.js#donations)
+- [Sponsors](https://github.com/alvarotrigo/fullPage.js#sponsors)
 - [License](https://github.com/alvarotrigo/fullPage.js#license)
 
 ## Introduction
@@ -968,6 +969,9 @@ Donations would be more than welcome :)
 
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
+## Sponsors
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath2.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
 
 ## License
 

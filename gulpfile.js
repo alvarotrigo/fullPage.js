@@ -31,7 +31,9 @@ gulp.task('js', function() {
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
         .pipe(uglify({
-            preserveComments: 'license'
+            output: {
+                comments: 'some'
+            }
         }))
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
@@ -43,7 +45,9 @@ gulp.task('scrolloverflow', function() {
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./vendors'))
         .pipe(uglify({
-            preserveComments: 'license'
+            output: {
+                comments: 'some'
+            }
         }))
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
@@ -54,7 +58,9 @@ gulp.task('scrolloverflow', function() {
 gulp.task('extensions', function() {
     gulp.src('./jquery.fullpage.extensions.js')
         .pipe(uglify({
-            preserveComments: 'license'
+            output: {
+                comments: 'some'
+            }
         }))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist'));

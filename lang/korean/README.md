@@ -3,16 +3,16 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
 
 <p align="center">
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/english">English</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Spanish</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Russian</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">Chinese</a> |
-  <span>Korean</span>
+  <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
+  <span>한국어</span>
 </p>
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.6-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.7-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -108,7 +108,7 @@ npm install fullpage.js
 ### 필요한 HTML 구조
 HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelangs.com/html/introduction/doctype.html)를 넣어주세요. 넣지 않으시면 구역의 높이가 깨질 수 있습니다. 제시된 사례에서는 HTML 5 doctype `<!DOCTYPE html>`을 씁니다.
 
-각 구역은 `section 클래스가 들어간 요소로 정의됩니다. 첫 번째 구역은 기본 설정으로 활성화되어 홈페이지가 됩니다.
+각 구역은 `section` 클래스가 들어간 요소로 정의됩니다. 첫 번째 구역은 기본 설정으로 활성화되어 홈페이지가 됩니다.
 
 구역이 포장 안에 들어가야 합니다(이 경우에는 `<div id="fullpage">`). 포장은 `body` 요소가 될 수 없습니다.
 ```html

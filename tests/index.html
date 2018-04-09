@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/qunit/qunit-1.18.0.css">
+    <meta charset="utf-8">
+
+    <title>fullpage.js - Tests</title>
+    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+
+    <style>
+    #qunit-fixture{
+
+    }
+    .fullpage-layout{
+        display: none;
+    }
+    .fullpage-layout.active{
+        display: block;
+    }
+    </style>
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture">
+
+    <div id="fullpage" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section" id="section2">
+            <div class="slide"> Slide 1 </div>
+            <div class="slide"> Slide 2 </div>
+            <div class="slide"> Slide 3 </div>
+            <div class="slide"> Slide 4 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-moveSlideRight" class="fullpage-layout">
+        <div class="section" id="section2">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 2 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+            <div class="slide" id="slide-1-4"> Slide 4 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+
+    <div id="fullpage-moveSlideLeft" class="fullpage-layout">
+        <div class="section" id="section2">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 2 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+            <div class="slide active" id="slide-1-4"> Slide 4 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+
+    <div id="fullpage-single-slide" class="fullpage-layout">
+        <div class="section" id="section1">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+        </div>
+        <div class="section" id="section2">Some section</div>
+        <div class="section" id="section3">Some section</div>
+    </div>
+
+    <div id="fullpage-single-slide-in-second-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section" id="section2">
+             <div class="slide" id="slide-2-1"> Slide 1 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+    </div>
+
+
+    <!-- Active slide in 1st section active -->
+    <div id="fullpage-second-slide-active" class="fullpage-layout">
+        <div class="section" id="section2">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide active" id="slide-1-2"> Slide 1 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-middle-slide-active" class="fullpage-layout">
+        <div class="section" id="section1">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide active" id="slide-1-2"> Slide 1 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-first-slide-active" class="fullpage-layout">
+        <div class="section" id="section2">
+            <div class="slide active" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 1 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+    <!-- End Active slide in second section active -->
+
+
+    <!-- Active slide in second active section -->
+    <div id="fullpage-first-slide-active-in-2nd-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section" id="section2">
+            <div class="slide active" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 1 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-middle-slide-active-in-2nd-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section" id="section2">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide active" id="slide-1-2"> Slide 2 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+    <!-- End Active slide in second section active -->
+
+
+    <!-- Second section active -->
+    <div id="fullpage-2nd-active-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section active" id="section2">Some section</div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-first-slide-active-in-2nd-active-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section active" id="section2">
+            <div class="slide active" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 2 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-middle-slide-active-in-2nd-active-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section active" id="section2">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide active" id="slide-1-2"> Slide 2 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+    <div id="fullpage-sigle-slide-active-in-2nd-active-section" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section active" id="section2">
+             <div class="slide" id="slide-2-1"> Slide 1 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+    </div>
+    <!-- End Second section active -->
+
+
+    <!-- 4th section active -->
+    <div id="fullpage-last-section-active" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section" id="section2">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 2 </div>
+            <div class="slide" id="slide-1-3"> Slide 3 </div>
+        </div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section active" id="section4">Some section</div>
+    </div>
+    <!-- End 4th section active -->
+
+
+    <div id="fullpage-all-sections-with-slides" class="fullpage-layout">
+        <div class="section" id="section1">
+            <div class="slide" id="slide-1-1"> Slide 1 </div>
+            <div class="slide" id="slide-1-2"> Slide 1 </div>
+        </div>
+        <div class="section" id="section2">
+            <div class="slide" id="slide-2-1"> Slide 1 </div>
+            <div class="slide" id="slide-2-2"> Slide 1 </div>
+        </div>
+        <div class="section" id="section3">
+            <div class="slide" id="slide-3-1"> Slide 1 </div>
+            <div class="slide" id="slide-3-2"> Slide 1 </div>
+        </div>
+    </div>
+
+    <div id="fullpage-no-slides" class="fullpage-layout">
+        <div class="section" id="section1">Some section</div>
+        <div class="section" id="section2">Some section</div>
+        <div class="section" id="section3">Some section</div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/qunit/qunit-2.5.1.js"></script>
+<script type="text/javascript" src="../jquery.fullPage.js"></script>
+<script type="text/javascript">
+
+</script>
+<script type="text/javascript" src="utils.js"></script>
+<!--
+<script type="text/javascript" src="./unit/lockAnchors.js"></script>
+<script type="text/javascript" src="./unit/moveSectionUp.js"></script>
+<script type="text/javascript" src="./unit/moveSectionDown.js"></script>
+<script type="text/javascript" src="./unit/moveTo.js"></script>
+<script type="text/javascript" src="./unit/silentMoveTo.js"></script>
+<script type="text/javascript" src="./unit/scrollingSpeed.js"></script>
+<script type="text/javascript" src="./unit/setAllowScrolling.js"></script>
+<script type="text/javascript" src="./unit/setKeyboardScrolling.js"></script>
+<script type="text/javascript" src="./unit/destroy.js"></script>
+<script type="text/javascript" src="./unit/moveSlideRight.js"></script>
+<script type="text/javascript" src="./unit/moveSlideLeft.js"></script>
+<script type="text/javascript" src="./unit/callbacks.js"></script>
+<script type="text/javascript" src="./unit/arrows.js"></script>
+<script type="text/javascript" src="./unit/lazyload.js"></script>
+<script type="text/javascript" src="./unit/loopTop.js"></script>
+
+-->
+<script type="text/javascript" src="./unit/continuousVertical.js"></script>
+</body>
+</html>
