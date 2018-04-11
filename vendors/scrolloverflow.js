@@ -1,4 +1,4 @@
-/*!
+/**
 * Customized version of iScroll.js 0.0.8
 * It fixes bugs affecting its integration with fullpage.js
 */
@@ -2123,7 +2123,13 @@ if ( typeof module != 'undefined' && module.exports ) {
 })(window, document, Math);
 
 
-// scrolloverflow module
+/*!
+* Scrolloverflow module for fullPage.js
+* https://github.com/alvarotrigo/fullPage.js
+* @license MIT licensed
+*
+* Copyright (C) 2015 alvarotrigo.com - A project by Alvaro Trigo
+*/
 (function (window, document, $) {
     $.fn.fp_scrolloverflow = (function() {
 
