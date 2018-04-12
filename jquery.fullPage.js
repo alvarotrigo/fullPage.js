@@ -1625,8 +1625,13 @@
                 });
 
                 if(element.is('source')){
-                    var typeToPlay = element.closest('video').length ? 'video' : 'audio';
-                    element.closest(typeToPlay).get(0).load();
+                    var types = ['video', 'audio', 'picture'];
+                    var elemParent = element.parent();
+                    var typeToPlay = elemParent.get(0).tagName.toLowerCase();
+
+                    if (types.indexOf(typeToPlay) !== -1) {
+                        elemParent.load();
+                    }
                 }
             });
         }
