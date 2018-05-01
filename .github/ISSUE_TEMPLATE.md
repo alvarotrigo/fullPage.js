@@ -9,4 +9,4 @@
 3. [and so on...]
 
 ### Versions 
-[Browser, operative system, device...]
+[Browser, operating system, device, ...]
