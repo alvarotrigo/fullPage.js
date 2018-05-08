@@ -1,21 +1,27 @@
 QUnit.test('.destroy("all") removes all inline CSS and fullpage classes', function(assert) {
     var id = '#fullpage';
-    initFullpage(id, allBasicOptions);
 
     appendLazyElements(id);
+
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {
+        sectionsColor: ['yellow', 'green', 'purple', 'orange'],
+        paddingTop: '20px',
+        paddingBottom: '20px'
+    }));
 
     var $SECTION_SEL = $(SECTION_SEL),
         $SLIDE_SEL = $(SLIDE_SEL),
         $html = $('html'), // listed separately because we should check each individually
         $body = $('body');
 
-    $.fn.fullpage.destroy('all');
+    FP.destroy('all');
 
     // and make sure we cleaned it up. note: this requires checking the uncomputed
     // CSS or jQuery will give us computed values, which are unhelpful here
     assert.equal($SECTION_SEL.get(0).style.height, '', SECTION_SEL + ' should have an empty string height');
     assert.equal($SECTION_SEL.get(0).style.backgroundColor, '', SECTION_SEL + ' should have an empty string background-color');
-    assert.equal($SECTION_SEL.get(0).style.padding, '', SECTION_SEL + ' should have an empty string padding');
+    assert.equal($SECTION_SEL.get(0).style.paddingTop, '', SECTION_SEL + ' should have an empty string paddingTop');
+    assert.equal($SECTION_SEL.get(0).style.paddingBottom, '', SECTION_SEL + ' should have an empty string paddingBottom');
     assert.equal($SLIDE_SEL.get(0).style.width, '', SLIDE_SEL + ' should have an empty string width');
     assert.equal($html.get(0).style.overflow, '', 'html should have an empty string overflow');
     assert.equal($html.get(0).style.height, '', 'html should have an empty string height');
@@ -34,7 +40,10 @@ QUnit.test('.destroy("all") removes all inline CSS and fullpage classes', functi
     assert.equal($(id).hasClass(DESTROYED), true, 'fullpage.js container should have the ' + DESTROYED + ' class');
 
     //no table classes
-    assert.equal($(SECTION_SEL + ', ' + SLIDE_SEL).find(TABLE).length, 0, 'Sections or slides should not containt the ' + TABLE + ' class');
+    assert.equal($(SECTION_SEL + ', ' + SLIDE_SEL).find(TABLE_CELL_SEL).length, 0, 'Sections or slides should not containt the ' + TABLE_CELL_SEL + ' class');
+
+    //maintains original styles
+    assert.equal($(id).find('#section2')[0].style.backgroundColor, 'blue', 'Sections or slides should maintain previous inline styles');
 
     // check for <body/> classes
     $.each($body.get(0).className.split(/\s+/), function(index, className) {
@@ -61,19 +70,19 @@ QUnit.test('.destroy("all") removes all inline CSS and fullpage classes', functi
 
 QUnit.test('.destroy("all") with css3:false ', function(assert) {
     var id = '#fullpage';
-    initFullpage(id, Object.assign({}, allBasicOptions, {css3: false}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {css3: false}));
 
     assert.deepEqual($(id).css('top'), '0px', 'fullPage.js container should have top: 0');
 });
 
 QUnit.test('.destroy("all") with css3:true & autoScrolling:false', function(assert) {
     var id = '#fullpage';
-    initFullpage(id, Object.assign({}, allBasicOptions, {css3: true, autoScrolling:false}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {css3: true, autoScrolling:false}));
 
     //scrolling the content
     $('html,body').scrollTop(600);
 
-    $.fn.fullpage.destroy('all');
+    FP.destroy('all');
 
     assert.deepEqual($(id).css('top'), 'auto', 'fullPage.js container should have top: auto');
     assert.deepEqual($('html,body').scrollTop(), 0, 'fullPage.js container should have scrollTop: 0');
@@ -81,12 +90,12 @@ QUnit.test('.destroy("all") with css3:true & autoScrolling:false', function(asse
 
 QUnit.test('.destroy("all") with css3:true & scrollBar:true', function(assert) {
     var id = '#fullpage';
-    initFullpage(id, Object.assign({}, allBasicOptions, {css3: true, scrollBar: true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {css3: true, scrollBar: true}));
 
     //scrolling the content
     $('html,body').scrollTop(600);
 
-    $.fn.fullpage.destroy('all');
+    FP.destroy('all');
 
     assert.deepEqual($(id).css('top'), 'auto', 'fullPage.js container should have top: auto');
     assert.deepEqual($('html,body').scrollTop(), 0, 'fullPage.js container should have scrollTop: 0');
@@ -95,12 +104,12 @@ QUnit.test('.destroy("all") with css3:true & scrollBar:true', function(assert) {
 //common test when fullpage.js uses scrollbar
 function checkDestroyWhenScrollBarPresent(assert, options){
     var id = '#fullpage';
-    initFullpage(id, options);
+    var FP = initFullpageNew(id, options);
 
     //scrolling the content
     $('html,body').scrollTop(600);
 
-    $.fn.fullpage.destroy('all');
+    FP.destroy('all');
 
     assert.deepEqual($(id).css('top'), 'auto', 'fullPage.js container should have top: auto');
     assert.deepEqual($('html,body').scrollTop(), 0, 'fullPage.js container should have scrollTop: 0');

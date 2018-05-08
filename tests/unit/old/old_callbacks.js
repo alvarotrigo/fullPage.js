@@ -1,9 +1,9 @@
 
 // onSlideLeave
 // ---------------------------------------
-QUnit.test('Testing onSlideLeave callback fullpage-moveSlideRight', function(assert) {
+QUnit.test('Testing onSlideLeave callback fullpage-moveSlideLeft', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
     var done = assert.async(3);
     var i;
     var cont = 0;
@@ -13,33 +13,15 @@ QUnit.test('Testing onSlideLeave callback fullpage-moveSlideRight', function(ass
     }
 
     function afterMove(i){
-        FP.moveSlideRight();
-        assert.equal(onSlideLeave, 'null, 1, '+ i +', right, ' + (i+1) + '', 'We expect the right values for the callback');
-        done();
-    }
-});
-
-QUnit.test('Testing onSlideLeave callback fullpage-moveSlideRight with anchors', function(assert) {
-    var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, sectionsAndSlidesCallbacks));
-    var done = assert.async(3);
-    var i;
-    var cont = 0;
-
-    for(i = 0; i < 3; i++, cont++){
-        setTimeout(afterMove.bind(null, i), cont * 800);
-    }
-
-    function afterMove(i){
-        FP.moveSlideRight();
-        assert.equal(onSlideLeave, 'page1, 1, '+ i +', right, ' + (i+1) + '', 'We expect the right values for the callback');
+        $.fn.fullpage.moveSlideRight();
+        assert.equal(onSlideLeave, 'undefined, 1, '+ i +', right, ' + (i+1) + '', 'We expect the right values for the callback');
         done();
     }
 });
 
 QUnit.test('Testing onSlideLeave callback fullpage-moveSlideLeft', function(assert) {
     var id = '#fullpage-moveSlideLeft';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
     var done = assert.async(3);
     var i;
     var cont = 0;
@@ -49,26 +31,26 @@ QUnit.test('Testing onSlideLeave callback fullpage-moveSlideLeft', function(asse
     }
 
     function afterMove(i){
-        FP.moveSlideLeft();
-        assert.equal(onSlideLeave, 'null, 1, '+ (i+1) +', left, ' + i + '', 'We expect the right values for the callback');
+        $.fn.fullpage.moveSlideLeft();
+        assert.equal(onSlideLeave, 'undefined, 1, '+ (i+1) +', left, ' + i + '', 'We expect the right values for the callback');
         done();
     }
 });
 
 QUnit.test('Testing onSlideLeave from last slide to first with loopHorizontal', function(assert) {
     var id = '#fullpage-moveSlideLeft';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {loopHorizontal: true}));
+    initFullpage(id, Object.assign({}, sectionsAndSlidesCallbacks, {loopHorizontal: true}));
 
-    FP.moveSlideRight();
-    assert.equal(onSlideLeave, 'null, 1, 3, right, 0', 'We expect the right values for the callback');
+    $.fn.fullpage.moveSlideRight();
+    assert.equal(onSlideLeave, 'undefined, 1, 3, right, 0', 'We expect the right values for the callback');
 });
 
 QUnit.test('Testing onSlideLeave from 1st slide to last', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {loopHorizontal: true}));
+    initFullpage(id, Object.assign({}, sectionsAndSlidesCallbacks, {loopHorizontal: true}));
 
-    FP.moveSlideLeft();
-    assert.equal(onSlideLeave, 'null, 1, 0, left, 3', 'We expect the right values for the callback');
+    $.fn.fullpage.moveSlideLeft();
+    assert.equal(onSlideLeave, 'undefined, 1, 0, left, 3', 'We expect the right values for the callback');
 });
 
 
@@ -76,11 +58,11 @@ QUnit.test('Testing onSlideLeave from 1st slide to last', function(assert) {
 // ---------------------------------------
 QUnit.test('Testing afterSlideLoad callback', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     var done = assert.async(1);
 
-    FP.moveSlideRight();
+    $.fn.fullpage.moveSlideRight();
 
     assert.equal(slideLoaded[0], false, 'We expect slide 1.1 to not be loaded');
     assert.equal(slideLoaded[1], false, 'We expect slide 1.2 to not be loaded');
@@ -89,22 +71,8 @@ QUnit.test('Testing afterSlideLoad callback', function(assert) {
     setTimeout(function(){
         assert.equal(slideLoaded[1], true, 'We expect slide 1.2 to be loaded');
         assert.equal(areOthersLoaded(slideLoaded), 1, 'We expect only 1 slide to be loaded');
-        assert.equal(afterSlideLoad, 'null, 1, slide2, 1', 'We expect the right values for the callback');
+        assert.equal(afterSlideLoad, 'undefined, 1, 1, 1', 'We expect the right values for the callback');
 
-        done();
-    }, 800);
-});
-
-QUnit.test('Testing afterSlideLoad callback with anchors', function(assert) {
-    var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, sectionsAndSlidesCallbacks));
-
-    var done = assert.async(1);
-
-    FP.moveSlideRight();
-
-    setTimeout(function(){
-        assert.equal(afterSlideLoad, 'page1, 1, slide2, 1', 'We expect the right values for the callback');
         done();
     }, 800);
 });
@@ -115,7 +83,7 @@ QUnit.test('Testing afterSlideLoad callback with anchors', function(assert) {
 //section is active by default. But... Probably it should...
 QUnit.test('Testing afterSlideLoad callback with active 2nd section and 1st slide active', function(assert) {
     var id = '#fullpage-first-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(slideLoaded[1], false, 'We expect section 2 to not be loaded');
     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
@@ -128,7 +96,7 @@ QUnit.test('Testing afterSlideLoad callback with active 2nd section and 1st slid
 //section is active by default. But... Probably it should...
 QUnit.test('Testing afterSlideLoad callback with active 2nd section and middle slide active', function(assert) {
     var id = '#fullpage-middle-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(slideLoaded[1], false, 'We expect middle slide to not be loaded');
     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
@@ -141,7 +109,7 @@ QUnit.test('Testing afterSlideLoad callback with active 2nd section and middle s
 //section is active by default. But... Probably it should...
 QUnit.test('Testing afterSlideLoad callback with active 2nd section and single slide active', function(assert) {
     var id = '#fullpage-single-slide-in-second-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(slideLoaded[0], false, 'We expect the single slide to not be loaded');
     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 sections to be loaded');
@@ -153,7 +121,7 @@ QUnit.test('Testing afterSlideLoad callback with active 2nd section and single s
 // ---------------------------------------
 QUnit.test('Testing afterRender callback with section', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(sectionLoaded[0], true, 'We expect section 1 be loaded');
     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 1 section to be loaded');
@@ -161,32 +129,32 @@ QUnit.test('Testing afterRender callback with section', function(assert) {
 
 QUnit.test('Testing afterRender callback with slides', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.deepEqual(afterRender, [0, 0], 'We expect Section 0.0 be loaded');
 });
 
 QUnit.test('Testing afterRender callback on fullpage-2nd-active-section', function(assert) {
     var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
     assert.deepEqual(afterRender, [1, -1], 'We expect Section 1 be loaded');
 });
 
 QUnit.test('Testing afterRender callback on fullpage-middle-slide-active-in-2nd-active-section', function(assert) {
     var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
     assert.deepEqual(afterRender, [1, -1], 'We expect Section 1.1 be loaded');
 });
 
 QUnit.test('Testing afterRender callback on fullpage-first-slide-active-in-2nd-active-section', function(assert) {
     var id = '#fullpage-first-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
     assert.deepEqual(afterRender, [1, 0], 'We expect Section 1.0 be loaded');
 });
 
 QUnit.test('Testing afterRender callback on fullpage-sigle-slide-active-in-2nd-active-section', function(assert) {
     var id = '#fullpage-sigle-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
     assert.deepEqual(afterRender, [1, 0], 'We expect Section 1.0 be loaded');
 });
 
@@ -197,39 +165,26 @@ QUnit.test('Testing afterRender callback on fullpage-sigle-slide-active-in-2nd-a
 QUnit.test('Testing afterLoad callback on scroll with section', function(assert) {
     var id = '#fullpage-no-slides';
     var done = assert.async(2);
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
-    FP.moveSectionDown();
+    $.fn.fullpage.moveSectionDown();
 
     setTimeout(function(){
         assert.equal(sectionLoaded[1], true, 'We expect section 2 be loaded');
         assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 2 section to be loaded');
-        assert.equal(afterLoad, 'null, 2', 'We expect the right values for the callback');
+        assert.equal(afterLoad, 'undefined, 2', 'We expect the right values for the callback');
         done();
-        FP.moveSectionDown();
+        $.fn.fullpage.moveSectionDown();
     }, 800);
 
     setTimeout(function(){
         assert.equal(sectionLoaded[2], true, 'We expect section 3 be loaded');
         assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only section 3 to be loaded');
-        assert.equal(afterLoad, 'null, 3', 'We expect the right values for the callback');
+        assert.equal(afterLoad, 'undefined, 3', 'We expect the right values for the callback');
         done();
     }, 800*2);
 });
 
-QUnit.test('Testing afterLoad callback on scroll with section and anchors', function(assert) {
-    var id = '#fullpage-sections-and-slides-with-data-anchor';
-    var done = assert.async(1);
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
-
-    FP.moveSectionDown();
-
-    setTimeout(function(){
-        assert.equal(afterLoad, 'page2, 2', 'We expect the right values for the callback');
-        done();
-        FP.moveSectionDown();
-    }, 800);
-});
 
 //this test should be reviewed.
 //at the moment the afterLoad callback doesn't get fired on page load, no matter what
@@ -237,7 +192,7 @@ QUnit.test('Testing afterLoad callback on scroll with section and anchors', func
 //Same as afterSlideLoad on section change
 QUnit.test('Testing afterLoad callback with fullpage-2nd-active-section', function(assert) {
     var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded');
     assert.equal(areOthersLoaded(sectionLoaded), 0, 'We expect 0 slides to be loaded');
@@ -250,11 +205,11 @@ QUnit.test('Testing afterLoad callback with fullpage-2nd-active-section', functi
 //Same as afterSlideLoad on section change
 QUnit.test('Testing afterLoad callback with fullpage-first-slide-active-in-2nd-section', function(assert) {
     var id = '#fullpage-first-slide-active-in-2nd-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(sectionLoaded[0], true, 'We expect section 1 to be loaded');
     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 0 sections to be loaded');
-    assert.equal(afterLoad, 'null, 1', 'We expect no values for the callback');
+    assert.equal(afterLoad, 'undefined, 1', 'We expect no values for the callback');
 });
 
 
@@ -263,11 +218,11 @@ QUnit.test('Testing afterLoad callback with fullpage-first-slide-active-in-2nd-s
 //This one is firing while none of the others are
 QUnit.test('Testing afterLoad callback with fullpage-middle-slide-active-in-2nd-section', function(assert) {
     var id = '#fullpage-middle-slide-active-in-2nd-section';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(sectionLoaded[1], false, 'We expect section 2 be loaded');
     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 2 section to be loaded');
-    assert.equal(afterLoad, 'null, 1', 'We expect the right values for the callback');
+    assert.equal(afterLoad, 'undefined, 1', 'We expect the right values for the callback');
 });
 
 
@@ -275,14 +230,14 @@ QUnit.test('Testing afterLoad callback with fullpage-middle-slide-active-in-2nd-
 // ---------------------------------------
 QUnit.test('Testing afterResponsive', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(afterResponsive, false, 'We expect afterResponsive callback was not fired');
 
-    FP.setResponsive(true);
+    $.fn.fullpage.setResponsive(true);
     assert.equal(afterResponsive, true, 'We expect afterResponsive callback to be fired with true value');
 
-    FP.setResponsive(false);
+    $.fn.fullpage.setResponsive(false);
     assert.equal(afterResponsive, false, 'We expect afterResponsive callback to be fired with false value');
 });
 
@@ -292,7 +247,7 @@ QUnit.test('Testing afterResponsive', function(assert) {
 QUnit.test('Testing afterResize', function(assert) {
     var id = '#fullpage';
     var done = assert.async(1);
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     window.dispatchEvent(new Event('resize'));
     assert.equal(afterResize, false, 'We expect afterResize to not get fired synchronously');
@@ -308,9 +263,9 @@ QUnit.test('Testing afterResize', function(assert) {
 // ---------------------------------------
 QUnit.test('Testing afterReBuild', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, sectionsAndSlidesCallbacks);
+    initFullpage(id, sectionsAndSlidesCallbacks);
 
     assert.equal(afterReBuild, false, 'We expect afterReBuild to not get fired by default');
-    FP.reBuild();
+    $.fn.fullpage.reBuild();
     assert.equal(afterReBuild, true, 'We expect afterReBuild to get fired synchronously');
 });
