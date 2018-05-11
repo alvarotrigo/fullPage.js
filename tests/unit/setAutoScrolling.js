@@ -14,7 +14,7 @@ QUnit.test('Testing setAutoScrolling(true, external) {autoScrolling:true}', func
 
     assert.equal($(id).css('touch-action'), 'none', 'touch action should be none');
 
-    assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
     assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
 });
 

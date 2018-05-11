@@ -11,11 +11,11 @@ function simulateScroll(scrollValue){
 
 QUnit.test('Testing fitToSection:true', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {autoScrolling:false, fitToSection: true}));
+    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {autoScrolling:false, fitToSection: true, scrollingSpeed: 50}));
     var done = assert.async(1);
 
-    simulateScroll(window.innerHeight * 0.6);
     $(SECTION_ACTIVE_SEL)[0].offsetTop = window.innerHeight * 0.6;
+    simulateScroll(window.innerHeight * 0.6);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 1 to be active');
 
@@ -24,16 +24,16 @@ QUnit.test('Testing fitToSection:true', function(assert) {
     setTimeout(function(){
         assert.ok($(SECTION_SEL).eq(1).hasClass(COMPLETELY), '2nd section has class COMPLETELY_SEL');
         done();
-    },800 + 1000);
+    },100 + 1000);
 });
 
 QUnit.test('Testing fitToSection:false', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {autoScrolling:false, fitToSection: false}));
+    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {autoScrolling:false, fitToSection: false, scrollingSpeed: 50}));
     var done = assert.async(1);
 
-    simulateScroll(window.innerHeight * 0.6);
     $(SECTION_ACTIVE_SEL)[0].offsetTop = window.innerHeight * 0.6;
+    simulateScroll(window.innerHeight * 0.6);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 1 to be active');
 
@@ -42,16 +42,16 @@ QUnit.test('Testing fitToSection:false', function(assert) {
     setTimeout(function(){
         assert.ok(!$(SECTION_SEL).eq(1).hasClass(COMPLETELY), '2nd section does not have the class COMPLETELY_SEL');
         done();
-    },800 + 1000);
+    },200 + 1000);
 });
 
 QUnit.test('Testing fitToSection:true & fitToSectionDelay:100', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {autoScrolling:false, fitToSection: true, fitToSectionDelay:100}));
+    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {autoScrolling:false, fitToSection: true, fitToSectionDelay:100, scrollingSpeed: 50}));
     var done = assert.async(1);
 
-    simulateScroll(window.innerHeight * 0.6);
     $(SECTION_ACTIVE_SEL)[0].offsetTop = window.innerHeight * 0.6;
+    simulateScroll(window.innerHeight * 0.6);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 1 to be active');
 
@@ -60,6 +60,6 @@ QUnit.test('Testing fitToSection:true & fitToSectionDelay:100', function(assert)
     setTimeout(function(){
         assert.ok($(SECTION_SEL).eq(1).hasClass(COMPLETELY), '2nd section has class COMPLETELY_SEL');
         done();
-    },800 + 100);
+    },200 + 100);
 });
 

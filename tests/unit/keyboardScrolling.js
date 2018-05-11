@@ -51,28 +51,28 @@ function triggerKeydown(keyCode, shift, direction){
     document.dispatchEvent(keydownEvent);
 }
 
-function upAndDown(assert, done, id, params, prefix){
+function upAndDown(assert, done, FP, params, prefix){
     var windowHeight = $(window).height();
 
     triggerKeydown(params.down, params.shift, 'down');
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], prefix + `: We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], prefix + `: We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, prefix + ': We expect section 2 to be active');
         done();
         triggerKeydown(params.up, params.shift, 'up');
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], prefix + `: We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], prefix + `: We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, prefix + ': We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 }
 
 QUnit.test('Testing keyboardScrolling:true with keydown up & down', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 50}));
     var windowHeight = $(window).height();
 
     var done = assert.async(2);
@@ -82,23 +82,23 @@ QUnit.test('Testing keyboardScrolling:true with keydown up & down', function(ass
     simulateKeydown('down');
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         simulateKeydown('up');
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 });
 
 
 QUnit.test('Testing keyboardScrolling:false with keydown up & down', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:false, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:false, loopTop:true, scrollingSpeed: 50}));
     var done = assert.async(2);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
@@ -106,52 +106,52 @@ QUnit.test('Testing keyboardScrolling:false with keydown up & down', function(as
     simulateKeydown('down');
 
     setTimeout(function() {
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We don not expect section 2 to be active');
         done();
         simulateKeydown('up');
-    }, 800);
+    }, 200);
 
     setTimeout(function() {
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We don not expect section 2 to be active');
         done();
-    }, 800*2);
+    }, 200*2);
 });
 
 QUnit.test('Testing keyboardScrolling:true keys (tab, space, pageup, pagedown...)', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 50}));
     var done = assert.async(2);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
 
-    upAndDown(assert, done, id, {up: 38, down: 40, shift: false}, 'Arrow up / arrow down'); //arrow up / arrow down
+    upAndDown(assert, done, FP, {up: 38, down: 40, shift: false}, 'Arrow up / arrow down'); //arrow up / arrow down
 });
 
 QUnit.test('Testing keyboardScrolling:true keys pageUp / pageDown', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 50}));
     var done = assert.async(2);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
 
-    upAndDown(assert, done, id, {up: 33, down: 34, shift: false}, 'pageUp / pageDown'); //pageUp / pageDown
+    upAndDown(assert, done, FP, {up: 33, down: 34, shift: false}, 'pageUp / pageDown'); //pageUp / pageDown
 });
 
 QUnit.test('Testing keyboardScrolling:true keys Spacebar', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 50}));
     var done = assert.async(2);
 
     assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
 
-    upAndDown(assert, done, id, {up: 32, down: 32, shift: true}, 'Spacebar'); //shift + spacebar / space bar
+    upAndDown(assert, done, FP, {up: 32, down: 32, shift: true}, 'Spacebar'); //shift + spacebar / space bar
 });
 
 QUnit.test('Testing keyboardScrolling:true keys Home / end', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:true, loopTop:true, scrollingSpeed: 50}));
     var windowHeight = $(window).height();
 
     var done = assert.async(2);
@@ -163,22 +163,22 @@ QUnit.test('Testing keyboardScrolling:true keys Home / end', function(assert) {
     triggerKeydown(params.down, params.shift, 'down');
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*3)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*3)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*3)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*3)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
         done();
         triggerKeydown(params.up, params.shift, 'up');
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 });
 
 QUnit.test('Testing keyboardScrolling:false with moveSectionUp & moveSectionDown', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:false, loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {keyboardScrolling:false, loopTop:true, scrollingSpeed: 50}));
     var windowHeight = $(window).height();
 
     var done = assert.async(2);
@@ -188,17 +188,17 @@ QUnit.test('Testing keyboardScrolling:false with moveSectionUp & moveSectionDown
     FP.moveSectionDown();
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         FP.moveSectionUp();
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 });
 
 QUnit.test('Testing keyboardScrolling:false with mousewheel down & up', function(assert) {
@@ -213,17 +213,17 @@ QUnit.test('Testing keyboardScrolling:false with mousewheel down & up', function
     simulateMouseWheel('down');
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         simulateMouseWheel('up');
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 });
 
 QUnit.test('Testing setKeyboardScrolling(false)', function(assert) {
@@ -240,17 +240,17 @@ QUnit.test('Testing setKeyboardScrolling(false)', function(assert) {
     simulateMouseWheel('down');
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         simulateMouseWheel('up');
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 });
 
 QUnit.test('Testing setKeyboardScrolling(true)', function(assert) {
@@ -267,23 +267,23 @@ QUnit.test('Testing setKeyboardScrolling(true)', function(assert) {
     simulateKeydown('down');
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         simulateKeydown('up');
-    },800);
+    },200);
 
     setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], `We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
         done();
-    },800*2);
+    },200*2);
 });
 
 
 QUnit.test('Testing setKeyboardScrolling(false, "up")', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {loopTop:true, scrollingSpeed: 50}));
     var windowHeight = $(window).height();
 
     var done = assert.async(2);
@@ -294,25 +294,25 @@ QUnit.test('Testing setKeyboardScrolling(false, "up")', function(assert) {
     simulateKeydown('down');
 
     setTimeout(function() {
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         simulateKeydown('up');
-    }, 800);
+    }, 200);
 
     //scrolling up won't do anything
     setTimeout(function() {
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
-    }, 800*2);
+    }, 200*2);
 });
 
 
 
 QUnit.test('Testing setKeyboardScrolling(false, "up, left")', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {loopTop:true, scrollingSpeed: 600}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {loopTop:true, scrollingSpeed: 50}));
     var windowHeight = $(window).height();
 
     var done = assert.async(4);
@@ -323,35 +323,35 @@ QUnit.test('Testing setKeyboardScrolling(false, "up, left")', function(assert) {
     simulateKeydown('down');
 
     setTimeout(function() {
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         simulateKeydown('up');
-    }, 800);
+    }, 200);
 
     //scrolling up won't do anything
     setTimeout(function() {
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
         done();
         FP.moveSlideRight();
-    }, 800*2);
+    }, 200*2);
 
     setTimeout(function() {
-        var transforms = getTransform($(id).find(SECTION_ACTIVE_SEL).find(SLIDES_CONTAINER_SEL));
+        var transforms = getTransform(FP.test.translate3dH[$(id).find(SECTION_ACTIVE_SEL).index()]);
         assert.deepEqual(transforms, [`-1000`, '0', '0'], `We expect slides transformation to be [-1000, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL).index(), 1, 'We expect slide 2.2 to be active');
         done();
         simulateKeydown('left');
-    },800*3);
+    },200*3);
 
     //sliding left won't do anything
     setTimeout(function() {
-        var transforms = getTransform($(id).find(SECTION_ACTIVE_SEL).find(SLIDES_CONTAINER_SEL));
+        var transforms = getTransform(FP.test.translate3dH[$(id).find(SECTION_ACTIVE_SEL).index()]);
         assert.deepEqual(transforms, ['-1000', '0', '0'], `We expect slides transformation to be [-1000, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL).index(), 1, 'We expect slide 2.2 to be active');
         done();
-    }, 800*4);
+    }, 200*4);
 });
 
 

@@ -1,7 +1,7 @@
 
 QUnit.test('Testing slidesNavigation exist when using slidesNavigation:true', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, scrollingSpeed: 50}));
 
     assert.equal($(SLIDES_NAV_SEL).length, 1, 'We expect slidesNavigation to exist');
     assert.equal($(SLIDES_NAV_SEL).closest(SECTION_SEL).index(), 1, 'We expect slidesNavigation to be inside the 2nd section');
@@ -21,7 +21,7 @@ QUnit.test('Testing slidesNavigation does not exist when using slidesNavigation:
 
 QUnit.test('Testing slidesNavigation `active` class when css3:true', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, css3:true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, css3:true, scrollingSpeed: 50}));
     var done = assert.async(2);
 
     assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 0, 'We expect item 1 to be active');
@@ -35,7 +35,7 @@ QUnit.test('Testing slidesNavigation `active` class when css3:true', function(as
 
         done();
         FP.moveSlideRight();
-    }, 800);
+    }, 100);
 
     setTimeout(function() {
         FP.moveSlideRight();
@@ -43,14 +43,14 @@ QUnit.test('Testing slidesNavigation `active` class when css3:true', function(as
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
 
         done();
-    }, 800 * 2);
+    }, 100 * 2);
 });
 
 
 
 QUnit.test('Testing slidesNavigation `active` class when css3:false', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, css3:false}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, css3:false, scrollingSpeed: 50}));
     var done = assert.async(2);
 
     assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 0, 'We expect item 1 to be active');
@@ -59,12 +59,12 @@ QUnit.test('Testing slidesNavigation `active` class when css3:false', function(a
     FP.moveSlideRight();
 
     setTimeout(function() {
-        assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 1, `We expect item 1 to be active`);
+        assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 1, `We expect item 2 to be active`);
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
 
         done();
         FP.moveSlideRight();
-    }, 800);
+    }, 100);
 
     setTimeout(function() {
         FP.moveSlideRight();
@@ -72,13 +72,13 @@ QUnit.test('Testing slidesNavigation `active` class when css3:false', function(a
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
 
         done();
-    }, 800 * 2);
+    }, 100 * 2);
 });
 
 
 QUnit.test('Testing slidesNavigation `active` class when hash change by anchor name within same section', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, scrollingSpeed: 50}));
 
     var done = assert.async(1);
 
@@ -91,13 +91,13 @@ QUnit.test('Testing slidesNavigation `active` class when hash change by anchor n
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 2, 'We expect item 3 to be active');
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
         done();
-    },800);
+    },100);
 });
 
 
 QUnit.test('Testing slidesNavigation `active` class when hash change by slide index within same section', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, scrollingSpeed: 50}));
 
     var done = assert.async(1);
 
@@ -110,12 +110,12 @@ QUnit.test('Testing slidesNavigation `active` class when hash change by slide in
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 2, 'We expect item 3 to be active');
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
         done();
-    },800);
+    },100);
 });
 
 QUnit.test('Testing slidesNavigation `active` class when hash change to another section & slide', function(assert) {
     var id = '#fullpage-slides-with-anchor';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, scrollingSpeed: 50}));
 
     var done = assert.async(1);
 
@@ -128,7 +128,7 @@ QUnit.test('Testing slidesNavigation `active` class when hash change to another 
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 2, 'We expect item 3 to be active');
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
         done();
-    },800*2);
+    },100*2);
 });
 
 $(document).on('click', SLIDES_NAV_LINK_SEL, function(){
@@ -137,7 +137,7 @@ $(document).on('click', SLIDES_NAV_LINK_SEL, function(){
 
 QUnit.test('Testing slide by click on slidesNavigation ', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, scrollingSpeed: 50}));
 
     var done = assert.async(1);
 
@@ -147,13 +147,13 @@ QUnit.test('Testing slide by click on slidesNavigation ', function(assert) {
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 2, 'We expect item 3 to be active');
         assert.equal($(SLIDES_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
         done();
-    },800);
+    },100);
 });
 
 
 QUnit.test('Testing slidesNavPosition:bottom', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, slidesNavPosition:'bottom'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, slidesNavPosition:'bottom', scrollingSpeed: 50}));
 
     assert.ok($(SLIDES_NAV_SEL).hasClass('bottom'), 'We expect slidesNav to have class bottom');
 });
@@ -161,7 +161,7 @@ QUnit.test('Testing slidesNavPosition:bottom', function(assert) {
 
 QUnit.test('Testing slidesNavPosition:top', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, slidesNavPosition:'top'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, slidesNavPosition:'top', scrollingSpeed: 50}));
 
     assert.ok($(SLIDES_NAV_SEL).hasClass('top'), 'We expect slidesNav to have class top');
 });

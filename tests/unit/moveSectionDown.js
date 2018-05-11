@@ -3,27 +3,17 @@ QUnit.test('Testing moveSectionDown first section active with slides {css3:true,
     var FP = initFullpageNew(id, {css3: true, autoScrolling: true});
     var windowHeight = $(window).height();
 
-    var done = assert.async(2);
-
     assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
-    assert.deepEqual(getTransform($(id)), ['0', '0', '0'], 'We expect sections transformation to be [0, 0, 0]');
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], 'We expect sections transformation to be [0, 0, 0]');
 
     FP.moveSectionDown();
-    setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
-        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
-        FP.moveSectionDown();
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
+    FP.moveSectionDown();
 
-        done();
-    }, 800);
-
-    setTimeout(function(){
-        assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*2)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*2)}, 0]`);
-        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 2, 'We expect section 3 to be active');
-        FP.moveSectionDown();
-
-        done();
-    }, 800 * 2);
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*2)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*2)}, 0]`);
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 2, 'We expect section 3 to be active');
+    FP.moveSectionDown();
 });
 
 
@@ -32,26 +22,16 @@ QUnit.test('Testing moveSectionDown first section active with slides {css3:false
     var FP = initFullpageNew(id, {css3: false, autoScrolling: true});
     var windowHeight = $(window).height();
 
-    var done = assert.async(2);
-
     assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
-    assert.deepEqual(getTop(id), '0px', 'We expect wrapper top property to be 0px');
+    assert.deepEqual(FP.test.top, '0px', 'We expect wrapper top property to be 0px');
 
     FP.moveSectionDown();
-    setTimeout(function(){
-        assert.deepEqual(getTop(id), -(windowHeight*1) +'px', `We expect wrapper top property to be -${(windowHeight*1)}px`);
-        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
-        FP.moveSectionDown();
+    assert.deepEqual(FP.test.top, -(windowHeight*1) +'px', `We expect wrapper top property to be -${(windowHeight*1)}px`);
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
+    FP.moveSectionDown();
 
-        done();
-    }, 800);
-
-    setTimeout(function(){
-        assert.deepEqual(getTop(id), -(windowHeight*2) +'px', `We expect wrapper top property to be -${(windowHeight*2)}px`);
-        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 2, 'We expect section 3 to be active');
-
-        done();
-    }, 800 * 2);
+    assert.deepEqual(FP.test.top, -(windowHeight*2) +'px', `We expect wrapper top property to be -${(windowHeight*2)}px`);
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 2, 'We expect section 3 to be active');
 });
 
 
@@ -61,18 +41,12 @@ QUnit.test('Testing moveSectionDown in fullpage-last-section-active {css3:true, 
     var FP = initFullpageNew(id, {css3: true, autoScrolling: true});
     var windowHeight = $(window).height();
 
-    var done = assert.async(1);
-
     assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
-    assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*3)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*3)}, 0]`);
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*3)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*3)}, 0]`);
 
     FP.moveSectionDown();
-    setTimeout(function(){
-    assert.deepEqual(getTransform($(id)), ['0', `${-(windowHeight*3)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*3)}, 0]`);
-        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
-
-        done();
-    }, 800);
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*3)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*3)}, 0]`);
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
 });
 
 
@@ -81,18 +55,13 @@ QUnit.test('Testing moveSectionDown in fullpage-last-section-active {css3:false,
     var FP = initFullpageNew(id, {css3: false, animateAnchor: false,autoScrolling: true});
     var windowHeight = $(window).height();
 
-    var done = assert.async(1);
 
     assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
-    assert.deepEqual(getTop(id),  -(windowHeight*3) +'px', `We expect wrapper top property to be -${(windowHeight*3)}px`);
+    assert.deepEqual(FP.test.top,  -(windowHeight*3) +'px', `We expect wrapper top property to be -${(windowHeight*3)}px`);
 
     FP.moveSectionDown();
-    setTimeout(function(){
-    assert.deepEqual(getTop(id),  -(windowHeight*3) +'px', `We expect wrapper top property to be -${(windowHeight*3)}px`);
-        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
-
-        done();
-    }, 800);
+    assert.deepEqual(FP.test.top,  -(windowHeight*3) +'px', `We expect wrapper top property to be -${(windowHeight*3)}px`);
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 3, 'We expect section 4 to be active');
 });
 
 
