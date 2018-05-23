@@ -23,7 +23,7 @@ var utils = (function () {
             l = vendors.length;
 
         for ( ; i < l; i++ ) {
-            transform = vendors[i] + 'ransform';
+            transform = vendors[i] + 'transform';
             if ( transform in _elementStyle ) return vendors[i].substr(0, vendors[i].length-1);
         }
 
