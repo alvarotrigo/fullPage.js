@@ -954,6 +954,8 @@ $('#fullpage').fullpage({
 ## 捐献
 非常欢迎您的捐款:)
 
+[Patreon page](https://www.patreon.com/fullpagejs)
+
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 
@@ -962,6 +964,15 @@ $('#fullpage').fullpage({
 **JavaScript和CSS文件中的信用评论应保持不变**（即使在组合或缩小之后）
 
 （MIT许可证）
+
+## Sponsors
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
+
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
+[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+
 
 Copyright (c) 2013 Alvaro Trigo &lt;alvaro@alvarotrigo.com&gt;
 

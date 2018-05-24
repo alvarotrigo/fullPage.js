@@ -963,7 +963,17 @@ Puedes encontrar otra lista más extensa [aquí](http://libscore.com/#$.fn.fullp
 ## Donaciones
 ¡Agradeceré cualquier donación!
 
+[Dona en Patreon](https://www.patreon.com/fullpagejs)
+
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+## Sponsors
+Conviértete en un sponsor y añade tu logo aquí en Github y en la página principal de fullpage.js con un link a tu página. [[Conviértete en un sponsor](https://alvarotrigo.com/#contact)] | [[Dona en Patreon](https://www.patreon.com/fullpagejs)]
+
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
+[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 
 
 ## Licencia
