@@ -972,9 +972,9 @@ Donations would be more than welcome :)
 ## Sponsors
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)]
 
-[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath2.png)](https://www.stackpath.com/)
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
-[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto.png)](https://hostpresto.com/?utm_source=alvaro)
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 
 ## License
 
