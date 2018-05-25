@@ -909,9 +909,12 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 ![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-6.png)
 [![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-6.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)](http://www.mi.com/shouhuan)
-[![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
-[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.png)](http://www.bugatti.com/veyron/veyron-164/)
-[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
+
+[![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)](https://www.x-class.com.au/)
+[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)](http://www.bugatti.com/veyron/veyron-164/)
+[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
+[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)](https://www.edarling.de/)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
 - http://pages.ebay.com/design/
