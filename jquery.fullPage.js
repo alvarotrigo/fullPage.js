@@ -2215,8 +2215,15 @@
         */
         function activateMenuElement(name){
             if(options.menu){
-                $(options.menu).find(ACTIVE_SEL).removeClass(ACTIVE);
-                $(options.menu).find('[data-menuanchor="'+name+'"]').addClass(ACTIVE);
+		var activatedBefore = $(options.menu).find(ACTIVE_SEL);
+		var classList = activatedBefore.attr('class');
+		var newClassList = classList ? classList.replace(ACTIVE, '') : '';
+		activatedBefore.attr('class', newClassList);
+				
+                var toBeActivated = $(options.menu).find('[data-menuanchor="'+name+'"]');
+		var classList = toBeActivated.attr('class');
+		var newClassList = (classList ? classList + ' ' : '') + ACTIVE;
+		toBeActivated.attr('class', newClassList);
             }
         }
 
