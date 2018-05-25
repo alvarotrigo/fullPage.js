@@ -1,49 +1,23 @@
-QUnit.test('Testing setScrollingSpeed 0', function(assert) {
-    $('#fullpage').fullpage(allBasicOptions);
+QUnit.test('Testing setScrollingSpeed 1000', function(assert) {
+    var id = '#fullpage';
+    var FP = initFullpageNew(id, {scrollingSpeed: 1000});
 
-    var done = assert.async(2);
-
-    $.fn.fullpage.setScrollingSpeed(0);
-    $.fn.fullpage.moveSectionDown();
-
-    //making it syncronus
-    setTimeout(function() {
-        assert.ok($('.section').eq(1).hasClass('active'), 'We expect section 2 to be active');
-        done();
-        $.fn.fullpage.moveSectionDown();
-    }, 30);
-
-    //making it syncronus
-    setTimeout(function() {
-        assert.ok($('.section').eq(2).hasClass('active'), 'We expect section 3 to be active');
-        done();
-    }, 30);
+    FP.moveSectionDown();
+    assert.equal($(id).css('transition-duration'), '1s', 'We expect transition-duration to be 1s');
 });
 
+QUnit.test('Testing setScrollingSpeed 0', function(assert) {
+    var id = '#fullpage';
+    var FP = initFullpageNew(id, {scrollingSpeed: 0});
 
-QUnit.test('Testing setScrollingSpeed 1000', function(assert) {
-    $('#fullpage').fullpage(allBasicOptions);
-    var done = assert.async(3);
+    FP.moveSectionDown();
+    assert.equal($(id).css('transition-duration'), '0s', 'We expect transition-duration to be 0s');
+});
 
-    //making it syncronus
-    setTimeout(function() {
-        $.fn.fullpage.setScrollingSpeed(1000);
+QUnit.test('Testing setScrollingSpeed for slides', function(assert) {
+    var id = '#fullpage-moveSlideRight';
+    var FP = initFullpageNew(id, {scrollingSpeed: 1000});
 
-        $.fn.fullpage.moveSectionDown();
-
-        assert.ok(!sectionLoaded[1], 'We expect section 2 not to be loaded');
-        done();
-    });
-
-    //section 2 won't be active yet
-    setTimeout(function() {
-        assert.ok(!sectionLoaded[1], 'We expect section 2 not to be loaded');
-        done();
-    }, 600);
-
-    //section will be active in more than 1000ms
-    setTimeout(function() {
-        assert.ok(sectionLoaded[1], 'We expect section 2 to be loaded');
-        done();
-    }, 1200);
+    FP.moveSlideRight();
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).find(SLIDES_CONTAINER_SEL).css('transition-duration'), '1s', 'We expect transition-duration to be 1s');
 });

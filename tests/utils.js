@@ -67,27 +67,30 @@ var SLIDES_NEXT_SEL =       '.' + SLIDES_NEXT;
 var SLIDES_ARROW_NEXT =     SLIDES_ARROW + ' ' + SLIDES_NEXT;
 var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
 
-var lazyLoadElements =  `
-    <img id="img-src" data-src="demo.jpg" />
+var new_fullpage;
+var oldConsole = console;
 
-    <img id="img-srcet" data-srcset="demo.jpg 320w.jpg, demo2.jpg 420w" />
+var lazyLoadElements =  `
+    <img id="img-src" data-src="https://www.w3schools.com/html/pulpitrock.jpg" />
+
+    <img id="img-srcet" data-srcset="https://www.w3schools.com/html/pulpitrock.jpg 320w, https://www.w3schools.com/html/pulpitrock.jpg 420w" />
 
     <video width="320" height="240" controls>
-        <source class="source-src" data-src="movie.mp4" type="video/mp4">
-        <source class="source-src" data-src="movie.ogg" type="video/ogg">
+        <source class="source-src" data-src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        <source class="source-src" data-src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
         Your browser does not support the video tag.
     </video>
 
     <video id="source-srcset" width="320" height="240" controls>
-        <source class="source-srcset" data-srcset="videos/mobile-video.mp4 768w, videos/tablet-video.mp4 1200w">
-        <source class="source-srcset" data-srcset="videos/mobile-video.mp4 768w, videos/tablet-video.mp4 1200w">
+        <source class="source-srcset" data-srcset="https://www.w3schools.com/html/mov_bbb.mp4 768w, videos/tablet-video.mp4 1200w">
+        <source class="source-srcset" data-srcset="https://www.w3schools.com/html/mov_bbb.mp4 768w, videos/tablet-video.mp4 1200w">
     </video>
 
-    <video id="video-src" data-src="movie.ogg" controls>
+    <video id="video-src" data-src="https://www.w3schools.com/html/mov_bbb.ogg" controls>
         Your browser does not support the video tag.
     </video>
 
-    <audio id="audio-src" data-src="horse.ogg" controls>
+    <audio id="audio-src" data-src="https://www.w3schools.com/html/horse.ogg" controls>
         Your browser does not support the audio element.
     </audio>
 
@@ -96,7 +99,6 @@ var lazyLoadElements =  `
 
 function areAllLazyLoaded(element){
     var lazyLoadElements = element.find('[data-src], [data-srcset]');
-    console.log("lazyLoadElements.length", lazyLoadElements.length);
     return !lazyLoadElements.length;
 }
 
@@ -175,6 +177,7 @@ var afterResponsive = false;
 var afterResize = false;
 var afterReBuild = false;
 var afterRender = [];
+var locationReplace = null;
 
 var slidesCallbacks = {
     afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
@@ -192,7 +195,18 @@ var anchors = { anchors: ['page1', 'page2', 'page3', 'page4']};
 var sectionsAndSlidesCallbacks = Object.assign({}, sectionsCallbacks, slidesCallbacks);
 var allBasicOptions =  Object.assign({}, anchors, sectionsCallbacks, slidesCallbacks);
 
-function getTransform($el) {
+function getTransform(translate) {
+    var translateRegex = new RegExp('translate3d\\((.*)px,\\s(.*)px,\\s(.*)px\\)');
+    var parts = translateRegex.exec(translate);
+
+    parts = parts.map(function(item){
+        return item == '-0' ? 0: item;
+    });
+
+    return [''+parts[1]+'', ''+parts[2]+'', ''+parts[3]+''];
+}
+
+function getTransformFromElement($el) {
     var results = $el.css('-webkit-transform').match(/matrix(?:(3d)\(-{0,1}\d+(?:, -{0,1}\d+)*(?:, (-{0,1}\d+))(?:, (-{0,1}\d+))(?:, (-{0,1}\d+)), -{0,1}\d+\)|\(-{0,1}\d+(?:, -{0,1}\d+)*(?:, (-{0,1}\d+))(?:, (-{0,1}\d+))\))/);
 
     if(!results) return ["0", "0", "0"];
@@ -210,9 +224,87 @@ function getTop(selector){
     return $(selector).css('top');
 }
 
+//overwritting the scrollTop function of jQuery to simulate scroll
+//when using autoScrolling:false or scrollBar:true
+function simulateScroll(scrollValue){
+    window.pageYOffset = (function(){
+        return scrollValue;
+    })();
+    trigger(window, 'scroll');
+}
+
+function simulateMouseWheel(type){
+    var multiplier = type === 'up' ? -1 : 1;
+
+    //moving down with mouse wheel
+    var mouseWheel = new Event('wheel', { 'bubbles': true });
+    mouseWheel.deltaY = 10 * multiplier;
+    document.dispatchEvent(mouseWheel);
+}
+
+function simulateKeydown(type){
+    var keyCode = type === 'up' ? 38 : 40;
+
+    //moving down with mouse wheel
+    var keydownEvent = new Event('keydown', { 'bubbles': true });
+    keydownEvent.keyCode = keyCode;
+    document.dispatchEvent(keydownEvent);
+}
+
+//not used yet
+function simulateTouchMove(target, type){
+    var pageY = 100, pageX = 100, differenceX = 0, differenceY = 0;
+
+    switch(type){
+        case 'down': differenceY = 500; break;
+        case 'up': differenceY = -500; break;
+        case 'left': differenceX = 500;break;
+        case 'right': differenceX = -500; break;
+    }
+
+    //touch start
+    var touchStartEvent = new Event('touchstart', { 'bubbles': true });
+    touchStartEvent.pageX = pageX + differenceX;
+    touchStartEvent.pageY = pageY + differenceY;
+    target.dispatchEvent(touchStartEvent);
+
+    //moving down with mouse wheel
+    var touchMoveEvent = new Event('touchmove', { 'bubbles': true });
+    touchMoveEvent.pageX = pageX;
+    touchMoveEvent.pageY = pageY;
+    target.dispatchEvent(touchMoveEvent);
+}
+
+
+function trigger(el, eventName, data){
+    var event;
+    data = typeof data === 'undefined' ? {} : data;
+
+    // Native
+    if (window.CustomEvent) {
+        event = new CustomEvent(eventName, {detail: data});
+    }
+    else{
+        event = document.createEvent('CustomEvent');
+        event.initCustomEvent(eventName, true, true, data);
+    }
+
+    el.dispatchEvent(event);
+}
+
 function destroyTest(){
     //destroying it if it existed
-    $.fn.fullpage.destroy('all');
+    if(new_fullpage != null){
+        new_fullpage.destroy('all');
+    }
+
+    if($.fn.fullpage != null){
+        $.fn.fullpage.destroy('all');
+    }
+
+    console.warn = oldConsole.warn;
+    console.log = oldConsole.log;
+    console.error = oldConsole.error;
 
     //removing the  URL hash
     window.location.hash = '';
@@ -232,6 +324,7 @@ function destroyTest(){
     afterResize = false;
     afterReBuild = false;
     afterRender = [];
+    locationReplace = null;
 }
 
 function setLoadedState(){
@@ -257,6 +350,14 @@ function initFullpage(id, options){
     $(id).addClass('active');
     setLoadedState();
     $(id).fullpage(options);
+}
+
+function initFullpageNew(id, options){
+    $(id).addClass('active');
+    setLoadedState();
+    new_fullpage = new fullpage(id, options);
+    new_fullpage.test.isTesting = true;
+    return new_fullpage;
 }
 
 QUnit.module("module", {

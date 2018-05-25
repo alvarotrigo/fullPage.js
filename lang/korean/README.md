@@ -852,7 +852,7 @@ $('#fullpage').fullpage({
 1. 문의하시기 이전에 먼저 github 검색으로 찾아보시기 바랍니다.
 2. fullpage.js 최신 버전을 쓰시기 바랍니다. 이전 버전은 지원해 드리지 않습니다.
 3. [Github 문제 포럼](https://github.com/alvarotrigo/fullPage.js/issues)을 활용해 보세요.
-4. **문제만 따로 떼어내어 재현해야 합니다.** 가능하다면 [jsfiddle](http://jsfiddle.net/97tbk/418/)이나 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp)을 활용하시기 바랍니다.
+4. **문제만 따로 떼어내어 재현해야 합니다.** 가능하다면 [jsfiddle](https://jsfiddle.net/1kyuL4em/2/)이나 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp)을 활용하시기 바랍니다.
 
 # fullpage.js에 기여하기
 [fullpage.js에 기여하기](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)를 방문해 주세요.
@@ -880,41 +880,43 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 ## 누가 fullPage.js를 쓰나요?
 귀하의 페이지가 여기에 나오길 원하시다면 저에게 URL을 <a href="mailto:alvaro@alvarotrigo.com">보내주세요</a>.
 
-[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google.png)](http://www.yourprimer.com/)
-[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-2.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
-[![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay.png)](http://pages.ebay.com/design/)
-![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)
-![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)
-![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)
-![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds.png)
-![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)
-[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
-[![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
-[![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
-[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.gif)](http://www.bugatti.com/veyron/veyron-164/)
-[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
+[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
+[![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)](https://www.coca-colacompany.com/annual-review/2017/index.html)
+![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay-4.png)
+[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-4.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
+![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony-4.png)
 
+![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone-5.png)
+![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-5.png)
+![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds-6.png)
+![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-6.png)
+[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-6.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
+![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
+
+[![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)](https://www.x-class.com.au/)
+[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
+[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
+![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
+
+- https://www.coca-colacompany.com/annual-review/2017/index.html
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://pages.ebay.com/design/
+- https://www.x-class.com.au
 - http://www.yourprimer.com/
 - http://www.vogue.fr/chaumet-histoires-de-liens
 - http://burntmovie.com/
-- http://www.bugatti.com/veyron/veyron-164/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
-- http://www.mi.com/shouhuan
 - http://www.commoditiesdemystified.info/en/
 - http://torchbrowser.com/
 - http://thekorner.fr/
-- http://www.restaurantwoods.nl/
 - https://www.edarling.de/
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/
 - http://collection.madeofsundays.com
-- http://thiswasmybest.com/
 - http://www.boxreload.com/
 - http://educationaboveall.org/
 - http://camfindapp.com/
@@ -925,17 +927,13 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
-- http://www.carpetloverclub.com/
 - http://www.sanyang.com.tw/service/Conception/
 - http://www.batzaya.net/
-- http://www.graphicid.dk/
-- http://www.carlphot.com/
 - http://medissix.com/
 - http://trasmissione-energia.terna.it/
 - http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
-- http://fossdistillery.is
 - http://ded-morozz.kiev.ua/
 - http://unabridgedsoftware.com/
 - http://atlanticcorp.us/
@@ -950,7 +948,17 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 ## 기부
 두 팔 벌려 기부를 환영합니다 :)
 
+[Patreon page](https://www.patreon.com/fullpagejs)
+
 [![기부](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+## Sponsors
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
+
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
+[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 
 
 ## 라이선스
