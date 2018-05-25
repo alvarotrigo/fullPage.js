@@ -908,7 +908,7 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 ![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds-6.png)
 ![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-6.png)
 [![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-6.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
-[![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-5.png)](http://www.mi.com/shouhuan)
+[![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)](http://www.mi.com/shouhuan)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
 [![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.png)](http://www.bugatti.com/veyron/veyron-164/)
 [![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
