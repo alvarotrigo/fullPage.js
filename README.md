@@ -897,18 +897,20 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 ## Who is using fullPage.js
 If you want your page to be listed here, please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.
 
-[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google.png)](http://www.yourprimer.com/)
-[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-2.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
-[![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay.png)](http://pages.ebay.com/design/)
-![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony.gif)
-![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone.png)
-![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-fullpage.gif)
-![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds.png)
-![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea.png)
-[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
-[![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi.png)](http://www.mi.com/shouhuan)
+[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
+[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)](https://www.coca-colacompany.com/annual-review/2017/index.html)
+[![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay-4.png)](http://pages.ebay.com/design/)
+[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-4.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
+![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony-4.png)
+
+![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone-4.png)
+![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-4.png)
+![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds-4.png)
+![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-4.png)
+[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-4.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
+[![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-4.png)](http://www.mi.com/shouhuan)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
-[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.gif)](http://www.bugatti.com/veyron/veyron-164/)
+[![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti.png)](http://www.bugatti.com/veyron/veyron-164/)
 [![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling.png)](https://www.edarling.de/)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
