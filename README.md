@@ -916,27 +916,24 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 [![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
+- https://www.coca-colacompany.com/annual-review/2017/index.html
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://pages.ebay.com/design/
+- https://www.x-class.com.au
 - http://www.yourprimer.com/
 - http://www.vogue.fr/chaumet-histoires-de-liens
 - http://burntmovie.com/
-- http://www.bugatti.com/veyron/veyron-164/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
-- http://www.mi.com/shouhuan
 - http://www.commoditiesdemystified.info/en/
 - http://torchbrowser.com/
 - http://thekorner.fr/
-- http://www.restaurantwoods.nl/
 - https://www.edarling.de/
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/
 - http://collection.madeofsundays.com
-- http://thiswasmybest.com/
 - http://www.boxreload.com/
 - http://educationaboveall.org/
 - http://camfindapp.com/
@@ -947,17 +944,13 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 - http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
-- http://www.carpetloverclub.com/
 - http://www.sanyang.com.tw/service/Conception/
 - http://www.batzaya.net/
-- http://www.graphicid.dk/
-- http://www.carlphot.com/
 - http://medissix.com/
 - http://trasmissione-energia.terna.it/
 - http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
-- http://fossdistillery.is
 - http://ded-morozz.kiev.ua/
 - http://unabridgedsoftware.com/
 - http://atlanticcorp.us/
