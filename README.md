@@ -906,7 +906,7 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 ![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone-5.png)
 ![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-5.png)
 ![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds-6.png)
-![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-5.png)
+![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-6.png)
 [![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-5.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
 [![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-5.png)](http://www.mi.com/shouhuan)
 [![redd](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym.png)](http://www.sanyang.com.tw/service/Conception/)
