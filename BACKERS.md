@@ -12,19 +12,24 @@ If you make use of fullPage.js please consider contributing to to its improvemen
   <tbody>
     <tr>
       <td align="center" valign="middle">
-        [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+        <a href="https://www.stackpath.com/" target="_blank" rel="nofollow">
+          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png">
+        </a>
       </td>
       <td align="center" valign="middle">
-        [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+        <a href="http://www.browserstack.com/" target="_blank" rel="nofollow">
+          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png">
+        </a>
       </td>
       <td align="center" valign="middle">
-        [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
+        <a href="https://hostpresto.com/?utm_source=alvaro" target="_blank" rel="nofollow">
+          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png">
+        </a>
       </td>
       <td align="center" valign="middle">
-        [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
-      </td>
-      <td align="center" valign="middle">
-        [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+        <a href="https://codepen.com" target="_blank" rel="nofollow">
+          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png">
+        </a>
       </td>
     </tr>
   </tbody>
