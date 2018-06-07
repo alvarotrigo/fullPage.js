@@ -1,9 +1,7 @@
 # Sponsors & Backers
 
 fullPage.js is being developed and maintained by [Alvaro Trigo](https://twitter.com/imac2).
-
-If you make use of fullPage.js please consider contributing to to its improvement and maintenance over time.
-
+Any help you can provide for its development and maintenance over time will be appreciated!
 
 ## Bronze Sponsor ($30+ / month)
 
