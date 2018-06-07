@@ -3,6 +3,11 @@
 fullPage.js is being developed and maintained by [Alvaro Trigo](https://twitter.com/imac2).
 Any help you can provide for its development and maintenance over time will be appreciated!
 
+Here's the list of the persons/companies which are currently contributing to fullPage.js.
+Thanks for it!
+
+Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become a patreon](https://www.patreon.com/fullpagejs)
+
 ## Bronze Sponsor ($30+ / month)
 
 <!--gold start-->
