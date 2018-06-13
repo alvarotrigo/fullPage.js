@@ -165,14 +165,50 @@ var sectionsCallbacks = {
 };
 
 
+var sectionsCallbacksV3 = {
+    afterLoad: function(origin, destination, direction) {
+        sectionLoaded[destination.index ] = true;
+        afterLoad = {
+            origin: origin,
+            destination: destination,
+            direction: direction
+        };
+    },
+    onLeave: function(origin, destination, direction) {
+        sectionLoaded[origin.index] = false;
+        console.log(origin);
+        console.log(destination);
+        onLeave = {
+            origin: origin,
+            destination: destination,
+            direction: direction
+        };
+        console.log("-------");
+    },
+    afterRender() {
+        afterRender = [$(SECTION_ACTIVE_SEL).index(), $(SECTION_ACTIVE_SEL).find(SLIDE_ACTIVE_SEL).index()];
+    },
+    afterResponsive: function(isResponsive){
+        afterResponsive = isResponsive;
+    },
+    afterResize: function(width, height){
+        afterResize = `${width}, ${height}`;
+    },
+    afterReBuild: function(){
+        afterReBuild = true;
+    }
+};
+
+
 $('html').click(function(){
     $(window).trigger('pepe');
 });
 
-var onSlideLeave = ``;
-var onLeave = ``;
-var afterLoad = ``;
-var afterSlideLoad = ``;
+var onSlideLeave = new_fullpage ? {} : ``;
+var onLeave = new_fullpage ? {} : ``;
+var afterLoad = new_fullpage ? {} : ``;
+var afterSlideLoad = new_fullpage ? {} : ``;
+
 var afterResponsive = false;
 var afterResize = false;
 var afterReBuild = false;
@@ -190,10 +226,36 @@ var slidesCallbacks = {
     }
 };
 
+
+var slidesCallbacksV3 = {
+    afterSlideLoad: function(section, origin, destination, direction){
+        slideLoaded[destination.index] = true;
+        afterSlideLoad = {
+            section: section,
+            origin: origin,
+            destination: destination,
+            direction: direction
+        };
+    },
+    onSlideLeave: function(section, origin, destination, direction){
+        slideLoaded[origin.index] = false;
+        onSlideLeave = {
+            section: section,
+            origin: origin,
+            destination: destination,
+            direction: direction
+        };
+    }
+};
+
 var anchors = { anchors: ['page1', 'page2', 'page3', 'page4']};
 
 var sectionsAndSlidesCallbacks = Object.assign({}, sectionsCallbacks, slidesCallbacks);
+var sectionsAndSlidesCallbacksV3 = Object.assign({}, sectionsCallbacksV3, slidesCallbacksV3);
+
 var allBasicOptions =  Object.assign({}, anchors, sectionsCallbacks, slidesCallbacks);
+var allBasicOptionsV3 =  Object.assign({}, anchors, sectionsCallbacksV3, slidesCallbacksV3);
+
 
 function getTransform(translate) {
     var translateRegex = new RegExp('translate3d\\((.*)px,\\s(.*)px,\\s(.*)px\\)');
@@ -230,6 +292,7 @@ function simulateScroll(scrollValue){
     window.pageYOffset = (function(){
         return scrollValue;
     })();
+
     trigger(window, 'scroll');
 }
 
@@ -294,11 +357,11 @@ function trigger(el, eventName, data){
 
 function destroyTest(){
     //destroying it if it existed
-    if(new_fullpage != null){
-        new_fullpage.destroy('all');
+    if(fullpage_api != null){
+        fullpage_api.destroy('all');
     }
 
-    if($.fn.fullpage != null){
+    else if($.fn.fullpage != null){
         $.fn.fullpage.destroy('all');
     }
 
@@ -355,6 +418,7 @@ function initFullpage(id, options){
 function initFullpageNew(id, options){
     $(id).addClass('active');
     setLoadedState();
+
     new_fullpage = new fullpage(id, options);
     new_fullpage.test.isTesting = true;
     return new_fullpage;
