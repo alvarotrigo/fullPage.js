@@ -3,10 +3,10 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Easing - fullPage.js</title>
+	<title>Callback function - fullPage.js</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
-	<meta name="description" content="fullPage demo easing effect." />
-	<meta name="keywords"  content="fullpage,jquery,demo,easing,effect,jqueui" />
+	<meta name="description" content="fullPage callback function." />
+	<meta name="keywords"  content="fullpage,jquery,demo,callback,function,event" />
 	<meta name="Resource-type" content="Document" />
 
 
@@ -20,6 +20,15 @@
 	<![endif]-->
 </head>
 <body>
+
+<div style="position:fixed;top:50px;left:50px;color:white;z-index:999;" id="callbacksDiv"></div>
+
+
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
 
 <select id="demosMenu">
   <option selected>Choose Demo</option>
@@ -66,30 +75,29 @@
   <option id="vue-fullpage">Vue-fullpage component</option>
 </select>
 
-<ul id="menu">
-	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
-	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
-</ul>
 
 <div id="fullpage">
 	<div class="section " id="section0">
 		<h1>fullPage.js</h1>
-		<p>Configure the easing jQuery UI effect!</p>
+		<p>Callbacks!</p>
 		<img src="imgs/fullPage.png" alt="fullPage" />
 	</div>
 	<div class="section" id="section1">
-		<div class="intro">
-			<img src="imgs/1.png" alt="Cool" />
-			<h1>easeOutBack</h1>
-			<p>This example is working with `easeOutBack` effect instead of the default</p>
-			<p>You can see more about them <a href="http://jqueryui.com/resources/demos/effect/easing.html" target="_blank">here</a></p>
+		<div class="slide">
+			<div class="intro">
+				<h1>Feel free</h1>
+				<p>All the callbacks you need to do whatever you need.</p>
+				<p>Just what you would expect.</p>
+			</div>
+		</div>
+		<div class="slide">
+			<h1>Slide 2</h1>
 		</div>
 	</div>
 	<div class="section" id="section2">
 		<div class="intro">
-			<h1>Cool uh?</h1>
-			<p>Choose the best easing effect for your site!</p>
+			<h1>Ideal for animations</h1>
+			<p>Total control over your website.</p>
 		</div>
 	</div>
 </div>
@@ -97,14 +105,51 @@
 <script type="text/javascript" src="../fullpage.js"></script>
 <script type="text/javascript" src="examples.js"></script>
 <script type="text/javascript">
+    var deleteLog = false;
+
     var myFullpage = new fullpage('#fullpage', {
+        v2compatible:
         sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
         anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
         menu: '#menu',
+        onLeave: function(index, nextIndex, direction){
+            if(deleteLog){
+                document.getElementById('callbacksDiv').innerHTML = '';
+            }
+            document.getElementById('callbacksDiv').innerHTML += '<p>onLeave - index:' + index + ' nextIndex:' + nextIndex + ' direction:' + direction + '</p>';
 
-        //equivalent to jQuery `easeOutBack` extracted from http://matthewlein.com/ceaser/
-        easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+            console.log("onLeave--" + "index: " + index + " nextIndex: " + nextIndex + " direction: " +  direction);
+        },
+        onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
+            if(deleteLog){
+                document.getElementById('callbacksDiv').innerHTML = '';
+            }
+            document.getElementById('callbacksDiv').innerHTML += '<p>onSlideLeave - anchorLink:' + anchorLink + " index:" + index + " slideIndex:" + slideIndex +" direction:" + direction + " nextSlideIndex:" + nextSlideIndex + '</p>';
+            console.log("onSlideLeave--" + "anchorLink: " + anchorLink + " index: " + index + " slideIndex: " + slideIndex + " direction: " + direction);
+        },
+        afterRender: function(){
+            document.getElementById('callbacksDiv').innerHTML += '<p>afterRender</p>';
+            console.log("afterRender");
+        },
+        afterResize: function(){
+            document.getElementById('callbacksDiv').innerHTML += '<p>afterResize</p>';
+            console.log("afterResize");
+        },
+        afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+            document.getElementById('callbacksDiv').innerHTML += '<p>afterSlideLoad - anchorLink:' + anchorLink + " index:" + index + " slideAnchor:" + slideAnchor +" slideIndex:" + slideIndex + '</p>';
+            deleteLog = true;
+            console.log("afterSlideLoad--" + "anchorLink: " + anchorLink + " index: " + index + " slideAnchor: " + slideAnchor + " slideIndex: " + slideIndex);
+            console.log("----------------");
+        },
+        afterLoad: function(anchorLink, index){
+            console.log("after Load  " + index);
+            document.getElementById('callbacksDiv').innerHTML += '<p>afterLoad - anchorLink:' + anchorLink + " index:" + index + '</p>';
+            deleteLog = true;
+            console.log('===============');
+            console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+        }
     });
+
 </script>
 
 </body>

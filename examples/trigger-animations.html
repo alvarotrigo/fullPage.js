@@ -2,32 +2,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Normal Scroll Elements - fullPage.js</title>
-    <meta name="author" content="Alvaro Trigo Lopez" />
-    <meta name="description" content="Normal Scroll Elements for fullPage." />
-    <meta name="keywords"  content="fullpage,jquery,demo,normoalScrollElements,overflow,scrollable,scrollbar" />
-    <meta name="Resource-type" content="Document" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Callbacks - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage callback function." />
+	<meta name="keywords"  content="fullpage,jquery,demo,callbac,function,event" />
+	<meta name="Resource-type" content="Document" />
 
-    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
-    <link rel="stylesheet" type="text/css" href="examples.css" />
 
-    <style>
-        .scrollable-element{
-            height: 400px;
-            width: 600px;
-            overflow-y: scroll;
-            margin: 0 auto;
-        }
-        .box{
-            display: block;
-            background: red;
-            margin: 20px;
-            padding: 20px;
-        }
-    </style>
+	<link rel="stylesheet" type="text/css" href="../fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<style>
+		#section1 img{
+			left: 130%;
+			position:relative;
+		}
+		#section1 p{
+			display:none;
+		}
+		#section2 .intro{
+			left: -130%;
+			position:relative;
+		}
+	</style>
 </head>
 <body>
+
 
 <select id="demosMenu">
   <option selected>Choose Demo</option>
@@ -74,38 +81,64 @@
   <option id="vue-fullpage">Vue-fullpage component</option>
 </select>
 
+<ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
+
 <div id="fullpage">
-    <div class="section active" id="section0">
-        <h1>fullPage.js</h1>
-        <p>Normal Scroll Elements</p>
-        <div class="scrollable-element">
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-            <div class="box">Some text</div>
-        </div>
-    </div>
-    <div class="section" id="section1">
-        <div class="slide"><h1>Section 2</h1></div>
-        <div class="slide"><h1>Slide 2.2</h1></div>
-        <div class="slide"><h1>Slide 2.1</h1></div>
-    </div>
-    <div class="section" id="section2"><h1>Section 3</h1></div>
+	<div class="section " id="section0">
+		<h1>fullPage.js</h1>
+		<p>Configure the easing jQuery UI effect!</p>
+		<img src="imgs/fullPage.png" alt="fullPage" />
+	</div>
+	<div class="section" id="section1">
+		<div class="intro">
+			<img src="imgs/1.png" alt="Cool" />
+			<h1>easeOutExpo</h1>
+			<p>This example is working with `easeOutExpo` effect instead of the default `easeOutExpo`</p>
+			<p>You can see more about them <a href="http://jqueryui.com/resources/demos/effect/easing.html" target="_blank">here</a></p>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Cool uh?</h1>
+			<p>Choose the best easing effect for your site!</p>
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript" src="../fullpage.js"></script>
+<script type="text/javascript" src="examples.js"></script>
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
-        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-        normalScrollElements: '.scrollable-element',
+        sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        menu: '#menu',
+        afterLoad: function(anchorLink, index){
+
+            //section 2
+            if(index == 2){
+                //moving the image
+                $('#section1').find('img').delay(500).animate({
+                    left: '0%'
+                }, 1500, 'easeOutExpo');
+
+                $('#section1').find('p').first().fadeIn(1800, function(){
+                    $('#section1').find('p').last().fadeIn(1800);
+                });;
+
+            }
+
+            //section 3
+            if(anchorLink == '3rdPage'){
+                //moving the image
+                $('#section2').find('.intro').delay(500).animate({
+                    left: '0%'
+                }, 1500, 'easeOutExpo');
+            }
+        }
     });
 </script>
 

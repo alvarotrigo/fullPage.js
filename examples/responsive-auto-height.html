@@ -3,11 +3,12 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Scroll bar enabled - fullPage.js</title>
+	<title>Responsive Auto-height - fullPage.js</title>
 	<meta name="author" content="Alvaro Trigo Lopez" />
 	<meta name="description" content="fullPage full-screen navigation and sections control menu." />
-	<meta name="keywords"  content="fullpage,jquery,demo,scrollbar,scroll,bar,fullscreen,navigation,control arrows, dots" />
+	<meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,navigation,control arrows, dots" />
 	<meta name="Resource-type" content="Document" />
+
 
 	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
@@ -30,7 +31,6 @@
 	.section{
 		text-align:center;
 	}
-
 
 	/* Bottom menu
 	* --------------------------------------- */
@@ -94,30 +94,35 @@
 
 
 <div id="fullpage">
-	<div class="section " id="section0">
+	<div class="section fp-auto-height-responsive" id="section0">
 		<div class="intro">
-			<h1>Enable Your Scroll Bar!</h1>
-			<p>The perfect combination!</p>
+			<h1>Responsive auto-height</h1>
+			<p>On responsive mode, which will fire with less than 900px width as defined in `responsiveWidth`, this section will become bigger than the viewport as I'm using the class `fp-auto-height-responsive` on the section.</p>
+			<br>
+			<br>
+			<br>
+			<p>
+			Eu nec ferri molestie consequat, vel at alia dolore putant. Labore philosophia ut vix. In vis nostrud interesset appellantur, vis et tation feugiat scripserit. Te nec noster suavitate persecuti. Diceret erroribus cu vix, alii omnes ei sit. Sea an corrumpit patrioque, virtute accumsan nominavi et usu, ex mei dolore vocibus incorrupte. Duo ea saperet tacimates. Sed possim prodesset no, per novum putent doctus ea. Eu mea magna aliquip graecis, pri corpora officiis complectitur ei, lorem saepe consetetur his ad. Meis consulatu ei vis, an altera ocurreret interesset qui. Eu ponderum comprehensam his, case antiopam pri te. Mel ne partem consequat instructior. Ad dicunt malorum sea, ex qui omnes invenire gubergren. Ius cu autem aliquando, pri vide ornatus perpetua an, no has epicuri
+
+
+			</p>
 		</div>
 	</div>
 	<div class="section" id="section1">
 	    <div class="slide" id="slide1">
 			<div class="intro">
-				<h1>Free scroll</h1>
-				<p>
-					User can still using the scroll bar and fullPage.js will do the rest!
-				</p>
+				<h1>Ideal for small screens</h1>
 			</div>
 		</div>
 
 	    <div class="slide" id="slide2">
-			<h1>Slide 2</h1>
+			<h1>This example uses responsiveWidth: 900</h1>
 		</div>
 
 	</div>
 	<div class="section" id="section2">
 		<div class="intro">
-			<h1>Great User Experience!</h1>
+			<h1>Keep it simple!</h1>
 		</div>
 	</div>
 </div>
@@ -129,7 +134,14 @@
     var myFullpage = new fullpage('#fullpage', {
         anchors: ['firstPage', 'secondPage', '3rdPage'],
         sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
-        scrollBar: true
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['First page', 'Second page', 'Third and last page'],
+        responsiveWidth: 900,
+        afterResponsive: function(isResponsive){
+
+        }
+
     });
 </script>
 
