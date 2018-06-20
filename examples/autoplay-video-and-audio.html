@@ -9,7 +9,7 @@
     <meta name="keywords"  content="fullpage,jquery,demo,autoplay,video,audio,html5,paluse" />
     <meta name="Resource-type" content="Document" />
 
-    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="../fullpage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
     <style>
     .intro p{
@@ -73,12 +73,15 @@
 
 <div id="fullpage">
     <div class="section intro">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M?mute=1" frameborder="0" allowfullscreen data-autoplay></iframe>
       <p>
         The video will automatically start playing as I'm usign the attribute `data-autoplay`.
       </p>
       <p>
         And because I'm not using the attribute `data-keepplaying` the video will automatically stop playing after leaving the section or slide.
+      </p>
+      <p>
+        Notice videos will only autoPlay in Desktop devices due to browser limitations. Also, it won't autoplay in Chrome browser unless you use the parameter ?mute=1 on the `src` attribute URL
       </p>
     </div>
     <div class="section">

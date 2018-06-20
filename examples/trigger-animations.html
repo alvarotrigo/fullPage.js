@@ -20,17 +20,34 @@
 	<![endif]-->
 
 	<style>
-		#section1 img{
+		#section2 img{
 			left: 130%;
 			position:relative;
+      transition: all 600ms ease;
 		}
-		#section1 p{
-			display:none;
+		#section2 p{
+			opacity: 0;
+      transition: all 600ms ease;
 		}
-		#section2 .intro{
+		#section3 .intro{
 			left: -130%;
 			position:relative;
+      transition: all 600ms ease;
 		}
+
+    #section3 .intro{
+      left: -130%;
+      position:relative;
+      transition: all 600ms ease;
+    }
+
+    /**
+    * Here we fire the animation for section 3.
+    * As the fp-viewing class in the body changes on each section and slide.
+    */
+    body.fp-viewing-3rdPage #section3 .intro{
+       left: 0%;
+    }
 	</style>
 </head>
 <body>
@@ -88,20 +105,22 @@
 </ul>
 
 <div id="fullpage">
-	<div class="section " id="section0">
-		<h1>fullPage.js</h1>
-		<p>Configure the easing jQuery UI effect!</p>
-		<img src="imgs/fullPage.png" alt="fullPage" />
-	</div>
-	<div class="section" id="section1">
-		<div class="intro">
-			<img src="imgs/1.png" alt="Cool" />
-			<h1>easeOutExpo</h1>
-			<p>This example is working with `easeOutExpo` effect instead of the default `easeOutExpo`</p>
-			<p>You can see more about them <a href="http://jqueryui.com/resources/demos/effect/easing.html" target="_blank">here</a></p>
-		</div>
+	<div class="section " id="section1">
+    <div class="intro">
+  		<h1>Animations</h1>
+  		<p>You can make use of <a href="https://github.com/alvarotrigo/fullPage.js#callbacks" target="_blank">callbacks</a> or <a href="https://github.com/alvarotrigo/fullPage.js#state-classes-added-by-fullpagejs" target="_blank">state classes</a> to fire animations.</p>
+  		<p>See my video tutorial regarding how to create css3 animations too!</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 	</div>
 	<div class="section" id="section2">
+		<div class="intro">
+			<img src="imgs/1.png" alt="Cool" />
+			<h1>From the callbacks</h1>
+			<p>Animation fired through fullPage.js callbacks, making use of css3 transitions.</p>
+		</div>
+	</div>
+	<div class="section" id="section3">
 		<div class="intro">
 			<h1>Cool uh?</h1>
 			<p>Choose the best easing effect for your site!</p>
@@ -116,28 +135,21 @@
         sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
         anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
         menu: '#menu',
-        afterLoad: function(anchorLink, index){
-
+        afterLoad: function(origin, destination, direction){
             //section 2
-            if(index == 2){
-                //moving the image
-                $('#section1').find('img').delay(500).animate({
-                    left: '0%'
-                }, 1500, 'easeOutExpo');
-
-                $('#section1').find('p').first().fadeIn(1800, function(){
-                    $('#section1').find('p').last().fadeIn(1800);
-                });;
-
+            if(destination.index == 1){
+                document.querySelector('#section2').querySelector('img').style.left = 0 + 'px';
+                document.querySelector('#section2').querySelector('p').style.opacity = 1;
             }
 
-            //section 3
-            if(anchorLink == '3rdPage'){
-                //moving the image
-                $('#section2').find('.intro').delay(500).animate({
-                    left: '0%'
-                }, 1500, 'easeOutExpo');
+            //back to original state
+            else if(origin.index == 1){
+                document.querySelector('#section2').querySelector('img').style.left = 130 + '%';
+                document.querySelector('#section2').querySelector('p').style.opacity = 0;
             }
+
+            //section 3 is using the state classes to fire the animation
+            //see the CSS code above!
         }
     });
 </script>

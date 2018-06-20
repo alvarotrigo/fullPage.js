@@ -10,7 +10,7 @@
 	<meta name="Resource-type" content="Document" />
 
 
-	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="../fullpage.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
 
 	<!--[if IE]>
@@ -78,8 +78,8 @@
 
 <div id="fullpage">
 	<div class="section " id="section0">
-		<h1>fullPage.js</h1>
-		<p>Callbacks!</p>
+		<h1>Callbacks</h1>
+		<p>Notice how I use the option `v2compatible:true`</p>
 		<img src="imgs/fullPage.png" alt="fullPage" />
 	</div>
 	<div class="section" id="section1">
@@ -108,7 +108,7 @@
     var deleteLog = false;
 
     var myFullpage = new fullpage('#fullpage', {
-        v2compatible:
+        v2compatible: true,
         sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
         anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
         menu: '#menu',

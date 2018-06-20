@@ -9,7 +9,7 @@
 	<meta name="keywords"  content="fullpage,jquery,methods,callbacks,demo" />
 	<meta name="Resource-type" content="Document" />
 
-	<link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="../fullpage.css" />
 	<link rel="stylesheet" type="text/css" href="examples.css" />
 
 	<!--[if IE]>
@@ -190,104 +190,104 @@
 	initialization();
 
 
-	$('#moveSectionUp').click(function(e){
+	document.querySelector('#moveSectionUp').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.moveSectionUp();
 	});
 
-	$('#moveSectionDown').click(function(e){
+	document.querySelector('#moveSectionDown').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.moveSectionDown();
 	});
 
-	$('#moveTo').click(function(e){
+	document.querySelector('#moveTo').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.moveTo(2, 3);
 	});
 
-	$('#silentMoveTo').click(function(e){
+	document.querySelector('#silentMoveTo').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.silentMoveTo(2);
 	});
 
-	$('#silentMoveToSlide').click(function(e){
+	document.querySelector('#silentMoveToSlide').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.silentMoveTo(2, 3);
 	});
 
-	$('#moveSlideRight').click(function(e){
+	document.querySelector('#moveSlideRight').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.moveSlideRight();
 	});
 
-	$('#moveSlideLeft').click(function(e){
+	document.querySelector('#moveSlideLeft').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.moveSlideLeft();
 	});
 
-	$('#setAutoScrollingFalse').click(function(e){
+	document.querySelector('#setAutoScrollingFalse').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setAutoScrolling(false);
 	});
 
-	$('#setAutoScrollingTrue').click(function(e){
+	document.querySelector('#setAutoScrollingTrue').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setAutoScrolling(true);
 	});
 
-	$('#setAllowScrollingFalse').click(function(e){
+	document.querySelector('#setAllowScrollingFalse').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setAllowScrolling(false);
 	});
 
-	$('#setAllowScrollingTrue').click(function(e){
+	document.querySelector('#setAllowScrollingTrue').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setAllowScrolling(true);
 	});
 
-	$('#setKeyboardScrollingFalse').click(function(e){
+	document.querySelector('#setKeyboardScrollingFalse').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setKeyboardScrolling(false);
 	});
 
-	$('#setKeyboardScrollingTrue').click(function(e){
+	document.querySelector('#setKeyboardScrollingTrue').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setKeyboardScrolling(true);
 	});
 
-	$('#setScrollingSpeed1500').click(function(e){
+	document.querySelector('#setScrollingSpeed1500').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setScrollingSpeed(2500);
 	});
 
-	$('#setScrollingSpeed700').click(function(e){
+	document.querySelector('#setScrollingSpeed700').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.setScrollingSpeed(700);
 	});
 
-	$('#destroy').click(function(e){
+	document.querySelector('#destroy').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.destroy('all');
 	});
 
-	$('#undestroy').click(function(e){
+	document.querySelector('#undestroy').addEventListener('click', function(e){
 		e.preventDefault();
 
 		//fullPage.js initialization
 		initialization();
 	});
 
-	$('#reBuild').click(function(e){
+	document.querySelector('#reBuild').addEventListener('click', function(e){
 		e.preventDefault();
 		fullpage_api.reBuild();
 	});
 
-	$('#setLockAnchorsTrue').click(function(e){
+	document.querySelector('#setLockAnchorsTrue').addEventListener('click', function(e){
 		e.preventDefault;
 		fullpage_api.setLockAnchors(true);
 	});
 
-	$('#setLockAnchorsFalse').click(function(e){
+	document.querySelector('#setLockAnchorsFalse').addEventListener('click', function(e){
 		e.preventDefault;
 		fullpage_api.setLockAnchors(false);
 	});
