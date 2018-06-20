@@ -30,6 +30,7 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 
 - [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
+- [License](https://github.com/alvarotrigo/fullPage.js#license)
 - [Usage](https://github.com/alvarotrigo/fullPage.js#usage)
   - [Creating links to sections or slides](https://github.com/alvarotrigo/fullPage.js#creating-links-to-sections-or-slides)
   - [Creating smaller or bigger sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)
@@ -48,7 +49,6 @@ It allows the creation of fullscreen scrolling websites, as well as adding some 
 - [Who is using fullpage.js](https://github.com/alvarotrigo/fullPage.js#who-is-using-fullpagejs)
 - [Donations](https://github.com/alvarotrigo/fullPage.js#donations)
 - [Sponsors](https://github.com/alvarotrigo/fullPage.js#sponsors)
-- [License](https://github.com/alvarotrigo/fullPage.js#license)
 
 ## Introduction
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
@@ -69,7 +69,7 @@ If you want to use fullPage to develop commercial sites, themes, projects, and a
 ### Open source license
 If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use fullPage under the terms of the GPLv3.
 
-**The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification )
+**The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification)
 
 [Read more about fullPage's license](https://alvarotrigo.com/fullPage/pricing/).
 
