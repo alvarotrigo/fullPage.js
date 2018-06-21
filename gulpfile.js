@@ -51,7 +51,7 @@ gulp.task('vendors', function() {
 
 //private file
 gulp.task('extensions', function() {
-    gulp.src('./fullpage.extensions.js')
+    gulp.src('./src/fullpage.extensions.js')
         .pipe(uglify({
             output: {
                 comments: 'some'
