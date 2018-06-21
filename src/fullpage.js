@@ -3565,7 +3565,7 @@
 
     /**
     * Usage:
-    * wrapInner(document.querySelector('#pepe'), '<div class="culo">afdas</div>');
+    * wrapInner(document.querySelector('#pepe'), '<div class="test">afdas</div>');
     * wrapInner(document.querySelector('#pepe'), element);
     *
     * https://jsfiddle.net/zexxz0tw/6/
