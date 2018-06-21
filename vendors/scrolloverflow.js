@@ -636,8 +636,17 @@ IScroll.prototype = {
 
         // start momentum animation if needed
         if ( this.options.momentum && duration < 300 ) {
-            momentumX = this.hasHorizontalScroll ? utils.momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, this.options.deceleration) : { destination: newX, duration: 0 };
-            momentumY = this.hasVerticalScroll ? utils.momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, this.options.deceleration) : { destination: newY, duration: 0 };
+
+            // only the first step in section is deceleration;
+            var deceleration = this.options.deceleration;
+            if (this.options.firstStepDeceleration) {
+                if (this.absStartY !== 0 || this.absStartX !== 0) {
+                    deceleration = null;
+                }
+            }
+
+            momentumX = this.hasHorizontalScroll ? utils.momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, deceleration) : { destination: newX, duration: 0 };
+            momentumY = this.hasVerticalScroll ? utils.momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, deceleration) : { destination: newY, duration: 0 };
             newX = momentumX.destination;
             newY = momentumY.destination;
             time = Math.max(momentumX.duration, momentumY.duration);
