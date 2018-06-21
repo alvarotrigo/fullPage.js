@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-clean-css');
 
 gulp.task('css', function() {
-    gulp.src('./fullpage.css')
+    gulp.src('./src/fullpage.css')
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
         .pipe(minifyCss({
@@ -19,7 +19,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src('./fullpage.js')
+    gulp.src('./src/fullpage.js')
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
         .pipe(uglify({
