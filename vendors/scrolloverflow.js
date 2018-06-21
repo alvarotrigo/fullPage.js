@@ -2199,12 +2199,12 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 if(document.readyState === 'complete'){
                     createScrollBarForAll();
-                    FP.shared.afterRenderActions();
+                    fullpage_api.shared.afterRenderActions();
                 }
                 //after DOM and images are loaded
                 window.addEventListener('load', function(){
                     createScrollBarForAll();
-                    FP.shared.afterRenderActions();
+                    fullpage_api.shared.afterRenderActions();
                 });
 
                 return self;
@@ -2326,6 +2326,7 @@ if ( typeof module != 'undefined' && module.exports ) {
          *
          * @type {Object}
          */
+        var $ = null;
         var iscrollHandler = {
             refreshId: null,
             iScrollInstances: [],
@@ -2349,7 +2350,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                 iscrollHandler.iscrollOptions.click = isTouch; // see #2035
 
                 //extending iScroll options with the user custom ones
-                iscrollHandler.iscrollOptions = jQuery.extend(iscrollHandler.iscrollOptions, options.scrollOverflowOptions);
+                iscrollHandler.iscrollOptions = fp_utils.deepExtend(iscrollHandler.iscrollOptions, options.scrollOverflowOptions);
 
                 return new scrollBarHandler().init(options, iscrollHandler.iscrollOptions);
             },
@@ -2512,7 +2513,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                         //ugly hack that we are forced to use due to the timeout delay
                         //otherwise done on the fullpage.js reBuild function
-                        FP.silentMoveTo(fp_utils.index($(SECTION_ACTIVE_SEL)[0]) + 1);
+                        fullpage_api.silentMoveTo(fp_utils.index($(SECTION_ACTIVE_SEL)[0]) + 1);
                     });
                 }, 150);
 
