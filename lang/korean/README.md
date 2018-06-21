@@ -12,8 +12,8 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.7-brightgreen.svg)
-[![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.0-brightgreen.svg)
+[![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
@@ -27,13 +27,10 @@
 
 (단일 페이지 웹사이트 또는 한페이지 사이트로도 알려진) 전체 화면 스크롤 웹사이트를 만드는 간단하고 쓰기 쉬운 라이브러리입니다. 전체 화면 스크롤 웹사이트를 만들 수 있으며 웹사이트 구역 안에 수평 방향 슬라이더를 추가할 수 있습니다.
 
-커피 한 잔 값을 기부하시는 건 어떤가요?
-[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-
-요청시 적절한 가격에 라이브러리 맞춤화와 긴급 변경이 가능합니다. <a href="http://alvarotrigo.com/#contact-page">문의하기</a>.
 
 - [소개](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean/#%EC%86%8C%EA%B0%9C)
 - [호환성](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%ED%98%B8%ED%99%98%EC%84%B1)
+- [라이선스](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%9D%BC%EC%9D%B4%EC%84%A0%EC%8A%A4)
 - [사용법](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%82%AC%EC%9A%A9%EB%B2%95)
   - [구역 또는 슬라이드로 가는 링크 만들기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B5%AC%EC%97%AD-%EB%98%90%EB%8A%94-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C%EB%A1%9C-%EA%B0%80%EB%8A%94-%EB%A7%81%ED%81%AC-%EB%A7%8C%EB%93%A4%EA%B8%B0)
   - [구역을 더 작게 또는 크게 만들기](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B5%AC%EC%97%AD%EC%9D%84-%EB%8D%94-%EC%9E%91%EA%B2%8C-%EB%98%90%EB%8A%94-%ED%81%AC%EA%B2%8C-%EB%A7%8C%EB%93%A4%EA%B8%B0)
@@ -51,7 +48,6 @@
 - [재료가 되는 도구](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%9E%AC%EB%A3%8C%EA%B0%80-%EB%90%98%EB%8A%94-%EB%8F%84%EA%B5%AC)
 - [누가 fullPage.js를 쓰나요?](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%88%84%EA%B0%80-fullpagejs%EB%A5%BC-%EC%93%B0%EB%82%98%EC%9A%94)
 - [기부](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EA%B8%B0%EB%B6%80)
-- [라이선스](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EB%9D%BC%EC%9D%B4%EC%84%A0%EC%8A%A4)
 
 ## 소개
 기능 요청뿐만 아니라 코딩 스타일 개선까지 언제든 의견 제안을 매우 환영합니다.
@@ -62,17 +58,26 @@ fullPage.js는 모든 최신 브라우저에서 기능을 100% 발휘하며 Inte
 CSS3 지원이 되는 브라우저와 지원되지 않는 브라우저 모두에서 잘 작동되기 때문에 이전 브라우저와의 호환성에 적합합니다.
 스마트폰, 태블릿, 터치화면 컴퓨터의 터치 지원도 됩니다.
 
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
-
 fullpage.js를 지원해 주시는 [Browserstack](http://www.browserstack.com/)에게 특별히 감사드립니다.
+
+## 라이선스
+
+### 상업 라이선스
+fullPage를 써서 상업용 웹사이트, 주제, 프로젝트, 앱을 개발하고자 하신다면 상업 라이선스가 적절합니다. 상업 라이선스로 귀하의 소스 코드에 저작권을 부여하실 수 있습니다. 다시 말해 귀하의 앱의 전 소스 코드를 오픈 소스 라이선스로 바꾸시지 않아도 된다는 것입니다. [[여기서 Fullpage 상업 라이선스를 구매하세요]](https://alvarotrigo.com/fullPage/pricing/)
+
+### 오픈소스 라이선스
+[GNU GPL 라이선스 v3](https://www.gnu.org/licenses/gpl-3.0.html)과 호환되는 라이선스 하에서 오픈소스 앱을 만드신다면, GPLv3 조건에서 fullPage를 사용하실 수 있습니다.
+
+**자바스크립트와 CSS 파일에 있는 개발자를 밝히는 말은 (결합이나 최소화 이후에도) 그대로 두셔야 합니다**
+
+[fullPage의 라이선스에 대해 더 자세히 읽어보기](https://alvarotrigo.com/fullPage/pricing/).
 
 ## 사용법
 예시 파일에서 보실 수 있듯이 다음을 넣으셔야 합니다.
- - [jQuery 라이브러리](http://jquery.com/). (최소 1.6.0)
- - `jquery.fullPage.js` 자바스크립트 파일 (또는 더 작아진 버전인 `jquery.fullPage.min.js`)
- - `jquery.fullPage.css`css 파일
+ - `fullpage.js` 자바스크립트 파일 (또는 더 작아진 버전인 `fullpage.min.js`)
+ - `fullpage.css`css 파일
 
- **선택 사항으로**`css3:false`를 쓰실 때 jQuery 라이브러리에 들어있는 효과(`linear`와 `swing` )나 fullPage.js에 기본으로 들어있는 (`easeInOutCubic`) 이외에 다른 easing 효과를 쓰고 싶으시다면 [jQuery UI 라이브러리](http://jqueryui.com/)를 추가하실 수 있습니다.
+ **선택 사항으로**`css3:false`를 쓰실 때 라이브러리에 들어있는 효과(`easeInOutCubic`) 이외에 다른 easing 효과를 쓰고 싶으시다면 [easing 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js)를 추가하실 수 있습니다.
 
 ### bower 또는 npm을 써서 설치하기
 **선택 사항으로**, 만약 아래가 더 마음에 드신다면 fullPage.js를 bower나 npm과 함께 설치하실 수 있습니다.
@@ -88,18 +93,15 @@ npm install fullpage.js
 
 ### 들어가는 파일:
 ```html
-<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="fullpage.css" />
 
 <!-- 아래는 선택사항입니다. css3:false 옵션을 쓰시면서 "linear", "swing" 또는 "easeInOutCubic" 대신 다른 전환(easing) 효과를 원하시는 경우에만 필요합니다. -->
-<script src="vendors/jquery.easings.min.js"></script>
-
+<script src="vendors/easings.min.js"></script>
 
 <!-- 아래 선은 `scrollOverflow:true` 옵션을 쓰시는 경우에만 넣으셔야 합니다. -->
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
 
-<script type="text/javascript" src="jquery.fullPage.js"></script>
+<script type="text/javascript" src="fullpage.js"></script>
 ```
 
 ### CDN 사용 가능
@@ -136,19 +138,43 @@ HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelang
 [`demoPage.html` 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
 
 ### 초기 설정
-`$(document).ready` 안에 fullPage.js를 소환하시기만 하면 됩니다.
 
+#### 바닐라 자바스크립트를 사용한 초기화
+`</body>` 태그를 닫기 전 fullpage.js를 불러오기만 하시면 됩니다.
 
 ```javascript
-$(document).ready(function() {
-	$('#fullpage').fullpage();
+new fullpage('#fullpage', {
+	//options here
+	autoScrolling:true,
+	scrollHorizontally: true
 });
+
+//methods
+fullpage_api.setAllowScrolling(false);
 ```
 
-모든 옵션이 들어간 더 복잡한 초기 설정은 아래와 같이 코딩될 수 있습니다.
+#### jQuery를 사용한 초기화
+원하실 경우 fullpage.js를 jQuery 플러그인으로 쓰실 수 있습니다!
+
 ```javascript
 $(document).ready(function() {
 	$('#fullpage').fullpage({
+		//options here
+		autoScrolling:true,
+		scrollHorizontally: true
+	});
+
+	//methods
+	$.fn.fullpage.setAllowScrolling(false);
+});
+```
+[fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7)에서 보실 수 있는 것과 마찬가지로 기능과 방법을 여전히 jQuery 방식으로 불러오실 수 있습니다.
+
+#### 모든 옵션이 들어간 바닐라 JS 예시
+
+모든 옵션이 들어간 더 복잡한 초기 설정은 아래와 같이 코딩될 수 있습니다.
+```javascript
+	new fullpage('#fullpage', {
 		//이동
 		menu: '#menu',
 		lockAnchors: false,
@@ -212,15 +238,14 @@ $(document).ready(function() {
 
 		lazyLoading: true,
 
-		//사건(이벤트)
-		onLeave: function(index, nextIndex, direction){},
-		afterLoad: function(anchorLink, index){},
-		afterRender: function(){},
-		afterResize: function(){},
-		afterResponsive: function(isResponsive){},
-		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
-		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
-	});
+	//사건(이벤트)
+	onLeave: function(origin, destination, direction){},
+	afterLoad: function(origin, destination, direction){},
+	afterRender: function(){},
+	afterResize: function(){width, height},
+	afterResponsive: function(isResponsive){},
+	afterSlideLoad: function(section, origin, destination, direction){},
+	onSlideLeave: function(section, origin, destination, direction){}
 });
 ```
 
@@ -232,10 +257,8 @@ fullPage.js를 (`anchors 옵션이나 각 구역마다 `data-anchor 속성을 �
 초기 설정이 다음과 같이 설정될 경우
 
 ```javascript
-$(document).ready(function() {
-	$('#fullpage').fullpage({
-		anchors:['firstPage', 'secondPage', 'thirdPage']
-	});
+new fullpage('#fullpage', {
+	anchors:['firstPage', 'secondPage', 'thirdPage']
 });
 ```
 
@@ -318,13 +341,13 @@ Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소
 ### 확장 프로그램 사용
 fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지 확장 프로그램을 지원합니다](http://alvarotrigo.com/fullPage/extensions/). 모든 확장 프로그램이 [fullpage.js 옵션](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%98%B5%EC%85%98)으로 열거되어 있습니다.
 
-확장 프로그램을 쓰시려면 보통 쓰시는 fullPage.js 파일(`jquery.fullpage.js` 또는 `jquery.fullpage.min.js`) 말고 [`dist` 폴더](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) 안에 있는 작아진 파일[`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/jquery.fullpage.extensions.min.js)을 쓰셔야 합니다.
+확장 프로그램을 쓰시려면 보통 쓰시는 fullPage.js 파일(`fullpage.js` 또는 `fullpage.min.js`) 말고 [`dist` 폴더](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) 안에 있는 작아진 파일[`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/fullpage.extensions.min.js)을 쓰셔야 합니다.
 
 확장 파일을 획득하시면 fullPage 앞에 추가하셔야 합니다. 예를 들어 연속 수평(Continuous Horizontal) 확장을 쓰신다면 확장 파일을 먼저 넣고 그 다음에 fullPage 연장 버전을 넣습니다.
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
-<script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
+<script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
 ```
 
 각 확장 프로그램마다 활성화 키와 라이선스 키가 필요합니다. [더 상세한 사항은 여기를 참조하세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/how-to-activate-fullpage-extension.md).
@@ -332,6 +355,10 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 그 다음 [옵션](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%98%B5%EC%85%98)에 설명된 대로 사용하시고 설정하실 수 있습니다.
 
 ## 옵션
+
+- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다.
+
+- `v2compatible`: (기본값 `false`). 버전 3의 새로운 기능이나 api 변화를 무시하고 버전 2에 맞게 만들어진 모든 코드와 100% 호환 가능한지를 결정합니다. 상태 클래스, 콜백 시그니처 등이 버전 2에서 작동했던 것과 마찬가지로 완전히 동일하게 작동합니다. **이 옵션은 언젠가는 없어질 것임을 염두해 주십시오**.
 
 - `controlArrows`: (기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
 
@@ -341,7 +368,7 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 
 - `sectionsColor`: (기본값 `none`) 각 구역별 CSS `background-color` 속성을 정의합니다. 아래는 예시입니다.
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
@@ -354,7 +381,7 @@ $('#fullpage').fullpage({
 **중요** `anchors` 옵션 배열에 있는 값이 교정(마크업) 내 위치에 의해 `.section` 클래스를 지닌 요소와 직접 상관관계에 있음을 이해하시면 도움이 됩니다.
 
 - `easing`: (기본값 `easeInOutCubic`) 수직 및 수평 스크롤시 전이 효과를 정의합니다.
-[전이](http://api.jqueryui.com/easings/) 효과 중 일부를 사용하기 위해서는  `vendors/jquery.easings.min.js` 또는 [jQuery UI](http://jqueryui.com/) 파일이 필요합니다. 대신 다른 라이브러리를 쓸 수도 있습니다.
+[전이](http://api.jqueryui.com/easings/) 효과 중 일부를 사용하기 위해서는  `vendors/easings.min.js` 또는 [jQuery UI](http://jqueryui.com/) 파일이 필요합니다. 대신 다른 라이브러리를 쓸 수도 있습니다.
 
 - `easingcss3`: (기본값 `ease`) `css3:true`를 쓰는 경우 사용할 전이 효과를 정의합니다. (`linear`, `ease-out` 등) [미리 정의된 효과](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)를 쓰시거나 `cubic-bezier` 기능을 쓰셔서 나만의 효과를 만드실 수 있습니다. [Matthew Lein CSS Easing Animation Tool](http://matthewlein.com/ceaser/)도 쓰실 수 있습니다.
 
@@ -364,7 +391,7 @@ $('#fullpage').fullpage({
 
 - `loopHorizontal`: (기본값 `true`) 수평 슬라이더가 마지막이나 이전 슬라이드에 다다른 후 다시 반복할지 여부를 정의합니다.
 
-- `css3`: (기본값 `true`). 구역과 슬라이드 안에서 스크롤하기 위해 JavaScript를 쓸지 CSS3을 쓸지를 정의합니다. CSS3 지원 브라우저를 쓰는 태블릿과 스마트폰에서 움직이는 속도를 높이는 데 유용합니다. 이 옵션을 `true`로 설정하고 브라우저가 CSS3을 지원하지 않는다면 jQuery 폴백(fallback)이 대신 쓰이게 됩니다.
+- `css3`: (기본값 `true`). 구역과 슬라이드 안에서 스크롤하기 위해 JavaScript를 쓸지 CSS3을 쓸지를 정의합니다. CSS3 지원 브라우저를 쓰는 태블릿과 스마트폰에서 움직이는 속도를 높이는 데 유용합니다. 이 옵션을 `true`로 설정하고 브라우저가 CSS3을 지원하지 않는다면 폴백(fallback)이 대신 쓰이게 됩니다.
 
 - `autoScrolling`: (기본값 `true`) "automatic" 스크롤을 쓸지 "normal" 스크롤을 쓸지를 정의합니다. 태블릿과 스마트폰 브라우저/기기 창에서 구역이 들어맞는 방법에도 영향을 미칩니다.
 
@@ -378,9 +405,9 @@ $('#fullpage').fullpage({
 
 - `paddingBottom`: (기본값 `0`) 구역별 하위에 채우는 부분을 수치와 측정값(`paddingBottom: '10px'`, `paddingBottom: '10em'`...)으로 정의합니다. 고정된 꼬리말을 쓰실 때 유용합니다.
 
-- `fixedElements`: (기본값 `null`) 플러그인의 스크롤 구조에서 어느 요소를 빼낼지를 정의합니다. `css3` 옵션을 쓰실 때 고정하려면 반드시 빼내셔야 합니다. 이 요소에는 jQuery 선택자가 들어간 문자열이 필요합니다. (예시: `fixedElements: '#element1, .element2'`)
+- `fixedElements`: (기본값 `null`) 플러그인의 스크롤 구조에서 어느 요소를 빼낼지를 정의합니다. `css3` 옵션을 쓰실 때 고정하려면 반드시 빼내셔야 합니다. 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (기본값 `null`) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 jQuery 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
+- `normalScrollElements`: (기본값 `null`) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
 
 - `normalScrollElementTouchThreshold` : (기본값 `5`) 터치 기기에서 div 스크롤 기능을 허용하는 데 `normalScrollElements`가 좋은 짝인지 보기 위해 Fullpage가 시험할 html 노드 나무 위 홉(hop) 수 한계점을 설정합니다. (예시: `normalScrollElementTouchThreshold: 3`)
 
@@ -429,7 +456,7 @@ $('#fullpage').fullpage({
 </ul>
 ```
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	menu: '#myMenu'
 });
@@ -450,11 +477,11 @@ $('#fullpage').fullpage({
 - `slidesNavPosition`: (기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
 
 - `scrollOverflow`: (기본값 `false`) (IE 8과 호환되지 않음) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 위임을 하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오시는 걸 고려해 보세요.
-`true`로 설정하시는 경우 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js) 벤더 라이브러리가 필요합니다. 이 파일은 fullPage.js 플러그인 이전에 불러와야 합니다 하지만 jQuery 후에. 다음은 예시입니다.
+`true`로 설정하시는 경우 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js) 벤더 라이브러리가 필요합니다. 이 파일은 fullPage.js 플러그인 이전에 불러와야 합니다 하지만 jQuery (사용하시는 경우) 후에. 다음은 예시입니다.
 
 ```html
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="jquery.fullPage.js"></script>
+<script type="text/javascript" src="fullpage.js"></script>
 ```
 
 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`
@@ -465,9 +492,9 @@ $('#fullpage').fullpage({
 
 - `scrollOverflowOptions`: scrollOverflow:true를 쓰시면 fullpage.js가 [iScroll.js 라이브러리](https://github.com/cubiq/iscroll/)의 포크(forked) 및 수정 버전을 사용합니다. iScroll.js 옵션을 fullpage.js에게 주시면 스크롤 행위를 맞춤화하실 수 있습니다. 더 자세한 정보를 알고 싶으시다면 [기록 문서](http://iscrolljs.com/)를 방문해 보세요.
 
-- `sectionSelector`: (기본값 `.section`) 플러그인 구역에 쓰이는 jQuery 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
+- `sectionSelector`: (기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
-- `slideSelector`: (기본값 `.slide`) 플러그인 슬라이드에 쓰이는 jQuery 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
+- `slideSelector`: (기본값 `.slide`) 플러그인 슬라이드에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
 - `responsiveWidth`: (기본값 `0`) 픽셀로 정의된 폭 아래에 정상 스크롤(`autoScrolling:false`)을 씁니다. 사용자가 자신만의 반응형 CSS에 쓰고 싶은 경우를 위해 `fp-responsive` 클래스가 바디 태그에 추가됩니다. 예를 들어 900에 설정되는 경우 브라우저의 너비가 900 미만이 될 때마다 플러그인이 정상 웹사이트처럼 스크롤됩니다.
 
@@ -484,32 +511,46 @@ $('#fullpage').fullpage({
 ## 방법
 어떻게 작동하는지 [여기](http://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.
 
-### moveSectionUp()
-[데모](http://codepen.io/alvarotrigo/pen/GJXNMN) 한 구역 위로 스크롤합니다.
+### getActiveSection
+[데모](https://codepen.io/alvarotrigo/pen/VdpzRN/) 활성화된 슬라이드 및 슬라이드 특성이 들어간 객체(type [Section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#callbacks))를 얻습니다.
+
 ```javascript
-$.fn.fullpage.moveSectionUp();
+fullpage_api.getActiveSection();
+```
+
+### getActiveSlide
+[데모](https://codepen.io/alvarotrigo/pen/VdpzRN/) 활성화된 구역 및 구역 특성이 들어간 객체(type [Slide](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#callbacks))를 얻습니다.
+
+```javascript
+fullpage_api.getActiveSlide();
+```
+
+### moveSectionUp()
+[데모](http://codepen.io/alvarotrigo/pen/GJXNMN) [데모](http://codepen.io/alvarotrigo/pen/GJXNMN) 한 구역 위로 스크롤합니다.
+```javascript
+fullpage_api.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
 [데모](http://codepen.io/alvarotrigo/pen/jPvVZx) 한 구역 아래로 스크롤합니다.
 ```javascript
-$.fn.fullpage.moveSectionDown();
+fullpage_api.moveSectionDown();
 ```
 ---
 ### moveTo(구역, 슬라이드)
 [데모](http://codepen.io/alvarotrigo/pen/doqOmY) 페이지를 주어진 구역과 슬라이드로 스크롤합니다. 기본 설정으로 보이는 첫번째 페이지가 색인 0이 됩니다.
 ```javascript
 /*`firstSlide` 앵커 링크가 있는 구역과 두번째 슬라이드로 스크롤하기 */
-$.fn.fullpage.moveTo('firstSlide', 2);
+fullpage_api.moveTo('firstSlide', 2);
 
 ```
 
 ```javascript
 //웹사이트의 세번째 구역으로 스크롤하기
-$.fn.fullpage.moveTo(3, 0);
+fullpage_api.moveTo(3, 0);
 
 //이는 다음과 동일
-$.fn.fullpage.moveTo(3);
+fullpage_api.moveTo(3);
 ```
 ---
 ### silentMoveTo(구역, 슬라이드)
@@ -517,42 +558,42 @@ $.fn.fullpage.moveTo(3);
 [`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#moveto%EA%B5%AC%EC%97%AD-%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C)와 완전히 동일하지만, 이 경우에는 애니메이션 없이 스크롤 기능을 수행합니다. 목적지로 바로 건너뜁니다.
 ```javascript
 /*`firstSlide` 앵커 링크가 있는 구역과 두번째 슬라이드로 스크롤하기 */
-$.fn.fullpage.silentMoveTo('firstSlide', 2);
+fullpage_api.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
 [데모](http://codepen.io/alvarotrigo/pen/Wvgoyz)
 현 구역의 수평 슬라이더를 다음 슬라이드로 스크롤합니다.
 ```javascript
-$.fn.fullpage.moveSlideRight();
+fullpage_api.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
 [데모](http://codepen.io/alvarotrigo/pen/gpdLjW)
 현 구역의 수평 슬라이더를 이전 슬라이드로 스크롤합니다.
 ```javascript
-$.fn.fullpage.moveSlideLeft();
+fullpage_api.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(불리언)
 [데모](http://codepen.io/alvarotrigo/pen/rVZWrR) 스크롤 환경설정을 실시간으로 설정합니다. 페이지의 스크롤 행위 방식을 정의합니다. `true`로 설정되면 "자동" 스크롤을 쓰고, 이외의 경우에는 웹사이트의 "수동"이나 "정상" 스크롤을 씁니다.
 
 ```javascript
-$.fn.fullpage.setAutoScrolling(false);
+fullpage_api.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(불리언)
 [데모](http://codepen.io/alvarotrigo/pen/GJXNYm) `fitToSection` 옵션값을 설정하여 구역을 화면 안에 맞출지 여부를 정합니다.
 
 ```javascript
-$.fn.fullpage.setFitToSection(false);
+fullpage_api.setFitToSection(false);
 ```
 ---
 ### fitToSection()
 [데모](http://codepen.io/alvarotrigo/pen/JWWagj) 가장 가까운 활성화된 구역으로 스크롤하여 구역을 모바일 지원(viewport)에 맞춥니다.
 
 ```javascript
-$.fn.fullpage.fitToSection();
+fullpage_api.fitToSection();
 ```
 ---
 ### setLockAnchors(불리언)
@@ -560,7 +601,7 @@ $.fn.fullpage.fitToSection();
 `lockAnchors` 옵션값을 설정하여 앵커가 URL 안에서 효과를 낼지 여부를 설정합니다.
 
 ```javascript
-$.fn.fullpage.setLockAnchors(false);
+fullpage_api.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(불리언, [방향])
@@ -571,13 +612,13 @@ $.fn.fullpage.setLockAnchors(false);
 ```javascript
 
 //스크롤 비활성화
-$.fn.fullpage.setAllowScrolling(false);
+fullpage_api.setAllowScrolling(false);
 
 //아래 방향 스크롤 비활성화
-$.fn.fullpage.setAllowScrolling(false, 'down');
+fullpage_api.setAllowScrolling(false, 'down');
 
 //아래 및 오른쪽 방향 스크롤 비활성화
-$.fn.fullpage.setAllowScrolling(false, 'down, right');
+fullpage_api.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(불리언, [방향])
@@ -587,27 +628,27 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 
 ```javascript
 //모든 키보드 스크롤 비활성화
-$.fn.fullpage.setKeyboardScrolling(false);
+fullpage_api.setKeyboardScrolling(false);
 
 //키보드 아래 방향 스크롤 비활성화
-$.fn.fullpage.setKeyboardScrolling(false, 'down');
+fullpage_api.setKeyboardScrolling(false, 'down');
 
 //키보드 아래 및 오른쪽 방향 스크롤 비활성화
-$.fn.fullpage.setKeyboardScrolling(false, 'down, right');
+fullpage_api.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(불리언)
 [데모](http://codepen.io/alvarotrigo/pen/rVZWQb) URL의 각 해쉬 변경 기록을 기록할지 여부를 정의합니다.
 
 ```javascript
-$.fn.fullpage.setRecordHistory(false);
+fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(1000분의 1초)
 [데모](http://codepen.io/alvarotrigo/pen/NqLbeY) 스크롤 속도를 1000분의 1초 단위로 정의합니다.
 
 ```javascript
-$.fn.fullpage.setScrollingSpeed(700);
+fullpage_api.setScrollingSpeed(700);
 ```
 ---
 ### destroy(종류)
@@ -618,10 +659,10 @@ AJAX로 컨텐츠를 불러오실 때 적합합니다.
 
 ```javascript
 //fullPage.js가 만드는 모든 자바스크립트 사건(스크롤, URL의 해쉬 변경 등 이벤트)을 제거...)
-$.fn.fullpage.destroy();
+fullpage_api.destroy();
 
 //귀하의 HTML 교정(마크업) 원본에 추가된 모든 자바스크립트 사건(이벤트)과 모든 fullPage.js 수정을 제거.
-$.fn.fullpage.destroy('all');
+fullpage_api.destroy('all');
 ```
 ---
 ### reBuild()
@@ -629,13 +670,13 @@ DOM 구조가 새로운 창 크기나 컨텐츠에 맞도록 업데이트됩니�
  특히 `scrollOverflow:true`를 쓰실 때 AJAX 콜이나 웹사이트의 DOM 구조 안에서 외부 변화와 함께 쓰시면 적합합니다.
 
 ```javascript
-$.fn.fullpage.reBuild();
+fullpage_api.reBuild();
 ```
 ---
 ### setResponsive(불리언)
 [데모](http://codepen.io/alvarotrigo/pen/WxOyLA) 페이지의 반응형 모드를 설정합니다. `true`로 설정되면 autoScrolling이 꺼지고 `responsiveWidth`나 `responsiveHeight` 옵션이 실행될 때와 완전히 동일한 결과가 나옵니다.
 ```javascript
-$.fn.fullpage.setResponsive(true);
+fullpage_api.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
@@ -643,7 +684,7 @@ $.fn.fullpage.setResponsive(true);
 수평 슬라이드를 수직 구역으로 바꿉니다.
 
 ```javascript
-$.fn.fullpage.responsiveSlides.toSections();
+fullpage_api.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
@@ -651,66 +692,72 @@ $.fn.fullpage.responsiveSlides.toSections();
 (수직 구역으로 전환된) 슬라이드를 다시 수평 슬라이드로 되돌립니다.
 
 ```javascript
-$.fn.fullpage.responsiveSlides.toSlides();
+fullpage_api.responsiveSlides.toSlides();
 ```
 
 ## 콜백
 [데모](http://codepen.io/alvarotrigo/pen/XbPNQv) [여기](http://alvarotrigo.com/fullPage/examples/callbacks.html)서 어떻게 작동되는지 보실 수 있습니다.
 
-### afterLoad (`anchorLink`, `index`)
+`onLeave` 등 일부 콜백에는 `Section` 또는 `Slide` 종류의 매개 변수가 들어갑니다. 이들 객체에는 다음 특성이 들어갑니다.
+- `anchor`: *(String)* 아이템의 앵커링크.
+- `index`: *(Number)* 아이템의 색인.
+- `item`: *(DOM element)* 아이템 요소.
+- `isFirst`: *(Boolean)* 아이템이 첫 번째 자식인지를 결정합니다.
+- `isLast`: *(Boolean)* 아이템이 마지막 자식인지를 결정합니다.
+
+### afterLoad (`origin`, `destination`, `direction`)
 구역을 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
 매개 변수:
 
-- `anchorLink`: 구역에 대응하는 앵커링크.
-- `index`: 구역의 색인. 1에서 시작.
-
-앵커링크가 플러그인에서 정의되지 않은 경우 `index` 매개 변수만 쓸 수 있습니다.
+- `origin`: *(Object)* 활성화된 구역
+- `destination`: *(Object)* 목적지 구역.
+- `direction`: *(String)* 스크롤하는 방향에 따라 `up` 또는 `down`
 
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(anchorLink, index){
-		var loadedSection = $(this);
+	afterLoad: function(origin){
+		var loadedSection = this;
 
 		//색인 사용
-		if(index == 3){
+		if(origin.index == 2){
 			alert("Section 3 ended loading");
 		}
 
 		//앵커링크 사용
-		if(anchorLink == 'secondSlide'){
+		if(origin.anchor == 'secondSlide'){
 			alert("Section 2 ended loading");
 		}
 	}
 });
 ```
 ---
-### onLeave (`index`, `nextIndex`, `direction`)
+### onLeave (`origin`, `destination`, `direction`)
 사용자가 구역을 떠나고 새로운 구역으로 이동하는 와중에 콜백이 실행됩니다.
 `false`로 되돌리면 발동하기 전에 취소됩니다.
 
 매개 변수:
 
-- `index`: 떠나는 구역의 색인. 1에서 시작.
-- `nextIndex`: 도착지 구역의 색인. 1에서 시작.
-- `direction`: 스크롤 방향에 따라 `up` 또는 `down`값을 갖습니다.
+- `origin`:  *(Object)* 출발 구역.
+- `destination`: *(Object)* 목적지 구역.
+- `direction`: *(String)* 스크롤하는 방향에 따라 `up` 또는 `down`
 
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
-	onLeave: function(index, nextIndex, direction){
-		var leavingSection = $(this);
+new fullpage('#fullpage', {
+	onLeave: function(origin, destination, direction){
+		var leavingSection = this;
 
 		//구역 2를 떠난 후
-		if(index == 2 && direction =='down'){
+		if(origin.index == 1 && direction =='down'){
 			alert("Going to section 3!");
 		}
 
-		else if(index == 2 && direction == 'up'){
+		else if(origin.index == 1 && direction == 'up'){
 			alert("Going to section 1!");
 		}
 	}
@@ -721,10 +768,10 @@ $('#fullpage').fullpage({
 `onLeave` 콜백에서 `false`로 되돌려서 스크롤을 취소하실 수 있습니다.
 
 ```javascript
-$('#fullpage').fullpage({
-	onLeave: function(index, nextIndex, direction){
+new fullpage('#fullpage', {
+	onLeave: function(origin, destination, direction){
 		//목적지가 세번째 구역인 경우 스크롤되지 않음
-		if(nextIndex == 3){
+		if(destination.index == 2){
 			return false;
 		}
 	}
@@ -738,23 +785,28 @@ $('#fullpage').fullpage({
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	afterRender: function(){
-		var pluginContainer = $(this);
+		var pluginContainer = this;
 		alert("The resulting DOM structure is ready");
 	}
 });
 ```
 ---
-### afterResize()
+### afterResize(width, height)
 브라우저 창의 크기가 바뀐 뒤에 이 콜백이 실행됩니다. 구역 크기가 바뀐 직후에 실행됩니다.
+
+매개 변수:
+
+- `width`:  *(Number)* 창의 너비.
+- `height`: *(Number)* 창의 폭.
 
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	afterResize: function(){
-		var pluginContainer = $(this);
+		var pluginContainer = this;
 		alert("The sections have finished resizing");
 	}
 });
@@ -770,40 +822,39 @@ fullpage.js가 정상 모드에서 반응형 모드로 바뀌거나 반응형 �
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	afterResponsive: function(isResponsive){
 		alert("Is responsive: " + isResponsive);
 	}
 });
 ```
 ---
-### afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
 구역의 슬라이드를 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
 매개 변수:
 
-- `anchorLink`: 구역에 대응하는 앵커링크.
-- `index`: 구역의 색인. 1에서 시작.
-- `slideAnchor`: (앵커가 있는 경우) 슬라이드에 대응하는 앵커
-- `slideIndex`: 슬라이드의 색인. 1에서 시작. (기본으로 설정된 슬라이드는 슬라이드가 아닌 구역으로 간주됨)
+- `section`: *(Object)* 활성화된 수직 구역.
+- `origin`: *(Object)* 출발 수평 슬라이드.
+- `destination`: *(Object)* 도착 수평 슬라이드.
+- `direction`: *(String)* 스크롤 방향에 따라 `right` 또는 `left`.
 
-슬라이드 하나 또는 여러 개의 앵커링크가 정의되지 않은 경우 `slideIndex`가 유일한 매개 변수가 됩니다.
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
-		var loadedSlide = $(this);
+	afterSlideLoad: function( section, origin, destination, direction){
+		var loadedSlide = this;
 
 		//두번째 구역의 첫번째 슬라이드
-		if(anchorLink == 'secondPage' && slideIndex == 1){
+		if(section.anchor == 'secondPage' && destination == 1){
 			alert("First slide loaded");
 		}
 
 		//두번째 구역의 두번째 슬라이드
         //(#secondSlide가 두번째 슬라이드의 앵커라고 가정할 때)
-		if(index == 2 && slideIndex == 'secondSlide'){
+		if(section.index == 1 && destination.anchor == 'secondSlide'){
 			alert("Second slide loaded");
 		}
 	}
@@ -812,33 +863,32 @@ $('#fullpage').fullpage({
 
 
 ---
-### onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextSlideIndex`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`)
 사용자가 슬라이드를 떠나서 다른 슬라이드로 이동하는 와중에 콜백이 실행됩니다.
 `false`로 되돌리면 발동하기 전에 취소됩니다.
 
 매개 변수:
 
-- `anchorLink`: 구역에 대응하는 앵커링크.
-- `index`: 구역의 색인. 1에서 시작.
-- `slideIndex`: 슬라이드의 색인. **0에서 시작.**
-- `direction`: 스크롤 방향에 따라 `right` 또는 `left`값을 갖습니다.
-- `nextSlideIndex`: 도착 슬라이드의 색인. **0에서 시작.**
+- `section`: *(Object)* 활성화된 수직 구역.
+- `origin`: *(Object)* 출발 수평 슬라이드.
+- `destination`: *(Object)* 도착 수평 슬라이드.
+- `direction`: *(String)* 스크롤 방향에 따라 `right` 또는 `left`.
 
 
 예시:
 
 ```javascript
-$('#fullpage').fullpage({
-	onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
-		var leavingSlide = $(this);
+new fullpage('#fullpage', {
+	onSlideLeave: function( section, origin, destination, direction){
+		var leavingSlide = this;
 
 		//두번째 구역의 첫번째 슬라이드를 떠나서 오른쪽으로 이동
-		if(index == 2 && slideIndex == 0 && direction == 'right'){
+		if(section.index == 1 && origin.index == 0 && direction == 'right'){
 			alert("Leaving the fist slide!!");
 		}
 
 		//두번째 구역의 세번째 슬라이드를 떠나서 왼쪽으로 이동
-		if(index == 2 && slideIndex == 2 && direction == 'left'){
+		if(section.index == 1 && origin.index == 2 && direction == 'left'){
 			alert("Going to slide 2! ");
 		}
 	}
@@ -867,7 +917,7 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (`easingcss3` 값을 정의하는 데 유용)
-- [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
+- [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js October CMS 플러그인](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js 워드프레스 플러그인](https://wordpress.org/plugins/wp-fullpage/)
 - [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)
@@ -959,37 +1009,3 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
-
-
-## 라이선스
-
-**자바스크립트와 CSS 파일에 있는 개발자를 밝히는 말은 (결합이나 최소화 이후에도) 그대로 두셔야 합니다**
-
-(MIT 라이선스)
-
-Copyright (c) 2013 Alvaro Trigo &lt;alvaro@alvarotrigo.com&gt;
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-이 소프트웨어의 복제본 및 연관 문서 파일('소프트웨어')을 습득하는 모든 사람에게 아래 조건에 따르는 한 무상으로 제한 없이 소프트웨어를 취급할 권리를 허용합니다. 여기에는 제한 없이 소프트웨어 복제본을 사용, 복제, 수정, 병합, 발행, 배포, 재실시(sublicense) 및/또는 판매할 권리가 포함되나 이에 국한되지 않습니다. 또한 아래 조건에 따르는 한 소프트웨어를 제공할 시 받는 사람에게 마찬가지 권리를 부여할 수 있는 권리를 무상으로 허용합니다.
-
-위의 저작권 통보 문구와 이 허용 통보 문구는 소프트웨어의 모든 복제본 또는 상당 부분에 들어가야 합니다.
-
-이 소프트웨어는 상품성, 특정 목적 적합성, 비침해 보증을 포함하나 이에 국한되지 않는 모든 종류의 명시적 또는 묵시적 보증 없이 '있는 그대로' 제공됩니다. 계약상, 불법행위 또는 기타 이유로 인한 법적 조치시 어떤 경우에도 개발자 또는 저작권 보유자가 소프트웨어나 소프트웨어 사용 또는 기타 취급 행위에서 발생하거나 범위를 벗어나거나 관련된 모든 요구사항, 손해 또는 기타 책임에 대해 책임을 지지 않습니다.

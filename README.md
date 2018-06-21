@@ -722,8 +722,6 @@ Some callbacks, such as `onLeave` will contain Object type of parameters contain
 - `anchor`: *(String)* item's anchor.
 - `index`: *(Number)* item's index.
 - `item`: *(DOM element)* item element.
-- `isSlide`: *(Boolean)* determines if the item is a horizonta slide or not.
-- `isSection`: *(Boolean)* determines if the item is a vertical section or not.
 - `isFirst`: *(Boolean)* determines if the item is the first child.
 - `isLast`: *(Boolean)* determines if the item is the last child.
 
@@ -939,7 +937,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
-- [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
+- [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
 - [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)

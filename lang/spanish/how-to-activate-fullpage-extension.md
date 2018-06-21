@@ -8,7 +8,7 @@
 Por ejemplo:
 
 ```javascript
-$('#fullpage').fullPage({
+var myFullpage = new fullpage('#fullpage', {
     fadingEffect: true,
     fadingEffectKey: 'LA CLAVE DE ACTIVACIÓN HA DE COLOCARSE AQUÍ',
 });

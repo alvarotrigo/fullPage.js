@@ -8,7 +8,7 @@
 예시:
 
 ```javascript
-$('#fullpage').fullPage({
+var myFullpage = new fullpage('#fullpage', {
     fadingEffect: true,
     fadingEffectKey: '활성화 키가 여기에 위치해야 합니다',
 });
