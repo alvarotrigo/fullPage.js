@@ -1,9 +1,12 @@
 /*!
- * fullPage 2.9.7
+ * fullPage 3.0.0
  * https://github.com/alvarotrigo/fullPage.js
- * MIT licensed
  *
- * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
+ * @license GPLv3 for open source use only
+ * or Fullpage Commercial License for commercial use
+ * http://alvarotrigo.com/fullPage/pricing/
+ *
+ * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
 html.fp-enabled,
 .fp-enabled body {
@@ -100,10 +103,10 @@ html.fp-enabled,
     opacity: 1;
     -webkit-transform: translate3d(0,0,0);
 }
-#fp-nav.right {
+#fp-nav.fp-right {
     right: 17px;
 }
-#fp-nav.left {
+#fp-nav.fp-left {
     left: 17px;
 }
 .fp-slidesNav{
@@ -117,10 +120,10 @@ html.fp-enabled,
     right: 0;
     margin: 0 auto !important;
 }
-.fp-slidesNav.bottom {
+.fp-slidesNav.fp-bottom {
     bottom: 17px;
 }
-.fp-slidesNav.top {
+.fp-slidesNav.fp-top {
     top: 17px;
 }
 #fp-nav ul,
@@ -202,10 +205,10 @@ html.fp-enabled,
     width: auto;
     opacity: 1;
 }
-#fp-nav ul li .fp-tooltip.right {
+#fp-nav ul li .fp-tooltip.fp-right {
     right: 20px;
 }
-#fp-nav ul li .fp-tooltip.left {
+#fp-nav ul li .fp-tooltip.fp-left {
     left: 20px;
 }
 .fp-auto-height.fp-section,
