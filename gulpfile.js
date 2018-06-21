@@ -32,8 +32,11 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('scrolloverflow', function() {
-    gulp.src('./vendors/scrolloverflow.js')
+gulp.task('vendors', function() {
+    gulp.src([
+        './vendors/scrolloverflow.js',
+        './vendors/easings.js'
+        ])
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./vendors'))
         .pipe(uglify({
