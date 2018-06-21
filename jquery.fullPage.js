@@ -1,3 +1,6 @@
+/*! viewportSize | Author: Tyson Matanich, 2013 | License: MIT (https://github.com/tysonmatanich/viewportSize) */
+(function(n){n.viewportSize={},n.viewportSize.getHeight=function(){return t("Height")},n.viewportSize.getWidth=function(){return t("Width")};var t=function(t){var f,o=t.toLowerCase(),e=n.document,i=e.documentElement,r,u;return n["inner"+t]===undefined?f=i["client"+t]:n["inner"+t]!=i["client"+t]?(r=e.createElement("body"),r.id="vpw-test-b",r.style.cssText="overflow:scroll",u=e.createElement("div"),u.id="vpw-test-d",u.style.cssText="position:absolute;top:-1000px",u.innerHTML="<style>@media("+o+":"+i["client"+t]+"px){body#vpw-test-b div#vpw-test-d{"+o+":7px!important}}<\/style>",r.appendChild(u),i.insertBefore(r,e.head),f=u["offset"+t]==7?i["client"+t]:n["inner"+t],i.removeChild(r)):f=n["inner"+t],f}})(this);
+
 /*!
  * fullPage 2.9.7
  * https://github.com/alvarotrigo/fullPage.js
@@ -188,7 +191,7 @@
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = $(this);
-        var windowsHeight = $window.height();
+        var windowsHeight = viewportSize.getHeight(); // IVO GELOV
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -443,7 +446,7 @@
 
             isResizing = true;
 
-            windowsHeight = $window.height();  //updating global var
+            windowsHeight = viewportSize.getHeight(); // IVO GELOV = updating global var
 
             $(SECTION_SEL).each(function(){
                 var slidesWrap = $(this).find(SLIDES_WRAPPER_SEL);
@@ -644,7 +647,7 @@
             $('html').addClass(ENABLED);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
-            windowsHeight = $window.height();
+            windowsHeight = viewportSize.getHeight(); // IVO GELOV
 
             container.removeClass(DESTROYED); //in case it was destroyed before initializing it again
 
@@ -909,8 +912,8 @@
                 var currentScroll = $window.scrollTop();
                 var scrollDirection = getScrollDirection(currentScroll);
                 var visibleSectionIndex = 0;
-                var screen_mid = currentScroll + ($window.height() / 2.0);
-                var isAtBottom = $body.height() - $window.height() === currentScroll;
+                var screen_mid = currentScroll + (viewportSize.getHeight() / 2.0); // IVO GELOV
+                var isAtBottom = $body.height() - viewportSize.getHeight() === currentScroll; // IVO GELOV
                 var sections =  document.querySelectorAll(SECTION_SEL);
 
                 //when using `auto-height` for a small last section it won't be centered in the viewport
@@ -1026,10 +1029,10 @@
         */
         function isCompletelyInViewPort(movement){
             var top = $(SECTION_ACTIVE_SEL).position().top;
-            var bottom = top + $window.height();
+            var bottom = top + viewportSize.getHeight(); // IVO GELOV
 
             if(movement == 'up'){
-                return bottom >= ($window.scrollTop() + $window.height());
+                return bottom >= ($window.scrollTop() + viewportSize.getHeight()); // IVO GELOV
             }
             return top <= $window.scrollTop();
         }
@@ -1140,7 +1143,8 @@
                 else if(options.autoScrolling && canScroll){
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (Math.abs(touchStartY - touchEndY) > ($window.height() / 100 * options.touchSensitivity)) {
+                    if (Math.abs(touchStartY - touchEndY) > (viewportSize.getHeight() / 100 * options.touchSensitivity)) // IVO GELOV
+                    {
                         if (touchStartY > touchEndY) {
                             scrolling('down');
                         } else if (touchEndY > touchStartY) {
@@ -2134,15 +2138,25 @@
 
                 //if the keyboard is NOT visible
                 if (!activeElement.is('textarea') && !activeElement.is('input') && !activeElement.is('select')) {
-                    var currentHeight = $window.height();
+                    var currentHeight = viewportSize.getHeight(); // IVO GELOV
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
-                    if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-                        reBuild(true);
-                        previousHeight = currentHeight;
+                    if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ) reBuild(true); // IVO GELOV
+                    else
+                    {
+                      // IVO GELOV =====
+                      clearTimeout(resizeId);
+      
+                      resizeId = setTimeout(function(){
+                          reBuild(true);
+                      }, 350);
+                      // IVO GELOV =====
                     }
+                    previousHeight = currentHeight; // IVO GELOV
                 }
-            }else{
+            }
+            else
+            {
                 //in order to call the functions only when the resize is finished
                 //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
                 clearTimeout(resizeId);
@@ -2163,7 +2177,7 @@
 
             //only calculating what we need. Remember its called on the resize event.
             var isBreakingPointWidth = widthLimit && $window.outerWidth() < widthLimit;
-            var isBreakingPointHeight = heightLimit && $window.height() < heightLimit;
+            var isBreakingPointHeight = heightLimit && viewportSize.getHeight() < heightLimit; // IVO GELOV
 
             if(widthLimit && heightLimit){
                 setResponsive(isBreakingPointWidth || isBreakingPointHeight);
