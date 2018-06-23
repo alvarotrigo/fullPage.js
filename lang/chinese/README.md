@@ -54,7 +54,7 @@
 集思广益，让这个库更加强大，让写代码更轻松！
 
 ## 兼容性
-fullPage.js在所有的现代浏览器，以及一些旧版浏览器，如Internet Explorer 8，9，Opera 12等都能兼容。
+fullPage.js在所有的现代浏览器，以及一些旧版浏览器，如Internet Explorer 9，Opera 12等都能兼容。
 可兼容支持CSS3的浏览器与非支持CSS3的浏览器，适用于旧版浏览器。 同时，手机、平板电脑和触摸屏电脑还提供触屏支持。
 
 特别感谢[Browserstack](http://www.browserstack.com/) 支持fullpage.js。
@@ -490,7 +490,7 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: （默认`bottom`）定义滑块的横向导航栏的位置。 值为`top`和`bottom`。 您可能需要修改CSS样式以确定从顶部或底部以及任何其他样式（如颜色）的距离。
 
-- `scrollOverflow`: （默认为`false`）（与IE 8不兼容）定义在内容大于它的高度的情况下是否为节/幻灯片创建滚动。 当设置为`true`时，您的内容将被插件包装。 考虑使用委托或在`afterRender`回调中加载其他脚本。
+- `scrollOverflow`: （默认为`false`）定义在内容大于它的高度的情况下是否为节/幻灯片创建滚动。 当设置为`true`时，您的内容将被插件包装。 考虑使用委托或在`afterRender`回调中加载其他脚本。
 如果设置为`true`，则需要库[`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js)。 这个文件必须在fullPage.js插件之前而非jQuery（在使用它的情况下）加载。
 例如：
 

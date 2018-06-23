@@ -54,7 +54,7 @@
 이 라이브러리를 멋지게 만들어서 사람들의 삶을 더 편리하게 가꾸어 보아요!
 
 ## 호환성
-fullPage.js는 모든 최신 브라우저에서 기능을 100% 발휘하며 Internet Explorer 8, 9, Opera 12 등 이전 브라우저에서도 마찬가지로 작동됩니다.
+fullPage.js는 모든 최신 브라우저에서 기능을 100% 발휘하며 Internet Explorer 9, Opera 12 등 이전 브라우저에서도 마찬가지로 작동됩니다.
 CSS3 지원이 되는 브라우저와 지원되지 않는 브라우저 모두에서 잘 작동되기 때문에 이전 브라우저와의 호환성에 적합합니다.
 스마트폰, 태블릿, 터치화면 컴퓨터의 터치 지원도 됩니다.
 
@@ -476,7 +476,7 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: (기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
 
-- `scrollOverflow`: (기본값 `false`) (IE 8과 호환되지 않음) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 위임을 하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오시는 걸 고려해 보세요.
+- `scrollOverflow`: (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 위임을 하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오시는 걸 고려해 보세요.
 `true`로 설정하시는 경우 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js) 벤더 라이브러리가 필요합니다. 이 파일은 fullPage.js 플러그인 이전에 불러와야 합니다 하지만 jQuery (사용하시는 경우) 후에. 다음은 예시입니다.
 
 ```html
