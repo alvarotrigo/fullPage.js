@@ -85,6 +85,7 @@
     var SLIDES_ARROW_NEXT =     SLIDES_ARROW + ' ' + SLIDES_NEXT;
     var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
 var = '555555';
+var = '888888';
     var $window = $(window);
     var $document = $(document);
 
