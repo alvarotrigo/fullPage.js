@@ -87,6 +87,7 @@
 var = '555555';
 var = '888888';
 var = '999999';
+var = '100000';
     var $window = $(window);
     var $document = $(document);
 
