@@ -10,7 +10,8 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
 
 ## Bronze Sponsor ($30+ / month)
 
-<!--gold start-->
+### Companies
+<!-- bronce start-->
 <table>
   <tbody>
     <tr>
@@ -37,4 +38,17 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
     </tr>
   </tbody>
 </table>
-<!--gold end-->
+<!-- bronce end-->
+
+### People
+<table>
+    <tbody>
+      <tr>
+        <td align="center" valign="middle">
+          <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
+            <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
