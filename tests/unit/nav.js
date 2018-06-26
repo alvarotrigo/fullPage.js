@@ -103,14 +103,14 @@ QUnit.test('Testing navigationPosition:right', function(assert) {
     var id = '#fullpage';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {navigation: true, navigationPosition:'right'}));
 
-    assert.ok($(SECTION_NAV_SEL).hasClass('right'), 'We expect nav to have class right');
+    assert.ok($(SECTION_NAV_SEL).hasClass('fp-right'), 'We expect nav to have class right');
 });
 
 QUnit.test('Testing navigationPosition:left', function(assert) {
     var id = '#fullpage';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {navigation: true, navigationPosition:'left'}));
 
-    assert.ok($(SECTION_NAV_SEL).hasClass('left'), 'We expect nav to have class right');
+    assert.ok($(SECTION_NAV_SEL).hasClass('fp-left'), 'We expect nav to have class right');
 });
 
 QUnit.test('Testing navigationTooltips option', function(assert) {

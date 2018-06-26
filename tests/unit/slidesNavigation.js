@@ -155,7 +155,7 @@ QUnit.test('Testing slidesNavPosition:bottom', function(assert) {
     var id = '#fullpage';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, slidesNavPosition:'bottom', scrollingSpeed: 50}));
 
-    assert.ok($(SLIDES_NAV_SEL).hasClass('bottom'), 'We expect slidesNav to have class bottom');
+    assert.ok($(SLIDES_NAV_SEL).hasClass('fp-bottom'), 'We expect slidesNav to have class fp-bottom');
 });
 
 
@@ -163,6 +163,6 @@ QUnit.test('Testing slidesNavPosition:top', function(assert) {
     var id = '#fullpage';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {slidesNavigation: true, slidesNavPosition:'top', scrollingSpeed: 50}));
 
-    assert.ok($(SLIDES_NAV_SEL).hasClass('top'), 'We expect slidesNav to have class top');
+    assert.ok($(SLIDES_NAV_SEL).hasClass('fp-top'), 'We expect slidesNav to have class fp-top');
 });
 

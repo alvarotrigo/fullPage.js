@@ -6,17 +6,25 @@
   ],
   "description": "Create  beautiful fullscreen scrolling websites",
   "main": [
-    "dist/jquery.fullpage.js",
-    "dist/jquery.fullpage.css"
+    "dist/fullpage.js",
+    "dist/fullpage.css"
   ],
   "keywords": [
     "jquery",
     "scrolling",
     "single_page",
     "one_page",
-    "sliding"
+    "sliding",
+    "snap",
+    "scroll",
+    "sections",
+    "slides",
+    "swipe",
+    "mousewheel",
+    "onepage",
+    "slidehow"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -24,8 +32,5 @@
     "test",
     "tests",
     "examples"
-  ],
-  "dependencies": {
-      "jquery": ">=1.6.0"
-    }
+  ]
 }

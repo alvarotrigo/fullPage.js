@@ -4,16 +4,8 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-clean-css');
 
-gulp.task('sass', function() {
-    gulp.src('./jquery.fullpage.scss')
-        .pipe(sass({
-            outputStyle: 'expanded'
-        }))
-        .pipe(gulp.dest('.'));
-});
-
 gulp.task('css', function() {
-    gulp.src('./jquery.fullpage.css')
+    gulp.src('./src/fullpage.css')
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
         .pipe(minifyCss({
@@ -27,7 +19,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src('./jquery.fullpage.js')
+    gulp.src('./src/fullpage.js')
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
         .pipe(uglify({
@@ -40,8 +32,11 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('scrolloverflow', function() {
-    gulp.src('./vendors/scrolloverflow.js')
+gulp.task('vendors', function() {
+    gulp.src([
+        './vendors/scrolloverflow.js',
+        './vendors/easings.js'
+        ])
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./vendors'))
         .pipe(uglify({
@@ -56,7 +51,7 @@ gulp.task('scrolloverflow', function() {
 
 //private file
 gulp.task('extensions', function() {
-    gulp.src('./jquery.fullpage.extensions.js')
+    gulp.src('./src/fullpage.extensions.js')
         .pipe(uglify({
             output: {
                 comments: 'some'

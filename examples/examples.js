@@ -1,5 +1,4 @@
-$(document).ready(function(){
-	$("#demosMenu").change(function(){
-	  window.location.href = $(this).find("option:selected").attr("id") + '.html';
-	});
+document.getElementById('demosMenu').addEventListener('change', function(e){
+    var dropdown = document.getElementById('demosMenu');
+    window.location.href = dropdown.options[dropdown.selectedIndex].getAttribute('id') + '.html';
 });

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Continuous scrolling - fullPage.js</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
+    <meta name="Resource-type" content="Document" />
+
+
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../dist/fullpage.js"></script>
+
+    <script type="text/javascript">
+        //using document ready...
+        $(document).ready(function(){
+
+            //initialising fullpage.js in the jQuery way
+            $('#fullpage').fullpage({
+                sectionsColor: ['#ff5f45', '#0798ec', '#fc6c7c', '#fec401'],
+                navigation: true,
+                slidesNavigation: true,
+            });
+
+            // calling fullpage.js methods using jQuery
+            $('#moveSectionUp').click(function(e){
+                e.preventDefault();
+                $.fn.fullpage.moveSectionUp();
+            });
+
+            $('#moveSectionDown').click(function(e){
+                e.preventDefault();
+                $.fn.fullpage.moveSectionDown();
+            });
+        });
+    </script>
+
+    <style type="text/css">
+    #actions{
+        position:fixed;
+        top: 73px;
+        left: 30px;
+        z-index: 99999;
+    }
+    #actions a{
+        background: rgba(0,0,0,0.8);
+        padding: 7px;
+        margin: 2px;
+        color: #ccc;
+        display: inline-block;
+    }
+    #actions a:hover{
+        color: #fff;
+        background: #81A140;
+    }
+    </style>
+</head>
+<body>
+
+<select id="demosMenu">
+  <option selected>Choose Demo</option>
+  <option id="jquery-adapter">jQuery adapter</option>
+  <option id="active-slide">Active section and slide</option>
+  <option id="auto-height">Auto height</option>
+  <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
+  <option id="backgrounds">Background images</option>
+  <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
+  <option id="background-video">Background video</option>
+  <option id="callbacks-v2-compatible">Callbacks version 2</option>
+  <option id="callbacks-v3">Callbacks version 3</option>
+  <option id="continuous-horizontal">Continuous horizontal</option>
+  <option id="continuous-vertical">Continuous vertical</option>
+  <option id="parallax">Parallax</option>
+  <option id="css3">CSS3</option>
+  <option id="drag-and-move">Drag And Move</option>
+  <option id="easing">Easing</option>
+  <option id="fading-effect">Fading Effect</option>
+  <option id="fixed-headers">Fixed headers</option>
+  <option id="gradient-backgrounds">Gradient backgrounds</option>
+  <option id="interlocked-slides">Interlocked Slides</option>
+  <option id="looping">Looping</option>
+  <option id="methods">Methods</option>
+  <option id="navigation-vertical">Vertical navigation dots</option>
+  <option id="navigation-horizontal">Horizontal navigation dots</option>
+  <option id="no-anchor">No anchor links</option>
+  <option id="normal-scroll">Normal scrolling</option>
+  <option id="normalScrollElements">Normal scroll elements</option>
+  <option id="offset-sections">Offset sections</option>
+  <option id="one-section">One single section</option>
+  <option id="reset-sliders">Reset sliders</option>
+  <option id="responsive-auto-height">Responsive Auto Height</option>
+  <option id="responsive-height">Responsive Height</option>
+  <option id="responsive-width">Responsive Width</option>
+  <option id="responsive-slides">Responsive Slides</option>
+  <option id="scrollBar">Scroll bar enabled</option>
+  <option id="scroll-horizontally">Scroll horizontally</option>
+  <option id="scrollOverflow">Scroll inside sections and slides</option>
+  <option id="scrollOverflow-reset">ScrollOverflow Reset</option>
+  <option id="lazy-load">Lazy load</option>
+  <option id="scrolling-speed">Scrolling speed</option>
+  <option id="trigger-animations">Trigger animations</option>
+  <option id="vue-fullpage">Vue-fullpage component</option>
+</select>
+
+<ul id="menu">
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
+
+<div id="actions">
+    <a id="moveSectionUp" href="#">moveSectionUp</a>
+    <a id="moveSectionDown" href="#">moveSectionDown</a>
+</div>
+
+<div id="fullpage">
+    <div class="section">
+        <div class="intro">
+            <h1>jQuery adaptor</h1>
+            <p>You can use fullpage.js as a jQuery plugin!</p>
+            <p>Read <a href="https://github.com/alvarotrigo/fullPage.js#initialization">the docs</a> for more info!</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="slide"><h1>Section 2.1</h1></div>
+        <div class="slide"><h1>Section 2.2</h1></div>
+        <div class="slide"><h1>Section 2.3</h1></div>
+    </div>
+    <div class="section">
+        <h1>Section 3</h1>
+    </div>
+    <div class="section">
+        <h1>Section 4</h1>
+    </div>
+</div>
+
+<script type="text/javascript" src="examples.js"></script>
+
+</body>
+</html>

@@ -12,8 +12,8 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v2.9.7-brightgreen.svg)
-[![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.0-brightgreen.svg)
+[![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
@@ -28,14 +28,9 @@
 通过调用本库可轻易创建全屏滚动网站（也称为单页网站）。
 本库可创建全屏滚动网站，同时也可在网站中添加横向滚动条。
 
-请我喝杯咖啡
-[![赞赏](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-
-根据要求，可提供模块定制和紧急更改服务，价格合理。。
-<a href="http://alvarotrigo.com/#contact-page"> 联系我</a>.
-
 - [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BB%8B%E7%BB%8D)
 - [兼容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%85%BC%E5%AE%B9%E6%80%A7)
+- [许可证](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%AE%B8%E5%8F%AF%E8%AF%81)
 - [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E7%94%A8%E6%B3%95)
   - [创建链接到段落或幻灯片](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5%E5%88%B0%E6%AE%B5%E8%90%BD%E6%88%96%E5%B9%BB%E7%81%AF%E7%89%87)
   - [创建更小或更大的段落](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%AE%B5%E8%90%BD)
@@ -53,27 +48,38 @@
 - [资源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90)
 - [谁在使用fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B0%81%E5%9C%A8%E4%BD%BF%E7%94%A8-fullpagejs)
 - [赞赏](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8D%90%E7%8C%AE)
-- [许可证](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%AE%B8%E5%8F%AF%E8%AF%81)
 
 ## 介绍
 不仅限于提需求，也欢迎提出编码风格改进的建议。
 集思广益，让这个库更加强大，让写代码更轻松！
 
 ## 兼容性
-fullPage.js在所有的现代浏览器，以及一些旧版浏览器，如Internet Explorer 8，9，Opera 12等都能兼容。
+fullPage.js在所有的现代浏览器，以及一些旧版浏览器，如Internet Explorer 9，Opera 12等都能兼容。
 可兼容支持CSS3的浏览器与非支持CSS3的浏览器，适用于旧版浏览器。 同时，手机、平板电脑和触摸屏电脑还提供触屏支持。
-
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack2.png)](http://www.browserstack.com/)
 
 特别感谢[Browserstack](http://www.browserstack.com/) 支持fullpage.js。
 
+##许可证
+
+###商业许可证
+如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[[点击此处购买fullpage商业许可证]]（https://alvarotrigo.com/fullPage/pricing/）
+
+###开源许可证
+如果您使用与[GNU GPL license v3]（https://www.gnu.org/licenses/gpl-3.0.html）兼容的许可证创建开源应用程序，则可以在GPLv3条款下使用fullPage。
+
+** JavaScript和CSS文件中的信用评论应保持完整**（即使在组合或缩小后）**
+
+[阅读更多关于fullPage的许可证]（https://alvarotrigo.com/fullPage/pricing/）。
+
+
+
+
 ## 用法
 正如示例文件所示，需要引用：
- - [jQuery库](http://jquery.com/). (最低1.6.0)
- - JavaScript 文件`jquery.fullPage.js` (或其缩小版本 `jquery.fullPage.min.js`)
- - css 文件`jquery.fullPage.css`
+ - JavaScript 文件`fullpage.js` (或其缩小版本 `fullpage.min.js`)
+ - css 文件`fullpage.css`
 
- **或者**，当调用`css3:false`, 时，如果想调用jQuery库中(`linear` and `swing` )或fullPage.js (`easeInOutCubic`)中默认包含的其他缓和效果控件，可添加[jQuery UI库](http://jqueryui.com/) 。
+**可选**，使用`css3:false`时，如果您想要使用库中包含的其他缓动效果的功能（`easeInOutCubic`），您可以添加[easings file](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js)。
 
 ### 使用bower或npm进行安装
 **或者**，如果您愿意，可以使用bower或npm安装fullPage.js：
@@ -89,18 +95,15 @@ npm install fullpage.js
 
 ### 包含文件：
 ```html
-<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="fullpage.css" />
 
 <!-- 以下行是可选的。 只有在使用选项css3:false，并且您希望使用其他缓动效果，而非“linear”、“swing”或“easeInOutCubic”时才有必要。 -->
-<script src="vendors/jquery.easings.min.js"></script>
-
+<script src="vendors/easings.min.js"></script>
 
 <!-- 以下行仅在使用选项scrollOverflow:true的情况下是必需的 -->
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
 
-<script type="text/javascript" src="jquery.fullPage.js"></script>
+<script type="text/javascript" src="fullpage.js"></script>
 ```
 
 ### 可选用CDN：
@@ -139,90 +142,114 @@ HTML文件中的首行HTML代码必须使用[HTML DOCTYPE 声明](http://www.cor
 可以在[`demoPage.html`文件](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)看到完整的HTML结构的例子
 
 ### 初始化
-你所需要做的就是在`$(document).ready`函数中调用fullPage.js：
+
+#### 用Vanilla Javascript初始化
+您只需要在关闭`</body>`标签之前调用fullPage.js。
 
 ```javascript
-$(document).ready(function() {
-	$('#fullpage').fullpage();
+new fullpage('#fullpage', {
+	//options here
+	autoScrolling:true,
+	scrollHorizontally: true
 });
+
+//methods
+fullpage_api.setAllowScrolling(false);
 ```
 
-所有选项设置的更复杂的初始化如下所示：
+#### 使用jQuery进行初始化
+如果您需要，您也可以将fullpage.js作为jQuery插件使用！
+
 ```javascript
 $(document).ready(function() {
 	$('#fullpage').fullpage({
-		//导航
-		menu: '#menu',
-		lockAnchors: false,
-		anchors:['firstPage', 'secondPage'],
-		navigation: false,
-		navigationPosition: 'right',
-		navigationTooltips: ['firstSlide', 'secondSlide'],
-		showActiveTooltip: false,
-		slidesNavigation: false,
-		slidesNavPosition: 'bottom',
-
-		//滚动
-		css3: true,
-		scrollingSpeed: 700,
-		autoScrolling: true,
-		fitToSection: true,
-		fitToSectionDelay: 1000,
-		scrollBar: false,
-		easing: 'easeInOutCubic',
-		easingcss3: 'ease',
-		loopBottom: false,
-		loopTop: false,
-		loopHorizontal: true,
-		continuousVertical: false,
-		continuousHorizontal: false,
-		scrollHorizontally: false,
-		interlockedSlides: false,
-		dragAndMove: false,
-		offsetSections: false,
-		resetSliders: false,
-		fadingEffect: false,
-		normalScrollElements: '#element1, .element2',
-		scrollOverflow: false,
-		scrollOverflowReset: false,
-		scrollOverflowOptions: null,
-		touchSensitivity: 15,
-		normalScrollElementTouchThreshold: 5,
-		bigSectionsDestination: null,
-
-		//可访问
-		keyboardScrolling: true,
-		animateAnchor: true,
-		recordHistory: true,
-
-		//设计
-		controlArrows: true,
-		verticalCentered: true,
-		sectionsColor : ['#ccc', '#fff'],
-		paddingTop: '3em',
-		paddingBottom: '10px',
-		fixedElements: '#header, .footer',
-		responsiveWidth: 0,
-		responsiveHeight: 0,
-		responsiveSlides: false,
-		parallax: false,
-		parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
-
-		//自定义选择器
-		sectionSelector: '.section',
-		slideSelector: '.slide',
-
-		lazyLoading: true,
-
-		//事件
-		onLeave: function(index, nextIndex, direction){},
-		afterLoad: function(anchorLink, index){},
-		afterRender: function(){},
-		afterResize: function(){},
-		afterResponsive: function(isResponsive){},
-		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
-		onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+		//options here
+		autoScrolling:true,
+		scrollHorizontally: true
 	});
+
+	//methods
+	$.fn.fullpage.setAllowScrolling(false);
+});
+```
+
+函数和方法仍然可以用jQuery方式调用，如在[fullPage.js v2.X]中一样（https://github.com/alvarotrigo/fullPage.js/tree/2.9.7）。
+
+#### 带有所有功能选项的Vanilla JS 演示
+所有选项设置的更复杂的初始化如下所示：
+```javascript
+var myFullpage = new fullpage('#fullpage', {
+	//导航
+	menu: '#menu',
+	lockAnchors: false,
+	anchors:['firstPage', 'secondPage'],
+	navigation: false,
+	navigationPosition: 'right',
+	navigationTooltips: ['firstSlide', 'secondSlide'],
+	showActiveTooltip: false,
+	slidesNavigation: false,
+	slidesNavPosition: 'bottom',
+
+	//滚动
+	css3: true,
+	scrollingSpeed: 700,
+	autoScrolling: true,
+	fitToSection: true,
+	fitToSectionDelay: 1000,
+	scrollBar: false,
+	easing: 'easeInOutCubic',
+	easingcss3: 'ease',
+	loopBottom: false,
+	loopTop: false,
+	loopHorizontal: true,
+	continuousVertical: false,
+	continuousHorizontal: false,
+	scrollHorizontally: false,
+	interlockedSlides: false,
+	dragAndMove: false,
+	offsetSections: false,
+	resetSliders: false,
+	fadingEffect: false,
+	normalScrollElements: '#element1, .element2',
+	scrollOverflow: false,
+	scrollOverflowReset: false,
+	scrollOverflowOptions: null,
+	touchSensitivity: 15,
+	normalScrollElementTouchThreshold: 5,
+	bigSectionsDestination: null,
+
+	//可访问
+	keyboardScrolling: true,
+	animateAnchor: true,
+	recordHistory: true,
+
+	//设计
+	controlArrows: true,
+	verticalCentered: true,
+	sectionsColor : ['#ccc', '#fff'],
+	paddingTop: '3em',
+	paddingBottom: '10px',
+	fixedElements: '#header, .footer',
+	responsiveWidth: 0,
+	responsiveHeight: 0,
+	responsiveSlides: false,
+	parallax: false,
+	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+
+	//自定义选择器
+	sectionSelector: '.section',
+	slideSelector: '.slide',
+
+	lazyLoading: true,
+
+	//事件
+	onLeave: function(index, nextIndex, direction){},
+	afterLoad: function(origin, destination, direction){},
+	afterRender: function(){},
+	afterResize: function(width, height){},
+	afterResponsive: function(isResponsive){},
+	afterSlideLoad: function(section, origin, destination, direction){},
+	onSlideLeave: function(section, origin, destination, direction){}
 });
 ```
 
@@ -236,10 +263,8 @@ http://alvarotrigo.com/fullPage/#secondPage/2 （在你手动访问该段落/幻
 以下初始化：
 
 ```javascript
-$(document).ready(function() {
-	$('#fullpage').fullpage({
-		anchors:['firstPage', 'secondPage', 'thirdPage']
-	});
+new fullpage('#fullpage', {
+	anchors:['firstPage', 'secondPage', 'thirdPage']
 });
 ```
 
@@ -325,13 +350,13 @@ Fullpage.js在不同的元素中添加多个类来保存网站状态的记录：
 ### 使用扩展
 fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9).
 
-扩展需要使用在[`dist` 文件夹](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/)中的缩小文件 [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/jquery.fullpage.extensions.min.js)，而不是通常的fullPage.js文件 (`jquery.fullpage.js` 或 `jquery.fullpage.min.js`)。
+扩展需要使用在[`dist` 文件夹](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/)中的缩小文件 [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/fullpage.extensions.min.js)，而不是通常的fullPage.js文件 (`fullpage.js` 或 `fullpage.min.js`)。
 
 一旦你需要扩展文件，你需要在fullPage之前添加它。 例如，如果我想要使用Continuos Horizontal扩展，我将包含扩展文件，然后包含fullPage文件的扩展版本。
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
-<script type="text/javascript" src="fullpage/jquery.fullpage.extensions.min.js"></script>
+<script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
 ```
 
 每个扩展都需要激活密钥和许可证密钥。[在这里看到更多细节](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/how-to-activate-fullpage-extension.md).
@@ -339,6 +364,10 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 然后你就可以按照[选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9)的说明使用和配置它们。
 
 ## 选项
+
+-`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 否则，您可以使用字符串`OPEN-SOURCE-GPLV3-LICENSE`。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。
+
+- `v2compatible`: (默认 `false`). 确定是否使其与版本2编写的任何代码100％兼容，忽略版本3的新功能或api更改。状态类，回调签名等的工作方式与在版本2上完全相同。**请注意该选项将在之后的某个时候被删除。**。
 
 - `controlArrows`：（默认为 `true`）确定是否将幻灯片的控制箭头向右或向左移动。
 
@@ -349,7 +378,7 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 - `sectionsColor`：（默认`none`）为每个部分定义CSS`background-color`属性。
 例：
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 });
 ```
@@ -362,7 +391,7 @@ $('#fullpage').fullpage({
 **重要**理解 `anchors`选项数组中的值通过在标记中的位置直接关联到具有`.section` 类的元素是有帮助的。
 
 - `easing`:(默认`easeInOutCubic`）定义用于垂直和水平滚动的过渡效果。
-它需要文件`vendors / jquery.easings.min.js`或[jQuery UI](http://jqueryui.com/)来使用[它的转换](http://api.jqueryui.com/easings/)。 其他库可以用来代替。
+它需要文件`vendors / easings.min.js`或[jQuery UI](http://jqueryui.com/)来使用[它的转换](http://api.jqueryui.com/easings/)。 其他库可以用来代替。
 
 - `easingcss3`: （默认`ease`）定义在使用`css3：true`的情况下使用的过渡效果。 你可以使用[预定义的](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)（比如`linear`，`ease-out` ...）或者使用`立方bezier`功能创建你自己的。 你可能想使用[Matthew Lein CSS缓动动画工具](http://matthewlein.com/ceaser/)。
 
@@ -372,7 +401,7 @@ $('#fullpage').fullpage({
 
 - `loopHorizontal`:（默认为`true`）定义水平滑块是否在到达上一张或上一张幻灯片后循环。
 
-- `css3`: （默认`true`）。 定义是否使用JavaScript或CSS3变换在部分和幻灯片中滚动。 有助于通过支持CSS3的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为`true，并且浏览器不支持CSS3，则将使用jQuery后备。
+- `css3`: （默认`true`）。 定义是否使用JavaScript或CSS3变换在部分和幻灯片中滚动。 有助于通过支持CSS3的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为`true，并且浏览器不支持CSS3，则将使用后备。
 
 - `autoScrolling`: （默认为`true`）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
 
@@ -387,9 +416,9 @@ $('#fullpage').fullpage({
 
 - `paddingBottom`: （默认为`0`）用数值和度量（paddingBottom：'10px'，paddingBottom：'10em'...）定义每个部分的底部填充。 使用固定页脚的情况下会有用。
 
-- `fixedElements`: （默认`null`）定义当使用`css3`选项保持固定时，哪些元素将从插件的滚动结构中移除。 它需要一个字符串与这些元素的jQuery选择器。 （例如：`fixedElements：'＃element1，.element2'`）
+- `fixedElements`: （默认`null`）定义当使用`css3`选项保持固定时，哪些元素将从插件的滚动结构中移除。 它需要一个字符串与这些元素的Javascript选择器。 （例如：`fixedElements：'＃element1，.element2'`）
 
-- `normalScrollElements`: （默认`null`）如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动div等有用）它需要一个字符串与这些元素的jQuery选择器。 （例如：`normalScrollElements：'＃element1，.element2'`）。 此选项不应该应用于任何节/幻灯片元素本身。
+- `normalScrollElements`: （默认`null`）如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动div等有用）它需要一个字符串与这些元素的Javascript选择器。 （例如：`normalScrollElements：'＃element1，.element2'`）。 此选项不应该应用于任何节/幻灯片元素本身。
 
 - `normalScrollElementTouchThreshold` : （默认`5`）定义html节点树的跳数阈值Fullpage将测试`normalScrollElements是否匹配，以允许在触摸设备上的div的滚动功能。 （例如：`normalScrollElementTouchThreshold：3`）
 
@@ -423,7 +452,7 @@ $('#fullpage').fullpage({
 
 - `resetSliders`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在离开节后重置每个滑块。 需要fullpage.js> = 2.8.3。
 
-- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slideides`。 因此，可以垂直或水平地应用，或者同时应用于两者。 需要fullpage.js> = 2.8.6。
+- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。 需要fullpage.js> = 2.8.6。
 
 - `animateAnchor`: （默认`true`）定义给定锚点（＃）的站点的负载是否会随着动画滚动到其目的地或直接加载给定部分。
 
@@ -441,7 +470,7 @@ $('#fullpage').fullpage({
 </ul>
 ```
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	menu: '#myMenu'
 });
@@ -461,13 +490,13 @@ $('#fullpage').fullpage({
 
 - `slidesNavPosition`: （默认`bottom`）定义滑块的横向导航栏的位置。 值为`top`和`bottom`。 您可能需要修改CSS样式以确定从顶部或底部以及任何其他样式（如颜色）的距离。
 
-- `scrollOverflow`: （默认为`false`）（与IE 8不兼容）定义在内容大于它的高度的情况下是否为节/幻灯片创建滚动。 当设置为`true`时，您的内容将被插件包装。 考虑使用委托或在`afterRender`回调中加载其他脚本。
-如果设置为`true`，则需要库[`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js)。 这个文件必须在fullPage.js插件之前而非jQuery加载。
+- `scrollOverflow`: （默认为`false`）定义在内容大于它的高度的情况下是否为节/幻灯片创建滚动。 当设置为`true`时，您的内容将被插件包装。 考虑使用委托或在`afterRender`回调中加载其他脚本。
+如果设置为`true`，则需要库[`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js)。 这个文件必须在fullPage.js插件之前而非jQuery（在使用它的情况下）加载。
 例如：
 
 ```html
 <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="jquery.fullPage.js"></script>
+<script type="text/javascript" src="fullpage.js"></script>
 ```
 
 为了防止fullpage.js在某些节或幻灯片中创建滚动条，请使用`fp-noscroll`类。 例如： `<div class="section fp-noscroll">`
@@ -478,9 +507,9 @@ $('#fullpage').fullpage({
 
 - `scrollOverflowOptions`: 当使用scrollOverflow：true时，fullpage.js将使用[iScroll.js库文件](https://github.com/cubiq/iscroll/)的分叉和修改版本。 您可以通过为要使用的iScroll.js选项提供fullpage.js来自定义滚动行为。 查看[它的文档](http://iscrolljs.com/)了解更多信息。
 
-- `sectionSelector`: （默认`.section`）定义用于插件部分的jQuery选择器。 有时可能需要更改，以避免与使用与fullpage.js相同的选择器的其他插件的问题。
+- `sectionSelector`: （默认`.section`）定义用于插件部分的Javascript选择器。 有时可能需要更改，以避免与使用与fullpage.js相同的选择器的其他插件的问题。
 
-- `slideSelector`: （默认`.slide`）定义用于插件幻灯片的jQuery选择器。 有时可能需要更改，以避免与使用与fullpage.js相同的选择器的其他插件的问题。
+- `slideSelector`: （默认`.slide`）定义用于插件幻灯片的Javascript选择器。 有时可能需要更改，以避免与使用与fullpage.js相同的选择器的其他插件的问题。
 
 - `responsiveWidth`: （默认`0`）一个正常的滚动（`autoScrolling：false`）将在定义的宽度下以像素为单位使用。 如果用户希望将自己的响应式CSS用于身体标记，则会将`fp-responsive`类添加到身体标记中。 例如，如果设置为900，则每当浏览器的宽度小于900时，插件将像正常站点一样滚动。
 
@@ -497,51 +526,65 @@ $('#fullpage').fullpage({
 ## 方法
 你可以在[这里](http://alvarotrigo.com/fullPage/examples/methods.html)看到它们
 
+### getActiveSection()
+[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 获取包含活跃部分及其属性的对象（键入[Section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。
+
+```javascript
+fullpage_api.getActiveSection();
+```
+
+### getActiveSlide()
+[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/)  获取包含活跃部分及其属性的对象（键入[Slide](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。）。
+
+```javascript
+fullpage_api.getActiveSlide();
+```
+
 ### moveSectionUp()
 [示例](http://codepen.io/alvarotrigo/pen/GJXNMN) 向上滚动一节：
 ```javascript
-$.fn.fullpage.moveSectionUp();
+fullpage_api.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
 [示例](http://codepen.io/alvarotrigo/pen/jPvVZx) 向下滚动一节：
 ```javascript
-$.fn.fullpage.moveSectionDown();
+fullpage_api.moveSectionDown();
 ```
 ---
 ### moveTo(第节, 幻灯片)
 [示例](http://codepen.io/alvarotrigo/pen/doqOmY) 将页面滚动到给定节并滑动。 第一张幻灯片，默认情况下，将有索引0。
 ```javascript
 /*滚动到锚链接`firstSlide`和第二张幻灯片的部分 */
-$.fn.fullpage.moveTo('firstSlide', 2);
+fullpage_api.moveTo('firstSlide', 2);
 
 ```
 
 ```javascript
 //滚动到网站的第三节
-$.fn.fullpage.moveTo(3, 0);
+fullpage_api.moveTo(3, 0);
 
 //这是一样的
-$.fn.fullpage.moveTo(3);
+fullpage_api.moveTo(3);
 ```
 ---
 ### silentMoveTo(第节, 幻灯片)
 [示例](http://codepen.io/alvarotrigo/pen/doqOeY) 与[`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#moveto%E7%AC%AC%E8%8A%82-%E5%B9%BB%E7%81%AF%E7%89%87)完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
 ```javascript
 /*滚动到锚链接`firstSlide`和第二张幻灯片的部分 */
-$.fn.fullpage.silentMoveTo('firstSlide', 2);
+fullpage_api.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
 [示例](http://codepen.io/alvarotrigo/pen/Wvgoyz) 将当前节的水平滑块滚动到下一张幻灯片：
 ```javascript
-$.fn.fullpage.moveSlideRight();
+fullpage_api.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
 [示例](http://codepen.io/alvarotrigo/pen/gpdLjW) 将当前节的水平滑块滚动到上一张幻灯片:
 ```javascript
-$.fn.fullpage.moveSlideLeft();
+fullpage_api.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
@@ -549,7 +592,7 @@ $.fn.fullpage.moveSlideLeft();
 定义页面滚动行为的方式。 如果设置为`true`，则将使用"自动"滚动，否则将使用站点的"手动"或"正常"滚动。
 
 ```javascript
-$.fn.fullpage.setAutoScrolling(false);
+fullpage_api.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
@@ -557,21 +600,21 @@ $.fn.fullpage.setAutoScrolling(false);
 
 
 ```JavaScript
-$.fn.fullpage.setFitToSection(false);
+fullpage_api.setFitToSection(false);
 ```
 ---
 ### fitToSection()
 [示例](http://codepen.io/alvarotrigo/pen/JWWagj) 滚动到最近的适合视口的活动节。
 
 ```javascript
-$.fn.fullpage.fitToSection();
+fullpage_api.fitToSection();
 ```
 ---
 ### setLockAnchors(boolean)
 [示例](http://codepen.io/alvarotrigo/pen/yNxVRQ) 设置选项`lockAnchors`的值，确定锚是否在URL中有效。
 
 ```javascript
-$.fn.fullpage.setLockAnchors(false);
+fullpage_api.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
@@ -582,13 +625,13 @@ $.fn.fullpage.setLockAnchors(false);
 ```javascript
 
 //禁用滚动
-$.fn.fullpage.setAllowScrolling(false);
+fullpage_api.setAllowScrolling(false);
 
 //禁用向下滚动
-$.fn.fullpage.setAllowScrolling(false, 'down');
+fullpage_api.setAllowScrolling(false, 'down');
 
 //禁用向下和向右滚动
-$.fn.fullpage.setAllowScrolling(false, 'down, right');
+fullpage_api.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
@@ -598,27 +641,27 @@ $.fn.fullpage.setAllowScrolling(false, 'down, right');
 
 ```javascript
 //禁用所有键盘滚动
-$.fn.fullpage.setKeyboardScrolling(false);
+fullpage_api.setKeyboardScrolling(false);
 
 //禁用键盘向下滚动
-$.fn.fullpage.setKeyboardScrolling(false, 'down');
+fullpage_api.setKeyboardScrolling(false, 'down');
 
 //禁用键盘向下和向右滚动
-$.fn.fullpage.setKeyboardScrolling(false, 'down, right');
+fullpage_api.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
 [示例](http://codepen.io/alvarotrigo/pen/rVZWQb) 定义是否在URL中记录每个散列更改的历史记录。
 
 ```javascript
-$.fn.fullpage.setRecordHistory(false);
+fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
 [示例](http://codepen.io/alvarotrigo/pen/NqLbeY) 定义以毫秒为单位的滚动速度。
 
 ```javascript
-$.fn.fullpage.setScrollingSpeed(700);
+fullpage_api.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
@@ -628,10 +671,10 @@ $.fn.fullpage.setScrollingSpeed(700);
 
 ```javascript
 //销毁由fullPage.js创建的所有Javascript事件（URL中的卷动，hashchange）
-$.fn.fullpage.destroy();
+fullpage_api.destroy();
 
 //销毁所有的JavaScript事件，以及在原始HTML标记中由fullPage.js所做的任何修改。
-$.fn.fullpage.destroy('all');
+fullpage_api.destroy('all');
 ```
 ---
 ### reBuild()
@@ -639,85 +682,91 @@ $.fn.fullpage.destroy('all');
   非常适合与AJAX调用或站点的DOM结构中的外部更改结合使用，特别是在使用`scrollOverflow：true`时。
 
 ```javascript
-$.fn.fullpage.reBuild();
+fullpage_api.reBuild();
 ```
 ---
 ### setResponsive(boolean)
 [示例](http://codepen.io/alvarotrigo/pen/WxOyLA) 设置页面的响应模式。 当设置为`true时，自动滚动将被关闭，结果与`responsiveWidth`或`responsiveHeight`选项被触发时的结果完全相同。
 ```javascript
-$.fn.fullpage.setResponsive(true);
+fullpage_api.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要fullpage.js> = 2.8.5。将水平幻灯片变成垂直节。
 
 ```javascript
-$.fn.fullpage.responsiveSlides.toSections();
+fullpage_api.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要fullpage.js> = 2.8.5。将原始幻灯片（现转换为垂直节）重新转换为水平幻灯片。
 
 ```javascript
-$.fn.fullpage.responsiveSlides.toSlides();
+fullpage_api.responsiveSlides.toSlides();
 ```
 
 ## Callbacks
 [示例](http://codepen.io/alvarotrigo/pen/XbPNQv) 你可以在[这里](http://alvarotrigo.com/fullPage/examples/callbacks.html)看到他们。
 
-### afterLoad (`anchorLink`, `index`)
+一些回调，例如`onLeave`将包含`Section`或`Slide`类型的参数。 这些对象将包含以下属性：
+- `anchor`: *(String)* 项目的anchorLink。
+- `index`: *(Number)* 项目的index。
+- `item`: *(DOM element)* 项目元素。
+- `isFirst`: *(Boolean)* 判断游标是否在第一行。
+- `isLast`: *(Boolean)* 判断游标是否在最后一行。
+
+### afterLoad (`origin`, `destination`, `direction`)
 滚动结束之后，一旦加载了节，就会触发回调。参数：
 
-- `anchorLink`：该部分对应的anchorLink。
-- `index：该部分的索引。 从1开始。
-
-如果在插件中没有定义anchorLink，那么`index`参数将是唯一使用的参数。
+- `origin`: *(Object)* active section
+- `destination`: *(Object)* 终点部分。
+- `direction`: *(String)* 它将根据滚动方向采用`up`或`down`值。
 
 例如：
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(anchorLink, index){
-		var loadedSection = $(this);
+	afterLoad: function(origin){
+		var loadedSection = this;
 
 		//使用 index
-		if(index == 3){
+		if(origin.index == 2){
 			alert("第3节停止加载");
 		}
 
 		//使用 anchorLink
-		if(anchorLink == 'secondSlide'){
+		if(origin.anchor == 'secondSlide'){
 			alert("第2节停止加载");
 		}
 	}
 });
 ```
 ---
-### onLeave (`index`, `nextIndex`, `direction`)
+### onLeave (`origin`, `destination`, `direction`)
 一旦用户离开某个节，过渡到新节，就会触发此回调。
 返回“false”将在移动发生之前取消移动。
 
 参数：
 
-- `index`离开节的索引。 从1开始。
-- `nextIndex`：目标节的索引。 从1开始。
-- direction`：取决于滚动方向，取值为`up`或`down。
+- `origin`:  *(Object)* 起始部分
+- `destination`: *(Object)* 终点部分。
+- `direction`: *(String)* 它将根据滚动方向采用`up`或`down`值。
 
 例如：
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	onLeave: function(index, nextIndex, direction){
-		var leavingSection = $(this);
+		var leavingSection = this;
 
 		//离开第二节后
-		if(index == 2 && direction =='down'){
+		if(origin.index == 1 && direction =='down'){
 			alert("前往第3节！");
 		}
 
-		else if(index == 2 && direction == 'up'){
+		else if(origin.index == 1 && direction == 'up'){
 			alert("前往第1节！");
 		}
 	}
@@ -728,10 +777,10 @@ $('#fullpage').fullpage({
 您可以通过在`onLeave`回调函数上返回`false来取消滚动：
 
 ```javascript
-$('#fullpage').fullpage({
-	onLeave: function(index, nextIndex, direction){
+new fullpage('#fullpage', {
+	onLeave: function(origin, destination, direction){
 		//如果目标是第三节，它将不会滚动
-		if(nextIndex == 3){
+		if(destination.index == 2){
 			return false;
 		}
 	}
@@ -745,9 +794,9 @@ $('#fullpage').fullpage({
 例如：
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	afterRender: function(){
-		var pluginContainer = $(this);
+		var pluginContainer = this;
 		alert("DOM结构已完成");
 	}
 });
@@ -756,12 +805,17 @@ $('#fullpage').fullpage({
 ### afterResize()
 调整浏览器窗口大小后，会触发此回调。 就在节被调整之后。
 
+参数：
+
+- `width`:  *(Number)* 屏幕宽度。
+- `height`: *(Number)* 屏幕高度。
+
 例如：
 
 ```javascript
-$('#fullpage').fullpage({
-	afterResize: function(){
-		var pluginContainer = $(this);
+new fullpage('#fullpage', {
+	afterResize: function(width, height){
+		var pluginContainer = this;
 		alert("节已重新调整大小");
 	}
 });
@@ -772,43 +826,45 @@ $('#fullpage').fullpage({
 
 参数：
 
-- `isResponsive`：布尔值，用于确定是否进入响应模式（`true`）或返回正常模式（`false`）。
+- `isResponsive`：*(Boolean)* 布尔值，用于确定是否进入响应模式（`true`）或返回正常模式（`false`）。
 
 例如：
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	afterResponsive: function(isResponsive){
 		alert("是否响应" + isResponsive);
 	}
 });
 ```
 ---
-### afterSlideLoad (`anchorLink`, `index`, `slideAnchor`, `slideIndex`)
-滚动结束后，加载一个节的幻灯片后触发回调。参数：
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
+滚动结束后，加载一个节的幻灯片后触发回调。
 
-- `anchorLink`：该节对应的anchorLink。
-- `index`：该节的索引。 从1开始。
-- `slideAnchor`：与幻灯片对应的锚点（如果有的话）
-- `slideIndex`：幻灯片的索引。 从1开始（默认幻灯片不计算为幻灯片，但作为一个节）
+参数：
 
-如果没有为幻灯片或幻灯片定义anchorLinks，那么`slideIndex`参数将是唯一使用的参数。例如：
+- `section`: *(Object)* 活跃垂直部分。
+- `origin`: *(Object)*水平滑动起始。
+- `destination`: *(Object)*水平滑动终点。
+- `direction`: *(String)* `它将根据滚动方向采用right` 或 `left` 值。
+
+例如：
 
 ```javascript
-$('#fullpage').fullpage({
+new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( anchorLink, index, slideAnchor, slideIndex){
-		var loadedSlide = $(this);
+	afterSlideLoad: function( section, origin, destination, direction){
+		var loadedSlide = this;
 
 		//第二节的第一张幻灯片
-		if(anchorLink == 'secondPage' && slideIndex == 1){
+		if(section.anchor == 'secondPage' && destination.index == 1){
 			alert("第一张幻灯片加载完毕");
 		}
 
 		//第二节的第二张幻灯片（假设#secondSlide是
         //为第二张幻灯片锚点
-		if(index == 2 && slideIndex == 'secondSlide'){
+		if(section.index == 1 && destination.anchor == 'secondSlide'){
 			alert("第二张幻灯片加载完毕");
 		}
 	}
@@ -817,32 +873,31 @@ $('#fullpage').fullpage({
 
 
 ---
-### onSlideLeave (`anchorLink`, `index`, `slideIndex`, `direction`, `nextSlideIndex`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`)
 一旦用户离开幻灯片转到另一个幻灯片，就会触发此回调。返回`false`将在移动发生之前取消移动。
 
 参数：
 
-- `anchorLink`：该节对应的anchorLink。
-- `index`：该节的索引。 从1开始。
-- `slideIndex`：幻灯片的索引。 **从0开始。**
-- `direction`：取决于滚动方向，取值为`right`或`left`。
-- `nextSlideIndex`：目标幻灯片的索引。 **从0开始。**
+- `section`: *(Object)* active vertical section.
+- `origin`: *(Object)* horizontal slide of origin.
+- `destination`: *(Object)* destination horizontal slide.
+- `direction`: *(String)* `right` or `left` depending on the scrolling direction.
 
 
 例如：
 
 ```javascript
-$('#fullpage').fullpage({
-	onSlideLeave: function( anchorLink, index, slideIndex, direction, nextSlideIndex){
-		var leavingSlide = $(this);
+new fullpage('#fullpage', {
+	onSlideLeave: function( section, origin, destination, direction){
+		var leavingSlide = this;
 
 		//留下第二节的第一张幻灯片
-		if(index == 2 && slideIndex == 0 && direction == 'right'){
+		if(section.index == 1 && origin.index == 0 && direction == 'right'){
 			alert("离开第一张幻灯片！");
 		}
 
 		//将第二节的第三张幻灯片留在左边
-		if(index == 2 && slideIndex == 2 && direction == 'left'){
+		if(section.index == 1 && origin.index == 2 && direction == 'left'){
 			alert("前往第二张幻灯片！");
 		}
 	}
@@ -871,7 +926,7 @@ $('#fullpage').fullpage({
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3的值)
-- [fullPage.js jsDelivr CDN](http://www.jsdelivr.com/#!jquery.fullpage)
+- [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
 - [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)
@@ -956,13 +1011,6 @@ $('#fullpage').fullpage({
 
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
-
-## 许可证
-
-**JavaScript和CSS文件中的信用评论应保持不变**（即使在组合或缩小之后）
-
-（MIT许可证）
-
 ## Sponsors
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
 
@@ -971,24 +1019,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 
-
-Copyright (c) 2013 Alvaro Trigo &lt;alvaro@alvarotrigo.com&gt;
-
-特此免费授予任何人获得许可
-这个软件的副本和相关的文档文件（
-`软件`），不受限制地处理本软件，包括
-但不限于使用，复制，修改，合并，发布，
-分发，再许可和/或出售软件的副本，并且
-允许提供软件的人这样做，但须遵守
-以下条件：
-
-上述版权声明和本许可声明应为
-包括在本软件的所有副本或主要部分。
-
-本软件按`原样`提供，不提供任何形式的担保，
-明示或暗示，包括但不限于保证
-适销性，针对特定用途的适用性和不侵权。
-在任何情况下，作者或版权所有者都不承担任何责任
-索赔，损害赔偿或其他责任，无论是在合同行为中，
-民事侵权行为或其他由此引起或与之有关的
-软件或软件中的使用或其他交易。
+### People
+<a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
+	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+</a>

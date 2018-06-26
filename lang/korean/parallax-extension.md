@@ -87,23 +87,23 @@ CSS나 인라인 스타일을 쓰실 수 있습니다.
 주어진 옵션의 값을 설정합니다. `옵션이름`은 `옵션이름` 에서 쓸 수 있는 어느 옵션이든 가능합니다. (`type`, `percentage` 또는 `property`).
 ```javascript
 //`종류` 속성값 바꾸기
-$.fn.fullpage.parallax.setOption('type', 'cover');
+fullpage_api.parallax.setOption('type', 'cover');
 
 //`퍼센트` 속성값 바꾸기
-$.fn.fullpage.parallax.setOption('percentage', '30');
+fullpage_api.parallax.setOption('percentage', '30');
 ```
 ---
 
 ### init()
 패럴랙스 효과를 활성화합니다. 패럴랙스 효과를 특정 지점에서 역동적으로 활성화해야 할 때 유용합니다.
 ```javascript
-$.fn.fullpage.parallax.init();
+fullpage_api.parallax.init();
 ```
 ---
 ### destroy()
 패럴랙스 효과를 끕니다.
 ```javascript
-$.fn.fullpage.parallax.destroy();
+fullpage_api.parallax.destroy();
 ```
 
 

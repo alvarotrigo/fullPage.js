@@ -1,4 +1,7 @@
 .DS_Store
 .idea
+.ignore/
 bower_components/
-/node_modules
+node_modules/
+package-lock.json
+src/fullpage.extensions.js
