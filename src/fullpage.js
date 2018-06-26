@@ -2814,15 +2814,15 @@
         function addTouchHandler(){
             if(isTouchDevice || isTouch){
                 if(options.autoScrolling){
-                    $body.removeEventListener(events.touchmove, touchMoveHandler);
-                    $body.addEventListener(events.touchmove, preventBouncing);
+                    $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
+                    $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchMoveHandler);
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler);
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
 
                 $(WRAPPER_SEL)[0].addEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].addEventListener(events.touchmove, touchMoveHandler);
+                $(WRAPPER_SEL)[0].addEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
@@ -2833,11 +2833,12 @@
             if(isTouchDevice || isTouch){
                 // normalScrollElements requires it off #2691
                 if(options.autoScrolling){
-                    $body.removeEventListener(events.touchmove, touchMoveHandler);
+                    $body.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                    $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
                 $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler);
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
