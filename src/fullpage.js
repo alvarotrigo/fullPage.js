@@ -527,7 +527,7 @@
 
         if($(containerSelector).length){
             //public functions
-            FP.version = '3.0.0';
+            FP.version = '3.0.2';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -925,7 +925,7 @@
                 var tooltip = options.navigationTooltips[i];
 
                 if (typeof tooltip !== 'undefined' && tooltip !== '') {
-                    li += '<div class="' + SECTION_NAV_TOOLTIP + ' ' + options.navigationPosition + '">' + tooltip + '</div>';
+                    li += '<div class="' + SECTION_NAV_TOOLTIP + ' fp-' + options.navigationPosition + '">' + tooltip + '</div>';
                 }
 
                 li += '</li>';
