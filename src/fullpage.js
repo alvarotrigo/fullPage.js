@@ -2069,7 +2069,7 @@
             }
 
             //is there an element with focus?
-            if(activeElement.length){
+            if(activeElement){
                 if(closest(activeElement, SECTION_ACTIVE_SEL + ',' + SLIDE_ACTIVE_SEL) == null){
                     activeElement = preventAndFocusFirst(e);
                 }
