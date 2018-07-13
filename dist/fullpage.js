@@ -1844,9 +1844,11 @@
                 });
 
                 if(matches(element, 'source')){
-                    var typeToPlay = closest(element, 'video') != null ? 'video' : 'audio';
-                    closest(element, typeToPlay).load();
+                    var elementToPlay =  closest(element, 'video, audio');
+                    if(elementToPlay){
+                        elementToPlay.load();
                     }
+                }
             });
         }
 
