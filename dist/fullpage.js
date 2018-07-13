@@ -635,7 +635,7 @@
                     var target = e.target;
 
                     if(target && matches(target, SECTION_NAV_SEL + ' a')){
-                        sectionBulletHandler.call(target);
+                        sectionBulletHandler.call(target, e);
                     }
                     else if(matches(target, SECTION_NAV_TOOLTIP_SEL)){
                         tooltipTextHandler.call(target);
@@ -732,7 +732,7 @@
 
             //styling the sections / slides / menu
             for(var i = 0; i<sections.length; i++){
-                var index = i;
+                var sectionIndex = i;
                 var section = sections[i];
                 var slides = $(SLIDE_SEL, section);
                 var numSlides = slides.length;
@@ -740,8 +740,8 @@
                 //caching the original styles to add them back on destroy('all')
                 section.setAttribute('data-fp-styles', section.getAttribute('style'));
 
-                styleSection(section, index);
-                styleMenu(section, index);
+                styleSection(section, sectionIndex);
+                styleMenu(section, sectionIndex);
 
                 // if there's any slide
                 if (numSlides > 0) {
@@ -2119,8 +2119,8 @@
             preventDefault(e);
 
             /*jshint validthis:true */
-            var index = index(this.parentNode);
-            scrollPage($(SECTION_SEL)[index]);
+            var indexBullet = index(this.parentNode);
+            scrollPage($(SECTION_SEL)[indexBullet]);
         }
 
         //Scrolls the slider to the given slide destination for the given section
