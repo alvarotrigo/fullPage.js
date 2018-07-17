@@ -191,7 +191,7 @@
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
-        var container = $(containerSelector)[0];
+        var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
         var isResizing = false;
         var isWindowFocused = true;
@@ -525,7 +525,7 @@
             }
         }
 
-        if($(containerSelector).length){
+        if(container){
             //public functions
             FP.version = '3.0.2';
             FP.setAutoScrolling = setAutoScrolling;
