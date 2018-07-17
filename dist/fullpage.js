@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.0
+ * fullPage 3.0.2
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -191,7 +191,7 @@
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
-        var container = $(containerSelector)[0];
+        var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
         var isResizing = false;
         var isWindowFocused = true;
@@ -525,9 +525,9 @@
             }
         }
 
-        if($(containerSelector).length){
+        if(container){
             //public functions
-            FP.version = '3.0.0';
+            FP.version = '3.0.2';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -635,7 +635,7 @@
                     var target = e.target;
 
                     if(target && matches(target, SECTION_NAV_SEL + ' a')){
-                        sectionBulletHandler.call(target);
+                        sectionBulletHandler.call(target, e);
                     }
                     else if(matches(target, SECTION_NAV_TOOLTIP_SEL)){
                         tooltipTextHandler.call(target);
@@ -689,7 +689,7 @@
 
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                var anchors = $(SECTION_SEL+'[data-anchor]');
+                var anchors = $(options.sectionSelector+'[data-anchor]');
                 if(anchors.length){
                     anchors.forEach(function(item){
                         options.anchors.push(item.getAttribute('data-anchor').toString());
@@ -699,7 +699,7 @@
 
             //no tooltips option? Checking for them in the DOM attributes
             if(!options.navigationTooltips.length){
-                var tooltips = $('[data-tooltip]', container);
+                var tooltips = $(options.sectionSelector+'[data-tooltip]');
                 if(tooltips.length){
                     tooltips.forEach(function(item){
                         options.navigationTooltips.push(item.getAttribute('data-tooltip').toString());
@@ -732,7 +732,7 @@
 
             //styling the sections / slides / menu
             for(var i = 0; i<sections.length; i++){
-                var index = i;
+                var sectionIndex = i;
                 var section = sections[i];
                 var slides = $(SLIDE_SEL, section);
                 var numSlides = slides.length;
@@ -740,8 +740,8 @@
                 //caching the original styles to add them back on destroy('all')
                 section.setAttribute('data-fp-styles', section.getAttribute('style'));
 
-                styleSection(section, index);
-                styleMenu(section, index);
+                styleSection(section, sectionIndex);
+                styleMenu(section, sectionIndex);
 
                 // if there's any slide
                 if (numSlides > 0) {
@@ -925,7 +925,7 @@
                 var tooltip = options.navigationTooltips[i];
 
                 if (typeof tooltip !== 'undefined' && tooltip !== '') {
-                    li += '<div class="' + SECTION_NAV_TOOLTIP + ' ' + options.navigationPosition + '">' + tooltip + '</div>';
+                    li += '<div class="' + SECTION_NAV_TOOLTIP + ' fp-' + options.navigationPosition + '">' + tooltip + '</div>';
                 }
 
                 li += '</li>';
@@ -1844,9 +1844,11 @@
                 });
 
                 if(matches(element, 'source')){
-                    var typeToPlay = closest(element, 'video') != null ? 'video' : 'audio';
-                    closest(element, typeToPlay).load();
+                    var elementToPlay =  closest(element, 'video, audio');
+                    if(elementToPlay){
+                        elementToPlay.load();
                     }
+                }
             });
         }
 
@@ -2069,7 +2071,7 @@
             }
 
             //is there an element with focus?
-            if(activeElement.length){
+            if(activeElement){
                 if(closest(activeElement, SECTION_ACTIVE_SEL + ',' + SLIDE_ACTIVE_SEL) == null){
                     activeElement = preventAndFocusFirst(e);
                 }
@@ -2117,8 +2119,8 @@
             preventDefault(e);
 
             /*jshint validthis:true */
-            var index = index(this.parentNode);
-            scrollPage($(SECTION_SEL)[index]);
+            var indexBullet = index(this.parentNode);
+            scrollPage($(SECTION_SEL)[indexBullet]);
         }
 
         //Scrolls the slider to the given slide destination for the given section
@@ -3144,7 +3146,7 @@
             extensions.forEach(function(extension){
                 //is the option set to true?
                 if(options[extension]){
-                    showError('warn', 'fullpage.js extensions require jquery.fullpage.extensions.min.js file instead of the usual jquery.fullpage.js. Requested: '+ extension);
+                    showError('warn', 'fullpage.js extensions require fullpage.extensions.min.js file instead of the usual fullpage.js. Requested: '+ extension);
                 }
             });
 
