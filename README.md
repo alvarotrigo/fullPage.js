@@ -64,7 +64,7 @@ Special thanks to [Browserstack](http://www.browserstack.com/) for supporting fu
 ## License
 
 ### Commercial license
-If you want to use fullPage to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. Which means, you won't have to change your whole application source code to an open source license. [[Purchase a Fullpage Commercial License]](https://alvarotrigo.com/fullPage/pricing/)
+If you want to use fullPage to develop non open sourced sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. Which means, you won't have to change your whole application source code to an open source license. [[Purchase a Fullpage Commercial License]](https://alvarotrigo.com/fullPage/pricing/)
 
 ### Open source license
 If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use fullPage under the terms of the GPLv3.
