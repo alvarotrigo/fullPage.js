@@ -3845,7 +3845,7 @@
 /**
  * jQuery adapter for fullPage.js 3.0.0
  */
-if(window.jQuery){
+if(window.jQuery && window.fullpage){
     (function ($, fullpage) {
         'use strict';
 
