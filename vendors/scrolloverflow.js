@@ -2134,6 +2134,12 @@ if ( typeof module != 'undefined' && module.exports ) {
 (function (window, document) {
     window.fp_scrolloverflow = (function() {
 
+        // check if IScroll is available in global scope
+        if (!window.IScroll) {
+            // otherwise create local one from module.exports
+            var IScroll = module.exports;
+        }
+
         // keeping central set of classnames and selectors
         var SCROLLABLE =            'fp-scrollable';
         var SCROLLABLE_SEL =        '.' + SCROLLABLE;
