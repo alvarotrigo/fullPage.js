@@ -2137,7 +2137,7 @@ if ( typeof module != 'undefined' && module.exports ) {
         // check if IScroll is available in global scope
         if (!window.IScroll) {
             // otherwise create local one from module.exports
-            var IScroll = module.exports;
+            IScroll = module.exports;
         }
 
         // keeping central set of classnames and selectors
