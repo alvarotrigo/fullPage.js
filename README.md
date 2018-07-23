@@ -247,7 +247,7 @@ var myFullpage = new fullpage('#fullpage', {
 	onLeave: function(origin, destination, direction){},
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
-	afterResize: function(){width, height},
+	afterResize: function(width, height){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}

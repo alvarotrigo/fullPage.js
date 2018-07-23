@@ -243,7 +243,7 @@ var myFullpage = new fullpage('#fullpage', {
 	lazyLoading: true,
 
 	//事件
-	onLeave: function(index, nextIndex, direction){},
+	onLeave: function(origin, destination, direction){},
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
