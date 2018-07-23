@@ -30,3 +30,15 @@ QUnit.test('Testing a custom slideSelector', function(assert) {
 });
 
 
+QUnit.test('Testing multiple selectors for sections', function(assert) {
+    var id = '#fullpage-multiple-selectors';
+    var customSelector = '.selector1, .section';
+    try{
+        var FP = initFullpageNew(id, {sectionSelector: customSelector});
+        assert.equal('4', FP.getFullpageData.anchors.length, 'We expect 4 anchors');
+    }catch(error){
+        assert.ok(false, 'Error initializing fullpage.js');
+    }
+});
+
+
