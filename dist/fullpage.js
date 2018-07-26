@@ -2129,7 +2129,7 @@
         function slideBulletHandler(e){
             preventDefault(e);
 
-            /*jshint validthis: true */
+            /*jshint validthis:true */
             var slides = $(SLIDES_WRAPPER_SEL, closest(this, SECTION_SEL))[0];
             var destiny = $(SLIDE_SEL, slides)[index(closest(this, 'li'))];
 

@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.0.8
+* Customized version of iScroll.js 0.0.9
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
