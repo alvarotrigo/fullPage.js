@@ -95,6 +95,12 @@ var lazyLoadElements =  `
     </audio>
 
     <iframe id="iframe-src" data-src="http://google.com"></iframe>
+
+    <picture>
+        <source data-srcset="https://www.w3schools.com/html/pulpitrock.jpg?v=1" media="(min-width: 1440px)">
+        <source data-srcset="https://www.w3schools.com/html/pulpitrock.jpg?v=2" media="(min-width: 1024px)">
+        <img class="background-image background-image-lazy" data-src="https://www.w3schools.com/html/pulpitrock.jpg?v=3">
+    </picture>
 `;
 
 function areAllLazyLoaded(element){

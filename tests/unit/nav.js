@@ -155,3 +155,74 @@ QUnit.test('Testing showActiveTooltip:false', function(assert) {
     },300);
 });
 
+QUnit.test('Testing click on navigation bullets span with anchors', function(assert) {
+    var id = '#fullpage';
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {navigation: true}));
+    var windowHeight = $(window).height();
+    var done = assert.async(1);
+
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], 'We expect sections transformation to be [0, 0, 0]');
+
+    $(SECTION_NAV_SEL).find('li').eq(1).find('span')[0].click();
+
+    setTimeout(function(){
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
+        done();
+    }, 30);
+});
+
+QUnit.test('Testing click on navigation bullets a href with anchors', function(assert) {
+    var id = '#fullpage';
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {navigation: true}));
+    var windowHeight = $(window).height();
+    var done = assert.async(1);
+
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], 'We expect sections transformation to be [0, 0, 0]');
+
+    $(SECTION_NAV_SEL).find('li').eq(1).find('a')[0].click();
+
+    setTimeout(function(){
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
+        done();
+    }, 30);
+});
+
+QUnit.test('Testing click on navigation bullets span with no anchors', function(assert) {
+    var id = '#fullpage';
+    var FP = initFullpageNew(id, {navigation: true});
+    var windowHeight = $(window).height();
+    var done = assert.async(1);
+
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], 'We expect sections transformation to be [0, 0, 0]');
+
+    $(SECTION_NAV_SEL).find('li').eq(1).find('span')[0].click();
+
+    setTimeout(function(){
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
+        done();
+    }, 30);
+});
+
+QUnit.test('Testing click on navigation bullets a href with no anchors', function(assert) {
+    var id = '#fullpage';
+    var FP = initFullpageNew(id, {navigation: true});
+    var windowHeight = $(window).height();
+    var done = assert.async(1);
+
+    assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 0, 'We expect section 1 to be active');
+    assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], 'We expect sections transformation to be [0, 0, 0]');
+
+    $(SECTION_NAV_SEL).find('li').eq(1).find('a')[0].click();
+
+    setTimeout(function(){
+        assert.deepEqual(getTransform(FP.test.translate3d), ['0', `${-(windowHeight*1)}`, '0'], `We expect sections transformation to be [0, ${-(windowHeight*1)}, 0]`);
+        assert.equal($(id).find(SECTION_ACTIVE_SEL).index(), 1, 'We expect section 2 to be active');
+        done();
+    }, 30);
+});

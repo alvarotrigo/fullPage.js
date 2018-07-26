@@ -12,7 +12,7 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.1-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -242,7 +242,7 @@ $(document).ready(function() {
 	onLeave: function(origin, destination, direction){},
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
-	afterResize: function(){width, height},
+	afterResize: function(width, height){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}

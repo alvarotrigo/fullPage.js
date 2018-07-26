@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.0.8
+* Customized version of iScroll.js 0.0.9
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
@@ -2133,6 +2133,12 @@ if ( typeof module != 'undefined' && module.exports ) {
 */
 (function (window, document) {
     window.fp_scrolloverflow = (function() {
+
+        // check if IScroll is available in global scope
+        if (!window.IScroll) {
+            // otherwise create local one from module.exports
+            IScroll = module.exports;
+        }
 
         // keeping central set of classnames and selectors
         var SCROLLABLE =            'fp-scrollable';

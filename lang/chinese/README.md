@@ -12,7 +12,7 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.1-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -25,7 +25,7 @@
 
 ---
 
-通过调用本库可轻易创建全屏滚动网站（也称为单页网站）。
+通过调用本库可轻易创建全屏滚动网站(也称为单页网站)。
 本库可创建全屏滚动网站，同时也可在网站中添加横向滚动条。
 
 - [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BB%8B%E7%BB%8D)
@@ -54,22 +54,22 @@
 集思广益，让这个库更加强大，让写代码更轻松！
 
 ## 兼容性
-fullPage.js在所有的现代浏览器，以及一些旧版浏览器，如Internet Explorer 9，Opera 12等都能兼容。
+fullPage.js兼容所有的现代浏览器，以及一些旧版浏览器，如Internet Explorer 9，Opera 12等都能兼容。
 可兼容支持CSS3的浏览器与非支持CSS3的浏览器，适用于旧版浏览器。 同时，手机、平板电脑和触摸屏电脑还提供触屏支持。
 
 特别感谢[Browserstack](http://www.browserstack.com/) 支持fullpage.js。
 
-##许可证
+## 许可证
 
-###商业许可证
-如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[[点击此处购买fullpage商业许可证]]（https://alvarotrigo.com/fullPage/pricing/）
+### 商业许可证
+如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[点击此处购买fullpage商业许可证](https://alvarotrigo.com/fullPage/pricing/）
 
-###开源许可证
-如果您使用与[GNU GPL license v3]（https://www.gnu.org/licenses/gpl-3.0.html）兼容的许可证创建开源应用程序，则可以在GPLv3条款下使用fullPage。
+### 开源许可证
+如果您使用与[GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html)兼容的许可证创建开源应用程序，则可以在GPLv3条款下使用fullPage。
 
-** JavaScript和CSS文件中的信用评论应保持完整**（即使在组合或缩小后）**
+**JavaScript和CSS文件中的信用评论应保持完整 (即使在组合或缩小后）**
 
-[阅读更多关于fullPage的许可证]（https://alvarotrigo.com/fullPage/pricing/）。
+[阅读更多关于fullPage的许可证](https://alvarotrigo.com/fullPage/pricing/)。
 
 
 
@@ -173,7 +173,7 @@ $(document).ready(function() {
 });
 ```
 
-函数和方法仍然可以用jQuery方式调用，如在[fullPage.js v2.X]中一样（https://github.com/alvarotrigo/fullPage.js/tree/2.9.7）。
+函数和方法仍然可以用jQuery方式调用，如在[fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7)中一样。
 
 #### 带有所有功能选项的Vanilla JS 演示
 所有选项设置的更复杂的初始化如下所示：
@@ -243,7 +243,7 @@ var myFullpage = new fullpage('#fullpage', {
 	lazyLoading: true,
 
 	//事件
-	onLeave: function(index, nextIndex, direction){},
+	onLeave: function(origin, destination, direction){},
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
