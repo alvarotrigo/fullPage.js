@@ -911,7 +911,7 @@ new fullpage('#fullpage', {
 1.请在提问之前使用github问题搜索查找您的问题。
 2.确保使用最新的fullpage.js版本。 不支持旧版本。
 3.使用[Github问题论坛](https://github.com/alvarotrigo/fullPage.js/issues)来创建问题。
-4.**需要单独复制该问题**使用[jsfiddle](https://jsfiddle.net/1kyuL4em/2/)或[codepen](http://codepen.io/alvarotrigo / pen / NxyPPp)，如果可能的话。
+4.**需要单独复制该问题**使用[jsfiddle](https://jsfiddle.net/1kyuL4em/116/)或[codepen](http://codepen.io/alvarotrigo / pen / NxyPPp)，如果可能的话。
 
 # 贡献给fullpage.js
 请参阅[贡献给fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)

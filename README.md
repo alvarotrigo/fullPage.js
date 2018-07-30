@@ -922,7 +922,7 @@ You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same
 1. Please, look for your issue before asking using the github issues search.
 2. Make sure you use the latest fullpage.js version. No support is provided for older versions.
 3. Use the [the Github Issues forum](https://github.com/alvarotrigo/fullPage.js/issues) to create issues.
-4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](https://jsfiddle.net/1kyuL4em/2/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
+4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](https://jsfiddle.net/1kyuL4em/116/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
 
 # Contributing to fullpage.js
 Please see [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
