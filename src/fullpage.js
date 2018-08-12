@@ -2070,10 +2070,7 @@
             function preventAndFocusFirst(e){
                 preventDefault(e);
                 const firstFocusableElement = focusableElements[0];
-                if (firstFocusableElement) {
-                    firstFocusableElement.focus();
-                }
-                return;
+                return firstFocusableElement ? firstFocusableElement.focus() : null;
             }
 
             //is there an element with focus?
