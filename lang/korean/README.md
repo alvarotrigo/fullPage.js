@@ -915,7 +915,8 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 
 # 재료가 되는 도구
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (`easingcss3` 값을 정의하는 데 유용)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js October CMS 플러그인](http://octobercms.com/plugin/freestream-parallax)

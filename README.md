@@ -935,7 +935,8 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 
 # Resources
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)

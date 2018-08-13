@@ -924,7 +924,8 @@ new fullpage('#fullpage', {
 
 # 参考资源
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3的值)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
