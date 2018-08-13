@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.2
+ * fullPage 3.0.3
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -2065,7 +2065,11 @@
             var activeSection = $(SECTION_ACTIVE_SEL)[0];
             var activeSlide = $(SLIDE_ACTIVE_SEL, activeSection)[0];
             var focusableWrapper = activeSlide ? activeSlide : activeSection;
-            var focusableElements = $(focusableElementsString + ':not([tabindex="-1"])', focusableWrapper);
+            var focusableElements = [].slice.call($(focusableElementsString, focusableWrapper)).filter(function(item) {
+                return item.getAttribute('tabindex') !== '-1'
+                    //are also not hidden elements (or with hidden parents)
+                    && item.offsetParent !== null;
+            });
 
             function preventAndFocusFirst(e){
                 preventDefault(e);
