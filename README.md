@@ -139,7 +139,7 @@ In order to create a landscape slider within a section, each slide will be defin
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
-You can see a fully working example of the HTML structure in the [`demoPage.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demoPage.html).
+You can see a fully working example of the HTML structure in the [`simple.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
 
 ### Initialization
 

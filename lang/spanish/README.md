@@ -139,7 +139,7 @@ Puedes usar la clase `slide` para crear diapositivas horizontales dentro de una 
 	<div class="slide"> Diapositiva 4 </div>
 </div>
 ````
-Puedes ver un ejemplo totalmente funcional de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
+Puedes ver un ejemplo totalmente funcional de la estructura HTML en el ejemplo [`simple.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
 
 ### Inicialización
 Todo lo que necesitas hacer es llamar a fullPage.js justo antes del cierre de la etiqueta `</body>`:

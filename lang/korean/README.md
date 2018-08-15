@@ -135,7 +135,7 @@ HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelang
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
-[`demoPage.html` 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
+[`simple.html` 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
 
 ### 초기 설정
 
