@@ -8,21 +8,20 @@
  *
  * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
-(function( root, window, document, factory, undefined) {
+(function( root, document, factory) {
     if( typeof define === 'function' && define.amd ) {
         // AMD. Register as an anonymous module.
         define( function() {
-            root.fullpage = factory(window, document);
-            return root.fullpage;
+            return (root.fullpage = factory(root, document));
         } );
     } else if( typeof exports === 'object' ) {
         // Node. Does not work with strict CommonJS.
-        module.exports = factory(window, document);
+        module.exports = (root.fullpage = factory(root, document));
     } else {
         // Browser globals.
-        window.fullpage = factory(window, document);
+        root.fullpage = factory(root, document);
     }
-}(this, window, document, function(window, document){
+}(typeof global !== 'undefined' ? global : this.window || this.global, document, function(window, document){
     'use strict';
 
     // keeping central set of classnames and selectors
