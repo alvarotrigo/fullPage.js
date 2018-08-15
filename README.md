@@ -18,7 +18,7 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [Live demo](http://alvarotrigo.com/fullPage/)
+- [Demo online](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -139,7 +139,7 @@ In order to create a landscape slider within a section, each slide will be defin
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
-You can see a fully working example of the HTML structure in the [`demoPage.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demoPage.html).
+You can see a fully working example of the HTML structure in the [`simple.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
 
 ### Initialization
 
@@ -922,7 +922,7 @@ You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same
 1. Please, look for your issue before asking using the github issues search.
 2. Make sure you use the latest fullpage.js version. No support is provided for older versions.
 3. Use the [the Github Issues forum](https://github.com/alvarotrigo/fullPage.js/issues) to create issues.
-4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](https://jsfiddle.net/1kyuL4em/2/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
+4. **An isolated reproduction of the issue will be required.** Make use of [jsfiddle](https://jsfiddle.net/1kyuL4em/116/) or [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) for it if possible.
 
 # Contributing to fullpage.js
 Please see [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
@@ -935,7 +935,8 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 
 # Resources
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)

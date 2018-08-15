@@ -19,7 +19,7 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Creado por [@imac2](https://twitter.com/imac2)*
 
-- [Vista previa - demostración](https://alvarotrigo.com/fullPage/)
+- [Demo online](https://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensiones de fullpage.js](https://alvarotrigo.com/fullPage/extensions/)
 - [Preguntas frecuentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -139,7 +139,7 @@ Puedes usar la clase `slide` para crear diapositivas horizontales dentro de una 
 	<div class="slide"> Diapositiva 4 </div>
 </div>
 ````
-Puedes ver un ejemplo totalmente funcional de la estructura HTML en el ejemplo [`demostraciónPage.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/demostraciónPage.html).
+Puedes ver un ejemplo totalmente funcional de la estructura HTML en el ejemplo [`simple.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
 
 ### Inicialización
 Todo lo que necesitas hacer es llamar a fullPage.js justo antes del cierre de la etiqueta `</body>`:
@@ -909,7 +909,7 @@ Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLea
 1. Por favor, usa el buscador en Github issues para buscar tu duda o problema antes de preguntar.
 2. Asegurate de que estás usando la última versión de fullPage.js. No se provee soporte a versiones anteriores.
 3. Usa el [foro de Github](https://github.com/alvarotrigo/fullPage.js/issues) para crear la pregunta o tema y **házlo en inglés** a ser posible.
-4. **Se requerirá la reproducción aislada del problema.** Usa [jsfiddle](https://jsfiddle.net/1kyuL4em/2/) o [codepen](https://codepen.io/alvarotrigo/pen/NxyPPp) si es posible.
+4. **Se requerirá la reproducción aislada del problema.** Usa [jsfiddle](https://jsfiddle.net/1kyuL4em/116/) o [codepen](https://codepen.io/alvarotrigo/pen/NxyPPp) si es posible.
 
 # Contribuir con fullPage.js
 Por favor mira [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
@@ -923,7 +923,8 @@ Sólo disponible en inglés :)
 
 # Recursos
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](https://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)

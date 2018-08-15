@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.2
+ * fullPage 3.0.3
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -8,21 +8,20 @@
  *
  * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
-(function( root, window, document, factory, undefined) {
+(function( root, document, factory) {
     if( typeof define === 'function' && define.amd ) {
         // AMD. Register as an anonymous module.
         define( function() {
-            root.fullpage = factory(window, document);
-            return root.fullpage;
+            return (root.fullpage = factory(root, document));
         } );
     } else if( typeof exports === 'object' ) {
         // Node. Does not work with strict CommonJS.
-        module.exports = factory(window, document);
+        module.exports = (root.fullpage = factory(root, document));
     } else {
         // Browser globals.
-        window.fullpage = factory(window, document);
+        root.fullpage = factory(root, document);
     }
-}(this, window, document, function(window, document){
+}(typeof global !== 'undefined' ? global : this.window || this.global, document, function(window, document){
     'use strict';
 
     // keeping central set of classnames and selectors
@@ -631,22 +630,7 @@
             //Scrolls to the section when clicking the navigation bullet
             //simulating the jQuery .on('click') event using delegation
             ['click', 'touchstart'].forEach(function(eventName){
-                document.addEventListener(eventName, function(e){
-                    var target = e.target;
-
-                    if(target && closest(target, SECTION_NAV_SEL + ' a')){
-                        sectionBulletHandler.call(target, e);
-                    }
-                    else if(matches(target, SECTION_NAV_TOOLTIP_SEL)){
-                        tooltipTextHandler.call(target);
-                    }
-                    else if(matches(target, SLIDES_ARROW_SEL)){
-                        slideArrowHandler.call(target, e);
-                    }
-                    else if(matches(target, SLIDES_NAV_LINK_SEL) || closest(target, SLIDES_NAV_LINK_SEL) != null){
-                        slideBulletHandler.call(target, e);
-                    }
-                });
+                document.addEventListener(eventName, delegatedEvents);
             });
 
             /**
@@ -661,6 +645,23 @@
                 ['mouseleave', 'touchend'].forEach(function(eventName){
                    forMouseLeaveOrTOuch(eventName, true);
                 });
+            }
+        }
+
+        function delegatedEvents(e){
+            var target = e.target;
+
+            if(target && closest(target, SECTION_NAV_SEL + ' a')){
+                sectionBulletHandler.call(target, e);
+            }
+            else if(matches(target, SECTION_NAV_TOOLTIP_SEL)){
+                tooltipTextHandler.call(target);
+            }
+            else if(matches(target, SLIDES_ARROW_SEL)){
+                slideArrowHandler.call(target, e);
+            }
+            else if(matches(target, SLIDES_NAV_LINK_SEL) || closest(target, SLIDES_NAV_LINK_SEL) != null){
+                slideBulletHandler.call(target, e);
             }
         }
 
@@ -2065,11 +2066,15 @@
             var activeSection = $(SECTION_ACTIVE_SEL)[0];
             var activeSlide = $(SLIDE_ACTIVE_SEL, activeSection)[0];
             var focusableWrapper = activeSlide ? activeSlide : activeSection;
-            var focusableElements = $(focusableElementsString + ':not([tabindex="-1"])', focusableWrapper);
+            var focusableElements = [].slice.call($(focusableElementsString, focusableWrapper)).filter(function(item) {
+                return item.getAttribute('tabindex') !== '-1'
+                    //are also not hidden elements (or with hidden parents)
+                    && item.offsetParent !== null;
+            });
 
             function preventAndFocusFirst(e){
                 preventDefault(e);
-                return focusableElements[0].focus();
+                return focusableElements[0] ? focusableElements[0].focus() : null;
             }
 
             //is there an element with focus?
@@ -2981,11 +2986,8 @@
             document.removeEventListener('keydown', keydownHandler);
             document.removeEventListener('keyup', keyUpHandler);
 
-            var clickTouchEvents = [sectionBulletHandler, tooltipTextHandler, slideArrowHandler, slideBulletHandler];
             ['click', 'touchstart'].forEach(function(eventName){
-                clickTouchEvents.forEach(function(foo){
-                    document.removeEventListener(eventName, foo);
-                });
+                document.removeEventListener(eventName, delegatedEvents);
             });
 
             ['mouseenter', 'touchstart', 'mouseleave', 'touchend'].forEach(function(eventName){
@@ -3838,7 +3840,8 @@
         filter: filter,
         untilAll: untilAll,
         nextAll: nextAll,
-        prevAll: prevAll
+        prevAll: prevAll,
+        showError: showError
     };
 
     return initialise;

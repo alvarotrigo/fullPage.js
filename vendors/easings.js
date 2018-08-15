@@ -36,13 +36,11 @@
 */
 window.fp_easings = {
     def: 'easeOutQuad',
+    linear: function (t, b, c, d) {
+        return c*t/d + b
+    },
     swing: function (t, b, c, d) {
-        console.log('t', t);
-        console.log('b', b);
-        console.log('c', c);
-        console.log('d', d);
-
-        return window.easings[window.easings.def](t, b, c, d);
+        return window.fp_easings[window.fp_easings.def](t, b, c, d);
     },
     easeInQuad: function (t, b, c, d) {
         return c*(t/=d)*t + b;
@@ -151,7 +149,7 @@ window.fp_easings = {
         return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
     },
     easeInBounce: function (t, b, c, d) {
-        return c - window.easings.easeOutBounce (d-t, 0, c, d) + b;
+        return c - window.fp_easings.easeOutBounce (d-t, 0, c, d) + b;
     },
     easeOutBounce: function (t, b, c, d) {
         if ((t/=d) < (1/2.75)) {
@@ -165,7 +163,7 @@ window.fp_easings = {
         }
     },
     easeInOutBounce: function (t, b, c, d) {
-        if (t < d/2) return window.easings.easeInBounce (t*2, 0, c, d) * .5 + b;
-        return window.easings.easeOutBounce (t*2-d, 0, c, d) * .5 + c*.5 + b;
+        if (t < d/2) return window.fp_easings.easeInBounce (t*2, 0, c, d) * .5 + b;
+        return window.fp_easings.easeOutBounce (t*2-d, 0, c, d) * .5 + c*.5 + b;
     }
 };

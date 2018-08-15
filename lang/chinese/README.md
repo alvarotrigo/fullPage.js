@@ -18,9 +18,10 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [现场演示](http://alvarotrigo.com/fullPage/)
+- [现场演示](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js扩展](http://alvarotrigo.com/fullPage/extensions/)
+- Wrappers: [Vue.js[()] | React.js
 - [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
 ---
@@ -139,7 +140,7 @@ HTML文件中的首行HTML代码必须使用[HTML DOCTYPE 声明](http://www.cor
 	<div class="slide"> 幻灯片 4 </div>
 </div>
 ````
-可以在[`demoPage.html`文件](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)看到完整的HTML结构的例子
+可以在[`simple.html`文件](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html)看到完整的HTML结构的例子
 
 ### 初始化
 
@@ -911,7 +912,7 @@ new fullpage('#fullpage', {
 1.请在提问之前使用github问题搜索查找您的问题。
 2.确保使用最新的fullpage.js版本。 不支持旧版本。
 3.使用[Github问题论坛](https://github.com/alvarotrigo/fullPage.js/issues)来创建问题。
-4.**需要单独复制该问题**使用[jsfiddle](https://jsfiddle.net/1kyuL4em/2/)或[codepen](http://codepen.io/alvarotrigo / pen / NxyPPp)，如果可能的话。
+4.**需要单独复制该问题**使用[jsfiddle](https://jsfiddle.net/1kyuL4em/116/)或[codepen](http://codepen.io/alvarotrigo / pen / NxyPPp)，如果可能的话。
 
 # 贡献给fullpage.js
 请参阅[贡献给fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
@@ -924,7 +925,8 @@ new fullpage('#fullpage', {
 
 # 参考资源
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3的值)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
