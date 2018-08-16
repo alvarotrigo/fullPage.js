@@ -3869,5 +3869,5 @@ if(window.jQuery && window.fullpage){
                 $.fn.fullpage[key] = FP[key];
             });
         };
-    })(jQuery, fullpage);
+    })(window.jQuery, window.fullpage);
 }
