@@ -909,7 +909,7 @@ Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLea
 1. Por favor, usa el buscador en Github issues para buscar tu duda o problema antes de preguntar.
 2. Asegurate de que estás usando la última versión de fullPage.js. No se provee soporte a versiones anteriores.
 3. Usa el [foro de Github](https://github.com/alvarotrigo/fullPage.js/issues) para crear la pregunta o tema y **házlo en inglés** a ser posible.
-4. **Se requerirá la reproducción aislada del problema.** Usa [jsfiddle](https://jsfiddle.net/1kyuL4em/116/) o [codepen](https://codepen.io/alvarotrigo/pen/NxyPPp) si es posible.
+4. **Se requerirá la reproducción aislada del problema.** Usa [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) o [codepen](https://codepen.io/alvarotrigo/pen/NxyPPp) si es posible.
 
 # Contribuir con fullPage.js
 Por favor mira [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
