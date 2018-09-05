@@ -923,7 +923,7 @@
                     link = options.anchors[i];
                 }
 
-                li += '<li><a href="#' + link + '"><span></span></a>';
+                li += '<li><a href="#' + link + '"><span class="fp-sr-only">' + getBulletLinkName(i, 'Section') + '</span><span></span></a>';
 
                 // Only add tooltip if needed (defined by user)
                 var tooltip = options.navigationTooltips[i];
@@ -943,6 +943,12 @@
 
             var bullet = $('li', $(SECTION_NAV_SEL)[0])[index($(SECTION_ACTIVE_SEL)[0], SECTION_SEL)];
             addClass($('a', bullet), ACTIVE);
+        }
+
+        function getBulletLinkName(i, defaultName){
+            return options.navigationTooltips[i]
+                || options.anchors[i]
+                || defaultName + ' ' + (i+1)
         }
 
         /*
@@ -2612,7 +2618,7 @@
             addClass(nav, 'fp-' + options.slidesNavPosition);
 
             for(var i=0; i< numSlides; i++){
-                appendTo(createElementFromHTML('<li><a href="#"><span></span></a></li>'), $('ul', nav)[0] );
+                appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide') +'</span><span></span></a></li>'), $('ul', nav)[0] );
             }
 
             //centering it
