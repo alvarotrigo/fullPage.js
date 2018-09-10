@@ -349,7 +349,7 @@
                 if(value){
                     setMouseWheelScrolling(true);
                     addTouchHandler();
-                }else if(!options.scrollBar && options.autoScrolling){
+                }else{
                     setMouseWheelScrolling(false);
                     removeTouchHandler();
                 }
@@ -945,9 +945,6 @@
             addClass($('a', bullet), ACTIVE);
         }
 
-        /**
-        * Gets the name for screen readers for a section/slide navigation bullet.
-        */
         function getBulletLinkName(i, defaultName){
             return options.navigationTooltips[i]
                 || options.anchors[i]
@@ -1336,11 +1333,6 @@
         var prevTime = new Date().getTime();
 
         function MouseWheelHandler(e) {
-            if (!isScrollAllowed.m.down || !isScrollAllowed.m.up){
-                preventDefault(e);
-                return;
-            }
-
             var curTime = new Date().getTime();
             var isNormalScroll = hasClass($(COMPLETELY_SEL)[0], NORMAL_SCROLL);
 
@@ -3372,7 +3364,7 @@
     * Gets the window height. Crossbrowser.
     */
     function getWindowHeight(){
-        return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        return  'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
     }
 
     /**
