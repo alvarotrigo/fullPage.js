@@ -2125,7 +2125,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.0 module for fullPage.js >= 3
+* Scrolloverflow 2.0.1 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
