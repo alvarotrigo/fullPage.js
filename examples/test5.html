@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Easing - fullPage.js</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage demo easing effect." />
+    <meta name="keywords" content="fullpage,jquery,demo,easing,effect,jqueui" />
+    <meta name="Resource-type" content="Document" />
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+
+    <style type="text/css">
+
+    .section{
+        position: relative;
+    }
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    p {
+        margin-bottom: 8px !important;
+    }
+
+    .contain {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-small {
+        font-size: small;
+    }
+
+    @media (min-width: 768px) {
+        .contain {
+            width: 60%;
+        }
+    }
+    #slide1-2{
+        background: red;
+    }
+    </style>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+
+<body>
+
+    <div id="fullpage">
+        <div class="section fp-auto-height-responsive" style="background: red;" data-anchor="test1" data-tooltip="pedo">
+            <div class="slide" id="slide1-1">
+                <h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1>
+            </div>
+             <div class="slide" id="slide1-2">
+                <h1>text here</h1>
+            </div>
+            <div class="slide" id="slide1-2">
+               <h1>text here</h1>
+            </div>
+        </div>
+        <div class="section fp-auto-height-responsive" style="background: green;" data-anchor="test2" data-tooltip="caca">
+             <div class="slide" >
+                <h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1><h1>text here</h1>
+            </div>
+             <div class="slide">
+                <h1>text here</h1>
+            </div>
+        </div>
+    </div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../vendors/scrolloverflow.js"></script>
+    <script type="text/javascript" src="../src/fullpage.js"></script>
+
+    <script type="text/javascript">
+        var options = {
+            sectionsColor: ['#B5B28D', '#6E7445', '#F2E3BC', '#AD8876'],
+            navigation: true,
+            scrollOverflow: true,
+            responsiveWidth: 1000
+        }
+        new fullpage('#fullpage', options);
+    </script>
+</body>
+
+</html>

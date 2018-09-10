@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Easing - fullPage.js</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage demo easing effect." />
+    <meta name="keywords" content="fullpage,jquery,demo,easing,effect,jqueui" />
+    <meta name="Resource-type" content="Document" />
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <style type="text/css">
+
+    .section{
+        position: relative;
+    }
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    p {
+        margin-bottom: 8px !important;
+    }
+
+    .contain {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-small {
+        font-size: small;
+    }
+
+    @media (min-width: 768px) {
+        .contain {
+            width: 60%;
+        }
+    }
+    #slide1-2{
+        background: red;
+    }
+    </style>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+
+<body>
+    <div id="fullpage">
+    <div class="myy"><div class="another">One</div></div>
+    <div class="section" id="pepe" data-tooltip="adfasfa">
+        <div class="slide">Two 1</div>
+        <div class="slide">Two 2</div>
+    </div>
+    <div class="myy"><div class="another">Three</div></div>
+    <div class="section">Four</div>
+</div>
+
+
+<script type="text/javascript" src="../src/fullpage.js"></script>
+<script type="text/javascript">
+    console.log(fp_utils);
+   // new fullpage('#fullpage', options);
+</script>
+
+</body>
+</html>

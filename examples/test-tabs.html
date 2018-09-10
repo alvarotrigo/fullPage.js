@@ -3,14 +3,14 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Navigation tooltips - fullPage.js</title>
+    <title>Active Slide - fullPage.js</title>
     <meta name="author" content="Matthew Howell" />
     <meta name="description" content="fullPage continuous scrolling demo." />
     <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
     <meta name="Resource-type" content="Document" />
 
 
-    <link rel="stylesheet" type="text/css" href="../src/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
 
     <!--[if IE]>
@@ -75,24 +75,39 @@
 </select>
 
 <div id="fullpage">
-    <div class="section" id="section0">
-        <div class="slide">
-          <div class="intro">
-            <h1>Section 1</h1>
-            <p>
-              Use the `navigationTooltips` option to use a text for each of the bullets in the navigation element.
-            </p>
-          </div>
-        </div>
-        <div class="slide">
-            fdsfsd
-        </div>
+    <div class="section " id="section0">
+        <h1>Section 1</h1>
     </div>
-    <div class="section" id="section1">
-        <h1>Section 2</h1>
+    <div class="section active" id="section1">
+        <div class="slide" id="slide1">
+            <div class="intro">
+                <h1>Slide 2.1</h1>
+                <input type="text" name="nothing1" />
+                <input type="text" name="nothing2" />
+                <input type="text" name="nothing3" />
+            </div>
+        </div>
+        <div class="slide active" id="slide2">
+            <div class="intro">
+                <h1>Slide 2.2</h1>
+                <input type="text" name="nothing4" />
+                <input type="text" name="nothing5" />
+            </div>
+        </div>
+        <div class="slide" id="slide3">
+            <h1>Slide 2.3</h1>
+             <input type="text" name="nothing6" />
+                <input type="text" name="nothing7" />
+        </div>
+
     </div>
     <div class="section" id="section2">
-        <h1>Section 3</h1>
+        <div class="intro">
+            <h1>Section 3</h1>
+             <input type="text" name="nothing8" />
+              <input type="text" name="nothing9" />
+              <input type="text" name="nothing10" />
+        </div>
     </div>
 </div>
 
@@ -101,10 +116,9 @@
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
         sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-        navigation:true,
-        slidesNavigation: true,
-        showActiveTooltip: true,
-        menu: '#menu'
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        menu: '#menu',
+        lazyLoad: true
     });
 </script>
 

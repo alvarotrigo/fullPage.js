@@ -2525,8 +2525,9 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 //updating the wrappers height
                 fp_utils.css($(SCROLLABLE_SEL, element)[0], {'height': scrollHeight + 'px'});
-                fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': scrollHeight + getPaddings(element) + 'px'});
-            },
+
+                var parentHeight = options.verticalCentered ? scrollHeight + getPaddings(element) : scrollHeight;
+                fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': parentHeight + 'px'});            },
 
             /**
              * Called to get any additional elements needed to wrap the section

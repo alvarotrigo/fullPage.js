@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Continuous scrolling - fullPage.js</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous" />
+    <meta name="Resource-type" content="Document" />
+
+
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+  <!--
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../old.js"></script>
+  -->
+
+
+  <!-- -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+
+  <script type="text/javascript" src="../dist/fullpage.js"></script>
+
+
+  <!--  -->
+
+  <style type="text/css">
+    .normalscroll{
+        overflow: scroll;
+        height: 300px;
+    }
+    .normalScroll h1{
+        font-size: 20px;
+    }
+    h1{
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<ul id="menu">
+    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+</ul>
+
+
+    <div id="fullpage" class="fullpage-layout">
+        <div class="section fp-auto-height-responsive" id="section1">
+         <h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1>
+        </div>
+        <div class="section" id="section2" style="background-color: blue;">
+            <div class="slide">
+               <h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1>
+            </div>
+            <div class="slide">
+               <h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1>
+            </div>
+            <div class="slide"> Slide 3 </div>
+            <div class="slide"> Slide 4 </div>
+        </div>
+        <div class="section" id="section3">
+           <h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1><h1>Section 1</h1>
+        </div>
+        <div class="section" id="section4">Some section</div>
+    </div>
+
+<script type="text/javascript">
+  var FP;
+  if(typeof jQuery == 'undefined' || false){
+
+    FP = new fullpage('#fullpage', {
+        continuousVertical: true,
+        sectionsColor: ['red', 'blue', 'yellow', 'purple'],
+        anchors: ['firstPage','secondPage','3rdPage','Fourth'],
+        css3: true,
+        responsiveWidth: 900,
+        autoScrolling:true,
+        scrollOverflow: true,
+        fitToSection:false,
+        navigation: true,
+        verticalCentered: false,
+        slidesNavigation: true,
+        normalScrollElements: '.normalscroll',
+        showActiveTooltip: true,
+        navigationTooltips: ['demo1', 'demo2', 'demo3'],
+        //events
+        onLeave: function(index, nextIndex, direction) {
+          console.log("onLeave---> index:" + index + " nextIndex:" + nextIndex + " direccion:"+ direction);
+        },
+        afterLoad: function(anchorLink, index) {
+           console.log("onLeave---> anchorLink:" + anchorLink + " index:" + index);
+        },
+        afterRender: function() {
+          console.log("afterRender...");
+        },
+        afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+          console.log("afterSlideLoad---> anchorLink:" + anchorLink + " index:" + index + " slideAnchor:"+ slideAnchor + " slideIndex:"+slideIndex);
+        },
+        onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {
+           console.log("onSlideLeave---> anchorLink:" + anchorLink + " index:" + index + " slideIndex:"+ slideIndex + " direction:"+direction + " nextSlideIndex:" + nextSlideIndex);
+        }
+    });
+  }
+  else{
+    var myFullpage = new fullpage('#fullpage', {
+      css3:true,
+      sectionsColor: ['red', 'blue', 'yellow', 'purple'],
+      navigation: true,
+      slidesNavigation: true,
+      autoScrolling: false,
+      //events
+      onLeave: function(index, nextIndex, direction) {
+        console.log("onLeave---> index:" + index + " nextIndex:" + nextIndex + " direccion:"+ direction);
+      },
+      afterLoad: function(anchorLink, index) {
+         console.log("onLeave---> anchorLink:" + anchorLink + " index:" + index);
+      },
+      afterRender: function() {
+        console.log("afterRender...");
+      },
+      afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+        console.log("afterSlideLoad---> anchorLink:" + anchorLink + " index:" + index + " slideAnchor:"+ slideAnchor + " slideIndex:"+slideIndex);
+      },
+      onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {
+         console.log("onSlideLeave---> anchorLink:" + anchorLink + " index:" + index + " slideIndex:"+ slideIndex + " direction:"+direction + " nextSlideIndex:" + nextSlideIndex);
+      }
+  });
+  }
+  </script>
+</body>
+</html>

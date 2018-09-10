@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Easing - fullPage.js</title>
+    <meta name="author" content="Alvaro Trigo Lopez" />
+    <meta name="description" content="fullPage demo easing effect." />
+    <meta name="keywords" content="fullpage,jquery,demo,easing,effect,jqueui" />
+    <meta name="Resource-type" content="Document" />
+    <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <script type="text/javascript" src="http://localhost/extensions/dist/fullpage.scrollHorizontally.min.js"></script>
+    <script type="text/javascript" src="../dist/fullpage.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var options = {
+            verticalCentered: false,
+            scrollHorizontally: false,
+            scrollOverflow: true,
+            sectionsColor: ['#B5B28D', '#6E7445', '#F2E3BC', '#AD8876'],
+
+            onLeave: function(index, nextIndex, direction){
+
+            },
+            afterLoad: function(){
+            }
+        }
+        $('#fullpage').fullpage(options);
+
+        $('button').click(function(e){
+            e.preventDefault();
+            console.log("va");
+            var newSectionNumber = $('.fp-section').length + 1;
+            console.log(newSectionNumber);
+            $('#fullpage').append(`<div class="section">
+                <h3>Section ${newSectionNumber}</h3>
+            </div>`);
+
+            $('#menu').find('li').last().before(`<li data-menuanchor="page${newSectionNumber}">
+                <a href="#page${newSectionNumber}">Section${newSectionNumber}</a>
+            </li>`);
+
+
+
+            $.fn.fullpage.update();
+        });
+    })
+    </script>
+    <style type="text/css">
+
+    .section{
+        position: relative;
+    }
+    body {
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    p {
+        margin-bottom: 8px !important;
+    }
+
+    .contain {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .text-white {
+        color: white;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-small {
+        font-size: small;
+    }
+
+    @media (min-width: 768px) {
+        .contain {
+            width: 60%;
+        }
+    }
+    #slide1-2{
+        background: red;
+    }
+    button{
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+    </style>
+    <script type="text/javascript">
+
+
+    </script>
+</head>
+
+<body>
+    <button>add section</button>
+    <div id="fullpage">
+        <div class="section">
+           <h1>Section 1</h1>
+        </div>
+        <div class="section" style="background: green;">
+             <div class="slide" >
+               <h1>Slide 2.1</h1>
+            </div>
+            <div class="slide" >
+               <h1>Slide 2.2</h1>
+            </div>
+        </div>
+        <div class="section">
+           <h1>Section 3</h1>
+        </div>
+    </div>
+</body>
+
+</html>
