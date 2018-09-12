@@ -945,6 +945,9 @@
             addClass($('a', bullet), ACTIVE);
         }
 
+        /**
+        * Gets the name for screen readers for a section/slide navigation bullet.
+        */
         function getBulletLinkName(i, defaultName){
             return options.navigationTooltips[i]
                 || options.anchors[i]
