@@ -3137,8 +3137,9 @@
                 showError('warn', 'Option `loopTop/loopBottom` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
             }
 
-            if(options.scrollBar && options.scrollOverflow){
-                showError('warn', 'Option `scrollBar` is mutually exclusive with `scrollOverflow`. Sections with scrollOverflow might not work well in Firefox');
+            if(options.scrollOverflow &&
+               (options.scrollBar || options.autoScrolling){
+                showError('warn', 'Options scrollBar:true and autoScrolling:true are mutually exclusive with scrollOverflow:true. Sections with scrollOverflow might not work well in Firefox');
             }
 
             if(options.continuousVertical && (options.scrollBar || !options.autoScrolling)){
