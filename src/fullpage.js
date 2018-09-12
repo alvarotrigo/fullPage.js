@@ -349,9 +349,10 @@
                 if(value){
                     setMouseWheelScrolling(true);
                     addTouchHandler();
-                }else{
-                    setMouseWheelScrolling(false);
-                    removeTouchHandler();
+                }else if(
+                !options.scrollBar && options.autoScrolling) {
+                      setMouseWheelScrolling(false);
+                      removeTouchHandler();
                 }
             }
         }
