@@ -3149,7 +3149,7 @@
             }
 
             if(options.scrollOverflow &&
-               (options.scrollBar || options.autoScrolling){
+               (options.scrollBar || options.autoScrolling)){
                 showError('warn', 'Options scrollBar:true and autoScrolling:true are mutually exclusive with scrollOverflow:true. Sections with scrollOverflow might not work well in Firefox');
             }
 
