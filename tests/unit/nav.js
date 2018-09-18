@@ -6,7 +6,7 @@ QUnit.test('Testing navigation exist when using navigation:true', function(asser
     assert.equal($(SECTION_NAV_SEL).closest(id).length, 0, 'We expect navigation to be outside the fullpage wrapper');
     assert.equal($(SECTION_NAV_SEL).find('li').length, $(id).find(SECTION_SEL).length, 'We expect navigation have as many items as sections exist');
     assert.equal($(SECTION_NAV_SEL).find('a').length, $(id).find(SECTION_SEL).length, 'We expect navigation have as many links as sections exist');
-    assert.equal($(SECTION_NAV_SEL).find('span').length, $(id).find(SECTION_SEL).length, 'We expect navigation have as many spans as sections exist');
+    assert.equal($(SECTION_NAV_SEL).find('span').length, $(id).find(SECTION_SEL).length * 2, 'We expect navigation have as many spans as sections exist');
 });
 
 QUnit.test('Testing navigation does not exist when using navigation:false', function(assert) {

@@ -7,7 +7,7 @@ QUnit.test('Testing slidesNavigation exist when using slidesNavigation:true', fu
     assert.equal($(SLIDES_NAV_SEL).closest(SECTION_SEL).index(), 1, 'We expect slidesNavigation to be inside the 2nd section');
     assert.equal($(SLIDES_NAV_SEL).find('li').length, $(id).find(SECTION_SEL).eq(1).find(SLIDE_SEL).length, 'We expect slidesNavigation have as many items as slides exist');
     assert.equal($(SLIDES_NAV_SEL).find('a').length, $(id).find(SECTION_SEL).eq(1).find(SLIDE_SEL).length, 'We expect slidesNavigation have as many links as sections exist');
-    assert.equal($(SLIDES_NAV_SEL).find('span').length, $(id).find(SECTION_SEL).eq(1).find(SLIDE_SEL).length, 'We expect slidesNavigation have as many spans as sections exist');
+    assert.equal($(SLIDES_NAV_SEL).find('span').length, $(id).find(SECTION_SEL).eq(1).find(SLIDE_SEL).length * 2, 'We expect slidesNavigation have as many spans as sections exist');
 });
 
 
