@@ -2336,6 +2336,7 @@ if ( typeof module != 'undefined' && module.exports ) {
         var iscrollHandler = {
             refreshId: null,
             iScrollInstances: [],
+            fullpageOptions: null,
 
             // Default options for iScroll.js used when using scrollOverflow
             iscrollOptions: {
@@ -2349,6 +2350,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             init: function(options){
                 $ = fp_utils.$;
+                iscrollHandler.fullpageOptions = options;
 
                 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 
@@ -2526,7 +2528,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                 //updating the wrappers height
                 fp_utils.css($(SCROLLABLE_SEL, element)[0], {'height': scrollHeight + 'px'});
 
-                var parentHeight = options.verticalCentered ? scrollHeight + getPaddings(element) : scrollHeight;
+                var parentHeight = iscrollHandler.fullpageOptions.verticalCentered ? scrollHeight + getPaddings(element) : scrollHeight;
                 fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': parentHeight + 'px'});
             },
 
