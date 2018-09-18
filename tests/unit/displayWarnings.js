@@ -30,6 +30,10 @@ function isErrorFired(){
     return false;
 }
 
+function isUsingExtensionsFile(FP){
+    return typeof FP.getFullpageData !== 'object';
+}
+
 //loopTop & continuousVertical
 QUnit.test('Testing warnings for loopTop:false with continuousVertical:true', function(assert) {
     var id = '#fullpage';
@@ -170,7 +174,9 @@ QUnit.test('Testing warnings for parallax:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {parallax: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for scrollOverflowReset:true', function(assert) {
@@ -179,7 +185,9 @@ QUnit.test('Testing warnings for scrollOverflowReset:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {scrollOverflowReset: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for dragAndMove:true', function(assert) {
@@ -188,7 +196,9 @@ QUnit.test('Testing warnings for dragAndMove:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {dragAndMove: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for offsetSections:true', function(assert) {
@@ -197,7 +207,9 @@ QUnit.test('Testing warnings for offsetSections:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {offsetSections: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for fadingEffect:true', function(assert) {
@@ -206,7 +218,9 @@ QUnit.test('Testing warnings for fadingEffect:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {fadingEffect: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for responsiveSlides:true', function(assert) {
@@ -215,7 +229,9 @@ QUnit.test('Testing warnings for responsiveSlides:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {responsiveSlides: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for continuousHorizontal:true', function(assert) {
@@ -224,7 +240,9 @@ QUnit.test('Testing warnings for continuousHorizontal:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {continuousHorizontal: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for interlockedSlides:true', function(assert) {
@@ -233,7 +251,9 @@ QUnit.test('Testing warnings for interlockedSlides:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {interlockedSlides: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for scrollHorizontally:true', function(assert) {
@@ -242,7 +262,9 @@ QUnit.test('Testing warnings for scrollHorizontally:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {scrollHorizontally: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 QUnit.test('Testing warnings for resetSliders:true', function(assert) {
@@ -251,7 +273,9 @@ QUnit.test('Testing warnings for resetSliders:true', function(assert) {
     mockConsole();
 
     var FP = initFullpageNew(id, {resetSliders: true});
-    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+    var expected = isUsingExtensionsFile(FP) ? false : true;
+
+    assert.equal(isWarnFired(), expected, 'We expect console.warn to be fired');
 });
 
 
