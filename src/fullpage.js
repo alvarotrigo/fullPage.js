@@ -2118,6 +2118,9 @@
             }
         }
 
+        /**
+        * Gets all the focusable elements inside the passed element.
+        */
         function getFocusables(el){
             return [].slice.call($(focusableElementsString, el)).filter(function(item) {
                     return item.getAttribute('tabindex') !== '-1'
@@ -2126,6 +2129,9 @@
             });
         }
 
+        /**
+        * Determines whether the focus is outside fullpage.js sections/slides or not.
+        */
         function isFocusOutside(e){
             var allFocusables = getFocusables(document);
             var currentFocusIndex = allFocusables.indexOf(document.activeElement);
