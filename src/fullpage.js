@@ -2079,23 +2079,21 @@
         function onTab(e){
             var isShiftPressed = e.shiftKey;
             var activeElement = document.activeElement;
-            var activeSection = $(SECTION_ACTIVE_SEL)[0];
-            var activeSlide = $(SLIDE_ACTIVE_SEL, activeSection)[0];
-            var focusableWrapper = activeSlide ? activeSlide : activeSection;
-            var focusableElements = [].slice.call($(focusableElementsString, focusableWrapper)).filter(function(item) {
-                return item.getAttribute('tabindex') !== '-1'
-                    //are also not hidden elements (or with hidden parents)
-                    && item.offsetParent !== null;
-            });
+            var focusableElements = getFocusables(getSlideOrSection($(SECTION_ACTIVE_SEL)[0]));
 
             function preventAndFocusFirst(e){
                 preventDefault(e);
                 return focusableElements[0] ? focusableElements[0].focus() : null;
             }
 
+            //outside any section or slide? Let's not hijack the tab!
+            if(isFocusOutside(e)){
+                return;
+            }
+
             //is there an element with focus?
             if(activeElement){
-                if(closest(activeElement, SECTION_ACTIVE_SEL + ',' + SLIDE_ACTIVE_SEL) == null){
+                if(closest(activeElement, SECTION_ACTIVE_SEL + ',' + SECTION_ACTIVE_SEL + ' ' + SLIDE_ACTIVE_SEL) == null){
                     activeElement = preventAndFocusFirst(e);
                 }
             }
@@ -2112,6 +2110,25 @@
             ){
                 preventDefault(e);
             }
+        }
+
+        function getFocusables(el){
+            return [].slice.call($(focusableElementsString, el)).filter(function(item) {
+                    return item.getAttribute('tabindex') !== '-1'
+                    //are also not hidden elements (or with hidden parents)
+                    && item.offsetParent !== null;
+            });
+        }
+
+        function isFocusOutside(e){
+            var allFocusables = getFocusables(document);
+            var currentFocusIndex = allFocusables.indexOf(document.activeElement);
+            var focusDestinationIndex = e.shiftKey ? currentFocusIndex - 1 : currentFocusIndex + 1;
+            var focusDestination = allFocusables[focusDestinationIndex];
+            var destinationItemSlide = nullOrSlide(closest(focusDestination, SLIDE_SEL));
+            var destinationItemSection = nullOrSection(closest(focusDestination, SECTION_SEL));
+
+            return !destinationItemSlide && !destinationItemSection;
         }
 
         //Scrolling horizontally when clicking on the slider controls.
