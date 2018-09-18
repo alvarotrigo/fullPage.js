@@ -3173,8 +3173,8 @@
             }
 
             if(options.scrollOverflow &&
-               (options.scrollBar || options.autoScrolling)){
-                showError('warn', 'Options scrollBar:true and autoScrolling:true are mutually exclusive with scrollOverflow:true. Sections with scrollOverflow might not work well in Firefox');
+               (options.scrollBar || !options.autoScrolling)){
+                showError('warn', 'Options scrollBar:true and autoScrolling:false are mutually exclusive with scrollOverflow:true. Sections with scrollOverflow might not work well in Firefox');
             }
 
             if(options.continuousVertical && (options.scrollBar || !options.autoScrolling)){
