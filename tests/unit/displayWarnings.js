@@ -87,6 +87,43 @@ QUnit.test('Testing warnings for scrollBar:true with continuousVertical:true', f
     assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
 });
 
+//scrollOverflow && (scrollBar || autoScrolling)
+QUnit.test('Testing warnings for scrollOverflow:true with scrollBar:true & autoScrolling:true', function(assert) {
+    var id = '#fullpage';
+    warnFired = false;
+    mockConsole();
+
+    var FP = initFullpageNew(id, {scrollBar: true, scrollOverflow:true, scrollOverflowHandler: {init: function(){}, remove: function(){}} });
+    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+});
+
+QUnit.test('Testing warnings for scrollOverflow:true with scrollBar:false & autoScrolling:true', function(assert) {
+    var id = '#fullpage';
+    warnFired = false;
+    mockConsole();
+
+    var FP = initFullpageNew(id, {scrollBar: false, scrollOverflow:true, scrollOverflowHandler: {init: function(){}, remove: function(){}} });
+    assert.equal(isWarnFired(), false, 'We expect console.warn to be fired');
+});
+
+QUnit.test('Testing warnings for scrollOverflow:true with autoScrolling:false', function(assert) {
+    var id = '#fullpage';
+    warnFired = false;
+    mockConsole();
+
+    var FP = initFullpageNew(id, {autoScrolling: false, scrollOverflow:true, scrollOverflowHandler: {init: function(){}, remove: function(){}} });
+    assert.equal(isWarnFired(), true, 'We expect console.warn to be fired');
+});
+
+QUnit.test('Testing warnings for scrollOverflow:true with autoScrolling:true', function(assert) {
+    var id = '#fullpage';
+    warnFired = false;
+    mockConsole();
+
+    var FP = initFullpageNew(id, {autoScrolling: true, scrollOverflow:true, scrollOverflowHandler: {init: function(){}, remove: function(){}} });
+    assert.equal(isWarnFired(), false, 'We expect console.warn not to be fired');
+});
+
 //autoScrolling & continuousVertical
 QUnit.test('Testing warnings for autoScrolling:true with continuousVertical:true', function(assert) {
     var id = '#fullpage';
