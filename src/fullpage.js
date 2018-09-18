@@ -2613,7 +2613,7 @@
             var slide = getSlideByAnchor(slideAnchor, section);
 
             //we need to scroll to the section and then to the slide
-            if (sectionAnchor !== lastScrolledDestiny && !hasClass(section, ACTIVE)){
+            if (getAnchor(section) !== lastScrolledDestiny && !hasClass(section, ACTIVE)){
                 scrollPage(section, function(){
                     scrollSlider(slide);
                 });
