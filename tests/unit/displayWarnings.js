@@ -2,7 +2,7 @@
 var oldConsole = console;
 var warnFired = false;
 var errorFired = false;
-
+var licenseKey = 'OPEN-SOURCE-GPLV3-LICENSE';
 
 function mockConsole(){
     console = {};
@@ -112,7 +112,7 @@ QUnit.test('Testing warnings for scrollOverflow:true with no vendor file', funct
     errorFired = false;
     mockConsole();
 
-    var FP = initFullpageNew(id, {scrollOverflow: true, scrollOverflowHandler: null});
+    var FP = initFullpageNew(id, {scrollOverflow: true, licenseKey: licenseKey, scrollOverflowHandler: null});
     assert.equal(isErrorFired(), true, 'We expect console.warn to be fired');
 });
 
@@ -122,7 +122,7 @@ QUnit.test('Testing warnings for scrollOverflow:true with vendor file', function
     errorFired = false;
     mockConsole();
 
-    var FP = initFullpageNew(id, {scrollOverflow: true, scrollOverflowHandler: {init: function(){}, remove: function(){}}});
+    var FP = initFullpageNew(id, {scrollOverflow: true, licenseKey: licenseKey, scrollOverflowHandler: {init: function(){}, remove: function(){}}});
     assert.equal(isErrorFired(), false, 'We expect console.warn not to be fired');
 });
 
@@ -224,7 +224,7 @@ QUnit.test('Testing warnings for name element same as anchor?', function(assert)
     errorFired = false;
     mockConsole();
 
-    var FP = initFullpageNew(id, {anchors: ['anchor-as-name', 'test2', 'test3', 'test4']});
+    var FP = initFullpageNew(id, {anchors: ['anchor-as-name', 'test2', 'test3', 'test4'], licenseKey: licenseKey});
     assert.equal(isErrorFired(), true, 'We expect console.warn to be fired');
 });
 
@@ -234,6 +234,6 @@ QUnit.test('Testing warnings for id element same as anchor?', function(assert) {
     errorFired = false;
     mockConsole();
 
-    var FP = initFullpageNew(id, {anchors: ['anchor-as-id', 'test2', 'test3', 'test4']});
+    var FP = initFullpageNew(id, {anchors: ['anchor-as-id', 'test2', 'test3', 'test4'], licenseKey: licenseKey});
     assert.equal(isErrorFired(), true, 'We expect console.warn to be fired');
 });
