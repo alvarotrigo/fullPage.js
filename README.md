@@ -10,6 +10,10 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
 </p>
 
+<p align="center">
+	Available for <a href="">Vue</a> and <a href="">React</a>.
+</p>
+
 ---
 
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)
