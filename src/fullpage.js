@@ -3133,8 +3133,7 @@
             });
 
             //scrolling the page to the top with no animation
-            $('html')[0].scrollTo(0, 0);
-            $('body')[0].scrollTo(0, 0);
+            window.scrollTo(0, 0);
 
             //removing selectors
             var usedSelectors = [SECTION, SLIDE, SLIDES_CONTAINER];
