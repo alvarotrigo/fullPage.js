@@ -63,7 +63,7 @@ fullPage.js兼容所有的现代浏览器，以及一些旧版浏览器，如Int
 ## 许可证
 
 ### 商业许可证
-如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[点击此处购买fullpage商业许可证](https://alvarotrigo.com/fullPage/pricing/）
+如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[点击此处购买fullpage商业许可证](https://alvarotrigo.com/fullPage/pricing/)
 
 ### 开源许可证
 如果您使用与[GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html)兼容的许可证创建开源应用程序，则可以在GPLv3条款下使用fullPage。
