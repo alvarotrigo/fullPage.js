@@ -1,7 +1,16 @@
 <!doctype html>
 <html>
   <head>
-    <title>Getting Started</title>
+    <title>Browserify example for fullPage.js</title>
+     <link rel="stylesheet" type="text/css" href="../node_modules/fullpage.js/dist/fullpage.min.css" />
+    <style type="text/css">
+        .section{
+            font-size: 3.5em;
+            font-family: arial;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
   </head>
   <body>
 
@@ -15,7 +24,6 @@
         <div class="section">Section 3</div>
     </div>
 
-    <script src="src/require.config.js"></script>
-    <script data-main="src/main" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>

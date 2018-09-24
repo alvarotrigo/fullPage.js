@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-	Available for <a href="">Vue</a> and <a href="">React</a>.
+	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a> and <a href="https://github.com/alvarotrigo/react-fullpage">React</a>.
 </p>
 
 ---
