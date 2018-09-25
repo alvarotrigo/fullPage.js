@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.0.9
+* Customized version of iScroll.js 0.1.0
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
@@ -2116,7 +2116,13 @@ IScroll.utils = utils;
 if ( typeof module != 'undefined' && module.exports ) {
     module.exports = IScroll;
 } else if ( typeof define == 'function' && define.amd ) {
-        define( function () { return IScroll; } );
+    define( function () { return IScroll; } );
+
+    //making sure scrollOverflow works when using Require.js
+    //in the browser
+    if(typeof window !== 'undefined'){
+        window.IScroll = IScroll;
+    }
 } else {
     window.IScroll = IScroll;
 }
