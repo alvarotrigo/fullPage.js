@@ -10,6 +10,9 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
 </p>
 
+<p align="center">
+	适用于<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>和<a href="https://github.com/alvarotrigo/react-fullpage">React</a>
+</p>
 ---
 
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)

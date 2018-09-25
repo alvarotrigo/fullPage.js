@@ -10,6 +10,9 @@
   <span>한국어</span>
 </p>
 
+<p align="center">
+	<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>와 <a href="https://github.com/alvarotrigo/react-fullpage">React</a>에서 사용 가능.
+</p>
 ---
 
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)
