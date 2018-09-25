@@ -361,7 +361,13 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 
 ## 옵션
 
-- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다.
+- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
+
+```javascript
+new fullpage({
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 - `v2compatible`: (기본값 `false`). 버전 3의 새로운 기능이나 api 변화를 무시하고 버전 2에 맞게 만들어진 모든 코드와 100% 호환 가능한지를 결정합니다. 상태 클래스, 콜백 시그니처 등이 버전 2에서 작동했던 것과 마찬가지로 완전히 동일하게 작동합니다. **이 옵션은 언젠가는 없어질 것임을 염두해 주십시오**.
 

@@ -372,7 +372,13 @@ Luego podrás usar la extensión y configurarla tal y como se explica en las [op
 ## Opciones
 
 - `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. De lo contrario, podrás usar la cadena `OPEN-SOURCE-GPLV3-LICENSE`.
-Puedes leer más acerca de las lencencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/).
+Puedes leer más acerca de las lencencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
+
+```javascript
+new fullpage({
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 - `v2compatible`: (por defecto `false`). Determina si será 100% compatible con código escrito para la version 2 de fullpage.js, ignorando nuevas funcionalides de la nueva version. Callbacks y clases de estado se comportarán como lo hacían en la version 2. **Esta opción será eliminada en algún momento en un futuro**
 

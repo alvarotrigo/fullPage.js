@@ -371,7 +371,13 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 ## 选项
 
--`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 否则，您可以使用字符串`OPEN-SOURCE-GPLV3-LICENSE`。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。
+-`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 否则，您可以使用字符串`OPEN-SOURCE-GPLV3-LICENSE`。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。例如：
+
+```javascript
+new fullpage({
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 - `v2compatible`: (默认 `false`). 确定是否使其与版本2编写的任何代码100％兼容，忽略版本3的新功能或api更改。状态类，回调签名等的工作方式与在版本2上完全相同。**请注意该选项将在之后的某个时候被删除。**。
 

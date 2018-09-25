@@ -371,7 +371,13 @@ Then you will be able to use and configure them as explained in [options](https:
 
 ## Options
 
-- `licenseKey`: (default `null`). **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. Otherwise, you can use the string `OPEN-SOURCE-GPLV3-LICENSE`. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/).
+- `licenseKey`: (default `null`). **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. Otherwise, you can use the string `OPEN-SOURCE-GPLV3-LICENSE`. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/). For example:
+
+```javascript
+new fullpage({
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 - `v2compatible`: (default `false`). Determines whether to make it 100% compatible with any code written for version 2, ignoring new features or api changes of version 3. State classes, callbacks signature etc. will work exactly in the same way as it did on verion 2. **Note that this option will be removed at some point in the future.**.
 
