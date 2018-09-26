@@ -1,0 +1,15 @@
+{
+  "name": "browserify-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "browserify src/index.js > dist/main.js"
+  },
+  "author": "",
+  "license": "GPLv3",
+  "dependencies": {
+    "browserify": "^16.2.2",
+    "fullpage.js": "^3.0.2"
+  }
+}

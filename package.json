@@ -1,6 +1,6 @@
 {
   "name": "fullpage.js",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Create beautiful fullscreen scrolling websites",
   "main": "dist/fullpage.js",
   "scripts": {
@@ -50,5 +50,8 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
   }
 }

@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.0.9
+* Customized version of iScroll.js 0.1.0
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
@@ -2116,7 +2116,13 @@ IScroll.utils = utils;
 if ( typeof module != 'undefined' && module.exports ) {
     module.exports = IScroll;
 } else if ( typeof define == 'function' && define.amd ) {
-        define( function () { return IScroll; } );
+    define( function () { return IScroll; } );
+
+    //making sure scrollOverflow works when using Require.js
+    //in the browser
+    if(typeof window !== 'undefined'){
+        window.IScroll = IScroll;
+    }
 } else {
     window.IScroll = IScroll;
 }
@@ -2125,7 +2131,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.0 module for fullPage.js >= 3
+* Scrolloverflow 2.0.1 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
@@ -2336,6 +2342,7 @@ if ( typeof module != 'undefined' && module.exports ) {
         var iscrollHandler = {
             refreshId: null,
             iScrollInstances: [],
+            fullpageOptions: null,
 
             // Default options for iScroll.js used when using scrollOverflow
             iscrollOptions: {
@@ -2349,6 +2356,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             init: function(options){
                 $ = fp_utils.$;
+                iscrollHandler.fullpageOptions = options;
 
                 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 
@@ -2525,7 +2533,9 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 //updating the wrappers height
                 fp_utils.css($(SCROLLABLE_SEL, element)[0], {'height': scrollHeight + 'px'});
-                fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': scrollHeight + getPaddings(element) + 'px'});
+
+                var parentHeight = iscrollHandler.fullpageOptions.verticalCentered ? scrollHeight + getPaddings(element) : scrollHeight;
+                fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': parentHeight + 'px'});
             },
 
             /**

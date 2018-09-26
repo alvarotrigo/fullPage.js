@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.2
+ * fullPage 3.0.3
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -345,14 +345,19 @@
             }
             else{
                 setIsScrollAllowed(value, 'all', 'm');
+            }
+        }
 
-                if(value){
-                    setMouseWheelScrolling(true);
-                    addTouchHandler();
-                }else{
-                    setMouseWheelScrolling(false);
-                    removeTouchHandler();
-                }
+        /**
+        * Adds or remove the mouse wheel hijacking
+        */
+        function setMouseHijack(value){
+            if(value){
+                setMouseWheelScrolling(true);
+                addTouchHandler();
+            }else{
+                setMouseWheelScrolling(false);
+                removeTouchHandler();
             }
         }
 
@@ -595,6 +600,7 @@
             setOptionsFromDOM();
             prepareDom();
             setAllowScrolling(true);
+            setMouseHijack(true);
             setAutoScrolling(options.autoScrolling, 'internal');
             responsive();
 
@@ -631,22 +637,7 @@
             //Scrolls to the section when clicking the navigation bullet
             //simulating the jQuery .on('click') event using delegation
             ['click', 'touchstart'].forEach(function(eventName){
-                document.addEventListener(eventName, function(e){
-                    var target = e.target;
-
-                    if(target && closest(target, SECTION_NAV_SEL + ' a')){
-                        sectionBulletHandler.call(target, e);
-                    }
-                    else if(matches(target, SECTION_NAV_TOOLTIP_SEL)){
-                        tooltipTextHandler.call(target);
-                    }
-                    else if(matches(target, SLIDES_ARROW_SEL)){
-                        slideArrowHandler.call(target, e);
-                    }
-                    else if(matches(target, SLIDES_NAV_LINK_SEL) || closest(target, SLIDES_NAV_LINK_SEL) != null){
-                        slideBulletHandler.call(target, e);
-                    }
-                });
+                document.addEventListener(eventName, delegatedEvents);
             });
 
             /**
@@ -664,6 +655,23 @@
             }
         }
 
+        function delegatedEvents(e){
+            var target = e.target;
+
+            if(target && closest(target, SECTION_NAV_SEL + ' a')){
+                sectionBulletHandler.call(target, e);
+            }
+            else if(matches(target, SECTION_NAV_TOOLTIP_SEL)){
+                tooltipTextHandler.call(target);
+            }
+            else if(matches(target, SLIDES_ARROW_SEL)){
+                slideArrowHandler.call(target, e);
+            }
+            else if(matches(target, SLIDES_NAV_LINK_SEL) || closest(target, SLIDES_NAV_LINK_SEL) != null){
+                slideBulletHandler.call(target, e);
+            }
+        }
+
         function forMouseLeaveOrTOuch(eventName, allowScrolling){
             //a way to pass arguments to the onMouseEnterOrLeave function
             document['fp_' + eventName] = allowScrolling;
@@ -677,7 +685,7 @@
             var normalSelectors = options.normalScrollElements.split(',');
             normalSelectors.forEach(function(normalSelector){
                 if(matches(e.target, normalSelector)){
-                    setAllowScrolling(document['fp_' + e.type]); //e.type = eventName
+                    setMouseHijack(document['fp_' + e.type]); //e.type = eventName
                 }
             });
         }
@@ -921,7 +929,7 @@
                     link = options.anchors[i];
                 }
 
-                li += '<li><a href="#' + link + '"><span></span></a>';
+                li += '<li><a href="#' + link + '"><span class="fp-sr-only">' + getBulletLinkName(i, 'Section') + '</span><span></span></a>';
 
                 // Only add tooltip if needed (defined by user)
                 var tooltip = options.navigationTooltips[i];
@@ -941,6 +949,15 @@
 
             var bullet = $('li', $(SECTION_NAV_SEL)[0])[index($(SECTION_ACTIVE_SEL)[0], SECTION_SEL)];
             addClass($('a', bullet), ACTIVE);
+        }
+
+        /**
+        * Gets the name for screen readers for a section/slide navigation bullet.
+        */
+        function getBulletLinkName(i, defaultName){
+            return options.navigationTooltips[i]
+                || options.anchors[i]
+                || defaultName + ' ' + (i+1)
         }
 
         /*
@@ -1327,6 +1344,12 @@
         function MouseWheelHandler(e) {
             var curTime = new Date().getTime();
             var isNormalScroll = hasClass($(COMPLETELY_SEL)[0], NORMAL_SCROLL);
+
+            //is scroll allowed?
+            if (!isScrollAllowed.m.down && !isScrollAllowed.m.up) {
+                preventDefault(e);
+                return false;
+            }
 
             //autoscrolling and not zooming?
             if(options.autoScrolling && !controlPressed && !isNormalScroll){
@@ -2062,19 +2085,21 @@
         function onTab(e){
             var isShiftPressed = e.shiftKey;
             var activeElement = document.activeElement;
-            var activeSection = $(SECTION_ACTIVE_SEL)[0];
-            var activeSlide = $(SLIDE_ACTIVE_SEL, activeSection)[0];
-            var focusableWrapper = activeSlide ? activeSlide : activeSection;
-            var focusableElements = $(focusableElementsString + ':not([tabindex="-1"])', focusableWrapper);
+            var focusableElements = getFocusables(getSlideOrSection($(SECTION_ACTIVE_SEL)[0]));
 
             function preventAndFocusFirst(e){
                 preventDefault(e);
-                return focusableElements[0].focus();
+                return focusableElements[0] ? focusableElements[0].focus() : null;
+            }
+
+            //outside any section or slide? Let's not hijack the tab!
+            if(isFocusOutside(e)){
+                return;
             }
 
             //is there an element with focus?
             if(activeElement){
-                if(closest(activeElement, SECTION_ACTIVE_SEL + ',' + SLIDE_ACTIVE_SEL) == null){
+                if(closest(activeElement, SECTION_ACTIVE_SEL + ',' + SECTION_ACTIVE_SEL + ' ' + SLIDE_ACTIVE_SEL) == null){
                     activeElement = preventAndFocusFirst(e);
                 }
             }
@@ -2091,6 +2116,31 @@
             ){
                 preventDefault(e);
             }
+        }
+
+        /**
+        * Gets all the focusable elements inside the passed element.
+        */
+        function getFocusables(el){
+            return [].slice.call($(focusableElementsString, el)).filter(function(item) {
+                    return item.getAttribute('tabindex') !== '-1'
+                    //are also not hidden elements (or with hidden parents)
+                    && item.offsetParent !== null;
+            });
+        }
+
+        /**
+        * Determines whether the focus is outside fullpage.js sections/slides or not.
+        */
+        function isFocusOutside(e){
+            var allFocusables = getFocusables(document);
+            var currentFocusIndex = allFocusables.indexOf(document.activeElement);
+            var focusDestinationIndex = e.shiftKey ? currentFocusIndex - 1 : currentFocusIndex + 1;
+            var focusDestination = allFocusables[focusDestinationIndex];
+            var destinationItemSlide = nullOrSlide(closest(focusDestination, SLIDE_SEL));
+            var destinationItemSection = nullOrSection(closest(focusDestination, SECTION_SEL));
+
+            return !destinationItemSlide && !destinationItemSection;
         }
 
         //Scrolling horizontally when clicking on the slider controls.
@@ -2575,7 +2625,7 @@
             var slide = getSlideByAnchor(slideAnchor, section);
 
             //we need to scroll to the section and then to the slide
-            if (sectionAnchor !== lastScrolledDestiny && !hasClass(section, ACTIVE)){
+            if (getAnchor(section) !== lastScrolledDestiny && !hasClass(section, ACTIVE)){
                 scrollPage(section, function(){
                     scrollSlider(slide);
                 });
@@ -2606,7 +2656,7 @@
             addClass(nav, 'fp-' + options.slidesNavPosition);
 
             for(var i=0; i< numSlides; i++){
-                appendTo(createElementFromHTML('<li><a href="#"><span></span></a></li>'), $('ul', nav)[0] );
+                appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide') +'</span><span></span></a></li>'), $('ul', nav)[0] );
             }
 
             //centering it
@@ -2963,7 +3013,8 @@
         */
         function destroy(all){
             setAutoScrolling(false, 'internal');
-            setAllowScrolling(false);
+            setAllowScrolling(true);
+            setMouseHijack(false);
             setKeyboardScrolling(false);
             addClass(container, DESTROYED);
 
@@ -2981,11 +3032,8 @@
             document.removeEventListener('keydown', keydownHandler);
             document.removeEventListener('keyup', keyUpHandler);
 
-            var clickTouchEvents = [sectionBulletHandler, tooltipTextHandler, slideArrowHandler, slideBulletHandler];
             ['click', 'touchstart'].forEach(function(eventName){
-                clickTouchEvents.forEach(function(foo){
-                    document.removeEventListener(eventName, foo);
-                });
+                document.removeEventListener(eventName, delegatedEvents);
             });
 
             ['mouseenter', 'touchstart', 'mouseleave', 'touchend'].forEach(function(eventName){
@@ -3085,8 +3133,7 @@
             });
 
             //scrolling the page to the top with no animation
-            $('html')[0].scrollTo(0, 0);
-            $('body')[0].scrollTo(0, 0);
+            window.scrollTo(0, 0);
 
             //removing selectors
             var usedSelectors = [SECTION, SLIDE, SLIDES_CONTAINER];
@@ -3130,8 +3177,9 @@
                 showError('warn', 'Option `loopTop/loopBottom` is mutually exclusive with `continuousVertical`; `continuousVertical` disabled');
             }
 
-            if(options.scrollBar && options.scrollOverflow){
-                showError('warn', 'Option `scrollBar` is mutually exclusive with `scrollOverflow`. Sections with scrollOverflow might not work well in Firefox');
+            if(options.scrollOverflow &&
+               (options.scrollBar || !options.autoScrolling)){
+                showError('warn', 'Options scrollBar:true and autoScrolling:false are mutually exclusive with scrollOverflow:true. Sections with scrollOverflow might not work well in Firefox');
             }
 
             if(options.continuousVertical && (options.scrollBar || !options.autoScrolling)){
@@ -3838,7 +3886,8 @@
         filter: filter,
         untilAll: untilAll,
         nextAll: nextAll,
-        prevAll: prevAll
+        prevAll: prevAll,
+        showError: showError
     };
 
     return initialise;
@@ -3865,5 +3914,5 @@ if(window.jQuery && window.fullpage){
                 $.fn.fullpage[key] = FP[key];
             });
         };
-    })(jQuery, fullpage);
+    })(window.jQuery, window.fullpage);
 }

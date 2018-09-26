@@ -10,17 +10,21 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
 </p>
 
+<p align="center">
+	适用于<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>和<a href="https://github.com/alvarotrigo/react-fullpage">React</a>
+</p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.3-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [现场演示](http://alvarotrigo.com/fullPage/)
+- [现场演示](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js扩展](http://alvarotrigo.com/fullPage/extensions/)
+- Wrappers: [Vue.js[()] | React.js
 - [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 
 ---
@@ -62,7 +66,7 @@ fullPage.js兼容所有的现代浏览器，以及一些旧版浏览器，如Int
 ## 许可证
 
 ### 商业许可证
-如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[点击此处购买fullpage商业许可证](https://alvarotrigo.com/fullPage/pricing/）
+如果您想使用fullPage开发商业网站、主题、项目和应用程序，商业许可证是您应使用的许可证。使用这个许可证，您的源代码将保留专有权。 这意味着，您不必将整个应用程序源代码更改为开源许可证。[点击此处购买fullpage商业许可证](https://alvarotrigo.com/fullPage/pricing/)
 
 ### 开源许可证
 如果您使用与[GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html)兼容的许可证创建开源应用程序，则可以在GPLv3条款下使用fullPage。
@@ -106,6 +110,8 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
+Using Webpack, Browserify or Require.js? Check <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">how to use fullPage.js with module loaders</a>.
+
 ### 可选用CDN：
 如果您倾向使用CDN载入所需文件，fullPage.js在CDNJS：
 https://cdnjs.com/libraries/fullPage.js
@@ -139,7 +145,7 @@ HTML文件中的首行HTML代码必须使用[HTML DOCTYPE 声明](http://www.cor
 	<div class="slide"> 幻灯片 4 </div>
 </div>
 ````
-可以在[`demoPage.html`文件](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)看到完整的HTML结构的例子
+可以在[`simple.html`文件](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html)看到完整的HTML结构的例子
 
 ### 初始化
 
@@ -365,7 +371,13 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 ## 选项
 
--`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 否则，您可以使用字符串`OPEN-SOURCE-GPLV3-LICENSE`。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。
+-`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 否则，您可以使用字符串`OPEN-SOURCE-GPLV3-LICENSE`。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。例如：
+
+```javascript
+new fullpage({
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 - `v2compatible`: (默认 `false`). 确定是否使其与版本2编写的任何代码100％兼容，忽略版本3的新功能或api更改。状态类，回调签名等的工作方式与在版本2上完全相同。**请注意该选项将在之后的某个时候被删除。**。
 
@@ -911,7 +923,7 @@ new fullpage('#fullpage', {
 1.请在提问之前使用github问题搜索查找您的问题。
 2.确保使用最新的fullpage.js版本。 不支持旧版本。
 3.使用[Github问题论坛](https://github.com/alvarotrigo/fullPage.js/issues)来创建问题。
-4.**需要单独复制该问题**使用[jsfiddle](https://jsfiddle.net/1kyuL4em/2/)或[codepen](http://codepen.io/alvarotrigo / pen / NxyPPp)，如果可能的话。
+4.**需要单独复制该问题**使用[jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/)或[codepen](http://codepen.io/alvarotrigo/pen/NxyPPp)，如果可能的话。
 
 # 贡献给fullpage.js
 请参阅[贡献给fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
@@ -924,7 +936,8 @@ new fullpage('#fullpage', {
 
 # 参考资源
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3的值)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)

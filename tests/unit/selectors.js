@@ -35,8 +35,14 @@ QUnit.test('Testing multiple selectors for sections', function(assert) {
     var customSelector = '.selector1, .section';
     try{
         var FP = initFullpageNew(id, {sectionSelector: customSelector});
-        assert.equal('4', FP.getFullpageData.anchors.length, 'We expect 4 anchors');
+        console.log(typeof FP.getFullpageData);
+        if(typeof FP.getFullpageData === 'object'){
+            assert.equal('4', FP.getFullpageData.anchors.length, 'We expect 4 anchors');
+        }else{
+            assert.equal('4', FP.getFullpageData().options.anchors.length, 'We expect 4 anchors');
+        }
     }catch(error){
+        console.warn(error);
         assert.ok(false, 'Error initializing fullpage.js');
     }
 });

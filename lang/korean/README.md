@@ -10,15 +10,18 @@
   <span>한국어</span>
 </p>
 
+<p align="center">
+	<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>와 <a href="https://github.com/alvarotrigo/react-fullpage">React</a>에서 사용 가능.
+</p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.2-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.3-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [실시간 데모](http://alvarotrigo.com/fullPage/)
+- [실시간 데모](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [워드프레스 테마](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/)
 - [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -104,6 +107,8 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
+Using Webpack, Browserify or Require.js? Check <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">how to use fullPage.js with module loaders</a>.
+
 ### CDN 사용 가능
 필요한 파일을 불러오실 때 CDN이 더 편하시다면 fullPage.js를 CDNJS 양식(https://cdnjs.com/libraries/fullPage.js)으로도 사용하실 수 있습니다.
 
@@ -135,7 +140,7 @@ HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelang
 	<div class="slide"> Slide 4 </div>
 </div>
 ````
-[`demoPage.html` 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/demoPage.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
+[`simple.html` 파일](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html)에서 완전히 구현되는 HTML 구조 예시를 보실 수 있습니다.
 
 ### 초기 설정
 
@@ -356,7 +361,13 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 
 ## 옵션
 
-- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다.
+- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
+
+```javascript
+new fullpage({
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 - `v2compatible`: (기본값 `false`). 버전 3의 새로운 기능이나 api 변화를 무시하고 버전 2에 맞게 만들어진 모든 코드와 100% 호환 가능한지를 결정합니다. 상태 클래스, 콜백 시그니처 등이 버전 2에서 작동했던 것과 마찬가지로 완전히 동일하게 작동합니다. **이 옵션은 언젠가는 없어질 것임을 염두해 주십시오**.
 
@@ -902,7 +913,7 @@ new fullpage('#fullpage', {
 1. 문의하시기 이전에 먼저 github 검색으로 찾아보시기 바랍니다.
 2. fullpage.js 최신 버전을 쓰시기 바랍니다. 이전 버전은 지원해 드리지 않습니다.
 3. [Github 문제 포럼](https://github.com/alvarotrigo/fullPage.js/issues)을 활용해 보세요.
-4. **문제만 따로 떼어내어 재현해야 합니다.** 가능하다면 [jsfiddle](https://jsfiddle.net/1kyuL4em/2/)이나 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp)을 활용하시기 바랍니다.
+4. **문제만 따로 떼어내어 재현해야 합니다.** 가능하다면 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/)이나 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp)을 활용하시기 바랍니다.
 
 # fullpage.js에 기여하기
 [fullpage.js에 기여하기](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)를 방문해 주세요.
@@ -915,7 +926,8 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 
 # 재료가 되는 도구
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
+- [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (`easingcss3` 값을 정의하는 데 유용)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js October CMS 플러그인](http://octobercms.com/plugin/freestream-parallax)
