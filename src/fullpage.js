@@ -223,6 +223,7 @@
         var keydownId;
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
+        var g_initialAnchorsInDom = false;
 
         displayWarnings();
 
@@ -700,6 +701,7 @@
                 var attrName = '[data-anchor]';
                 var anchors = $(options.sectionSelector.split(',').join(attrName + ',') + attrName, container);
                 if(anchors.length){
+                    g_initialAnchorsInDom = true;
                     anchors.forEach(function(item){
                         options.anchors.push(item.getAttribute('data-anchor').toString());
                     });
@@ -3112,6 +3114,11 @@
                 var previousStyles = item.getAttribute('data-fp-styles');
                 if(previousStyles){
                     item.setAttribute('style', item.getAttribute('data-fp-styles'));
+                }
+
+                //removing anchors if they were not set using the HTML markup
+                if(hasClass(item, SECTION) && !g_initialAnchorsInDom){
+                    item.removeAttribute('data-anchor');
                 }
             });
 
