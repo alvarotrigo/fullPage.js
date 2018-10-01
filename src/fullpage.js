@@ -2871,14 +2871,12 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                     $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
-                
-                if ($(WRAPPER_SEL).length > 0) {
-                    $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                    $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
 
-                    $(WRAPPER_SEL)[0].addEventListener(events.touchstart, touchStartHandler);
-                    $(WRAPPER_SEL)[0].addEventListener(events.touchmove, touchMoveHandler, {passive: false});
-                }
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+
+                $(WRAPPER_SEL)[0].addEventListener(events.touchstart, touchStartHandler);
+                $(WRAPPER_SEL)[0].addEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
@@ -2893,10 +2891,8 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                if ($(WRAPPER_SEL).length > 0) {
-                    $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                    $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
-                }
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
+                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
