@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.3
+ * fullPage 3.0.4
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -3918,7 +3918,8 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-            var FP = new fullpage('#' + $(this).attr('id'), options);
+
+            var FP = new fullpage(this[0], options);
 
             //Static API
             Object.keys(FP).forEach(function (key) {
