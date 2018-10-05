@@ -2504,8 +2504,8 @@ if ( typeof module != 'undefined' && module.exports ) {
                     scrollable.fp_iscrollInstance = null;
 
                     //unwrapping...
-                    $('.fp-scroller', element)[0].outerHTML = $('.fp-scroller', element)[0].innerHTML;
-                    $(SCROLLABLE_SEL, element)[0].outerHTML = $(SCROLLABLE_SEL, element)[0].innerHTML;
+                    fp_utils.unwrap($('.fp-scroller', element)[0]);
+                    fp_utils.unwrap($(SCROLLABLE_SEL, element)[0]);
                 }
             },
 
