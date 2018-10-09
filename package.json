@@ -50,8 +50,5 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^3.0.0"
-  },
-  "dependencies": {
-    "jquery": "^3.3.1"
   }
 }
