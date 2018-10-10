@@ -2893,8 +2893,10 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                if($(WRAPPER_SEL)[0]){
+                  $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
+                  $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                }
             }
         }
 
