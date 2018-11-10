@@ -3109,7 +3109,7 @@
 
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).forEach(function(item){
-                if(options.scrollOverflowHandler){
+                if(options.scrollOverflowHandler && options.scrollOverflow){
                     options.scrollOverflowHandler.remove(item);
                 }
                 removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
