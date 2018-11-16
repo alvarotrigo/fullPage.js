@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-	适用于<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>和<a href="https://github.com/alvarotrigo/react-fullpage">React</a>
+	适用于<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>,<a href="https://github.com/alvarotrigo/react-fullpage">React</a>和<a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>
 </p>
 ---
 
@@ -371,7 +371,7 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 ## 选项
 
--`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 否则，您可以使用字符串`OPEN-SOURCE-GPLV3-LICENSE`。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。例如：
+-`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 如果您的项目是开放的，请[与我[联系](https://alvarotrigo.com/#contact)并提供指向您的存储库的链接以获取许可证密钥。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。例如：
 
 ```javascript
 new fullpage({
@@ -938,6 +938,7 @@ new fullpage('#fullpage', {
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3的值)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)

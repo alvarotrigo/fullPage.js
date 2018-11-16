@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a> and <a href="https://github.com/alvarotrigo/react-fullpage">React</a>.
+	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> and <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
 </p>
 
 ---
@@ -371,7 +371,7 @@ Then you will be able to use and configure them as explained in [options](https:
 
 ## Options
 
-- `licenseKey`: (default `null`). **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. Otherwise, you can use the string `OPEN-SOURCE-GPLV3-LICENSE`. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/). For example:
+- `licenseKey`: (default `null`). **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. If your project is open source, [contact me](https://alvarotrigo.com/#contact) with a link to its repository and I'll provide you a license key. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/). For example:
 
 ```javascript
 new fullpage({
@@ -949,6 +949,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)

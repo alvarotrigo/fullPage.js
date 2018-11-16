@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-	<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>와 <a href="https://github.com/alvarotrigo/react-fullpage">React</a>에서 사용 가능.
+	<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a>와 <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a> 에서 사용 가능.
 </p>
 ---
 
@@ -361,7 +361,7 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 
 ## 옵션
 
-- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
+- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. If your project is open source, [contact me](https://alvarotrigo.com/#contact) with a link to its repository and I'll provide you a license key. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
 
 ```javascript
 new fullpage({
@@ -928,6 +928,7 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (`easingcss3` 값을 정의하는 데 유용)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js October CMS 플러그인](http://octobercms.com/plugin/freestream-parallax)

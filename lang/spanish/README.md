@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-	Disponible para <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a> y <a href="https://github.com/alvarotrigo/react-fullpage">React</a>.
+	Disponible para <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> y <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
 </p>
 
 ---
@@ -371,8 +371,8 @@ Luego podrás usar la extensión y configurarla tal y como se explica en las [op
 
 ## Opciones
 
-- `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. De lo contrario, podrás usar la cadena `OPEN-SOURCE-GPLV3-LICENSE`.
-Puedes leer más acerca de las lencencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
+- `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. Si tu proyecto es de código libre, [contacta conmigo](https://alvarotrigo.com/#contact) con un link a su repositorio para obtener una clave de licencia.
+Puedes leer más acerca de las licencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
 
 ```javascript
 new fullpage({
@@ -937,6 +937,7 @@ Sólo disponible en inglés :)
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](https://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
