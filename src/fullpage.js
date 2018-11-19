@@ -1540,7 +1540,7 @@
             }
 
             //callback (onLeave) if the site is not just resizing and readjusting the slides
-            if(isFunction(options.onLeave) && !v.localIsResizing){
+            if(!v.localIsResizing){
                 var direction = v.yMovement;
 
                 //required for continousVertical
@@ -1551,8 +1551,10 @@
                 //for the callback
                 v.direction = direction;
 
-                if(fireCallback('onLeave', v) === false){
-                    return;
+                if(isFunction(options.onLeave)){
+                    if(fireCallback('onLeave', v) === false){
+                        return;
+                    }
                 }
             }
 
