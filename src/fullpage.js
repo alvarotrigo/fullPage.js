@@ -3334,7 +3334,7 @@
             this.anchor = el.getAttribute('data-anchor');
             this.item = el;
             this.index = index(el, selector);
-            this.isLast = this.index === $(selector).length -1;
+            this.isLast = this.index === el.parentElement.querySelectorAll(selector).length -1;
             this.isFirst = !this.index;
         }
 
