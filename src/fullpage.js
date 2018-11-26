@@ -612,6 +612,11 @@
                 scrollToAnchor();
             }
             window.addEventListener('load', scrollToAnchor);
+
+            //if we use scrollOverflow we'll fire afterRender in the scrolloverflow file
+            if(!options.scrollOverflow){
+                afterRenderActions();
+            }
         }
 
         function bindEvents(){
@@ -781,8 +786,6 @@
 
             if(options.scrollOverflow){
                 scrollBarHandler = options.scrollOverflowHandler.init(options);
-            }else{
-                afterRenderActions();
             }
         }
 
