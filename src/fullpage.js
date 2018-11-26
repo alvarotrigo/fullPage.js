@@ -652,11 +652,11 @@
             */
             if(options.normalScrollElements){
                 ['mouseenter', 'touchstart'].forEach(function(eventName){
-                    forMouseLeaveOrTOuch(eventName, false);
+                    forMouseLeaveOrTouch(eventName, false);
                 });
 
                 ['mouseleave', 'touchend'].forEach(function(eventName){
-                   forMouseLeaveOrTOuch(eventName, true);
+                   forMouseLeaveOrTouch(eventName, true);
                 });
             }
         }
@@ -678,7 +678,7 @@
             }
         }
 
-        function forMouseLeaveOrTOuch(eventName, allowScrolling){
+        function forMouseLeaveOrTouch(eventName, allowScrolling){
             //a way to pass arguments to the onMouseEnterOrLeave function
             document['fp_' + eventName] = allowScrolling;
             document.addEventListener(eventName, onMouseEnterOrLeave, true); //capturing phase
@@ -690,7 +690,7 @@
             }
             var normalSelectors = options.normalScrollElements.split(',');
             normalSelectors.forEach(function(normalSelector){
-                if(matches(e.target, normalSelector)){
+                if(closest(e.target, normalSelector) != null){
                     setMouseHijack(document['fp_' + e.type]); //e.type = eventName
                 }
             });
