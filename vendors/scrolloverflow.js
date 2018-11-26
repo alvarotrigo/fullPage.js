@@ -2534,8 +2534,9 @@ if ( typeof module != 'undefined' && module.exports ) {
                 //updating the wrappers height
                 fp_utils.css($(SCROLLABLE_SEL, element)[0], {'height': scrollHeight + 'px'});
 
-                var parentHeight = g_fullpageOptions.verticalCentered ? scrollHeight + getPaddings(element) : scrollHeight;
-                fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': parentHeight + 'px'});
+                if(g_fullpageOptions.verticalCentered){
+                    fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': scrollHeight + 'px'});
+                }
             },
 
             /**
