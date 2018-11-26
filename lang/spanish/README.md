@@ -305,7 +305,7 @@ Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en l
 ```
 
 #### Secciones de tamaño automático y responsive
-[Demostración](https://codepen.io/alvarotrigo/pen/WZmMgZ) fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
+[Demostración](https://codepen.io/alvarotrigo/pen/MzByMa) Usando la clase `fp-auto-height-responsive` fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
 De este modo la sección pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opcion `responsiveWidth` o `responsiveHeight`)
 
 ### Classes de estado añadidas por fullpage.js

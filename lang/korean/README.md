@@ -297,7 +297,7 @@ HTML 교정(마크업)에서 `data-anchor` 속성을 쓴다면 슬라이드에 �
 ```
 
 #### 반응형 자동 높이 구역
-[데모](https://codepen.io/alvarotrigo/pen/WZmMgZ) 반응형 자동 높이는 `fp-auto-height-responsive` 클래스로 만드실 수 있습니다. 이렇게 하시면 반응형 모드가 실행되기 전까지는 구역이 전체 화면이 됩니다. 반응형 모드가 실행되면 컨텐츠가 요구하는 크기를 띄게 되는데, 모바일 지원(viewport)보다 더 크거나 작을 수 있습니다.
+[데모](https://codepen.io/alvarotrigo/pen/MzByMa) 반응형 자동 높이는 `fp-auto-height-responsive` 클래스로 만드실 수 있습니다. 이렇게 하시면 반응형 모드가 실행되기 전까지는 구역이 전체 화면이 됩니다. 반응형 모드가 실행되면 컨텐츠가 요구하는 크기를 띄게 되는데, 모바일 지원(viewport)보다 더 크거나 작을 수 있습니다.
 
 ### fullpage.js가 추가하는 상태 클래스
 Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소로 다양한 클래스를 추가합니다.

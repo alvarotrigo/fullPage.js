@@ -304,7 +304,7 @@ URL`#secondPage/2` 结尾处的锚分别定义了目标段落和幻灯片。 在
 ```
 
 #### 响应自动高度段落
-[演示](https://codepen.io/alvarotrigo/pen/WZmMgZ) 响应自动高度可以通过使用`fp-auto-height-responsive`类来调用。 这种方式段落将全屏，直到响应模式终止。 根据定义调整大小，可能是大于或小于视口。
+[演示](https://codepen.io/alvarotrigo/pen/MzByMa) 响应自动高度可以通过使用`fp-auto-height-responsive`类来调用。 这种方式段落将全屏，直到响应模式终止。 根据定义调整大小，可能是大于或小于视口。
 
 ### 由fullpage.js添加的状态类
 Fullpage.js在不同的元素中添加多个类来保存网站状态的记录：

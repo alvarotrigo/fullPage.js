@@ -304,7 +304,7 @@ To create smaller sections just use the class `fp-auto-height` in the section yo
 ```
 
 #### Responsive auto height sections
-[Demo](https://codepen.io/alvarotrigo/pen/WZmMgZ) A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be fullscreen until the responsive mode gets fired. Then they'll take the size required by their content, which could be bigger or smaller than the viewport.
+[Demo](https://codepen.io/alvarotrigo/pen/MzByMa) A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be fullscreen until the responsive mode gets fired. Then they'll take the size required by their content, which could be bigger or smaller than the viewport.
 
 ### State classes added by fullpage.js
 Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
