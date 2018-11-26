@@ -312,8 +312,8 @@ Fullpage.js在不同的元素中添加多个类来保存网站状态的记录：
 - `active` 添加当前可见部分并滑动。
 - `active` 被添加到当前菜单元素（如果使用`menu`选项）。
 - `fp-viewing-SECTION-SLIDE`形式的类被添加到网站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) `SECTION`和`SLIDE`部分将成为当前部分和幻灯片的锚（或索引，如果没有提供锚）。
-- 当进入响应模式时，`fp-responsive`添加到`body`元素`
-- 当启用fullpage.js时，`fp-enabled`添加到`html`元素。 （并在销毁时被移除）。
+- 当进入响应模式时，`fp-responsive`添加到`body`元素
+- 当启用fullpage.js时，`fp-enabled` 添加到`html`元素。 （并在销毁时被移除）。
 - 当fullPage.js被销毁时，`fp-destroyed`被添加到fullpage.js容器中。
 
 ### 延迟加载
@@ -413,11 +413,11 @@ new fullpage('#fullpage', {
 
 - `loopHorizontal`:（默认为`true`）定义水平滑块是否在到达上一张或上一张幻灯片后循环。
 
-- `css3`: （默认`true`）。 定义是否使用JavaScript或CSS3变换在部分和幻灯片中滚动。 有助于通过支持CSS3的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为`true，并且浏览器不支持CSS3，则将使用后备。
+- `css3`: （默认`true`）。 定义是否使用JavaScript或CSS3变换在部分和幻灯片中滚动。 有助于通过支持CSS3的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为`true`，并且浏览器不支持CSS3，则将使用后备。
 
 - `autoScrolling`: （默认为`true`）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
 
-- `fitToSection`: （默认为`true`）确定是否节放入视口中。 当设置为`true时，当前活动节将始终填充整个视口。 否则，用户可以自由地停留在一个节的中间（何时）
+- `fitToSection`: （默认为`true`）确定是否节放入视口中。 当设置为`true`时，当前活动节将始终填充整个视口。 否则，用户可以自由地停留在一个节的中间（何时）
 
 - `fitToSectionDelay`: （默认1000）。 如果`fitToSection`设置为true，则延迟
 以毫秒为单位进行拟合。
@@ -432,7 +432,7 @@ new fullpage('#fullpage', {
 
 - `normalScrollElements`: （默认`null`）如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动div等有用）它需要一个字符串与这些元素的Javascript选择器。 （例如：`normalScrollElements：'＃element1，.element2'`）。 此选项不应该应用于任何节/幻灯片元素本身。
 
-- `normalScrollElementTouchThreshold` : （默认`5`）定义html节点树的跳数阈值Fullpage将测试`normalScrollElements是否匹配，以允许在触摸设备上的div的滚动功能。 （例如：`normalScrollElementTouchThreshold：3`）
+- `normalScrollElementTouchThreshold` : （默认`5`）定义html节点树的跳数阈值Fullpage将测试`normalScrollElement`是否匹配，以允许在触摸设备上的div的滚动功能。 （例如：`normalScrollElementTouchThreshold：3`）
 
 - `bigSectionsDestination`: （默认`null`）定义如何滚动到比视口大的部分。 默认情况下，如果您来自目的地上方的部分，fullPage.js将滚动到顶部，如果您来自目的地之下的部分，则会滚动到底部。 可能的值是`top`，`bottom`，`null`。
 
@@ -446,7 +446,7 @@ new fullpage('#fullpage', {
 
 - `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 需要fullpage.js> = 2.8.3。
 
-- `interlockedSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块在其他段落中的滑动方向相同。 可能的值是`true`，`false或带有互锁部分的数组。 例如`[1,3,5]`从1开始。需要fullpage.js> = 2.8.3。
+- `interlockedSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块在其他段落中的滑动方向相同。 可能的值是`true`，`false`或带有互锁部分的数组。 例如`[1,3,5]`从1开始。需要fullpage.js> = 2.8.3。
 
 - `dragAndMove`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指拖动和滑动部分和幻灯片。 需要fullpage.js> = 2.8.9。 可能的值是：
   - `true`: 启用该功能。
@@ -517,7 +517,7 @@ new fullpage('#fullpage', {
 
 - `scrollOverflowReset`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 如果设置为`true`，当离开另一个垂直节时，使用滚动条向上滚动节/幻灯片的内容。 这样，即使从下面的节滚动，节/幻灯片也会始终显示其内容的开始。
 
-- `scrollOverflowOptions`: 当使用scrollOverflow：true时，fullpage.js将使用[iScroll.js库文件](https://github.com/cubiq/iscroll/)的分叉和修改版本。 您可以通过为要使用的iScroll.js选项提供fullpage.js来自定义滚动行为。 查看[它的文档](http://iscrolljs.com/)了解更多信息。
+- `scrollOverflowOptions`: 当使用scrollOverflow：true时，fullpage.js将使用[iScroll.js库文件](https://github.com/cubiq/iscroll/)的分叉和修改版本。 您可以通过为要使用的iScroll.js选项提供fullpage.js来自定义滚动行为。 查看[它的文档](https://github.com/cubiq/iscroll)了解更多信息。
 
 - `sectionSelector`: （默认`.section`）定义用于插件部分的Javascript选择器。 有时可能需要更改，以避免与使用与fullpage.js相同的选择器的其他插件的问题。
 
@@ -698,7 +698,7 @@ fullpage_api.reBuild();
 ```
 ---
 ### setResponsive(boolean)
-[示例](http://codepen.io/alvarotrigo/pen/WxOyLA) 设置页面的响应模式。 当设置为`true时，自动滚动将被关闭，结果与`responsiveWidth`或`responsiveHeight`选项被触发时的结果完全相同。
+[示例](http://codepen.io/alvarotrigo/pen/WxOyLA) 设置页面的响应模式。 当设置为`true`时，自动滚动将被关闭，结果与`responsiveWidth`或`responsiveHeight`选项被触发时的结果完全相同。
 ```javascript
 fullpage_api.setResponsive(true);
 ```
@@ -786,7 +786,7 @@ new fullpage('#fullpage', {
 ```
 
 #### 触发之前取消滚动
-您可以通过在`onLeave`回调函数上返回`false来取消滚动：
+您可以通过在`onLeave`回调函数上返回`false`来取消滚动：
 
 ```javascript
 new fullpage('#fullpage', {
@@ -939,7 +939,7 @@ new fullpage('#fullpage', {
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
-- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3的值)
+- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义`easingcss3`的值)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)

@@ -126,12 +126,12 @@ HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelang
 	<div class="section">Some section</div>
 </div>
 ```
-첫번째 구역이나 구역의 첫번째 슬라이드 이외에 다른 곳을 출발점으로 정의하고 싶으시다면 처음 불러오시려는 구역과 슬라이드에 `active 클래스를 추가하시기만 하면 됩니다.
+첫번째 구역이나 구역의 첫번째 슬라이드 이외에 다른 곳을 출발점으로 정의하고 싶으시다면 처음 불러오시려는 구역과 슬라이드에 `active` 클래스를 추가하시기만 하면 됩니다.
 ```html
 <div class="section active">Some section</div>
 ```
 
-구역 내에 수평 방향 슬라이더를 만들기 위해 기본 설정으로 각 슬라이드가 `slide 클래스가 들어 있는 요소로 정의됩니다.
+구역 내에 수평 방향 슬라이더를 만들기 위해 기본 설정으로 각 슬라이드가 `slide` 클래스가 들어 있는 요소로 정의됩니다.
 ```html
 <div class="section">
 	<div class="slide"> Slide 1 </div>
@@ -501,7 +501,7 @@ new fullpage('#fullpage', {
 
 - `scrollOverflowReset`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다.
 
-- `scrollOverflowOptions`: scrollOverflow:true를 쓰시면 fullpage.js가 [iScroll.js 라이브러리](https://github.com/cubiq/iscroll/)의 포크(forked) 및 수정 버전을 사용합니다. iScroll.js 옵션을 fullpage.js에게 주시면 스크롤 행위를 맞춤화하실 수 있습니다. 더 자세한 정보를 알고 싶으시다면 [기록 문서](http://iscrolljs.com/)를 방문해 보세요.
+- `scrollOverflowOptions`: scrollOverflow:true를 쓰시면 fullpage.js가 [iScroll.js 라이브러리](https://github.com/cubiq/iscroll/)의 포크(forked) 및 수정 버전을 사용합니다. iScroll.js 옵션을 fullpage.js에게 주시면 스크롤 행위를 맞춤화하실 수 있습니다. 더 자세한 정보를 알고 싶으시다면 [기록 문서](https://github.com/cubiq/iscroll)를 방문해 보세요.
 
 - `sectionSelector`: (기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
