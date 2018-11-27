@@ -676,6 +676,9 @@
             else if(matches(target, SLIDES_NAV_LINK_SEL) || closest(target, SLIDES_NAV_LINK_SEL) != null){
                 slideBulletHandler.call(target, e);
             }
+            else if(closest(target, options.menu + ' [data-menuanchor]')){
+                menuItemsHandler.call(target, e);
+            }
         }
 
         function forMouseLeaveOrTouch(eventName, allowScrolling){
@@ -2191,6 +2194,14 @@
             var destiny = $(SLIDE_SEL, slides)[index(closest(this, 'li'))];
 
             landscapeScroll(slides, destiny);
+        }
+
+        //Menu item handler when not using anchors or using lockAnchors:true
+        function menuItemsHandler(e){
+            if($(options.menu)[0] && (options.lockAnchors || !options.anchors.length)){
+                preventDefault(e);
+                moveTo(this.getAttribute('data-menuanchor'));
+            }
         }
 
         /**
