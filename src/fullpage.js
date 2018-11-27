@@ -2426,8 +2426,15 @@
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-                        reBuild(true);
-                        previousHeight = currentHeight;
+                        resizeId = setTimeout(function(){
+                            reBuild(true);
+                            previousHeight = currentHeight;
+
+                            //issue #3336
+                            //when using Chrome we add a small timeout to get the right window height 
+                            //https://stackoverflow.com/a/12556928/1081396
+                            //https://stackoverflow.com/questions/13807810/ios-chrome-detection
+                        }, navigator.userAgent.match('CriOS') ? 50 : 0);
                     }
                 }
             }else{
