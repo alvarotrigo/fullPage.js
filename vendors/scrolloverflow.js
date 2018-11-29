@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.1.0
+* Customized version of iScroll.js 0.1.1
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
@@ -2131,7 +2131,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.1 module for fullPage.js >= 3
+* Scrolloverflow 2.0.2 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
@@ -2339,10 +2339,10 @@ if ( typeof module != 'undefined' && module.exports ) {
          * @type {Object}
          */
         var $ = null;
+        var g_fullpageOptions = null;
         var iscrollHandler = {
             refreshId: null,
             iScrollInstances: [],
-            fullpageOptions: null,
 
             // Default options for iScroll.js used when using scrollOverflow
             iscrollOptions: {
@@ -2356,7 +2356,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             init: function(options){
                 $ = fp_utils.$;
-                iscrollHandler.fullpageOptions = options;
+                g_fullpageOptions = options;
 
                 var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 
@@ -2504,8 +2504,8 @@ if ( typeof module != 'undefined' && module.exports ) {
                     scrollable.fp_iscrollInstance = null;
 
                     //unwrapping...
-                    $('.fp-scroller', element)[0].outerHTML = $('.fp-scroller', element)[0].innerHTML;
-                    $(SCROLLABLE_SEL, element)[0].outerHTML = $(SCROLLABLE_SEL, element)[0].innerHTML;
+                    fp_utils.unwrap($('.fp-scroller', element)[0]);
+                    fp_utils.unwrap($(SCROLLABLE_SEL, element)[0]);
                 }
             },
 
@@ -2534,8 +2534,9 @@ if ( typeof module != 'undefined' && module.exports ) {
                 //updating the wrappers height
                 fp_utils.css($(SCROLLABLE_SEL, element)[0], {'height': scrollHeight + 'px'});
 
-                var parentHeight = iscrollHandler.fullpageOptions.verticalCentered ? scrollHeight + getPaddings(element) : scrollHeight;
-                fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': parentHeight + 'px'});
+                if(g_fullpageOptions.verticalCentered){
+                    fp_utils.css($(SCROLLABLE_SEL, element)[0].parentNode, {'height': scrollHeight + 'px'});
+                }
             },
 
             /**

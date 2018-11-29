@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-	<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>와 <a href="https://github.com/alvarotrigo/react-fullpage">React</a>에서 사용 가능.
+	<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a>와 <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a> 에서 사용 가능.
 </p>
 ---
 
@@ -126,12 +126,12 @@ HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](http://www.corelang
 	<div class="section">Some section</div>
 </div>
 ```
-첫번째 구역이나 구역의 첫번째 슬라이드 이외에 다른 곳을 출발점으로 정의하고 싶으시다면 처음 불러오시려는 구역과 슬라이드에 `active 클래스를 추가하시기만 하면 됩니다.
+첫번째 구역이나 구역의 첫번째 슬라이드 이외에 다른 곳을 출발점으로 정의하고 싶으시다면 처음 불러오시려는 구역과 슬라이드에 `active` 클래스를 추가하시기만 하면 됩니다.
 ```html
 <div class="section active">Some section</div>
 ```
 
-구역 내에 수평 방향 슬라이더를 만들기 위해 기본 설정으로 각 슬라이드가 `slide 클래스가 들어 있는 요소로 정의됩니다.
+구역 내에 수평 방향 슬라이더를 만들기 위해 기본 설정으로 각 슬라이드가 `slide` 클래스가 들어 있는 요소로 정의됩니다.
 ```html
 <div class="section">
 	<div class="slide"> Slide 1 </div>
@@ -297,7 +297,7 @@ HTML 교정(마크업)에서 `data-anchor` 속성을 쓴다면 슬라이드에 �
 ```
 
 #### 반응형 자동 높이 구역
-[데모](https://codepen.io/alvarotrigo/pen/WZmMgZ) 반응형 자동 높이는 `fp-auto-height-responsive` 클래스로 만드실 수 있습니다. 이렇게 하시면 반응형 모드가 실행되기 전까지는 구역이 전체 화면이 됩니다. 반응형 모드가 실행되면 컨텐츠가 요구하는 크기를 띄게 되는데, 모바일 지원(viewport)보다 더 크거나 작을 수 있습니다.
+[데모](https://codepen.io/alvarotrigo/pen/MzByMa) 반응형 자동 높이는 `fp-auto-height-responsive` 클래스로 만드실 수 있습니다. 이렇게 하시면 반응형 모드가 실행되기 전까지는 구역이 전체 화면이 됩니다. 반응형 모드가 실행되면 컨텐츠가 요구하는 크기를 띄게 되는데, 모바일 지원(viewport)보다 더 크거나 작을 수 있습니다.
 
 ### fullpage.js가 추가하는 상태 클래스
 Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소로 다양한 클래스를 추가합니다.
@@ -361,7 +361,7 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 
 ## 옵션
 
-- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. 이외 경우에는 `OPEN-SOURCE-GPLV3-LICENSE` 문자열을 쓰실 수 있습니다. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
+- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. If your project is open source, [contact me](https://alvarotrigo.com/#contact) with a link to its repository and I'll provide you a license key. 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
 
 ```javascript
 new fullpage({
@@ -501,7 +501,7 @@ new fullpage('#fullpage', {
 
 - `scrollOverflowReset`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다.
 
-- `scrollOverflowOptions`: scrollOverflow:true를 쓰시면 fullpage.js가 [iScroll.js 라이브러리](https://github.com/cubiq/iscroll/)의 포크(forked) 및 수정 버전을 사용합니다. iScroll.js 옵션을 fullpage.js에게 주시면 스크롤 행위를 맞춤화하실 수 있습니다. 더 자세한 정보를 알고 싶으시다면 [기록 문서](http://iscrolljs.com/)를 방문해 보세요.
+- `scrollOverflowOptions`: scrollOverflow:true를 쓰시면 fullpage.js가 [iScroll.js 라이브러리](https://github.com/cubiq/iscroll/)의 포크(forked) 및 수정 버전을 사용합니다. iScroll.js 옵션을 fullpage.js에게 주시면 스크롤 행위를 맞춤화하실 수 있습니다. 더 자세한 정보를 알고 싶으시다면 [기록 문서](https://github.com/cubiq/iscroll)를 방문해 보세요.
 
 - `sectionSelector`: (기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
@@ -928,6 +928,7 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (`easingcss3` 값을 정의하는 데 유용)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js October CMS 플러그인](http://octobercms.com/plugin/freestream-parallax)
@@ -1021,6 +1022,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+[![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">

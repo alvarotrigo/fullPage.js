@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-	Disponible para <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a> y <a href="https://github.com/alvarotrigo/react-fullpage">React</a>.
+	Disponible para <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> y <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
 </p>
 
 ---
@@ -305,7 +305,7 @@ Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en l
 ```
 
 #### Secciones de tamaño automático y responsive
-[Demostración](https://codepen.io/alvarotrigo/pen/WZmMgZ) fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
+[Demostración](https://codepen.io/alvarotrigo/pen/MzByMa) Usando la clase `fp-auto-height-responsive` fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
 De este modo la sección pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opcion `responsiveWidth` o `responsiveHeight`)
 
 ### Classes de estado añadidas por fullpage.js
@@ -371,8 +371,8 @@ Luego podrás usar la extensión y configurarla tal y como se explica en las [op
 
 ## Opciones
 
-- `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. De lo contrario, podrás usar la cadena `OPEN-SOURCE-GPLV3-LICENSE`.
-Puedes leer más acerca de las lencencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
+- `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. Si tu proyecto es de código libre, [contacta conmigo](https://alvarotrigo.com/#contact) con un link a su repositorio para obtener una clave de licencia.
+Puedes leer más acerca de las licencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
 
 ```javascript
 new fullpage({
@@ -516,7 +516,7 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 
 - `scrollOverflowReset`: (por defecto `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Cuando se define a `true` fullPage.js moverá el contenido de la seccion o diapositiva hacia arriba cuando se abandone la seccion o diapositiva hacia otra sección vertical. De este modo, cuando se llega a una sección que usa barra de desplazamiento, se mostrará siempre el principio de su contenido.
 
-- `scrollOverflowOptions`: cuando se usa la opción de `scrollOverflow:true` fullPage.js hará uso de una versión modificada de la [librería iScroll.js](https://github.com/cubiq/iscroll/). Puedes personalizar el comportamiento de dicho componente aportando a fullPage.js las opciones de iScroll que deseas usar haciendo uso de esta opción. Mira [la documentacion de iScroll](http://iscrolljs.com/) para más información.
+- `scrollOverflowOptions`: cuando se usa la opción de `scrollOverflow:true` fullPage.js hará uso de una versión modificada de la [librería iScroll.js](https://github.com/cubiq/iscroll/). Puedes personalizar el comportamiento de dicho componente aportando a fullPage.js las opciones de iScroll que deseas usar haciendo uso de esta opción. Mira [la documentacion de iScroll](https://github.com/cubiq/iscroll) para más información.
 
 - `sectionSelector`: (por defecto `.section`) Determina el selector Javascript que fullPage.js usará para determinar lo que es una sección. Puede que necesites cambiarlo para evitar problemas con otras librerías que usen el mismo selector que usa fullPage.js por defecto.
 
@@ -937,6 +937,7 @@ Sólo disponible en inglés :)
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [Herramienta de animacion de CSS Easing - Matthew Lein](https://matthewlein.com/ceaser/) (útil para definir la opción `easingcss3`)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin para October CMS](http://octobercms.com/plugin/freestream-parallax)
@@ -1029,6 +1030,7 @@ Conviértete en un sponsor y añade tu logo aquí en Github y en la página prin
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+[![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">

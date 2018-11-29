@@ -11,12 +11,12 @@
 </p>
 
 <p align="center">
-	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a> and <a href="https://github.com/alvarotrigo/react-fullpage">React</a>.
+	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> and <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
 </p>
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.3-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.4-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -304,7 +304,7 @@ To create smaller sections just use the class `fp-auto-height` in the section yo
 ```
 
 #### Responsive auto height sections
-[Demo](https://codepen.io/alvarotrigo/pen/WZmMgZ) A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be fullscreen until the responsive mode gets fired. Then they'll take the size required by their content, which could be bigger or smaller than the viewport.
+[Demo](https://codepen.io/alvarotrigo/pen/MzByMa) A responsive auto height can be applied by using the class `fp-auto-height-responsive`. This way sections will be fullscreen until the responsive mode gets fired. Then they'll take the size required by their content, which could be bigger or smaller than the viewport.
 
 ### State classes added by fullpage.js
 Fullpage.js adds multiple classes in different elements to keep a record of the status of the site:
@@ -371,7 +371,7 @@ Then you will be able to use and configure them as explained in [options](https:
 
 ## Options
 
-- `licenseKey`: (default `null`). **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. Otherwise, you can use the string `OPEN-SOURCE-GPLV3-LICENSE`. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/). For example:
+- `licenseKey`: (default `null`). **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. If your project is open source, [contact me](https://alvarotrigo.com/#contact) with a link to its repository and I'll provide you a license key. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/). For example:
 
 ```javascript
 new fullpage({
@@ -517,7 +517,7 @@ You can also prevent scrolloverflow from getting applied on responsive mode when
 
 - `scrollOverflowReset`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). When set to `true` it scrolls up the content of the section/slide with scroll bar when leaving to another vertical section. This way the section/slide will always show the start of its content even when scrolling from a section under it.
 
-- `scrollOverflowOptions`: when using scrollOverflow:true fullpage.js will make use of a forked and modified version of [iScroll.js library](https://github.com/cubiq/iscroll/). You can customize the scrolling behaviour by providing fullpage.js with the iScroll.js options you want to use. Check [its documentation](http://iscrolljs.com/) for more info.
+- `scrollOverflowOptions`: when using scrollOverflow:true fullpage.js will make use of a forked and modified version of [iScroll.js library](https://github.com/cubiq/iscroll/). You can customize the scrolling behaviour by providing fullpage.js with the iScroll.js options you want to use. Check [its documentation](https://github.com/cubiq/iscroll) for more info.
 
 - `sectionSelector`: (default `.section`) Defines the Javascript selector used for the plugin sections. It might need to be changed sometimes to avoid problem with other plugins using the same selectors as fullpage.js.
 
@@ -949,6 +949,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
+- [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](http://octobercms.com/plugin/freestream-parallax)
@@ -1040,6 +1041,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+[![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">

@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.3
+ * fullPage 3.0.4
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -90,7 +90,7 @@
     var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
 
     function initialise(containerSelector, options) {
-        var isLicenseValid = options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|OPEN-SOURCE-GPLV3-LICENSE').test(options.licenseKey) || document.domain.indexOf('alvarotrigo.com') > -1;
+        var isOK = options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(options['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
 
         //only once my friend!
         if(hasClass($('html'), ENABLED)){ displayWarnings(); return; }
@@ -223,6 +223,7 @@
         var keydownId;
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
+        var g_initialAnchorsInDom = false;
 
         displayWarnings();
 
@@ -611,6 +612,11 @@
                 scrollToAnchor();
             }
             window.addEventListener('load', scrollToAnchor);
+
+            //if we use scrollOverflow we'll fire afterRender in the scrolloverflow file
+            if(!options.scrollOverflow){
+                afterRenderActions();
+            }
         }
 
         function bindEvents(){
@@ -646,11 +652,11 @@
             */
             if(options.normalScrollElements){
                 ['mouseenter', 'touchstart'].forEach(function(eventName){
-                    forMouseLeaveOrTOuch(eventName, false);
+                    forMouseLeaveOrTouch(eventName, false);
                 });
 
                 ['mouseleave', 'touchend'].forEach(function(eventName){
-                   forMouseLeaveOrTOuch(eventName, true);
+                   forMouseLeaveOrTouch(eventName, true);
                 });
             }
         }
@@ -670,9 +676,12 @@
             else if(matches(target, SLIDES_NAV_LINK_SEL) || closest(target, SLIDES_NAV_LINK_SEL) != null){
                 slideBulletHandler.call(target, e);
             }
+            else if(closest(target, options.menu + ' [data-menuanchor]')){
+                menuItemsHandler.call(target, e);
+            }
         }
 
-        function forMouseLeaveOrTOuch(eventName, allowScrolling){
+        function forMouseLeaveOrTouch(eventName, allowScrolling){
             //a way to pass arguments to the onMouseEnterOrLeave function
             document['fp_' + eventName] = allowScrolling;
             document.addEventListener(eventName, onMouseEnterOrLeave, true); //capturing phase
@@ -684,7 +693,7 @@
             }
             var normalSelectors = options.normalScrollElements.split(',');
             normalSelectors.forEach(function(normalSelector){
-                if(matches(e.target, normalSelector)){
+                if(closest(e.target, normalSelector) != null){
                     setMouseHijack(document['fp_' + e.type]); //e.type = eventName
                 }
             });
@@ -700,6 +709,7 @@
                 var attrName = '[data-anchor]';
                 var anchors = $(options.sectionSelector.split(',').join(attrName + ',') + attrName, container);
                 if(anchors.length){
+                    g_initialAnchorsInDom = true;
                     anchors.forEach(function(item){
                         options.anchors.push(item.getAttribute('data-anchor').toString());
                     });
@@ -779,8 +789,6 @@
 
             if(options.scrollOverflow){
                 scrollBarHandler = options.scrollOverflowHandler.init(options);
-            }else{
-                afterRenderActions();
             }
         }
 
@@ -1538,7 +1546,7 @@
             }
 
             //callback (onLeave) if the site is not just resizing and readjusting the slides
-            if(isFunction(options.onLeave) && !v.localIsResizing){
+            if(!v.localIsResizing){
                 var direction = v.yMovement;
 
                 //required for continousVertical
@@ -1549,8 +1557,10 @@
                 //for the callback
                 v.direction = direction;
 
-                if(fireCallback('onLeave', v) === false){
-                    return;
+                if(isFunction(options.onLeave)){
+                    if(fireCallback('onLeave', v) === false){
+                        return;
+                    }
                 }
             }
 
@@ -2186,6 +2196,14 @@
             landscapeScroll(slides, destiny);
         }
 
+        //Menu item handler when not using anchors or using lockAnchors:true
+        function menuItemsHandler(e){
+            if($(options.menu)[0] && (options.lockAnchors || !options.anchors.length)){
+                preventDefault(e);
+                moveTo(this.getAttribute('data-menuanchor'));
+            }
+        }
+
         /**
         * Keydown event
         */
@@ -2419,8 +2437,15 @@
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-                        reBuild(true);
-                        previousHeight = currentHeight;
+                        resizeId = setTimeout(function(){
+                            reBuild(true);
+                            previousHeight = currentHeight;
+
+                            //issue #3336
+                            //when using Chrome we add a small timeout to get the right window height 
+                            //https://stackoverflow.com/a/12556928/1081396
+                            //https://stackoverflow.com/questions/13807810/ios-chrome-detection
+                        }, navigator.userAgent.match('CriOS') ? 50 : 0);
                     }
                 }
             }else{
@@ -2872,11 +2897,14 @@
                     $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                var wrapper = $(WRAPPER_SEL)[0];
+                if(wrapper){
+                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
+                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
 
-                $(WRAPPER_SEL)[0].addEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].addEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                    wrapper.addEventListener(events.touchstart, touchStartHandler);
+                    wrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                }
             }
         }
 
@@ -2891,8 +2919,11 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                var wrapper = $(WRAPPER_SEL)[0];
+                if(wrapper){
+                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
+                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                }
             }
         }
 
@@ -3024,7 +3055,6 @@
             clearTimeout(scrollId);
             clearTimeout(scrollId2);
 
-
             window.removeEventListener('scroll', scrollHandler);
             window.removeEventListener('hashchange', hashChangeHandler);
             window.removeEventListener('resize', resizeHandler);
@@ -3105,13 +3135,18 @@
 
             //removing added classes
             $(SECTION_SEL + ', ' + SLIDE_SEL).forEach(function(item){
-                if(options.scrollOverflowHandler){
+                if(options.scrollOverflowHandler && options.scrollOverflow){
                     options.scrollOverflowHandler.remove(item);
                 }
                 removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
                 var previousStyles = item.getAttribute('data-fp-styles');
                 if(previousStyles){
                     item.setAttribute('style', item.getAttribute('data-fp-styles'));
+                }
+
+                //removing anchors if they were not set using the HTML markup
+                if(hasClass(item, SECTION) && !g_initialAnchorsInDom){
+                    item.removeAttribute('data-anchor');
                 }
             });
 
@@ -3122,7 +3157,7 @@
             [TABLE_CELL_SEL, SLIDES_CONTAINER_SEL,SLIDES_WRAPPER_SEL].forEach(function(selector){
                 $(selector, container).forEach(function(item){
                     //unwrap not being use in case there's no child element inside and its just text
-                    item.outerHTML = item.innerHTML;
+                    unwrap(item);
                 });
             });
 
@@ -3159,7 +3194,7 @@
         * Displays warnings
         */
         function displayWarnings(){
-            if(!isLicenseValid){
+            if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
                 showError('error', 'https://github.com/alvarotrigo/fullPage.js#options.');
             }
@@ -3204,11 +3239,11 @@
             options.anchors.forEach(function(name){
 
                 //case insensitive selectors (http://stackoverflow.com/a/19465187/1081396)
-                var nameAttr =  [].slice.call($('[name]')).filter(function(item) {
+                var nameAttr = [].slice.call($('[name]')).filter(function(item) {
                     return item.getAttribute('name') && item.getAttribute('name').toLowerCase() == name.toLowerCase();
                 });
 
-                var idAttr =  [].slice.call($('[id]')).filter(function(item) {
+                var idAttr = [].slice.call($('[id]')).filter(function(item) {
                     return item.getAttribute('id') && item.getAttribute('id').toLowerCase() == name.toLowerCase();
                 });
 
@@ -3323,7 +3358,7 @@
             this.anchor = el.getAttribute('data-anchor');
             this.item = el;
             this.index = index(el, selector);
-            this.isLast = this.index === $(selector).length -1;
+            this.isLast = this.index === el.parentElement.querySelectorAll(selector).length -1;
             this.isFirst = !this.index;
         }
 
@@ -3365,25 +3400,29 @@
     * Extends a given Object properties and its childs.
     */
     function deepExtend(out) {
-      out = out || {};
+        out = out || {};
+        for (var i = 1, len = arguments.length; i < len; ++i){
+            var obj = arguments[i];
 
-      for (var i = 1; i < arguments.length; i++) {
-        var obj = arguments[i];
+            if(!obj){
+              continue;
+            }
 
-        if (!obj)
-          continue;
+            for(var key in obj){
+              if (!obj.hasOwnProperty(key)){
+                continue;
+              }
 
-        for (var key in obj) {
-          if (obj.hasOwnProperty(key)) {
-            if (typeof obj[key] === 'object' && obj[key] != null)
-              out[key] = deepExtend(out[key], obj[key]);
-            else
+              // based on https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
+              if (Object.prototype.toString.call(obj[key]) === '[object Object]'){
+                out[key] = deepExtend(out[key], obj[key]);
+                continue;
+              }
+
               out[key] = obj[key];
-          }
+            }
         }
-      }
-
-      return out;
+        return out;
     }
 
     /**
@@ -3638,6 +3677,23 @@
     }
 
     /**
+    * Usage:
+    * unwrap(document.querySelector('#pepe'));
+    * unwrap(element);
+    *
+    * https://jsfiddle.net/szjt0hxq/1/
+    *
+    */
+    function unwrap(wrapper) {
+        var wrapperContent = document.createDocumentFragment();
+        while (wrapper.firstChild) {
+            wrapperContent.appendChild(wrapper.firstChild);
+        }
+
+        wrapper.parentNode.replaceChild(wrapperContent, wrapper);
+    }
+
+    /**
     * http://stackoverflow.com/questions/22100853/dom-pure-javascript-solution-to-jquery-closest-implementation
     * Returns the element or `false` if there's none
     */
@@ -3870,6 +3926,7 @@
         wrap: wrap,
         wrapAll: wrapAll,
         wrapInner: wrapInner,
+        unwrap: unwrap,
         closest: closest,
         after: after,
         before: before,
@@ -3907,7 +3964,7 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-            var FP = new fullpage('#' + $(this).attr('id'), options);
+            var FP = new fullpage(this[0], options);
 
             //Static API
             Object.keys(FP).forEach(function (key) {
