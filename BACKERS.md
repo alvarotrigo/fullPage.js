@@ -37,7 +37,7 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
       </td>
       <td align="center" valign="middle">
         <a href="https://www.codefirst.co.uk" target="_blank" rel="nofollow">
-          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst.png">
+          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png">
         </a>
       </td>
     </tr>
