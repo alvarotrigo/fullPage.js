@@ -2897,11 +2897,14 @@
                     $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                var wrapper = $(WRAPPER_SEL)[0];
+                if(wrapper){
+                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
+                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
 
-                $(WRAPPER_SEL)[0].addEventListener(events.touchstart, touchStartHandler);
-                $(WRAPPER_SEL)[0].addEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                    wrapper.addEventListener(events.touchstart, touchStartHandler);
+                    wrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                }
             }
         }
 
@@ -2916,9 +2919,10 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                if($(WRAPPER_SEL)[0]){
-                  $(WRAPPER_SEL)[0].removeEventListener(events.touchstart, touchStartHandler);
-                  $(WRAPPER_SEL)[0].removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                var wrapper = $(WRAPPER_SEL)[0];
+                if(wrapper){
+                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
+                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
                 }
             }
         }
@@ -3050,7 +3054,6 @@
             clearTimeout(resizeId);
             clearTimeout(scrollId);
             clearTimeout(scrollId2);
-
 
             window.removeEventListener('scroll', scrollHandler);
             window.removeEventListener('hashchange', hashChangeHandler);
@@ -3236,11 +3239,11 @@
             options.anchors.forEach(function(name){
 
                 //case insensitive selectors (http://stackoverflow.com/a/19465187/1081396)
-                var nameAttr =  [].slice.call($('[name]')).filter(function(item) {
+                var nameAttr = [].slice.call($('[name]')).filter(function(item) {
                     return item.getAttribute('name') && item.getAttribute('name').toLowerCase() == name.toLowerCase();
                 });
 
-                var idAttr =  [].slice.call($('[id]')).filter(function(item) {
+                var idAttr = [].slice.call($('[id]')).filter(function(item) {
                     return item.getAttribute('id') && item.getAttribute('id').toLowerCase() == name.toLowerCase();
                 });
 
@@ -3961,7 +3964,6 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-
             var FP = new fullpage(this[0], options);
 
             //Static API
