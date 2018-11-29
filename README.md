@@ -321,7 +321,7 @@ Fullpage.js adds multiple classes in different elements to keep a record of the 
 When using lazy loading, all these elements will only get loaded when entering in the viewport.
 To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
 
-```
+```html
 <img data-src="image.png">
 <video>
 	<source data-src="video.webm" type="video/webm" />
