@@ -321,7 +321,7 @@ Fullpage.js adds multiple classes in different elements to keep a record of the 
 When using lazy loading, all these elements will only get loaded when entering in the viewport.
 To enable lazy loading all you need to do is change your `src` attribute to `data-src` as shown below:
 
-```
+```html
 <img data-src="image.png">
 <video>
 	<source data-src="video.webm" type="video/webm" />
@@ -1042,6 +1042,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 [![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
+[![FlatLogic](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/flatlogic.png?v=2)](https://flatlogic.com/admin-dashboards)
 
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
