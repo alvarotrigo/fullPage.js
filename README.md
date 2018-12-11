@@ -1042,6 +1042,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 [![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
+[![FlatLogic](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/flatlogic.png)](https://flatlogic.com/admin-dashboards)
 
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
