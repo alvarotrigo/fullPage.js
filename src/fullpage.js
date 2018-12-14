@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.4
+ * fullPage 3.0.5
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -1234,7 +1234,7 @@
         * Preventing bouncing in iOS #2285
         */
         function preventBouncing(e){
-            if(options.autoScrolling && isReallyTouch(e)){
+            if(options.autoScrolling && isReallyTouch(e) && isScrollAllowed.m.up){
                 //preventing the easing on iOS devices
                 preventDefault(e);
             }
