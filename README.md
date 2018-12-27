@@ -988,7 +988,6 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 - https://www.x-class.com.au
 - http://www.yourprimer.com/
 - http://www.vogue.fr/chaumet-histoires-de-liens
-- http://burntmovie.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/

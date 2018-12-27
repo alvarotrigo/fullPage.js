@@ -15,7 +15,7 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.3-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.4-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -967,7 +967,6 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - https://www.x-class.com.au
 - http://www.yourprimer.com/
 - http://www.vogue.fr/chaumet-histoires-de-liens
-- http://burntmovie.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
