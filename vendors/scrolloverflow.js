@@ -2175,9 +2175,9 @@ if ( typeof module != 'undefined' && module.exports ) {
         * https://github.com/cubiq/iscroll/issues/1036
         */
         IScroll.prototype.wheelOn = function () {
-            this.wrapper.addEventListener('wheel', this);
-            this.wrapper.addEventListener('mousewheel', this);
-            this.wrapper.addEventListener('DOMMouseScroll', this);
+            this.wrapper.addEventListener('wheel', this, false);
+            this.wrapper.addEventListener('mousewheel', this, false);
+            this.wrapper.addEventListener('DOMMouseScroll', this, false);
         };
 
         /*
