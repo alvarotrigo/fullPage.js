@@ -4,7 +4,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-clean-css');
 
-gulp.task('css', function() {
+gulp.task('css', function(done) {
     gulp.src('./src/fullpage.css')
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
@@ -16,9 +16,10 @@ gulp.task('css', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
+        done();
 });
 
-gulp.task('js', function() {
+gulp.task('js', function(done) {
     gulp.src('./src/fullpage.js')
         .pipe(sourcemaps.init())
         .pipe(gulp.dest('./dist'))
@@ -30,9 +31,10 @@ gulp.task('js', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
+        done();
 });
 
-gulp.task('vendors', function() {
+gulp.task('vendors', function(done) {
     gulp.src([
         './vendors/scrolloverflow.js',
         './vendors/easings.js'
@@ -47,10 +49,11 @@ gulp.task('vendors', function() {
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./vendors'));
+        done();
 });
 
 //private file
-gulp.task('extensions', function() {
+gulp.task('extensions', function(done) {
     gulp.src('./src/fullpage.extensions.js')
         .pipe(uglify({
             output: {
@@ -59,6 +62,7 @@ gulp.task('extensions', function() {
         }))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('./dist'));
+        done();
 });
 
-gulp.task('default', ['css', 'js']);
+gulp.task('default', gulp.parallel('css', 'js'));
