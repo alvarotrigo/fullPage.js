@@ -585,6 +585,11 @@
 
             window.fullpage_api = FP;
 
+            //using jQuery initialization? Creating the $.fn.fullpage object
+            if(options.$){
+                options.$.fn.fullpage = FP;
+            }
+
             init();
 
             bindEvents();
@@ -3965,12 +3970,8 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-            var FP = new fullpage(this[0], options);
-
-            //Static API
-            Object.keys(FP).forEach(function (key) {
-                $.fn.fullpage[key] = FP[key];
-            });
+            options.$ = $;
+            new fullpage(this[0], options);
         };
     })(window.jQuery, window.fullpage);
 }
