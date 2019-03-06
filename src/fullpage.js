@@ -273,7 +273,8 @@
                     'height' : 'initial'
                 });
 
-                setRecordHistory(false, 'internal');
+                var recordHistory = !options.autoScrolling ? false : originals.recordHistory;
+                setRecordHistory(recordHistory, 'internal');
 
                 //for IE touch devices
                 css(container, {
