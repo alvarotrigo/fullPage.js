@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.1.1
+* Customized version of iScroll.js 0.1.2
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
@@ -1114,6 +1114,8 @@ IScroll.prototype = {
         if ( !this.enabled ) {
             return;
         }
+
+        e.preventDefault();
 
         var wheelDeltaX, wheelDeltaY,
             newX, newY,
