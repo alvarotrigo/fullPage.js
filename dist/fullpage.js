@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.4
+ * fullPage 3.0.5
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -214,6 +214,18 @@
         // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
         var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
+        //cheks for passive event support
+        var g_supportsPassive = false;
+        try {
+          var opts = Object.defineProperty({}, 'passive', {
+            get: function() {
+              g_supportsPassive = true;
+            }
+          });
+          window.addEventListener("testPassive", null, opts);
+          window.removeEventListener("testPassive", null, opts);
+        } catch (e) {}
+
         //timeouts
         var resizeId;
         var afterSectionLoadsId;
@@ -273,7 +285,8 @@
                     'height' : 'initial'
                 });
 
-                setRecordHistory(false, 'internal');
+                var recordHistory = !options.autoScrolling ? false : originals.recordHistory;
+                setRecordHistory(recordHistory, 'internal');
 
                 //for IE touch devices
                 css(container, {
@@ -533,7 +546,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.0.2';
+            FP.version = '3.0.5';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -584,6 +597,11 @@
             };
 
             window.fullpage_api = FP;
+
+            //using jQuery initialization? Creating the $.fn.fullpage object
+            if(options.$){
+                options.$.fn.fullpage = FP;
+            }
 
             init();
 
@@ -1234,7 +1252,7 @@
         * Preventing bouncing in iOS #2285
         */
         function preventBouncing(e){
-            if(options.autoScrolling && isReallyTouch(e)){
+            if(options.autoScrolling && isReallyTouch(e) && isScrollAllowed.m.up){
                 //preventing the easing on iOS devices
                 preventDefault(e);
             }
@@ -2315,6 +2333,7 @@
                 localIsResizing: isResizing
             };
             v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
+            v.direction = v.direction ? v.direction : v.xMovement;
 
             //important!! Only do it when not resizing
             if(!v.localIsResizing){
@@ -2855,19 +2874,19 @@
                 prefix = 'on';
             }
 
-             // detect available wheel event
+            // detect available wheel event
             var support = 'onwheel' in document.createElement('div') ? 'wheel' : // Modern browsers support "wheel"
                       document.onmousewheel !== undefined ? 'mousewheel' : // Webkit and IE support at least "mousewheel"
                       'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
-
+            var passiveEvent = g_supportsPassive ? {passive: false }: false;
 
             if(support == 'DOMMouseScroll'){
-                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, false);
+                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
             }
 
             //handle MozMousePixelScroll in older Firefox
             else{
-                document[ _addEventListener ](prefix + support, MouseWheelHandler, false);
+                document[ _addEventListener ](prefix + support, MouseWheelHandler, passiveEvent);
             }
         }
 
@@ -3964,12 +3983,8 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-            var FP = new fullpage(this[0], options);
-
-            //Static API
-            Object.keys(FP).forEach(function (key) {
-                $.fn.fullpage[key] = FP[key];
-            });
+            options.$ = $;
+            new fullpage(this[0], options);
         };
     })(window.jQuery, window.fullpage);
 }

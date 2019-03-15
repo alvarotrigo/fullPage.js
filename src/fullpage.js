@@ -214,6 +214,18 @@
         // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
         var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
+        //cheks for passive event support
+        var g_supportsPassive = false;
+        try {
+          var opts = Object.defineProperty({}, 'passive', {
+            get: function() {
+              g_supportsPassive = true;
+            }
+          });
+          window.addEventListener("testPassive", null, opts);
+          window.removeEventListener("testPassive", null, opts);
+        } catch (e) {}
+
         //timeouts
         var resizeId;
         var afterSectionLoadsId;
@@ -2862,19 +2874,19 @@
                 prefix = 'on';
             }
 
-             // detect available wheel event
+            // detect available wheel event
             var support = 'onwheel' in document.createElement('div') ? 'wheel' : // Modern browsers support "wheel"
                       document.onmousewheel !== undefined ? 'mousewheel' : // Webkit and IE support at least "mousewheel"
                       'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
-
+            var passiveEvent = g_supportsPassive ? {passive: false }: false;
 
             if(support == 'DOMMouseScroll'){
-                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, false);
+                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
             }
 
             //handle MozMousePixelScroll in older Firefox
             else{
-                document[ _addEventListener ](prefix + support, MouseWheelHandler, false);
+                document[ _addEventListener ](prefix + support, MouseWheelHandler, passiveEvent);
             }
         }
 
