@@ -632,7 +632,8 @@
             window.addEventListener('blur', blurHandler);
 
             //when resizing the site, we adjust the heights of the sections, slimScroll...
-            window.addEventListener('resize', resizeHandler);
+            window.addEventListener('resize', 
+                                    ler);
 
             //Sliding with arrow keys, both, vertical and horizontal
             document.addEventListener('keydown', keydownHandler);
@@ -2436,7 +2437,7 @@
                     var currentHeight = getWindowHeight();
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
-                    if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
+                   // if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
                         resizeId = setTimeout(function(){
                             reBuild(true);
                             previousHeight = currentHeight;
@@ -2446,7 +2447,7 @@
                             //https://stackoverflow.com/a/12556928/1081396
                             //https://stackoverflow.com/questions/13807810/ios-chrome-detection
                         }, navigator.userAgent.match('CriOS') ? 50 : 0);
-                    }
+                 //   }
                 }
             }else{
                 //in order to call the functions only when the resize is finished
