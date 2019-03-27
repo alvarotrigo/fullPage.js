@@ -2433,7 +2433,7 @@
                 var activeElement = document.activeElement;
 
                 //if the keyboard is NOT visible
-                if (!matches(activeElement, 'textarea') && !matches(activeElement, 'input') && !matches(activeElement, 'select')) {
+                // if (!matches(activeElement, 'textarea') && !matches(activeElement, 'input') && !matches(activeElement, 'select')) {
                     var currentHeight = getWindowHeight();
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
@@ -2448,7 +2448,7 @@
                             //https://stackoverflow.com/questions/13807810/ios-chrome-detection
                         }, navigator.userAgent.match('CriOS') ? 50 : 0);
                     //}
-                }
+                // }
             }else{
                 //in order to call the functions only when the resize is finished
                 //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing

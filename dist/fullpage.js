@@ -533,7 +533,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.0.2';
+            FP.version = '3.0.4';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -633,7 +633,7 @@
 
             //when resizing the site, we adjust the heights of the sections, slimScroll...
             window.addEventListener('resize', 
-                                    ler);
+                                   );
 
             //Sliding with arrow keys, both, vertical and horizontal
             document.addEventListener('keydown', keydownHandler);
@@ -2433,11 +2433,11 @@
                 var activeElement = document.activeElement;
 
                 //if the keyboard is NOT visible
-                if (!matches(activeElement, 'textarea') && !matches(activeElement, 'input') && !matches(activeElement, 'select')) {
+                // if (!matches(activeElement, 'textarea') && !matches(activeElement, 'input') && !matches(activeElement, 'select')) {
                     var currentHeight = getWindowHeight();
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
-                   // if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
+                    //if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
                         resizeId = setTimeout(function(){
                             reBuild(true);
                             previousHeight = currentHeight;
@@ -2447,8 +2447,8 @@
                             //https://stackoverflow.com/a/12556928/1081396
                             //https://stackoverflow.com/questions/13807810/ios-chrome-detection
                         }, navigator.userAgent.match('CriOS') ? 50 : 0);
-                 //   }
-                }
+                    //}
+                // }
             }else{
                 //in order to call the functions only when the resize is finished
                 //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
