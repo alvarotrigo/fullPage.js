@@ -236,6 +236,7 @@
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
         var g_initialAnchorsInDom = false;
+        var g_canFireMouseEnterNormalScroll = true;
 
         displayWarnings();
 
@@ -709,6 +710,20 @@
             if(e.target == document){
                 return;
             }
+
+            if(e.type === 'touchend'){
+                g_canFireMouseEnterNormalScroll = false;
+                setTimeout(function(){
+                    g_canFireMouseEnterNormalScroll = true;
+                }, 800);
+            }
+
+            //preventing mouseenter event to do anything when coming from a touchEnd event
+            //fixing issue #3576
+            if(e.type === 'mouseenter' && !g_canFireMouseEnterNormalScroll){
+                return;
+            }
+
             var normalSelectors = options.normalScrollElements.split(',');
             normalSelectors.forEach(function(normalSelector){
                 if(closest(e.target, normalSelector) != null){
