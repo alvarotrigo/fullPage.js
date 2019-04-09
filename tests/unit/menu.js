@@ -52,7 +52,7 @@ QUnit.test('Testing menu. Keeping it inside the library wrapper when css3:false'
 
 QUnit.test('Testing menu `active` class when auto scrolling', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '#menu'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '.menu'}));
 
     // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
@@ -75,7 +75,7 @@ QUnit.test('Testing menu `active` class when auto scrolling', function(assert) {
 
 QUnit.test('Testing menu `active` class when auto scrolling and sliding horizontally', function(assert) {
     var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '#menu'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '.menu'}));
 
     // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
@@ -97,7 +97,7 @@ QUnit.test('Testing menu `active` class when auto scrolling and sliding horizont
 
 QUnit.test('Testing menu `active` class when scrolling & autoScrolling:false', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {autoScrolling:false, menu: '#menu'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {autoScrolling:false, menu: '.menu'}));
 
     // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
@@ -124,7 +124,7 @@ QUnit.test('Testing menu `active` class when scrolling & autoScrolling:false', f
 
 QUnit.test('Testing menu `active` class when hash change by anchor name', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '#menu'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '.menu'}));
 
     var done = assert.async(1);
 
@@ -151,7 +151,7 @@ QUnit.test('Testing menu `active` class when hash change by anchor name', functi
 
 QUnit.test('Testing menu `active` class when hash change by section index', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '#menu'}));
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '.menu'}));
 
     var done = assert.async(1);
 
