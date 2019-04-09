@@ -54,13 +54,22 @@ QUnit.test('Testing menu `active` class when auto scrolling', function(assert) {
     var id = '#fullpage';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '#menu'}));
 
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
     assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
 
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+
     for(var i = 1; i<4; i++){
         FP.moveSectionDown();
+        // first menu
         assert.equal($('#menu').find('.active[data-menuanchor]').index(), i, 'We expect item ' + (i +1) +' to be active');
         assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+        // second menu
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), i, 'We expect item ' + (i +1) +' to be active');
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
     }
 });
 
@@ -68,13 +77,21 @@ QUnit.test('Testing menu `active` class when auto scrolling and sliding horizont
     var id = '#fullpage-moveSlideRight';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {menu: '#menu'}));
 
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
     assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
 
     for(var i = 1; i<4; i++){
         FP.moveSlideRight();
+        // first menu
         assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
         assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+        // second menu
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
     }
 });
 
@@ -82,16 +99,27 @@ QUnit.test('Testing menu `active` class when scrolling & autoScrolling:false', f
     var id = '#fullpage';
     var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {autoScrolling:false, menu: '#menu'}));
 
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
 
     simulateScroll(window.innerHeight);
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 1, 'We expect item 2 to be active');
     assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 1, 'We expect item 2 to be active');
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
 
 
     simulateScroll(window.innerHeight * 3);
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 3, 'We expect item 4 to be active');
     assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 3, 'We expect item 4 to be active');
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
 });
 
 QUnit.test('Testing menu `active` class when hash change by anchor name', function(assert) {
@@ -100,15 +128,23 @@ QUnit.test('Testing menu `active` class when hash change by anchor name', functi
 
     var done = assert.async(1);
 
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
     assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
 
     //changing the URL won't scroll to the given section
     window.location.hash = '#page3';
 
     setTimeout(function(){
+        // first menu
         assert.equal($('#menu').find('.active[data-menuanchor]').index(), 2, 'We expect item 3 to be active');
         assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+        // second menu
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 2, 'We expect item 3 to be active');
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
         done();
     },100);
 });
@@ -119,15 +155,23 @@ QUnit.test('Testing menu `active` class when hash change by section index', func
 
     var done = assert.async(1);
 
+    // first menu
     assert.equal($('#menu').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
     assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+    // second menu
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 0, 'We expect item 1 to be active');
+    assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
 
     //changing the URL won't scroll to the given section
     window.location.hash = '#3';
 
     setTimeout(function(){
+        // first menu
         assert.equal($('#menu').find('.active[data-menuanchor]').index(), 2, 'We expect item 3 to be active');
         assert.equal($('#menu').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
+        // second menu
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').index(), 2, 'We expect item 3 to be active');
+        assert.equal($('#menu-two').find('.active[data-menuanchor]').length, 1, 'We expect a single item to be active');
         done();
     },100);
 });
