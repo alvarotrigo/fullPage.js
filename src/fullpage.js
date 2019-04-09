@@ -913,7 +913,11 @@
 
             //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
             if(options.menu && options.css3 && closest($(options.menu)[0], WRAPPER_SEL) != null){
-                $body.appendChild($(options.menu)[0]);
+                $(options.menu).forEach(function(domElement, i) {
+                    var menu = $(options.menu)[i];
+
+                    $body.appendChild(menu);
+                });
             }
         }
 
@@ -2554,11 +2558,14 @@
         * Activating the website main menu elements according to the given slide name.
         */
         function activateMenuElement(name){
-            var menu = $(options.menu)[0];
-            if(options.menu && menu != null){
-                removeClass($(ACTIVE_SEL, menu), ACTIVE);
-                addClass($('[data-menuanchor="'+name+'"]', menu), ACTIVE);
-            }
+            $(options.menu).forEach(function(domElement, i) {
+                var menu = $(options.menu)[i];
+
+                if(options.menu && menu != null){
+                    removeClass($(ACTIVE_SEL, menu), ACTIVE);
+                    addClass($('[data-menuanchor="'+name+'"]', menu), ACTIVE);
+                }
+            });
         }
 
         /**
