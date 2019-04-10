@@ -15,7 +15,7 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.3-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.5-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -241,6 +241,9 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveSlides: false,
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+	cards: true,
+	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
+
 
 	//自定义选择器
 	sectionSelector: '.section',
@@ -442,13 +445,13 @@ new fullpage('#fullpage', {
 
 - `continuousVertical`:（默认为`false`）定义是否在最后一个区段向下滚动，或是否应该向下滚动到第一个区段，或如果在第一个区段向上滚动时是否应该滚动到最后一个区段。 不兼容`loopTop`，`loopBottom`或站点中存在的任何滚动条（`scrollBar：true`或`autoScrolling：false`）。
 
-- `continuousHorizontal`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义在最后一张幻灯片中向右滑动是否应该向右滑动到第一张幻灯片，或者如果在第一张幻灯片中向左滚动是否应向左滑动到最后一张。 不兼容`loopHorizontal`。 需要fullpage.js> = 2.8.3。
+- `continuousHorizontal`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义在最后一张幻灯片中向右滑动是否应该向右滑动到第一张幻灯片，或者如果在第一张幻灯片中向左滚动是否应向左滑动到最后一张。 不兼容`loopHorizontal`。 需要fullpage.js> = 3.0.1。
 
-- `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 需要fullpage.js> = 2.8.3。
+- `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 需要fullpage.js> = 3.0.1。
 
-- `interlockedSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块在其他段落中的滑动方向相同。 可能的值是`true`，`false`或带有互锁部分的数组。 例如`[1,3,5]`从1开始。需要fullpage.js> = 2.8.3。
+- `interlockedSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块在其他段落中的滑动方向相同。 可能的值是`true`，`false`或带有互锁部分的数组。 例如`[1,3,5]`从1开始。需要fullpage.js> = 3.0.1。
 
-- `dragAndMove`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指拖动和滑动部分和幻灯片。 需要fullpage.js> = 2.8.9。 可能的值是：
+- `dragAndMove`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指拖动和滑动部分和幻灯片。 需要fullpage.js> = 3.0.1。 可能的值是：
   - `true`: 启用该功能。
   - `false`: 禁用该功能。
   - `vertical`: 只能在垂直情况下启用该功能。
@@ -456,15 +459,15 @@ new fullpage('#fullpage', {
   - `fingersonly`: 仅启用触摸设备的功能。
   - `mouseonly`: 仅启用桌面设备的功能（鼠标和触控板）。
 
-- `offsetSections`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕部分的方法。 通过显示下一部分或上一部分的内容，向访问者显示网站中的更多内容的理想选择。 需要fullPage.js> = 2.8.8
+- `offsetSections`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕部分的方法。 通过显示下一部分或上一部分的内容，向访问者显示网站中的更多内容的理想选择。 需要fullPage.js> = 3.0.1
 要定义每个部分的百分比，必须使用属性`data-percentage`。 可以通过在属性`data-centered`中使用布尔值来确定视口中该部分的居中（如果未指定，则默认为`true`）。 例如：
 ``` html
     <div class="section" data-percentage="80" data-centered="true">
 ```
 
-- `resetSliders`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在离开节后重置每个滑块。 需要fullpage.js> = 2.8.3。
+- `resetSliders`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在离开节后重置每个滑块。 需要fullpage.js> = 3.0.1。
 
-- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。 需要fullpage.js> = 2.8.6。
+- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。 需要fullpage.js> = 3.0.1。
 
 - `animateAnchor`: （默认`true`）定义给定锚点（＃）的站点的负载是否会随着动画滚动到其目的地或直接加载给定部分。
 
@@ -527,11 +530,15 @@ new fullpage('#fullpage', {
 
 - `responsiveHeight`: （默认`0`）一个正常的滚动（`autoScrolling：false`）将在定义的高度下以像素为单位使用。 如果用户希望将自己的响应式CSS用于身体标记，则会将`fp-responsive`类添加到身体标记中。 例如，如果设置为900，则每当浏览器的高度小于900时，插件将像正常站点一样滚动。
 
-- `responsiveSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，幻灯片将变成垂直节。 （通过使用上面详述的`responsiveWidth`或`responsiveHeight`选项）。 需要fullpage.js> = 2.8.5。
+- `responsiveSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，幻灯片将变成垂直节。 （通过使用上面详述的`responsiveWidth`或`responsiveHeight`选项）。 需要fullpage.js> = 3.0.1。
 
 - `parallax`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在节/幻灯片上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
 - `parallaxOptions`: （默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项parallax:true时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+
+- `cards`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)
+
+- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: （默认`true`）延迟加载默认是激活的，这意味着它会延迟加载包含属性`data-src`的任何媒体元素，详见[Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)。 如果你想使用任何其他的后加载库，你可以禁用这个fullpage.js功能。
 
@@ -704,14 +711,14 @@ fullpage_api.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
-[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要fullpage.js> = 2.8.5。将水平幻灯片变成垂直节。
+[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要fullpage.js> = 3.0.1。将水平幻灯片变成垂直节。
 
 ```javascript
 fullpage_api.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
-[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要fullpage.js> = 2.8.5。将原始幻灯片（现转换为垂直节）重新转换为水平幻灯片。
+[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要fullpage.js> = 3.0.1。将原始幻灯片（现转换为垂直节）重新转换为水平幻灯片。
 
 ```javascript
 fullpage_api.responsiveSlides.toSlides();
@@ -972,12 +979,9 @@ new fullpage('#fullpage', {
 [![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
+
 - https://www.coca-colacompany.com/annual-review/2017/index.html
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- https://www.x-class.com.au
-- http://www.yourprimer.com/
-- http://www.vogue.fr/chaumet-histoires-de-liens
-- http://burntmovie.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
@@ -989,15 +993,10 @@ new fullpage('#fullpage', {
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/
-- http://collection.madeofsundays.com
 - http://www.boxreload.com/
 - http://educationaboveall.org/
-- http://camfindapp.com/
-- http://rockercreative.com/
 - http://usescribe.com/
-- http://lucilecazanave.com/
 - http://boxx.hk/
-- http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
 - http://www.sanyang.com.tw/service/Conception/
@@ -1008,9 +1007,6 @@ new fullpage('#fullpage', {
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://unabridgedsoftware.com/
-- http://atlanticcorp.us/
-- http://moysport.ru/
 - http://themify.me/demo/#theme=fullpane
 - http://dancingroad.com
 - http://www.camanihome.com/
@@ -1030,7 +1026,6 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 
 [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
-[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 [![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 

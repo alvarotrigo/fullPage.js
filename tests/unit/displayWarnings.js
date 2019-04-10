@@ -164,7 +164,7 @@ QUnit.test('Testing warnings for scrollOverflow:true with vendor file', function
     mockConsole();
 
     var FP = initFullpageNew(id, {scrollOverflow: true, licenseKey: licenseKey, scrollOverflowHandler: {init: function(){}, remove: function(){}}});
-    assert.equal(isErrorFired(), false, 'We expect console.warn not to be fired');
+    assert.equal(isWarnFired(), false, 'We expect console.warn not to be fired');
 });
 
 //extension file must exist

@@ -46,6 +46,6 @@ QUnit.test('Testing setAutoScrolling(true, external) {scrollBar:true}', function
 
     assert.equal($(id).css('touch-action'), 'auto', 'touch action should be auto');
 
-    assert.equal(FP.test.options.recordHistory, false, 'recordHistory should be false');
+    assert.equal(FP.test.options.recordHistory, true, 'recordHistory should be false');
     assert.equal(FP.test.options.autoScrolling, true, 'autoScrolling should be true');
 });

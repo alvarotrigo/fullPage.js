@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.4
+ * fullPage 3.0.5
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -141,6 +141,7 @@
             scrollOverflowHandler: window.fp_scrolloverflow ? window.fp_scrolloverflow.iscrollHandler : null,
             scrollOverflowOptions: null,
             touchSensitivity: 5,
+            touchWrapper: typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
 
@@ -166,6 +167,12 @@
                 type: 'reveal',
                 percentage: 62,
                 property: 'translate'
+            },
+            cards: false,
+            cardsOptions: {
+                perspective: 100,
+                fadeContent: true,
+                fadeBackground: true
             },
 
             //Custom selectors
@@ -214,6 +221,18 @@
         // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
         var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
+        //cheks for passive event support
+        var g_supportsPassive = false;
+        try {
+          var opts = Object.defineProperty({}, 'passive', {
+            get: function() {
+              g_supportsPassive = true;
+            }
+          });
+          window.addEventListener("testPassive", null, opts);
+          window.removeEventListener("testPassive", null, opts);
+        } catch (e) {}
+
         //timeouts
         var resizeId;
         var afterSectionLoadsId;
@@ -224,6 +243,7 @@
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
         var g_initialAnchorsInDom = false;
+        var g_canFireMouseEnterNormalScroll = true;
 
         displayWarnings();
 
@@ -273,7 +293,8 @@
                     'height' : 'initial'
                 });
 
-                setRecordHistory(false, 'internal');
+                var recordHistory = !options.autoScrolling ? false : originals.recordHistory;
+                setRecordHistory(recordHistory, 'internal');
 
                 //for IE touch devices
                 css(container, {
@@ -518,6 +539,11 @@
                     if(isFunction( options.afterResponsive )){
                         options.afterResponsive.call( container, active);
                     }
+
+                    //when on page load, we will remove scrolloverflow if necessary
+                    if(options.scrollOverflow){
+                        scrollBarHandler.createScrollBarForAll();
+                    }
                 }
             }
             else if(isResponsive){
@@ -533,7 +559,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.0.2';
+            FP.version = '3.0.5';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -551,7 +577,7 @@
             FP.fitToSection = fitToSection;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
-            FP.getFullpageData = options;
+            FP.getFullpageData = function(){ return options };
             FP.destroy = destroy;
             FP.getActiveSection = getActiveSection;
             FP.getActiveSlide = getActiveSlide;
@@ -584,6 +610,11 @@
             };
 
             window.fullpage_api = FP;
+
+            //using jQuery initialization? Creating the $.fn.fullpage object
+            if(options.$){
+                options.$.fn.fullpage = FP;
+            }
 
             init();
 
@@ -691,6 +722,20 @@
             if(e.target == document){
                 return;
             }
+
+            if(e.type === 'touchend'){
+                g_canFireMouseEnterNormalScroll = false;
+                setTimeout(function(){
+                    g_canFireMouseEnterNormalScroll = true;
+                }, 800);
+            }
+
+            //preventing mouseenter event to do anything when coming from a touchEnd event
+            //fixing issue #3576
+            if(e.type === 'mouseenter' && !g_canFireMouseEnterNormalScroll){
+                return;
+            }
+
             var normalSelectors = options.normalScrollElements.split(',');
             normalSelectors.forEach(function(normalSelector){
                 if(closest(e.target, normalSelector) != null){
@@ -880,7 +925,9 @@
 
             //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
             if(options.menu && options.css3 && closest($(options.menu)[0], WRAPPER_SEL) != null){
-                $body.appendChild($(options.menu)[0]);
+                $(options.menu).forEach(function(menu) {
+                    $body.appendChild(menu);
+                });
             }
         }
 
@@ -1234,7 +1281,7 @@
         * Preventing bouncing in iOS #2285
         */
         function preventBouncing(e){
-            if(options.autoScrolling && isReallyTouch(e)){
+            if(options.autoScrolling && isReallyTouch(e) && isScrollAllowed.m.up){
                 //preventing the easing on iOS devices
                 preventDefault(e);
             }
@@ -1252,7 +1299,7 @@
         * used one to determine the direction.
         */
         function touchMoveHandler(e){
-            var activeSection = closest(e.target, SECTION_SEL);
+            var activeSection = closest(e.target, SECTION_SEL) || $(SECTION_ACTIVE_SEL)[0];
 
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (isReallyTouch(e) ) {
@@ -1821,7 +1868,6 @@
             keepSlidesPosition();
         }
 
-
         /**
         * Actions to do once the section is loaded.
         */
@@ -2315,6 +2361,7 @@
                 localIsResizing: isResizing
             };
             v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
+            v.direction = v.direction ? v.direction : v.xMovement;
 
             //important!! Only do it when not resizing
             if(!v.localIsResizing){
@@ -2520,11 +2567,12 @@
         * Activating the website main menu elements according to the given slide name.
         */
         function activateMenuElement(name){
-            var menu = $(options.menu)[0];
-            if(options.menu && menu != null){
-                removeClass($(ACTIVE_SEL, menu), ACTIVE);
-                addClass($('[data-menuanchor="'+name+'"]', menu), ACTIVE);
-            }
+            $(options.menu).forEach(function(menu) {
+                if(options.menu && menu != null){
+                    removeClass($(ACTIVE_SEL, menu), ACTIVE);
+                    addClass($('[data-menuanchor="'+name+'"]', menu), ACTIVE);
+                }
+            });
         }
 
         /**
@@ -2855,19 +2903,19 @@
                 prefix = 'on';
             }
 
-             // detect available wheel event
+            // detect available wheel event
             var support = 'onwheel' in document.createElement('div') ? 'wheel' : // Modern browsers support "wheel"
                       document.onmousewheel !== undefined ? 'mousewheel' : // Webkit and IE support at least "mousewheel"
                       'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
-
+            var passiveEvent = g_supportsPassive ? {passive: false }: false;
 
             if(support == 'DOMMouseScroll'){
-                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, false);
+                document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
             }
 
             //handle MozMousePixelScroll in older Firefox
             else{
-                document[ _addEventListener ](prefix + support, MouseWheelHandler, false);
+                document[ _addEventListener ](prefix + support, MouseWheelHandler, passiveEvent);
             }
         }
 
@@ -2897,14 +2945,12 @@
                     $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                var wrapper = $(WRAPPER_SEL)[0];
-                if(wrapper){
-                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
-                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                var touchWrapper = options.touchWrapper;
+                touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
+                touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
 
-                    wrapper.addEventListener(events.touchstart, touchStartHandler);
-                    wrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
-                }
+                touchWrapper.addEventListener(events.touchstart, touchStartHandler);
+                touchWrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
@@ -2919,11 +2965,9 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                var wrapper = $(WRAPPER_SEL)[0];
-                if(wrapper){
-                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
-                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
-                }
+                var touchWrapper = options.touchWrapper;
+                touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
+                touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
@@ -3194,12 +3238,18 @@
         * Displays warnings
         */
         function displayWarnings(){
+            var l = options['li' + 'c' + 'enseK' + 'e' + 'y'];
+            var msgStyle = 'font-size: 15px;background:yellow;'
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
                 showError('error', 'https://github.com/alvarotrigo/fullPage.js#options.');
             }
+            else if(l && l.length < 20){
+                console.warn('%c This website was made using fullPage.js slider. More info on the following website:', msgStyle);
+                console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
+            }
 
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax'];
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
             if(hasClass($('html'), ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
@@ -3964,12 +4014,8 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-            var FP = new fullpage(this[0], options);
-
-            //Static API
-            Object.keys(FP).forEach(function (key) {
-                $.fn.fullpage[key] = FP[key];
-            });
+            options.$ = $;
+            new fullpage(this[0], options);
         };
     })(window.jQuery, window.fullpage);
 }

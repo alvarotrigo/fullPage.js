@@ -27,6 +27,16 @@
         padding: 0;
         margin:0;
     }
+    #menu-two{
+        position:fixed;
+        top:0;
+        left:500px;
+        height: 40px;
+        z-index: 70;
+        width: 100%;
+        padding: 0;
+        margin:0;
+    }
     .normalscroll{
         overflow: scroll;
         height: 300px;
@@ -43,7 +53,14 @@
 <div id="qunit"></div>
 <div id="qunit-fixture">
 
-    <ul id="menu">
+    <ul id="menu" class="menu">
+        <li data-menuanchor="page1"><a href="#page1">One</a></li>
+        <li data-menuanchor="page2"><a href="#page2">Two</a></li>
+        <li data-menuanchor="page3"><a href="#page3">Three</a></li>
+        <li data-menuanchor="page4"><a href="#page4">Four</a></li>
+    </ul>
+
+    <ul id="menu-two" class="menu">
         <li data-menuanchor="page1"><a href="#page1">One</a></li>
         <li data-menuanchor="page2"><a href="#page2">Two</a></li>
         <li data-menuanchor="page3"><a href="#page3">Three</a></li>
@@ -350,7 +367,7 @@
   crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/qunit/qunit-2.5.1.js"></script>
-<script type="text/javascript" src="../src/fullpage.extensions.js"></script>
+<script type="text/javascript" src="../src/fullpage.js"></script>
 <script type="text/javascript">
 
 </script>

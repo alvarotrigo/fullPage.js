@@ -15,7 +15,7 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.3-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.5-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -236,6 +236,8 @@ $(document).ready(function() {
 		responsiveSlides: false,
 		parallax: false,
 		parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+		cards: true,
+		cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
 		//맞춤 선택자
 		sectionSelector: '.section',
@@ -430,13 +432,13 @@ new fullpage('#fullpage', {
 
 - `continuousVertical`: (기본값 `false`) 마지막 구역에서 아래로 스크롤할때 첫번째 구역으로 스크롤이 내려가야 할지를 정의하고, 첫번째 구역에서 위로 스크롤할때 마지막 구역으로 스크롤이 올라가야 할지를 정의합니다. `loopTop`, `loopBottom` 또는 웹사이트에 있는 모든 스크롤 막대기와 호환되지 않습니다. (`scrollBar:true` 또는 `autoScrolling:false`)
 
-- `continuousHorizontal`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 마지막 슬라이드에서 오른쪽으로 미끄러질 때 오른쪽으로 이동하여 첫번째 슬라이드로 이동할지를 정의하고, 첫번째 슬라이드에서 왼쪽으로 스크롤할때 왼쪽으로 이동하면서 마지막 슬라이드로 이동할지를 정의합니다. `loopHorizontal`과 호환되지 않습니다. fullpage.js 버전이 2.8.3 이상이어야 합니다.
+- `continuousHorizontal`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 마지막 슬라이드에서 오른쪽으로 미끄러질 때 오른쪽으로 이동하여 첫번째 슬라이드로 이동할지를 정의하고, 첫번째 슬라이드에서 왼쪽으로 스크롤할때 왼쪽으로 이동하면서 마지막 슬라이드로 이동할지를 정의합니다. `loopHorizontal`과 호환되지 않습니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. fullpage.js 버전이 2.8.3 이상이어야 합니다.
+- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `interlockedSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 수평 슬라이더 하나를 움직일 때 다른 구역에 있는 슬라이더가 강제로 같은 방향으로 미끄러지도록 할지를 정의합니다. `true`, `false` 또는 서로 잠긴 구역이 있는 배열값이 가능합니다. 예를 들면 1에서 시작하는 `[1,3,5]`가 가능합니다. fullpage.js 버전이 2.8.3 이상이어야 합니다.
+- `interlockedSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 수평 슬라이더 하나를 움직일 때 다른 구역에 있는 슬라이더가 강제로 같은 방향으로 미끄러지도록 할지를 정의합니다. `true`, `false` 또는 서로 잠긴 구역이 있는 배열값이 가능합니다. 예를 들면 1에서 시작하는 `[1,3,5]`가 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `dragAndMove`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 마우스나 손가락을 써서 구역과 슬라이드를 끌어오고 튕기는 걸 활성화하거나 비활성화합니다. fullpage.js 버전이 2.8.9 이상이어야 합니다. 아래 값을 쓰실 수 있습니다.
+- `dragAndMove`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 마우스나 손가락을 써서 구역과 슬라이드를 끌어오고 튕기는 걸 활성화하거나 비활성화합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다. 아래 값을 쓰실 수 있습니다.
   - `true`: 기능 활성화.
   - `false`: 기능 비활성화.
   - `vertical`: 수직으로만 기능 구현.
@@ -444,14 +446,14 @@ new fullpage('#fullpage', {
   - `fingersonly`: 터치 기기에서만 기능 구현.
   - `mouseonly`: 데스크탑 기기에서만 기능 구현(마우스와 트랙패드).
 
-- `offsetSections`: (기본값 `false`)[fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 전체화면이 아닌 구역을 퍼센트에 기반하여 쓸 수 있는 방법을 지원합니다. 방문객에게 다음이나 이전 구역의 일부를 보여줌으로써 웹사이트에 더 많은 컨텐츠가 있음을 보여주는 데 적합합니다. fullPage.js 버전이 2.8.8 이상이어야 합니다. 각 구역의 퍼센트를 정의하려면 `data-percentage` 속성을 쓰셔야 합니다. `data-centered` 속성에서 불리언(boolean) 값을 써서 모바일 지원(viewport)에서 구역이 중앙에 오도록 정의할 수 있습니다(명시하지 않을 경우 `true`가 기본값). 다음은 예시입니다.
+- `offsetSections`: (기본값 `false`)[fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 전체화면이 아닌 구역을 퍼센트에 기반하여 쓸 수 있는 방법을 지원합니다. 방문객에게 다음이나 이전 구역의 일부를 보여줌으로써 웹사이트에 더 많은 컨텐츠가 있음을 보여주는 데 적합합니다. fullPage.js 버전이 3.0.1 이상이어야 합니다. 각 구역의 퍼센트를 정의하려면 `data-percentage` 속성을 쓰셔야 합니다. `data-centered` 속성에서 불리언(boolean) 값을 써서 모바일 지원(viewport)에서 구역이 중앙에 오도록 정의할 수 있습니다(명시하지 않을 경우 `true`가 기본값). 다음은 예시입니다.
 ``` html
     <div class="section" data-percentage="80" data-centered="true">
 ```
 
-- `resetSliders`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 2.8.3 이상이어야 합니다.
+- `resetSliders`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. fullpage.js 버전이 2.8.6 이상이어야 합니다.
+- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
 - `animateAnchor`: (기본값 `true`) 앵커(#)가 주어질 때 웹사이트를 불러오면 애니메이션이 들어간 스크롤 형태로 목적지로 이동할지, 아니면 주어진 구역에서 바로 불러올지를 정의합니다.
 
@@ -511,11 +513,15 @@ new fullpage('#fullpage', {
 
 - `responsiveHeight`: (기본값 `0`) 픽셀로 정의된 높이 아래에 정상 스크롤(`autoScrolling:false`)을 씁니다. 사용자가 자신만의 반응형 CSS에 쓰고 싶은 경우를 위해 `fp-responsive` 클래스가 바디 태그에 추가됩니다. 예를 들어 900에 설정되는 경우 브라우저의 높이가 900 미만이 될 때마다 플러그인이 정상 웹사이트처럼 스크롤됩니다.
 
-- `responsiveSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정될 경우 반응형 모드가 실행되면 슬라이드가 수직 구역으로 바뀝니다. (위에 상세히 설명된 `responsiveWidth` 또는 `responsiveHeight` 옵션을 써서 구현됩니다). fullpage.js 버전이 2.8.5 이상이어야 합니다.
+- `responsiveSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정될 경우 반응형 모드가 실행되면 슬라이드가 수직 구역으로 바뀝니다. (위에 상세히 설명된 `responsiveWidth` 또는 `responsiveHeight` 옵션을 써서 구현됩니다). fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
 - `parallax`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에서 패럴랙스 배경 효과를 쓸지 여부를 정의합니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
 - `parallaxOptions`: (기본값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
+
+- `cards`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)
+
+- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
 
@@ -691,7 +697,7 @@ fullpage_api.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
-[fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). fullpage.js 버전이 2.8.5 이상이어야 합니다.
+[fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). fullpage.js 버전이 3.0.1 이상이어야 합니다.
 수평 슬라이드를 수직 구역으로 바꿉니다.
 
 ```javascript
@@ -699,7 +705,7 @@ fullpage_api.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
-[fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). fullpage.js 버전이 2.8.5 이상이어야 합니다.
+[fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). fullpage.js 버전이 3.0.1 이상이어야 합니다.
 (수직 구역으로 전환된) 슬라이드를 다시 수평 슬라이드로 되돌립니다.
 
 ```javascript
@@ -962,12 +968,9 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 [![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
+
 - https://www.coca-colacompany.com/annual-review/2017/index.html
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- https://www.x-class.com.au
-- http://www.yourprimer.com/
-- http://www.vogue.fr/chaumet-histoires-de-liens
-- http://burntmovie.com/
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
@@ -979,15 +982,10 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/
-- http://collection.madeofsundays.com
 - http://www.boxreload.com/
 - http://educationaboveall.org/
-- http://camfindapp.com/
-- http://rockercreative.com/
 - http://usescribe.com/
-- http://lucilecazanave.com/
 - http://boxx.hk/
-- http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
 - http://www.sanyang.com.tw/service/Conception/
@@ -998,9 +996,6 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://unabridgedsoftware.com/
-- http://atlanticcorp.us/
-- http://moysport.ru/
 - http://themify.me/demo/#theme=fullpane
 - http://dancingroad.com
 - http://www.camanihome.com/
@@ -1020,7 +1015,6 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 
 [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
-[![HostPresto](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png)](https://hostpresto.com/?utm_source=alvaro)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 [![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 
