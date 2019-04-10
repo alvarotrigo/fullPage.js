@@ -914,9 +914,8 @@
             //moving the menu outside the main container if it is inside (avoid problems with fixed positions when using CSS3 tranforms)
             if(options.menu && options.css3 && closest($(options.menu)[0], WRAPPER_SEL) != null){
                 $(options.menu).forEach(function(domElement, i) {
-                    var menu = $(options.menu)[i];
 
-                    $body.appendChild(menu);
+                    $body.appendChild(domElement);
                 });
             }
         }
@@ -2559,7 +2558,7 @@
         */
         function activateMenuElement(name){
             $(options.menu).forEach(function(domElement, i) {
-                var menu = $(options.menu)[i];
+                var menu = domElement;
 
                 if(options.menu && menu != null){
                     removeClass($(ACTIVE_SEL, menu), ACTIVE);
