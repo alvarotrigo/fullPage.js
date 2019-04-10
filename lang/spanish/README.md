@@ -534,7 +534,7 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 
 - `parallaxOptions`: (por defecto: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Permite configurar los parámetros para el efecto de parallax cuando se usa la opción `parallax:true`. [Lee más acerca de la opción parallax aquí](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md).
 
-- `cards`: (default `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de "Cards" en secciones/diapositivas. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)
+- `cards`: (default `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de "Cards" en secciones/diapositivas. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Permite configurar los parámetros para el efecto de Cards cuando se usa la opcón `cards:true`. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
