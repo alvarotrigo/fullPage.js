@@ -236,6 +236,8 @@ $(document).ready(function() {
 		responsiveSlides: false,
 		parallax: false,
 		parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+		cards: true,
+		cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
 		//맞춤 선택자
 		sectionSelector: '.section',
@@ -516,6 +518,10 @@ new fullpage('#fullpage', {
 - `parallax`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에서 패럴랙스 배경 효과를 쓸지 여부를 정의합니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
 - `parallaxOptions`: (기본값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
+
+- `cards`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)
+
+- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
 

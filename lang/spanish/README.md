@@ -246,6 +246,8 @@ new fullpage('#fullpage', {
 	responsiveSlides: false,
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+	cards: true,
+	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
 	//Selectores personalizados
 	sectionSelector: '.section',
@@ -531,6 +533,10 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 - `parallax`: (por defecto `false`) [Extensión de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Determina si usar fondos de sección y diapositiva con efecto parallax o no. [Lee más acerca de la opción parallax aquí](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md).
 
 - `parallaxOptions`: (por defecto: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Permite configurar los parámetros para el efecto de parallax cuando se usa la opción `parallax:true`. [Lee más acerca de la opción parallax aquí](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md).
+
+- `cards`: (default `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de "Cards" en secciones/diapositivas. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)
+
+- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Permite configurar los parámetros para el efecto de Cards cuando se usa la opcón `cards:true`. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: (por defecto `true`) La carga pasiva está activa por defecto, lo que significa que cargará pasivamente cualquier elemento multimedia que contenga el atributo `data-src` como se detalla en la [carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#carga-pasiva-de-elementos-multimedia). Si quieres usar otra librería de carga pasiva puedes deshabilitar esta funcionalidad usando `false`.
 
