@@ -141,6 +141,7 @@
             scrollOverflowHandler: window.fp_scrolloverflow ? window.fp_scrolloverflow.iscrollHandler : null,
             scrollOverflowOptions: null,
             touchSensitivity: 5,
+            touchWrapper: typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector,
             normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
 
@@ -166,6 +167,12 @@
                 type: 'reveal',
                 percentage: 62,
                 property: 'translate'
+            },
+            cards: false,
+            cardsOptions: {
+                perspective: 100,
+                fadingContent: true,
+                fadingBackground: true
             },
 
             //Custom selectors
@@ -532,6 +539,11 @@
                     if(isFunction( options.afterResponsive )){
                         options.afterResponsive.call( container, active);
                     }
+
+                    //when on page load, we will remove scrolloverflow if necessary
+                    if(options.scrollOverflow){
+                        scrollBarHandler.createScrollBarForAll();
+                    }
                 }
             }
             else if(isResponsive){
@@ -565,7 +577,7 @@
             FP.fitToSection = fitToSection;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
-            FP.getFullpageData = options;
+            FP.getFullpageData = function(){ return options };
             FP.destroy = destroy;
             FP.getActiveSection = getActiveSection;
             FP.getActiveSlide = getActiveSlide;
@@ -1285,7 +1297,7 @@
         * used one to determine the direction.
         */
         function touchMoveHandler(e){
-            var activeSection = closest(e.target, SECTION_SEL);
+            var activeSection = closest(e.target, SECTION_SEL) || $(SECTION_ACTIVE_SEL)[0];
 
             // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (isReallyTouch(e) ) {
@@ -1853,7 +1865,6 @@
             // Maintain the active slides visible in the viewport
             keepSlidesPosition();
         }
-
 
         /**
         * Actions to do once the section is loaded.
@@ -2931,14 +2942,12 @@
                     $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                var wrapper = $(WRAPPER_SEL)[0];
-                if(wrapper){
-                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
-                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+                var touchWrapper = options.touchWrapper;
+                touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
+                touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
 
-                    wrapper.addEventListener(events.touchstart, touchStartHandler);
-                    wrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
-                }
+                touchWrapper.addEventListener(events.touchstart, touchStartHandler);
+                touchWrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
@@ -2953,11 +2962,9 @@
                     $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
                 }
 
-                var wrapper = $(WRAPPER_SEL)[0];
-                if(wrapper){
-                    wrapper.removeEventListener(events.touchstart, touchStartHandler);
-                    wrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
-                }
+                var touchWrapper = options.touchWrapper;
+                touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
+                touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
             }
         }
 
@@ -3228,12 +3235,18 @@
         * Displays warnings
         */
         function displayWarnings(){
+            var l = options['li' + 'c' + 'enseK' + 'e' + 'y'];
+            var msgStyle = 'font-size: 15px;background:yellow;'
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
                 showError('error', 'https://github.com/alvarotrigo/fullPage.js#options.');
             }
+            else if(l && l.length < 20){
+                console.warn('%c This website was made using fullPage.js slider. More info on the following website:', msgStyle);
+                console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
+            }
 
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax'];
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
             if(hasClass($('html'), ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
