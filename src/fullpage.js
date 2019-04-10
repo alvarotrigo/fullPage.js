@@ -171,8 +171,8 @@
             cards: false,
             cardsOptions: {
                 perspective: 100,
-                fadingContent: true,
-                fadingBackground: true
+                fadeContent: true,
+                fadeBackground: true
             },
 
             //Custom selectors
