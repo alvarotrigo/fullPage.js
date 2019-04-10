@@ -26,11 +26,6 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
         </a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://hostpresto.com/?utm_source=alvaro" target="_blank" rel="nofollow">
-          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/hostpresto3.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
         <a href="https://codepen.com" target="_blank" rel="nofollow">
           <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png">
         </a>
@@ -38,11 +33,6 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
       <td align="center" valign="middle">
         <a href="https://www.codefirst.co.uk" target="_blank">
           <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://flatlogic.com/admin-dashboards" target="_blank">
-          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/flatlogic.png">
         </a>
       </td>
     </tr>
