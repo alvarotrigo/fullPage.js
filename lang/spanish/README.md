@@ -246,7 +246,7 @@ new fullpage('#fullpage', {
 	responsiveSlides: false,
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
-	cards: true,
+	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
 	//Selectores personalizados
