@@ -978,9 +978,6 @@ Sólo disponible en inglés :)
 
 - https://www.coca-colacompany.com/annual-review/2017/index.html
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- https://www.x-class.com.au
-- http://www.yourprimer.com/
-- http://www.vogue.fr/chaumet-histoires-de-liens
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
@@ -992,15 +989,10 @@ Sólo disponible en inglés :)
 - http://urban-walks.com/
 - http://lingualeo.com/
 - http://charlotteaimes.com/
-- http://collection.madeofsundays.com
 - http://www.boxreload.com/
 - http://educationaboveall.org/
-- http://camfindapp.com/
-- http://rockercreative.com/
 - http://usescribe.com/
-- http://lucilecazanave.com/
 - http://boxx.hk/
-- http://bearonunicycle.com/
 - http://rawmilk.dk/en/
 - http://www.famavolat.com/
 - http://www.sanyang.com.tw/service/Conception/
@@ -1011,9 +1003,6 @@ Sólo disponible en inglés :)
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://unabridgedsoftware.com/
-- http://atlanticcorp.us/
-- http://moysport.ru/
 - http://themify.me/demo/#theme=fullpane
 - http://dancingroad.com
 - http://www.camanihome.com/
