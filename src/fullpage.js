@@ -577,7 +577,7 @@
             FP.fitToSection = fitToSection;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
-            FP.getFullpageData = options;
+            FP.getFullpageData = function(){ return options };
             FP.destroy = destroy;
             FP.getActiveSection = getActiveSection;
             FP.getActiveSlide = getActiveSlide;
