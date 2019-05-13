@@ -571,7 +571,7 @@ fullpage_api.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-[Demo](http://codepen.io/alvarotrigo/pen/doqOmY) Scrolls the page to the given section and slide. The first slide, the visible one by default, will have index 0.
+[Demo](http://codepen.io/alvarotrigo/pen/doqOmY) Scrolls the page to the given section and slide. The first section will have the index 1 whilst the first slide, the visible one by default, will have index 0.
 ```javascript
 /*Scrolling to the section with the anchor link `firstSlide` and to the 2nd Slide */
 fullpage_api.moveTo('firstSlide', 2);
@@ -579,7 +579,7 @@ fullpage_api.moveTo('firstSlide', 2);
 ```
 
 ```javascript
-//Scrolling to the 3rd section in the site
+//Scrolling to the 3rd section (with index 3) in the site
 fullpage_api.moveTo(3, 0);
 
 //Which is the same as
