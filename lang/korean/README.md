@@ -931,6 +931,7 @@ new fullpage('#fullpage', {
 fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)을 방문해 주세요.
 
 # 재료가 되는 도구
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

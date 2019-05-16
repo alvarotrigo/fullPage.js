@@ -940,6 +940,7 @@ Sólo disponible en inglés :)
 ¿Deseas crear archivos de distribución de fullpage.js? Lee los [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Recursos
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

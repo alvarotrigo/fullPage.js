@@ -942,6 +942,7 @@ new fullpage('#fullpage', {
 想要构建fullpage.js分发文件？ 请参阅[Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # 参考资源
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
