@@ -164,7 +164,7 @@ fullpage_api.setAllowScrolling(false);
 ```
 
 #### Initialization with jQuery
-You can use fullpage.js as a jQuery plugin if you want too!
+You can use fullpage.js as a jQuery plugin if you want to!
 
 ```javascript
 $(document).ready(function() {
