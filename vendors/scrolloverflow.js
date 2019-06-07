@@ -2133,7 +2133,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.2 module for fullPage.js >= 3
+* Scrolloverflow 2.0.3 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
@@ -2263,7 +2263,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                 else{
                     contentHeight = element.scrollHeight - paddings;
                     if(self.options.verticalCentered){
-                        contentHeight = $(TABLE_CELL_SEL, element)[0].scrollHeight - paddings;
+                        contentHeight = $(TABLE_CELL_SEL, element)[0].scrollHeight + paddings;
                     }
                 }
 
