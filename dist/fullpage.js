@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.5
+ * fullPage 3.0.6
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -719,11 +719,19 @@
         }
 
         function onMouseEnterOrLeave(e) {
-            if(e.target == document){
+            var target = e.target;
+            var type = e.type;
+
+            if(target == document){
+
+                //coming from closing a normalScrollElements modal?
+                if(FP.shared.isNormalScrollElement){
+                    setMouseHijack(true);
+                }
                 return;
             }
 
-            if(e.type === 'touchend'){
+            if(type === 'touchend'){
                 g_canFireMouseEnterNormalScroll = false;
                 setTimeout(function(){
                     g_canFireMouseEnterNormalScroll = true;
@@ -732,14 +740,22 @@
 
             //preventing mouseenter event to do anything when coming from a touchEnd event
             //fixing issue #3576
-            if(e.type === 'mouseenter' && !g_canFireMouseEnterNormalScroll){
+            if(type === 'mouseenter' && !g_canFireMouseEnterNormalScroll){
                 return;
             }
 
             var normalSelectors = options.normalScrollElements.split(',');
+            var allowScrolling = document['fp_' + type];
+
             normalSelectors.forEach(function(normalSelector){
-                if(closest(e.target, normalSelector) != null){
-                    setMouseHijack(document['fp_' + e.type]); //e.type = eventName
+                var isNormalScrollTarget = matches(target, normalSelector);
+
+                //leaving a child inside the normalScoll element is not leaving the normalScroll #3661
+                var isNormalScrollChildFocused = closest(target, normalSelector) && ['mouseenter', 'touchstart'].indexOf(type) > -1;
+
+                if(isNormalScrollTarget || isNormalScrollChildFocused){
+                    setMouseHijack(allowScrolling); //e.type = eventName
+                    FP.shared.isNormalScrollElement = !allowScrolling;
                 }
             });
         }
