@@ -613,7 +613,9 @@
 
             //using jQuery initialization? Creating the $.fn.fullpage object
             if(options.$){
-                options.$.fn.fullpage = FP;
+                Object.keys(FP).forEach(function (key) {    
+                    options.$.fn.fullpage[key] = FP[key];   
+                });
             }
 
             init();
@@ -4030,7 +4032,7 @@ if(window.jQuery && window.fullpage){
         }
 
         $.fn.fullpage = function(options) {
-            options.$ = $;
+            options = $.extend({}, options, {'$': $});
             new fullpage(this[0], options);
         };
     })(window.jQuery, window.fullpage);
