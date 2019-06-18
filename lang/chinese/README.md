@@ -448,7 +448,7 @@ new fullpage('#fullpage', {
 
 - `continuousHorizontal`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义在最后一张幻灯片中向右滑动是否应该向右滑动到第一张幻灯片，或者如果在第一张幻灯片中向左滚动是否应向左滑动到最后一张。 不兼容`loopHorizontal`。 需要fullpage.js> = 3.0.1。
 
-- `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 需要fullpage.js> = 3.0.1。
+- `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 It can only be used when using: `autoScrolling:true`. 需要fullpage.js> = 3.0.1。
 
 - `interlockedSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块在其他段落中的滑动方向相同。 可能的值是`true`，`false`或带有互锁部分的数组。 例如`[1,3,5]`从1开始。需要fullpage.js> = 3.0.1。
 
@@ -468,7 +468,7 @@ new fullpage('#fullpage', {
 
 - `resetSliders`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在离开节后重置每个滑块。 需要fullpage.js> = 3.0.1。
 
-- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。 需要fullpage.js> = 3.0.1。
+- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。It can only be used when using: `autoScrolling:true`. 需要fullpage.js> = 3.0.1。
 
 - `animateAnchor`: （默认`true`）定义给定锚点（＃）的站点的负载是否会随着动画滚动到其目的地或直接加载给定部分。
 

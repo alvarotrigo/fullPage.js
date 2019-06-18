@@ -467,7 +467,7 @@ To define the percentage of each section the attribute `data-percentage` must be
 
 - `resetSliders`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to reset every slider after leaving its section. Requires fullpage.js >= 3.0.1.
 
-- `fadingEffect`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether to use a fading effect or not instead of the default scrolling one. Possible values are `true`, `false`, `sections`, `slides`. It can therefore be applied just vertically or horizontally, or to both at the time. Requires fullpage.js >= 3.0.1.
+- `fadingEffect`: (default `false`). [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether to use a fading effect or not instead of the default scrolling one. Possible values are `true`, `false`, `sections`, `slides`. It can therefore be applied just vertically or horizontally, or to both at the time. It can only be used when using: `autoScrolling:true`. Requires fullpage.js >= 3.0.1.
 
 - `animateAnchor`: (default `true`) Defines whether the load of the site when given an anchor (#) will scroll with animation to its destination or will directly load on the given section.
 

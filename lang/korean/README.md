@@ -435,7 +435,7 @@ new fullpage('#fullpage', {
 
 - `continuousHorizontal`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 마지막 슬라이드에서 오른쪽으로 미끄러질 때 오른쪽으로 이동하여 첫번째 슬라이드로 이동할지를 정의하고, 첫번째 슬라이드에서 왼쪽으로 스크롤할때 왼쪽으로 이동하면서 마지막 슬라이드로 이동할지를 정의합니다. `loopHorizontal`과 호환되지 않습니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. It can only be used when using: `autoScrolling:true`. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
 - `interlockedSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 수평 슬라이더 하나를 움직일 때 다른 구역에 있는 슬라이더가 강제로 같은 방향으로 미끄러지도록 할지를 정의합니다. `true`, `false` 또는 서로 잠긴 구역이 있는 배열값이 가능합니다. 예를 들면 1에서 시작하는 `[1,3,5]`가 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
@@ -454,7 +454,7 @@ new fullpage('#fullpage', {
 
 - `resetSliders`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. It can only be used when using: `autoScrolling:true`. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
 - `animateAnchor`: (기본값 `true`) 앵커(#)가 주어질 때 웹사이트를 불러오면 애니메이션이 들어간 스크롤 형태로 목적지로 이동할지, 아니면 주어진 구역에서 바로 불러올지를 정의합니다.
 
