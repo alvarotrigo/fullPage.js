@@ -454,7 +454,7 @@ new fullpage('#fullpage', {
 
 - `resetSliders`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. It can only be used when using: `autoScrolling:true`. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
 - `animateAnchor`: (기본값 `true`) 앵커(#)가 주어질 때 웹사이트를 불러오면 애니메이션이 들어간 스크롤 형태로 목적지로 이동할지, 아니면 주어진 구역에서 바로 불러올지를 정의합니다.
 

@@ -468,7 +468,7 @@ new fullpage('#fullpage', {
 
 - `resetSliders`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在离开节后重置每个滑块。 需要fullpage.js> = 3.0.1。
 
-- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。It can only be used when using: `autoScrolling:true`. 需要fullpage.js> = 3.0.1。
+- `fadingEffect`: （默认`false`）。 [fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可能的值是`true`，`false`，`sections`，`slides`。 因此，可以垂直或水平地应用，或者同时应用于两者。 需要fullpage.js> = 3.0.1。
 
 - `animateAnchor`: （默认`true`）定义给定锚点（＃）的站点的负载是否会随着动画滚动到其目的地或直接加载给定部分。
 
