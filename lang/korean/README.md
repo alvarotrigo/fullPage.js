@@ -327,7 +327,7 @@ Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소
 
 ### 미디어 자동 재생/일시정지 삽입
 
-*주의*: 자동 재생 기능은 ([iOS의 사파리](https://webkit.org/blog/6784/new-video-policies-for-ios/) 10.0 미만 버전 등) OS와 브라우저에 따라 일부 모바일 기기에서는 작동하지 않을 수 있습니다.
+[데모](https://codepen.io/alvarotrigo/pen/pXEaaK) *주의*: 자동 재생 기능은 ([iOS의 사파리](https://webkit.org/blog/6784/new-video-policies-for-ios/) 10.0 미만 버전 등) OS와 브라우저에 따라 일부 모바일 기기에서는 작동하지 않을 수 있습니다.
 
 #### 구역/슬라이드를 불러올 때 재생:
 비디오나 소리에 `autoplay` 속성을 쓰시거나 유튜브 iframe에 `autoplay=1` 매개변수를 쓰시면 페이지를 불러올 때 미디어 요소가 재생됩니다. 구역/슬라이드를 불러올 때 재생되도록 하려면 대신 `data-autoplay` 속성을 쓰시면 됩니다. 아래는 예시입니다.

@@ -337,7 +337,7 @@ Fullpage.js在不同的元素中添加多个类来保存网站状态的记录：
 
 ### 自动播放/暂停嵌入式媒体
 
-**注意**：根据操作系统和浏览器的不同，自动播放功能可能无法在某些移动设备上使用（即[iOS的Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
+[演示](https://codepen.io/alvarotrigo/pen/pXEaaK) **注意**：根据操作系统和浏览器的不同，自动播放功能可能无法在某些移动设备上使用（即[iOS的Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
 
 #### 播放部分/幻灯片载入：
 对于视频或音频使用属性 `autoplay`，或者对于youtube iframe使用参数`autoplay=1`将使得在加载页面时播放媒体元素。
