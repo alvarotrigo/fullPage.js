@@ -257,6 +257,7 @@ var myFullpage = new fullpage('#fullpage', {
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
+	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}
@@ -847,6 +848,19 @@ new fullpage('#fullpage', {
 	afterResize: function(width, height){
 		var fullpageContainer = this;
 		alert("The sections have finished resizing");
+	}
+});
+```
+---
+### afterReBuild()
+This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	afterReBuild: function(){
+		console.log("fullPage.js has manually being re-builded");
 	}
 });
 ```
