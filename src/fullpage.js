@@ -240,6 +240,8 @@
         var scrollId;
         var scrollId2;
         var keydownId;
+        var g_doubleCheckHeightId;
+        var g_doubleCheckHeightCont = 0;
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
         var g_initialAnchorsInDom = false;
@@ -650,6 +652,7 @@
             if(!options.scrollOverflow){
                 afterRenderActions();
             }
+
         }
 
         function bindEvents(){
@@ -760,6 +763,31 @@
                     FP.shared.isNormalScrollElement = !allowScrolling;
                 }
             });
+        }
+
+        /**
+        * Checks the viewport a few times on a define interval of time to 
+        * see if it has changed in any of those. If that's the case, it resizes.
+        */
+        function doubleCheckHeight(){
+            g_doubleCheckHeightId = setInterval(adjustToNewViewport, 350);
+        }
+
+        /**
+        * Adjusts a section to the viewport if it has changed.
+        */
+        function adjustToNewViewport(){
+            var newWindowHeight = getWindowHeight();
+            if(windowsHeight !== newWindowHeight){
+                windowsHeight = newWindowHeight;
+                reBuild(true);
+            }
+            g_doubleCheckHeightCont++;
+
+            if(g_doubleCheckHeightCont > 1){
+                clearInterval(g_doubleCheckHeightId);
+                g_doubleCheckHeightCont = 0;
+            }
         }
 
         /**
@@ -2503,7 +2531,7 @@
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
                         resizeId = setTimeout(function(){
-                            reBuild(true);
+                            doubleCheckHeight();
                             previousHeight = currentHeight;
 
                             //issue #3336
@@ -3510,7 +3538,7 @@
     * Gets the window height. Crossbrowser.
     */
     function getWindowHeight(){
-        return  'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+        return 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
     }
 
     /**
