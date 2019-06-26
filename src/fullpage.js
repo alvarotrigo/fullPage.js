@@ -770,6 +770,7 @@
         * see if it has changed in any of those. If that's the case, it resizes.
         */
         function doubleCheckHeight(){
+            adjustToNewViewport();
             g_doubleCheckHeightId = setInterval(adjustToNewViewport, 350);
         }
 
