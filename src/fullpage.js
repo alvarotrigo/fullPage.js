@@ -2519,7 +2519,7 @@
             //issue #3336 
             //(some apps or browsers, like Chrome/Firefox for Mobile take time to report the real height)
             //so we check it 3 times with intervals in that case
-            for(var i = 0; i< numRepetitions; i++){
+            for(var i = 0; i< 3; i++){
                 resizeId = setTimeout(resizeActions, 200 * i);
             }
         }
