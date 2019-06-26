@@ -2517,13 +2517,10 @@
         function resizeHandler(){
 
             //issue #3336 
-            //(some apps or browsers, like Chrome for Mobile take time to report the real height)
+            //(some apps or browsers, like Chrome/Firefox for Mobile take time to report the real height)
             //so we check it 3 times with intervals in that case
-            var isChromeMobile = navigator.userAgent.match('CriOS');
-            var numRepetitions = isChromeMobile ? 3 : 1;
-
             for(var i = 0; i< numRepetitions; i++){
-                resizeId = setTimeout(resizeActions, isChromeMobile ? 200 * i : 0);
+                resizeId = setTimeout(resizeActions, 200 * i);
             }
         }
 
