@@ -724,15 +724,15 @@
         }
 
         function onMouseEnterOrLeave(e) {
-            var target = e.target;
+            //onMouseLeave will use the destination target, not the one we are moving away from
+            var target = event.toElement || e.relatedTarget || e.target;
+
             var type = e.type;
+            var isInsideOneNormalScroll = false;
 
-            if(target == document){
-
-                //coming from closing a normalScrollElements modal?
-                if(FP.shared.isNormalScrollElement){
-                    setMouseHijack(true);
-                }
+            //coming from closing a normalScrollElements modal or moving outside viewport?
+            if(target == document || !target){
+                setMouseHijack(true);
                 return;
             }
 
@@ -750,19 +750,29 @@
             }
 
             var normalSelectors = options.normalScrollElements.split(',');
-            var allowScrolling = document['fp_' + type];
 
             normalSelectors.forEach(function(normalSelector){
-                var isNormalScrollTarget = matches(target, normalSelector);
+                if(!isInsideOneNormalScroll){
+                    var isNormalScrollTarget = matches(target, normalSelector);
 
-                //leaving a child inside the normalScoll element is not leaving the normalScroll #3661
-                var isNormalScrollChildFocused = closest(target, normalSelector) && ['mouseenter', 'touchstart'].indexOf(type) > -1;
+                    //leaving a child inside the normalScoll element is not leaving the normalScroll #3661
+                    var isNormalScrollChildFocused = closest(target, normalSelector);
 
-                if(isNormalScrollTarget || isNormalScrollChildFocused){
-                    setMouseHijack(allowScrolling); //e.type = eventName
-                    FP.shared.isNormalScrollElement = !allowScrolling;
+                    if(isNormalScrollTarget || isNormalScrollChildFocused){
+                        if(!FP.shared.isNormalScrollElement){
+                            setMouseHijack(false);
+                        }
+                        FP.shared.isNormalScrollElement = true;
+                        isInsideOneNormalScroll = true;
+                    }
                 }
             });
+
+            //not inside a single normal scroll element anymore?
+            if(!isInsideOneNormalScroll && FP.shared.isNormalScrollElement){
+                setMouseHijack(true);
+                FP.shared.isNormalScrollElement = false;
+            }
         }
 
         /**
