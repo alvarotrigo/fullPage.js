@@ -3148,12 +3148,16 @@
             setKeyboardScrolling(false);
             addClass(container, DESTROYED);
 
-            clearTimeout(afterSlideLoadsId);
-            clearTimeout(afterSectionLoadsId);
-            clearTimeout(resizeId);
-            clearTimeout(scrollId);
-            clearTimeout(scrollId2);
-            clearTimeout(g_doubleCheckHeightId);
+            [
+                afterSlideLoadsId, 
+                afterSectionLoadsId,
+                resizeId,
+                scrollId,
+                scrollId2,
+                g_doubleCheckHeightId
+            ].forEach(function(timeoutId){
+                clearTimeout(timeoutId);
+            });
 
             window.removeEventListener('scroll', scrollHandler);
             window.removeEventListener('hashchange', hashChangeHandler);
@@ -3169,9 +3173,6 @@
             ['mouseenter', 'touchstart', 'mouseleave', 'touchend'].forEach(function(eventName){
                 document.removeEventListener(eventName, onMouseEnterOrLeave, true); //true is required!
             });
-
-            clearTimeout(afterSlideLoadsId);
-            clearTimeout(afterSectionLoadsId);
 
             //lets make a mess!
             if(all){
