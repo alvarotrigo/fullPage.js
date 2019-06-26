@@ -241,7 +241,6 @@
         var scrollId2;
         var keydownId;
         var g_doubleCheckHeightId;
-        var g_doubleCheckHeightCont = 0;
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
         var g_initialAnchorsInDom = false;
@@ -653,6 +652,7 @@
                 afterRenderActions();
             }
 
+            doubleCheckHeight();
         }
 
         function bindEvents(){
@@ -770,8 +770,9 @@
         * see if it has changed in any of those. If that's the case, it resizes.
         */
         function doubleCheckHeight(){
-            adjustToNewViewport();
-            g_doubleCheckHeightId = setInterval(adjustToNewViewport, 350);
+            for(var i = 1; i < 4; i++){
+                g_doubleCheckHeightId = setTimeout(adjustToNewViewport, 350 * i);
+            }
         }
 
         /**
@@ -782,12 +783,6 @@
             if(windowsHeight !== newWindowHeight){
                 windowsHeight = newWindowHeight;
                 reBuild(true);
-            }
-            g_doubleCheckHeightCont++;
-
-            if(g_doubleCheckHeightCont > 1){
-                clearInterval(g_doubleCheckHeightId);
-                g_doubleCheckHeightCont = 0;
             }
         }
 
@@ -3158,6 +3153,7 @@
             clearTimeout(resizeId);
             clearTimeout(scrollId);
             clearTimeout(scrollId2);
+            clearTimeout(g_doubleCheckHeightId);
 
             window.removeEventListener('scroll', scrollHandler);
             window.removeEventListener('hashchange', hashChangeHandler);
