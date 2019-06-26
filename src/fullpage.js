@@ -2515,8 +2515,27 @@
 
         var previousHeight = windowsHeight;
 
-        //when resizing the site, we adjust the heights of the sections, slimScroll...
+        /*
+        * Resize event handler.
+        */        
         function resizeHandler(){
+
+            //issue #3336 
+            //(some apps or browsers, like Chrome for Mobile take time to report the real height)
+            //so we check it 3 times with intervals in that case
+            var isChromeMobile = navigator.userAgent.match('CriOS');
+            var numRepetitions = isChromeMobile ? 3 : 1;
+
+            for(var i = 0; i< numRepetitions; i++){
+                resizeId = setTimeout(resizeActions, isChromeMobile ? 200 * i : 0);
+            }
+        }
+
+        /**
+        * When resizing the site, we adjust the heights of the sections, slimScroll...
+        */
+        function resizeActions(){
+
             //checking if it needs to get responsive
             responsive();
 
@@ -2530,18 +2549,12 @@
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-                        resizeId = setTimeout(function(){
-                            doubleCheckHeight();
-                            previousHeight = currentHeight;
-
-                            //issue #3336
-                            //when using Chrome we add a small timeout to get the right window height 
-                            //https://stackoverflow.com/a/12556928/1081396
-                            //https://stackoverflow.com/questions/13807810/ios-chrome-detection
-                        }, navigator.userAgent.match('CriOS') ? 50 : 0);
+                        reBuild(true);
+                        previousHeight = currentHeight;
                     }
                 }
-            }else{
+            }
+            else{
                 //in order to call the functions only when the resize is finished
                 //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
                 clearTimeout(resizeId);
