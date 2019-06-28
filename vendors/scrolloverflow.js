@@ -2261,19 +2261,21 @@ if ( typeof module != 'undefined' && module.exports ) {
                     contentHeight = scrollOverflowHandler.scrollHeight(element);
                 }
                 else{
-                    contentHeight = element.scrollHeight - paddings;
+                    contentHeight = element.scrollHeight;
                     if(self.options.verticalCentered){
-                        contentHeight = $(TABLE_CELL_SEL, element)[0].scrollHeight + paddings;
+                        contentHeight = $(TABLE_CELL_SEL, element)[0].scrollHeight;
                     }
                 }
 
-                var scrollHeight = fp_utils.getWindowHeight() - paddings;
-
+                var scrollHeight = fp_utils.getWindowHeight();
+                var contentHeightWidthPaddings = contentHeight + paddings;
+                var scrollHeightWidthoutPaddings = scrollHeight - paddings;
+                
                 //needs scroll?
-                if ( contentHeight > scrollHeight) {
+                if ( contentHeightWidthPaddings > scrollHeight) {
                     //did we already have an scrollbar ? Updating it
                     if(scrollable != null){
-                        scrollOverflowHandler.update(element, scrollHeight);
+                        scrollOverflowHandler.update(element, scrollHeightWidthoutPaddings);
                     }
                      //creating the scrolling
                     else{
@@ -2284,7 +2286,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                             fp_utils.wrapInner(element, wrap.scroller);
                             fp_utils.wrapInner(element, wrap.scrollable);
                         }
-                        scrollOverflowHandler.create(element, scrollHeight, self.iscrollOptions);
+                        scrollOverflowHandler.create(element, scrollHeightWidthoutPaddings, self.iscrollOptions);
                     }
                 }
 
