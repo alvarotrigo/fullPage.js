@@ -360,7 +360,7 @@ fullpage.js [provides a set of extensions](http://alvarotrigo.com/fullPage/exten
 
 Extensions requires you to use the minified file [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/fullpage.extensions.min.js) that is inside the [`dist` folder](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) instead of the usual fullPage.js file (`fullpage.js` or `fullpage.min.js`).
 
-Once you acquire the extension file, you will need to add it before fullPage. For example, if I want to use the Continuous Horizontal extension, I would have include the extension file and then the extensions version of the fullPage file.
+Once you adquire the extension file, you will need to add it before fullPage. For example, if I want to use the Continuous Horizontal extension, I would have include the extension file and then the extensions version of the fullPage file.
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
