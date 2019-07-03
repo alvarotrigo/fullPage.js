@@ -53,6 +53,7 @@
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
     var AUTO_HEIGHT =           'fp-auto-height';
     var AUTO_HEIGHT_SEL =       '.' + AUTO_HEIGHT;
+    var AUTO_HEIGHT_RESPONSIVE ='.fp-auto-height-responsive';
     var NORMAL_SCROLL =         'fp-normal-scroll';
     var NORMAL_SCROLL_SEL =     '.' + NORMAL_SCROLL;
 
@@ -525,11 +526,18 @@
         }
 
         /**
+        * Determines whether fullpage.js is in responsive mode or not.
+        */
+        function isResponsiveMode(){
+           return hasClass($body, RESPONSIVE);
+        }
+
+        /**
         * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
         * are smaller than the set limit values.
         */
         function setResponsive(active){
-            var isResponsive = hasClass($body, RESPONSIVE);
+            var isResponsive = isResponsiveMode();
 
             if(active){
                 if(!isResponsive){
@@ -1102,6 +1110,7 @@
             addClass(section, COMPLETELY);
 
             lazyLoad(section);
+            lazyLoadOthers();
             playMedia(section);
 
             if(options.scrollOverflow){
@@ -1281,6 +1290,26 @@
                 return bottom >= (getScrollTop() + getWindowHeight());
             }
             return top <= getScrollTop();
+        }
+
+        /**
+        * Determines whether a section is in the viewport or not.
+        */
+        function isSectionInViewport (el) {
+            var rect = el.getBoundingClientRect();
+            var top = rect.top;
+            var bottom = rect.bottom;
+
+            //sometimes there's a 1px offset on the bottom of the screen even when the 
+            //section's height is the window.innerHeight one. I guess because pixels won't allow decimals.
+            //using this prevents from lazyLoading the section that is not yet visible 
+            //(only 1 pixel offset is)
+            var pixelOffset = 2;
+            
+            var isTopInView = top + pixelOffset < windowsHeight && top > 0;
+            var isBottomInView = bottom > pixelOffset && bottom < windowsHeight;
+
+            return isTopInView || isBottomInView;
         }
 
         /**
@@ -1941,6 +1970,7 @@
 
             addClass(v.element, COMPLETELY);
             removeClass(siblings(v.element), COMPLETELY);
+            lazyLoadOthers();
 
             canScroll = true;
 
@@ -1956,6 +1986,26 @@
         function setSrc(element, attribute){
             element.setAttribute(attribute, element.getAttribute('data-' + attribute));
             element.removeAttribute('data-' + attribute);
+        }
+
+        /**
+        * Makes sure lazyload is done for other sections in the viewport that are not the
+        * active one. 
+        */
+        function lazyLoadOthers(){
+            var hasAutoHeightSections = $(AUTO_HEIGHT_SEL)[0] || isResponsiveMode() && $(AUTO_HEIGHT_RESPONSIVE_SEL)[0];
+
+            //quitting when it doesn't apply
+            if (!options.lazyLoading || !hasAutoHeightSections){
+                return;
+            }
+
+            //making sure to lazy load auto-height sections that are in the viewport
+            $(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function(section){
+                if(isSectionInViewport(section)){
+                    lazyLoad(section);
+                }
+            });
         }
 
         /**
