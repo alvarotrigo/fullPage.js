@@ -43,6 +43,7 @@
     var ACTIVE_SEL =            '.' + ACTIVE;
     var COMPLETELY =            'fp-completely';
     var COMPLETELY_SEL =        '.' + COMPLETELY;
+    var SNAPS =                 'fp-snaps';
 
     // section
     var SECTION_DEFAULT_SEL =   '.section';
@@ -201,6 +202,7 @@
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
+        var g_supportsCssSnaps = isCssSnapsSupported();
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -330,6 +332,7 @@
         * Sets fitToSection
         */
         function setFitToSection(value, type){
+            toggleCssSnapsWhenPossible(value);
             setVariableState('fitToSection', value, type);
         }
 
@@ -398,6 +401,17 @@
             }else{
                 setIsScrollAllowed(value, 'all', 'k');
                 options.keyboardScrolling = value;
+            }
+        }
+
+        /**
+        * Adds or removes CSS snaps scrolling behaviour depending on the given value.
+        */
+        function toggleCssSnapsWhenPossible(value){
+            if(g_supportsCssSnaps){
+                var canAddSnaps = options.fitToSection && !options.autoScrolling && value;
+                var toggleFunction = canAddSnaps ? addClass : removeClass;
+                toggleFunction($('html'), SNAPS);
             }
         }
 
@@ -646,6 +660,7 @@
             setMouseHijack(true);
             setAutoScrolling(options.autoScrolling, 'internal');
             responsive();
+            toggleCssSnapsWhenPossible(true);
 
             //setting the class for the body element
             setBodyClass();
@@ -1246,7 +1261,7 @@
                     }, 100);
                 }
 
-                if(options.fitToSection){
+                if(options.fitToSection && (!g_supportsCssSnaps || options.scrollBar)){
                     //for the auto adjust of the viewport to fit a whole section
                     clearTimeout(scrollId2);
 
@@ -2983,6 +2998,17 @@
             document.body.removeChild(el);
 
             return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+        }
+
+        /**
+        * Checks for CSS scroll snaps support.
+        */
+        function isCssSnapsSupported(){
+            var style = document.documentElement.style;
+
+            return 'scrollSnapAlign' in style ||
+                'webkitScrollSnapAlign' in style ||
+                'msScrollSnapAlign' in style;
         }
 
         /**
