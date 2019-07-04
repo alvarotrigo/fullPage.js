@@ -248,6 +248,7 @@
         var activeAnimation;
         var g_initialAnchorsInDom = false;
         var g_canFireMouseEnterNormalScroll = true;
+        var g_mediaLoadedId;
 
         displayWarnings();
 
@@ -2039,6 +2040,9 @@
                     var attribute = element.getAttribute('data-' + type);
                     if(attribute != null && attribute){
                         setSrc(element, type);
+                        element.addEventListener('load', function(){
+                            onMediaLoad(destiny);
+                        });
                     }
                 });
 
@@ -2046,9 +2050,25 @@
                     var elementToPlay =  closest(element, 'video, audio');
                     if(elementToPlay){
                         elementToPlay.load();
+                        elementToPlay.onloadeddata = function(){
+                            onMediaLoad(destiny);
+                        }
                     }
                 }
             });
+        }
+
+        /**
+        * Callback firing when a lazy load media element has loaded.
+        * Making sure it only fires one per section in normal conditions (if load time is not huge)
+        */
+        function onMediaLoad(section){
+            if(options.scrollOverflow){
+                clearTimeout(g_mediaLoadedId);
+                g_mediaLoadedId = setTimeout(function(){
+                    scrollBarHandler.createScrollBar(section);
+                }, 200);
+            }
         }
 
         /**
