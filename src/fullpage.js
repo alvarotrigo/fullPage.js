@@ -1134,7 +1134,7 @@
 
             if(isDestinyTheStartingSection() && isFunction(options.afterLoad) ){
                 fireCallback('afterLoad', {
-                    activeSection: null,
+                    activeSection: section,
                     element: section,
                     direction: null,
 
@@ -1153,8 +1153,9 @@
         * Determines if the URL anchor destiny is the starting section (the one using 'active' class before initialization)
         */
         function isDestinyTheStartingSection(){
-            var destinationSection = getSectionByAnchor(getAnchorsURL().section);
-            return !destinationSection || typeof destinationSection !=='undefined' && index(destinationSection) === index(startingSection);
+            var anchor = getAnchorsURL();
+            var destinationSection = getSectionByAnchor(anchor.section);
+            return !anchor.section || !destinationSection || typeof destinationSection !=='undefined' && index(destinationSection) === index(startingSection);
         }
 
         var isScrolling = false;
