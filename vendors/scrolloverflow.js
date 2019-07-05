@@ -1115,7 +1115,13 @@ IScroll.prototype = {
             return;
         }
 
-        e.preventDefault();
+        // in IE we can not preventDefault() or otherwise it won't scroll to the prev/next section.
+        // I commented on it here back then: https://github.com/cubiq/iscroll/issues/980
+        // isIE taken from: https://stackoverflow.com/a/49986758/1081396
+        var isIE = window.navigator.userAgent.match(/(MSIE|Trident)/);
+        if(!isIE){
+            e.preventDefault();
+        }
 
         var wheelDeltaX, wheelDeltaY,
             newX, newY,
