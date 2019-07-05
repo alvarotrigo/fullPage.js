@@ -2354,6 +2354,7 @@ if ( typeof module != 'undefined' && module.exports ) {
         var iscrollHandler = {
             refreshId: null,
             iScrollInstances: [],
+            lastScrollY: null,
 
             // Default options for iScroll.js used when using scrollOverflow
             iscrollOptions: {
@@ -2462,11 +2463,12 @@ if ( typeof module != 'undefined' && module.exports ) {
                     return true;
                 }
 
-                if (type === 'top'){
-                    return scroller.y >= 0 && !fp_utils.getScrollTop(scrollable);
-                } else if (type === 'bottom') {
-                    return (0 - scroller.y) + fp_utils.getScrollTop(scrollable) + 1 + scrollable.offsetHeight >= scrollable.scrollHeight;
-                }
+                // two times reporting the same Y position ? 
+                // that means we are on the top or on the bottom of the scroller
+                var canScroll = iscrollHandler.lastScrollY === scroller.y;
+                iscrollHandler.lastScrollY = scroller.y;
+
+                return canScroll;
             },
 
             /**

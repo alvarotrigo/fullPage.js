@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Continuous Vertical Scrolling - fullPage.js</title>
+    <meta name="author" content="Matthew Howell" />
+    <meta name="description" content="fullPage continuous vertical scrolling demo." />
+    <meta name="keywords"  content="fullpage,jquery,demo,scroll,loop,continuous,vertical,infinite" />
+    <meta name="Resource-type" content="Document" />
+
+
+
+    <link rel="stylesheet" type="text/css" href="../src/fullpage.css" />
+    <style>
+        #log{
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            font-size: 10px;
+            z-index: 999;
+            height: 300px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+<body>
+
+<div id="log">Test</div>
+<div id="fullpage">
+    <div class="section " id="section0">
+        <h1>Section 1</h1>    
+    
+    </div>
+    <div class="section" id="section1">
+        <div class="slide" id="slide1">
+            <div class="intro">
+                <h1>Section 2</h1>
+            </div>
+        </div>
+        <div class="slide" id="slide2">
+            <div class="intro">
+                <h1>Slide 2.2</h1>
+                <p>
+                    We are using the class `active` on this section and in this particular horizontal slide. This way it will appear on the viewport on page load, instead of the 1st section 1st slide.
+                </p>
+                <p>You can apply the same logic to horizontal slides</p>
+            </div>
+        </div>
+        <div class="slide" id="slide3">
+            <h1>Slide 2.3</h1>
+        </div>
+
+    </div>
+    <div class="section" id="section2">
+        <div class="intro">
+            <h1>Section 3</h1>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../src/fullpage.js?v23"></script>
+<script type="text/javascript">
+    new fullpage('#fullpage', {
+        sectionsColor: ['orange', 'red', 'yellow', 'purple'],
+        anchors: ['first', 'second', 'third'],
+        normalScrollElements: '#log'
+    });
+</script>
+
+</body>
+</html>
