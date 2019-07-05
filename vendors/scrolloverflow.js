@@ -2331,6 +2331,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             //public functions
             self.createScrollBarForAll = createScrollBarForAll;
+            self.createScrollBar = createScrollBar;
         }
 
         /**
