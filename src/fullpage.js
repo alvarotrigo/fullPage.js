@@ -2460,6 +2460,9 @@
         */
         var oldPageY = 0;
         function mouseMoveHandler(e){
+            if(!options.autoScrolling){
+                return;
+            }
             if(canScroll){
                 // moving up
                 if (e.pageY < oldPageY && isScrollAllowed.m.up){
