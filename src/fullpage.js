@@ -238,6 +238,7 @@
 
         //timeouts
         var resizeId;
+        var resizeHandlerId;
         var afterSectionLoadsId;
         var afterSlideLoadsId;
         var scrollId;
@@ -2616,7 +2617,7 @@
             //(some apps or browsers, like Chrome/Firefox for Mobile take time to report the real height)
             //so we check it 3 times with intervals in that case
             for(var i = 0; i< 3; i++){
-                resizeId = setTimeout(resizeActions, 200 * i);
+                resizeHandlerId = setTimeout(resizeActions, 200 * i);
             }
         }
 
