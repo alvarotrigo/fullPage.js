@@ -217,7 +217,6 @@ $(document).ready(function() {
 		scrollOverflowReset: false,
 		scrollOverflowOptions: null,
 		touchSensitivity: 15,
-		normalScrollElementTouchThreshold: 5,
 		bigSectionsDestination: null,
 
 		//접근성
@@ -423,8 +422,6 @@ new fullpage('#fullpage', {
 - `fixedElements`: (기본값 `null`) 플러그인의 스크롤 구조에서 어느 요소를 빼낼지를 정의합니다. `css3` 옵션을 쓰실 때 고정하려면 반드시 빼내셔야 합니다. 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `fixedElements: '#element1, .element2'`)
 
 - `normalScrollElements`: (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/RmVazM) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
-
-- `normalScrollElementTouchThreshold` : (기본값 `5`) 터치 기기에서 div 스크롤 기능을 허용하는 데 `normalScrollElements`가 좋은 짝인지 보기 위해 Fullpage가 시험할 html 노드 나무 위 홉(hop) 수 한계점을 설정합니다. (예시: `normalScrollElementTouchThreshold: 3`)
 
 - `bigSectionsDestination`: (기본값 `null`) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
 

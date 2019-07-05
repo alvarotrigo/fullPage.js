@@ -221,7 +221,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	scrollOverflowOptions: null,
 	touchSensitivity: 15,
-	normalScrollElementTouchThreshold: 5,
 	bigSectionsDestination: null,
 
 	//Доступ
@@ -432,8 +431,6 @@ new fullpage('#fullpage', {
 - `fixedElements`: (по умолчанию `null`) Определяет, какие элементы будут исключены из структуры скроллинга плагина, что необходимо при использовании опции `css3` для их фиксации. Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `fixedElements: '#element1, .element2'`)
 
 - `normalScrollElements`: (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/RmVazM) Если вы хотите избежать автопрокрутки при скроллинге некоторых элементов, вам нужно использовать эту опцию. (пригодится для карт, прокрутки div-элементов и т.д.) Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `normalScrollElements: '#element1, .element2'`). Данную опцию следует применять к самим разделам/слайдам.
-
-- `normalScrollElementTouchThreshold` : (по умолчанию `5`)  Определяет порог количества пролистываний, которое проверит дерево узлов html  Fullpage, чтобы убедиться, что `normalScrollElements` позволяет скроллинг на div-элементах на сенсорном устройстве. (Например: `normalScrollElementTouchThreshold: 3`)
 
 - `bigSectionsDestination`: (по умолчанию `null`) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
 

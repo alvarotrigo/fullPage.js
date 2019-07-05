@@ -144,7 +144,6 @@
             scrollOverflowOptions: null,
             touchSensitivity: 5,
             touchWrapper: typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector,
-            normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
 
             //Accessibility
@@ -1400,7 +1399,6 @@
         function touchMoveHandler(e){
             var activeSection = closest(e.target, SECTION_SEL) || $(SECTION_ACTIVE_SEL)[0];
 
-            // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (isReallyTouch(e) ) {
 
                 if(options.autoScrolling){

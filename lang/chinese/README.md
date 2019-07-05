@@ -222,7 +222,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	scrollOverflowOptions: null,
 	touchSensitivity: 15,
-	normalScrollElementTouchThreshold: 5,
 	bigSectionsDestination: null,
 
 	//可访问
@@ -436,8 +435,6 @@ new fullpage('#fullpage', {
 - `fixedElements`: （默认`null`）定义当使用`css3`选项保持固定时，哪些元素将从插件的滚动结构中移除。 它需要一个字符串与这些元素的Javascript选择器。 （例如：`fixedElements：'＃element1，.element2'`）
 
 - `normalScrollElements`: （默认`null`）[示例](https://codepen.io/alvarotrigo/pen/RmVazM)如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动div等有用）它需要一个字符串与这些元素的Javascript选择器。 （例如：`normalScrollElements：'＃element1，.element2'`）。 此选项不应该应用于任何节/幻灯片元素本身。
-
-- `normalScrollElementTouchThreshold` : （默认`5`）定义html节点树的跳数阈值Fullpage将测试`normalScrollElement`是否匹配，以允许在触摸设备上的div的滚动功能。 （例如：`normalScrollElementTouchThreshold：3`）
 
 - `bigSectionsDestination`: （默认`null`）定义如何滚动到比视口大的部分。 默认情况下，如果您来自目的地上方的部分，fullPage.js将滚动到顶部，如果您来自目的地之下的部分，则会滚动到底部。 可能的值是`top`，`bottom`，`null`。
 
