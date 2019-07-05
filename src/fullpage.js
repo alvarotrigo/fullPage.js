@@ -93,13 +93,14 @@
 
     function initialise(containerSelector, options) {
         var isOK = options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(options['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
+       
+        // cache common elements
+        var $htmlBody = $('html, body');
+        var $html = $('html')[0];
+        var $body = $('body')[0];
 
         //only once my friend!
-        if(hasClass($('html'), ENABLED)){ displayWarnings(); return; }
-
-        // common jQuery objects
-        var $htmlBody = $('html, body');
-        var $body = $('body')[0];
+        if(hasClass($html, ENABLED)){ displayWarnings(); return; }
 
         var FP = {};
 
@@ -412,7 +413,7 @@
             if(g_supportsCssSnaps){
                 var canAddSnaps = options.fitToSection && !options.autoScrolling && value;
                 var toggleFunction = canAddSnaps ? addClass : removeClass;
-                toggleFunction($('html'), SNAPS);
+                toggleFunction($html, SNAPS);
             }
         }
 
@@ -860,7 +861,7 @@
 
             //adding a class to recognize the container internally in the code
             addClass(container, WRAPPER);
-            addClass($('html'), ENABLED);
+            addClass($html, ENABLED);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
             windowsHeight = getWindowHeight();
@@ -3328,7 +3329,7 @@
             });
 
             // remove .fp-enabled class
-            removeClass($('html'), ENABLED);
+            removeClass($html, ENABLED);
 
             // remove .fp-responsive class
             removeClass($body, RESPONSIVE);
@@ -3413,7 +3414,7 @@
             }
 
             var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
-            if(hasClass($('html'), ENABLED)){
+            if(hasClass($html, ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
             }
