@@ -1935,11 +1935,6 @@
             v.dtop = v.element.offsetTop;
             v.yMovement = getYmovement(v.element);
 
-            //sections will temporally have another position in the DOM
-            //updating this values in case we need them
-            v.leavingSection = index(v.activeSection, SECTION_SEL) + 1;
-            v.sectionIndex = index(v.element, SECTION_SEL);
-
             return v;
         }
 
