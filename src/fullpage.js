@@ -3404,6 +3404,8 @@
         function displayWarnings(){
             var l = options['li' + 'c' + 'enseK' + 'e' + 'y'];
             var msgStyle = 'font-size: 15px;background:yellow;'
+            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
+
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
                 showError('error', 'https://github.com/alvarotrigo/fullPage.js#options.');
@@ -3413,7 +3415,6 @@
                 console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
             }
 
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
             if(hasClass($html, ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
@@ -3463,11 +3464,10 @@
 
                 if(idAttr.length || nameAttr.length ){
                     showError('error', 'data-anchor tags can not have the same value as any `id` element on the site (or `name` element for IE).');
-                    if(idAttr.length){
-                        showError('error', '"' + name + '" is is being used by another element `id` property');
-                    }
-                    if(nameAttr.length){
-                        showError('error', '"' + name + '" is is being used by another element `name` property');
+                    var propertyName = idAttr.length ? 'id' : 'name';
+
+                    if(idAttr.length || nameAttr.length){
+                        showError('error', '"' + name + '" is is being used by another element `'+ propertyName +'` property');
                     }
                 }
             });
