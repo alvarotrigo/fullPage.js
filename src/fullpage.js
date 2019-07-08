@@ -2401,6 +2401,8 @@
         */
         function onkeydown(e){
             var shiftPressed = e.shiftKey;
+            var activeElement = document.activeElement;
+            var isMediaFocused = matches(activeElement, 'video') || matches(activeElement, 'audio');
 
             //do nothing if we can not scroll or we are not using horizotnal key arrows.
             if(!canScroll && [37,39].indexOf(e.keyCode) < 0){
@@ -2418,7 +2420,8 @@
 
                 //down
                 case 32: //spacebar
-                    if(shiftPressed && isScrollAllowed.k.up){
+
+                    if(shiftPressed && isScrollAllowed.k.up && !isMediaFocused){
                         moveSectionUp();
                         break;
                     }
@@ -2426,7 +2429,10 @@
                 case 40:
                 case 34:
                     if(isScrollAllowed.k.down){
-                        moveSectionDown();
+                        // space bar?
+                        if(e.keyCode !== 32 || !isMediaFocused){
+                            moveSectionDown();
+                        }
                     }
                     break;
 
