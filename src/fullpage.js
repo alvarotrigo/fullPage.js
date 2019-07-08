@@ -93,7 +93,7 @@
 
     function initialise(containerSelector, options) {
         var isOK = options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(options['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
-       
+
         // cache common elements
         var $htmlBody = $('html, body');
         var $html = $('html')[0];
@@ -250,6 +250,19 @@
         var g_initialAnchorsInDom = false;
         var g_canFireMouseEnterNormalScroll = true;
         var g_mediaLoadedId;
+        var extensions = [
+            'parallax',
+            'scrollOverflowReset',
+            'dragAndMove',
+            'offsetSections',
+            'fadingEffect',
+            'responsiveSlides',
+            'continuousHorizontal',
+            'interlockedSlides',
+            'scrollHorizontally',
+            'resetSliders',
+            'cards'
+        ];
 
         displayWarnings();
 
@@ -292,7 +305,6 @@
                     //moving the container up
                     silentScroll(element.offsetTop);
                 }
-
             }else{
                 css($htmlBody, {
                     'overflow' : 'visible',
@@ -631,7 +643,8 @@
             //functions we want to share across files but which are not
             //mean to be used on their own by developers
             FP.shared = {
-                afterRenderActions: afterRenderActions
+                afterRenderActions: afterRenderActions,
+                isNormalScrollElement: false
             };
 
             window.fullpage_api = FP;
@@ -1524,7 +1537,7 @@
 
                 //preventing to scroll the site on mouse wheel when scrollbar is present
                 if(options.scrollBar){
-                   preventDefault(e);
+                    preventDefault(e);
                 }
 
                 //time difference between the last scroll and the current one
@@ -3399,7 +3412,6 @@
         function displayWarnings(){
             var l = options['li' + 'c' + 'enseK' + 'e' + 'y'];
             var msgStyle = 'font-size: 15px;background:yellow;'
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
 
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
@@ -3587,7 +3599,6 @@
 
         return FP;
     } //end of $.fn.fullpage
-
 
     //utils
     /**
