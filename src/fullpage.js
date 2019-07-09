@@ -202,6 +202,7 @@
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
+        var windowsWidth = getWindowWidth();
         var g_supportsCssSnaps = isCssSnapsSupported();
         var isResizing = false;
         var isWindowFocused = true;
@@ -510,7 +511,9 @@
 
             isResizing = true;
 
-            windowsHeight = getWindowHeight();  //updating global var
+            //updating global vars
+            windowsHeight = getWindowHeight();
+            windowsWidth = getWindowWidth();
 
             var sections = $(SECTION_SEL);
             for (var i = 0; i < sections.length; ++i) {
@@ -828,8 +831,11 @@
         */
         function adjustToNewViewport(){
             var newWindowHeight = getWindowHeight();
-            if(windowsHeight !== newWindowHeight){
+            var newWindowWidth = getWindowWidth();
+
+            if(windowsHeight !== newWindowHeight || windowsWidth !== newWindowWidth){
                 windowsHeight = newWindowHeight;
+                windowsWidth = newWindowWidth;
                 reBuild(true);
             }
         }
@@ -1429,7 +1435,7 @@
                 if ($(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (!slideMoving && Math.abs(touchStartX - touchEndX) > (window.innerWidth / 100 * options.touchSensitivity)) {
+                    if (!slideMoving && Math.abs(touchStartX - touchEndX) > (getWindowWidth() / 100 * options.touchSensitivity)) {
                         if (touchStartX > touchEndX) {
                             if(isScrollAllowed.m.right){
                                 moveSlideRight(activeSection); //next
@@ -2628,13 +2634,19 @@
         * Resize event handler.
         */        
         function resizeHandler(){
+            clearTimeout(resizeId);
 
-            //issue #3336 
-            //(some apps or browsers, like Chrome/Firefox for Mobile take time to report the real height)
-            //so we check it 3 times with intervals in that case
-            for(var i = 0; i< 3; i++){
-                resizeHandlerId = setTimeout(resizeActions, 200 * i);
-            }
+            //in order to call the functions only when the resize is finished
+            //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing    
+            resizeId = setTimeout(function(){
+
+                //issue #3336 
+                //(some apps or browsers, like Chrome/Firefox for Mobile take time to report the real height)
+                //so we check it 3 times with intervals in that case
+                for(var i = 0; i< 4; i++){
+                    resizeHandlerId = setTimeout(resizeActions, 200 * i);
+                }
+            }, 200);
         }
 
         /**
@@ -2661,13 +2673,7 @@
                 }
             }
             else{
-                //in order to call the functions only when the resize is finished
-                //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-                clearTimeout(resizeId);
-
-                resizeId = setTimeout(function(){
-                    reBuild(true);
-                }, 350);
+                adjustToNewViewport();
             }
         }
 
@@ -3275,7 +3281,8 @@
                 resizeId,
                 scrollId,
                 scrollId2,
-                g_doubleCheckHeightId
+                g_doubleCheckHeightId,
+                resizeHandlerId
             ].forEach(function(timeoutId){
                 clearTimeout(timeoutId);
             });
@@ -3669,6 +3676,13 @@
     */
     function getWindowHeight(){
         return 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    }
+
+    /**
+    * Gets the window width.
+    */
+    function getWindowWidth(){
+        return window.innerWidth;
     }
 
     /**
