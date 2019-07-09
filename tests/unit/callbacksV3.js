@@ -440,24 +440,20 @@ QUnit.test('Testing afterLoad v3 when autoScrollingkey: "value", false with sect
     }, 100);
 });
 
-//this test should be reviewed.
-//at the moment the afterLoad callback doesn't get fired on page load, no matter what
-//section is active by default. But... Probably it should...
-//Same as afterSlideLoad on section change
+
 QUnit.test('Testing afterLoad callback v3 with fullpage-2nd-active-section', function(assert) {
     var id = '#fullpage-2nd-active-section';
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded');
-    assert.equal(areOthersLoaded(sectionLoaded), 0, 'We expect 0 slides to be loaded');
-    assert.equal(afterLoad, '', 'We expect no values for the callback');
+    assert.equal(sectionLoaded[1], true, 'We expect section 2 to be loaded');
+    assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+    assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 1 slide to be loaded');
+    assert.equal(afterLoad.destination.index, 1, 'We expect no values for the callback');
+    assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+    assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 });
 
 
-//this test should be reviewed.
-//at the moment the afterLoad callback doesn't get fired on page load, no matter what
-//section is active by default. But... Probably it should...
-//Same as afterSlideLoad on section change
 QUnit.test('Testing afterLoad callback v3 with fullpage-first-slide-active-in-2nd-section', function(assert) {
     var id = '#fullpage-first-slide-active-in-2nd-section';
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
@@ -470,15 +466,15 @@ QUnit.test('Testing afterLoad callback v3 with fullpage-first-slide-active-in-2n
     assert.equal(afterLoad.destination.isFirst, true, 'We expect section isFirst to be correct');
     assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-    assert.equal(afterLoad.origin, null, 'We expect origin to be correct');
+    assert.equal(afterLoad.origin.index, 0, 'We expect section index to be correct');
+    assert.equal(afterLoad.origin.anchor, null, 'We expect section anchor to be correct');
+    assert.equal(afterLoad.origin.isFirst, true, 'We expect section isFirst to be correct');
+    assert.equal(afterLoad.origin.isLast, false, 'We expect section isLast to be correct');
 
     assert.equal(afterLoad.direction, null, 'We expect section direction to be correct');
 });
 
 
-//this test should be reviewed.
-//CALLBACKS ARE NOT CONSISTENT. Rather we fire afterload on all page loads or in none.
-//This one is firing while none of the others are
 QUnit.test('Testing afterLoad callback v3 with fullpage-middle-slide-active-in-2nd-section', function(assert) {
     var id = '#fullpage-middle-slide-active-in-2nd-section';
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
@@ -491,7 +487,10 @@ QUnit.test('Testing afterLoad callback v3 with fullpage-middle-slide-active-in-2
     assert.equal(afterLoad.destination.isFirst, true, 'We expect section isFirst to be correct');
     assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-    assert.equal(afterLoad.origin, null, 'We expect origin to be correct');
+    assert.equal(afterLoad.origin.index, 0, 'We expect section index to be correct');
+    assert.equal(afterLoad.origin.anchor, null, 'We expect section anchor to be correct');
+    assert.equal(afterLoad.origin.isFirst, true, 'We expect section isFirst to be correct');
+    assert.equal(afterLoad.origin.isLast, false, 'We expect section isLast to be correct');
 
     assert.equal(afterLoad.direction, null, 'We expect section direction to be correct');
 });
@@ -625,6 +624,8 @@ QUnit.test('Testing afterResize', function(assert) {
     var done = assert.async(1);
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
+    //emulating resize event
+    window.innerHeight = 100;
     window.dispatchEvent(new Event('resize'));
     assert.equal(afterResize, false, 'We expect afterResize to not get fired synchronously');
 

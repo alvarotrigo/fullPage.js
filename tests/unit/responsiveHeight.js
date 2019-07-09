@@ -16,6 +16,7 @@ function checkIsNotResponsive(FP, assert){
 
 QUnit.test('Testing responsiveHeight', function(assert) {
     var id = '#fullpage';
+    var done = assert.async(1);
     var windowHeight = $(window).height();
     var reponsiveValue = windowHeight/1.5;
     var options = {responsiveHeight: reponsiveValue, fitToSection:true, navigation:true};
@@ -27,7 +28,10 @@ QUnit.test('Testing responsiveHeight', function(assert) {
     window.innerHeight = reponsiveValue - 1;
     trigger(window, 'resize');
 
-    checkIsResponsive(FP, assert);
+    setTimeout(function(){
+        checkIsResponsive(FP, assert);
+        done();
+    }, 300);
 });
 
 QUnit.test('Testing responsiveHeight on page load', function(assert) {
@@ -42,6 +46,7 @@ QUnit.test('Testing responsiveHeight on page load', function(assert) {
 
 QUnit.test('Testing responsiveHeight undo responsive on resize up', function(assert) {
     var id = '#fullpage';
+    var done = assert.async(1);
     var windowHeight = $(window).height();
     var reponsiveValue = windowHeight + 100;
     var options = {responsiveHeight: reponsiveValue, fitToSection:true, navigation:true};
@@ -53,5 +58,8 @@ QUnit.test('Testing responsiveHeight undo responsive on resize up', function(ass
     window.innerHeight = windowHeight + 200;
     trigger(window, 'resize');
 
-    checkIsNotResponsive(FP, assert);
+    setTimeout(function(){
+        checkIsNotResponsive(FP, assert);
+        done();
+    }, 300);
 });

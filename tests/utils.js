@@ -363,8 +363,8 @@ function trigger(el, eventName, data){
 
 function destroyTest(){
     //destroying it if it existed
-    if(fullpage_api != null){
-        fullpage_api.destroy('all');
+    if(window.fullpage_api != null){
+        window.fullpage_api.destroy('all');
     }
 
     else if($.fn.fullpage != null){
@@ -384,7 +384,6 @@ function destroyTest(){
     });
 
     $('.fullpage-layout.active').removeClass('active');
-
     onSlideLeave = ``;
     onLeave = ``;
     afterLoad = ``;
@@ -425,7 +424,7 @@ function initFullpageNew(id, options){
     $(id).addClass('active');
     setLoadedState();
 
-    new_fullpage = new fullpage(id, options);
+    new_fullpage = new window.fullpage(id, options);
     new_fullpage.test.isTesting = true;
     return new_fullpage;
 }

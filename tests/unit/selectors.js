@@ -35,9 +35,9 @@ QUnit.test('Testing multiple selectors for sections', function(assert) {
     var customSelector = '.selector1, .section';
     try{
         var FP = initFullpageNew(id, {sectionSelector: customSelector});
-        console.log(typeof FP.getFullpageData);
-        if(typeof FP.getFullpageData === 'object'){
-            assert.equal('4', FP.getFullpageData.anchors.length, 'We expect 4 anchors');
+        console.log(FP.getFullpageData().internals);
+        if(typeof FP.getFullpageData().internals === 'undefined'){
+            assert.equal('4', FP.getFullpageData().anchors.length, 'We expect 4 anchors');
         }else{
             assert.equal('4', FP.getFullpageData().options.anchors.length, 'We expect 4 anchors');
         }
