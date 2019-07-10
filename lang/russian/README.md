@@ -16,13 +16,14 @@
 
 ---
 
-![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.0.5-brightgreen.svg)
+![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.0.6-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Кб в формате gzip* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Создано [@imac2](https://twitter.com/imac2)*
 
 - [Живое демо](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Тема Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Расширения fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -220,7 +221,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	scrollOverflowOptions: null,
 	touchSensitivity: 15,
-	normalScrollElementTouchThreshold: 5,
 	bigSectionsDestination: null,
 
 	//Доступ
@@ -254,6 +254,7 @@ var myFullpage = new fullpage('#fullpage', {
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
+	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}
@@ -333,7 +334,7 @@ Fullpage.js добавляет различные классы к разным �
 
 ### Автопроигрывание/приостановка встроенного медиа
 
-**Примечание**: функция автопроигрывания может не работать на некоторых мобильных устройствах, в зависимости от их ОС и браузера (то есть, в [Safari в iOS](https://webkit.org/blog/6784/new-video-policies-for-ios/), в версиях до 10.0).
+[Демо](https://codepen.io/alvarotrigo/pen/pXEaaK) **Примечание**: функция автопроигрывания может не работать на некоторых мобильных устройствах, в зависимости от их ОС и браузера (то есть, в [Safari в iOS](https://webkit.org/blog/6784/new-video-policies-for-ios/), в версиях до 10.0).
 
 #### Проигрывание при загрузке раздела/слайда:
 При использовании атрибута `autoplay` для видео или аудио, или параметра `autoplay=1` для встроенных фреймов youtube, медиа будет проигрываться при загрузке страницы.
@@ -429,9 +430,7 @@ new fullpage('#fullpage', {
 
 - `fixedElements`: (по умолчанию `null`) Определяет, какие элементы будут исключены из структуры скроллинга плагина, что необходимо при использовании опции `css3` для их фиксации. Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (по умолчанию `null`) Если вы хотите избежать автопрокрутки при скроллинге некоторых элементов, вам нужно использовать эту опцию. (пригодится для карт, прокрутки div-элементов и т.д.) Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `normalScrollElements: '#element1, .element2'`). Данную опцию следует применять к самим разделам/слайдам.
-
-- `normalScrollElementTouchThreshold` : (по умолчанию `5`)  Определяет порог количества пролистываний, которое проверит дерево узлов html  Fullpage, чтобы убедиться, что `normalScrollElements` позволяет скроллинг на div-элементах на сенсорном устройстве. (Например: `normalScrollElementTouchThreshold: 3`)
+- `normalScrollElements`: (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/RmVazM) Если вы хотите избежать автопрокрутки при скроллинге некоторых элементов, вам нужно использовать эту опцию. (пригодится для карт, прокрутки div-элементов и т.д.) Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `normalScrollElements: '#element1, .element2'`). Данную опцию следует применять к самим разделам/слайдам.
 
 - `bigSectionsDestination`: (по умолчанию `null`) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
 
@@ -443,7 +442,7 @@ new fullpage('#fullpage', {
 
 - `continuousHorizontal`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет, будет ли при пролистывании вправо последнего слайда осуществляться прокрутка вправо к первому слайду, а также приведёт ли прокрутка влево первого слайда к прокрутке влево к последнему слайду. Опция несовместима с опцией `loopHorizontal`. Необходима версия fullpage.js >= 3.0.1.
 
-- `scrollHorizontally`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет осуществление горизонтального пролистывания ползунков при помощи колеса мыши или трекпада. Идеальна для рассказов. Необходима версия fullpage.js >= 3.0.1.
+- `scrollHorizontally`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет осуществление горизонтального пролистывания ползунков при помощи колеса мыши или трекпада. Идеальна для рассказов. It can only be used when using: `autoScrolling:true`. Необходима версия fullpage.js >= 3.0.1.
 
 - `interlockedSlides`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет ,будет ли при передвижении одного горизонтального ползунка осуществляться пролистывание ползунков другого раздела в том же направлении. Возможные значения: `true`, `false` или последовательность взаимосвязанных разделов. Например: `[1,3,5]`, начиная с 1. Необходима версия fullpage.js >= 3.0.1.
 
@@ -839,6 +838,19 @@ new fullpage('#fullpage', {
 });
 ```
 ---
+### afterReBuild()
+This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	afterReBuild: function(){
+		console.log("fullPage.js has manually being re-builded");
+	}
+});
+```
+---
 ### afterResponsive(`isResponsive`)
 Этот обратный вызов активируется после того, как fullpage.js переходит из стандартного режима в отзывчивый режим или из отзывчивого в стандартный.
 
@@ -942,6 +954,7 @@ new fullpage('#fullpage', {
 Желаете построить дистрибутивные файлы fullpage.js? Пожалуйста, зайдите в раздел [Задачи по построению](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Ресурсы
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Тема Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

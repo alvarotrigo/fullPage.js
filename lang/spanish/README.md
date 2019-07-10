@@ -17,13 +17,14 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.5-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.6-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Creado por [@imac2](https://twitter.com/imac2)*
 
 - [Demo online](https://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensiones de fullpage.js](https://alvarotrigo.com/fullPage/extensions/)
 - [Preguntas frecuentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -226,7 +227,6 @@ new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	scrollOverflowOptions: null,
 	touchSensitivity: 15,
-	normalScrollElementTouchThreshold: 5,
 	bigSectionsDestination: null,
 
 	//Accesibilidad
@@ -258,6 +258,7 @@ new fullpage('#fullpage', {
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
+	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}
@@ -336,7 +337,7 @@ Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el at
 
 ### Autoreproducir elementos multimedia
 
-**Note**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
+[Demostración](https://codepen.io/alvarotrigo/pen/pXEaaK) **Nota**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
 
 #### Reproducir al cargar la sección o diapositiva:
 Usando el atributo `autoplay` para videos y audios, o el parámetro `autoplay=1` para iframes de Youtube causará que el elemento empiece a reproducirse al cargar la página web.
@@ -432,9 +433,7 @@ Otras librerías puede ser usadas si se desea.
 
 - `fixedElements`: (por defecto `null`) Determina qué elementos serán extraídos de la estructura de fullPage.js. Cosa que es necesaria cuando se usa la opción `css3` para mantenerlos fijos (`fixed`). Requiere una cadena de texto con el selector de Javascript para dichos elementos. (Por ejemplo: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (por defecto `null`) Si quieres evitar el auto desplazamiento (o desplazamiento a saltos) cuando se haga scroll encima de ciertos elementos, ésta es la opción a usar. (Útil para mapas, divs con scroll etc.). Requiere una cadena de texto con el selector de Javascript para dichos elementos.(Por ejemplo: `normalScrollElements: '#element1, .element2'`). Esta opción no debe ser aplicada directamente en las mismas secciones o diapositivas en sí, sino a elementos dentro de ellas.
-
-- `normalScrollElementTouchThreshold`: (por defecto  `5`) Determina el límite para el número de saltos hacia arriba en el árbol de nodos que Fullpage.js mirará para ver si cuadra con `normalScrollElements`. (Por ejemplo: `normalScrollElementTouchThreshold: 3`)
+- `normalScrollElements`: (por defecto `null`) [Demostración](https://codepen.io/alvarotrigo/pen/RmVazM) Si quieres evitar el auto desplazamiento (o desplazamiento a saltos) cuando se haga scroll encima de ciertos elementos, ésta es la opción a usar. (Útil para mapas, divs con scroll etc.). Requiere una cadena de texto con el selector de Javascript para dichos elementos.(Por ejemplo: `normalScrollElements: '#element1, .element2'`). Esta opción no debe ser aplicada directamente en las mismas secciones o diapositivas en sí, sino a elementos dentro de ellas.
 
 - `bigSectionsDestination`: (por defecto `null`) Determina cómo desplazarse hacia una sección mayor que la ventana del navegador. Por defecto fullPage.js se desplazará hacia la parte superior de la sección si llegas desde una sección situada por encima y hacia la parte inferior si llegas desde una sección situada por debajo. Los posibles valores para esta opción son:  `top`, `bottom`, `null`.
 
@@ -836,6 +835,19 @@ new fullpage('#fullpage', {
 });
 ```
 ---
+### afterReBuild()
+Será dispardo después de reajustar fullPage.js de manera manual usando `fullpage_api.reBuild()`.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	afterReBuild: function(){
+		console.log("fullPage.js has manually being re-builded");
+	}
+});
+```
+---
 ### afterResponsive(`isResponsive`)
 Será disparado después de que fullPage.js cambie de su estado normal a "responsive" o viceversa.
 
@@ -940,6 +952,7 @@ Sólo disponible en inglés :)
 ¿Deseas crear archivos de distribución de fullpage.js? Lee los [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Recursos
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Template de Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

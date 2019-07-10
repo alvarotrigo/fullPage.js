@@ -16,18 +16,25 @@ function checkIsNotResponsive(FP, assert){
 
 QUnit.test('Testing responsiveWidth', function(assert) {
     var id = '#fullpage';
+    var done = assert.async(2);
     var windowWidth = $(window).width();
     var reponsiveValue = windowWidth/1.5;
     var options = {responsiveWidth: reponsiveValue, fitToSection:true, navigation:true};
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, options));
 
-    checkIsNotResponsive(FP, assert);
+    setTimeout(function(){
+        checkIsNotResponsive(FP, assert);
+        done();
 
-    //mocking resize down
-    window.innerWidth = reponsiveValue - 1;
-    trigger(window, 'resize');
+        //mocking resize down
+        window.innerWidth = reponsiveValue - 1;
+        trigger(window, 'resize');
+    }, 300);
 
-    checkIsResponsive(FP, assert);
+    setTimeout(function(){
+        checkIsResponsive(FP, assert);
+        done();
+    }, 300 * 2);
 });
 
 QUnit.test('Testing responsiveWidth on page load', function(assert) {
@@ -42,6 +49,7 @@ QUnit.test('Testing responsiveWidth on page load', function(assert) {
 
 QUnit.test('Testing responsiveWidth undo responsive on resize up', function(assert) {
     var id = '#fullpage';
+    var done = assert.async(1);
     var windowWidth = $(window).width();
     var reponsiveValue = windowWidth + 100;
     var options = {responsiveWidth: reponsiveValue, fitToSection:true, navigation:true};
@@ -53,5 +61,8 @@ QUnit.test('Testing responsiveWidth undo responsive on resize up', function(asse
     window.innerWidth = windowWidth + 200;
     trigger(window, 'resize');
 
-    checkIsNotResponsive(FP, assert);
+    setTimeout(function(){
+        checkIsNotResponsive(FP, assert);
+        done();
+    }, 300);
 });

@@ -19,9 +19,24 @@ QUnit.test('Testing setAutoScrolling(true, external) {autoScrolling:true}', func
 });
 
 
-QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false}', function(assert) {
+QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false, fitToSection:false}', function(assert) {
     var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, {autoScrolling:false, recordHistory:true});
+    var FP = initFullpageNew(id, {autoScrolling:false, recordHistory:true, fitToSection:false});
+
+    FP.test.setAutoScrolling(false, 'external');
+
+    assert.equal($('body').css('overflow'), 'visible', 'overflow should be visible');
+    assert.equal($('html').css('overflow'), 'visible', 'html should be visible');
+
+    assert.equal(FP.test.options.recordHistory, false, 'recordHistory should be false');
+    assert.equal(FP.test.options.autoScrolling, false, 'autoScrolling should be false');
+
+    assert.equal($(id).css('touch-action'), 'auto', 'touch action should be auto');
+});
+
+QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false, fitToSection:true}', function(assert) {
+    var id = '#fullpage-2nd-active-section';
+    var FP = initFullpageNew(id, {autoScrolling:false, recordHistory:true, fitToSection:true});
 
     FP.test.setAutoScrolling(false, 'external');
 

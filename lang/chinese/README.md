@@ -15,13 +15,14 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.5-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.6-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [现场演示](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js扩展](http://alvarotrigo.com/fullPage/extensions/)
 - Wrappers: [Vue.js[()] | React.js
@@ -221,7 +222,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	scrollOverflowOptions: null,
 	touchSensitivity: 15,
-	normalScrollElementTouchThreshold: 5,
 	bigSectionsDestination: null,
 
 	//可访问
@@ -256,6 +256,7 @@ var myFullpage = new fullpage('#fullpage', {
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
+	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}
@@ -336,7 +337,7 @@ Fullpage.js在不同的元素中添加多个类来保存网站状态的记录：
 
 ### 自动播放/暂停嵌入式媒体
 
-**注意**：根据操作系统和浏览器的不同，自动播放功能可能无法在某些移动设备上使用（即[iOS的Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
+[演示](https://codepen.io/alvarotrigo/pen/pXEaaK) **注意**：根据操作系统和浏览器的不同，自动播放功能可能无法在某些移动设备上使用（即[iOS的Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
 
 #### 播放部分/幻灯片载入：
 对于视频或音频使用属性 `autoplay`，或者对于youtube iframe使用参数`autoplay=1`将使得在加载页面时播放媒体元素。
@@ -433,9 +434,7 @@ new fullpage('#fullpage', {
 
 - `fixedElements`: （默认`null`）定义当使用`css3`选项保持固定时，哪些元素将从插件的滚动结构中移除。 它需要一个字符串与这些元素的Javascript选择器。 （例如：`fixedElements：'＃element1，.element2'`）
 
-- `normalScrollElements`: （默认`null`）如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动div等有用）它需要一个字符串与这些元素的Javascript选择器。 （例如：`normalScrollElements：'＃element1，.element2'`）。 此选项不应该应用于任何节/幻灯片元素本身。
-
-- `normalScrollElementTouchThreshold` : （默认`5`）定义html节点树的跳数阈值Fullpage将测试`normalScrollElement`是否匹配，以允许在触摸设备上的div的滚动功能。 （例如：`normalScrollElementTouchThreshold：3`）
+- `normalScrollElements`: （默认`null`）[示例](https://codepen.io/alvarotrigo/pen/RmVazM)如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动div等有用）它需要一个字符串与这些元素的Javascript选择器。 （例如：`normalScrollElements：'＃element1，.element2'`）。 此选项不应该应用于任何节/幻灯片元素本身。
 
 - `bigSectionsDestination`: （默认`null`）定义如何滚动到比视口大的部分。 默认情况下，如果您来自目的地上方的部分，fullPage.js将滚动到顶部，如果您来自目的地之下的部分，则会滚动到底部。 可能的值是`top`，`bottom`，`null`。
 
@@ -447,7 +446,7 @@ new fullpage('#fullpage', {
 
 - `continuousHorizontal`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义在最后一张幻灯片中向右滑动是否应该向右滑动到第一张幻灯片，或者如果在第一张幻灯片中向左滚动是否应向左滑动到最后一张。 不兼容`loopHorizontal`。 需要fullpage.js> = 3.0.1。
 
-- `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 需要fullpage.js> = 3.0.1。
+- `scrollHorizontally`:（默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 讲故事的理想选择。 It can only be used when using: `autoScrolling:true`. 需要fullpage.js> = 3.0.1。
 
 - `interlockedSlides`: （默认`false`）[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块在其他段落中的滑动方向相同。 可能的值是`true`，`false`或带有互锁部分的数组。 例如`[1,3,5]`从1开始。需要fullpage.js> = 3.0.1。
 
@@ -840,6 +839,19 @@ new fullpage('#fullpage', {
 });
 ```
 ---
+### afterReBuild()
+This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+
+例如：
+
+```javascript
+new fullpage('#fullpage', {
+	afterReBuild: function(){
+		console.log("fullPage.js has manually being re-builded");
+	}
+});
+```
+---
 ### afterResponsive(`isResponsive`)
 在fullpage.js从正常模式变为响应模式或从响应模式变为正常模式之后，此回调将被触发。
 
@@ -942,6 +954,7 @@ new fullpage('#fullpage', {
 想要构建fullpage.js分发文件？ 请参阅[Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # 参考资源
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

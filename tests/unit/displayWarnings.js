@@ -31,7 +31,7 @@ function isErrorFired(){
 }
 
 function isUsingExtensionsFile(FP){
-    return typeof FP.getFullpageData !== 'object';
+    return typeof FP.getFullpageData().internals !== 'undefined';
 }
 
 //loopTop & continuousVertical

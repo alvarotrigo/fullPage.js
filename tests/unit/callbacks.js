@@ -267,17 +267,13 @@ QUnit.test('Testing afterLoad when autoScrolling:false on scroll with section an
     }, 100);
 });
 
-//this test should be reviewed.
-//at the moment the afterLoad callback doesn't get fired on page load, no matter what
-//section is active by default. But... Probably it should...
-//Same as afterSlideLoad on section change
 QUnit.test('Testing afterLoad callback with fullpage-2nd-active-section', function(assert) {
     var id = '#fullpage-2nd-active-section';
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {scrollingSpeed: 50, v2compatible:true}));
 
-    assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded');
-    assert.equal(areOthersLoaded(sectionLoaded), 0, 'We expect 0 slides to be loaded');
-    assert.equal(afterLoad, '', 'We expect no values for the callback');
+    assert.equal(sectionLoaded[1], true, 'We expect section 2 to be loaded');
+    assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 1 slide to be loaded');
+    assert.equal(afterLoad, 'null, 2', 'We expect the right values for the callback');
 });
 
 //this test should be reviewed.
@@ -394,6 +390,8 @@ QUnit.test('Testing afterResize', function(assert) {
     var done = assert.async(1);
     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacks, {scrollingSpeed: 50, v2compatible:true}));
 
+    //emulating window's resize
+    window.innerHeight = 100;
     window.dispatchEvent(new Event('resize'));
     assert.equal(afterResize, false, 'We expect afterResize to not get fired synchronously');
 

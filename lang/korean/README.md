@@ -15,13 +15,14 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.5-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.6-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [실시간 데모](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [워드프레스 테마](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/)
 - [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -216,7 +217,6 @@ $(document).ready(function() {
 		scrollOverflowReset: false,
 		scrollOverflowOptions: null,
 		touchSensitivity: 15,
-		normalScrollElementTouchThreshold: 5,
 		bigSectionsDestination: null,
 
 		//접근성
@@ -250,6 +250,7 @@ $(document).ready(function() {
 	afterLoad: function(origin, destination, direction){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
+	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction){},
 	onSlideLeave: function(section, origin, destination, direction){}
@@ -326,7 +327,7 @@ Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소
 
 ### 미디어 자동 재생/일시정지 삽입
 
-*주의*: 자동 재생 기능은 ([iOS의 사파리](https://webkit.org/blog/6784/new-video-policies-for-ios/) 10.0 미만 버전 등) OS와 브라우저에 따라 일부 모바일 기기에서는 작동하지 않을 수 있습니다.
+[데모](https://codepen.io/alvarotrigo/pen/pXEaaK) *주의*: 자동 재생 기능은 ([iOS의 사파리](https://webkit.org/blog/6784/new-video-policies-for-ios/) 10.0 미만 버전 등) OS와 브라우저에 따라 일부 모바일 기기에서는 작동하지 않을 수 있습니다.
 
 #### 구역/슬라이드를 불러올 때 재생:
 비디오나 소리에 `autoplay` 속성을 쓰시거나 유튜브 iframe에 `autoplay=1` 매개변수를 쓰시면 페이지를 불러올 때 미디어 요소가 재생됩니다. 구역/슬라이드를 불러올 때 재생되도록 하려면 대신 `data-autoplay` 속성을 쓰시면 됩니다. 아래는 예시입니다.
@@ -420,9 +421,7 @@ new fullpage('#fullpage', {
 
 - `fixedElements`: (기본값 `null`) 플러그인의 스크롤 구조에서 어느 요소를 빼낼지를 정의합니다. `css3` 옵션을 쓰실 때 고정하려면 반드시 빼내셔야 합니다. 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (기본값 `null`) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
-
-- `normalScrollElementTouchThreshold` : (기본값 `5`) 터치 기기에서 div 스크롤 기능을 허용하는 데 `normalScrollElements`가 좋은 짝인지 보기 위해 Fullpage가 시험할 html 노드 나무 위 홉(hop) 수 한계점을 설정합니다. (예시: `normalScrollElementTouchThreshold: 3`)
+- `normalScrollElements`: (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/RmVazM) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
 
 - `bigSectionsDestination`: (기본값 `null`) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
 
@@ -434,7 +433,7 @@ new fullpage('#fullpage', {
 
 - `continuousHorizontal`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 마지막 슬라이드에서 오른쪽으로 미끄러질 때 오른쪽으로 이동하여 첫번째 슬라이드로 이동할지를 정의하고, 첫번째 슬라이드에서 왼쪽으로 스크롤할때 왼쪽으로 이동하면서 마지막 슬라이드로 이동할지를 정의합니다. `loopHorizontal`과 호환되지 않습니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. It can only be used when using: `autoScrolling:true`. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
 - `interlockedSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). 수평 슬라이더 하나를 움직일 때 다른 구역에 있는 슬라이더가 강제로 같은 방향으로 미끄러지도록 할지를 정의합니다. `true`, `false` 또는 서로 잠긴 구역이 있는 배열값이 가능합니다. 예를 들면 1에서 시작하는 `[1,3,5]`가 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
@@ -829,6 +828,19 @@ new fullpage('#fullpage', {
 });
 ```
 ---
+### afterReBuild()
+This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+
+예시:
+
+```javascript
+new fullpage('#fullpage', {
+	afterReBuild: function(){
+		console.log("fullPage.js has manually being re-builded");
+	}
+});
+```
+---
 ### afterResponsive(`isResponsive`)
 fullpage.js가 정상 모드에서 반응형 모드로 바뀌거나 반응형 모드에서 정상 모드로 바뀌고 나면 이 콜백이 실행됩니다.
 
@@ -931,6 +943,7 @@ new fullpage('#fullpage', {
 fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)을 방문해 주세요.
 
 # 재료가 되는 도구
+- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

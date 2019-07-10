@@ -1,5 +1,5 @@
 /**
-* Customized version of iScroll.js 0.1.2
+* Customized version of iScroll.js 0.1.3
 * It fixes bugs affecting its integration with fullpage.js
 * @license
 */
@@ -1115,7 +1115,13 @@ IScroll.prototype = {
             return;
         }
 
-        e.preventDefault();
+        // in IE we can not preventDefault() or otherwise it won't scroll to the prev/next section.
+        // I commented on it here back then: https://github.com/cubiq/iscroll/issues/980
+        // isIE taken from: https://stackoverflow.com/a/49986758/1081396
+        var isIE = window.navigator.userAgent.match(/(MSIE|Trident)/);
+        if(!isIE){
+            e.preventDefault();
+        }
 
         var wheelDeltaX, wheelDeltaY,
             newX, newY,
@@ -2133,7 +2139,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.2 module for fullPage.js >= 3
+* Scrolloverflow 2.0.3 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
@@ -2145,7 +2151,7 @@ if ( typeof module != 'undefined' && module.exports ) {
         // check if IScroll is available in global scope
         if (!window.IScroll) {
             // otherwise create local one from module.exports
-            IScroll = module.exports;
+            window.IScroll = module.exports;
         }
 
         // keeping central set of classnames and selectors
@@ -2261,19 +2267,21 @@ if ( typeof module != 'undefined' && module.exports ) {
                     contentHeight = scrollOverflowHandler.scrollHeight(element);
                 }
                 else{
-                    contentHeight = element.scrollHeight - paddings;
+                    contentHeight = element.scrollHeight;
                     if(self.options.verticalCentered){
-                        contentHeight = $(TABLE_CELL_SEL, element)[0].scrollHeight - paddings;
+                        contentHeight = $(TABLE_CELL_SEL, element)[0].scrollHeight;
                     }
                 }
 
-                var scrollHeight = fp_utils.getWindowHeight() - paddings;
-
+                var scrollHeight = fp_utils.getWindowHeight();
+                var contentHeightWidthPaddings = contentHeight + paddings;
+                var scrollHeightWidthoutPaddings = scrollHeight - paddings;
+                
                 //needs scroll?
-                if ( contentHeight > scrollHeight) {
+                if ( contentHeightWidthPaddings > scrollHeight) {
                     //did we already have an scrollbar ? Updating it
                     if(scrollable != null){
-                        scrollOverflowHandler.update(element, scrollHeight);
+                        scrollOverflowHandler.update(element, scrollHeightWidthoutPaddings);
                     }
                      //creating the scrolling
                     else{
@@ -2284,7 +2292,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                             fp_utils.wrapInner(element, wrap.scroller);
                             fp_utils.wrapInner(element, wrap.scrollable);
                         }
-                        scrollOverflowHandler.create(element, scrollHeight, self.iscrollOptions);
+                        scrollOverflowHandler.create(element, scrollHeightWidthoutPaddings, self.iscrollOptions);
                     }
                 }
 
@@ -2329,6 +2337,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             //public functions
             self.createScrollBarForAll = createScrollBarForAll;
+            self.createScrollBar = createScrollBar;
         }
 
         /**
@@ -2345,6 +2354,7 @@ if ( typeof module != 'undefined' && module.exports ) {
         var iscrollHandler = {
             refreshId: null,
             iScrollInstances: [],
+            lastScrollY: null,
 
             // Default options for iScroll.js used when using scrollOverflow
             iscrollOptions: {
@@ -2453,11 +2463,12 @@ if ( typeof module != 'undefined' && module.exports ) {
                     return true;
                 }
 
-                if (type === 'top'){
-                    return scroller.y >= 0 && !fp_utils.getScrollTop(scrollable);
-                } else if (type === 'bottom') {
-                    return (0 - scroller.y) + fp_utils.getScrollTop(scrollable) + 1 + scrollable.offsetHeight >= scrollable.scrollHeight;
-                }
+                // two times reporting the same Y position ? 
+                // that means we are on the top or on the bottom of the scroller
+                var canScroll = iscrollHandler.lastScrollY === scroller.y;
+                iscrollHandler.lastScrollY = scroller.y;
+
+                return canScroll;
             },
 
             /**
