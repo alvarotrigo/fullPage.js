@@ -40,8 +40,8 @@ QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false, fitT
 
     FP.test.setAutoScrolling(false, 'external');
 
-    assert.equal($('body').css('overflow'), 'auto scroll', 'overflow should be auto scroll');
-    assert.equal($('html').css('overflow'), 'hidden', 'html should be hidden');
+    assert.equal($('body').css('overflow'), 'visible', 'overflow should be visible');
+    assert.equal($('html').css('overflow'), 'visible', 'html should be visible');
 
     assert.equal(FP.test.options.recordHistory, false, 'recordHistory should be false');
     assert.equal(FP.test.options.autoScrolling, false, 'autoScrolling should be false');
