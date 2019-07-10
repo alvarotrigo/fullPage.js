@@ -53,6 +53,7 @@
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
     var AUTO_HEIGHT =           'fp-auto-height';
     var AUTO_HEIGHT_SEL =       '.' + AUTO_HEIGHT;
+    var AUTO_HEIGHT_RESPONSIVE ='.fp-auto-height-responsive';
     var NORMAL_SCROLL =         'fp-normal-scroll';
     var NORMAL_SCROLL_SEL =     '.' + NORMAL_SCROLL;
 
@@ -92,12 +93,13 @@
     function initialise(containerSelector, options) {
         var isOK = options && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(options['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
 
-        //only once my friend!
-        if(hasClass($('html'), ENABLED)){ displayWarnings(); return; }
-
-        // common jQuery objects
+        // cache common elements
         var $htmlBody = $('html, body');
+        var $html = $('html')[0];
         var $body = $('body')[0];
+
+        //only once my friend!
+        if(hasClass($html, ENABLED)){ displayWarnings(); return; }
 
         var FP = {};
 
@@ -142,7 +144,6 @@
             scrollOverflowOptions: null,
             touchSensitivity: 5,
             touchWrapper: typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector,
-            normalScrollElementTouchThreshold: 5,
             bigSectionsDestination: null,
 
             //Accessibility
@@ -200,6 +201,7 @@
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
+        var windowsWidth = getWindowWidth();
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -235,15 +237,31 @@
 
         //timeouts
         var resizeId;
+        var resizeHandlerId;
         var afterSectionLoadsId;
         var afterSlideLoadsId;
         var scrollId;
         var scrollId2;
         var keydownId;
+        var g_doubleCheckHeightId;
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
         var g_initialAnchorsInDom = false;
         var g_canFireMouseEnterNormalScroll = true;
+        var g_mediaLoadedId;
+        var extensions = [
+            'parallax',
+            'scrollOverflowReset',
+            'dragAndMove',
+            'offsetSections',
+            'fadingEffect',
+            'responsiveSlides',
+            'continuousHorizontal',
+            'interlockedSlides',
+            'scrollHorizontally',
+            'resetSliders',
+            'cards'
+        ];
 
         displayWarnings();
 
@@ -286,7 +304,6 @@
                     //moving the container up
                     silentScroll(element.offsetTop);
                 }
-
             }else{
                 css($htmlBody, {
                     'overflow' : 'visible',
@@ -480,7 +497,9 @@
 
             isResizing = true;
 
-            windowsHeight = getWindowHeight();  //updating global var
+            //updating global vars
+            windowsHeight = getWindowHeight();
+            windowsWidth = getWindowWidth();
 
             var sections = $(SECTION_SEL);
             for (var i = 0; i < sections.length; ++i) {
@@ -524,11 +543,18 @@
         }
 
         /**
+        * Determines whether fullpage.js is in responsive mode or not.
+        */
+        function isResponsiveMode(){
+           return hasClass($body, RESPONSIVE);
+        }
+
+        /**
         * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
         * are smaller than the set limit values.
         */
         function setResponsive(active){
-            var isResponsive = hasClass($body, RESPONSIVE);
+            var isResponsive = isResponsiveMode();
 
             if(active){
                 if(!isResponsive){
@@ -606,7 +632,8 @@
             //functions we want to share across files but which are not
             //mean to be used on their own by developers
             FP.shared = {
-                afterRenderActions: afterRenderActions
+                afterRenderActions: afterRenderActions,
+                isNormalScrollElement: false
             };
 
             window.fullpage_api = FP;
@@ -650,6 +677,8 @@
             if(!options.scrollOverflow){
                 afterRenderActions();
             }
+
+            doubleCheckHeight();
         }
 
         function bindEvents(){
@@ -721,15 +750,15 @@
         }
 
         function onMouseEnterOrLeave(e) {
-            var target = e.target;
+            //onMouseLeave will use the destination target, not the one we are moving away from
+            var target = event.toElement || e.relatedTarget || e.target;
+
             var type = e.type;
+            var isInsideOneNormalScroll = false;
 
-            if(target == document){
-
-                //coming from closing a normalScrollElements modal?
-                if(FP.shared.isNormalScrollElement){
-                    setMouseHijack(true);
-                }
+            //coming from closing a normalScrollElements modal or moving outside viewport?
+            if(target == document || !target){
+                setMouseHijack(true);
                 return;
             }
 
@@ -747,19 +776,53 @@
             }
 
             var normalSelectors = options.normalScrollElements.split(',');
-            var allowScrolling = document['fp_' + type];
 
             normalSelectors.forEach(function(normalSelector){
-                var isNormalScrollTarget = matches(target, normalSelector);
+                if(!isInsideOneNormalScroll){
+                    var isNormalScrollTarget = matches(target, normalSelector);
 
-                //leaving a child inside the normalScoll element is not leaving the normalScroll #3661
-                var isNormalScrollChildFocused = closest(target, normalSelector) && ['mouseenter', 'touchstart'].indexOf(type) > -1;
+                    //leaving a child inside the normalScoll element is not leaving the normalScroll #3661
+                    var isNormalScrollChildFocused = closest(target, normalSelector);
 
-                if(isNormalScrollTarget || isNormalScrollChildFocused){
-                    setMouseHijack(allowScrolling); //e.type = eventName
-                    FP.shared.isNormalScrollElement = !allowScrolling;
+                    if(isNormalScrollTarget || isNormalScrollChildFocused){
+                        if(!FP.shared.isNormalScrollElement){
+                            setMouseHijack(false);
+                        }
+                        FP.shared.isNormalScrollElement = true;
+                        isInsideOneNormalScroll = true;
+                    }
                 }
             });
+
+            //not inside a single normal scroll element anymore?
+            if(!isInsideOneNormalScroll && FP.shared.isNormalScrollElement){
+                setMouseHijack(true);
+                FP.shared.isNormalScrollElement = false;
+            }
+        }
+
+        /**
+        * Checks the viewport a few times on a define interval of time to 
+        * see if it has changed in any of those. If that's the case, it resizes.
+        */
+        function doubleCheckHeight(){
+            for(var i = 1; i < 4; i++){
+                g_doubleCheckHeightId = setTimeout(adjustToNewViewport, 350 * i);
+            }
+        }
+
+        /**
+        * Adjusts a section to the viewport if it has changed.
+        */
+        function adjustToNewViewport(){
+            var newWindowHeight = getWindowHeight();
+            var newWindowWidth = getWindowWidth();
+
+            if(windowsHeight !== newWindowHeight || windowsWidth !== newWindowWidth){
+                windowsHeight = newWindowHeight;
+                windowsWidth = newWindowWidth;
+                reBuild(true);
+            }
         }
 
         /**
@@ -802,7 +865,7 @@
 
             //adding a class to recognize the container internally in the code
             addClass(container, WRAPPER);
-            addClass($('html'), ENABLED);
+            addClass($html, ENABLED);
 
             //due to https://github.com/alvarotrigo/fullPage.js/issues/1502
             windowsHeight = getWindowHeight();
@@ -1068,6 +1131,7 @@
             addClass(section, COMPLETELY);
 
             lazyLoad(section);
+            lazyLoadOthers();
             playMedia(section);
 
             if(options.scrollOverflow){
@@ -1076,7 +1140,7 @@
 
             if(isDestinyTheStartingSection() && isFunction(options.afterLoad) ){
                 fireCallback('afterLoad', {
-                    activeSection: null,
+                    activeSection: section,
                     element: section,
                     direction: null,
 
@@ -1095,8 +1159,9 @@
         * Determines if the URL anchor destiny is the starting section (the one using 'active' class before initialization)
         */
         function isDestinyTheStartingSection(){
-            var destinationSection = getSectionByAnchor(getAnchorsURL().section);
-            return !destinationSection || typeof destinationSection !=='undefined' && index(destinationSection) === index(startingSection);
+            var anchor = getAnchorsURL();
+            var destinationSection = getSectionByAnchor(anchor.section);
+            return !anchor.section || !destinationSection || typeof destinationSection !=='undefined' && index(destinationSection) === index(startingSection);
         }
 
         var isScrolling = false;
@@ -1250,6 +1315,26 @@
         }
 
         /**
+        * Determines whether a section is in the viewport or not.
+        */
+        function isSectionInViewport (el) {
+            var rect = el.getBoundingClientRect();
+            var top = rect.top;
+            var bottom = rect.bottom;
+
+            //sometimes there's a 1px offset on the bottom of the screen even when the 
+            //section's height is the window.innerHeight one. I guess because pixels won't allow decimals.
+            //using this prevents from lazyLoading the section that is not yet visible 
+            //(only 1 pixel offset is)
+            var pixelOffset = 2;
+            
+            var isTopInView = top + pixelOffset < windowsHeight && top > 0;
+            var isBottomInView = bottom > pixelOffset && bottom < windowsHeight;
+
+            return isTopInView || isBottomInView;
+        }
+
+        /**
         * Gets the directon of the the scrolling fired by the scroll event.
         */
         function getScrollDirection(currentScroll){
@@ -1319,7 +1404,6 @@
         function touchMoveHandler(e){
             var activeSection = closest(e.target, SECTION_SEL) || $(SECTION_ACTIVE_SEL)[0];
 
-            // additional: if one of the normalScrollElements isn't within options.normalScrollElementTouchThreshold hops up the DOM chain
             if (isReallyTouch(e) ) {
 
                 if(options.autoScrolling){
@@ -1336,7 +1420,7 @@
                 if ($(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
 
                     //is the movement greater than the minimum resistance to scroll?
-                    if (!slideMoving && Math.abs(touchStartX - touchEndX) > (window.innerWidth / 100 * options.touchSensitivity)) {
+                    if (!slideMoving && Math.abs(touchStartX - touchEndX) > (getWindowWidth() / 100 * options.touchSensitivity)) {
                         if (touchStartX > touchEndX) {
                             if(isScrollAllowed.m.right){
                                 moveSlideRight(activeSection); //next
@@ -1444,7 +1528,7 @@
 
                 //preventing to scroll the site on mouse wheel when scrollbar is present
                 if(options.scrollBar){
-                   preventDefault(e);
+                    preventDefault(e);
                 }
 
                 //time difference between the last scroll and the current one
@@ -1855,11 +1939,6 @@
             v.dtop = v.element.offsetTop;
             v.yMovement = getYmovement(v.element);
 
-            //sections will temporally have another position in the DOM
-            //updating this values in case we need them
-            v.leavingSection = index(v.activeSection, SECTION_SEL) + 1;
-            v.sectionIndex = index(v.element, SECTION_SEL);
-
             return v;
         }
 
@@ -1907,6 +1986,7 @@
 
             addClass(v.element, COMPLETELY);
             removeClass(siblings(v.element), COMPLETELY);
+            lazyLoadOthers();
 
             canScroll = true;
 
@@ -1925,6 +2005,26 @@
         }
 
         /**
+        * Makes sure lazyload is done for other sections in the viewport that are not the
+        * active one. 
+        */
+        function lazyLoadOthers(){
+            var hasAutoHeightSections = $(AUTO_HEIGHT_SEL)[0] || isResponsiveMode() && $(AUTO_HEIGHT_RESPONSIVE_SEL)[0];
+
+            //quitting when it doesn't apply
+            if (!options.lazyLoading || !hasAutoHeightSections){
+                return;
+            }
+
+            //making sure to lazy load auto-height sections that are in the viewport
+            $(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function(section){
+                if(isSectionInViewport(section)){
+                    lazyLoad(section);
+                }
+            });
+        }
+
+        /**
         * Lazy loads image, video and audio elements.
         */
         function lazyLoad(destiny){
@@ -1939,6 +2039,9 @@
                     var attribute = element.getAttribute('data-' + type);
                     if(attribute != null && attribute){
                         setSrc(element, type);
+                        element.addEventListener('load', function(){
+                            onMediaLoad(destiny);
+                        });
                     }
                 });
 
@@ -1946,9 +2049,25 @@
                     var elementToPlay =  closest(element, 'video, audio');
                     if(elementToPlay){
                         elementToPlay.load();
+                        elementToPlay.onloadeddata = function(){
+                            onMediaLoad(destiny);
+                        }
                     }
                 }
             });
+        }
+
+        /**
+        * Callback firing when a lazy load media element has loaded.
+        * Making sure it only fires one per section in normal conditions (if load time is not huge)
+        */
+        function onMediaLoad(section){
+            if(options.scrollOverflow){
+                clearTimeout(g_mediaLoadedId);
+                g_mediaLoadedId = setTimeout(function(){
+                    scrollBarHandler.createScrollBar(section);
+                }, 200);
+            }
         }
 
         /**
@@ -2273,6 +2392,8 @@
         */
         function onkeydown(e){
             var shiftPressed = e.shiftKey;
+            var activeElement = document.activeElement;
+            var isMediaFocused = matches(activeElement, 'video') || matches(activeElement, 'audio');
 
             //do nothing if we can not scroll or we are not using horizotnal key arrows.
             if(!canScroll && [37,39].indexOf(e.keyCode) < 0){
@@ -2290,7 +2411,8 @@
 
                 //down
                 case 32: //spacebar
-                    if(shiftPressed && isScrollAllowed.k.up){
+
+                    if(shiftPressed && isScrollAllowed.k.up && !isMediaFocused){
                         moveSectionUp();
                         break;
                     }
@@ -2298,7 +2420,10 @@
                 case 40:
                 case 34:
                     if(isScrollAllowed.k.down){
-                        moveSectionDown();
+                        // space bar?
+                        if(e.keyCode !== 32 || !isMediaFocused){
+                            moveSectionDown();
+                        }
                     }
                     break;
 
@@ -2341,6 +2466,9 @@
         */
         var oldPageY = 0;
         function mouseMoveHandler(e){
+            if(!options.autoScrolling){
+                return;
+            }
             if(canScroll){
                 // moving up
                 if (e.pageY < oldPageY && isScrollAllowed.m.up){
@@ -2487,8 +2615,30 @@
 
         var previousHeight = windowsHeight;
 
-        //when resizing the site, we adjust the heights of the sections, slimScroll...
+        /*
+        * Resize event handler.
+        */        
         function resizeHandler(){
+            clearTimeout(resizeId);
+
+            //in order to call the functions only when the resize is finished
+            //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing    
+            resizeId = setTimeout(function(){
+
+                //issue #3336 
+                //(some apps or browsers, like Chrome/Firefox for Mobile take time to report the real height)
+                //so we check it 3 times with intervals in that case
+                for(var i = 0; i< 4; i++){
+                    resizeHandlerId = setTimeout(resizeActions, 200 * i);
+                }
+            }, 200);
+        }
+
+        /**
+        * When resizing the site, we adjust the heights of the sections, slimScroll...
+        */
+        function resizeActions(){
+
             //checking if it needs to get responsive
             responsive();
 
@@ -2502,25 +2652,13 @@
 
                     //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
                     if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
-                        resizeId = setTimeout(function(){
-                            reBuild(true);
-                            previousHeight = currentHeight;
-
-                            //issue #3336
-                            //when using Chrome we add a small timeout to get the right window height 
-                            //https://stackoverflow.com/a/12556928/1081396
-                            //https://stackoverflow.com/questions/13807810/ios-chrome-detection
-                        }, navigator.userAgent.match('CriOS') ? 50 : 0);
+                        reBuild(true);
+                        previousHeight = currentHeight;
                     }
                 }
-            }else{
-                //in order to call the functions only when the resize is finished
-                //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
-                clearTimeout(resizeId);
-
-                resizeId = setTimeout(function(){
-                    reBuild(true);
-                }, 350);
+            }
+            else{
+                adjustToNewViewport();
             }
         }
 
@@ -3111,11 +3249,17 @@
             setKeyboardScrolling(false);
             addClass(container, DESTROYED);
 
-            clearTimeout(afterSlideLoadsId);
-            clearTimeout(afterSectionLoadsId);
-            clearTimeout(resizeId);
-            clearTimeout(scrollId);
-            clearTimeout(scrollId2);
+            [
+                afterSlideLoadsId, 
+                afterSectionLoadsId,
+                resizeId,
+                scrollId,
+                scrollId2,
+                g_doubleCheckHeightId,
+                resizeHandlerId
+            ].forEach(function(timeoutId){
+                clearTimeout(timeoutId);
+            });
 
             window.removeEventListener('scroll', scrollHandler);
             window.removeEventListener('hashchange', hashChangeHandler);
@@ -3131,9 +3275,6 @@
             ['mouseenter', 'touchstart', 'mouseleave', 'touchend'].forEach(function(eventName){
                 document.removeEventListener(eventName, onMouseEnterOrLeave, true); //true is required!
             });
-
-            clearTimeout(afterSlideLoadsId);
-            clearTimeout(afterSectionLoadsId);
 
             //lets make a mess!
             if(all){
@@ -3183,7 +3324,7 @@
             });
 
             // remove .fp-enabled class
-            removeClass($('html'), ENABLED);
+            removeClass($html, ENABLED);
 
             // remove .fp-responsive class
             removeClass($body, RESPONSIVE);
@@ -3258,6 +3399,7 @@
         function displayWarnings(){
             var l = options['li' + 'c' + 'enseK' + 'e' + 'y'];
             var msgStyle = 'font-size: 15px;background:yellow;'
+
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
                 showError('error', 'https://github.com/alvarotrigo/fullPage.js#options.');
@@ -3267,8 +3409,7 @@
                 console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
             }
 
-            var extensions = ['fadingEffect', 'continuousHorizontal', 'scrollHorizontally', 'interlockedSlides', 'resetSliders', 'responsiveSlides', 'offsetSections', 'dragAndMove', 'scrollOverflowReset', 'parallax', 'cards'];
-            if(hasClass($('html'), ENABLED)){
+            if(hasClass($html, ENABLED)){
                 showError('error', 'Fullpage.js can only be initialized once and you are doing it multiple times!');
                 return;
             }
@@ -3317,11 +3458,10 @@
 
                 if(idAttr.length || nameAttr.length ){
                     showError('error', 'data-anchor tags can not have the same value as any `id` element on the site (or `name` element for IE).');
-                    if(idAttr.length){
-                        showError('error', '"' + name + '" is is being used by another element `id` property');
-                    }
-                    if(nameAttr.length){
-                        showError('error', '"' + name + '" is is being used by another element `name` property');
+                    var propertyName = idAttr.length ? 'id' : 'name';
+
+                    if(idAttr.length || nameAttr.length){
+                        showError('error', '"' + name + '" is is being used by another element `'+ propertyName +'` property');
                     }
                 }
             });
@@ -3447,7 +3587,6 @@
         return FP;
     } //end of $.fn.fullpage
 
-
     //utils
     /**
     * Shows a message in the console of the given type.
@@ -3510,7 +3649,14 @@
     * Gets the window height. Crossbrowser.
     */
     function getWindowHeight(){
-        return  'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+        return 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    }
+
+    /**
+    * Gets the window width.
+    */
+    function getWindowWidth(){
+        return window.innerWidth;
     }
 
     /**
