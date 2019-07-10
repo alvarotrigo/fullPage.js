@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.6
+ * fullPage 3.0.7
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -53,7 +53,8 @@
     var TABLE_CELL_SEL =        '.' + TABLE_CELL;
     var AUTO_HEIGHT =           'fp-auto-height';
     var AUTO_HEIGHT_SEL =       '.' + AUTO_HEIGHT;
-    var AUTO_HEIGHT_RESPONSIVE ='.fp-auto-height-responsive';
+    var AUTO_HEIGHT_RESPONSIVE = 'fp-auto-height-responsive';
+    var AUTO_HEIGHT_RESPONSIVE_SEL = '.' + AUTO_HEIGHT_RESPONSIVE;
     var NORMAL_SCROLL =         'fp-normal-scroll';
     var NORMAL_SCROLL_SEL =     '.' + NORMAL_SCROLL;
 
