@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.5
+ * fullPage 3.0.6
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -221,22 +221,6 @@ html.fp-enabled,
 .fp-responsive .fp-auto-height-responsive .fp-slide,
 .fp-responsive .fp-auto-height-responsive .fp-tableCell {
     height: auto !important;
-}
-
-.fp-snaps{
-    /* Fixing Chrome bug: https://stackoverflow.com/q/56805739/1081396*/
-    overflow: hidden !important;
-    
-    height: 100% !important;
-}
-.fp-snaps body{
-    height: 100% !important;
-    -ms-scroll-snap-type: y mandatory;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll !important;
-}
-.fp-snaps .fp-section{
-    scroll-snap-align: start;
 }
 
 /*Only display content to screen readers*/
