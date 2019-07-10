@@ -2465,10 +2465,12 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 // two times reporting the same Y position ? 
                 // that means we are on the top or on the bottom of the scroller
-                var canScroll = iscrollHandler.lastScrollY === scroller.y;
-                iscrollHandler.lastScrollY = scroller.y;
-
-                return canScroll;
+                
+                if (type === 'top'){
+                    return scroller.y >= 0 && !fp_utils.getScrollTop(scrollable);
+                } else if (type === 'bottom') {
+                    return (0 - scroller.y) + fp_utils.getScrollTop(scrollable) + scrollable.offsetHeight >= scrollable.scrollHeight;
+                }
             },
 
             /**
