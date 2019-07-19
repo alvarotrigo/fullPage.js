@@ -26,12 +26,23 @@ var myFullpage = new fullpage('#fullpage', {
 * `offsetSectionsKey`
 * `dragAndMoveKey`
 * `parallaxKey`
+* `cardsKey`
 
-请记住，如[扩展的使用](https://github.com/alvarotrigo/fullPage.js#use-extensions)[]中所介绍的，使用扩展需要调用[`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js)，而不像平常的fullPage.js文件（`jquery.fullpage.js`）那样使用扩展。
+请记住，如[扩展的使用](https://github.com/alvarotrigo/fullPage.js#use-extensions)[]中所介绍的，使用扩展需要调用[`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/fullpage.extensions.min.js)，而不像平常的fullPage.js文件（`fullpage.js`）那样使用扩展。
 
-### 如何做开发环境/网站？
-本地主机环境不需要激活密钥。
-如果您需要在另一个外部开发环境中使用它，则可以获取该域的激活密钥，在转移到产品中后再[询问我](http://alvarotrigo.com/#contact) 要另一个激活密钥。
+### What to do for development environments / websites?
+No activation key is necessary for localhost and 127.0.0.1. Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.
+
+If you have a license that allows you to generate multiple activation keys you might want to use the same JS code for all of them. In this case you can use an array with the different keys for each domain, for example, if we are using the `scrollHorizontally` extension for 3 domains, we can do the following:
+
+```js
+new fullPage('#fullpage', {
+    scrollHorizontally: true,
+    scrollHorizontallyKey: ['domain1_key', 'domain2_key', 'domain3_key'] 
+});
+```
+
+This way the extension can be used in any of those 3 domains.
 
 ### 许可证密钥与激活密钥
 两者是不同的密钥。

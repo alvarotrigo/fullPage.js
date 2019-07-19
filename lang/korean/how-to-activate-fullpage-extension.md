@@ -25,9 +25,22 @@ var myFullpage = new fullpage('#fullpage', {
 * `offsetSectionsKey`
 * `dragAndMoveKey`
 * `parallaxKey`
+* `cardsKey`
 
-[확장 프로그램 사용](https://github.com/alvarotrigo/fullPage.js#use-extensions)에서도 설명드렸듯이 확장 프로그램을 쓰시려면 보통 쓰는 fullPage.js(`jquery.fullpage.js`) 파일 대신 꼭 [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js)를 쓰셔야 한다는 걸 염두해 주세요.
+[확장 프로그램 사용](https://github.com/alvarotrigo/fullPage.js#use-extensions)에서도 설명드렸듯이 확장 프로그램을 쓰시려면 보통 쓰는 fullPage.js(`fullpage.js`) 파일 대신 꼭 [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/fullpage.extensions.min.js)를 쓰셔야 한다는 걸 염두해 주세요.
 
-### 개발 환경 / 웹사이트에서는 어떻게 해야 하나요?
-로컬호스트 환경에서는 활성화 키가 필요없습니다. 다른 외부 개발 환경에서 쓰고자 하신다면 해당 도메인에 쓰실 활성화 키를 얻으신 다음 구동하신 후 나중에 추가 활성화 키를 [저에게 요청해 주세요](http://alvarotrigo.com/#contact).
+
+### What to do for development environments / websites?
+No activation key is necessary for localhost and 127.0.0.1. Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.
+
+If you have a license that allows you to generate multiple activation keys you might want to use the same JS code for all of them. In this case you can use an array with the different keys for each domain, for example, if we are using the `scrollHorizontally` extension for 3 domains, we can do the following:
+
+```js
+new fullPage('#fullpage', {
+    scrollHorizontally: true,
+    scrollHorizontallyKey: ['domain1_key', 'domain2_key', 'domain3_key'] 
+});
+```
+
+This way the extension can be used in any of those 3 domains.
 

@@ -26,12 +26,25 @@ Estas son todas las posibles opciones para otras claves de extensiones:
 * `offsetSectionsKey`
 * `dragAndMoveKey`
 * `parallaxKey`
+* `cardsKey`
 
-Recuerda el uso de extensiones requiere del uso de [`jquery.fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/jquery.fullpage.extensions.min.js) en lugar del habitual archivo de fullPage.js (`jquery.fullpage.js`) tal y como se explica en [el uso de extensiones](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#uso-de-extensiones).
+Recuerda el uso de extensiones requiere del uso de [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/fullpage.extensions.min.js) en lugar del habitual archivo de fullPage.js (`fullpage.js`) tal y como se explica en [el uso de extensiones](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#uso-de-extensiones).
 
 ### Qué hacer para entornos de desarrollo y webs de testeo?
 No se requiere del uso de clave de activación para entornos localhost.
 Si necesitas usar una extensión en un entorno de desarrollo externo, puedes obtender la clave de activación para dicho dominio y luego [contactar conmigo](http://alvarotrigo.com/#contact) para que te de otra clave cuando lo muevas a producción.
+
+Si tienes una licencia que te permite generar varias claves de activación para varios dominios tal vez quieras usar el mismo código JS para todos ellos. En este caso puedes usar un array con las diferentes claves para cada dominio. Por ejemplo, si estamos usando la extensión `scrollHorizontally` para 3 dominios podemos hacer lo siguiente:
+
+```js
+new fullPage('#fullpage', {
+    scrollHorizontally: true,
+    scrollHorizontallyKey: ['domain1_key', 'domain2_key', 'domain3_key'] 
+});
+```
+
+De este modo la extensión podrá usarse en los 3 dominios.
+
 
 ### Clave de licencia vs clave de activación
 Son claves muy diferentes:
