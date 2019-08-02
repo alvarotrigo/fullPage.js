@@ -3597,7 +3597,7 @@
     }
 
     /**
-    * Equivalent or jQuery function $().
+    * Equivalent of jQuery function $().
     */
     function $(selector, context){
         context = arguments.length > 1 ? context : document;
