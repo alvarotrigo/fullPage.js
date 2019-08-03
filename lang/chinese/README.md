@@ -21,7 +21,7 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [现场演示](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [示例](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js扩展](http://alvarotrigo.com/fullPage/extensions/)
@@ -43,8 +43,8 @@
   - [自动播放内嵌媒体](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%9A%82%E5%81%9C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AA%92%E4%BD%93)
   - [使用扩展](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BD%BF%E7%94%A8%E6%89%A9%E5%B1%95)
 - [参数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9)
-- [方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%96%B9%E6%B3%95)
-- [回调](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#callbacks)
+- [公共方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%96%B9%E6%B3%95)
+- [回调函数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#callbacks)
 - [问题反馈](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8A%A5%E5%91%8A%E9%97%AE%E9%A2%98)
 - [完善fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B4%A1%E7%8C%AE%E7%BB%99fullpagejs)
 - [变更日志](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
@@ -306,7 +306,7 @@ URL`#secondPage/2` 结尾处的锚分别定义了目标section和slide。 在前
 <div class="section fp-auto-height">自动高度</div>
 ```
 
-#### 响应自动高度section
+#### section响应自动高度
 [演示](https://codepen.io/alvarotrigo/pen/MzByMa) 响应自动高度可以通过使用`fp-auto-height-responsive`类来调用。 这种方式section将全屏，直到响应模式终止。 根据定义调整大小，可能是大于或小于视口。
 
 ### 由fullpage.js添加的状态类
@@ -372,7 +372,7 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 然后你就可以按照[选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9)的说明使用和配置它们。
 
-## 选项
+## 参数
 
 -`licenseKey`：（默认`null`）。 **此选项是强制性的。**如果您在非开源项目中使用fullPage，则应使用购买fullPage商业许可证时提供的许可证密钥。 如果您的项目是开放的，请[与我[联系](https://alvarotrigo.com/#contact)并提供指向您的存储库的链接以获取许可证密钥。 请阅读更多关于许可[这里]（https://github.com/alvarotrigo/fullPage.js#license）和[在网页上]（https://alvarotrigo.com/fullPage/pricing/）。例如：
 
@@ -540,7 +540,7 @@ new fullpage('#fullpage', {
 
 - `lazyLoading`: （默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性`data-src`的任何媒体元素，详见[Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)。 如果你想使用任何其他的后加载库，你可以禁用这个fullpage.js功能。
 
-## 方法
+## 公共方法
 你可以在[这里](http://alvarotrigo.com/fullPage/examples/methods.html)看到它们
 
 ### getActiveSection()
@@ -722,7 +722,7 @@ fullpage_api.responsiveSlides.toSections();
 fullpage_api.responsiveSlides.toSlides();
 ```
 
-## Callbacks
+## 回调函数
 [示例](http://codepen.io/alvarotrigo/pen/XbPNQv) 你可以在[这里](http://alvarotrigo.com/fullPage/examples/callbacks.html)看到他们。
 
 一些回调，例如`onLeave`将包含`Section`或`Slide`类型的参数。 这些对象将包含以下属性：
@@ -1026,7 +1026,7 @@ new fullpage('#fullpage', {
 
 你可以在另一份列表[这里](http://libscore.com/#$.fn.fullpage)查找。
 
-## 捐献
+## 赞助
 非常欢迎您的捐款:)
 
 [Patreon page](https://www.patreon.com/fullpagejs)
