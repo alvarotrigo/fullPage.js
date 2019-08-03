@@ -46,10 +46,10 @@
 - [公共方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%96%B9%E6%B3%95)
 - [回调函数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#callbacks)
 - [问题反馈](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8A%A5%E5%91%8A%E9%97%AE%E9%A2%98)
-- [完善fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B4%A1%E7%8C%AE%E7%BB%99fullpagejs)
-- [变更日志](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+- [贡献到fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B4%A1%E7%8C%AE%E7%BB%99fullpagejs)
+- [更新日志](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
 - [编译构建](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1)
-- [资源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90)
+- [参考资源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90)
 - [谁在使用fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B0%81%E5%9C%A8%E4%BD%BF%E7%94%A8-fullpagejs)
 - [赞助](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8D%90%E7%8C%AE)
 
@@ -949,7 +949,7 @@ new fullpage('#fullpage', {
 # 更新日志
 要查看最近更改的列表，请参见[发行版部分](https://github.com/alvarotrigo/fullPage.js/releases).
 
-# 构建任务
+# 编译构建
 想要构建fullpage.js分发文件？ 请参阅[Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # 参考资源
