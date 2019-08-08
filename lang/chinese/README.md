@@ -334,7 +334,7 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 
 ### 自动播放/暂停嵌入式媒体
 
-[演示](https://codepen.io/alvarotrigo/pen/pXEaaK) **注意**：根据操作系统和浏览器的不同，自动播放功能可能无法在某些移动设备上使用（即 [iOS 的 Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
+[演示](https://codepen.io/alvarotrigo/pen/pXEaaK) **注意**：根据操作系统和浏览器的不同，自动播放功能可能无法在某些移动设备上使用（即 [IOS 的 Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
 
 #### 在 section/slide 载入：
 对于视频或音频使用属性 `autoplay`，或者对于 youtube iframe 使用参数 `autoplay=1` 将使得在加载页面时播放媒体元素。
@@ -941,10 +941,10 @@ new fullpage('#fullpage', {
 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
 
 # 问题反馈
-1.请在提问之前使用 [issue](https://github.com/alvarotrigo/fullPage.js/issues) 搜索查找您的问题。
-2.确保使用最新的 fullpage.js 版本，不支持旧版本。
-3.使用 [Github 问题论坛](https://github.com/alvarotrigo/fullPage.js/issues) 来创建问题。
-4.**对问题进行复现** 如果可以，请使用 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) 或 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) 。
+1. 请在提问之前使用 [issue](https://github.com/alvarotrigo/fullPage.js/issues) 搜索查找您的问题。
+2. 确保使用最新的 fullpage.js 版本，不支持旧版本。
+3. 使用 [Github 问题论坛](https://github.com/alvarotrigo/fullPage.js/issues) 来创建问题。
+4. **对问题进行复现** 如果可以，请使用 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) 或 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) 。
 
 # 贡献到 fullpage.js
 请参阅 [贡献到 fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js) 
