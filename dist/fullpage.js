@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.7
+ * fullPage 3.0.8
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -760,6 +760,7 @@
             //coming from closing a normalScrollElements modal or moving outside viewport?
             if(target == document || !target){
                 setMouseHijack(true);
+                options.scrollOverflowHandler.setIscroll(target, true);
                 return;
             }
 
@@ -788,6 +789,7 @@
                     if(isNormalScrollTarget || isNormalScrollChildFocused){
                         if(!FP.shared.isNormalScrollElement){
                             setMouseHijack(false);
+                            options.scrollOverflowHandler.setIscroll(target, false);
                         }
                         FP.shared.isNormalScrollElement = true;
                         isInsideOneNormalScroll = true;
@@ -798,6 +800,7 @@
             //not inside a single normal scroll element anymore?
             if(!isInsideOneNormalScroll && FP.shared.isNormalScrollElement){
                 setMouseHijack(true);
+                options.scrollOverflowHandler.setIscroll(target, true);
                 FP.shared.isNormalScrollElement = false;
             }
         }
