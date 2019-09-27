@@ -70,10 +70,10 @@ Remerciements particuliers à [Browserstack](http://www.browserstack.com/) pour 
 ## Licence
 
 ### Licence commercial
-Si vous voulez utiliser fullPage pour développer des sites, thèmes, projets et applications non open-source, la licence commerciale est la licence appropriée. Avec cette option, votre code source reste propriétaire. Ce qui signifie que vous n'aurez pas à changer tout le code source de votre application pour une licence open source. [[Achat d'une licence commerciale pleine page]](https://alvarotrigo.com/fullPage/pricing/)
+Si vous voulez utiliser fullPage pour développer des sites, thèmes, projets et applications non open-source, la licence commerciale est la licence appropriée. Avec cette option, votre code source reste propriétaire. Ce qui signifie que vous n'aurez pas à changer tout le code source de votre application pour une licence open source. [Achat d'une licence commerciale pleine page](https://alvarotrigo.com/fullPage/pricing/)
 
 ### Licence open-source
-Si vous créez une application open source sous une licence compatible avec la[licence GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html), vous pouvez utiliser fullPage sous les termes de la GPLv3.
+Si vous créez une application open source sous une licence compatible avec la [licence GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html), vous pouvez utiliser fullPage sous les termes de la GPLv3.
 
 **Les commentaires de crédit dans les fichiers JavaScript et CSS doivent être conservés intacts.** (même après la combinaison ou la minification)
 
@@ -84,7 +84,7 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
  - Le fichier JavaScript `fullpage.js` (ou sa version minifié `fullpage.min.js`)
  - Le fichier css `fullpage.css`.
 
- **Optionnellement**, lorsque vous utilisez `css3:false`, vous pouvez ajouter le fichier[easings file](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js) au cas où vous voudriez utiliser d'autres effets d'assouplissement que celui inclus dans la bibliothèque (`easeInOutCubic`).
+ **Optionnellement**, lorsque vous utilisez `css3:false`, vous pouvez ajouter le fichier [easings file](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js) au cas où vous voudriez utiliser d'autres effets d'assouplissement que celui inclus dans la bibliothèque (`easeInOutCubic`).
 
  #### Installer avec bower ou npm
  **En option**, vous pouvez installer fullPage.js avec bower ou npm si vous préférez :
@@ -124,7 +124,7 @@ Commencez votre document HTML avec la déclaration obligatoire[déclaration DOCT
 Chaque section sera définie avec un élément contenant la classe `section`.
 La section active par défaut sera la première section, qui sera considérée comme la page d'accueil.
 
-Les sections doivent être placées dans un emballage (`<div id="fullpage">` dans ce cas). L'emballage ne peut pas être l'élément `body `.
+Les sections doivent être placées dans un emballage (`<div id="fullpage">` dans ce cas). L'emballage ne peut pas être l'élément `body`.
 ```html
 <div id="fullpage">
 	<div class="section">Some section</div>
@@ -138,7 +138,7 @@ Si vous voulez définir un point de départ différent de la première section o
 <div class="section active">Some section</div>
 ```
 
-Afin de créer un curseur paysage dans une section, chaque diapositive sera définie par défaut avec un élément contenant la classe `slide `:
+Afin de créer un curseur paysage dans une section, chaque diapositive sera définie par défaut avec un élément contenant la classe `slide`:
 ```html
 <div class="section">
 	<div class="slide"> Slide 1 </div>
@@ -181,7 +181,7 @@ $(document).ready(function() {
 });
 ```
 
-Les fonctions et méthodes peuvent toujours être appelées de la manière jQuery, comme[ dans  fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7).
+Les fonctions et méthodes peuvent toujours être appelées de la manière jQuery, comme [dans  fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7).
 
 #### Exemple de Vanille JS avec toutes les options
 Une initialisation plus complexe avec toutes les options définies pourrait ressembler à ceci :
