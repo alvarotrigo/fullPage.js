@@ -1025,17 +1025,17 @@
         /**
         * Creates the control arrows for the given section
         */
-        function createSlideArrows(section){
+        function createSlideArrows(sec){
             var arrows = [createElementFromHTML('<div class="' + SLIDES_ARROW_PREV + '"></div>'), createElementFromHTML('<div class="' + SLIDES_ARROW_NEXT + '"></div>')];
-            after($(SLIDES_WRAPPER_SEL, section)[0], arrows);
+            after($(SLIDES_WRAPPER_SEL, sec)[0], arrows);
 
             if(options.controlArrowColor !== '#fff'){
-                css($(SLIDES_ARROW_NEXT_SEL, section), {'border-color': 'transparent transparent transparent '+options.controlArrowColor});
-                css($(SLIDES_ARROW_PREV_SEL, section), {'border-color': 'transparent '+ options.controlArrowColor + ' transparent transparent'});
+                css($(SLIDES_ARROW_NEXT_SEL, sec), {'border-color': 'transparent transparent transparent '+options.controlArrowColor});
+                css($(SLIDES_ARROW_PREV_SEL, sec), {'border-color': 'transparent '+ options.controlArrowColor + ' transparent transparent'});
             }
 
             if(!options.loopHorizontal){
-                hide($(SLIDES_ARROW_PREV_SEL, section));
+                hide($(SLIDES_ARROW_PREV_SEL, sec));
             }
         }
 
