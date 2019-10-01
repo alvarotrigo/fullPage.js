@@ -3,12 +3,12 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
 
 <p align="center">
-  <span>Français</span> |
   <a href="https://github.com/MercureTony/fullPage.js">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> | 
+  <span>Français</span>
 </p>
 
 <p align="center">
@@ -46,7 +46,7 @@ Elle permet la création de sites Web à défilement en plein écran, ainsi que 
   - [Utilisé des extensions](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#use-extensions)
 - [Options](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#options)
 - [Méthodes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#méthodes)
-- [Fonctions de rappel](https://github.com/alvarotrigo/fullPage.j/tree/master/lang/french/s#callbacks)
+- [Fonctions de rappel](https://github.com/alvarotrigo/fullPage.j/tree/master/lang/french/#callbacks)
 - [Signaler des erreurs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#reporting-issues)
 - [Contribuer à  fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#contributing-to-fullpagejs)
 - [Changelog](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#changelog)
@@ -99,6 +99,7 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
  ```
 
  #### Y compris les fichiers :
+ 
 ```html
 <link rel="stylesheet" type="text/css" href="fullpage.css" />
 
@@ -125,6 +126,7 @@ Chaque section sera définie avec un élément contenant la classe `section`.
 La section active par défaut sera la première section, qui sera considérée comme la page d'accueil.
 
 Les sections doivent être placées dans un emballage (`<div id="fullpage">` dans ce cas). L'emballage ne peut pas être l'élément `body`.
+
 ```html
 <div id="fullpage">
 	<div class="section">Some section</div>
@@ -133,12 +135,15 @@ Les sections doivent être placées dans un emballage (`<div id="fullpage">` dan
 	<div class="section">Some section</div>
 </div>
 ```
+
 Si vous voulez définir un point de départ différent de la première section ou de la première diapositive d'une section, ajoutez simplement la classe `active` à la section et à la diapositive que vous voulez charger en premier.
+
 ```html
 <div class="section active">Some section</div>
 ```
 
 Afin de créer un curseur paysage dans une section, chaque diapositive sera définie par défaut avec un élément contenant la classe `slide`:
+
 ```html
 <div class="section">
 	<div class="slide"> Slide 1 </div>
@@ -146,7 +151,8 @@ Afin de créer un curseur paysage dans une section, chaque diapositive sera déf
 	<div class="slide"> Slide 3 </div>
 	<div class="slide"> Slide 4 </div>
 </div>
-````
+```
+
 Vous pouvez voir un exemple entièrement fonctionnel de la structure HTML dans le [fichier `simple.html`](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
 
 ### Initialisation
@@ -185,6 +191,7 @@ Les fonctions et méthodes peuvent toujours être appelées de la manière jQuer
 
 #### Exemple de Vanille JS avec toutes les options
 Une initialisation plus complexe avec toutes les options définies pourrait ressembler à ceci :
+
 ```javascript
 
 var myFullpage = new fullpage('#fullpage', {
@@ -346,19 +353,19 @@ L'utilisation de l'attribut `autoplay` pour les vidéos ou l'audio, ou du param�
 Pour le lire sur le chargement de sections/diapositives, utilisez à la place l'attribut `data-autoplay`. Par exemple :
 
 ```html
-Lecture automatique des données audio> <audio data-autoplay
+<audio data-autoplay>
 	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
 </audio>
 ```
 
 ##### Pause en congé
 Les iframes HTML5 `<video>` / `<audio>` et Youtube sont automatiquement mis en pause lorsque vous vous éloignez d'une section ou d'une diapositive. Ceci peut être désactivé en utilisant l'attribut `data-autoplay`. Par exemple :
+
 ```html
 <audio data-autoplay>
 	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
 </audio>
 ```
-
 
 #### Utiliser des extensions
 fullpage.js [fournit un ensemble d'extensions](http://alvarotrigo.com/fullPage/extensions/) que vous pouvez utiliser pour améliorer ses fonctionnalités par défaut. Toutes ces options sont listées comme [options fullpage.js](https://github.com/alvarotrigo/fullPage.js#options).
@@ -394,27 +401,24 @@ new fullpage({ {
 
 - `scrollingSpeed` : (par défaut `700`) Vitesse en millisecondes pour les transitions de défilement.
 
-- "sectionsColor" : (default `none`) Définissez la propriété CSS `background-color` pour chaque section.
+- `sectionsColor` : (default `none`) Définissez la propriété CSS `background-color` pour chaque section.
 Exemple :
+
 ```Javascript
 new fullpage('#fullpage', {
 	sectionsCouleur : ['#f2f2f2f2','#4BBFC3','#7BAABE','whitesmoke','#000'],
 }) ;
 ```
 
-
-
-- `anchors` : (default `[]`) Définit les liens d'ancrage (#exemple) à afficher sur l'URL de chaque section. La valeur des ancres doit être unique. La position des ancres dans le tableau définira à quelles sections l'ancre est appliquée. (deuxième position pour la deuxième section et ainsi de suite). L'utilisation des ancres permet également de naviguer vers l'avant et vers l'arrière par le biais du navigateur. Cette option permet également aux utilisateurs de mettre en signet une section ou une diapositive spécifique. **Attention**, les ancres ne peuvent pas avoir la même valeur que n'importe quel élément ID sur le site (ou élément NOM pour IE).
-Maintenant les ancres peuvent être définies directement dans la structure HTML en utilisant l'attribut `data-anchor` comme expliqué ici.
+- `anchors` : (default `[]`) Définit les liens d'ancrage (#exemple) à afficher sur l'URL de chaque section. La valeur des ancres doit être unique. La position des ancres dans le tableau définira à quelles sections l'ancre est appliquée. (deuxième position pour la deuxième section et ainsi de suite). L'utilisation des ancres permet également de naviguer vers l'avant et vers l'arrière par le biais du navigateur. Cette option permet également aux utilisateurs de mettre en signet une section ou une diapositive spécifique. **Attention**, les ancres ne peuvent pas avoir la même valeur que n'importe quel élément ID sur le site (ou élément NOM pour IE). Maintenant les ancres peuvent être définies directement dans la structure HTML en utilisant l'attribut `data-anchor` comme expliqué ici.
 
 - `lockAnchors` : (default `false`) Détermine si les ancres dans l'URL auront un effet dans la bibliothèque. Vous pouvez toujours utiliser les ancres en interne pour vos propres fonctions et rappels, mais elles n'auront aucun effet sur le défilement du site. Utile si vous voulez combiner fullPage.js avec d'autres plugins en utilisant l'ancre dans l'URL.
 
-**Il est utile de comprendre que les valeurs du tableau d'options `anchors` sont en corrélation directe avec l'élément avec la classe de `.section`par sa position dans le balisage.
+**important :** Il est utile de comprendre que les valeurs du tableau d'options `anchors` sont en corrélation directe avec l'élément avec la classe de `.section`par sa position dans le balisage.
 
-- `easing` : (default `easeInOutCubic`) Définit l'effet de transition à utiliser pour le défilement vertical et horizontal.
-Il nécessite le fichier `vendors/easings.min.js` ou [jQuery UI](http://jqueryui.com/) pour utiliser certaines de[ses transitions](http://api.jqueryui.com/easings/). D'autres bibliothèques pourraient être utilisées à la place.
+- `easing` : (default `easeInOutCubic`) Définit l'effet de transition à utiliser pour le défilement vertical et horizontal. Il nécessite le fichier `vendors/easings.min.js` ou [jQuery UI](http://jqueryui.com/) pour utiliser certaines de[ses transitions](http://api.jqueryui.com/easings/). D'autres bibliothèques pourraient être utilisées à la place.
 
-- `easingcss3` : (default `ease`) Définit l'effet de transition à utiliser en cas d'utilisation de `css3:true`. Vous pouvez utiliser les [prédéfinis](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (tels que `linear', `ease-out`...) ou créer vos propres en utilisant la fonction `cubic-bezier`. Vous pouvez utiliser [Matthew Lein CSS Easing Animation Tool](http://matthewlein.com/ceaser/) pour cela.
+- `easingcss3` : (default `ease`) Définit l'effet de transition à utiliser en cas d'utilisation de `css3:true`. Vous pouvez utiliser les [prédéfinis](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (tels que `linear`, `ease-out`...) ou créer vos propres en utilisant la fonction `cubic-bezier`. Vous pouvez utiliser [Matthew Lein CSS Easing Animation Tool](http://matthewlein.com/ceaser/) pour cela.
 
 - `loopTop` : (défaut `false`) Définit si le défilement vers le haut dans la première section doit défiler jusqu'à la dernière section ou non.
 
@@ -428,8 +432,7 @@ Il nécessite le fichier `vendors/easings.min.js` ou [jQuery UI](http://jqueryui
 
 - `fitToSection`: (par défaut `true`) Détermine si des sections doivent ou non être ajustées à la fenêtre d'affichage. Lorsqu'elle est réglée sur `true`, la section active courante remplira toujours toute la fenêtre d'affichage. Sinon, l'utilisateur sera libre de s'arrêter au milieu d'une section.
 
-- `fitToSectionDelay` : (par défaut 1000). Si `fitToSection` est mis à true, cela retarde
-l'adaptation par millisecondes configurées.
+- `fitToSectionDelay` : (par défaut 1000). Si `fitToSection` est mis à true, cela retarde l'adaptation par millisecondes configurées.
 
 - `scrollBar` : (par défaut `false`) Détermine s'il faut utiliser la barre de défilement pour le site ou non. En cas d'utilisation de la barre de défilement, la fonctionnalité `autoScrolling` fonctionnera toujours comme prévu. L'utilisateur sera également libre de faire défiler le site avec la barre de défilement et fullPage.js s'adaptera à la section à l'écran lorsque le défilement sera terminé.
 
@@ -442,8 +445,6 @@ l'adaptation par millisecondes configurées.
 - `normalScrollElements`: (défaut `null`) [Demo](https://codepen.io/alvarotrigo/pen/RmVazM) Si vous voulez éviter le défilement automatique lorsque vous faites défiler certains éléments, c'est l'option que vous devez utiliser. (utile pour les cartes, les scrolling divs, etc.) Il faut une chaîne de caractères avec les sélecteurs Javascript pour ces éléments. (Par exemple : `normalScrollElements:'#element1, .element2'`). Cette option ne doit pas être appliquée à une section ou à un élément de diapositive en soi.
 
 - `bigSectionsDestination` : (défaut `null`) Définit comment faire défiler jusqu'à une section dont la taille est supérieure à celle de la fenêtre. Par défaut, fullPage.js fait défiler vers le haut si vous venez d'une section située au-dessus de celle de destination et vers le bas si vous venez d'une section située au-dessous de celle de destination. Les valeurs possibles sont "haut" et "bas",
-
-
 
 Exemple:
 
@@ -481,16 +482,16 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave : fonction(origine, destination, direction){(onLeave)
+	onLeave : function(origine, destination, direction){(onLeave)
 		var leavingSection = this;
 
 		//après avoir quitté la section 2
 		if(origin.index == 1 && direction ==='down'){
-			alert("Aller à la section 3 !") ;
+			alert("Aller à la section 3 !");
 		}
 
 		else if(origin.index == 1 && direction =='up'){
-			alert("Aller à la section 1 !") ;
+			alert("Aller à la section 1 !");
 		}
 	}
 }) ;
@@ -501,10 +502,10 @@ Vous pouvez annuler le parchemin en retournant `false` sur le callback `onLeave`
 
 ```Javascript
 new fullpage('#fullpage', {
-	onLeave : fonction(origine, destination, direction){(onLeave)
+	onLeave : function(origine, destination, direction){(onLeave)
 		//il ne défilera pas si la destination est la 3ème section
 		if(destination.index == 2){
-			renvoie false ;
+			return false;
 		}
 	}
 }) ;
@@ -518,9 +519,9 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	afterRender : fonction(){.
+	afterRender : function(){
 		var pluginContainer = this ;
-		alert("La structure DOM résultante est prête") ;
+		alert("La structure DOM résultante est prête");
 	}
 }) ;
 ```
@@ -537,9 +538,9 @@ Exemple :
 
 ```Javascript
 new fullpage('#fullpage', {
-	afterResize : fonction(largeur, hauteur){
-		var fullpageContainer = ceci ;
-		alert("Le redimensionnement des sections est terminé") ;
+	afterResize : function(largeur, hauteur){
+		var fullpageContainer = this;
+		alert("Le redimensionnement des sections est terminé");
 	}
 }) ;
 ```
@@ -551,8 +552,8 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	afterReBuild : fonction(){.
-		console.log("fullPage.js a été reconstruit manuellement") ;
+	afterReBuild : function(){
+		console.log("fullPage.js a été reconstruit manuellement");
 	}
 }) ;
 ```
@@ -568,8 +569,8 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	afterResponsive : fonction(isResponsive){
-		alert("Is responsive : " + isResponsive) ;
+	afterResponsive : function(isResponsive){
+		alert("Is responsive : " + isResponsive);
 	}
 }) ;
 ```
@@ -591,18 +592,18 @@ Exemple :
 new fullpage('#fullpage', {
 	anchors : 'firstPage','secondPage','thirdPage','fourthPage','lastPage'],
 
-	afterSlideLoad : fonction( section, origin, destination, direction){
+	afterSlideLoad : function( section, origin, destination, direction){
 		var loadedSlide = this;
 
 		//première diapositive de la deuxième section
 		if(section.anchor =='secondPage' && destination.index == 1){
-			alert("Première diapositive chargée") ;
+			alert("Première diapositive chargée");
 		}
 
 		//seconde diapositive de la deuxième section (en supposant que #secondSlide est le
 		//anchor pour la deuxième diapositive)
 		if(section.index == 1 && destination.anchor =='secondSlide'){
-			alert("Deuxième diapositive chargée") ;
+			alert("Deuxième diapositive chargée");
 		}
 	}
 }) ;
@@ -625,17 +626,17 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave : fonction( section, origine, destination, direction){
+	onSlideLeave : function( section, origine, destination, direction){
 		var leavingSlide = this;
 
 		//en laissant la première diapositive de la 2ème section vers la droite
 		if(section.index == 1 && origine.index == 0 && direction =='right'){
-			alert("Quitter la première diapositive!!") ;
+			alert("Quitter la première diapositive!!");
 		}
 
 		//en laissant la 3ème diapositive de la 2ème section vers la gauche
 		if(section.index == 1 && origine.index == 2 && direction =='left'){
-			alert("Going to slide 2 ! ") ;
+			alert("Going to slide 2 !");
 		}
 	}
 }) ;
