@@ -13,7 +13,6 @@
 <p align="center">
 	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> and <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
 </p>
-
 ---
 
 ![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.7-brightgreen.svg)
