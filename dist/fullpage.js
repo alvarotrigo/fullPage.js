@@ -9,13 +9,13 @@
  * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
 (function( root, window, document, factory, undefined) {
-    if( typeof define === 'function' && define.amd ) {
+    if( typeof define === 'function' && define.amd ){
         // AMD. Register as an anonymous module.
         define( function() {
             root.fullpage = factory(window, document);
             return root.fullpage;
         } );
-    } else if( typeof exports === 'object' ) {
+    } else if( typeof exports === 'object' ){
         // Node. Does not work with strict CommonJS.
         module.exports = factory(window, document);
     } else {
