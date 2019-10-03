@@ -104,4 +104,4 @@ fullpage_api.parallax.init ();
 Відключає ефект паралакс.
 `` `Javascript
 fullpage_api.parallax.destroy ();
-`` `
+`` ` 
