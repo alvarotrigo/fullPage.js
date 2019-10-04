@@ -1,7 +1,7 @@
 1. Accédez à https://alvarotrigo.com/fullPage/extensions/activationKey.html. (Quelle est l'URL qui a été envoyée à votre adresse email lors de l'achat de l'extension)
 1. Présentez la **clé de licence** qui vous a été remise lors de l'achat de l'article. Aussi disponible dans votre courriel de confirmation d'achat.
 1. Un nom de domaine peut être requis afin d'obtenir la **clé d'activation** de votre produit.
-1. Une fois que vous avez la **clé d'activation** de votre extension et domaine (générée lors des étapes précédentes) vous devrez ajouter une option dans l'initialisation de fullpage.js sous la forme `nameOfExtension + "Key" : key`.
+1. Une fois que vous avez la **clé d'activation** de votre extension et domaine (générée lors des étapes précédentes) vous devrez ajouter une option dans l'initialisation de fullpage.js sous la forme `nomDeLextension + "Clé" : key`.
 
 Par exemple :
 
@@ -44,7 +44,7 @@ De cette façon, l'extension peut être utilisée dans n'importe lequel de ces 3
 ### Clé de licence vs clé d'activation
 Les deux sont des clés différentes.
 - Vous obtenez la **clé de licence** lors de l'achat d'une extension.
-- Vous obtenez la **clé d'activation**  lorsque vous activez votre extension pour un domaine particulier (sauf si vous utilisez la Business License). Pour le générer, vous avez besoin de la **clé de licence **.
+- Vous obtenez la **clé d'activation**  lorsque vous activez votre extension pour un domaine particulier (sauf si vous utilisez la Business License). Pour le générer, vous avez besoin de la **clé de licence**.
 
 La clé de licence est composée de 4 groupes de 8 caractères chacun (`XXXXXXXXXXXX-XXXXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXX`) et la clé d'activation a une longueur variable et elle n'est pas composée de groupes séparés (`XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX`)
 Il est important de ne pas s'embrouiller les uns les autres.
