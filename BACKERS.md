@@ -15,7 +15,7 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="middle">
+      <td align="center" valign="center">
         <a href="https://www.stackpath.com/" target="_blank" rel="nofollow">
           <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png">
         </a>
