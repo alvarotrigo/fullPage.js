@@ -1,0 +1,171 @@
+#Page meta data
+title: fullPage.js | One Page Scroll sections Site Plugin
+description: fullPage plugin by Alvaro Trigo. Create fullscreen pages fast and simple. One page scroll sections jquery plugin. Mouse snap.
+keywords: fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,snap,snapping,apple,scroll,sections
+og-title: fullPage scroll snapping. Create full screen pages fast and simple
+og-description: Mouse wheel snap to sections. Fast and simple to use.
+twitter-description: Great Javascript library to create fullscreen scrolling websites
+
+#Sections content
+Create Beautiful Fullscreen Scrolling Websites: Create Beautiful Fullscreen Scrolling Websites
+Download: Download
+View on GitHub: View on GitHub
+Open: Open
+fullPage.js is actively mantained and community driven.: fullPage.js is actively mantained and community driven.
+Solving developers' issues since 2013.: Solving developers' issues since 2013.
+commits: commits
+closed issues: closed issues
+contributors: contributors
+The best!: The best!
+Compatible: Compatible
+Easy!: Easy!
+See in Codepen: See in Codepen
+Touch me!: Touch me!
+Designed for mobiles and tablets, totally responsive.: Designed for mobiles and tablets, totally responsive.
+Because not only kids like to grab things.: Because not only kids like to grab things.
+
+#menu
+Wordpress Theme: Wordpress Theme
+WordPress: WordPress
+Examples: Examples
+Pricing: Pricing
+Docs: Docs
+Contact: Contact
+
+#sections content
+Proud of being the most complete framework of its kind.: Proud of being the most complete framework of its kind.
+Trusted by the most innovative companies.: Trusted by the most innovative companies.
+Working in modern and old browsers too! Even IE 9!: Working in modern and old browsers too! Even IE 9!
+Make a beautiful site for all! Not just a few!: Make a beautiful site for all! Not just a few!
+fullPage.js is designed to be easy to use and customize.: fullPage.js is designed to be easy to use and customize.
+It inludes tens of examples, great documentation and both community and personal support.: It includes tens of examples, great documentation and both community and personal support.
+
+#sections content
+Navigation: Navigation
+Scroll Bar Enabled: Scroll Bar Enabled
+Normal scrolling: Normal scrolling
+Continuous vertical: Continuous vertical
+Without anchor links (same URL): Without anchor links (same URL)
+Vertical navigation dots: Vertical navigation dots
+Horizontal navigation dots: Horizontal navigation dots
+Extensions: Extensions
+Cards 3D: Cards 3D
+Parallax: Parallax
+Continuous Horizontal: Continuous Horizontal
+Interlocked Slides: Interlocked Slides
+Reset Sliders: Reset Sliders
+Responsive Slides: Responsive Slides
+Scroll Horizontally: Scroll Horizontally
+Fading Effect: Fading Effect
+Offset Sections: Offset Sections
+Drag And Move: Drag And Move
+ScrollOverflow Reset: ScrollOverflow Reset
+Design: Design
+Responsive: Responsive
+Full backgrounds: Full backgrounds
+Full background videos: Full background videos
+Auto-height sections: Auto-height sections
+Gradient backgrounds: Gradient backgrounds
+Scrolling inside sections and slides: Scrolling inside sections and slides
+Adding fixed header and footer: Adding fixed header and footer
+One single section: One single section
+Other: Other
+Animations on scrolling: Animations on scrolling
+Callbacks: Callbacks
+Functions and methods: Functions and methods
+
+documentation-link: https://github.com/alvarotrigo/fullPage.js/#fullpagejs
+extensions-link: https://alvarotrigo.com/fullPage/extensions/
+lang: en
+flag-name: flag-english
+language-name: English
+canonical-link: https://alvarotrigo.com/fullPage/
+language-menu:
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+
+
+# Extensions website
+Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!
+Parallax Backgrounds: Parallax Backgrounds
+Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.: Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.
+Buy: Buy
+Demo: Demo
+#ScrollOverflow Reset: ScrollOverflow Reset
+Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.: Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.
+#Drag And Move: Drag And Move
+Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers.: Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers.
+#Offset Sections: Offset Sections
+Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section.: Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section.
+#Fading Effect: Fading Effect
+Provides a fading effect for vertical sections and horizontal slides or for any of them separately.: Provides a fading effect for vertical sections and horizontal slides or for any of them separately.
+#Responsive Slides: Responsive Slides
+Allows the turn of horizontal slides into vertical sections on responsive or by using external functions.: Allows the turn of horizontal slides into vertical sections on responsive or by using external functions.
+#Continuous Horizontal: Continuous Horizontal
+Provides the continuous horizontal scrolling feature for all the sliders.: Provides the continuous horizontal scrolling feature for all the sliders.
+#Interlocked Slides: Interlocked Slides
+Provides a way to force the moving of sliders in other sections when sliding the visible one.: Provides a way to force the moving of sliders in other sections when sliding the visible one.
+#Scroll Horizontally: Scroll Horizontally
+Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!: Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!
+#Reset Sliders: Reset Sliders
+Forces fullpage.js to reset every slider after leaving its section. This way when the users goes back it will always be in the first slide of the slider.: Forces fullpage.js to reset every slider after leaving its section. This way when the users goes back it will always be in the first slide of the slider.
+Which license should I use?: Which license should I use?
+For up to 1 website: For up to 1 website
+Hobby: Hobby
+1 domain: 1 domain
+Minified source code: Minified source code
+Free updates: Free updates
+License agreement: License agreement
+For up to 5 websites: For up to 5 websites
+Professional: Professional
+Best value!: Best value!
+5 domains: 5 domains
+For unlimited websites: For unlimited websites
+Business: Business
+Unlimited Domains: Unlimited Domains
+Common activation key: Common activation key
+Use in SaaS product: Use in SaaS product
+Refund: Refund
+Updates: Updates
+Staging / dev domains: Staging / dev domains
+Trusted by the world’s most innovative companies: Trusted by the world's most innovative companies
+People love fullPage.js!: People love fullPage.js!
+Vertical Navigation: Vertical Navigation
+Add the stylesheet after jquery.fullpage.css and... that's it!: Add the stylesheet after jquery.fullpage.css and... that's it!
+Available in 2 sizes: Available in 2 sizes
+Get all navigation styles from Â£9: Get all navigation styles from Â£9
+30-Day Money Back Guarrantee: 30-Day Money Back Guarantee
+Subscribe: Subscribe
+Get notified of new extensions or fullpage.js relevant announcements.: Get notified of new extensions or fullpage.js relevant announcements.
+Activation Key per Domain: Activation Key per Domain
+Only if no activation key was generated.: Only if no activation key was generated.
+Read the license refund terms: Read the license refund terms
+1 month support: 1 month support
+Isolated reproductions might be required.: Isolated reproductions might be required.
+Read the license support terms: Read the license support terms
+6 months support: 6 months support
+Unlimited support: Priority unlimited support
+Redistribute: Redistribute
+Got questions? Check the: Got questions? Check the
+30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement: 30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement
+fullPage.js Refund Terms: fullPage.js Refund Terms
+All licenses include free updates for the purchased license and buyers will be notified by mail of new releases.: All licenses include free updates for the purchased license and buyers will be notified by mail of new releases.
+Upon request: Upon request
+new activation keys can be provided for staging or developing domains to a maximum of 3.: new activation keys can be provided for staging or developing domains to a maximum of 3.
+No activation key is necessary for `localhost` and `127.0.0.1`.: No activation key is necessary for localhost and 127.0.0.1.
+Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.: Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.
+Your email address: Your email address
+Generate only 1 activation key. No dev/staging domains possible.: Generate only 1 activation key. No dev/staging domains possible.
+Price varies depending on the extension: Price varies depending on the extension
+Generate up to 5 activation keys. Dev/staging domains included.: Generate up to 5 activation keys. Dev/staging domains included.
+Generate a common activation key: Generate a common activation key
+Within a product: Within a product
+Mobile applications: Mobile applications
+
+language-menu-extensions:
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>

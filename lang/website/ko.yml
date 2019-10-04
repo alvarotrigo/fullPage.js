@@ -1,0 +1,171 @@
+#page meta data - just translate the 2nd part, the part after the semicolon ":"
+title: fullPage.js | 한 페이지 스크롤 구역 사이트 플러그인
+description: Alvaro 제작 플러그인. 전체화면 페이지를 빠르고 손쉽게 만듭니다. 한 페이지 스크롤 구역. 마우스 스냅.
+keywords: 전체화면, 화면, 전체, 스냅, 스냅핑, 스크롤, 구역
+og-title: fullPage 스크롤 스냅핑. 전체 화면 페이지를 빠르고 간편하게 만들어 보세요
+og-description: 구역과 슬라이드를 스냅하는 끝내주는 라이브러리입니다. 빠르고 간편합니다.
+twitter-description: 전체화면 스크롤 웹사이트를 만드는 훌륭한 자바스크립트 라이브러리입니다.
+
+#Sections content
+Create Beautiful Fullscreen Scrolling Websites: 멋있는 전체화면 스크롤 웹사이트를 만들어 보세요
+Download: 다운로드
+View on GitHub: GitHub에서 보기
+Open: 열려 있어요
+fullPage.js is actively mantained and community driven.: fullPage.js는 활발하게 유지보수되며 공동체 중심입니다.
+Solving developers' issues since 2013.: 2013년부터 개발자가 맞닥뜨리는 문제를 해결하고 있습니다.
+commits: commits
+closed issues: 해결된 문제
+contributors: 기여자
+The best!: 단연 최고!
+Compatible: 훌륭한 호환성
+Easy!: 쉬워요!
+See in Codepen: Codepen에서 보기
+Touch me!: 만져보세요!
+Designed for mobiles and tablets, totally responsive.: 모바일 기기와 태블릿에서 완전히 반응하도록 설계되었습니다.
+Because not only kids like to grab things.: 누구나 아이처럼 신나게 만지고 싶으니까요.
+
+#MENU
+Wordpress Theme: 워드프레스 테마
+WordPress: 워드프레스 
+Examples: 예시
+Pricing: 가격
+Docs: 설명서
+Contact: 문의
+
+#Sections content
+Proud of being the most complete framework of its kind.: 가장 완성된 틀임을 자부심 있게 선언합니다.
+Trusted by the most innovative companies.: 혁신의 선두를 달리는 기업에게 신뢰받고 있습니다.
+Working in modern and old browsers too! Even IE 9!: 최신 브라우저뿐만 아니라 예전 버전에서도 작동합니다. 심지어 IE 9에서도 작동합니다!
+Make a beautiful site for all! Not just a few!: 소수가 아닌 모두를 위한 멋진 웹사이트를 만들어 보세요!
+fullPage.js is designed to be easy to use and customize.: fullPage.js는 쉽게 사용하고 맞춤 설정할 수 있도록 고안되었습니다.
+It inludes tens of examples, great documentation and both community and personal support.: 수십 가지 예시, 훌륭한 문서화, 탁월한 개인 및 공동체 지원을 자랑합니다.
+
+# EXAMPLES
+Navigation: 이동
+Scroll Bar Enabled: 스크롤 막대 활성화됨
+Normal scrolling: 정상 스크롤
+Continuous vertical: 연속 수직
+Without anchor links (same URL): 앵커 링크가 없음 (동일 URL)
+Vertical navigation dots: 수직 이동 점
+Horizontal navigation dots: 수평 이동 점
+Extensions: 확장 프로그램
+Cards 3D: Cards 3D
+Parallax: Parallax
+Continuous Horizontal: 연속 수평
+Interlocked Slides: 맞물려 이동하는 슬라이드
+Reset Sliders: 슬라이더 초기화
+Responsive Slides: 반응형 슬라이드
+Scroll Horizontally: 수평으로 스크롤하기
+Fading Effect: 페이딩 효과
+Offset Sections: 엿보기 구역
+Drag And Move: 끌어서 슬라이드 움직이기
+ScrollOverflow Reset: ScrollOverflow Reset
+Design: 디자인
+Responsive: 반응형
+Full backgrounds: 전체 배경
+Full background videos: 전체 배경 비디오
+Auto-height sections: 자동 높이 구역
+Gradient backgrounds: 그라데이션 배경
+Scrolling inside sections and slides: 구역 및 슬라이드 내부에서 스크롤
+Adding fixed header and footer: 고정된 머리말과 꼬리말 추가
+One single section: 단일 구역
+Other: 기타
+Animations on scrolling: 스크롤 애니메이션
+Callbacks: 콜백
+Functions and methods: 기능과 방법
+
+documentation-link: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs
+extensions-link: https://alvarotrigo.com/fullPage/extensions/ko/
+lang: ko
+flag-name: flag-korean
+language-name: 한국어
+canonical-link: https://alvarotrigo.com/fullPage/ko/
+language-menu:
+      <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+
+
+# Extensions website
+Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: 추가 기능이 필요하신가요? Fullpage.js가 지원하는 끝내주는 효과를 한층 더 끌어올릴 수 있는 확장 프로그램을 만나보세요!
+Parallax Backgrounds: Parallax 배경
+Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.: 스크롤 및 수평으로 넘기는 도중 구역과 슬라이드의 배경에 Parallax 효과를 만듭니다.
+Buy: 구매하기
+Demo: 데모
+#ScrollOverflow Reset:
+Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.: 구역/슬라이드를 떠날 때 스크롤 바를 통해 컨텐츠의 처음으로 돌아가서 항상 시작점에서 시작되도록 합니다.
+#Drag And Move:
+Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers.: 마우스로 클릭해서 끌어오거나 손가락으로 넘겨서 구역과 슬라이드 사이를 이동할 수 있게 합니다.
+#Offset Sections:
+Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section.: 전체화면이 아닌, 퍼센트에 따라 정해지는 일부 화면 구역을 쓸 수 있는 방법을 지원합니다. 웹사이트 방문자에게 다음 또는 이전 구역의 일부를 보여줌으로써 컨텐츠가 더 있음을 보여주고자 할 때 적합합니다.
+#Fading Effect:
+Provides a fading effect for vertical sections and horizontal slides or for any of them separately.: 수직 구역과 수평 슬라이드 또는 일부만 따로 사라지는 효과를 만듭니다.
+#Responsive Slides:
+Allows the turn of horizontal slides into vertical sections on responsive or by using external functions.: 반응형 또는 외부 기능을 써서 수평 슬라이드가 수직 구역으로 전환되도록 합니다.
+#Continuous Horizontal:
+Provides the continuous horizontal scrolling feature for all the sliders.: 모든 슬라이더에 연속 수평 스크롤 기능을 지원합니다.
+#Interlocked Slides:
+Provides a way to force the moving of sliders in other sections when sliding the visible one.: 눈에 보이는 슬라이더를 수평으로 넘길 때 다른 구역에 있는 슬라이더를 강제로 움직이게 합니다.
+#Scroll Horizontally:
+Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!: 마우스 휠이나 트랙 패드를 써서 슬라이더 내부에서 수평 스크롤을 할 수 있습니다. 이야기 전달에 적합합니다!
+#Reset Sliders:
+Forces fullpage.js to reset every slider after leaving its section. This way when the users goes back it will always be in the first slide of the slider.: 슬라이더가 구역을 떠난 뒤 fullpage.js가 모든 슬라이더를 강제로 재설정하도록 합니다. 이렇게 하여 사용자가 다시 돌아갈 경우 항상 슬라이더의 첫번째 슬라이드에 가도록 합니다.
+Which license should I use?: 어느 라이선스를 써야 하나요?
+For up to 1 website: 웹사이트 최대 한 곳
+Hobby: 취미
+1 domain: 도메인 한 곳
+Minified source code: 최소화된 소스 코드
+Free updates: 무료 업데이트
+License agreement: 라이선스 계약
+For up to 5 websites: 웹사이트 최대 다섯 곳
+Professional: Professional
+Best value!: 최고의 가치!
+5 domains: 도메인 5곳
+For unlimited websites: 웹사이트 무제한
+Business: Business
+Unlimited Domains: 도메인 무제한
+Common activation key: 공동 활성화 키
+Use in SaaS product: SaaS 제품 내 사용
+Refund: 환불
+Updates: 업데이트
+Staging / dev domains: 시범(staging) / 개발 도메인
+Trusted by the world’s most innovative companies: 세계에서 혁신의 선두를 걷는 기업들로부터 신뢰받고 있습니다
+People love fullPage.js!: 사람들에게 사랑받는 fullPage.js!
+Vertical Navigation: 수직 이동
+Add the stylesheet after jquery.fullpage.css and... that's it!: jquery.fullpage.css 뒤에 스타일쉬트를 추가하시면... 바로 그거에요!
+Available in 2 sizes: 두 가지 크기로 이용 가능
+Get all navigation styles from Â£9: £9로 모든 이동 스타일을 얻으세요
+30-Day Money Back Guarrantee: 30일 내 환불 보장
+Subscribe: 구독
+Get notified of new extensions or fullPage.js relevant announcements.: 새로운 확장 프로그램이나 fullpage.js 관련 공지사항 알림을 받으세요.
+Activation Key per Domain: 각 도메인마다 활성화 키
+Only if no activation key was generated.: 활성화 키가 생성되지 않았을 경우에만 해당.
+Read the license refund terms: 라이선스 환불 조건을 읽어보시기 바랍니다
+1 month support: 1개월 지원
+Isolated reproductions might be required.: 고립된 복제가 필요할 수 있습니다.
+Read the license support terms: 라이선스 지원 조건을 읽어보시기 바랍니다
+6 months support: 6개월 지원
+Unlimited support: 무제한 지원
+Redistribute: 재배포
+Got questions? Check the: 궁금한 점이 있나요? FAQ를 확인해 보세요
+30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement: 라이선스 계약에 나온 조건에 부합하는 경우 모든 구매에는 30일 환불 보장이 적용됩니다
+fullPage.js Refund Terms: fullPage.js 환불 조건
+All licenses include free updates for the purchased license and buyers will be notified by mail of new releases.: 모든 라이선스에는 구매된 라이선스를 위한 무료 업데이트가 들어가며, 구매자는 신규 출시시 통보를 받게 됩니다.
+Upon request: 요청시
+new activation keys can be provided for staging or developing domains to a maximum of 3.: 신규 활성화 키는 도메인 시범(staging) 또는 개발을 위해 최고 3개까지 제공될 수 있습니다.
+No activation key is necessary for `localhost` and `127.0.0.1`.: 로컬호스트와 127.0.0.1에는 활성화 키가 필요하지 않습니다.
+Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.: Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.
+Your email address: 귀하의 이메일 주소
+Generate only 1 activation key. No dev/staging domains possible.: 활성화 키 하나만 생성. No dev/staging domains possible.
+Price varies depending on the extension: 확장 프로그램에 따라 가격이 달라집니다
+Generate up to 5 activation keys. Dev/staging domains included.: 활성화 키 최대 5개까지 생성. Dev/staging domains included.
+Generate a common activation key: 공동 활성화 키 생성
+Within a product: 제품 내
+Mobile applications: 모바일 애플리케이션
+
+language-menu-extensions:
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>

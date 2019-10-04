@@ -1,0 +1,171 @@
+#Page meta data
+title: fullPage.js | для постраничного скроллинга разделов сайта
+description: плагин от Alvaro. Создавайте полноэкранные страницы быстро и просто. Разделы с постраничной прокруткой. По щелчку мыши.
+keywords: полноэкранный,экран,полный,щёлкнуть,щелчок,прокрутка,разделы
+og-title: Полноэкранная прокрутка по щелчку мыши. Создавайте полноэкранные страницы быстро и просто.
+og-description: Потрясающая библиотека для переходов к разделам и слайдам. Быстро и просто.
+twitter-description: Отличная библиотека Javascript для создания веб-сайтов с полноэкранной прокруткой.
+
+#Sections content
+Create Beautiful Fullscreen Scrolling Websites: Cоздавайте красивые сайты с полноэкранной прокруткой
+Download: Загрузить
+View on GitHub: Посмотреть на GitHub
+Open: Открытость
+fullPage.js is actively mantained and community driven.: fullPage.js активно поддерживается сообществом.
+Solving developers' issues since 2013.: Решаем проблемы разработчиков с 2013.
+commits: commits
+closed issues: решённые вопросы
+contributors: contributors
+The best!: Лучшее!
+Compatible: Совместимость
+Easy!: Простота!
+See in Codepen: Посмотреть в Codepen
+Touch me!: Прикоснись ко мне!
+Designed for mobiles and tablets, totally responsive.: Разработано для мобильных телефонов и планшетов, быстро реагирует.
+Because not only kids like to grab things.: Потому что трогать вещи любят не только дети.
+
+#menu
+Wordpress Theme: Тема Wordpress
+WordPress: Wordpress
+Examples: Примеры
+Pricing: ценообразование
+Docs: Документы
+Contact: Контакты
+
+#sections content
+Proud of being the most complete framework of its kind.: Гордимся тем, что мы – самая совершенная в своём роде платформа для разработки приложений.
+Trusted by the most innovative companies.: Нам доверяют самые инновационные компании.
+Working in modern and old browsers too! Even IE 9!: Работает и в современных, и в устаревших браузерах! Даже в IE 9!
+Make a beautiful site for all! Not just a few!: Сделайте красивый сайт для всех! А не для нескольких!
+fullPage.js is designed to be easy to use and customize.: fullPage.js разработан для простого использования и персонализации.
+It inludes tens of examples, great documentation and both community and personal support.: Включает десятки примеров, прекрасную документацию, персональную поддержку и поддержку сообщества.
+
+#sections content
+Navigation: Навигация
+Scroll Bar Enabled: Полоса прокрутки активирована
+Normal scrolling: Обычная прокрутка
+Continuous vertical: Continuous vertical
+Without anchor links (same URL): Без ссылок с привязками (тот же URL)
+Vertical navigation dots: Точки для вертикальной навигации
+Horizontal navigation dots: Точки для горизонтальной навигации
+Extensions: Расширения
+Cards 3D: Cards 3D
+Parallax: Parallax
+Continuous Horizontal: Continuous Horizontal
+Interlocked Slides: Interlocked Slides
+Reset Sliders: Reset Sliders
+Responsive Slides: Responsive Slides
+Scroll Horizontally: Scroll Horizontally
+Fading Effect: Fading Effect
+Offset Sections: Offset Sections
+Drag And Move: Drag And Move
+ScrollOverflow Reset: ScrollOverflow Reset
+Design: Дизайн
+Responsive: Responsive
+Full backgrounds: Полноэкранные фоны
+Full background videos: Полноэкранные видео-фоны
+Auto-height sections: Разделы с автовысотой
+Gradient backgrounds: Градиентные фоны
+Scrolling inside sections and slides: Прокрутка внутри разделов и слайдов
+Adding fixed header and footer: Добавить фиксированные колонтитулы
+One single section: Один отдельный раздел
+Other: Другое
+Animations on scrolling: Анимации при прокрутке
+Callbacks: Обратные вызовы
+Functions and methods: Функци
+
+documentation-link: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs
+extensions-link: https://alvarotrigo.com/fullPage/extensions/ru/
+lang: ru
+flag-name: flag-russian
+language-name: Pусский
+canonical-link: https://alvarotrigo.com/fullPage/ru/
+language-menu:
+      <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+
+
+# Extensions page
+Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Требуются какие-либо дополнительные функции? Fullpage.js предлагает расширения, которые вы можете использовать для совершенствования его и так потрясающих функциональных возможностей!
+Parallax Backgrounds: Параллакс-фоны
+Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.: Создаёт параллакс-эффект для фонов разделов и слайдов при прокрутке и пролистывании.
+Buy: Купить
+Demo: Демо
+#ScrollOverflow Reset: #ScrollOverflow Reset
+Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.: Осуществляет обратную прокрутку контента раздела/слайда при его покидании с помощью полосы прокрутки, чтобы всегда отображалось начало контента.
+#Drag And Move: #Drag And Move
+Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers.: Позволяет перемещаться между разделами и слайдами при помощи щелчков и протягиваний мышью или пролистывания пальцев.
+#Offset Sections: #Offset Sections
+Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section.: Обеспечивает возможность использовать неполноэкранные разделы на основании их процентных значений. Опция идеальна для демонстрации посетителям сайта того, что на сайте есть больше контента, показывая часть следующего или предыдущего раздела.
+#Fading Effect: #Fading Effect
+Provides a fading effect for vertical sections and horizontal slides or for any of them separately.: Осуществляет эффект затухания для вертикальных разделов и горизонтальных слайдов или же отдельно для того и другого.
+#Responsive Slides: #Responsive Slides
+Allows the turn of horizontal slides into vertical sections on responsive or by using external functions.: Позволяет трансформировать горизонтальные слайды в вертикальные разделы в отзывчивом режиме или с помощью внешних функций.
+#Continuous Horizontal: #Continuous Horizontal
+Provides the continuous horizontal scrolling feature for all the sliders.: Осуществляет функцию бесконечной горизонтальной прокрутки для всех ползунков.
+#Interlocked Slides: #Interlocked Slides
+Provides a way to force the moving of sliders in other sections when sliding the visible one.: Даёт возможность передвижения ползунков в других разделах при передвижении видимого ползунка.
+#Scroll Horizontally: #Scroll Horizontally
+Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!: Осуществляет горизонтальное передвижение ползунков при помощи колеса мыши или трекпада. Идеальна для рассказов!
+#Reset Sliders: #Reset Sliders
+Forces fullpage.js to reset every slider after leaving its section. This way when the users goes back it will always be in the first slide of the slider.: Заставляет fullpage.js возвращать в исходное положение каждый ползунок после покидания раздела, в котором он размещён. Таким образом, при возвращении к разделу пользователь всегда будет видеть первый слайд.
+Which license should I use?: Какую лицензию мне следует использовать?
+For up to 1 website: До одного веб-сайта
+Hobby: Hobby
+1 domain: 1 домен
+Minified source code: Минифицированный исходный код
+Free updates: Бесплатные обновления
+License agreement: Лицензионное соглашение
+For up to 5 websites: До 5 веб-сайтов
+Professional: Professional
+Best value!: Лучшее предложение!
+5 domains: 5 доменов
+For unlimited websites: Для неограниченного количества веб-сайтов
+Business: Business
+Unlimited Domains: Неограниченное количество доменов
+Common activation key: Общий ключ активации
+Use in SaaS product: Использование в SaaS-продуктах
+Refund: Возврат денежных средств
+Updates: Обновления
+Staging / dev domains: Подготавливаемые/разрабатываемые домены
+Trusted by the world’s most innovative companies: Нам доверяют самые инновационные компании мира
+People love fullPage.js!: Люди любят fullPage.js!
+Vertical Navigation: Вертикальная навигация
+Add the stylesheet after jquery.fullpage.css and... that's it!: Добавьте стилевое оформление после jquery.fullpage.css и…готово!
+Available in 2 sizes: Доступно в 2 форматах
+Get all navigation styles from Â£9: Получить все стили навигации от 9 фунтов
+30-Day Money Back Guarrantee: Гарантия возврата денежных средств в течение 30 дней
+Subscribe: Подписаться
+Get notified of new extensions or fullpage.js relevant announcements.: Получать уведомления о новых расширениях или актуальных сообщениях fullpage.js
+Activation Key per Domain: Ключ активации для домена
+Only if no activation key was generated.: Только если код активации не был создан.
+Read the license refund terms: Читать условия возмещения денежных средств за лицензию
+1 month support: Поддержка в течение 1 месяца
+Isolated reproductions might be required.: Может потребоваться изолированная репликация
+Read the license support terms: Читать условия поддержки лицензий
+6 months support: Поддержка в течение 6 месяцев
+Unlimited support: Неограниченная поддержка
+Redistribute: Перераспределить
+Got questions? Check the: Есть вопросы? Посмотрите
+30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement: Возврат денежных средств в течение 30 дней гарантирован для любой покупки на условиях, описанных в Лицензионном соглашении
+fullPage.js Refund Terms: Условия возмещения денежных средств fullPage.js
+All licenses include free updates for the purchased license and buyers will be notified by mail of new releases.: Все лицензии включают бесплатные обновления для приобретённой лицензии, и покупатели получают уведомления и новых версиях по электронной почте.
+Upon request: По запросу
+new activation keys can be provided for staging or developing domains to a maximum of 3.: новые ключи активации могут быть предоставлены максимум для 3 подготавливаемых или разрабатываемых доменов.
+No activation key is necessary for `localhost` and `127.0.0.1`.: Ключ активации не требуется для локального хоста и 127.0.0.1.
+Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.: Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.
+Your email address: Ваш адрес электронной почты
+Generate only 1 activation key. No dev/staging domains possible.: Создать только 1 ключ активации. No dev/staging domains possible.
+Price varies depending on the extension: Стоимость зависит от расширения
+Generate up to 5 activation keys. Dev/staging domains included.: Создать до 5 ключей активации. Dev/staging domains included.
+Generate a common activation key: Создать общий ключ активации
+Within a product: Внутри продукта
+Mobile applications: мобильные приложения
+
+language-menu-extensions:
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
