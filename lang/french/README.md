@@ -7,7 +7,7 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> | 
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> |
   <span>Français</span>
 </p>
 
@@ -99,7 +99,7 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
  ```
 
  #### Y compris les fichiers :
- 
+
 ```html
 <link rel="stylesheet" type="text/css" href="fullpage.css" />
 
@@ -468,15 +468,15 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### onLeave (`origin`, `destination`, `direction`)
-This callback is fired once the user leaves a section, in the transition to the new section.
-Returning `false` will cancel the move before it takes place.
+#### onLeave (`origin`, `destination`, `direction`)
+Ce callback est déclenché dès que l'utilisateur quitte une section, dans la transition vers la nouvelle section.
+Si vous retournez `false`, le coup sera annulé avant qu'il n'ait lieu.
 
-Parameters:
+Paramètres :
 
-- `origin`:  *(Object)* section of origin.
-- `destination`: *(Object)* destination section.
-- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `origine` : *(Objet)* Section d'origine .
+- `destination` : *(Objet)* Section de destination.
+- `direction` : *(Chaîne de caractères)* il prendra les valeurs `up` ou `down` en fonction du sens de défilement.
 
 Exemple :
 
@@ -581,7 +581,7 @@ Callback tiré une fois que la diapositive d'une section a été chargée, aprè
 Paramètres :
 
 - `section` : *(Objet)* Section verticale active.
-- `Origine` : *(Objet)* Diapositive horizontale d'origine.
+- `Origin` : *(Objet)* Diapositive horizontale d'origine.
 - `destination` : *(Objet)* Diapositive horizontale de destination.
 - `direction` : *(Chaîne)* `à droite` ou `à gauche` selon le sens de défilement.
 
@@ -618,7 +618,7 @@ Si vous retournez `false', le coup sera annulé avant qu'il n'ait lieu.
 Paramètres :
 
 - `section` : *(Objet)* Section verticale active .
-- `Origine` : *(Objet)* Diapositive horizontale d'origine.
+- `Origin` : *(Objet)* Diapositive horizontale d'origine.
 - `destination` : Diapositive horizontale de destination *(Objet)*.
 - `direction` : *(Chaîne)* `à droite` ou `à gauche` selon le sens de défilement.
 
