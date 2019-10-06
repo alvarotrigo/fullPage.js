@@ -130,6 +130,7 @@ Sections should be placed inside a wrapper (`<div id="fullpage">` in this case).
 	<div class="section">Some section</div>
 	<div class="section">Some section</div>
 	<div class="section">Some section</div>
+	<div class="section">Some section</div>
 </div>
 ```
 If you want to define a different starting point rather than the first section or the first slide of a section, just add the class `active` to the section and slide you want to load first.
