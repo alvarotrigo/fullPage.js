@@ -30,8 +30,7 @@
 
 ---
 
-A simple and easy to use library to create fullscreen scrolling websites (also known as single page websites or onepage sites).
-It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
+A simple and easy to use library that creates fullscreen scrolling websites (also known as single page websites or onepage sites) and adds landscape sliders inside the sections of the site.
 
 - [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
