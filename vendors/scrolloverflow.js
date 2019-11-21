@@ -2355,6 +2355,7 @@ if ( typeof module != 'undefined' && module.exports ) {
             refreshId: null,
             iScrollInstances: [],
             lastScrollY: null,
+            hasBeenInit: false,
 
             // Default options for iScroll.js used when using scrollOverflow
             iscrollOptions: {
@@ -2374,6 +2375,8 @@ if ( typeof module != 'undefined' && module.exports ) {
 
                 //fixing bug in iScroll with links: https://github.com/cubiq/iscroll/issues/783
                 iscrollHandler.iscrollOptions.click = isTouch; // see #2035
+
+                iscrollHandler.hasBeenInit = true;
 
                 //extending iScroll options with the user custom ones
                 iscrollHandler.iscrollOptions = fp_utils.deepExtend(iscrollHandler.iscrollOptions, options.scrollOverflowOptions);
@@ -2399,6 +2402,9 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             // Enables or disables the whole iScroll feature based on the given parameter.
             setIscroll: function(target, enable){
+                if(!iscrollHandler.hasBeenInit){
+                    return;
+                }
                 var scrollable = fp_utils.closest(target, SCROLLABLE_SEL) || $(SCROLLABLE_SEL, target)[0];
                 var action = enable ? 'enable' : 'disable';
                 
