@@ -751,11 +751,11 @@
         }
 
         function onMouseEnterOrLeave(e) {
-            //onMouseLeave will use the destination target, not the one we are moving away from
-            var target = event.toElement || e.relatedTarget || e.target;
-
             var type = e.type;
             var isInsideOneNormalScroll = false;
+
+            //onMouseLeave will use the destination target, not the one we are moving away from
+            var target = type === 'onmouseleave' ? e.toElement || e.relatedTarget : e.target;
 
             //coming from closing a normalScrollElements modal or moving outside viewport?
             if(target == document || !target){
