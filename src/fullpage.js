@@ -753,6 +753,7 @@
         function onMouseEnterOrLeave(e) {
             var type = e.type;
             var isInsideOneNormalScroll = false;
+            var isUsingScrollOverflow = options.scrollOverflow;
 
             //onMouseLeave will use the destination target, not the one we are moving away from
             var target = type === 'mouseleave' ? e.toElement || e.relatedTarget : e.target;
@@ -760,7 +761,10 @@
             //coming from closing a normalScrollElements modal or moving outside viewport?
             if(target == document || !target){
                 setMouseHijack(true);
-                options.scrollOverflowHandler.setIscroll(target, true);
+
+                if(isUsingScrollOverflow){
+                    options.scrollOverflowHandler.setIscroll(target, true);
+                }
                 return;
             }
 
@@ -789,7 +793,10 @@
                     if(isNormalScrollTarget || isNormalScrollChildFocused){
                         if(!FP.shared.isNormalScrollElement){
                             setMouseHijack(false);
-                            options.scrollOverflowHandler.setIscroll(target, false);
+
+                            if(isUsingScrollOverflow){
+                                options.scrollOverflowHandler.setIscroll(target, false);
+                            }
                         }
                         FP.shared.isNormalScrollElement = true;
                         isInsideOneNormalScroll = true;
@@ -800,7 +807,11 @@
             //not inside a single normal scroll element anymore?
             if(!isInsideOneNormalScroll && FP.shared.isNormalScrollElement){
                 setMouseHijack(true);
-                options.scrollOverflowHandler.setIscroll(target, true);
+                
+                if(isUsingScrollOverflow){
+                    options.scrollOverflowHandler.setIscroll(target, true);
+                }
+
                 FP.shared.isNormalScrollElement = false;
             }
         }
