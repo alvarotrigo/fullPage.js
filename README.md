@@ -16,7 +16,7 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.7-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.8-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -30,8 +30,7 @@
 
 ---
 
-A simple and easy to use library to create fullscreen scrolling websites (also known as single page websites or onepage sites).
-It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
+A simple and easy to use library that creates fullscreen scrolling websites (also known as single page websites or onepage sites) and adds landscape sliders inside the sections of the site.
 
 - [Introduction](https://github.com/alvarotrigo/fullPage.js#introduction)
 - [Compatibility](https://github.com/alvarotrigo/fullPage.js#compatibility)
@@ -979,6 +978,8 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [fullPage.js Rails Ruby Gem](https://rubygems.org/gems/fullpagejs-rails)
 - [Angular fullPage.js - Adaptation for Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
 - [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
+- [Wordpress Plugin for Divi](https://alvarotrigo.com/fullPage/wordpress-plugin-divi/)
+- [Wordpress Plugin for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 
 ## Who is using fullPage.js
 If you want your page to be listed here, please <a href="mailto:alvaro@alvarotrigo.com">contact me</a> with the URL.

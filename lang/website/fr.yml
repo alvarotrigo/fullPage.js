@@ -1,0 +1,173 @@
+#Page meta data
+title: fullPage.js | Plugin pour site web d'une page de défilement des sections
+description: plugin fullPage par Alvaro Trigo. Créez des pages plein écran rapidement et simplement. Plugin jquery de sections de défilement d'une page. Clic souris.
+keywords: fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,snap,snapping,apple,scroll,sections
+og-title: fullPage scroll snapping. Create full screen pages fast and simple
+og-description: La molette de la souris s'enclenche sur les sections. Rapide et simple à utiliser.
+twitter-description: Grande bibliothèque Javascript pour créer des sites Web à défilement plein écran
+
+#Sections content
+Create Beautiful Fullscreen Scrolling Websites: Créez de superbes sites Web déroulants en plein écran
+Download: Télécharger
+View on GitHub: Vue sur GitHub
+Open: Ouvrir
+fullPage.js is actively mantained and community driven.: fullPage.js est activement entretenu et géré par la communauté.
+Solving developers' issues since 2013.: Résous les problèmes des développeurs depuis 2013.
+commits: commits
+closed issues: problèmes fermés
+contributors: contributeurs
+The best!: Le meilleur !
+Compatible: Compatible
+Easy!: Facile!
+See in Codepen: Voir dans Codepen
+Touch me!: Touche-moi!
+Designed for mobiles and tablets, totally responsive.: Conçu pour les mobiles et les tablettes, totalement responsive.
+Because not only kids like to grab things.: Parce que non seulement les enfants aiment attraper des choses.
+
+#menu
+Wordpress Theme: Thème Wordpress
+WordPress: WordPress
+Examples: Exemples d'applications
+Pricing: Tarification
+Docs: Docs
+Contact: Contact
+
+#sections content
+Proud of being the most complete framework of its kind.: Fier d'être le cadre le plus complet du genre.
+Trusted by the most innovative companies.: Confiance des entreprises les plus innovantes.
+Working in modern and old browsers too! Even IE 9!: Fonctionne aussi bien avec les navigateurs modernes qu'avec les anciens ! Même IE 9 !
+Make a beautiful site for all! Not just a few!: Faites un beau site pour tous ! Pas seulement quelques-uns !
+fullPage.js is designed to be easy to use and customize.: fullPage.js est conçu pour être facile à utiliser et à personnaliser.
+It inludes tens of examples, great documentation and both community and personal support.: Il comprend des dizaines d'exemples, une excellente documentation et un soutien à la fois communautaire et personnel.
+
+#sections content
+Navigation: Navigation
+Scroll Bar Enabled: Barre de défilement activée
+Normal scrolling: Défilement normal
+Continuous vertical: Verticale continue
+Without anchor links (same URL): Sans liens d'ancrage (même URL)
+Vertical navigation dots: Points de navigation verticale
+Horizontal navigation dots: Points de navigation horizontale
+Extensions: Extensions
+Cards 3D: Cartes 3D
+Parallax: Parallax
+Continuous Horizontal: En continu Horizontal
+Interlocked Slides: Diapositives entrelacées
+Reset Sliders: Réinitialiser les curseurs
+Responsive Slides: Diapositives responsives
+Scroll Horizontally: Défilement horizontal
+Fading Effect: Effet de décoloration
+Offset Sections: Sections décalées
+Drag And Move: Glisser et déplacer
+ScrollOverflow Reset: Réinitialisation de ScrollOverflow
+Design: Design
+Responsive: Responsive
+Full backgrounds: Fonds d'écran complets
+Full background videos: Vidéos d'arrière-plan complètes
+Auto-height sections: Hauteurs automatiques
+Gradient backgrounds: Fonds d'écran en dégradé
+Scrolling inside sections and slides: Défilement à l'intérieur des sections et des diapositives
+Adding fixed header and footer: Ajout d'un en-tête et d'un pied de page fixes
+One single section: Une seule section
+Other: Autre
+Animations on scrolling: Animations sur le défilement
+Callbacks: Callbacks
+Functions and methods: Fonctions et méthodes
+
+documentation-link: https://github.com/alvarotrigo/fullPage.js/#fullpagejs
+extensions-link: https://alvarotrigo.com/fullPage/extensions/
+lang: fr
+flag-name: flag-french
+language-name: French
+canonical-link: https://alvarotrigo.com/fullPage/
+language-menu:
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/fr/"><span class="flag flag-french"></span>Français</a></li>
+
+
+# Extensions website
+Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Besoin d'une fonctionnalité supplémentaire ? Fullpage.js fournit des extensions que vous pouvez utiliser pour améliorer son comportement déjà étonnant !
+Parallax Backgrounds: Fonds d'écran Parallax
+Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.: Crée un effet de parallaxe pour les fonds de sections et de diapositives lors du défilement et du glissement.
+Buy : Acheter
+Demo: Demo
+#ScrollOverflow Reset: ScrollOverflow Reset
+Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.: Fait défiler le contenu de la section/glissière vers l'arrière avec la barre de défilement lorsque vous la quittez pour qu'elle soit toujours au début.
+#Drag And Move: Drag And Move
+Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers.: Permet de se déplacer entre les sections et les diapositives en cliquant et en faisant glisser la souris ainsi qu'en glissant avec les doigts.
+#Offset Sections: Offset Sections
+Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section.: Permet d'utiliser des sections qui ne sont pas en plein écran en fonction d'un pourcentage. Idéal pour montrer aux visiteurs qu'il y a plus de contenu dans le site en montrant une partie de la section suivante ou précédente.
+#Fading Effect: Fading Effect
+Provides a fading effect for vertical sections and horizontal slides or for any of them separately.: Fournit un effet de fondu pour les sections verticales et les diapositives horizontales ou pour chacune d'entre elles séparément.
+#Responsive Slides: Responsive Slides
+Allows the turn of horizontal slides into vertical sections on responsive or by using external functions.: Permet de faire pivoter les glissières horizontales en sections verticales en réponse ou à l'aide de fonctions externes.
+#Continuous Horizontal: Continuous Horizontal
+Provides the continuous horizontal scrolling feature for all the sliders.: Permet le défilement horizontal continu de tous les curseurs.
+#Interlocked Slides: Interlocked Slides
+Provides a way to force the moving of sliders in other sections when sliding the visible one.: Permet de forcer le déplacement des curseurs dans d'autres sections lors du glissement de celui qui est visible.
+#Scroll Horizontally: Scroll Horizontally
+Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!: Permet de faire défiler horizontalement les curseurs à l'aide de la molette de la souris ou du pavé tactile. Idéal pour raconter des histoires !
+#Reset Sliders: Reset Sliders
+Forces fullpage.js to reset every slider after leaving its section. This way when the users goes back it will always be in the first slide of the slider.: Force fullpage.js à réinitialiser chaque curseur après avoir quitté sa section. De cette façon, lorsque l'utilisateur revient en arrière, il sera toujours dans la première diapositive du curseur.
+Which license should I use?: Quelle licence dois-je utiliser ?
+For up to 1 website: Jusqu'à 1 site Web
+Hobby: Hobby
+1 domain: 1 domaine
+Minified source code: Code source miniature
+Free updates: Mises à jour gratuites
+License agreement: Contrat de licence
+For up to 5 websites: Jusqu'à 5 sites Web
+Professional: Professionnel
+Best value!: Meilleur rapport qualité/prix !
+5 domains: 5 domaines
+For unlimited websites: Pour un nombre illimité de sites Web
+Business: Entreprises
+Unlimited Domains: Domaines illimités
+Common activation key: Clé d'activation commune
+Use in SaaS product: Utilisation dans le produit SaaS
+Refund: Remboursement
+Updates: Mises à jour
+Staging / dev domains: Domaines staging / dev
+Trusted by the world’s most innovative companies: Confiance des entreprises les plus innovantes du monde
+People love fullPage.js!: Les gens adorent fullPage.js !
+Vertical Navigation: Navigation verticale
+Add the stylesheet after jquery.fullpage.css and... that's it!: Ajoutez la feuille de style après jquery.fullpage.css et... c'est tout !
+Available in 2 sizes: Disponible en 2 tailles
+Get all navigation styles from Â£9: Obtenez tous les styles de navigation à partir de Â£9
+30-Day Money Back Guarrantee: Garantie de remboursement de 30 jours
+Subscribe: S'abonner
+Get notified of new extensions or fullpage.js relevant announcements.: Soyez informé des nouvelles extensions ou des annonces pertinentes de fullpage.js.
+Activation Key per Domain: Clé d'activation par domaine
+Only if no activation key was generated.: Uniquement si aucune clé d'activation n'a été générée.
+Read the license refund terms: Lire les conditions de remboursement de la licence
+1 month support: 1 mois de support
+Isolated reproductions might be required.: Des reproductions isolées peuvent être requises.
+Read the license support terms: Lire les conditions de support de la licence
+6 months support: 6 mois de support
+Unlimited support: Support prioritaire illimité
+Redistribute: Redistribuer
+Got questions? Check the: Vous avez des questions ? Vérifiez le
+30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement: Remboursement de 30 jours garanti pour tout achat selon les conditions détaillées dans le contrat de licence.
+fullPage.js Refund Terms: Conditions de remboursement de fullPage.js
+All licenses include free updates for the purchased license and buyers will be notified by mail of new releases.: Toutes les licences incluent des mises à jour gratuites pour la licence achetée et les acheteurs seront informés par courrier des nouvelles versions.
+Upon request: Sur demande
+new activation keys can be provided for staging or developing domains to a maximum of 3.: de nouvelles clés d'activation peuvent être fournies pour la mise en place ou le développement de domaines jusqu'à un maximum de 3.
+No activation key is necessary for `localhost` and `127.0.0.1`.: Aucune clé d'activation n'est nécessaire pour localhost et 127.0.0.0.1.
+Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.: Tout autre domaine de staging nécessitera une licence (Professionnel ou Business) qui permettra de générer une nouvelle clé pour ceux-ci.
+Your email address: Votre adresse email
+Generate only 1 activation key. No dev/staging domains possible.: Générer une seule clé d'activation. Aucun domaine de développement ou de mise en valeur n'est possible.
+Price varies depending on the extension: Le prix varie en fonction de l'extension
+Generate up to 5 activation keys. Dev/staging domains included.: Générer jusqu'à 5 clés d'activation. Domaines de développement/staging inclus.
+Generate a common activation key: Générer une clé d'activation commune
+Within a product: Dans un produit
+Mobile applications: Applications mobiles
+
+language-menu-extensions:
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/fr/"><span class="flag flag-french"></span>Français</a></li>

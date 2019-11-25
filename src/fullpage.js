@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.7
+ * fullPage 3.0.8
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -586,7 +586,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.0.5';
+            FP.version = '3.0.8';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -604,7 +604,7 @@
             FP.fitToSection = fitToSection;
             FP.reBuild = reBuild;
             FP.setResponsive = setResponsive;
-            FP.getFullpageData = function(){ return options };
+            FP.getFullpageData = function(){ return options; };
             FP.destroy = destroy;
             FP.getActiveSection = getActiveSection;
             FP.getActiveSlide = getActiveSlide;
@@ -751,15 +751,20 @@
         }
 
         function onMouseEnterOrLeave(e) {
-            //onMouseLeave will use the destination target, not the one we are moving away from
-            var target = event.toElement || e.relatedTarget || e.target;
-
             var type = e.type;
             var isInsideOneNormalScroll = false;
+            var isUsingScrollOverflow = options.scrollOverflow;
+
+            //onMouseLeave will use the destination target, not the one we are moving away from
+            var target = type === 'mouseleave' ? e.toElement || e.relatedTarget : e.target;
 
             //coming from closing a normalScrollElements modal or moving outside viewport?
             if(target == document || !target){
                 setMouseHijack(true);
+
+                if(isUsingScrollOverflow){
+                    options.scrollOverflowHandler.setIscroll(target, true);
+                }
                 return;
             }
 
@@ -788,6 +793,10 @@
                     if(isNormalScrollTarget || isNormalScrollChildFocused){
                         if(!FP.shared.isNormalScrollElement){
                             setMouseHijack(false);
+
+                            if(isUsingScrollOverflow){
+                                options.scrollOverflowHandler.setIscroll(target, false);
+                            }
                         }
                         FP.shared.isNormalScrollElement = true;
                         isInsideOneNormalScroll = true;
@@ -798,6 +807,11 @@
             //not inside a single normal scroll element anymore?
             if(!isInsideOneNormalScroll && FP.shared.isNormalScrollElement){
                 setMouseHijack(true);
+                
+                if(isUsingScrollOverflow){
+                    options.scrollOverflowHandler.setIscroll(target, true);
+                }
+
                 FP.shared.isNormalScrollElement = false;
             }
         }
@@ -833,8 +847,8 @@
 
             //no anchors option? Checking for them in the DOM attributes
             if(!options.anchors.length){
-                var attrName = '[data-anchor]';
-                var anchors = $(options.sectionSelector.split(',').join(attrName + ',') + attrName, container);
+                var anchorsAttribute = '[data-anchor]';
+                var anchors = $(options.sectionSelector.split(',').join(anchorsAttribute + ',') + anchorsAttribute, container);
                 if(anchors.length){
                     g_initialAnchorsInDom = true;
                     anchors.forEach(function(item){
@@ -845,8 +859,8 @@
 
             //no tooltips option? Checking for them in the DOM attributes
             if(!options.navigationTooltips.length){
-                var attrName = '[data-tooltip]';
-                var tooltips = $(options.sectionSelector.split(',').join(attrName + ',') + attrName, container);
+                var tooltipsAttribute = '[data-tooltip]';
+                var tooltips = $(options.sectionSelector.split(',').join(tooltipsAttribute + ',') + tooltipsAttribute, container);
                 if(tooltips.length){
                     tooltips.forEach(function(item){
                         options.navigationTooltips.push(item.getAttribute('data-tooltip').toString());
@@ -1094,7 +1108,7 @@
         function getBulletLinkName(i, defaultName){
             return options.navigationTooltips[i]
                 || options.anchors[i]
-                || defaultName + ' ' + (i+1)
+                || defaultName + ' ' + (i+1);
         }
 
         /*
@@ -2052,7 +2066,7 @@
                         elementToPlay.load();
                         elementToPlay.onloadeddata = function(){
                             onMediaLoad(destiny);
-                        }
+                        };
                     }
                 }
             });
@@ -2384,6 +2398,7 @@
         function menuItemsHandler(e){
             if($(options.menu)[0] && (options.lockAnchors || !options.anchors.length)){
                 preventDefault(e);
+                /*jshint validthis:true */
                 moveTo(this.getAttribute('data-menuanchor'));
             }
         }
@@ -3013,7 +3028,7 @@
                 };
 
             //preventing the style p:empty{display: none;} from returning the wrong result
-            el.style.display = 'block'
+            el.style.display = 'block';
 
             // Add it to the body to get the computed style.
             document.body.insertBefore(el, null);
@@ -3399,7 +3414,7 @@
         */
         function displayWarnings(){
             var l = options['li' + 'c' + 'enseK' + 'e' + 'y'];
-            var msgStyle = 'font-size: 15px;background:yellow;'
+            var msgStyle = 'font-size: 15px;background:yellow;';
 
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
@@ -4180,7 +4195,7 @@ if(window.jQuery && window.fullpage){
 
         $.fn.fullpage = function(options) {
             options = $.extend({}, options, {'$': $});
-            new fullpage(this[0], options);
+            var instance = new fullpage(this[0], options);
         };
     })(window.jQuery, window.fullpage);
 }

@@ -58,6 +58,9 @@ gulp.task('extensions', function(done) {
         .pipe(uglify({
             output: {
                 comments: 'some'
+            },
+            compress: {
+                pure_funcs: [ 'console.log' ]
             }
         }))
         .pipe(rename({suffix: '.min'}))
