@@ -1,3 +1,7 @@
+/*!
+* Scrolloverflow 2.0.5 module for fullPage.js >= 3
+* https://github.com/alvarotrigo/fullPage.js
+*/
 /**
 * Customized version of iScroll.js 0.1.3
 * It fixes bugs affecting its integration with fullpage.js
