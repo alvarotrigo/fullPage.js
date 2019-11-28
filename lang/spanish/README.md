@@ -374,7 +374,7 @@ Luego podrás usar la extensión y configurarla tal y como se explica en las [op
 
 ## Opciones
 
-- `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. Si tu proyecto es de código libre, [contacta conmigo](https://alvarotrigo.com/#contact) con un link a su repositorio para obtener una clave de licencia.
+- `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. Si tu proyecto es de código abierto y es compatible con la licencia GPLv3, puedes [solicitar una licencia](https://alvarotrigo.com/fullPage/extensions/requestKey.html) con un link a su repositorio para obtener una clave de licencia.
 Puedes leer más acerca de las licencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
 
 ```javascript
