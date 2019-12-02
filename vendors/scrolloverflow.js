@@ -2143,7 +2143,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.5 module for fullPage.js >= 3
+* Scrolloverflow 2.0.6 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
@@ -2409,7 +2409,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                 if(!iscrollHandler.hasBeenInit){
                     return;
                 }
-                var scrollable = fp_utils.closest(target, SCROLLABLE_SEL) || $(SCROLLABLE_SEL, target)[0];
+                var scrollable = fp_utils.closest(target, SCROLLABLE_SEL) || ($(SCROLLABLE_SEL, target) && $(SCROLLABLE_SEL, target)[0]);
                 var action = enable ? 'enable' : 'disable';
                 
                 if(scrollable){
