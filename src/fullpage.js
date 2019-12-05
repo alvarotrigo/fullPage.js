@@ -121,6 +121,7 @@
 
             //scrolling
             css3: true,
+            transitionSpeed: this.scrollingSpeed,
             scrollingSpeed: 700,
             autoScrolling: true,
             fitToSection: true,
@@ -343,6 +344,13 @@
         }
 
         /**
+        * Defines the transition speed
+        */
+        function setTransitionSpeed(value, type){
+            setVariableState('transitionSpeed', value, type);
+        }
+
+        /**
         * Sets fitToSection
         */
         function setFitToSection(value, type){
@@ -455,9 +463,9 @@
         * Anchors or index positions can be used as params.
         */
         function silentMoveTo(sectionAnchor, slideAnchor){
-            setScrollingSpeed (0, 'internal');
+            setTransitionSpeed (0, 'internal');
             moveTo(sectionAnchor, slideAnchor);
-            setScrollingSpeed (originals.scrollingSpeed, 'internal');
+            setTransitionSpeed (originals.transitionSpeed, 'internal');
         }
 
         /**
@@ -590,6 +598,7 @@
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
+            FP.setTransitionSpeed = setTransitionSpeed;
             FP.setFitToSection = setFitToSection;
             FP.setLockAnchors = setLockAnchors;
             FP.setMouseWheelScrolling = setMouseWheelScrolling;
@@ -2705,7 +2714,7 @@
         * Adds transition animations for the given element
         */
         function addAnimation(element){
-            var transition = 'all ' + options.scrollingSpeed + 'ms ' + options.easingcss3;
+            var transition = 'all ' + options.transitionSpeed + 'ms ' + options.easingcss3;
 
             removeClass(element, NO_TRANSITION);
             return css(element, {
