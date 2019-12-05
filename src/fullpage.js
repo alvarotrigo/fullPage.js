@@ -121,8 +121,8 @@
 
             //scrolling
             css3: true,
-            transitionSpeed: this.scrollingSpeed,
             scrollingSpeed: 700,
+            transitionSpeed: this.scrollingSpeed,
             autoScrolling: true,
             fitToSection: true,
             fitToSectionDelay: 1000,
