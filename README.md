@@ -693,7 +693,7 @@ fullpage_api.setScrollingSpeed(700);
 Defines the transition time in milliseconds.
 
 ```javascript
-fullpage_api.setTransitionSpeed(700);
+fullpage_api.setTransitionSpeed(450);
 ```
 ---
 ### destroy(type)
