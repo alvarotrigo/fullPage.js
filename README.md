@@ -683,10 +683,17 @@ fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[Demo](http://codepen.io/alvarotrigo/pen/NqLbeY) Defines the scrolling speed in milliseconds.
+[Demo](http://codepen.io/alvarotrigo/pen/NqLbeY) Defines the time in milliseconds until site is responsive to scrolling .
 
 ```javascript
 fullpage_api.setScrollingSpeed(700);
+```
+---
+### setTransitionSpeed(milliseconds)
+Defines the transition time in milliseconds.
+
+```javascript
+fullpage_api.setTransitionSpeed(700);
 ```
 ---
 ### destroy(type)
