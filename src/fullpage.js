@@ -690,6 +690,9 @@
             //detecting any change on the URL to scroll to the given anchor link
             //(a way to detect back history button as we play with the hashes on the URL)
             window.addEventListener('hashchange', hashChangeHandler);
+            
+            // fixing problems with isWindowFocused never resetting beyond one blur event
+            window.addEventListener('focus', focusHandler);
 
             //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
             window.addEventListener('blur', blurHandler);
@@ -2366,6 +2369,11 @@
                     moveSlideRight(section);
                 }
             }
+        }
+        
+        // changing isWindowFocused to true on focus event
+        function focusHandler(){
+            isWindowFocused = true;
         }
 
         //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
