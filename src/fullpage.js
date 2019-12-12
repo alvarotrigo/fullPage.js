@@ -691,7 +691,7 @@
             //(a way to detect back history button as we play with the hashes on the URL)
             window.addEventListener('hashchange', hashChangeHandler);
             
-            // fixing problems with isWindowFocused never resetting beyond one blur event
+            // on window focus
             window.addEventListener('focus', focusHandler);
 
             //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
