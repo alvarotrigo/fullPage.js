@@ -151,6 +151,7 @@
             keyboardScrolling: true,
             animateAnchor: true,
             recordHistory: true,
+            historyApi: false,
 
             //design
             controlArrows: true,
@@ -668,11 +669,34 @@
 
             //setting the class for the body element
             setBodyClass();
+            /*
+             * HTML5 History API
+             * Test history features
+             */
+            if(options.historyApi){
+                historyApiTestFeatures();
+            }
 
             if(document.readyState === 'complete'){
-                scrollToAnchor();
+               /*
+               * HTML5 History API
+               * Scroll to the right section on document complete
+               */
+               if(options.historyApi){
+                    historyApiScrollToPath();
+               } else {
+                    scrollToAnchor();
+               }
             }
-            window.addEventListener('load', scrollToAnchor);
+            /*
+            * HTML5 History API
+            * Scroll to the right section on document load
+            */
+            if(options.historyApi) {
+                window.addEventListener('load', historyApiScrollToPath);
+            } else {
+                window.addEventListener('load', scrollToAnchor);
+            }
 
             //if we use scrollOverflow we'll fire afterRender in the scrolloverflow file
             if(!options.scrollOverflow){
@@ -724,6 +748,13 @@
                 ['mouseleave', 'touchend'].forEach(function(eventName){
                    forMouseLeaveOrTouch(eventName, true);
                 });
+            }
+            /**
+            * HTML5 History API
+            * Scroll to the right section when clicking on back or forward buttons
+            */
+            if(options.historyApi) {
+                window.addEventListener('popstate', historyApiPopStateHandler);
             }
         }
 
@@ -2143,6 +2174,75 @@
                 }
             });
         }
+    
+        /**
+         * HTML5 History API
+         * Function called on init()
+         * It will test for history api features
+         */
+        function historyApiTestFeatures() {
+            if ('scrollRestoration' in history) {
+                window.history.scrollRestoration = 'manual';
+            }
+        }
+        
+        /**
+         * HTML5 History API
+         * Function called from popstate eventlistener
+         * It will scroll to the right section and slide (restore state) when the user clicks on back or forward buttons
+         */
+        function historyApiPopStateHandler(event) {
+            var state = historyApiStateFromUrlString(event.state);
+            moveTo(state.section, state.slide);
+        }
+    
+        /**
+         * HTML5 History API
+         * Will push a new history state and url only if the same record is not already in the previous history.state
+         * This will prevent from adding the same state when using the back or forward buttons
+         */
+        function historyApiPushRecord(url) {
+            if(window.history.state !== url) {
+                window.history.pushState(url, null, '/' + url);
+            }
+        }
+    
+        /**
+         * HTML5 History API
+         * Convert URL string to state object
+         * NOTE: If accepted, this one could be merged with getAnchorsURL(urlString) and process any urlString as input
+         * regardless if it starts with #, / or #/
+         */
+        function historyApiStateFromUrlString(urlString) {
+            var urlParts = urlString;
+            var section;
+            var slide;
+            
+            if (urlString && urlString !== '/' ) {
+                urlParts = urlParts.replace(/^\//, '').split('/');
+                section = urlParts[0];
+                slide = urlParts[1];
+            } else if (!urlString) {
+                // TODO: In the future this should query for the default active section/slide
+                section = 1;
+            }
+            
+            return {
+                section: section,
+                slide: slide
+            }
+        }
+        
+        /**
+         * HTML5 History API
+         *  Get the url from location.pathname and scroll to the right section and slide when loading the site
+         */
+        function historyApiScrollToPath() {
+            if( window.location.pathname !== '/' ) {
+                var path = historyApiStateFromUrlString(window.location.pathname);
+                moveTo(path.section, path.slide);
+            }
+        }
 
         /**
         * Gets the active slide (or section) for the given section
@@ -2962,14 +3062,26 @@
         */
         function setUrlHash(url){
             if(options.recordHistory){
-                location.hash = url;
+                if(options.historyApi) {
+                    // Pushes State to history api
+                    historyApiPushRecord(url);
+                } else {
+                    location.hash = url;
+                }
+                
             }else{
-                //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
-                if(isTouchDevice || isTouch){
-                    window.history.replaceState(undefined, undefined, '#' + url);
-                }else{
-                    var baseUrl = window.location.href.split('#')[0];
-                    window.location.replace( baseUrl + '#' + url );
+    
+                if(options.historyApi) {
+                    // Pushes State to history api
+                    historyApiPushRecord(url);
+                } else {
+                    //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
+                    if(isTouchDevice || isTouch){
+                        window.history.replaceState(undefined, undefined, '#' + url);
+                    }else{
+                        var baseUrl = window.location.href.split('#')[0];
+                        window.location.replace( baseUrl + '#' + url );
+                    }
                 }
             }
         }
@@ -3299,6 +3411,11 @@
             ['mouseenter', 'touchstart', 'mouseleave', 'touchend'].forEach(function(eventName){
                 document.removeEventListener(eventName, onMouseEnterOrLeave, true); //true is required!
             });
+            /**
+             * HTML5 History API
+             * Remove EventListener Needed for back and forward buttons to work
+             */
+            window.removeEventListener('popstate', historyApiPopStateHandler);
 
             //lets make a mess!
             if(all){
