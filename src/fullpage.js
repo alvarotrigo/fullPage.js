@@ -3556,7 +3556,9 @@
                     element.scrollTo(0, val);
                 }
             }else{
-                 element.style.top = val + 'px';
+              if (element.style) {
+                element.style.top = val + 'px';
+              }
             }
         }
 
