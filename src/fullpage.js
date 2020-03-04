@@ -297,8 +297,8 @@
 
                 //for IE touch devices
                 css(container, {
-                    '-ms-touch-action': 'none',
-                    'touch-action': 'none'
+                    'msTouchAction': 'none',
+                    'touchAction': 'none'
                 });
 
                 if(element != null){
@@ -316,8 +316,8 @@
 
                 //for IE touch devices
                 css(container, {
-                    '-ms-touch-action': '',
-                    'touch-action': ''
+                    'msTouchAction': '',
+                    'touchAction': ''
                 });
 
                 //scrolling the page to the section with no animation
@@ -992,15 +992,15 @@
             css(section, {'height': windowsHeight + 'px'});
 
             if(options.paddingTop){
-                css(section, {'padding-top': options.paddingTop});
+                css(section, {'paddingTop': options.paddingTop});
             }
 
             if(options.paddingBottom){
-                css(section, {'padding-bottom': options.paddingBottom});
+                css(section, {'paddingBottom': options.paddingBottom});
             }
 
             if (typeof options.sectionsColor[index] !==  'undefined') {
-                css(section, {'background-color': options.sectionsColor[index]});
+                css(section, {'backgroundColor': options.sectionsColor[index]});
             }
 
             if (typeof options.anchors[index] !== 'undefined') {
@@ -1044,8 +1044,8 @@
             after($(SLIDES_WRAPPER_SEL, section)[0], arrows);
 
             if(options.controlArrowColor !== '#fff'){
-                css($(SLIDES_ARROW_NEXT_SEL, section), {'border-color': 'transparent transparent transparent '+options.controlArrowColor});
-                css($(SLIDES_ARROW_PREV_SEL, section), {'border-color': 'transparent '+ options.controlArrowColor + ' transparent transparent'});
+                css($(SLIDES_ARROW_NEXT_SEL, section), {'borderColor': 'transparent transparent transparent '+options.controlArrowColor});
+                css($(SLIDES_ARROW_PREV_SEL, section), {'borderColor': 'transparent '+ options.controlArrowColor + ' transparent transparent'});
             }
 
             if(!options.loopHorizontal){
@@ -1094,7 +1094,7 @@
             $('ul', nav)[0].innerHTML = li;
 
             //centering it vertically
-            css($(SECTION_NAV_SEL), {'margin-top': '-' + ($(SECTION_NAV_SEL)[0].offsetHeight/2) + 'px'});
+            css($(SECTION_NAV_SEL), {'marginTop': '-' + ($(SECTION_NAV_SEL)[0].offsetHeight/2) + 'px'});
 
             //activating the current active section
 
@@ -2709,7 +2709,7 @@
 
             removeClass(element, NO_TRANSITION);
             return css(element, {
-                '-webkit-transition': transition,
+                'webkitTransition': transition,
                 'transition': transition
             });
         }
@@ -2905,7 +2905,7 @@
             }
 
             //centering it
-            css(nav, {'margin-left': '-' + (nav.innerWidth/2) + 'px'});
+            css(nav, {'marginLeft': '-' + (nav.innerWidth/2) + 'px'});
 
             addClass($('a', $('li', nav)[0] ), ACTIVE);
         }
@@ -3319,7 +3319,7 @@
             //removing inline styles
             css($(SECTION_SEL), {
                 'height': '',
-                'background-color' : '',
+                'backgroundColor' : '',
                 'padding': ''
             });
 
@@ -3330,8 +3330,8 @@
             css(container, {
                 'height': '',
                 'position': '',
-                '-ms-touch-action': '',
-                'touch-action': ''
+                'msTouchAction': '',
+                'touchAction': ''
             });
 
             css($htmlBody, {
@@ -3382,7 +3382,7 @@
 
             //removing the applied transition from the fullpage wrapper
             css(container, {
-                '-webkit-transition': 'none',
+                'webkitTransition': 'none',
                 'transition': 'none'
             });
 
@@ -3556,7 +3556,9 @@
                     element.scrollTo(0, val);
                 }
             }else{
-                 element.style.top = val + 'px';
+              if (element.style) {
+                element.style.top = val + 'px';
+              }
             }
         }
 
