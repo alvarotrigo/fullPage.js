@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.8
+ * fullPage 3.0.9
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -690,6 +690,9 @@
             //detecting any change on the URL to scroll to the given anchor link
             //(a way to detect back history button as we play with the hashes on the URL)
             window.addEventListener('hashchange', hashChangeHandler);
+            
+            // on window focus
+            window.addEventListener('focus', focusHandler);
 
             //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
             window.addEventListener('blur', blurHandler);
@@ -2080,7 +2083,9 @@
             if(options.scrollOverflow){
                 clearTimeout(g_mediaLoadedId);
                 g_mediaLoadedId = setTimeout(function(){
-                    scrollBarHandler.createScrollBar(section);
+                    if(!hasClass($body, RESPONSIVE)){
+                        scrollBarHandler.createScrollBar(section);
+                    }
                 }, 200);
             }
         }
@@ -2366,6 +2371,11 @@
                     moveSlideRight(section);
                 }
             }
+        }
+        
+        // changing isWindowFocused to true on focus event
+        function focusHandler(){
+            isWindowFocused = true;
         }
 
         //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.

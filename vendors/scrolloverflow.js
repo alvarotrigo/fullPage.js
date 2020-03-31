@@ -2239,7 +2239,7 @@ if ( typeof module != 'undefined' && module.exports ) {
             */
             function createScrollBarForAll(){
                 if(fp_utils.hasClass(document.body, RESPONSIVE)){
-                    removeResponsiveScrollOverflows();
+                    forEachSectionAndSlide(removeScrollBar);
                 }
                 else{
                     forEachSectionAndSlide(createScrollBar);
@@ -2330,13 +2330,11 @@ if ( typeof module != 'undefined' && module.exports ) {
             /**
             * Removes scrollOverflow for sections using the class `fp-auto-height-responsive`
             */
-            function removeResponsiveScrollOverflows(){
+            function removeScrollBar(element){
                 var scrollOverflowHandler = self.options.scrollOverflowHandler;
-                forEachSectionAndSlide(function(element){
-                    if(fp_utils.hasClass( fp_utils.closest(element, SECTION_SEL), AUTO_HEIGHT_RESPONSIVE)){
-                        scrollOverflowHandler.remove(element);
-                    }
-                });
+                if(fp_utils.hasClass( fp_utils.closest(element, SECTION_SEL), AUTO_HEIGHT_RESPONSIVE)){
+                    scrollOverflowHandler.remove(element);
+                }
             }
 
             //public functions
