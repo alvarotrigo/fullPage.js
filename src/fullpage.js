@@ -2080,7 +2080,9 @@
             if(options.scrollOverflow){
                 clearTimeout(g_mediaLoadedId);
                 g_mediaLoadedId = setTimeout(function(){
-                    scrollBarHandler.createScrollBar(section);
+                    if(!hasClass($body, RESPONSIVE)){
+                        scrollBarHandler.createScrollBar(section);
+                    }
                 }, 200);
             }
         }
