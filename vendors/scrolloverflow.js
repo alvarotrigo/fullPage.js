@@ -2406,7 +2406,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
             // Enables or disables the whole iScroll feature based on the given parameter.
             setIscroll: function(target, enable){
-                if(!iscrollHandler.hasBeenInit){
+                if(!iscrollHandler.hasBeenInit || !target){
                     return;
                 }
                 var scrollable = fp_utils.closest(target, SCROLLABLE_SEL) || $(SCROLLABLE_SEL, target)[0];
