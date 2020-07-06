@@ -852,7 +852,7 @@
             if(!options.anchors.length){
                 var anchorsAttribute = '[data-anchor]';
                 var anchors = $(options.sectionSelector.split(',').join(anchorsAttribute + ',') + anchorsAttribute, container);
-                if(anchors.length){
+                if(anchors.length && anchors.length === $(SECTION_SEL).length){
                     g_initialAnchorsInDom = true;
                     anchors.forEach(function(item){
                         options.anchors.push(item.getAttribute('data-anchor').toString());
