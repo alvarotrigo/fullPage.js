@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
   <span>한국어</span>
@@ -15,14 +16,14 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.8-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [실시간 데모](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [워드프레스 테마](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/)
 - [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -943,7 +944,7 @@ new fullpage('#fullpage', {
 fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)을 방문해 주세요.
 
 # 재료가 되는 도구
-- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- Wordpress Plugin [for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/).
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

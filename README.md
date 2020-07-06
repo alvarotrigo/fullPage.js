@@ -5,6 +5,7 @@
 <p align="center">
   <span>English</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
@@ -16,14 +17,14 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.8-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Demo online](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js Extensions](http://alvarotrigo.com/fullPage/extensions/)
 - [Frequently Answered Questions](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -963,7 +964,7 @@ To see the list of recent changes, see [Releases section](https://github.com/alv
 Want to build fullpage.js distribution files? Please see [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Resources
-- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- Wordpress Plugin [for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/).
 - [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
