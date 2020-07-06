@@ -15,6 +15,6 @@
     "webpack-cli": "^3.1.1"
   },
   "dependencies": {
-    "fullpage.js": "^3.0.2"
+    "fullpage.js": "^3.0.8"
   }
 }
