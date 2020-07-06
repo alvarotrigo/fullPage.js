@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.8
+ * fullPage 3.0.9
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -250,6 +250,7 @@
         var g_initialAnchorsInDom = false;
         var g_canFireMouseEnterNormalScroll = true;
         var g_mediaLoadedId;
+        var g_transitionLapseId;
         var extensions = [
             'parallax',
             'scrollOverflowReset',
@@ -1920,10 +1921,10 @@
                 });
             }
 
-             // enabling canScroll after the minimum transition laps
-             if(isFastSpeed){
-                clearTimeout(transitionLapseId)
-                transitionLapseId = setTimeout(function(){
+            // enabling canScroll after the minimum transition laps
+            if(isFastSpeed){
+                clearTimeout(g_transitionLapseId);
+                g_transitionLapseId = setTimeout(function(){
                     canScroll = true;
                 }, transitionLapse);
             }
@@ -3306,8 +3307,7 @@
                 scrollId2,
                 g_doubleCheckHeightId,
                 resizeHandlerId,
-                transitionIn,
-                transitionLapseId
+                g_transitionLapseId
             ].forEach(function(timeoutId){
                 clearTimeout(timeoutId);
             });
