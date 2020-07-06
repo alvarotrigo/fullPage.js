@@ -433,7 +433,7 @@ new fullpage('#fullpage', {
 
 - `normalScrollElements`: （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/RmVazM) 如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动 div 等有用）它需要带有 Javascript 选择器的字符来表示这些元素。（例如：`normalScrollElements：'＃element1，.element2'` ）。 此选项不应该应用于任何 section/slide 元素本身。
 
-- `bigSectionsDestination`: （默认 `null` ）定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
+- `bigSectionsDestination`: （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/vYLdMrx) 定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
 
 - `keyboardScrolling`: （默认为 `true` ）定义是否可以使用键盘进行内容滑动。
 
