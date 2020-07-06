@@ -1187,6 +1187,10 @@
         function scrollHandler(){
             var currentSection;
 
+            if(isResizing){
+                return;
+            }
+            
             if(!options.autoScrolling || options.scrollBar){
                 var currentScroll = getScrollTop();
                 var scrollDirection = getScrollDirection(currentScroll);
@@ -2643,6 +2647,8 @@
         * Resize event handler.
         */        
         function resizeHandler(){
+            isResizing = true;
+ 
             clearTimeout(resizeId);
 
             //in order to call the functions only when the resize is finished
