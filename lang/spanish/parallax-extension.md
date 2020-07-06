@@ -61,7 +61,7 @@ Por ejemplo:
 
 | Opción  | Descripción |
 | ------------- | ------------- |
-| **parallax**  | (por defecto `false`). [Extension of fullPage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de parallax en secciones y diapositivas.  |
+| **parallax**  | (por defecto `false`). [Extension of fullPage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de parallax en secciones y diapositivas. Los valores posibles son `false`, `true`, `sections`, `slides`|
 | **parallaxOptions:**   | (por defecto: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Permite configurar los parámetros para el efecto de parallax cuando se usa la opción `parallax: true`.     |
 <br>
 

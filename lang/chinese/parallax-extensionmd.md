@@ -61,7 +61,7 @@
 
 | 选项  | 说明 |
 | ------------- | ------------- |
-| **parallax**  | (默认为 `false`). [fullPage.js的扩展。](http://alvarotrigo.com/fullPage/extensions/). 定义是否在段落/幻灯片上使用视差背景效果。  |
+| **parallax**  | (默认为 `false`). [fullPage.js的扩展。](http://alvarotrigo.com/fullPage/extensions/). 定义是否在段落/幻灯片上使用视差背景效果。Possible values are false, true, sections, slides.  |
 | **parallaxOptions:**   | (默认： `{ type: 'reveal', percentage: 62, property: 'translate'}`). 当使用选项`parallax:true`时，表示允许配置视差背景效果的参数  |
 
 
