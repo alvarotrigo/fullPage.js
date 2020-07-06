@@ -1105,9 +1105,10 @@
         /**
         * Gets the name for screen readers for a section/slide navigation bullet.
         */
-        function getBulletLinkName(i, defaultName){
+        function getBulletLinkName(i, defaultName, item){
+            var anchor = defaultName === 'Section' ? options.anchors[i] : item.getAttribute('data-anchor');
             return options.navigationTooltips[i]
-                || options.anchors[i]
+                || anchor
                 || defaultName + ' ' + (i+1);
         }
 
@@ -2908,7 +2909,8 @@
             addClass(nav, 'fp-' + options.slidesNavPosition);
 
             for(var i=0; i< numSlides; i++){
-                appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide') +'</span><span></span></a></li>'), $('ul', nav)[0] );
+                var slide = $(SLIDE_SEL, section)[i];
+                appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide', slide) +'</span><span></span></a></li>'), $('ul', nav)[0] );
             }
 
             //centering it
