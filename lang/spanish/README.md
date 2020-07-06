@@ -425,7 +425,7 @@ Otras librerías puede ser usadas si se desea.
 
 - `fitToSectionDelay`: (por defecto `1000`). Si `fitToSection` está activo, esta opción define el tiempo en milisegundos que esperará fullpage.js desde que el usuario dejó de desplazarse hasta que la sección se encaja en la ventana.
 
-- `scrollBar`: (por defecto `false`) Determina si se utiliza la barra de desplazamiento del navegador o no. En caso afirmativo, la funcionalidad de `autoScrolling` (de desplazamiento automático o "a saltos") funcionará como se espera. El usuario será también libre de desplazarse por la página usando la barra de navegación y fullpage.js encajará la sección cuando el desplazamiento cese siempre y cuando se use `fitToSection`.
+- `scrollBar`: (por defecto `false`) Determina si se utiliza la barra de desplazamiento del navegador o no para las **secciones verticales**. En caso afirmativo, la funcionalidad de `autoScrolling` (de desplazamiento automático o "a saltos") funcionará como se espera. El usuario será también libre de desplazarse por la página usando la barra de navegación y fullpage.js encajará la sección cuando el desplazamiento cese siempre y cuando se use `fitToSection`.
 
 - `paddingTop`: (por defecto `0`) Determina el "padding" superior para cada sección con un valor numérico y su unidad de medida (paddingTop: '10px', paddingTop: '10em'...). Útil cuando se usan cabeceras fijas (`fixed`).
 

@@ -424,7 +424,7 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](http://jqueryui.com
 - `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
 the fitting by the configured milliseconds.
 
-- `scrollBar`: (default `false`) Determines whether to use scrollbar for the site or not. In case of using scroll bar, the `autoScrolling` functionality will still work as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
+- `scrollBar`: (default `false`) Determines whether to use scroll bar for the **vertical sections** on site or not. In case of using scroll bar, the `autoScrolling` functionality will still work as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
 
 - `paddingTop`: (default `0`) Defines the top padding for each section with a numerical value and its measure (paddingTop: '10px', paddingTop: '10em'...) Useful in case of using a fixed header.
 
