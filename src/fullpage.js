@@ -1867,6 +1867,9 @@
         * Performs the vertical movement (by CSS3 or by jQuery)
         */
         function performMovement(v){
+            var isFastSpeed = options.scrollingSpeed < 700;
+            var transitionLapse = isFastSpeed ? 700 : options.scrollingSpeed; 
+
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
 
@@ -1881,7 +1884,10 @@
                     clearTimeout(afterSectionLoadsId);
                     afterSectionLoadsId = setTimeout(function () {
                         afterSectionLoads(v);
-                    }, options.scrollingSpeed);
+
+                        //disabling canScroll when using fastSpeed
+                        canScroll = !isFastSpeed;
+                    }, options.scrollingSpeed);                   
                 }else{
                     afterSectionLoads(v);
                 }
@@ -1905,9 +1911,21 @@
                             afterSectionLoads(v);
                         },30);
                     }else{
+                        
                         afterSectionLoads(v);
+
+                        //disabling canScroll when using fastSpeed
+                        canScroll = !isFastSpeed;
                     }
                 });
+            }
+
+             // enabling canScroll after the minimum transition laps
+             if(isFastSpeed){
+                clearTimeout(transitionLapseId)
+                transitionLapseId = setTimeout(function(){
+                    canScroll = true;
+                }, transitionLapse);
             }
         }
 
@@ -3287,7 +3305,9 @@
                 scrollId,
                 scrollId2,
                 g_doubleCheckHeightId,
-                resizeHandlerId
+                resizeHandlerId,
+                transitionIn,
+                transitionLapseId
             ].forEach(function(timeoutId){
                 clearTimeout(timeoutId);
             });
