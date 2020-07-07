@@ -962,8 +962,7 @@ new fullpage('#fullpage', {
 - [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
 - [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (поможет в определении значения `easingcss3`)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
-- [плагин fullPage.js для October CMS](http://octobercms.com/plugin/freestream-parallax)
-- [плагин wordpress fullPage.js](https://wordpress.org/plugins/wp-fullpage/)
+- [плагин fullPage.js для October CMS](https://github.com/freestream/oc-parallax-plugin)
 - [директива fullPage.js Angular2](https://github.com/meiblorn/ng2-fullpage)
 - [директива fullPage.js angular](https://github.com/hellsan631/angular-fullpage.js)
 - [дополнение ember-cli fullPage.js](https://www.npmjs.com/package/ember-cli-fullpagejs)
@@ -1000,31 +999,20 @@ new fullpage('#fullpage', {
 - http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
-- http://www.commoditiesdemystified.info/en/
 - http://torchbrowser.com/
 - http://thekorner.fr/
-- https://www.edarling.de/
-- http://urban-walks.com/
-- http://lingualeo.com/
 - http://charlotteaimes.com/
 - http://www.boxreload.com/
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://rawmilk.dk/en/
-- http://www.famavolat.com/
 - http://www.sanyang.com.tw/service/Conception/
-- http://www.batzaya.net/
-- http://medissix.com/
 - http://trasmissione-energia.terna.it/
-- http://www.thefoodmovie.com/
 - http://www.villareginateodolinda.it
 - http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://themify.me/demo/#theme=fullpane
 - http://dancingroad.com
 - http://www.camanihome.com/
-- https://life2film.com/en/
 
 Вы можете найти ещё один список [здесь](http://libscore.com/#$.fn.fullpage).
 
