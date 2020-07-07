@@ -962,8 +962,9 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 ## 누가 fullPage.js를 쓰나요?
 귀하의 페이지가 여기에 나오길 원하시다면 저에게 URL을 <a href="mailto:alvaro@alvarotrigo.com">보내주세요</a>.
 
+
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
-[![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)](https://www.coca-colacompany.com/annual-review/2017/index.html)
+[![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)]
 ![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay-4.png)
 [![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-4.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
 ![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony-4.png)
@@ -972,13 +973,13 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 ![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-5.png)
 ![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds-6.png)
 ![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-6.png)
-[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-6.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
+[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-6.png)]
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
-[![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)](https://www.x-class.com.au/)
+[![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)]
 [![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
-[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
+[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)]
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 
