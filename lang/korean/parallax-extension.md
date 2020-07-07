@@ -62,7 +62,7 @@ CSS나 인라인 스타일을 쓰실 수 있습니다.
 
 | 옵션  | 설명 |
 | ------------- | ------------- |
-| **parallax**  | (표준값 `false`). [fullPage.js의 확장](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에 패럴랙스 배경 효과를 쓸지 말지 여부를 정의합니다.  |
+| **parallax**  | (표준값 `false`). [fullPage.js의 확장](http://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에 패럴랙스 배경 효과를 쓸지 말지 여부를 정의합니다. Possible values are false, true, sections, slides. |
 | **parallaxOptions:**   | (표준값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). `parallax:true` 옵션을 쓸 때 패럴랙스 배경 효과 매개 변수를 설정할 수 있습니다.  |
 <br>
 

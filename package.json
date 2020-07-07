@@ -1,7 +1,7 @@
 {
   "name": "fullpage.js",
-  "version": "3.0.8",
-  "description": "Create beautiful fullscreen scrolling websites",
+  "version": "3.0.9",
+  "description": "Create beautiful fullscreen snap scrolling websites",
   "main": "dist/fullpage.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

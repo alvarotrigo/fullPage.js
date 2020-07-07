@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.8
+ * fullPage 3.0.9
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -250,6 +250,7 @@
         var g_initialAnchorsInDom = false;
         var g_canFireMouseEnterNormalScroll = true;
         var g_mediaLoadedId;
+        var g_transitionLapseId;
         var extensions = [
             'parallax',
             'scrollOverflowReset',
@@ -690,6 +691,9 @@
             //detecting any change on the URL to scroll to the given anchor link
             //(a way to detect back history button as we play with the hashes on the URL)
             window.addEventListener('hashchange', hashChangeHandler);
+            
+            // on window focus
+            window.addEventListener('focus', focusHandler);
 
             //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
             window.addEventListener('blur', blurHandler);
@@ -849,7 +853,7 @@
             if(!options.anchors.length){
                 var anchorsAttribute = '[data-anchor]';
                 var anchors = $(options.sectionSelector.split(',').join(anchorsAttribute + ',') + anchorsAttribute, container);
-                if(anchors.length){
+                if(anchors.length && anchors.length === $(SECTION_SEL).length){
                     g_initialAnchorsInDom = true;
                     anchors.forEach(function(item){
                         options.anchors.push(item.getAttribute('data-anchor').toString());
@@ -1092,10 +1096,7 @@
                 li += '</li>';
             }
             $('ul', nav)[0].innerHTML = li;
-
-            //centering it vertically
-            css($(SECTION_NAV_SEL), {'margin-top': '-' + ($(SECTION_NAV_SEL)[0].offsetHeight/2) + 'px'});
-
+            
             //activating the current active section
 
             var bullet = $('li', $(SECTION_NAV_SEL)[0])[index($(SECTION_ACTIVE_SEL)[0], SECTION_SEL)];
@@ -1105,9 +1106,10 @@
         /**
         * Gets the name for screen readers for a section/slide navigation bullet.
         */
-        function getBulletLinkName(i, defaultName){
+        function getBulletLinkName(i, defaultName, item){
+            var anchor = defaultName === 'Section' ? options.anchors[i] : item.getAttribute('data-anchor');
             return options.navigationTooltips[i]
-                || options.anchors[i]
+                || anchor
                 || defaultName + ' ' + (i+1);
         }
 
@@ -1186,6 +1188,10 @@
         function scrollHandler(){
             var currentSection;
 
+            if(isResizing){
+                return;
+            }
+            
             if(!options.autoScrolling || options.scrollBar){
                 var currentScroll = getScrollTop();
                 var scrollDirection = getScrollDirection(currentScroll);
@@ -1862,6 +1868,9 @@
         * Performs the vertical movement (by CSS3 or by jQuery)
         */
         function performMovement(v){
+            var isFastSpeed = options.scrollingSpeed < 700;
+            var transitionLapse = isFastSpeed ? 700 : options.scrollingSpeed; 
+
             // using CSS3 translate functionality
             if (options.css3 && options.autoScrolling && !options.scrollBar) {
 
@@ -1876,7 +1885,10 @@
                     clearTimeout(afterSectionLoadsId);
                     afterSectionLoadsId = setTimeout(function () {
                         afterSectionLoads(v);
-                    }, options.scrollingSpeed);
+
+                        //disabling canScroll when using fastSpeed
+                        canScroll = !isFastSpeed;
+                    }, options.scrollingSpeed);                   
                 }else{
                     afterSectionLoads(v);
                 }
@@ -1900,9 +1912,21 @@
                             afterSectionLoads(v);
                         },30);
                     }else{
+                        
                         afterSectionLoads(v);
+
+                        //disabling canScroll when using fastSpeed
+                        canScroll = !isFastSpeed;
                     }
                 });
+            }
+
+            // enabling canScroll after the minimum transition laps
+            if(isFastSpeed){
+                clearTimeout(g_transitionLapseId);
+                g_transitionLapseId = setTimeout(function(){
+                    canScroll = true;
+                }, transitionLapse);
             }
         }
 
@@ -2080,7 +2104,9 @@
             if(options.scrollOverflow){
                 clearTimeout(g_mediaLoadedId);
                 g_mediaLoadedId = setTimeout(function(){
-                    scrollBarHandler.createScrollBar(section);
+                    if(!hasClass($body, RESPONSIVE)){
+                        scrollBarHandler.createScrollBar(section);
+                    }
                 }, 200);
             }
         }
@@ -2367,6 +2393,11 @@
                 }
             }
         }
+        
+        // changing isWindowFocused to true on focus event
+        function focusHandler(){
+            isWindowFocused = true;
+        }
 
         //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
         function blurHandler(){
@@ -2635,6 +2666,8 @@
         * Resize event handler.
         */        
         function resizeHandler(){
+            isResizing = true;
+ 
             clearTimeout(resizeId);
 
             //in order to call the functions only when the resize is finished
@@ -2901,7 +2934,8 @@
             addClass(nav, 'fp-' + options.slidesNavPosition);
 
             for(var i=0; i< numSlides; i++){
-                appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide') +'</span><span></span></a></li>'), $('ul', nav)[0] );
+                var slide = $(SLIDE_SEL, section)[i];
+                appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide', slide) +'</span><span></span></a></li>'), $('ul', nav)[0] );
             }
 
             //centering it
@@ -3272,7 +3306,8 @@
                 scrollId,
                 scrollId2,
                 g_doubleCheckHeightId,
-                resizeHandlerId
+                resizeHandlerId,
+                g_transitionLapseId
             ].forEach(function(timeoutId){
                 clearTimeout(timeoutId);
             });
@@ -3612,7 +3647,7 @@
     }
 
     /**
-    * Equivalent or jQuery function $().
+    * Equivalent of jQuery function $().
     */
     function $(selector, context){
         context = arguments.length > 1 ? context : document;

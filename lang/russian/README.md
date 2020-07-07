@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js/#fullpagejs">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <span>Pусский</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
@@ -16,14 +17,14 @@
 
 ---
 
-![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.0.8-brightgreen.svg)
+![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Кб в формате gzip* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Создано [@imac2](https://twitter.com/imac2)*
 
 - [Живое демо](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Тема Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Расширения fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -432,7 +433,7 @@ new fullpage('#fullpage', {
 
 - `normalScrollElements`: (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/RmVazM) Если вы хотите избежать автопрокрутки при скроллинге некоторых элементов, вам нужно использовать эту опцию. (пригодится для карт, прокрутки div-элементов и т.д.) Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `normalScrollElements: '#element1, .element2'`). Данную опцию следует применять к самим разделам/слайдам.
 
-- `bigSectionsDestination`: (по умолчанию `null`) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
+- `bigSectionsDestination`: (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/vYLdMrx) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
 
 - `keyboardScrolling`: (по умолчанию `true`) Определяет возможность навигации на сайте при помощи клавиатуры.
 
@@ -954,7 +955,7 @@ new fullpage('#fullpage', {
 Желаете построить дистрибутивные файлы fullpage.js? Пожалуйста, зайдите в раздел [Задачи по построению](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
 
 # Ресурсы
-- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- Wordpress Plugin [for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/).
 - [Тема Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

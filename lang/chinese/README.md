@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <span>中文</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
@@ -12,16 +13,17 @@
 <p align="center">
 	适用于&nbsp;<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>&nbsp;,&nbsp;<a href="https://github.com/alvarotrigo/react-fullpage">React</a>&nbsp;和&nbsp;<a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>
 </p>
+
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.8-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [示例](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 扩展](http://alvarotrigo.com/fullPage/extensions/)
 - [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -433,7 +435,7 @@ new fullpage('#fullpage', {
 
 - `normalScrollElements`: （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/RmVazM) 如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动 div 等有用）它需要带有 Javascript 选择器的字符来表示这些元素。（例如：`normalScrollElements：'＃element1，.element2'` ）。 此选项不应该应用于任何 section/slide 元素本身。
 
-- `bigSectionsDestination`: （默认 `null` ）定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
+- `bigSectionsDestination`: （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/vYLdMrx) 定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
 
 - `keyboardScrolling`: （默认为 `true` ）定义是否可以使用键盘进行内容滑动。
 
@@ -956,7 +958,7 @@ new fullpage('#fullpage', {
 想要构建 fullpage.js 分发文件？ 请参阅 [Build Tasks](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks) 
 
 # 参考资源
-- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- Wordpress Plugin [for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/).
 - [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)

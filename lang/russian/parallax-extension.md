@@ -62,7 +62,7 @@
 
 | Опция  | Описание |
 | ------------- | ------------- |
-| **parallax**  | (по умолчанию: `false`). [Расширение fullPage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет, будут ли использоваться эффекты параллакс для фона разделов / слайдов. |
+| **parallax**  | (по умолчанию: `false`). [Расширение fullPage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет, будут ли использоваться эффекты параллакс для фона разделов / слайдов. Possible values are false, true, sections, slides.|
 | **parallaxOptions:**   | (по умолчанию: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Позволяет изменять параметры эффекта параллакс для фона при использовании опции  `parallax:true`.  |
 <br>
 

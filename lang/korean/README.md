@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
   <span>한국어</span>
@@ -15,14 +16,14 @@
 </p>
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.8-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [실시간 데모](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
 - [워드프레스 테마](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/)
 - [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -423,7 +424,7 @@ new fullpage('#fullpage', {
 
 - `normalScrollElements`: (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/RmVazM) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
 
-- `bigSectionsDestination`: (기본값 `null`) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
+- `bigSectionsDestination`: (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/vYLdMrx) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
 
 - `keyboardScrolling`: (기본값 `true`) 키보드를 써서 컨텐츠 사이를 이동할 수 있는지 정의합니다.
 
@@ -943,7 +944,7 @@ new fullpage('#fullpage', {
 fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)을 방문해 주세요.
 
 # 재료가 되는 도구
-- [Wordpress Plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- Wordpress Plugin [for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/).
 - [워드프레스 테마](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
