@@ -24,7 +24,7 @@
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Кб в формате gzip* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Создано [@imac2](https://twitter.com/imac2)*
 
 - [Живое демо](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 - [Тема Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Расширения fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
