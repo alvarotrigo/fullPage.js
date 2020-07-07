@@ -8,8 +8,7 @@
   <span>Français</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> |
-  <span>Français</span>
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
 </p>
 
 <p align="center">
@@ -25,7 +24,7 @@
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
 - [Demo en ligne](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/)
+- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 - [Thème Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensions fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Questions fréquemment demandées](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
@@ -52,7 +51,7 @@ Elle permet la création de sites Web à défilement en plein écran, ainsi que 
 - [Contribuer à fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#contribuer-à-fullpagejs)
 - [Changelog](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#changelog)
 - [Build tasks](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#build-tasks)
-- [Ressources](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#ressourcess)
+- [Ressources](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#ressources)
 - [Qui utilise fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#qui-utilise-fullpagejs)
 - [Dons](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#dons)
 - [Sponsors](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#sponsors)
