@@ -35,27 +35,27 @@
 Une bibliothèque simple et facile à utiliser pour créer des sites Web qui défile en plein écran (aussi connus sous le nom de sites web d'une seule page ou d'une page).
 Elle permet la création de sites Web à défilement en plein écran, ainsi que l'ajout de quelques carousel panoramique à l'intérieur des sections du site.
 
-- [Introduction](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#introduction)
-- [Compatibilité](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#compatibilité)
-- [Licence](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#licence)
-- [Usage](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#usage)
-  - [Créer des liens vers des sections ou des diapositives](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/créer-des-liens-vers-des-sections-ou-des-diapositives)
-  - [Créer des sections plus petites ou plus grandes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#créer-des-sections-plus-petites-ou-plus-grandes)
-  - [Classes d'états ajoutées par fullpage.js](https://github.com/alvarotrigo/fullPage.j/tree/master/lang/french/s#classes-détats-ajoutées-par-fullpagejs)
-  - [Lazy loading](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#lazy-loading)
-  - [Lecture automatique/pause automatique des médias intégrés](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#lecture-automatiquepause-automatique-des-médias-intégrés)
-  - [Utiliser des extensions](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#utiliser-des-extensions)
-- [Options](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#options)
-- [Méthodes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#méthodes)
-- [Callbacks](https://github.com/alvarotrigo/fullPage.j/tree/master/lang/french/#callbacks)
-- [Signaler les problèmes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#signaler-les-problèmes)
-- [Contribuer à fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#contribuer-à-fullpagejs)
-- [Changelog](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#changelog)
-- [Build tasks](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#build-tasks)
-- [Ressources](https://github.com/alvarotrigo/fullPage.js#ressources)
-- [Qui utilise fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#qui-utilise-fullpagejs)
-- [Dons](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#dons)
-- [Sponsors](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#sponsors)
+- [Introduction](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#introduction)
+- [Compatibilité](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#compatibilité)
+- [Licence](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#licence)
+- [Usage](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#usage)
+  - [Créer des liens vers des sections ou des diapositives](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#cr%C3%A9er-des-liens-vers-des-sections-ou-des-diapositives)
+  - [Créer des sections plus petites ou plus grandes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#créer-des-sections-plus-petites-ou-plus-grandes)
+  - [Classes d'états ajoutées par fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#classes-d%C3%A9tats-ajout%C3%A9es-par-fullpagejs)
+  - [Lazy loading](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#lazy-loading)
+  - [Lecture automatique/pause automatique des médias intégrés](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#lecture-automatiquepause-automatique-des-médias-intégrés)
+  - [Utiliser des extensions](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#utiliser-des-extensions)
+- [Options](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#options)
+- [Méthodes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#méthodes)
+- [Callbacks](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#callbacks)
+- [Signaler les problèmes](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#signaler-les-problèmes)
+- [Contribuer à fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#contribuer-à-fullpagejs)
+- [Changelog](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#changelog)
+- [Build tasks](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#build-tasks)
+- [Ressources](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#ressourcess)
+- [Qui utilise fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#qui-utilise-fullpagejs)
+- [Dons](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#dons)
+- [Sponsors](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#sponsors)
 
 ## Introduction
 Les suggestions sont les bienvenues, non seulement pour les demandes de fonctionnalités mais aussi pour l'amélioration du style de codage.
@@ -541,7 +541,7 @@ Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif
 
 - Les `responsiveSlides` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Quand il est réglé sur `true`, les diapositives seront transformées en sections verticales quand le mode réactif est activé. (en utilisant les options `responsiveWidth` ou `responsiveHeight` détaillées ci-dessus). Nécessite fullpage.js >= 3.0.1.
 
-- `parallax:true`. [En savoir plus sur la façon d'appliquer l'option parallax](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallax:true`. [En savoir plus sur la façon d'appliquer l'option parallax](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/french/parallax-extension.md).
 
 - `cards` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non utiliser l'effet des cartes sur les sections/glissières. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
@@ -998,11 +998,21 @@ Vous voulez créer des fichiers de distribution fullpage.js ? Veuillez consulter
 ## Qui utilise fullPage.js
 Si vous voulez que votre page soit listée ici, veuillez <a href="mailto:alvaro@alvarotrigo.com">contactez-moi </a> avec l'URL.
 
-[ ![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)](http://www.yourprimer.com/)
-[ ![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)](https://www.coca-colacompany.com/annual-review/2017/index.html)](https://www.coca-colacompany.com/annual-review/2017/index.html)
+[![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
+[![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)](https://www.coca-colacompany.com/annual-review/2017/index.html)
 ![eBay](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ebay-4.png)
-![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-4.png)(http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
+[![BBC](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bbc-4.png)](http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02)
 ![Sony](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sony-4.png)
 
 ![Vodafone](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vodafone-5.png)
-[British Airways](http://wallpapers-for-ipad.com/fullpage/im).
+![British Airways](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/british-airways-5.png)
+![McDonalds](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mcdonalds-6.png)
+![EA](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ea-6.png)
+[![Vogue](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/vogue-6.png)](http://www.vogue.fr/chaumet-histoires-de-liens)
+![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
+
+[![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)](https://www.x-class.com.au/)
+[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
+[![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)](https://www.edarling.de/)
+![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
