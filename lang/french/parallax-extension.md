@@ -1,3 +1,5 @@
+# Parallax extension 
+
 ![](https://cloud.githubusercontent.com/assets/1706326/23580315/f28edab4-00f6-11e7-90f9-81ffafd77b0e.gif)
 
 Lisez [Utilisation des extensions](https://github.com/alvarotrigo/fullPage.js#use-extensions) avant d'utiliser l'option parallaxe.

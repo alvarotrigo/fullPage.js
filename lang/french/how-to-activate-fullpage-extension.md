@@ -1,3 +1,5 @@
+# How to activate a fullPage.js extension 
+
 1. Accédez à https://alvarotrigo.com/fullPage/extensions/activationKey.html. (Quelle est l'URL qui a été envoyée à votre adresse email lors de l'achat de l'extension)
 1. Présentez la **clé de licence** qui vous a été remise lors de l'achat de l'article. Aussi disponible dans votre courriel de confirmation d'achat.
 1. Un nom de domaine peut être requis afin d'obtenir la **clé d'activation** de votre produit.
