@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.0.9
+ * fullPage 3.1.0
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -853,7 +853,7 @@
             if(!options.anchors.length){
                 var anchorsAttribute = '[data-anchor]';
                 var anchors = $(options.sectionSelector.split(',').join(anchorsAttribute + ',') + anchorsAttribute, container);
-                if(anchors.length && anchors.length === $(SECTION_SEL).length){
+                if(anchors.length && anchors.length === $(options.sectionSelector, container).length){
                     g_initialAnchorsInDom = true;
                     anchors.forEach(function(item){
                         options.anchors.push(item.getAttribute('data-anchor').toString());
