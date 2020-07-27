@@ -535,7 +535,6 @@
                 silentMoveTo(sectionIndex + 1);
             }
 
-            isResizing = false;
             if(isFunction( options.afterResize ) && resizing){
                 options.afterResize.call(container, window.innerWidth, window.innerHeight);
             }
@@ -587,7 +586,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.0.8';
+            FP.version = '3.0.9';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -2666,8 +2665,6 @@
         * Resize event handler.
         */        
         function resizeHandler(){
-            isResizing = true;
- 
             clearTimeout(resizeId);
 
             //in order to call the functions only when the resize is finished
@@ -2687,6 +2684,7 @@
         * When resizing the site, we adjust the heights of the sections, slimScroll...
         */
         function resizeActions(){
+            isResizing = true;
 
             //checking if it needs to get responsive
             responsive();
@@ -2709,6 +2707,8 @@
             else{
                 adjustToNewViewport();
             }
+
+            isResizing = false;
         }
 
         /**
