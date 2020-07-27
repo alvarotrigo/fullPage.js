@@ -3,6 +3,9 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-clean-css');
+var replace = require('gulp-replace');
+var fs = require('fs');
+var fpPackage = require('./package.json');
 
 gulp.task('css', function(done) {
     gulp.src('./src/fullpage.css')
@@ -31,7 +34,24 @@ gulp.task('js', function(done) {
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
+    
         done();
+});
+
+/**
+ * Updates version number in credit comments and window variable.
+ */
+gulp.task('update-version', function(done){
+    gulp.src([
+        './src/fullpage.js',
+        './src/fullpage.extensions.js',
+        './src/fullpage.css',
+    ])
+    .pipe(replace(/(FP\.version = ')([\d\.])+(')/g, "$1" + fpPackage.version + "$3"))
+    .pipe(replace(/(fullPage )([\d\.]+)/g, "$1" + fpPackage.version))
+    .pipe(gulp.dest('./src/'));
+
+    done();
 });
 
 gulp.task('vendors', function(done) {
