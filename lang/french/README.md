@@ -1015,3 +1015,42 @@ Si vous voulez que votre page soit listée ici, veuillez <a href="mailto:alvaro@
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
+
+- http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
+- http://www.newjumoconcept.com/
+- http://www.shootinggalleryasia.com/
+- http://promo.prestigio.com/grace1/
+- http://torchbrowser.com/
+- http://thekorner.fr/
+- http://charlotteaimes.com/
+- http://www.boxreload.com/
+- http://educationaboveall.org/
+- http://usescribe.com/
+- http://boxx.hk/
+- http://www.sanyang.com.tw/service/Conception/
+- http://trasmissione-energia.terna.it/
+- http://www.villareginateodolinda.it
+- http://www.kesstrio.com
+- http://ded-morozz.kiev.ua/
+- http://dancingroad.com
+- http://www.camanihome.com/
+
+Vous pouvez trouver une autre liste [ici](http://libscore.com/#$.fn.fullpage).
+
+## Des dons
+Les dons seraient plus que bienvenus :)
+
+[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+## Les sponsors
+Devenez sponsor et obtenez votre logo sur notre README sur Github avec un lien vers votre site. [[Devenez sponsor](https://alvarotrigo.com/#contact)] | [[Devenez patreon]](https://www.patreon.com/fullpagejs)
+
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+[![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
+
+### Gens
+<a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
+	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+</a>
