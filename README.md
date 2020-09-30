@@ -140,10 +140,10 @@ If you want to define a different starting point rather than the first section o
 In order to create a landscape slider within a section, each slide will be defined by default with an element containing the `slide` class:
 ```html
 <div class="section">
-	<div class="slide"> Slide 1 </div>
-	<div class="slide"> Slide 2 </div>
-	<div class="slide"> Slide 3 </div>
-	<div class="slide"> Slide 4 </div>
+	<div class="slide"> slide 1 </div>
+	<div class="slide"> slide 2 </div>
+	<div class="slide"> slide 3 </div>
+	<div class="slide"> slide 4 </div>
 </div>
 ````
 You can see a fully working example of the HTML structure in the [`simple.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
