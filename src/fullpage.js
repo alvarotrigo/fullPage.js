@@ -1624,7 +1624,7 @@
                 }
             }
 
-            slideMoving = true && !FP.test.isTesting;
+            slideMoving = !FP.test.isTesting;
             landscapeScroll(slides, destiny, direction);
         }
 
