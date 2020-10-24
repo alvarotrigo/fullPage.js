@@ -1023,6 +1023,7 @@ If you want your page to be listed here, please <a href="mailto:alvaro@alvarotri
 - http://ded-morozz.kiev.ua/
 - http://dancingroad.com
 - http://www.camanihome.com/
+- https://genusee.com/
 
 You can find another list [here](http://libscore.com/#$.fn.fullpage).
 
