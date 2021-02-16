@@ -88,4 +88,4 @@ gulp.task('extensions', function(done) {
         done();
 });
 
-gulp.task('default', gulp.parallel('css', 'js'));
+gulp.task('default', gulp.series('update-version', 'css', 'js', 'extensions'));
