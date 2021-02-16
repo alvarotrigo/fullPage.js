@@ -39,7 +39,7 @@ gulp.task('js', function(done) {
 });
 
 /**
- * Updates version number in credit comments and window variable.
+ * Updates version number in credit comments, window variable and README.md
  */
 gulp.task('update-version', function(done){
     gulp.src([
@@ -50,6 +50,11 @@ gulp.task('update-version', function(done){
     .pipe(replace(/(FP\.version = ')([\d\.])+(')/g, "$1" + fpPackage.version + "$3"))
     .pipe(replace(/(fullPage )([\d\.]+)/g, "$1" + fpPackage.version))
     .pipe(gulp.dest('./src/'));
+
+    // updating readme version
+    gulp.src('./README.md')
+        .pipe(replace(/(fullPage.js-v)([\d\.]+)/g, "$1" + fpPackage.version))
+        .pipe(gulp.dest('./'));
 
     done();
 });
