@@ -1898,6 +1898,8 @@
                 var scrollSettings = getScrollSettings(v.dtop);
                 FP.test.top = -v.dtop + 'px';
 
+                css($htmlBody, {'scroll-behavior': 'unset'});
+
                 scrollTo(scrollSettings.element, scrollSettings.options, options.scrollingSpeed, function(){
                     if(options.scrollBar){
 
@@ -3453,7 +3455,7 @@
 
             if(!isOK){
                 showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
-                showError('error', 'https://github.com/alvarotrigo/fullPage.js#options.');
+                showError('error', 'https://github.com/alvarotrigo/fullPage.js#options');
             }
             else if(l && l.length < 20){
                 console.warn('%c This website was made using fullPage.js slider. More info on the following website:', msgStyle);
