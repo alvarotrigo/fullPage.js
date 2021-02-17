@@ -17,7 +17,7 @@
 
 ---
 
-![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
+![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.1.0-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -241,6 +241,8 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveSlides: false,
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+	dropEffect: false,
+	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
@@ -526,6 +528,10 @@ new fullpage('#fullpage', {
 - `parallax`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Определяет, будут ли использоваться эффекты параллакс для фона разделов / слайдов. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).
 
 - `parallaxOptions`: (по умолчанию: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Позволяет настраивать параметры эффекта параллакс для фона при использовании опции parallax:true. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).
+
+- `dropEffect` (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+
+- `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 - `cards`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
@@ -993,12 +999,9 @@ new fullpage('#fullpage', {
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
-
-- https://www.coca-colacompany.com/annual-review/2017/index.html
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
 - http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
-- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/

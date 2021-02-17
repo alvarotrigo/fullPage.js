@@ -3,6 +3,9 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-clean-css');
+var replace = require('gulp-replace');
+var fs = require('fs');
+var fpPackage = require('./package.json');
 
 gulp.task('css', function(done) {
     gulp.src('./src/fullpage.css')
@@ -31,7 +34,29 @@ gulp.task('js', function(done) {
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./dist'));
+    
         done();
+});
+
+/**
+ * Updates version number in credit comments, window variable and README.md
+ */
+gulp.task('update-version', function(done){
+    gulp.src([
+        './src/fullpage.js',
+        './src/fullpage.extensions.js',
+        './src/fullpage.css',
+    ])
+    .pipe(replace(/(FP\.version = ')([\d\.])+(')/g, "$1" + fpPackage.version + "$3"))
+    .pipe(replace(/(fullPage )([\d\.]+)/g, "$1" + fpPackage.version))
+    .pipe(gulp.dest('./src/'));
+
+    // updating readme version
+    gulp.src('./README.md')
+        .pipe(replace(/(fullPage.js-v)([\d\.]+)/g, "$1" + fpPackage.version))
+        .pipe(gulp.dest('./'));
+
+    done();
 });
 
 gulp.task('vendors', function(done) {
@@ -68,4 +93,4 @@ gulp.task('extensions', function(done) {
         done();
 });
 
-gulp.task('default', gulp.parallel('css', 'js'));
+gulp.task('default', gulp.series('update-version', 'css', 'js', 'extensions'));

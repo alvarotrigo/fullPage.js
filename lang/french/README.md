@@ -17,7 +17,7 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.0.9-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.1.0-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -250,6 +250,8 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveSlides: false,
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+	dropEffect: false,
+	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
@@ -541,6 +543,12 @@ Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif
 - Les `responsiveSlides` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Quand il est réglé sur `true`, les diapositives seront transformées en sections verticales quand le mode réactif est activé. (en utilisant les options `responsiveWidth` ou `responsiveHeight` détaillées ci-dessus). Nécessite fullpage.js >= 3.0.1.
 
 - `parallax:true`. [En savoir plus sur la façon d'appliquer l'option parallax](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/french/parallax-extension.md).
+
+- `parallaxOptions`: (default: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Allows to configure the parameters for the parallax backgrounds effect when using the option `parallax:true`. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+
+- `dropEffect` (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+
+- `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 - `cards` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non utiliser l'effet des cartes sur les sections/glissières. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
@@ -1015,3 +1023,42 @@ Si vous voulez que votre page soit listée ici, veuillez <a href="mailto:alvaro@
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
+
+- http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
+- http://www.newjumoconcept.com/
+- http://www.shootinggalleryasia.com/
+- http://promo.prestigio.com/grace1/
+- http://torchbrowser.com/
+- http://thekorner.fr/
+- http://charlotteaimes.com/
+- http://www.boxreload.com/
+- http://educationaboveall.org/
+- http://usescribe.com/
+- http://boxx.hk/
+- http://www.sanyang.com.tw/service/Conception/
+- http://trasmissione-energia.terna.it/
+- http://www.villareginateodolinda.it
+- http://www.kesstrio.com
+- http://ded-morozz.kiev.ua/
+- http://dancingroad.com
+- http://www.camanihome.com/
+
+Vous pouvez trouver une autre liste [ici](http://libscore.com/#$.fn.fullpage).
+
+## Des dons
+Les dons seraient plus que bienvenus :)
+
+[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+## Les sponsors
+Devenez sponsor et obtenez votre logo sur notre README sur Github avec un lien vers votre site. [[Devenez sponsor](https://alvarotrigo.com/#contact)] | [[Devenez patreon]](https://www.patreon.com/fullpagejs)
+
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+[![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
+
+### Gens
+<a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
+	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+</a>
