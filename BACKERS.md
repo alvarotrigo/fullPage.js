@@ -51,4 +51,4 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
         </td>
       </tr>
     </tbody>
-  </table>
+</table>

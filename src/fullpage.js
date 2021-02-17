@@ -586,7 +586,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.0.9';
+            FP.version = '3.1.0';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
