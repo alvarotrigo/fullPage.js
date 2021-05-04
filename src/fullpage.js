@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.1.0
+ * fullPage 3.1.1
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -535,6 +535,8 @@
                 silentMoveTo(sectionIndex + 1);
             }
 
+            isResizing = false;
+
             if(isFunction( options.afterResize ) && resizing){
                 options.afterResize.call(container, window.innerWidth, window.innerHeight);
             }
@@ -586,7 +588,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.1.0';
+            FP.version = '3.1.1';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
