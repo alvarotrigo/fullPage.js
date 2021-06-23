@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.1.0-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v3.1.2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -249,6 +249,8 @@ new fullpage('#fullpage', {
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 	dropEffect: false,
 	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
+	waterEffect: false,
+	waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
@@ -539,6 +541,10 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 - `dropEffect` (default `false`) [Extensión de fullpage.jss](http://alvarotrigo.com/fullPage/extensions/). Determinar si usar el efecto "drop" para secciones y slides. [Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 - `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Permite configurar los parámetros para el efecto drop cuando se usa la option `dropEffect:true`.[Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+
+- `waterEffect` (default `false`) [Extensión de fullpage.jss](http://alvarotrigo.com/fullPage/extensions/). Determinar si usar el efecto "Water" (agua) para secciones y slides. [Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+
+- `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Permite configurar los parámetros para el efecto "Water" (agua) cuando se usa la option `waterEffect:true`.[Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 - `cards`: (default `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de "Cards" en secciones/diapositivas. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
