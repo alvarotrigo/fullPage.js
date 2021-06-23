@@ -249,6 +249,8 @@ new fullpage('#fullpage', {
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 	dropEffect: false,
 	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
+	waterEffect: false,
+	waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
@@ -539,6 +541,10 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 - `dropEffect` (default `false`) [Extensión de fullpage.jss](http://alvarotrigo.com/fullPage/extensions/). Determinar si usar el efecto "drop" para secciones y slides. [Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 - `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Permite configurar los parámetros para el efecto drop cuando se usa la option `dropEffect:true`.[Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+
+- `waterEffect` (default `false`) [Extensión de fullpage.jss](http://alvarotrigo.com/fullPage/extensions/). Determinar si usar el efecto "Water" (agua) para secciones y slides. [Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+
+- `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Permite configurar los parámetros para el efecto "Water" (agua) cuando se usa la option `waterEffect:true`.[Lee más acerca de la opción de dropEffect aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 - `cards`: (default `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Determina si usar el efecto de "Cards" en secciones/diapositivas. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
