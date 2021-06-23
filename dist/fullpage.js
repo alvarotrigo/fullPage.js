@@ -1,5 +1,5 @@
 /*!
- * fullPage 3.1.1
+ * fullPage 3.1.2
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -262,7 +262,9 @@
             'interlockedSlides',
             'scrollHorizontally',
             'resetSliders',
-            'cards'
+            'cards',
+            'dropEffect',
+            'waterEffect'
         ];
 
         displayWarnings();
