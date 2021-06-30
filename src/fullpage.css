@@ -235,3 +235,17 @@ html.fp-enabled,
     white-space: nowrap;
     border: 0;
 }
+
+.fp-snaps{
+    overflow-y: auto !important;
+    height: 100% !important;
+}
+.fp-snaps body{
+    height: 100% !important;
+    -ms-scroll-snap-type: y mandatory;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll !important;
+}
+.fp-snaps .fp-section{
+    scroll-snap-align: start;
+}
