@@ -1,5 +1,5 @@
 /*!
-* Scrolloverflow 2.0.6 module for fullPage.js >= 3
+* Scrolloverflow 2.0.7 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 */
 /**
@@ -2143,7 +2143,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /*!
-* Scrolloverflow 2.0.6 module for fullPage.js >= 3
+* Scrolloverflow 2.0.7 module for fullPage.js >= 3
 * https://github.com/alvarotrigo/fullPage.js
 * @license MIT licensed
 *
@@ -2224,15 +2224,31 @@ if ( typeof module != 'undefined' && module.exports ) {
                 if(document.readyState === 'complete'){
                     createScrollBarForAll();
                     fullpage_api.shared.afterRenderActions();
+                    bindEvents();
                 }
                 //after DOM and images are loaded
                 window.addEventListener('load', function(){
                     createScrollBarForAll();
                     fullpage_api.shared.afterRenderActions();
+                    bindEvents();
                 });
+
 
                 return self;
             };
+
+            function bindEvents(){
+                
+                // Adds observer to fp-scroller elements
+                $('.fp-scroller').forEach(function(fpScroller){
+                    new MutationObserver(onFpScrollerChange).observe(fpScroller, {
+                        attributes: true,
+                        subtree:true,
+                        childList: true,
+                        characterData: true
+                    });
+                });
+            }
 
             /**
             * Creates the scrollbar for the sections and slides in the site
@@ -2337,9 +2353,22 @@ if ( typeof module != 'undefined' && module.exports ) {
                 }
             }
 
+            /**
+             * Triggered when fp-scroller wrapper content changes.
+             * and reBuilds the scrollbar.
+             */
+            function onFpScrollerChange(mutations){
+                mutations.forEach(function(mutation) {
+                    var slide = fp_utils.closest(mutation.target, SLIDE_SEL);
+                    var sectionOrSlide = slide ? slide : fp_utils.closest(mutation.target, SECTION_SEL);
+                    createScrollBar(sectionOrSlide);
+                });
+            }
+
             //public functions
             self.createScrollBarForAll = createScrollBarForAll;
             self.createScrollBar = createScrollBar;
+            self.onFpScrollerChange = onFpScrollerChange;
         }
 
         /**

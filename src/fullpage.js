@@ -2670,7 +2670,7 @@
         }
 
         /**
-         * Detects changes on sections and fires reBuild
+         * Listen to changes on sections and fires reBuild
          * when those changes affect the section height.
          */
         function onSectionChange(mutations){
