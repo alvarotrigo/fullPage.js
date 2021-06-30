@@ -710,6 +710,10 @@
             //to prevent scrolling while zooming
             document.addEventListener('keyup', keyUpHandler);
 
+            $(SECTION_SEL).forEach(function(section){
+                createObserver(section);
+            });
+
             //Scrolls to the section when clicking the navigation bullet
             //simulating the jQuery .on('click') event using delegation
             ['click', 'touchstart'].forEach(function(eventName){
@@ -2282,7 +2286,7 @@
 
                 keydownId = setTimeout(function(){
                     onkeydown(e);
-                },150);
+                },0);
             }
         }
 
@@ -2663,6 +2667,32 @@
                 removeClass($(ACTIVE_SEL, slidesNav), ACTIVE);
                 addClass( $('a', $('li', slidesNav)[slideIndex] ), ACTIVE);
             }
+        }
+
+        /**
+         * Detects changes on sections and fires reBuild
+         * when those changes affect the section height.
+         */
+        function onSectionChange(mutations){
+            mutations.forEach(function(mutation) {
+                var parentSection = closest(mutation.target, SECTION_SEL);
+                if(parentSection.offsetHeight !== windowsHeight){
+                    reBuild();
+                }
+            });
+        }
+
+        /**
+         * Creates a Mutation observer.
+         */
+        function createObserver(target) {
+            var observer = new MutationObserver(onSectionChange);
+            observer.observe(target, {
+                attributes: true,
+                subtree:true,
+                childList: true,
+                characterData: true
+            });
         }
 
         var previousHeight = windowsHeight;
