@@ -279,6 +279,40 @@
         });
 
         /**
+         * Triggers the callback once per scroll wheel action.
+         * Based on scrolling speed delay.
+         */
+        var oncePerScroll = (function() {
+            var isWheelEventFired = false;
+            var prevWheelTime = new Date().getTime();
+
+            return function(callback){
+                var currentTime = new Date().getTime();
+                if(!isWheelEventFired){
+                    callback();
+                    isWheelEventFired = true;
+                }
+                else if(currentTime - prevWheelTime >= options.scrollingSpeed){
+                    prevWheelTime = currentTime;
+                    isWheelEventFired = false;
+                }                
+            };
+        })();
+
+        /**
+         * Fires the wheel event once per mouse wheel trigger.
+         */
+        function fireWheelEvent(direction){
+            if(!isFunction( options.onMouseWheel)){
+                return;
+            }
+
+            oncePerScroll(function(){
+                fireCallback('onMouseWheel', {direction: direction});
+            }, options.scrollingSpeed);
+        }
+
+        /**
         * Sets the autoScroll option.
         * It changes the scroll bar visibility and the history of the site as a result.
         */
@@ -440,6 +474,8 @@
         function moveSectionUp(){
             var prev = prevUntil($(SECTION_ACTIVE_SEL)[0], SECTION_SEL);
 
+            fireWheelEvent('up');
+
             //looping to the bottom if there's no more sections above
             if (!prev && (options.loopTop || options.continuousVertical)) {
                 prev = last($(SECTION_SEL));
@@ -455,6 +491,8 @@
         */
         function moveSectionDown(){
             var next = nextUntil($(SECTION_ACTIVE_SEL)[0], SECTION_SEL);
+
+            fireWheelEvent('down');
 
             //looping to the top if there's no more sections below
             if(!next &&
@@ -1595,9 +1633,10 @@
                         //scrolling down?
                         if (delta < 0) {
                             scrolling('down');
+                        }
 
                         //scrolling up?
-                        }else {
+                        else {
                             scrolling('up');
                         }
                     }
@@ -1870,6 +1909,10 @@
 
                     onSlideLeave: function(){
                         return paramsPerEvent.afterSlideLoad();
+                    },
+
+                    onMouseWheel: function(){ 
+                        return [v.direction]; 
                     }
                 };
             }
