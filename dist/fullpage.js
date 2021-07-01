@@ -43,6 +43,7 @@
     var ACTIVE_SEL =            '.' + ACTIVE;
     var COMPLETELY =            'fp-completely';
     var COMPLETELY_SEL =        '.' + COMPLETELY;
+    var SNAPS =                 'fp-snaps';
 
     // section
     var SECTION_DEFAULT_SEL =   '.section';
@@ -80,6 +81,7 @@
     var SLIDES_NAV =            'fp-slidesNav';
     var SLIDES_NAV_SEL =        '.' + SLIDES_NAV;
     var SLIDES_NAV_LINK_SEL =   SLIDES_NAV_SEL + ' a';
+    var SLIDES_STYLED_ARROW =   'fp-arrow';
     var SLIDES_ARROW =          'fp-controlArrow';
     var SLIDES_ARROW_SEL =      '.' + SLIDES_ARROW;
     var SLIDES_PREV =           'fp-prev';
@@ -154,6 +156,7 @@
 
             //design
             controlArrows: true,
+            controlArrowsHTML: ['<div class="' + SLIDES_STYLED_ARROW + '"></div>', '<div class="' + SLIDES_STYLED_ARROW + '"></div>'],
             controlArrowColor: '#fff',
             verticalCentered: true,
             sectionsColor : [],
@@ -203,6 +206,7 @@
         var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
         var windowsWidth = getWindowWidth();
+        var g_isCssSnapsSupported = isCssSnapsSupported();
         var isResizing = false;
         var isWindowFocused = true;
         var lastScrolledDestiny;
@@ -277,6 +281,40 @@
         });
 
         /**
+         * Triggers the callback once per scroll wheel action.
+         * Based on scrolling speed delay.
+         */
+        var oncePerScroll = (function() {
+            var isWheelEventFired = false;
+            var prevWheelTime = new Date().getTime();
+
+            return function(callback){
+                var currentTime = new Date().getTime();
+                if(!isWheelEventFired){
+                    callback();
+                    isWheelEventFired = true;
+                }
+                else if(currentTime - prevWheelTime >= options.scrollingSpeed){
+                    prevWheelTime = currentTime;
+                    isWheelEventFired = false;
+                }                
+            };
+        })();
+
+        /**
+         * Fires the wheel event once per mouse wheel trigger.
+         */
+        function fireWheelEvent(direction){
+            if(!isFunction( options.onMouseWheel)){
+                return;
+            }
+
+            oncePerScroll(function(){
+                fireCallback('onMouseWheel', {direction: direction});
+            }, options.scrollingSpeed);
+        }
+
+        /**
         * Sets the autoScroll option.
         * It changes the scroll bar visibility and the history of the site as a result.
         */
@@ -349,7 +387,19 @@
         * Sets fitToSection
         */
         function setFitToSection(value, type){
+            toggleCssSnapsWhenPossible(value);
             setVariableState('fitToSection', value, type);
+        }
+
+        /**
+        * Adds or removes CSS snaps scrolling behaviour depending on the given value.
+        */
+        function toggleCssSnapsWhenPossible(value){
+            if(g_isCssSnapsSupported){
+                var canAddSnaps = options.fitToSection && !options.autoScrolling && value;
+                var toggleFunction = canAddSnaps ? addClass : removeClass;
+                toggleFunction($html, SNAPS);
+            }
         }
 
         /**
@@ -426,6 +476,8 @@
         function moveSectionUp(){
             var prev = prevUntil($(SECTION_ACTIVE_SEL)[0], SECTION_SEL);
 
+            fireWheelEvent('up');
+
             //looping to the bottom if there's no more sections above
             if (!prev && (options.loopTop || options.continuousVertical)) {
                 prev = last($(SECTION_SEL));
@@ -441,6 +493,8 @@
         */
         function moveSectionDown(){
             var next = nextUntil($(SECTION_ACTIVE_SEL)[0], SECTION_SEL);
+
+            fireWheelEvent('down');
 
             //looping to the top if there's no more sections below
             if(!next &&
@@ -669,7 +723,8 @@
             setMouseHijack(true);
             setAutoScrolling(options.autoScrolling, 'internal');
             responsive();
-
+            toggleCssSnapsWhenPossible(true);
+            
             //setting the class for the body element
             setBodyClass();
 
@@ -709,6 +764,10 @@
 
             //to prevent scrolling while zooming
             document.addEventListener('keyup', keyUpHandler);
+
+            $(SECTION_SEL).forEach(function(section){
+                createObserver(section);
+            });
 
             //Scrolls to the section when clicking the navigation bullet
             //simulating the jQuery .on('click') event using delegation
@@ -1047,8 +1106,11 @@
         * Creates the control arrows for the given section
         */
         function createSlideArrows(section){
-            var arrows = [createElementFromHTML('<div class="' + SLIDES_ARROW_PREV + '"></div>'), createElementFromHTML('<div class="' + SLIDES_ARROW_NEXT + '"></div>')];
+            var arrows = [createElementFromHTML(options.controlArrowsHTML[0]), createElementFromHTML(options.controlArrowsHTML[1])];
             after($(SLIDES_WRAPPER_SEL, section)[0], arrows);
+            addClass(arrows, SLIDES_ARROW);
+            addClass(arrows[0], SLIDES_PREV);
+            addClass(arrows[1], SLIDES_NEXT);
 
             if(options.controlArrowColor !== '#fff'){
                 css($(SLIDES_ARROW_NEXT_SEL, section), {'border-color': 'transparent transparent transparent '+options.controlArrowColor});
@@ -1292,7 +1354,7 @@
                     }, 100);
                 }
 
-                if(options.fitToSection){
+                if(options.fitToSection && (!g_isCssSnapsSupported || options.scrollBar)){
                     //for the auto adjust of the viewport to fit a whole section
                     clearTimeout(scrollId2);
 
@@ -1576,9 +1638,10 @@
                         //scrolling down?
                         if (delta < 0) {
                             scrolling('down');
+                        }
 
                         //scrolling up?
-                        }else {
+                        else {
                             scrolling('up');
                         }
                     }
@@ -1851,6 +1914,10 @@
 
                     onSlideLeave: function(){
                         return paramsPerEvent.afterSlideLoad();
+                    },
+
+                    onMouseWheel: function(){ 
+                        return [v.direction]; 
                     }
                 };
             }
@@ -2282,7 +2349,7 @@
 
                 keydownId = setTimeout(function(){
                     onkeydown(e);
-                },150);
+                },0);
             }
         }
 
@@ -2663,6 +2730,32 @@
                 removeClass($(ACTIVE_SEL, slidesNav), ACTIVE);
                 addClass( $('a', $('li', slidesNav)[slideIndex] ), ACTIVE);
             }
+        }
+
+        /**
+         * Listen to changes on sections and fires reBuild
+         * when those changes affect the section height.
+         */
+        function onSectionChange(mutations){
+            mutations.forEach(function(mutation) {
+                var parentSection = closest(mutation.target, SECTION_SEL);
+                if(parentSection.offsetHeight !== windowsHeight){
+                    reBuild();
+                }
+            });
+        }
+
+        /**
+         * Creates a Mutation observer.
+         */
+        function createObserver(target) {
+            var observer = new MutationObserver(onSectionChange);
+            observer.observe(target, {
+                attributes: true,
+                subtree:true,
+                childList: true,
+                characterData: true
+            });
         }
 
         var previousHeight = windowsHeight;
@@ -3083,6 +3176,17 @@
             document.body.removeChild(el);
 
             return (has3d !== undefined && has3d.length > 0 && has3d !== 'none');
+        }
+
+        /**
+        * Checks for CSS scroll snaps support.
+        */
+        function isCssSnapsSupported(){
+            var style = document.documentElement.style;
+            
+            return 'scrollSnapAlign' in style ||
+            'webkitScrollSnapAlign' in style ||
+            'msScrollSnapAlign' in style;
         }
 
         /**

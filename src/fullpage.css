@@ -62,22 +62,27 @@ html.fp-enabled,
     z-index: 4;
     top: 50%;
     cursor: pointer;
-    width: 0;
-    height: 0;
-    border-style: solid;
     margin-top: -38px;
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
 }
-.fp-controlArrow.fp-prev {
+.fp-prev{
     left: 15px;
+}
+.fp-next{
+    right: 15px;
+}
+.fp-arrow{
     width: 0;
+    height: 0;
+    border-style: solid;
+}
+.fp-arrow.fp-prev {
     border-width: 38.5px 34px 38.5px 0;
     border-color: transparent #fff transparent transparent;
 }
-.fp-controlArrow.fp-next {
-    right: 15px;
+.fp-arrow.fp-next {
     border-width: 38.5px 0 38.5px 34px;
     border-color: transparent transparent transparent #fff;
 }

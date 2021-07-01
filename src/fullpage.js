@@ -81,6 +81,7 @@
     var SLIDES_NAV =            'fp-slidesNav';
     var SLIDES_NAV_SEL =        '.' + SLIDES_NAV;
     var SLIDES_NAV_LINK_SEL =   SLIDES_NAV_SEL + ' a';
+    var SLIDES_STYLED_ARROW =   'fp-arrow';
     var SLIDES_ARROW =          'fp-controlArrow';
     var SLIDES_ARROW_SEL =      '.' + SLIDES_ARROW;
     var SLIDES_PREV =           'fp-prev';
@@ -155,6 +156,7 @@
 
             //design
             controlArrows: true,
+            controlArrowsHTML: ['<div class="' + SLIDES_STYLED_ARROW + '"></div>', '<div class="' + SLIDES_STYLED_ARROW + '"></div>'],
             controlArrowColor: '#fff',
             verticalCentered: true,
             sectionsColor : [],
@@ -1104,8 +1106,11 @@
         * Creates the control arrows for the given section
         */
         function createSlideArrows(section){
-            var arrows = [createElementFromHTML('<div class="' + SLIDES_ARROW_PREV + '"></div>'), createElementFromHTML('<div class="' + SLIDES_ARROW_NEXT + '"></div>')];
+            var arrows = [createElementFromHTML(options.controlArrowsHTML[0]), createElementFromHTML(options.controlArrowsHTML[1])];
             after($(SLIDES_WRAPPER_SEL, section)[0], arrows);
+            addClass(arrows, SLIDES_ARROW);
+            addClass(arrows[0], SLIDES_PREV);
+            addClass(arrows[1], SLIDES_NEXT);
 
             if(options.controlArrowColor !== '#fff'){
                 css($(SLIDES_ARROW_NEXT_SEL, section), {'border-color': 'transparent transparent transparent '+options.controlArrowColor});
