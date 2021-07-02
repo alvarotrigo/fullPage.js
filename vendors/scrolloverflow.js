@@ -2216,6 +2216,14 @@ if ( typeof module != 'undefined' && module.exports ) {
         function scrollBarHandler(){
             var self = this;
             self.options = null;
+            var g_windowHeight;
+            var g_observer;
+            var g_observerConfig = {
+                attributes: true,
+                subtree:true,
+                childList: true,
+                characterData: true
+            };
 
             self.init = function(options, iscrollOptions){
                 self.options = options;
@@ -2241,19 +2249,21 @@ if ( typeof module != 'undefined' && module.exports ) {
                 
                 // Adds observer to fp-scroller elements
                 $('.fp-scroller').forEach(function(fpScroller){
-                    new MutationObserver(onFpScrollerChange).observe(fpScroller, {
-                        attributes: true,
-                        subtree:true,
-                        childList: true,
-                        characterData: true
-                    });
+                    new MutationObserver(onFpScrollerChange).observe(fpScroller, g_observerConfig);
                 });
+
+
+                $(SECTION_SEL).forEach(function(section){
+                    new MutationObserver(onSectionContentChange).observe(section, g_observerConfig);
+                });
+
             }
 
             /**
             * Creates the scrollbar for the sections and slides in the site
             */
             function createScrollBarForAll(){
+                g_windowHeight = fp_utils.getWindowHeight();
                 if(fp_utils.hasClass(document.body, RESPONSIVE)){
                     forEachSectionAndSlide(removeScrollBar);
                 }
@@ -2313,6 +2323,7 @@ if ( typeof module != 'undefined' && module.exports ) {
                             fp_utils.wrapInner(element, wrap.scrollable);
                         }
                         scrollOverflowHandler.create(element, scrollHeightWidthoutPaddings, self.iscrollOptions);
+                        new MutationObserver(onFpScrollerChange).observe($('.fp-scroller', element)[0], g_observerConfig);
                     }
                 }
 
@@ -2361,8 +2372,22 @@ if ( typeof module != 'undefined' && module.exports ) {
                 mutations.forEach(function(mutation) {
                     var slide = fp_utils.closest(mutation.target, SLIDE_SEL);
                     var sectionOrSlide = slide ? slide : fp_utils.closest(mutation.target, SECTION_SEL);
-                    createScrollBar(sectionOrSlide);
-                });
+                    if(sectionOrSlide){
+                        createScrollBar(sectionOrSlide);
+                    }
+                });                             
+            }
+
+            function onSectionContentChange(mutations){
+                var isScrollOverflowRequired = false;
+                for(var i = 0; i< mutations.length; i++){
+                    var mutation = mutations[i];
+                    var parentSection = fp_utils.closest(mutation.target, SECTION_SEL);
+
+                    if(parentSection && parentSection.offsetHeight !== g_windowHeight){
+                        createScrollBar(parentSection);
+                    }
+                }
             }
 
             //public functions

@@ -255,6 +255,17 @@
         var g_canFireMouseEnterNormalScroll = true;
         var g_mediaLoadedId;
         var g_transitionLapseId;
+        var g_wrapperObserver;
+        var g_wrapperObserveConfig = {
+            attributes: false,
+            subtree:true,
+            childList: true,
+            characterData: true
+        };
+        var g_state = {
+            numSections: 0,
+            numSlides: 0
+        };
         var extensions = [
             'parallax',
             'scrollOverflowReset',
@@ -724,6 +735,7 @@
             setAutoScrolling(options.autoScrolling, 'internal');
             responsive();
             toggleCssSnapsWhenPossible(true);
+            updateState();
             
             //setting the class for the body element
             setBodyClass();
@@ -765,9 +777,7 @@
             //to prevent scrolling while zooming
             document.addEventListener('keyup', keyUpHandler);
 
-            $(SECTION_SEL).forEach(function(section){
-                createObserver(section);
-            });
+            g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange);
 
             //Scrolls to the section when clicking the navigation bullet
             //simulating the jQuery .on('click') event using delegation
@@ -808,6 +818,11 @@
             else if(closest(target, options.menu + ' [data-menuanchor]')){
                 menuItemsHandler.call(target, e);
             }
+        }
+
+        function updateState(){
+            g_state.numSections = $(SECTION_SEL).length;
+            g_state.numSlides = $(SLIDE_SEL).length;
         }
 
         function forMouseLeaveOrTouch(eventName, allowScrolling){
@@ -2736,26 +2751,47 @@
          * Listen to changes on sections and fires reBuild
          * when those changes affect the section height.
          */
-        function onSectionChange(mutations){
-            mutations.forEach(function(mutation) {
-                var parentSection = closest(mutation.target, SECTION_SEL);
-                if(parentSection.offsetHeight !== windowsHeight){
-                    reBuild();
+        function onContentChange(mutations){
+            var areSectionsUpdated = $(options.sectionSelector).length !== g_state.numSections;
+            var areSlidesUpdated = $(options.slideSelector).length !== g_state.numSlides;
+ 
+            if( areSlidesUpdated || areSectionsUpdated){
+                
+                // Temporally disabling the observer while 
+                // we modidy the DOM again
+                g_wrapperObserver.disconnect();
+                updateState();
+
+                // Removing navs and anchors options
+                options.anchors = [];
+                remove($(SECTION_NAV_SEL));
+
+                addInternalSelectors();
+                setOptionsFromDOM();
+                addVerticalNavigation();
+                
+                if(areSlidesUpdated){
+                    remove($(SLIDES_NAV_SEL));
+                    remove($(SLIDES_ARROW_SEL));
+
+                    $(SECTION_SEL).forEach(function(section){
+                        createSlideArrows(section);
+                        addSlidesNavigation(section, $(SLIDE_SEL, section).length);
+                    });
                 }
-            });
+                reBuild();
+            }
+
+            g_wrapperObserver.observe($(WRAPPER_SEL)[0], g_wrapperObserveConfig);
         }
 
         /**
          * Creates a Mutation observer.
          */
-        function createObserver(target) {
-            var observer = new MutationObserver(onSectionChange);
-            observer.observe(target, {
-                attributes: true,
-                subtree:true,
-                childList: true,
-                characterData: true
-            });
+        function createObserver(target, callback) {
+            var observer = new MutationObserver(callback);
+            observer.observe(target, g_wrapperObserveConfig);
+            return observer;
         }
 
         var previousHeight = windowsHeight;
