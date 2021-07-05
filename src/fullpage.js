@@ -576,13 +576,6 @@
                 var slidesWrap = $(SLIDES_WRAPPER_SEL, section)[0];
                 var slides = $(SLIDE_SEL, section);
 
-                //adjusting the height of the table-cell for IE and Firefox
-                if(options.verticalCentered){
-                    css($(TABLE_CELL_SEL, section), {'height': getTableHeight(section) + 'px'});
-                }
-
-                css(section, {'height': windowsHeight + 'px'});
-
                 //adjusting the position fo the FULL WIDTH slides...
                 if (slides.length > 1) {
                     landscapeScroll(slidesWrap, $(SLIDE_ACTIVE_SEL, slidesWrap)[0]);
@@ -820,7 +813,10 @@
             }
         }
 
-        function updateState(){
+        /**
+         * Updates the state of the app.
+         */
+         function updateState(){
             g_state.numSections = $(SECTION_SEL).length;
             g_state.numSlides = $(SLIDE_SEL).length;
         }
@@ -1069,8 +1065,6 @@
                 addClass(section, ACTIVE);
             }
             startingSection = $(SECTION_ACTIVE_SEL)[0];
-
-            css(section, {'height': windowsHeight + 'px'});
 
             if(options.paddingTop){
                 css(section, {'padding-top': options.paddingTop});
@@ -2821,6 +2815,8 @@
         function resizeActions(){
             isResizing = true;
 
+            setVhUnits();
+
             //checking if it needs to get responsive
             responsive();
 
@@ -2844,6 +2840,18 @@
             }
 
             isResizing = false;
+        }
+
+        /**
+         * Defining the value in px of a VH unit.
+         * https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+         */
+        function setVhUnits(){
+            // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+            let vh = window.innerHeight * 0.01;
+
+            // Then we set the value in the --vh custom property to the root of the document
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
         }
 
         /**
@@ -2956,12 +2964,7 @@
         function addTableClass(element){
             //In case we are styling for the 2nd time as in with reponsiveSlides
             if(!hasClass(element, TABLE)){
-                var wrapper = document.createElement('div');
-                wrapper.className = TABLE_CELL;
-                wrapper.style.height = getTableHeight(element) + 'px';
-
                 addClass(element, TABLE);
-                wrapInner(element, wrapper);
             }
         }
 

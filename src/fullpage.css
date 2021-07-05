@@ -22,6 +22,7 @@ html.fp-enabled,
     -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
     -moz-box-sizing: border-box; /* <=28 */
     box-sizing: border-box;
+    height: 100%;
 }
 .fp-slide {
     float: left;
@@ -39,15 +40,10 @@ html.fp-enabled,
     transition: all 0.3s ease-out;
 }
 .fp-section.fp-table, .fp-slide.fp-table {
-    display: table;
-    table-layout:fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-}
-.fp-tableCell {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
 }
 .fp-slidesContainer {
     float: left;
@@ -218,14 +214,20 @@ html.fp-enabled,
     left: 20px;
 }
 .fp-auto-height.fp-section,
-.fp-auto-height .fp-slide,
-.fp-auto-height .fp-tableCell{
+.fp-auto-height .fp-slide{
     height: auto !important;
 }
 
+.fp-responsive .fp-section,
+.fp-responsive .fp-slide{
+   /* Fallback for browsers that do not support Custom Properties */
+   height: 100vh;
+
+   height: calc(var(--vh, 1vh) * 100);
+}
+
 .fp-responsive .fp-auto-height-responsive.fp-section,
-.fp-responsive .fp-auto-height-responsive .fp-slide,
-.fp-responsive .fp-auto-height-responsive .fp-tableCell {
+.fp-responsive .fp-auto-height-responsive .fp-slide{
     height: auto !important;
 }
 
