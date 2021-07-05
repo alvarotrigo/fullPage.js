@@ -201,6 +201,7 @@ var myFullpage = new fullpage('#fullpage', {
 	//Scrolling
 	css3: true,
 	scrollingSpeed: 700,
+	transitionSpeed: this.scrollingSpeed,
 	autoScrolling: true,
 	fitToSection: true,
 	fitToSectionDelay: 1000,
@@ -392,7 +393,9 @@ new fullpage({
 
 - `verticalCentered`: (default `true`) Vertically centering of the content within sections. When set to `true`, your content will be wrapped by the library. Consider using delegation or load your other scripts in the `afterRender` callback.
 
-- `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
+- `scrollingSpeed`: (default `700`) Speed in milliseconds until site is responsive to scrolling.
+
+- `transitionSpeed`: (default `scrollingSpeed`) Speed in milliseconds for the scrolling transitions.
 
 - `sectionsColor`: (default `none`) Define the CSS `background-color` property for each section.
 Example:
@@ -693,10 +696,17 @@ fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[Demo](http://codepen.io/alvarotrigo/pen/NqLbeY) Defines the scrolling speed in milliseconds.
+[Demo](http://codepen.io/alvarotrigo/pen/NqLbeY) Defines the time in milliseconds until site is responsive to scrolling .
 
 ```javascript
 fullpage_api.setScrollingSpeed(700);
+```
+---
+### setTransitionSpeed(milliseconds)
+Defines the transition time in milliseconds.
+
+```javascript
+fullpage_api.setTransitionSpeed(450);
 ```
 ---
 ### destroy(type)
