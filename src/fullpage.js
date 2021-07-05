@@ -345,6 +345,7 @@
                     'height': '100%'
                 });
 
+                removeClass($body, 'fp-scrollable');
                 setRecordHistory(originals.recordHistory, 'internal');
 
                 //for IE touch devices
@@ -362,6 +363,8 @@
                     'overflow' : 'visible',
                     'height' : 'initial'
                 });
+
+                addClass($body, 'fp-scrollable');
 
                 var recordHistory = !options.autoScrolling ? false : originals.recordHistory;
                 setRecordHistory(recordHistory, 'internal');

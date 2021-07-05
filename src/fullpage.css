@@ -218,8 +218,8 @@ html.fp-enabled,
     height: auto !important;
 }
 
-.fp-responsive .fp-section,
-.fp-responsive .fp-slide{
+.fp-scrollable .fp-section,
+.fp-scrollable .fp-slide{
    /* Fallback for browsers that do not support Custom Properties */
    height: 100vh;
 
