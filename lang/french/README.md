@@ -392,7 +392,7 @@ Vous pourrez ensuite les utiliser et les configurer comme expliqué dans [option
 - `licenseKey` : (par défaut `null`).**Cette option est facultltative.** Si vous utilisez fullPage dans un projet non open source, vous devez utiliser la clé de licence fournie lors de l'achat de la Licence Commerciale fullPage. Si votre projet est open source, [contactez-moi](https://alvarotrigo.com/#contact) avec un lien vers son répertoire et je vous fournirai une clé de licence. Pour en savoir plus sur les licences [ici] (https://github.com/alvarotrigo/fullPage.js#license) et [sur le site Web] (https://alvarotrigo.com/fullPage/pricing/). Par exemple :
 
 ```javascript
-new fullpage({ {
+new fullpage('#fullpage', {
     licenceKey:'VOTRE_CLÉ_ICI'.
 });
 ```

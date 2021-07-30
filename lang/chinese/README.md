@@ -381,7 +381,7 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 -`licenseKey`：（默认 `null` ）。 **此选项是强制性的。**如果您在非开源项目中使用 fullPage ，则应使用购买fullPage 商业许可证时提供的许可证密钥。 如果您的项目是开放的，请[与我 [联系](https://alvarotrigo.com/fullPage/extensions/requestKey.html) 并提供指向您的存储库的链接以获取许可证密钥。 请阅读更多关于许可 [这里](https://github.com/alvarotrigo/fullPage.js#license) 和 [在网页上](https://alvarotrigo.com/fullPage/pricing/) 。例如：
 
 ```javascript
-new fullpage({
+new fullpage('#fullpage', {
     licenseKey: 'YOUR_KEY_HERE'
 });
 ```
