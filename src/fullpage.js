@@ -411,17 +411,30 @@
         * Item. Slide or Section objects share the same properties.
         */
         var Item = function(el, selector){
+            this.selector = selector;
             this.anchor = el.getAttribute('data-anchor') || options.anchors[index(el, options.sectionSelector)];
             this.item = el;
-            this.isLast = this.index === el.parentElement.querySelectorAll(selector).length -1;
-            this.isFirst = !this.index;
             this.isVisible = isVisible(el);
             this.isActive = hasClass(el, ACTIVE);
             this.isSection = selector === options.sectionSelector;
             this.container = closest(el, SLIDES_CONTAINER_SEL) || closest(el, WRAPPER_SEL);
             this.index = function(){
-                return this.isSection ? g_state.sections.indexOf(this) :this.parent.slides.indexOf(this);
+                if(this.isSection){
+                    return g_state.sections.indexOf(this);
+                }else if(this.parent.slides){
+                    return this.parent.slides.indexOf(this);
+                } 
+                return 0;
             };
+        };
+
+        var plainItem = function(panel){
+            this.anchor = panel.anchor;
+            this.item = panel.item;
+            this.index = panel.index();
+            this.isLast = this.index === panel.item.parentElement.querySelectorAll(panel.selector).length -1;
+            this.isFirst = !this.index;
+            this.isActive = panel.isActive;
         };
 
         Item.prototype.siblings = function(){
@@ -437,7 +450,6 @@
             }
             return null;
         };
-        
 
         Item.prototype.next = function(){
             var siblings = this.siblings();
@@ -474,8 +486,8 @@
         * Slide object
         */
         var Slide = function(el, section){
-            Item.call(this, el, options.slideSelector);
             this.parent = section;
+            Item.call(this, el, options.slideSelector);
         };
 
         Slide.prototype = Item.prototype;
@@ -999,13 +1011,14 @@
          * Updates the state of the app.
          */
         function updateState(){
-            var allSections = Array.from($(options.sectionSelector)).map( item => new Section(item));
+            var sectionsItems = $(options.sectionSelector, container);
+            var allSections = Array.from(sectionsItems).map( item => new Section(item));
             var sections = allSections.filter( item => item.isVisible);
             var slides = sections.reduce(function(acc, section){
                 return acc.concat(section.slides);
             }, []);
 
-            g_state.numSections = $(options.sectionSelector).length;
+            g_state.numSections = sectionsItems.length;
             g_state.numSlides = $(options.slideSelector).length;
             g_state.sections = sections;
             g_state.sectionsIncludingHidden = allSections;
@@ -1263,7 +1276,7 @@
             //if no active section is defined, the 1st one will be the default one
             if(!index && !g_state.activeSection.isActive) {
                 addClass(sectionElem, ACTIVE);
-                g_state.setA    ctiveSection.isActive = true;
+                g_state.activeSection.isActive = true;
             }
             startingSection = g_state.activeSection.item;
 
@@ -1339,7 +1352,7 @@
         * Creates a vertical navigation bar.
         */
         function addVerticalNavigation(){
-            remove($(SECTION_NAV));
+            remove($(SECTION_NAV_SEL));
 
             var navigation = document.createElement('div');
             navigation.setAttribute('id', SECTION_NAV);
@@ -1423,23 +1436,29 @@
         * Actions and callbacks to fire afterRender
         */
         function afterRenderActions(){
-            var section = g_state.activeSection.item;
+            var section = g_state.activeSection;
+            var sectionElem = g_state.activeSection.item;
 
-            addClass(section, COMPLETELY);
+            addClass(sectionElem, COMPLETELY);
 
-            lazyLoad(section);
+            lazyLoad(sectionElem);
             lazyLoadOthers();
-            playMedia(section);
+            playMedia(sectionElem);
 
             if(isDestinyTheStartingSection() && isFunction(options.afterLoad) ){
                 fireCallback('afterLoad', {
-                    activeSection: section,
-                    element: section,
+                    activeSection: sectionElem,
+                    element: sectionElem,
                     direction: null,
 
                     //for backwards compatibility callback (to be removed in a future!)
-                    anchorLink: section.getAttribute('data-anchor'),
-                    sectionIndex: section.index()
+                    anchorLink: section.anchor,
+                    sectionIndex: section.index(),
+
+                    items: {
+                        origin: g_state.activeSection,
+                        destination: g_state.activeSection
+                    }
                 });
             }
 
@@ -1517,7 +1536,7 @@
                     var leavingSection = g_state.activeSection.item;
                     var leavingSectionIndex = g_state.activeSection.index() + 1;
                     var yMovement = getYmovement(currentSectionElem);
-                    var anchorLink  = g_state.activeSection.anchor;
+                    var anchorLink  = currentSection.anchor;
                     var sectionIndex = currentSection.index() + 1;
                     var activeSlide = currentSection.activeSlide;
                     var slideIndex;
@@ -1528,12 +1547,17 @@
                         anchorLink: anchorLink,
                         element: currentSectionElem,
                         leavingSection: leavingSectionIndex,
-                        direction: yMovement
+                        direction: yMovement,
+
+                        items: {
+                            origin: g_state.activeSection,
+                            destination: currentSection
+                        }
                     };
 
                     if(activeSlide){
                         slideAnchorLink = activeSlide.anchor;
-                        slideIndex = activeSlide.index;
+                        slideIndex = activeSlide.index();
                     }
 
                     if(canScroll){
@@ -1562,6 +1586,7 @@
                             lastScrolledDestiny = anchorLink;
                         }
                         setPageStatus(slideIndex, slideAnchorLink, anchorLink, sectionIndex);
+                        updateState();
                     }
 
                     //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
@@ -1999,7 +2024,12 @@
 
                 //caching the value of isResizing at the momment the function is called
                 //because it will be checked later inside a setTimeout and the value might change
-                localIsResizing: isResizing
+                localIsResizing: isResizing,
+
+                items: {
+                    origin: g_state.activeSection,
+                    destination: section
+                },
             };
 
             //quiting when destination scroll is the same as the current one
@@ -2096,11 +2126,12 @@
         * Makes sure to only create a Panel object if the element exist
         */
         function nullOrSection(el){
-            return el ? new Section(el) : null;
+            return el ? new plainItem(el) : null;
         }
 
         function nullOrSlide(el){
-            return el ? new Slide(el) : null;
+            return el ? new plainItem(el) : null;
+
         }
 
         /**
@@ -2108,59 +2139,48 @@
         * v2compatible is being used or not.
         */
         function getEventData(eventName, v){
-            var paramsPerEvent;
 
-            if(!options.v2compatible){
+            //using functions to run only the necessary bits within the object
+            var paramsPerEvent = {
+                afterRender: function(){
+                    return {
+                        section: nullOrSection(g_state.activeSection),
+                        slide: nullOrSlide(g_state.activeSection.activeSlide)
+                    };
+                },
+                onLeave: function(){
+                    return {
+                        origin: nullOrSection(v.items.origin),
+                        destination: nullOrSection(v.items.destination),
+                        direction: v.direction,
+                        trigger: g_state.scrollTrigger
+                    };
+                },
 
-                //using functions to run only the necessary bits within the object
-                paramsPerEvent = {
-                    afterRender: function(){
-                        return {
-                            section: nullOrSection(g_state.activeSection.item),
-                            slide: nullOrSlide(g_state.activeSection.activeSlide.item)
-                        };
-                    },
-                    onLeave: function(){
-                        return {
-                            origin: nullOrSection(v.activeSection),
-                            destination: nullOrSection(v.element),
-                            direction: v.direction,
-                            trigger: g_state.scrollTrigger
-                        };
-                    },
+                afterLoad: function(){
+                    return paramsPerEvent.onLeave();
+                },
 
-                    afterLoad: function(){
-                        return paramsPerEvent.onLeave();
-                    },
+                afterSlideLoad: function(){
+                    return {
+                        section: nullOrSection(v.items.section),
+                        origin: nullOrSection(v.items.origin),
+                        destination: nullOrSection(v.items.destination),
+                        direction: v.direction,
+                        trigger: g_state.scrollTrigger
+                    };
+                },
 
-                    afterSlideLoad: function(){
-                        return {
-                            section: nullOrSection(v.section),
-                            origin: nullOrSlide(v.prevSlide),
-                            destination: nullOrSlide(v.destiny),
-                            direction: v.direction,
-                            trigger: g_state.scrollTrigger
-                        };
-                    },
+                onSlideLeave: function(){
+                    var pepe = paramsPerEvent.afterSlideLoad();
+                    window.pepe = pepe;
+                    return pepe;
+                },
 
-                    onSlideLeave: function(){
-                        return paramsPerEvent.afterSlideLoad();
-                    },
-
-                    beforeLeave: function(){ 
-                        return paramsPerEvent.onLeave();
-                    }
-                };
-            }
-            else{
-                paramsPerEvent = {
-                    afterRender: function(){ return [container]; },
-                    onLeave: function(){ return [v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.direction]; },
-                    afterLoad: function(){ return [v.element, v.anchorLink, (v.sectionIndex + 1)]; },
-                    afterSlideLoad: function(){ return [v.destiny, v.anchorLink, (v.sectionIndex + 1), v.slideAnchor, v.slideIndex]; },
-                    onSlideLeave: function(){ return [v.prevSlide, v.anchorLink, (v.sectionIndex + 1), v.prevSlideIndex, v.direction, v.slideIndex]; },
-                };
-            }
+                beforeLeave: function(){ 
+                    return paramsPerEvent.onLeave();
+                }
+            };
 
             return paramsPerEvent[eventName]();
         }
@@ -2675,7 +2695,7 @@
             var currentFocusIndex = allFocusables.indexOf(document.activeElement);
             var focusDestinationIndex = e.shiftKey ? currentFocusIndex - 1 : currentFocusIndex + 1;
             var focusDestination = allFocusables[focusDestinationIndex];
-            var destinationItemSlide = nullOrSlide(closest(focusDestination, SLIDE_SEL));
+            var destinationItemSlide = nullOrSlide(closest(focusDestination, SLIDE_SEL), closest(focusDestination, SECTION_SEL));
             var destinationItemSection = nullOrSection(closest(focusDestination, SECTION_SEL));
 
             return !destinationItemSlide && !destinationItemSection;
@@ -2850,7 +2870,10 @@
             var section = g_state.sections.filter(section => {
                 return section.item == sectionElem;
             })[0];
-            var slide = section.slides.filter(slide => slide.item == destiny)[0];
+
+            var slide = section.slides.filter(function(slide){
+                return slide.item == destiny;
+            })[0];
             var v = {
                 slides: slides,
                 destiny: destiny,
@@ -2864,6 +2887,11 @@
                 slideAnchor: slide.anchor,
                 prevSlide: section.activeSlide.item,
                 prevSlideIndex: section.activeSlide.index(),
+                items: {
+                    section: section,
+                    origin: section.activeSlide,
+                    destination: slide
+                },
 
                 //caching the value of isResizing at the momment the function is called
                 //because it will be checked later inside a setTimeout and the value might change
@@ -2893,6 +2921,7 @@
 
             addClass(destiny, ACTIVE);
             removeClass(siblings(destiny), ACTIVE);
+            updateState();
 
             if(!v.localIsResizing){
                 stopMedia(v.prevSlide);
@@ -2900,11 +2929,12 @@
             }
 
             if(!options.loopHorizontal && options.controlArrows){
+                
                 //hidding it for the fist slide, showing for the rest
                 toggle($(SLIDES_ARROW_PREV_SEL, sectionElem), v.slideIndex!==0);
 
                 //hidding it for the last slide, showing for the rest
-                toggle($(SLIDES_ARROW_NEXT_SEL, sectionElem), slide.next().item != null);
+                toggle($(SLIDES_ARROW_NEXT_SEL, sectionElem), slide.next() != null);
             }
 
             //only changing the URL if the slides are in the current section (not for resize re-adjusting)
@@ -2929,8 +2959,6 @@
                 //and to prevent double scroll right after a windows resize
                 canScroll = true;
                 
-                updateState();
-
                 playMedia(v.destiny);
             }
 
@@ -4011,7 +4039,7 @@
         * Gets the active slide.
         */
         function getActiveSlide(){
-            return nullOrSlide(g_state.activeSection.activeSlide.item);
+            return nullOrSlide(g_state.activeSection.activeSlide.item, g_state.activeSection);
         }
 
         /**
