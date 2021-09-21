@@ -2209,7 +2209,7 @@
                         afterSectionLoads(v);
 
                         //disabling canScroll when using fastSpeed
-                        canScroll = !isFastSpeed;
+                        canScroll = !isFastSpeed || FP.test.isTesting;
                     }, options.scrollingSpeed);                   
                 }else{
                     afterSectionLoads(v);
@@ -2240,7 +2240,7 @@
                         afterSectionLoads(v);
 
                         //disabling canScroll when using fastSpeed
-                        canScroll = !isFastSpeed;
+                        canScroll = !isFastSpeed || FP.test.isTesting;
                     }
                 });
             }
@@ -2319,7 +2319,7 @@
                 before(g_state.sections[0].item, v.wrapAroundElements);
             }
             else {
-                after(geLast(g_state.sections).item, v.wrapAroundElements);
+                after(getLast(g_state.sections).item, v.wrapAroundElements);
             }
 
             silentScroll(g_state.activeSection.item.offsetTop);
@@ -2772,7 +2772,7 @@
             var activeElement = document.activeElement;
             var isMediaFocused = matches(activeElement, 'video') || matches(activeElement, 'audio');
 
-            //do nothing if we can not scroll or we are not using horizotnal key arrows.
+            //do nothing if we can not scroll or we are not using horizontnal key arrows.
             if(!canScroll && [37,39].indexOf(e.keyCode) < 0){
                 return;
             }
@@ -3072,6 +3072,8 @@
         function resizeHandler(){
             clearTimeout(resizeId);
 
+            setSectionsHeight(windowsHeight);
+
             //in order to call the functions only when the resize is finished
             //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing    
             resizeId = setTimeout(function(){
@@ -3085,12 +3087,22 @@
             }, 200);
         }
 
+        function setSectionsHeight(value){
+            var propertyValue = value === '' ? '' : value + 'px';
+            g_state.sections.forEach(function(section){
+                css(section.item, {
+                    'height': propertyValue
+                });
+            });
+        }
+
         /**
         * When resizing the site, we adjust the heights of the sections, slimScroll...
         */
         function resizeActions(){
             isResizing = true;
 
+            setSectionsHeight('');
             setVhUnits();
             updateState();
 
