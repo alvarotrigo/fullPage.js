@@ -248,6 +248,7 @@
         var scrollId;
         var scrollId2;
         var keydownId;
+        var g_animateScrollId;
         var g_doubleCheckHeightId;
         var originals = deepExtend({}, options); //deep copy
         var activeAnimation;
@@ -330,7 +331,7 @@
                 }
             },
 
-            makeScrollableIfRequired: function(){
+            makeScrollable: function(){
                 g_state.panels.forEach(function(el){
                     if(
                         hasClass(el.item, 'fp-noscroll')
@@ -339,16 +340,23 @@
                     ){
                         return;
                     }
-                    addClass(el.item, 'fp-overflow');
+                    if(scrollOverflowHandler.shouldBeScrollable(el.item)){
+                        addClass(scrollOverflowHandler.scrollable(el.item), 'fp-overflow');
+                    }else{
+                        removeClass(el.item, 'fp-overflow');
+                    }
                 });
             },
 
             scrollable: function(sectionItem){
-                var slide = sectionItem.activeSlide;
-                return slide ? slide.item : sectionItem;
+                return $(SLIDE_ACTIVE_SEL, sectionItem)[0] || sectionItem;
             },
 
-            isScrollable: function(item){
+            isScrollable: function(panel){
+                return panel.isSection && panel.activeSlide ? panel.activeSlide.hasScroll : panel.hasScroll;
+            },
+
+            shouldBeScrollable: function(item){
                 return item.scrollHeight > window.innerHeight;
             },
 
@@ -385,12 +393,13 @@
                     var direction = g_touchDirection !== 'none' ? g_touchDirection : prevPosition < currentPosition ? 'down' : 'up';
                     prevPosition = currentPosition;
                     
+                    if(isFunction(options.onScrollOverflow) ){
+                        fireCallback('onScrollOverflow', {
+                            position: currentPosition
+                        });
+                    }
     
-                    if(options.scrollOverflow && 
-                        hasClass(e.target, 'fp-overflow') && 
-                        scrollOverflowHandler.isScrollable(e.target) && 
-                        canScroll
-                    ){
+                    if(hasClass(e.target, 'fp-overflow') && canScroll){
                         if(
                             scrollOverflowHandler.isScrolled(direction, e.target) &&
                             scrollOverflowHandler.shouldMovePage()
@@ -765,9 +774,9 @@
                 }
             }
 
-            // if(options.scrollOverflow){
-            //     scrollBarHandler.createScrollBarForAll();
-            // }
+            if(options.scrollOverflow){
+                scrollOverflowHandler.makeScrollable();
+            }
 
             var activeSection = g_state.activeSection;
             var sectionIndex = g_state.activeSection.index();
@@ -813,9 +822,9 @@
                     }
 
                     //when on page load, we will remove scrolloverflow if necessary
-                    if(options.scrollOverflow){
-                        createScrollBarForAll();
-                    }
+                    // if(options.scrollOverflow){
+                    //     createScrollBarForAll();
+                    // }
                 }
             }
             else if(isResponsive){
@@ -901,6 +910,8 @@
             if(options.css3){
                 options.css3 = support3d();
             }
+
+            updateStructuralState();
             updateState();
 
             options.scrollBar = options.scrollBar || options.hybrid;
@@ -933,6 +944,7 @@
 
             //when scrolling...
             window.addEventListener('scroll', scrollHandler);
+            document.body.addEventListener('scroll', scrollHandler);
 
             if(options.scrollOverflow){
                 getNodes(g_state.panels).forEach(function(el){
@@ -1011,6 +1023,29 @@
          * Updates the state of the app.
          */
         function updateState(){
+            g_state.activeSection = null;
+            g_state.sections.map(function(section){
+                let isActive = hasClass(section.item, ACTIVE);
+                section.isActive = isActive;
+                section.hasScroll = hasClass(section, 'fp-overflow');
+                if(isActive){
+                    g_state.activeSection = section;
+                }
+
+                if(section.slides.length){
+                    section.slides.map(function(slide){
+                        let isActiveSlide = hasClass(slide.item, ACTIVE);
+                        slide.hasScroll = hasClass(slide.item, 'fp-overflow');
+                        slide.isActive = isActiveSlide;
+                        if(isActiveSlide){
+                            section.activeSlide = slide;
+                        }
+                    });
+                }
+            });
+        }
+
+        function updateStructuralState(){
             var sectionsItems = $(options.sectionSelector, container);
             var allSections = Array.from(sectionsItems).map( item => new Section(item));
             var sections = allSections.filter( item => item.isVisible);
@@ -1021,10 +1056,10 @@
             g_state.numSections = sectionsItems.length;
             g_state.numSlides = $(options.slideSelector).length;
             g_state.sections = sections;
+
             g_state.sectionsIncludingHidden = allSections;
             g_state.slides = slides;
             g_state.panels = g_state.sections.concat(g_state.slides);
-            g_state.activeSection = getActiveDefaultSection(g_state.sections);
         }
 
         function setState(property, value){
@@ -1212,7 +1247,7 @@
             enableYoutubeAPI();
 
             if(options.scrollOverflow){
-                scrollOverflowHandler.makeScrollableIfRequired();
+                scrollOverflowHandler.makeScrollable();
             }
         }
 
@@ -1274,9 +1309,9 @@
             var index = section.index();
 
             //if no active section is defined, the 1st one will be the default one
-            if(!index && !g_state.activeSection.isActive) {
+            if(!index && !g_state.activeSection) {
                 addClass(sectionElem, ACTIVE);
-                g_state.activeSection.isActive = true;
+                updateState();
             }
             startingSection = g_state.activeSection.item;
 
@@ -1480,11 +1515,11 @@
         var lastScroll = 0;
 
         //when scrolling...
-        function scrollHandler(){
+        function scrollHandler(e){
             var currentSection;
             var currentSectionElem;
 
-            if(isResizing){
+            if(isResizing || !g_state.activeSection){
                 return;
             }
             
@@ -1493,7 +1528,7 @@
                 var scrollDirection = getScrollDirection(currentScroll);
                 var visibleSectionIndex = 0;
                 var screen_mid = currentScroll + (getWindowHeight() / 2.0);
-                var isAtBottom = $body.offsetHeight - getWindowHeight() === currentScroll;
+                var isAtBottom = $body.scrollHeight - getWindowHeight() === currentScroll;
                 var sections =  g_state.sections;
 
                 //when using `auto-height` for a small last section it won't be centered in the viewport
@@ -1687,7 +1722,7 @@
 
             var scrollSection = (type === 'down') ? moveSectionDown : moveSectionUp;
 
-            if(options.scrollOverflow && scrollOverflowHandler.isScrollable(g_state.activeSection.item)){
+            if(options.scrollOverflow && scrollOverflowHandler.isScrollable(g_state.activeSection)){
 
                 //is the scrollbar at the start/end of the scroll?
                 if
@@ -2105,20 +2140,11 @@
         */
         function fireCallback(eventName, v){
             var eventData = getEventData(eventName, v);
+            trigger(container, eventName, eventData);
 
-            if(!options.v2compatible){
-                trigger(container, eventName, eventData);
-
-                if(options[eventName].apply(eventData[Object.keys(eventData)[0]], toArray(eventData)) === false){
-                    return false;
-                }
+            if(options[eventName].apply(eventData[Object.keys(eventData)[0]], toArray(eventData)) === false){
+                return false;
             }
-            else{
-                if(options[eventName].apply(eventData[0], eventData.slice(1)) === false){
-                    return false;
-                }
-            }
-
             return true;
         }
 
@@ -2179,6 +2205,14 @@
 
                 beforeLeave: function(){ 
                     return paramsPerEvent.onLeave();
+                },
+
+                onScrollOverflow: function(){
+                    return {
+                        section: nullOrSection(g_state.activeSection),
+                        slide: nullOrSlide(g_state.activeSection.activeSlide),
+                        position: v.position
+                    }
                 }
             };
 
@@ -2258,21 +2292,30 @@
         * Gets the scrolling settings depending on the plugin autoScrolling option
         */
         function getScrollSettings(top){
-            var scroll = {};
+            var position;
+            var element;
 
             //top property animation
             if(options.autoScrolling && !options.scrollBar){
-                scroll.options = -top;
-                scroll.element = $(WRAPPER_SEL)[0];
+                position = -top;
+                element = $(WRAPPER_SEL)[0];
+            }
+
+            else if(options.fitToSection){
+                position = top;
+                element = document.body;
             }
 
             //window real scrolling
             else{
-                scroll.options = top;
-                scroll.element = window;
+                position = top;
+                element = window;
             }
 
-            return scroll;
+            return {
+                options: position,
+                element: element
+            };
         }
 
         /**
@@ -2347,6 +2390,7 @@
 
             addClass(v.element, COMPLETELY);
             removeClass(siblings(v.element), COMPLETELY);
+
             lazyLoadOthers();
             if($('.fp-overflow', g_state.activeSection.item)[0]){
                 $('.fp-overflow', g_state.activeSection.item)[0].focus();
@@ -3029,8 +3073,8 @@
                 // Temporally disabling the observer while 
                 // we modidy the DOM again
                 g_wrapperObserver.disconnect();
+                updateStructuralState();
                 updateState();
-                addVerticalNavigation();
 
                 // Removing navs and anchors options
                 options.anchors = [];
@@ -3136,7 +3180,7 @@
         }
 
         /**
-         * Defining the value in px of a VH unit.
+         * Defining the value in px of a VH unit. (Used for autoScrolling: false)
          * https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
          */
         function setVhUnits(){
@@ -3980,7 +4024,7 @@
             if(element.self != window && hasClass(element, SLIDES_WRAPPER)){
                 position = element.scrollLeft;
             }
-            else if(!options.autoScrolling  || options.scrollBar){
+            else if(!options.autoScrolling || options.scrollBar){
                 position = getScrollTop();
             }
             else{
@@ -4001,6 +4045,13 @@
             var currentTime = 0;
             var increment = 20;
             activeAnimation = true;
+            var isCallbackFired = false;
+
+            // Making sure we can trigger a scroll animation
+            // when css scroll snap is active. Temporally disabling it.
+            if(element === document.body){
+                css(document.body, {'scroll-snap-type': 'none'});
+            }
 
             var animateScroll = function(){
                 if(activeAnimation){ //in order to stope it from other function whenever we want
@@ -4015,12 +4066,17 @@
                     setScrolling(element, val);
 
                     if(currentTime < duration) {
-                        setTimeout(animateScroll, increment);
-                    }else if(typeof callback !== 'undefined'){
+                        clearTimeout(g_animateScrollId);
+                        g_animateScrollId = setTimeout(animateScroll, increment);
+                    }else if(typeof callback !== 'undefined' && !isCallbackFired){
                         callback();
+                        isCallbackFired = true;
+                        css(document.body, {'scroll-snap-type': 'y mandatory'});
                     }
-                }else if (currentTime < duration){
+                }else if (currentTime < duration && !isCallbackFired){
                     callback();
+                    isCallbackFired = true;
+                    css(document.body, {'scroll-snap-type': 'y mandatory'});
                 }
             };
 
@@ -4450,6 +4506,9 @@
 
     //http://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
     function getScrollTop(){
+        if(typeof options !== 'undefined' && options.fitToSection){
+            return document.body.scrollTop;
+        }
         var doc = document.documentElement;
         return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
     }

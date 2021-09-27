@@ -42,14 +42,14 @@ html.fp-enabled,
 .fp-table{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     width: 100%;
 }
-.fp-table::before , 
+/* .fp-table::before , 
 .fp-table::after {
       content:'';
       flex:1;
-}
+} */
 .fp-slidesContainer {
     float: left;
     position: relative;
@@ -87,16 +87,16 @@ html.fp-enabled,
     border-width: 38.5px 0 38.5px 34px;
     border-color: transparent transparent transparent #fff;
 }
-.fp-scrollable {
+/* .fp-scrollable {
     overflow: hidden;
     position: relative;
-}
-.fp-scroller{
+} */
+/* .fp-scroller{
     overflow: hidden;
-}
-.iScrollIndicator{
+} */
+/* .iScrollIndicator{
     border: 0 !important;
-}
+} */
 .fp-notransition {
     -webkit-transition: none !important;
     transition: none !important;
@@ -223,12 +223,17 @@ html.fp-enabled,
     height: auto !important;
 }
 
+/* Used with autoScrolling: false */ 
 .fp-scrollable .fp-section,
 .fp-scrollable .fp-slide{
    /* Fallback for browsers that do not support Custom Properties */
    height: 100vh;
-
    height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Disabling vertical centering on scrollable elements */
+.fp-scrollable{
+    justify-content: flex-start;
 }
 
 .fp-overflow{
@@ -266,4 +271,30 @@ html.fp-enabled,
 }
 .fp-snaps .fp-section{
     scroll-snap-align: start;
+}
+
+/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+
+/* total width */
+.fp-overflow::-webkit-scrollbar {
+    background-color: transparent;
+    width: 9px;
+}
+
+/* background of the scrollbar except button or resizer */
+.fp-overflow::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* scrollbar itself */
+.fp-overflow::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.4);
+    border-radius: 16px;
+    border: 4px solid transparent;
+}
+
+/* set button(top and bottom of the scrollbar) */
+.fp-overflow::-webkit-scrollbar-button {
+    display:none;
 }
