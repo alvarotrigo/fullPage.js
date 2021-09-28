@@ -153,6 +153,7 @@
             recordHistory: true,
 
             //design
+            scrollOverflowMacStyle: true,
             controlArrows: true,
             controlArrowsHTML: ['<div class="' + SLIDES_STYLED_ARROW + '"></div>', '<div class="' + SLIDES_STYLED_ARROW + '"></div>'],
             controlArrowColor: '#fff',
@@ -200,6 +201,7 @@
         var slideMoving = false;
 
         var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
+        var isMacDevice = /(Mac|iPhone|iPod|iPad)/i.test(window.navigator.userAgent);
         var isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
         var container = typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector;
         var windowsHeight = getWindowHeight();
@@ -332,6 +334,10 @@
             },
 
             makeScrollable: function(){
+                if(options.scrollOverflowMacStyle && !isMacDevice){
+                    addClass($body, 'fp-scroll-mac');
+                }
+                
                 g_state.panels.forEach(function(el){
                     if(
                         hasClass(el.item, 'fp-noscroll')
