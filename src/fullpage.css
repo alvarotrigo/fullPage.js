@@ -23,6 +23,7 @@ html.fp-enabled,
     -moz-box-sizing: border-box; /* <=28 */
     box-sizing: border-box;
     height: 100%;
+    display: block;
 }
 .fp-slide {
     float: left;
@@ -239,6 +240,11 @@ html.fp-enabled,
 .fp-overflow{
     overflow-y: scroll;
     height: 100%;
+    outline:none;
+}
+
+.fp-overflow.fp-table{
+    display: block;
 }
 
 .fp-responsive .fp-auto-height-responsive.fp-section,
