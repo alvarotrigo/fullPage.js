@@ -278,6 +278,9 @@ html.fp-enabled,
 .fp-snaps .fp-section{
     scroll-snap-align: start;
 }
+.fp-snaps .fullpage-wrapper{
+    height: auto !important;
+}
 
 /* Customize website's scrollbar like Mac OS
 Not supports in Firefox and IE */

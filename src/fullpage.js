@@ -195,7 +195,8 @@
             onSlideLeave: null,
             afterResponsive: null,
 
-            lazyLoading: true
+            lazyLoading: true,
+            observer: true
         }, options);
 
         //flag to avoid very fast sliding for landscape sliders
@@ -227,6 +228,8 @@
 
         var g_touchDirection = 'none';
         var g_direction = 'none';
+        var g_isBeyondFullpage = false;
+        var g_isAboutToScrollToFullPage = false;
         var g_isGrabbing = false;
 
         // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
@@ -300,6 +303,56 @@
             }
         });
 
+        var wheelDataHandler = (function(){
+            var _prevTime = new Date().getTime();
+            var _scrollings = [];
+            var isAccelerating;
+            var isScrollingVertically;
+            var direction;
+
+            return {
+                registerEvent: function(e){
+                    e = e || window.event;
+                    var value = e.wheelDelta || -e.deltaY || -e.detail;
+                    var delta = Math.max(-1, Math.min(1, value));
+                    var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
+                    isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
+                    var curTime = new Date().getTime();
+                    direction = delta < 0 ? 'down': 'up';
+
+                    //Limiting the array to 150 (lets not waste memory!)
+                    if(_scrollings.length > 149){
+                        _scrollings.shift();
+                    }
+
+                    //keeping record of the previous scrollings
+                    _scrollings.push(Math.abs(value));
+
+                    //time difference between the last scroll and the current one
+                    var timeDiff = curTime - _prevTime;
+                    _prevTime = curTime;
+
+                    //haven't they scrolled in a while?
+                    //(enough to be consider a different scrolling action to scroll another section)
+                    if(timeDiff > 200){
+                        //emptying the array, we dont care about old scrollings for our averages
+                        _scrollings = [];
+                    }  
+                },
+                isAccelerating: function(){
+                    var averageEnd = getAverage(_scrollings, 10);
+                    var averageMiddle = getAverage(_scrollings, 70);
+                    var isAccelerating = averageEnd >= averageMiddle;
+
+                    return isAccelerating && isScrollingVertically;
+                },
+
+                getDirection: function(){
+                    return direction;
+                }
+            };
+        })();
+
         /**
          * Triggers the callback once per scroll wheel action.
          * Based on scrolling speed delay.
@@ -307,6 +360,28 @@
         var oncePerScroll = (function() {
             var canTriggerEvent = canScroll;
             var prevWheelTime = new Date().getTime();
+            var result;
+            
+            return function(callback){
+                var currentTime = new Date().getTime();
+                var timeThreshold = g_state.scrollTrigger === 'wheel' ? options.scrollingSpeed : 100;
+                canTriggerEvent = currentTime - prevWheelTime >= timeThreshold;
+                
+                if(canTriggerEvent){
+                    result = callback();
+                    prevWheelTime = currentTime;
+                }
+                return typeof result !== 'undefined' ? result : true;              
+            };
+        })();
+
+        /**
+         * Triggers the callback once per scroll wheel action.
+         * Based on scrolling speed delay.
+         */
+         var afterCurrentScroll = (function() {
+            var canTriggerEvent = canScroll;
+            var prevWheelTime = prevTime;
             var result;
             
             return function(callback){
@@ -358,7 +433,7 @@
                     if(
                         hasClass(el.item, 'fp-noscroll')
                         || hasClass(el.item, AUTO_HEIGHT) 
-                        || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()
+                        || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()
                     ){
                         return;
                     }else{
@@ -398,7 +473,7 @@
                 var positionY = scrollableItem.scrollTop;
                 var isTopReached = direction === 'up' && positionY <=0;
                 var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= scrollableItem.offsetHeight + positionY;
-                var isScrolled = isTopReached || isBottomReached;
+                var isScrolled = isTopReached || isBottomReached;
 
                 if(!isScrolled){
                     this.timeBeforeReachingLimit = new Date().getTime();
@@ -752,6 +827,26 @@
             if(next != null){
                 scrollPage(next, null, false);
             }
+            else{
+                scrollBeyondFullPage();
+            }
+        }
+
+        function scrollBeyondFullPage(){
+            var dtop = getScrollTop(options) + windowsHeight;
+            var scrollSettings = getScrollSettings(dtop);
+            FP.test.top = -dtop + 'px';
+
+            css(document.body, {'scroll-snap-type': 'none'});
+            css($htmlBody, {'scroll-behavior': 'unset'});
+
+            canScroll = false;
+            scrollTo(scrollSettings.element, scrollSettings.options, options.scrollingSpeed, function(){
+                setTimeout(function(){
+                    g_isBeyondFullpage = true;
+                    canScroll = true;
+                },30);
+            });
         }
 
         /**
@@ -1020,7 +1115,9 @@
             //to prevent scrolling while zooming
             document.addEventListener('keyup', keyUpHandler);
 
-            g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
+            if(options.observer){
+                g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
+            }
 
             //Scrolls to the section when clicking the navigation bullet
             //simulating the jQuery .on('click') event using delegation
@@ -1100,7 +1197,7 @@
             });
 
             // Hidding the active section ?
-            if(!g_state.activeSection && g_state.sections.length){
+            if(!g_state.activeSection && g_state.sections.length && !g_isBeyondFullpage){
                 g_state.activeSection = g_state.sections[0];
                 g_state.activeSection.isActive = true;
                 addClass(g_state.activeSection.item, ACTIVE);
@@ -1182,7 +1279,7 @@
                     //leaving a child inside the normalScoll element is not leaving the normalScroll #3661
                     var isNormalScrollChildFocused = closest(target, normalSelector);
 
-                    if(isNormalScrollTarget || isNormalScrollChildFocused){
+                    if(isNormalScrollTarget || isNormalScrollChildFocused){
                         if(!FP.shared.isNormalScrollElement){
                             setMouseHijack(false);
                         }
@@ -1578,12 +1675,40 @@
         var isScrolling = false;
         var lastScroll = 0;
 
+        var keyframeTime = (function(){
+            let isNew = false;
+            var frames = {};
+            var timeframes = {};
+
+            return function(action, name, timeframe){
+                switch(action){
+                    case 'set':
+                        frames[name] = new Date().getTime();
+                        timeframes[name] = timeframe;
+                        console.warn("setting time frame...");
+                        break;
+                    case 'isNewKeyframe':
+                        const current = new Date().getTime();
+                        isNew = current - frames[name] > timeframes[name];
+                        break;
+                }
+
+                return isNew;
+            };
+        })();
+
+
         //when scrolling...
         function scrollHandler(e){
             var currentSection;
             var currentSectionElem;
 
-            if(isResizing || !g_state.activeSection){
+            if(isResizing || !g_state.activeSection){
+                return;
+            }
+
+            var lastSection = getLast(g_state.sections);
+            if(g_isBeyondFullpage || g_isAboutToScrollToFullPage){
                 return;
             }
             
@@ -1717,15 +1842,15 @@
         * Fits the site to the nearest active section
         */
         function fitToSection(){
-            //checking fitToSection again in case it was set to false before the timeout delay
-            if(canScroll){
-                //allows to scroll to an active section and
-                //if the section is already active, we prevent firing callbacks
-                isResizing = true;
+            // //checking fitToSection again in case it was set to false before the timeout delay
+            // if(canScroll){
+            //     //allows to scroll to an active section and
+            //     //if the section is already active, we prevent firing callbacks
+            //     isResizing = true;
 
-                scrollPage(g_state.activeSection);
-                isResizing = false;
-            }
+            //     scrollPage(g_state.activeSection);
+            //     isResizing = false;
+            // }
         }
 
         /**
@@ -1824,7 +1949,7 @@
         * used one to determine the direction.
         */
         function touchMoveHandler(e){
-            var activeSection = closest(e.target, SECTION_SEL) || g_state.activeSection.item;
+            var activeSection = closest(e.target, SECTION_SEL) || g_state.activeSection.item;
 
             if (isReallyTouch(e) ) {
                 g_isGrabbing = true;
@@ -1924,6 +2049,63 @@
             return Math.ceil(sum/number);
         }
 
+        function beyondFullPageHandler(e){
+            var curTime = new Date().getTime();
+            var pauseScroll = g_isBeyondFullpage && container.getBoundingClientRect().bottom >= 0 && wheelDataHandler.getDirection() === 'up';
+
+            if(g_isAboutToScrollToFullPage){
+                prevTime = curTime;
+                preventDefault(e);
+                return false;
+            }
+
+            if(g_isBeyondFullpage){
+                if(!pauseScroll){
+                    keyframeTime('set', 'beyondFullpage', 1000);
+                }
+                else {
+                    var shouldSetFixedPosition = !g_isAboutToScrollToFullPage && (!keyframeTime('isNewKeyframe', 'beyondFullpage') || !wheelDataHandler.isAccelerating() );
+                    
+                    if( shouldSetFixedPosition ){
+                        var scrollSettings = getScrollSettings(getLast(g_state.sections).item.offsetTop + getLast(g_state.sections).item.offsetHeight);
+                        scrollSettings.element.scrollTo(0, scrollSettings.options);
+                        g_isAboutToScrollToFullPage = false;
+
+                        preventDefault(e);
+                        return false;
+                    }
+                    else if( wheelDataHandler.isAccelerating() ){
+                        pauseScroll = false;
+                        g_isAboutToScrollToFullPage = true;
+
+                        setState('scrollTrigger', 'wheel');
+
+                        var scrollSettings = getScrollSettings(getLast(g_state.sections).item.offsetTop);
+                        // css($htmlBody, {'scroll-behavior': 'unset'});
+                        canScroll = false;
+                        // document.body.style.overflow = 'visible';
+                        
+                        scrollTo(scrollSettings.element, scrollSettings.options, options.scrollingSpeed, function(){
+                            canScroll = true;
+                            g_isBeyondFullpage = false;
+                            g_isAboutToScrollToFullPage = false;
+                        });
+                        
+                        preventDefault(e);
+                        return false;
+                    }
+                }
+
+                if(!g_isAboutToScrollToFullPage){
+
+                    // allow normal scrolling, but quitting
+                    if(!pauseScroll){
+                        return true;
+                    }
+                }   
+            }
+        }
+
         /**
          * Detecting mousewheel scrolling
          *
@@ -1935,9 +2117,18 @@
         function MouseWheelHandler(e) {
             var curTime = new Date().getTime();
             var isNormalScroll = hasClass($(COMPLETELY_SEL)[0], NORMAL_SCROLL);
+            var isScrollAllowedBeyondFullPage = beyondFullPageHandler(e);
 
             //is scroll allowed?
             if (!isScrollAllowed.m.down && !isScrollAllowed.m.up) {
+                preventDefault(e);
+                return false;
+            }
+
+            if(isScrollAllowedBeyondFullPage){
+                return true;
+            }
+            else if (isScrollAllowedBeyondFullPage === false){
                 preventDefault(e);
                 return false;
             }
@@ -1978,7 +2169,7 @@
                 }
 
                 if(options.allowCorrectDirection){
-                    canScroll = canScroll && g_direction == direction || g_direction !== direction;
+                    canScroll = canScroll && g_direction == direction || g_direction !== direction;
                 }
 
                 if(canScroll){
@@ -2430,6 +2621,12 @@
         * Actions to do once the section is loaded.
         */
         function afterSectionLoads(v){
+            if(options.fitToSection){
+                css(document.body, {'scroll-snap-type': 'y mandatory'});
+            }
+            
+            g_isBeyondFullpage = false;
+
             continuousVerticalFixSectionOrder(v);
 
             //callback (afterLoad) if the site is not just resizing and readjusting the slides
@@ -3141,9 +3338,11 @@
             var _didSlidesChange = didSlidesChange();
  
             if( didSectionsOrSlidesChange()){
-                // Temporally disabling the observer while 
-                // we modidy the DOM again
-                g_wrapperObserver.disconnect();
+                if(options.observer){
+                    // Temporally disabling the observer while 
+                    // we modidy the DOM again
+                    g_wrapperObserver.disconnect();
+                }
                 updateStructuralState();
                 updateState();
 
@@ -3167,7 +3366,9 @@
                 }
             }
 
-            g_wrapperObserver.observe($(WRAPPER_SEL)[0], g_wrapperObserveConfig);
+            if(options.observer){
+                g_wrapperObserver.observe($(WRAPPER_SEL)[0], g_wrapperObserveConfig);
+            }
         }
 
         /**
@@ -3683,11 +3884,14 @@
 
             if(support == 'DOMMouseScroll'){
                 document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
+                document[ _addEventListener ](prefix + 'MozMousePixelScroll', wheelDataHandler.registerEvent, passiveEvent);
+
             }
 
             //handle MozMousePixelScroll in older Firefox
             else{
                 document[ _addEventListener ](prefix + support, MouseWheelHandler, passiveEvent);
+                document[ _addEventListener ](prefix + support, wheelDataHandler.registerEvent, passiveEvent);
             }
         }
 
@@ -4149,16 +4353,10 @@
                     }else if(typeof callback !== 'undefined' && !isCallbackFired){
                         callback();
                         isCallbackFired = true;
-                        if(options.fitToSection){
-                            css(document.body, {'scroll-snap-type': 'y mandatory'});
-                        }
                     }
                 }else if (currentTime < duration && !isCallbackFired){
                     callback();
                     isCallbackFired = true;
-                    if(options.fitToSection){
-                        css(document.body, {'scroll-snap-type': 'y mandatory'});
-                    }
                 }
             };
 
