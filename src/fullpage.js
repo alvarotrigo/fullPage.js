@@ -1,12 +1,12 @@
 /*!
- * fullPage 3.1.2
+ * fullPage 3.1.2 Alpha
  * https://github.com/alvarotrigo/fullPage.js
  *
- * @license GPLv3 for open source use only
+ * @license non-commercial
  * or Fullpage Commercial License for commercial use
  * http://alvarotrigo.com/fullPage/pricing/
  *
- * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
+ * Copyright (C) 2021 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
 (function( root, window, document, factory, undefined) {
     if( typeof define === 'function' && define.amd ) {
@@ -314,12 +314,10 @@
                 registerEvent: function(e){
                     e = e || window.event;
                     var value = e.wheelDelta || -e.deltaY || -e.detail;
-                    var delta = Math.max(-1, Math.min(1, value));
                     var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
                     isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
                     var curTime = new Date().getTime();
-                    direction = delta < 0 ? 'down': 'up';
-
+                    
                     //Limiting the array to 150 (lets not waste memory!)
                     if(_scrollings.length > 149){
                         _scrollings.shift();
@@ -347,8 +345,11 @@
                     return isAccelerating && isScrollingVertically;
                 },
 
-                getDirection: function(){
-                    return direction;
+                getDirection: function(e){
+                    let value = e.wheelDelta || -e.deltaY || -e.detail;
+                    let delta = Math.max(-1, Math.min(1, value));
+                    
+                    return delta < 0 ? 'down': 'up';
                 }
             };
         })();
@@ -827,9 +828,17 @@
             if(next != null){
                 scrollPage(next, null, false);
             }
-            else{
+            else if(hasContentBeyondFullPage()){
                 scrollBeyondFullPage();
             }
+        }
+
+        function isContentBeyondFullPageScrollable(){
+            return $body.scrollHeight - container.scrollHeight > getWindowHeight();
+        }
+
+        function hasContentBeyondFullPage(){
+            return container.scrollHeight < $body.scrollHeight;
         }
 
         function scrollBeyondFullPage(){
@@ -979,7 +988,7 @@
 
         if(container){
             //public functions
-            FP.version = '3.1.1';
+            FP.version = '3.1.2';
             FP.setAutoScrolling = setAutoScrolling;
             FP.setRecordHistory = setRecordHistory;
             FP.setScrollingSpeed = setScrollingSpeed;
@@ -1685,7 +1694,6 @@
                     case 'set':
                         frames[name] = new Date().getTime();
                         timeframes[name] = timeframe;
-                        console.warn("setting time frame...");
                         break;
                     case 'isNewKeyframe':
                         const current = new Date().getTime();
@@ -2051,7 +2059,7 @@
 
         function beyondFullPageHandler(e){
             var curTime = new Date().getTime();
-            var pauseScroll = g_isBeyondFullpage && container.getBoundingClientRect().bottom >= 0 && wheelDataHandler.getDirection() === 'up';
+            var pauseScroll = g_isBeyondFullpage && container.getBoundingClientRect().bottom >= 0 && wheelDataHandler.getDirection(e) === 'up';
 
             if(g_isAboutToScrollToFullPage){
                 prevTime = curTime;
@@ -2064,8 +2072,8 @@
                     keyframeTime('set', 'beyondFullpage', 1000);
                 }
                 else {
-                    var shouldSetFixedPosition = !g_isAboutToScrollToFullPage && (!keyframeTime('isNewKeyframe', 'beyondFullpage') || !wheelDataHandler.isAccelerating() );
-                    
+                    var canScroll = keyframeTime('isNewKeyframe', 'beyondFullpage') || !isContentBeyondFullPageScrollable();
+                    var shouldSetFixedPosition = !g_isAboutToScrollToFullPage && (!canScroll || !wheelDataHandler.isAccelerating());
                     if( shouldSetFixedPosition ){
                         var scrollSettings = getScrollSettings(getLast(g_state.sections).item.offsetTop + getLast(g_state.sections).item.offsetHeight);
                         scrollSettings.element.scrollTo(0, scrollSettings.options);

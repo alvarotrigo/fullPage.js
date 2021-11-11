@@ -4,7 +4,10 @@
   "description": "Create beautiful fullscreen snap scrolling websites",
   "main": "dist/fullpage.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "test": "jest",
+    "devtest": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -44,12 +47,20 @@
   "homepage": "https://github.com/alvarotrigo/fullPage.js",
   "namespace": "fullpage_api",
   "devDependencies": {
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/stream": "^2.0.0",
     "gulp": "^4.0.0",
     "gulp-clean-css": "^4.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.0"
+    "gulp-terser": "^2.1.0",
+    "gulp-uglify": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }
