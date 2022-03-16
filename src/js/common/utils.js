@@ -31,26 +31,26 @@ export function $(selector, context){
 */
 export function deepExtend(out) {
     out = out || {};
-    for (var i = 1, len = arguments.length; i < len; ++i){
-        var obj = arguments[i];
-
-        if(!obj){
-            continue;
+    for (var i = 1, len = arguments.length; i < len; ++i) {
+      var obj = arguments[i];
+  
+      if (!obj) {
+        continue;
+      }
+  
+      for (var key in obj) {
+        if (!obj.hasOwnProperty(key) || key == '__proto__' || key == 'constructor') {
+          continue;
         }
-
-        for(var key in obj){
-            if (!obj.hasOwnProperty(key)){
-            continue;
-            }
-
-            // based on https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
-            if (Object.prototype.toString.call(obj[key]) === '[object Object]'){
-            out[key] = deepExtend(out[key], obj[key]);
-            continue;
-            }
-
-            out[key] = obj[key];
+  
+        // based on https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
+        if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
+          out[key] = deepExtend(out[key], obj[key]);
+          continue;
         }
+  
+        out[key] = obj[key];
+      }
     }
     return out;
 }
@@ -81,7 +81,7 @@ export function getWindowWidth(){
 
 /**
 * Set's the CSS properties for the passed item/s.
-* @param {NodeList|HTMLElement} items
+* @param {NodeList|HTMLElement|Object} items
 * @param {Object} props css properties and values.
 */
 export function css(items, props) {
@@ -101,20 +101,6 @@ export function css(items, props) {
 
     return items;
 }
-
-/**
-* Generic function to get the previous or next element.
-*/
-export function until(item, selector, fn){
-    var sibling = item[fn];
-    while(sibling && !matches(sibling, selector) && isVisible(sibling[fn])){
-        sibling = sibling[fn];
-    }
-
-    return sibling;
-}
-
-
 
 /**
 * Gets the previous element to the passed element.
@@ -322,7 +308,7 @@ export function closest(el, selector) {
 /**
 * Places one element (rel) after another one or group of them (reference).
 * @param {HTMLElement} reference
-* @param {HTMLElement|NodeList|String} el
+* @param {HTMLElement|NodeList|String|Array} el
 * https://jsfiddle.net/9s97hhzv/1/
 */
 export function after(reference, el) {
@@ -332,7 +318,7 @@ export function after(reference, el) {
 /**
 * Places one element (rel) before another one or group of them (reference).
 * @param {HTMLElement} reference
-* @param {HTMLElement|NodeList|String} el
+* @param {HTMLElement|NodeList|String|Array} el
 * https://jsfiddle.net/9s97hhzv/1/
 */
 export function before(reference, el) {
@@ -376,6 +362,26 @@ export function siblings(el){
 
 export function preventDefault(event){
     event.preventDefault();
+}
+
+export function getAttr(el, attr){
+    return el.getAttribute(attr);
+}
+
+export function docAddEvent(event, callback, options){
+    document.addEventListener(event, callback, options === 'undefined' ? null : options);
+}
+
+export function windowAddEvent(event, callback, options){
+    window.addEventListener(event, callback, options === 'undefined' ? null : options);
+}
+
+export function docRemoveEvent(event, callback, options){
+    document.removeEventListener(event, callback, options === 'undefined' ? null : options);
+}
+
+export function windowRemoveEvent(event, callback, options){
+    window.removeEventListener(event, callback, options === 'undefined' ? null : options);
 }
 
 /**
@@ -498,19 +504,6 @@ export function toArray(objectData){
     });
 }
 
-/**
-* forEach polyfill for IE
-* https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Browser_Compatibility
-*/
-if (window.NodeList && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = function (callback, thisArg) {
-        thisArg = thisArg || window;
-        for (var i = 0; i < this.length; i++) {
-            callback.call(thisArg, this[i], i, this);
-        }
-    };
-}
-
 export function getLast(items){
     return items[items.length-1];
 }
@@ -531,44 +524,54 @@ export function getAverage(elements, number){
     return Math.ceil(sum/number);
 }
 
-//utils are public, so we can use it wherever we want
-window.fp_utils = {
-    $: $,
-    deepExtend: deepExtend,
-    hasClass: hasClass,
-    getWindowHeight: getWindowHeight,
-    css: css,
-    prev: prev,
-    next: next,
-    last: last,
-    index: index,
-    getList: getList,
-    hide: hide,
-    show: show,
-    isArrayOrList: isArrayOrList,
-    addClass: addClass,
-    removeClass: removeClass,
-    appendTo: appendTo,
-    wrap: wrap,
-    wrapAll: wrapAll,
-    wrapInner: wrapInner,
-    unwrap: unwrap,
-    closest: closest,
-    after: after,
-    before: before,
-    insertBefore: insertBefore,
-    getScrollTop: getScrollTop,
-    siblings: siblings,
-    preventDefault: preventDefault,
-    isFunction: isFunction,
-    trigger: trigger,
-    matches: matches,
-    toggle: toggle,
-    createElementFromHTML: createElementFromHTML,
-    remove: remove,
-    filter: filter,
-    untilAll: untilAll,
-    nextAll: nextAll,
-    prevAll: prevAll,
-    showError: showError
-};
+/**
+* Sets the value for the given attribute from the `data-` attribute with the same suffix
+* ie: data-srcset ==> srcset  |  data-src ==> src
+*/
+export function setSrc(element, attribute){
+    element.setAttribute(attribute, getAttr(element, 'data-' + attribute));
+    element.removeAttribute('data-' + attribute);
+}
+
+// //utils are public, so we can use it wherever we want
+// // @ts-ignore
+// window.fp_utils = {
+//     $: $,
+//     deepExtend: deepExtend,
+//     hasClass: hasClass,
+//     getWindowHeight: getWindowHeight,
+//     css: css,
+//     prev: prev,
+//     next: next,
+//     last: last,
+//     index: index,
+//     getList: getList,
+//     hide: hide,
+//     show: show,
+//     isArrayOrList: isArrayOrList,
+//     addClass: addClass,
+//     removeClass: removeClass,
+//     appendTo: appendTo,
+//     wrap: wrap,
+//     wrapAll: wrapAll,
+//     wrapInner: wrapInner,
+//     unwrap: unwrap,
+//     closest: closest,
+//     after: after,
+//     before: before,
+//     insertBefore: insertBefore,
+//     getScrollTop: getScrollTop,
+//     siblings: siblings,
+//     preventDefault: preventDefault,
+//     isFunction: isFunction,
+//     trigger: trigger,
+//     matches: matches,
+//     toggle: toggle,
+//     createElementFromHTML: createElementFromHTML,
+//     remove: remove,
+//     filter: filter,
+//     untilAll: untilAll,
+//     nextAll: nextAll,
+//     prevAll: prevAll,
+//     showError: showError
+// };

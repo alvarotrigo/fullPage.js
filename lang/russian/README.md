@@ -983,8 +983,6 @@ new fullpage('#fullpage', {
 - [Интеграция fullPage.js с Wordpress (Обучение)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## Кто пользуется fullPage.js
-Если вы хотите, чтобы ваша страница была указана в этом списке, пожалуйста, <a href="mailto:alvaro@alvarotrigo.com">свяжитесь со мной</a> и пришлите URL.
-
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
 ![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)

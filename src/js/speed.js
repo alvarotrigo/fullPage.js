@@ -1,4 +1,4 @@
-import { setVariableState } from './options.js';
+import { setVariableState } from './common/options.js';
 import { FP } from './common/constants.js';
 
 FP.setScrollingSpeed = setScrollingSpeed;

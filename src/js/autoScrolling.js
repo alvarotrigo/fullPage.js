@@ -1,15 +1,16 @@
+import * as utils from './common/utils.js';
 import { silentScroll } from './common/silentScroll.js';
-import { getScrollSettings } from './utilsFP.js';
+import { getScrollSettings } from './common/utilsFP.js';
 import { 
     setVariableState,
     getOptions,
     getOriginals,
     getContainer
-} from './options.js';
-import * as utils from './common/utils.js';
-import { setRecordHistory } from './history.js';
-import { getState } from './state.js';
-import { $htmlBody, $body, FP } from './common/constants.js';
+} from './common/options.js';
+import { getState } from './common/state.js';
+import { FP } from './common/constants.js';
+import { $body, $htmlBody } from './common/cache.js';
+import { setRecordHistory } from './anchors/setRecordHistory.js';
 
 FP.setAutoScrolling = setAutoScrolling;
 FP.test.setAutoScrolling = setAutoScrolling;
@@ -23,7 +24,7 @@ export function setAutoScrolling(value, type){
     if(!value){
         silentScroll(0);
     }
-
+    
     setVariableState('autoScrolling', value, type);
 
     var element = getState().activeSection.item;

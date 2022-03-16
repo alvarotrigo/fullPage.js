@@ -1,17 +1,44 @@
 import * as utils from './common/utils.js';
-import { setMouseHijack } from './wheel.js';
-import { getOptions } from './options.js';
+import { setMouseHijack } from './mouse/wheel.js';
+import { getOptions } from './common/options.js';
 import { FP } from './common/constants.js';
+import { EventEmitter } from './common/eventEmitter.js';
 
 let g_canFireMouseEnterNormalScroll = true;
 
-export function forMouseLeaveOrTouch(eventName, allowScrolling){
-    //a way to pass arguments to the onMouseEnterOrLeave function
-    document['fp_' + eventName] = allowScrolling;
-    document.addEventListener(eventName, onMouseEnterOrLeave, true); //capturing phase
+EventEmitter.on('bindEvents', bindEvents);
+
+function bindEvents(){
+    /**
+    * Applying normalScroll elements.
+    * Ignoring the scrolls over the specified selectors.
+    */
+    if(getOptions().normalScrollElements){
+        ['mouseenter', 'touchstart'].forEach(function(eventName){
+            forMouseLeaveOrTouch(eventName, false);
+        });
+
+        ['mouseleave', 'touchend'].forEach(function(eventName){
+            forMouseLeaveOrTouch(eventName, true);
+        });
+    }
+
+    EventEmitter.on('onDestroy', onDestroy);
 }
 
-export function onMouseEnterOrLeave(e) {
+function onDestroy(){
+    ['mouseenter', 'touchstart', 'mouseleave', 'touchend'].forEach(function(eventName){
+        utils.docRemoveEvent(eventName, onMouseEnterOrLeave, true); //true is required!
+    });
+}
+
+function forMouseLeaveOrTouch(eventName, allowScrolling){
+    //a way to pass arguments to the onMouseEnterOrLeave function
+    document['fp_' + eventName] = allowScrolling;
+    utils.docAddEvent(eventName, onMouseEnterOrLeave, true); //capturing phase
+}
+
+function onMouseEnterOrLeave(e) {
     var type = e.type;
     var isInsideOneNormalScroll = false;
 

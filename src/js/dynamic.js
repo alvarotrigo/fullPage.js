@@ -1,16 +1,18 @@
 import * as utils from './common/utils.js';
-import { getOptions, setOptionsFromDOM } from './options.js';
+import { getContainer, getOptions, setOptionsFromDOM } from './common/options.js';
+import { getState, state } from './common/state.js';
 import { updateState, updateStructuralState } from './stateUpdates.js';
-import { getState } from './state.js';
-import {  addInternalSelectors } from './dom.js';
-import { addVerticalNavigation } from './nav.js';
-import { styleSlides } from './slides.js';
+import { addInternalSelectors } from './dom/addInternalSelectors.js';
+import { addVerticalNavigation } from './nav/sections.js';
+import { styleSlides } from './slides/styleSlides.js';
 import { 
     SECTION_NAV_SEL, 
     SLIDES_NAV_SEL,
     WRAPPER_SEL,
     SLIDES_ARROW_SEL
 } from './common/selectors.js';
+import { EventEmitter } from './common/eventEmitter.js';
+import { FP } from './common/constants.js';
 
 let g_wrapperObserver;
 const g_wrapperObserveConfig = {
@@ -20,29 +22,41 @@ const g_wrapperObserveConfig = {
     characterData: true
 };
 
-export function setWrapperObserver(value){
+EventEmitter.on('bindEvents', bindEvents);
+
+FP.render = onContentChange;
+
+function bindEvents(){
+    if(getOptions().observer){
+        setWrapperObserver(createObserver(utils.$(WRAPPER_SEL)[0], onContentChange, getWrapperObserver()));
+    }
+    EventEmitter.on('contentChanged', onContentChange);
+}
+
+
+function setWrapperObserver(value){
     g_wrapperObserver = value;
 }
 
-export function getWrapperObserver(){
+function getWrapperObserver(){
     return g_wrapperObserveConfig;
 }
 
 /**
  * Creates a Mutation observer.
  */
-export function createObserver(target, callback, config) {
+function createObserver(target, callback, config) {
     var observer = new MutationObserver(callback);
     observer.observe(target, config);
     return observer;
 }
 
 function didSlidesChange(){
-    return utils.getVisible(utils.$(getOptions().slideSelector)).length !== getState().numSlides;
+    return utils.getVisible(utils.$(getOptions().slideSelector, getContainer())).length !== getState().numSlides;
 }
 
 function didSectionsChange(){
-    return utils.getVisible(utils.$(getOptions().sectionSelector)).length !== getState().numSections;
+    return utils.getVisible(utils.$(getOptions().sectionSelector, getContainer())).length !== getState().numSections;
 }
 
 function didSectionsOrSlidesChange(){
@@ -53,10 +67,15 @@ function didSectionsOrSlidesChange(){
  * Listen to changes on sections and fires reBuild
  * when those changes affect the section height.
  */
-export function onContentChange(mutations){
+function onContentChange(mutations){
     var _didSlidesChange = didSlidesChange();
 
-    if( didSectionsOrSlidesChange()){
+    if(!getOptions().dynamic){
+        return;
+    }
+    console.log("onContentChange");
+
+    if( didSectionsOrSlidesChange() && !state.isDoingContinousVertical){
         if(getOptions().observer){
             // Temporally disabling the observer while 
             // we modidy the DOM again
@@ -71,7 +90,10 @@ export function onContentChange(mutations){
 
         addInternalSelectors();
         setOptionsFromDOM();
-        addVerticalNavigation();
+
+        if(getOptions().navigation){
+            addVerticalNavigation();
+        }
         
         if(_didSlidesChange){
             utils.remove(utils.$(SLIDES_NAV_SEL));

@@ -1,3 +1,4 @@
+import * as utils from './utils.js';
 
 const supportsPassiveEvents = (function(){
     //cheks for passive event support
@@ -9,8 +10,8 @@ const supportsPassiveEvents = (function(){
                 g_supportsPassive = true;
             }
         });
-        window.addEventListener("testPassive", null, opts);
-        window.removeEventListener("testPassive", null, opts);
+        utils.windowAddEvent("testPassive", null, opts);
+        utils.windowRemoveEvent("testPassive", null, opts);
     } catch (e) {
 
     }

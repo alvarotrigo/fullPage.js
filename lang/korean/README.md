@@ -972,8 +972,6 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - [fullPage.js를 워드프레스와 통합하기 (튜토리얼)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## 누가 fullPage.js를 쓰나요?
-귀하의 페이지가 여기에 나오길 원하시다면 저에게 URL을 <a href="mailto:alvaro@alvarotrigo.com">보내주세요</a>.
-
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
 ![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)

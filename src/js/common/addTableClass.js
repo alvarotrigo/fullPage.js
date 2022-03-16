@@ -1,5 +1,5 @@
 import * as utils from './utils.js';
-import { getOptions } from "../options.js";
+import { getOptions } from "./options.js";
 import { TABLE } from './selectors.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
 
@@ -11,8 +11,8 @@ export function addTableClass(element){
 
     if(!scrollOverflowHandler.isScrollable(element)){
         //In case we are styling for the 2nd time as in with reponsiveSlides
-        if(!utils.hasClass(element, TABLE)){
-            utils.addClass(element, TABLE);
+        if(!utils.hasClass(element.item, TABLE)){
+            utils.addClass(element.item, TABLE);
         }
     }
 }

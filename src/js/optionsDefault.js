@@ -14,6 +14,13 @@ export const defaultOptions = {
     scrollBar: false,
     hybrid: false,
 
+    licenseKey: '',
+    credits: {
+        enabled: true,
+        label: 'Made with fullPage.js',
+        position: 'right'
+    },
+
     //scrolling
     css3: true,
     scrollingSpeed: 700,
@@ -34,7 +41,7 @@ export const defaultOptions = {
     resetSliders: false,
     fadingEffect: false,
     normalScrollElements: null,
-    scrollOverflow: false,
+    scrollOverflow: true,
     scrollOverflowReset: false,
     touchSensitivity: 5,
     touchWrapper: null,
@@ -88,6 +95,7 @@ export const defaultOptions = {
     onSlideLeave: null,
     afterResponsive: null,
 
+    dynamic: true,
     lazyLoading: true,
     observer: true
 };

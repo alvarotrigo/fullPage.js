@@ -1,9 +1,23 @@
 //@ts-check
 import * as utils from './utils.js';
-import { getStateVar, setState } from "../state.js";
-import { setScrolling } from './setScrolling.js';
-import { getOptions } from '../options.js';
+import { setScrolling } from './utilsFP.js';
+import { state, setState } from "./state.js";
+import { getOptions } from './options.js';
 import { SLIDES_WRAPPER } from './selectors.js';
+import { EventEmitter } from './eventEmitter.js';
+
+let g_animateScrollId;
+
+EventEmitter.on('bindEvents', bindEvents);
+
+function bindEvents(){
+    EventEmitter.on('onDestroy', onDestroy);
+}
+
+function onDestroy(){
+    clearTimeout(g_animateScrollId);
+}
+
 
 /**
 * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
@@ -14,7 +28,7 @@ export function scrollTo(element, to, duration, callback) {
     var change = to - start;
     var currentTime = 0;
     var increment = 20;
-    setState('activeAnimation', true);
+    setState({activeAnimation: true});
     var isCallbackFired = false;
 
     // Making sure we can trigger a scroll animation
@@ -24,12 +38,13 @@ export function scrollTo(element, to, duration, callback) {
     }
 
     var animateScroll = function(){
-        if(getStateVar('activeAnimation')){ //in order to stope it from other function whenever we want
+        if(state.activeAnimation){ //in order to stope it from other function whenever we want
             var val = to;
 
             currentTime += increment;
 
             if(duration){
+                // @ts-ignore
                 val = window.fp_easings[getOptions().easing](currentTime, start, change, duration);
             }
 

@@ -1,6 +1,6 @@
 import * as utils from './common/utils.js';
-import { getState } from './state.js';
-import { $body } from './common/constants';
+import { getState } from './common/state.js';
+import { $body } from './common/cache.js';
 import { VIEWING_PREFIX } from './common/selectors.js';
 
 /**
@@ -32,11 +32,11 @@ export function setBodyClass(){
 /**
 * Gets the anchor for the given slide / section. Its index will be used if there's none.
 */
-export function getAnchor(element){
+function getAnchor(element){
     if(!element){
         return null;
     }
-    var anchor = element.getAttribute('data-anchor');
+    var anchor = utils.getAttr(element, 'data-anchor');
     var elementIndex = utils.index(element);
 
     //Slide without anchor link? We take the index instead.

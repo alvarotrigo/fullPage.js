@@ -1,13 +1,14 @@
 import * as utils from './common/utils.js';
-import { getOptions } from './options.js';
-import { $html, extensions } from './common/constants.js';
+import { getOptions } from './common/options.js';
+import { extensions } from './common/constants.js';
+import { $html } from './common/cache.js';
 import {
     ENABLED
 } from './common/selectors.js';
-
+import { state } from './common/state.js';
 
 const isOK = function(){
-    return getOptions() && new RegExp('([\\d\\w]{8}-){3}[\\d\\w]{8}|^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$').test(getOptions()['li'+'cen'+'seK' + 'e' + 'y']) || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
+    return getOptions() && state.isValid || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
 };
 
 /**
@@ -18,7 +19,7 @@ export function displayWarnings(){
     var msgStyle = 'font-size: 15px;background:yellow;';
 
     if(!isOK()){
-        utils.showError('error', 'Fullpage.js version 3 has changed its license to GPLv3 and it requires a `licenseKey` option. Read about it here:');
+        utils.showError('error', 'Fullpage.js requires a `licenseKey` option. Read about it on the following URL:');
         utils.showError('error', 'https://github.com/alvarotrigo/fullPage.js#options');
     }
     else if(l && l.length < 20){
@@ -61,11 +62,11 @@ export function displayWarnings(){
 
         //case insensitive selectors (http://stackoverflow.com/a/19465187/1081396)
         var nameAttr = [].slice.call(utils.$('[name]')).filter(function(item) {
-            return item.getAttribute('name') && item.getAttribute('name').toLowerCase() == name.toLowerCase();
+            return utils.getAttr(item, 'name') && utils.getAttr(item, 'name').toLowerCase() == name.toLowerCase();
         });
 
         var idAttr = [].slice.call(utils.$('[id]')).filter(function(item) {
-            return item.getAttribute('id') && item.getAttribute('id').toLowerCase() == name.toLowerCase();
+            return utils.getAttr(item, 'id') && utils.getAttr(item, 'id').toLowerCase() == name.toLowerCase();
         });
 
         if(idAttr.length || nameAttr.length ){

@@ -1,7 +1,7 @@
 import * as utils from './common/utils.js';
-import { setVariableState } from './options.js';
-import { getOptions } from './options.js';
-import { $html } from './common/constants.js';
+import { setVariableState } from './common/options.js';
+import { getOptions } from './common/options.js';
+import { $html } from './common/cache.js';
 import { FP } from './common/constants.js';
 import {
     SNAPS

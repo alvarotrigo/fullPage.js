@@ -1,18 +1,15 @@
 import * as utils from './common/utils.js';
-import { getOptions } from './options.js';
-import { 
-    isTouchDevice, 
-    isTouch,
-    $body
-} from './common/constants.js';
-import { getState, setState, getStateVar } from './state.js';
-import { scrolling } from './scroll.js';
-import { moveSlideLeft, moveSlideRight } from './slides.js';
+import { getIsScrollAllowed } from './common/isScrollAllowed.js';
+import { isTouchDevice, isTouch } from './common/constants.js';
+import { $body } from './common/cache.js';
+import { getOptions } from './common/options.js';
+import { getState, setState, state } from './common/state.js';
 import { 
     SECTION_SEL,
     SLIDES_WRAPPER_SEL
 } from './common/selectors.js';
-import { getIsScrollAllowed } from './common/isScrollAllowed.js';
+import { EventEmitter } from './common/eventEmitter.js';
+import { scrolling } from './scroll/scrolling.js';
 
 let touchStartY = 0;
 let touchStartX = 0;
@@ -23,99 +20,6 @@ const events = {
     touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer.move,
     touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer.down
 };
-
-/* Detecting touch events
-
-* As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
-* This way, the touchstart and the touch moves shows an small difference between them which is the
-* used one to determine the direction.
-*/
-export function touchMoveHandler(e){
-    var activeSection = utils.closest(e.target, SECTION_SEL) || getState().activeSection.item;
-
-    if (isReallyTouch(e) ) {
-        setState('isGrabbing', true);
-
-        if(getOptions().autoScrolling && !getStateVar('canScroll')){
-            //preventing the easing on iOS devices
-            utils.preventDefault(e);
-        }
-
-        var touchEvents = getEventsPage(e);
-
-        touchEndY = touchEvents.y;
-        touchEndX = touchEvents.x;
-
-        //if movement in the X axys is greater than in the Y and the currect section has slides...
-        if (utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
-
-            //is the movement greater than the minimum resistance to scroll?
-            if (!getStateVar('slideMoving') && Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity)) {
-                if (touchStartX > touchEndX) {
-                    setState('touchDirection', 'right');
-                    if(getIsScrollAllowed().m.right){
-                        moveSlideRight(activeSection); //next
-                    }
-                } else {
-                    if(getIsScrollAllowed().m.left){
-                        setState('touchDirection', 'left');
-                        moveSlideLeft(activeSection); //prev
-                    }
-                }
-            }
-        }
-
-        //vertical scrolling (only when autoScrolling is enabled)
-        else if(getOptions().autoScrolling && getStateVar('canScroll')){
-
-            //is the movement greater than the minimum resistance to scroll?
-            if (Math.abs(touchStartY - touchEndY) > (window.innerHeight / 100 * getOptions().touchSensitivity)) {
-                if (touchStartY > touchEndY) {
-                    setState('touchDirection', 'down');
-                    scrolling('down');
-                } else if (touchEndY > touchStartY) {
-                    setState('touchDirection', 'up');
-                    scrolling('up');
-                }
-            }
-        }
-    }
-}
-
-/**
-* As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
-* this way we make sure that is really a touch event what IE is detecting.
-*/
-export function isReallyTouch(e){
-    //if is not IE   ||  IE is detecting `touch` or `pen`
-    return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
-}
-
-/**
-* Handler for the touch start event.
-*/
-export function touchStartHandler(e){
-
-    //stopping the auto scroll to adjust to a section
-    if(getOptions().fitToSection){
-        setState('activeAnimation', false);
-    }
-
-    if(isReallyTouch(e)){
-        var touchEvents = getEventsPage(e);
-        touchStartY = touchEvents.y;
-        touchStartX = touchEvents.x;
-    }
-
-    window.addEventListener('touchend', touchEndHandler);
-}
-
-export function touchEndHandler(){
-    window.removeEventListener('touchend', touchEndHandler);
-    setState('isGrabbing', false);
-}
-
-
 
 /**
 * Adds the possibility to auto scroll through sections on touch devices.
@@ -155,12 +59,106 @@ export function removeTouchHandler(){
 }
 
 
+/* Detecting touch events
+
+* As we are changing the top property of the page on scrolling, we can not use the traditional way to detect it.
+* This way, the touchstart and the touch moves shows an small difference between them which is the
+* used one to determine the direction.
+*/
+function touchMoveHandler(e){
+    var activeSection = utils.closest(e.target, SECTION_SEL) || getState().activeSection.item;
+
+    if (isReallyTouch(e) ) {
+        setState({isGrabbing: true});
+
+        if(getOptions().autoScrolling && !state.canScroll){
+            //preventing the easing on iOS devices
+            utils.preventDefault(e);
+        }
+
+        var touchEvents = getEventsPage(e);
+
+        touchEndY = touchEvents.y;
+        touchEndX = touchEvents.x;
+
+        //if movement in the X axys is greater than in the Y and the currect section has slides...
+        if (utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+
+            //is the movement greater than the minimum resistance to scroll?
+            if (!state.slideMoving && Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity)) {
+                if (touchStartX > touchEndX) {
+                    if(getIsScrollAllowed().m.right){
+                        setState({touchDirection: 'right'});
+                        EventEmitter.emit('moveSlideRight', {section: activeSection});
+                    }
+                } else {
+                    if(getIsScrollAllowed().m.left){
+                        setState({touchDirection: 'left'});
+                        EventEmitter.emit('moveSlideLeft', {section: activeSection});
+                    }
+                }
+            }
+        }
+
+        //vertical scrolling (only when autoScrolling is enabled)
+        else if(getOptions().autoScrolling && state.canScroll){
+
+            //is the movement greater than the minimum resistance to scroll?
+            if (Math.abs(touchStartY - touchEndY) > (window.innerHeight / 100 * getOptions().touchSensitivity)) {
+                if (touchStartY > touchEndY) {
+                    setState({touchDirection: 'down'});
+                    scrolling('down');
+                } else if (touchEndY > touchStartY) {
+                    setState({touchDirection: 'up'});
+                    scrolling('up');
+                }
+            }
+        }
+    }
+}
+
+/**
+* As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
+* this way we make sure that is really a touch event what IE is detecting.
+*/
+function isReallyTouch(e){
+    //if is not IE   ||  IE is detecting `touch` or `pen`
+    return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
+}
+
+/**
+* Handler for the touch start event.
+*/
+function touchStartHandler(e){
+
+    //stopping the auto scroll to adjust to a section
+    if(getOptions().fitToSection){
+        setState({activeAnimation: false});
+    }
+
+    if(isReallyTouch(e)){
+        var touchEvents = getEventsPage(e);
+        touchStartY = touchEvents.y;
+        touchStartX = touchEvents.x;
+    }
+
+    utils.windowAddEvent('touchend', touchEndHandler);
+}
+
+/**
+* Handler for the touch end event.
+*/
+function touchEndHandler(){
+    utils.windowRemoveEvent('touchend', touchEndHandler);
+    setState({isGrabbing: false});
+}
+
 /**
 * Gets the pageX and pageY properties depending on the browser.
 * https://github.com/alvarotrigo/fullPage.js/issues/194#issuecomment-34069854
 */
-export function getEventsPage(e){
-    var events = [];
+function getEventsPage(e){
+    var events = {};
 
     events.y = (typeof e.pageY !== 'undefined' && (e.pageY || e.pageX) ? e.pageY : e.touches[0].pageY);
     events.x = (typeof e.pageX !== 'undefined' && (e.pageY || e.pageX) ? e.pageX : e.touches[0].pageX);
@@ -174,7 +172,6 @@ export function getEventsPage(e){
     return events;
 }
 
-
 /*
 * Returns and object with Microsoft pointers (for IE<11 and for IE >= 11)
 * http://msdn.microsoft.com/en-us/library/ie/dn304886(v=vs.85).aspx
@@ -187,11 +184,6 @@ function getMSPointer(){
         pointer = { down: 'pointerdown', move: 'pointermove'};
     }
 
-    //IE < 11
-    else{
-        pointer = { down: 'MSPointerDown', move: 'MSPointerMove'};
-    }
-
     return pointer;
 }
 
@@ -201,7 +193,7 @@ function getMSPointer(){
 function preventBouncing(e){
     if(getOptions().autoScrolling && isReallyTouch(e) && getIsScrollAllowed().m.up){
         //preventing the easing on iOS devices
-        if(!getStateVar('canScroll')){
+        if(!state.canScroll){
             utils.preventDefault(e);
         }
     }

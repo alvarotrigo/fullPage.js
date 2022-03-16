@@ -1,8 +1,8 @@
 import * as utils from './common/utils.js';
-import { getOptions } from "./options.js";
+import { getOptions } from "./common/options.js";
 import { ACTIVE } from './common/selectors.js';
 import { updateState } from './stateUpdates.js';
-import { getState } from './state.js';
+import { getState } from './common/state.js';
 import { FP } from './common/constants.js';
 
 let startingSection = null;
@@ -11,7 +11,6 @@ FP.getActiveSection = getActiveSection;
 export function getStartingSection(){
     return startingSection;
 }
-
 
 /**
 * Styling vertical sections
@@ -47,6 +46,6 @@ export function styleSection(section){
 /**
 * Gets the active section.
 */
-export function getActiveSection(){
+function getActiveSection(){
     return getState().activeSection;
 }

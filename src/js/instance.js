@@ -1,29 +1,24 @@
 import * as utils from './common/utils.js';
-import { getOptions, getContainer, setOptionsFromDOM } from './options.js';
+import { getOptions, getContainer, setOptionsFromDOM } from './common/options.js';
 import { updateState, updateStructuralState } from './stateUpdates.js';
-import { setAllowScrolling } from './scroll.js';
 import { setAutoScrolling } from './autoScrolling.js';
-import { prepareDom, afterRenderActions } from './dom.js';
-import { setMouseHijack } from './wheel.js';
+import { setMouseHijack } from './mouse/wheel.js';
 import { responsive } from './responsive.js';
 import { setBodyClass } from './stateClasses.js';
-import { setKeyboardScrolling } from './keyboard.js';
+import { setKeyboardScrolling } from './keyboard/setKeyboardScrolling.js';
 import { toggleCssSnapsWhenPossible } from './fitToSection.js';
-import { scrollToAnchor } from './scroll.js';
-import { destroyStructure } from './dom.js';
-import { support3d } from './common/constants.js';
 import { DESTROYED } from './common/selectors.js';
 import { FP } from './common/constants.js';
-import { clearTimeouts } from './timeouts.js';
+import { EventEmitter } from './common/eventEmitter.js';
+import { prepareDom } from './dom/prepareDom.js';
+import { afterRenderActions } from './dom/afterRenderActions.js';
+import { setAllowScrolling } from './scroll/setAllowScrolling.js';
+import { scrollToAnchor } from './scroll/scrollToAnchor.js';
+import { destroyStructure } from './dom/destroyStructure.js';
 
 FP.destroy = destroy;
 
 export function init(){
-    //if css3 is not supported, it will use jQuery animations
-    if(getOptions().css3){
-        getOptions().css3 = support3d();
-    }
-
     updateStructuralState();
     updateState();
 
@@ -43,7 +38,7 @@ export function init(){
     if(document.readyState === 'complete'){
         scrollToAnchor();
     }
-    window.addEventListener('load', scrollToAnchor);
+    utils.windowAddEvent('load', scrollToAnchor);
 
     afterRenderActions();
 
@@ -62,9 +57,7 @@ export function destroy(all){
     setKeyboardScrolling(false);
     utils.addClass(getContainer(), DESTROYED);
 
-    clearTimeouts();
-
-    utils.trigger('fp:onDestroy', {});
+    EventEmitter.emit(document, 'onDestroy');
 
     //lets make a mess!
     if(all){

@@ -1,4 +1,4 @@
-import { getState } from "../state.js";
+import { getState } from "./state.js";
 
 /**
 * Gets a section by its anchor / index

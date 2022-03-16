@@ -1,9 +1,8 @@
 import * as utils from './utils.js';
-import { getOptions, getContainer } from '../options.js';
+import { getOptions, getContainer } from './options.js';
 import { transformContainer } from './transformContainer.js';
 import { FP } from './constants.js';
-import { getScrollSettings } from '../utilsFP.js';
-import { setScrolling } from './setScrolling.js';
+import { getScrollSettings, setScrolling } from './utilsFP.js';
 /**
 * Scrolls silently (with no animation) the page to the given Y position.
 */

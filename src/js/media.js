@@ -1,6 +1,6 @@
 import * as utils from './common/utils.js'; 
-import { getSlideOrSection } from './utilsFP.js';
-import { getContainer } from './options.js';
+import { getSlideOrSection } from './common/utilsFP.js';
+import { getContainer } from './common/options.js';
 
 // let g_mediaLoadedId;
 
@@ -70,7 +70,7 @@ export function stopMedia(destiny){
 
     //youtube videos
     utils.$('iframe[src*="youtube.com/embed/"]', panel).forEach(function(element){
-        if( /youtube\.com\/embed\//.test(element.getAttribute('src')) && !element.hasAttribute('data-keepplaying')){
+        if( /youtube\.com\/embed\//.test(utils.getAttr(element, 'src')) && !element.hasAttribute('data-keepplaying')){
             element.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}','*');
         }
     });
@@ -89,7 +89,7 @@ export function enableYoutubeAPI(){
 * Adds a new parameter and its value to the `src` of a given element
 */
 function addURLParam(element, newParam){
-    var originalSrc = element.getAttribute('src');
+    var originalSrc = utils.getAttr(element, 'src');
     element.setAttribute('src', originalSrc + getUrlParamSign(originalSrc) + newParam);
 }
 

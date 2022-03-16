@@ -1,10 +1,8 @@
 import * as utils from './common/utils.js';
-import { getOptions, getContainer } from './options.js';
-import { Item } from './item.js';
-import {
-    ACTIVE
-} from './common/selectors.js';
-import { state } from './state.js';
+import { getOptions, getContainer } from './common/options.js';
+import { Item } from './common/item.js';
+import { ACTIVE } from './common/selectors.js';
+import { getState, state } from './common/state.js';
 
 /** 
  * Updates the state of the app.
@@ -86,7 +84,7 @@ SectionPanel.prototype.constructor = SectionPanel;
 /**
 * Slide object
 */
-export let SlidePanel = function(el, section){
+let SlidePanel = function(el, section){
     this.parent = section;
     Item.call(this, el, getOptions().slideSelector);
 };

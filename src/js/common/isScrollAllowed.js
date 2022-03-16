@@ -6,7 +6,7 @@ isScrollAllowed.k = utils.deepExtend({}, isScrollAllowed.m);
 
 /**
 * Allowing or disallowing the mouse/swipe scroll in a given direction. (not for keyboard)
-* @type  m (mouse) or k (keyboard)
+* @param type m (mouse) or k (keyboard)
 */
 export function setIsScrollAllowed(value, direction, type){
     //up, down, left, right

@@ -1,8 +1,9 @@
 import * as utils from './common/utils.js';
-import { getOptions, getContainer, getOriginals} from './options.js';
+import { getOptions, getContainer, getOriginals} from './common/options.js';
 import { setAutoScrolling } from './autoScrolling.js';
 import { setFitToSection } from './fitToSection.js';
-import { $body, FP } from './common/constants.js';
+import { FP } from './common/constants.js';
+import { $body } from './common/cache.js';
 import { 
     SECTION_NAV_SEL,
     RESPONSIVE
@@ -38,7 +39,7 @@ export function responsive(){
 * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
 * are smaller than the set limit values.
 */
-export function setResponsive(active){
+function setResponsive(active){
     var isResponsive = isResponsiveMode();
 
     if(active){
