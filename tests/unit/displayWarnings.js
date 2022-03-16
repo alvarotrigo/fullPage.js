@@ -1,11 +1,15 @@
 
 var oldConsole = console;
 var warnFired = false;
+var logFired = false;
 var errorFired = false;
 var licenseKey = 'OPEN-SOURCE-GPLV3-LICENSE';
 
 function mockConsole(){
     console = {};
+    console.log = function(e){
+        logFired = true;
+    }
     console.warn = function(e){
         warnFired = true;
     };

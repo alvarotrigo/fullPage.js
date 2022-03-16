@@ -29,12 +29,12 @@ QUnit.test('Testing responsiveWidth', function(assert) {
         //mocking resize down
         window.innerWidth = reponsiveValue - 1;
         trigger(window, 'resize');
-    }, 300);
+    }, 800);
 
     setTimeout(function(){
         checkIsResponsive(FP, assert);
         done();
-    }, 300 * 2);
+    }, 800 * 2);
 });
 
 QUnit.test('Testing responsiveWidth on page load', function(assert) {
@@ -62,7 +62,8 @@ QUnit.test('Testing responsiveWidth undo responsive on resize up', function(asse
     trigger(window, 'resize');
 
     setTimeout(function(){
+        console.log("timeout....");
         checkIsNotResponsive(FP, assert);
         done();
-    }, 300);
+    }, 800*3);
 });

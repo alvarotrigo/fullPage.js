@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/qunit/qunit-1.18.0.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/qunit/qunit-2.17.1.css">
     <meta charset="utf-8">
 
     <title>fullpage.js - Tests</title>
     <link rel="stylesheet" type="text/css" href="../src/fullpage.css?v=22" />
 
     <style>
-    #qunit-fixture{
-
+    .show #qunit-fixture{
+        display: block;
     }
+    .show #qunit{
+        display: none
+    }
+
     .fullpage-layout{
         display: none;
     }
     .fullpage-layout.active{
+        display: block;
+    }
+    .show #fullpage{
         display: block;
     }
     #menu{
@@ -46,6 +53,21 @@
     }
     .content{
         height: 1400px;
+    }
+    #qunit-fixture{
+        height: 100%;
+        width: 1000px;
+    }
+    .box{
+        display: block;
+        height: 1000px;
+    }
+
+    .show #qunit-fixture,
+    .show-fixture{
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
     }
     </style>
 </head>
@@ -312,6 +334,18 @@
         <div class="section" id="section4">Some section</div>
     </div>
 
+    <div id="fullpage-scrolloverflow" class="fullpage-layout">
+        <div class="section" id="section1">
+            <div class="box">a</div>
+            <div class="box">b</div>
+        </div>
+        <div class="section" id="section2">Some section</div>
+        <div class="section" id="section3">
+            <div class="box">a</div>
+            <div class="box">b</div>
+        </div>
+    </div>
+
 
     <div id="fullpage-auto-height" class="fullpage-layout">
         <div class="section" id="section1">Some section</div>
@@ -366,91 +400,80 @@
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="https://code.jquery.com/qunit/qunit-2.5.1.js"></script>
-<script type="text/javascript" src="../src/fullpage.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/qunit/qunit-2.17.1.js"></script>
+<script type="text/javascript" src="../build/fullpage.js"></script>
 <script type="text/javascript">
 
 </script>
 <script type="text/javascript" src="utils.js"></script>
+
+<!-- PASSED -->
+<!-- <script type="text/javascript" src="./unit/arrows.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/bigSectionsDestination.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/callbacksV3.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/continuousVertical.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/destroy.js"></script> -->
+
+<!-- 
+    TODO
+    <script type="text/javascript" src="./unit/displayWarnings.js"></script> -->
+
+<!-- <script type="text/javascript" src="./unit/easingcss3.js"></script> -->
+
+<!-- 
+    TODO
+    <script type="text/javascript" src="./unit/fitToSection.js"></script> -->
+
+<!-- <script type="text/javascript" src="./unit/fixedElements.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/keyboardScrolling.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/lazyload.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/lockAnchors.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/loopBottom.js"></script>
+<script type="text/javascript" src="./unit/loopTop.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/menu.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/moveSectionDown.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/moveSectionUp.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/moveSlideLeft.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/moveSlideRight.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/moveTo.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/nav.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/normalScrollElements.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/paddings.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/recordHistory.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/responsiveHeight.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/responsiveWidth.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/scrollBar.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/scrollingSpeed.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/sectionsColor.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/selectors.js"></script> -->
+<script type="text/javascript" src="./unit/setAllowScrolling.js"></script>
+<!-- <script type="text/javascript" src="./unit/setAutoScrolling.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/silentMoveTo.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/slidesNavigation.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/verticalCentered.js"></script> -->
+
+<!-- TO TEST -->
 <!--
 
-//done
-<script type="text/javascript" src="./unit/setAutoScrolling.js"></script>
-<script type="text/javascript" src="./unit/moveSectionDown.js"></script>
-<script type="text/javascript" src="./unit/moveSectionUp.js"></script>
-<script type="text/javascript" src="./unit/callbacks.js"></script>
-<script type="text/javascript" src="./unit/callbacksV3.js"></script>
-<script type="text/javascript" src="./unit/moveSlideLeft.js"></script>
-<script type="text/javascript" src="./unit/moveSlideRight.js"></script>
-<script type="text/javascript" src="./unit/lazyload.js"></script>
-<script type="text/javascript" src="./unit/arrows.js"></script>
-<script type="text/javascript" src="./unit/destroy.js"></script>
-<script type="text/javascript" src="./unit/displayWarnings.js"></script>
-<script type="text/javascript" src="./unit/loopTop.js"></script>
-<script type="text/javascript" src="./unit/loopBottom.js"></script>
-<script type="text/javascript" src="./unit/lockAnchors.js"></script>
-<script type="text/javascript" src="./unit/menu.js"></script>
-<script type="text/javascript" src="./unit/nav.js"></script>
-<script type="text/javascript" src="./unit/silentMoveTo.js"></script>
-<script type="text/javascript" src="./unit/moveTo.js"></script>
-<script type="text/javascript" src="./unit/scrollingSpeed.js"></script>
-<script type="text/javascript" src="./unit/setAllowScrolling.js"></script>
-<script type="text/javascript" src="./unit/keyboardScrolling.js"></script>
-<script type="text/javascript" src="./unit/slidesNavigation.js"></script>
-<script type="text/javascript" src="./unit/scrollBar.js"></script>
-<script type="text/javascript" src="./unit/easingcss3.js"></script>
-<script type="text/javascript" src="./unit/continuousVertical.js"></script>
-<script type="text/javascript" src="./unit/normalScrollElements.js"></script>
-<script type="text/javascript" src="./unit/verticalCentered.js"></script>
-<script type="text/javascript" src="./unit/sectionsColor.js"></script>
-<script type="text/javascript" src="./unit/paddings.js"></script>
-<script type="text/javascript" src="./unit/selectors.js"></script>
-<script type="text/javascript" src="./unit/fitToSection.js"></script>
-<script type="text/javascript" src="./unit/responsiveWidth.js"></script>
-<script type="text/javascript" src="./unit/responsiveHeight.js"></script>
-<script type="text/javascript" src="./unit/fixedElements.js"></script>
-
-
-//todo
-
-<script type="text/javascript" src="./unit/recordHistory.js"></script>
-<script type="text/javascript" src="./unit/reBuild.js"></script>
-<script type="text/javascript" src="./unit/scrollOverflow.js"></script>
+    NONE
+    
 -->
 
-<script type="text/javascript" src="./unit/setAutoScrolling.js"></script>
-<script type="text/javascript" src="./unit/moveSectionDown.js"></script>
-<script type="text/javascript" src="./unit/moveSectionUp.js"></script>
-<script type="text/javascript" src="./unit/callbacks.js"></script>
-<script type="text/javascript" src="./unit/callbacksV3.js"></script>
-<script type="text/javascript" src="./unit/moveSlideLeft.js"></script>
-<script type="text/javascript" src="./unit/moveSlideRight.js"></script>
-<script type="text/javascript" src="./unit/lazyload.js"></script>
-<script type="text/javascript" src="./unit/arrows.js"></script>
-<script type="text/javascript" src="./unit/destroy.js"></script>
-<script type="text/javascript" src="./unit/displayWarnings.js"></script>
-<script type="text/javascript" src="./unit/loopTop.js"></script>
-<script type="text/javascript" src="./unit/loopBottom.js"></script>
-<script type="text/javascript" src="./unit/lockAnchors.js"></script>
-<script type="text/javascript" src="./unit/menu.js"></script>
-<script type="text/javascript" src="./unit/nav.js"></script>
-<script type="text/javascript" src="./unit/silentMoveTo.js"></script>
-<script type="text/javascript" src="./unit/moveTo.js"></script>
-<script type="text/javascript" src="./unit/scrollingSpeed.js"></script>
-<script type="text/javascript" src="./unit/setAllowScrolling.js"></script>
-<script type="text/javascript" src="./unit/keyboardScrolling.js"></script>
+
+
+<!-- 
+    Not working on test file, because snap styles get applied to <body>
+    <script type="text/javascript" src="./unit/fitToSection.js"></script> -->
+
+<!-- 
 <script type="text/javascript" src="./unit/slidesNavigation.js"></script>
-<script type="text/javascript" src="./unit/scrollBar.js"></script>
 <script type="text/javascript" src="./unit/easingcss3.js"></script>
 <script type="text/javascript" src="./unit/continuousVertical.js"></script>
-<script type="text/javascript" src="./unit/normalScrollElements.js"></script>
-<script type="text/javascript" src="./unit/verticalCentered.js"></script>
-<script type="text/javascript" src="./unit/sectionsColor.js"></script>
-<script type="text/javascript" src="./unit/paddings.js"></script>
-<script type="text/javascript" src="./unit/selectors.js"></script>
-<script type="text/javascript" src="./unit/fitToSection.js"></script>
-<script type="text/javascript" src="./unit/responsiveWidth.js"></script>
-<script type="text/javascript" src="./unit/responsiveHeight.js"></script>
-<script type="text/javascript" src="./unit/fixedElements.js"></script>
+<script type="text/javascript" src="./unit/scrollBar.js"></script>
+<script type="text/javascript" src="./unit/normalScrollElements.js"></script> -->
+<!-- <script type="text/javascript" src="./unit/verticalCentered.js"></script> -->
+
+
+
 </body>
 </html>

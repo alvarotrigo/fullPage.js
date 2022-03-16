@@ -2,9 +2,9 @@
 QUnit.test('Testing setAutoScrolling(true, external) {autoScrolling:true}', function(assert) {
     var id = '#fullpage-2nd-active-section';
     var FP = initFullpageNew(id, {autoScrolling:true, recordHistory:true});
-    var windowHeight = $(window).height();
+    var windowHeight = $('#qunit-fixture').height();
 
-    FP.test.setAutoScrolling(true, 'external');
+    fullpage_api.setAutoScrolling(true, 'external');
 
     assert.equal($('body').css('overflow'), 'hidden', 'body overflow should be hidden');
     assert.equal($('html').css('overflow'), 'hidden', 'html should be hidden');
@@ -23,7 +23,7 @@ QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false, fitT
     var id = '#fullpage-2nd-active-section';
     var FP = initFullpageNew(id, {autoScrolling:false, recordHistory:true, fitToSection:false});
 
-    FP.test.setAutoScrolling(false, 'external');
+    fullpage_api.setAutoScrolling(false, 'external');
 
     assert.equal($('body').css('overflow'), 'visible', 'overflow should be visible');
     assert.equal($('html').css('overflow'), 'visible', 'html should be visible');
@@ -38,10 +38,10 @@ QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false, fitT
     var id = '#fullpage-2nd-active-section';
     var FP = initFullpageNew(id, {autoScrolling:false, recordHistory:true, fitToSection:true});
 
-    FP.test.setAutoScrolling(false, 'external');
+    fullpage_api.setAutoScrolling(false, 'external');
 
-    assert.equal($('body').css('overflow'), 'visible', 'overflow should be visible');
-    assert.equal($('html').css('overflow'), 'visible', 'html should be visible');
+    assert.equal($('body').css('overflow'), 'auto scroll', 'overflow should be auto scroll');
+    assert.equal($('html').css('overflow'), 'auto hidden', 'html should be auto');
 
     assert.equal(FP.test.options.recordHistory, false, 'recordHistory should be false');
     assert.equal(FP.test.options.autoScrolling, false, 'autoScrolling should be false');
@@ -50,11 +50,11 @@ QUnit.test('Testing setAutoScrolling(false, external) {autoScrolling:false, fitT
 });
 
 
-QUnit.test('Testing setAutoScrolling(true, external) {scrollBar:true}', function(assert) {
+QUnit.test('Testing setAutoScrolling(true, external) {scrollBar:true, fitToSection: false}', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, {scrollBar:true, recordHistory: true});
+    var FP = initFullpageNew(id, {scrollBar:true, recordHistory: true, fitToSection: false});
 
-    FP.test.setAutoScrolling(true, 'external');
+    fullpage_api.setAutoScrolling(true, 'external');
 
     assert.equal($('body').css('overflow'), 'visible', 'overflow should be visible');
     assert.equal($('html').css('overflow'), 'visible', 'html should be visible');

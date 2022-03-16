@@ -46,21 +46,35 @@ QUnit.test('Testing navigation `active` class when auto scrolling and sliding ho
 
 QUnit.test('Testing navigation `active` class when scrolling & autoScrolling:false', function(assert) {
     var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {autoScrolling:false, navigation: true}));
 
+    // css snaps won't work unless the elements are visible
+    // so with this we make fullpage elements visible during the test
+    // and hide the jQuit stuff
+    $('html').addClass('show');
+
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {autoScrolling:false, navigation: true}));
+    var done = assert.async(2);
     assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 0, 'We expect item 1 to be active');
 
     //simulating scroll event
-    simulateScroll(window.innerHeight);
+    simulateScroll(window.innerHeight, FP);
 
-    assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 1, 'We expect item 2 to be active');
-    assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
+   
+    setTimeout(function(){
+        assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 1, 'We expect item 2 to be active');
+        assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');  
+        done();
+        simulateScroll(window.innerHeight * 3, FP);
+    }, 800);
 
 
-    simulateScroll(window.innerHeight * 3);
+    setTimeout(function(){
+        assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 3, 'We expect item 4 to be active');
+        assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
 
-    assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').index(), 3, 'We expect item 4 to be active');
-    assert.equal($(SECTION_NAV_SEL).find(ACTIVE_SEL).closest('li').length, 1, 'We expect a single item to be active');
+        done();
+        $('html').removeClass('show');
+    }, 800*2);
 });
 
 QUnit.test('Testing navigation `active` class when hash change by anchor name', function(assert) {
