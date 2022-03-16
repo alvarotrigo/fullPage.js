@@ -10,3 +10,4 @@ src/fullpage.extensions.js
 src/js-extensions/**
 src/js/mixed/index.js
 examples/bug**
+gulp/secret.js
