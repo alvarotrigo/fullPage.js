@@ -7,4 +7,6 @@ node_modules/
 **/node_modules/
 package-lock.json
 src/fullpage.extensions.js
+src/js-extensions/**
+src/js/mixed/index.js
 examples/bug**
