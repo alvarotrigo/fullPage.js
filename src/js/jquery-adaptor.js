@@ -1,5 +1,5 @@
 import * as utils from './common/utils.js';
-import { FP } from "./common/constants.js";
+import { FP, win } from "./common/constants.js";
 import { getOptions } from "./common/options.js";
 import fullpage from './fullpage.js';
 
@@ -7,7 +7,7 @@ import fullpage from './fullpage.js';
  * jQuery adapter for fullPage.js 3.0.0
  */
 // @ts-ignore
-if(window.jQuery){
+if(win.jQuery){
     (function ($, fullpage) {
         'use strict';
 
@@ -28,5 +28,5 @@ if(window.jQuery){
         };
        
     // @ts-ignore
-    })(window.jQuery, fullpage);
+    })(win.jQuery, fullpage);
 }

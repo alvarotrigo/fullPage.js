@@ -1,3 +1,4 @@
+import { doc } from '../common/constants.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { state } from '../common/state.js';
 
@@ -16,6 +17,6 @@ function showLicenseWarning(){
         </div>
     `;
     if(!state.isValid){
-        document.body.insertAdjacentHTML('beforeend', waterMark);
+        doc.body.insertAdjacentHTML('beforeend', waterMark);
     }
 }

@@ -12,6 +12,7 @@ import {
 import { addSlidesNavigation } from '../nav/slides.js';
 import { createSlideArrows } from '../arrows.js';
 import { silentLandscapeScroll } from './silentLandscapeScroll.js';
+import { doc } from '../common/constants.js';
 
 /**
 * Styles the horizontal slides for a section.
@@ -24,11 +25,11 @@ export function styleSlides(section){
     var slideWidth = 100 / numSlides;
 
     if(!utils.$(SLIDES_WRAPPER_SEL, section.item)[0]){
-        var slidesWrapper = document.createElement('div');
+        var slidesWrapper = doc.createElement('div');
         slidesWrapper.className = SLIDES_WRAPPER; //fp-slides
         utils.wrapAll(slidesElems, slidesWrapper);
 
-        var slidesContainer = document.createElement('div');
+        var slidesContainer = doc.createElement('div');
         slidesContainer.className = SLIDES_CONTAINER; //fp-slidesContainer
         utils.wrapAll(slidesElems, slidesContainer);
     }

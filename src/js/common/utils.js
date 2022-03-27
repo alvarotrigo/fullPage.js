@@ -1,13 +1,16 @@
 //utils
+
+import { doc, win } from "./constants.js";
+
 /**
 * Shows a message in the console of the given type.
 */
 export function showError(type, text){
-    window.console && window.console[type] && window.console[type]('fullPage: ' + text);
+    win.console && win.console[type] && win.console[type]('fullPage: ' + text);
 }
 
 export function isVisible(el){
-    var style = window.getComputedStyle(el);
+    var style = win.getComputedStyle(el);
 
     return (style.display !== 'none');
 }
@@ -69,14 +72,14 @@ export function hasClass(el, className){
 * Gets the window height. Crossbrowser.
 */
 export function getWindowHeight(){
-    return 'innerHeight' in window ? window.innerHeight : document.documentElement.offsetHeight;
+    return 'innerHeight' in window ? win.innerHeight : doc.documentElement.offsetHeight;
 }
 
 /**
 * Gets the window width.
 */
 export function getWindowWidth(){
-    return window.innerWidth;
+    return win.innerWidth;
 }
 
 /**
@@ -228,7 +231,7 @@ https://jsfiddle.net/oya6ndka/1/ (jquery equivalent)
 */
 export function wrap(toWrap, wrapper, isWrapAll) {
     var newParent;
-    wrapper = wrapper || document.createElement('div');
+    wrapper = wrapper || doc.createElement('div');
     for(var i = 0; i < toWrap.length; i++){
         var item = toWrap[i];
         if(isWrapAll && !i || !isWrapAll){
@@ -283,7 +286,7 @@ export function wrapInner(parent, wrapper) {
 *
 */
 export function unwrap(wrapper) {
-    var wrapperContent = document.createDocumentFragment();
+    var wrapperContent = doc.createDocumentFragment();
     while (wrapper.firstChild) {
         wrapperContent.appendChild(wrapper.firstChild);
     }
@@ -345,10 +348,10 @@ export function insertBefore(reference, beforeElement, el){
 //http://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
 export function getScrollTop(options){
     if(typeof options !== 'undefined' && options.fitToSection){
-        return document.body.scrollTop;
+        return doc.body.scrollTop;
     }
-    var doc = document.documentElement;
-    return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    var doc = doc.documentElement;
+    return (win.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 }
 
 /**
@@ -369,19 +372,19 @@ export function getAttr(el, attr){
 }
 
 export function docAddEvent(event, callback, options){
-    document.addEventListener(event, callback, options === 'undefined' ? null : options);
+    doc.addEventListener(event, callback, options === 'undefined' ? null : options);
 }
 
 export function windowAddEvent(event, callback, options){
-    window.addEventListener(event, callback, options === 'undefined' ? null : options);
+    win.addEventListener(event, callback, options === 'undefined' ? null : options);
 }
 
 export function docRemoveEvent(event, callback, options){
-    document.removeEventListener(event, callback, options === 'undefined' ? null : options);
+    doc.removeEventListener(event, callback, options === 'undefined' ? null : options);
 }
 
 export function windowRemoveEvent(event, callback, options){
-    window.removeEventListener(event, callback, options === 'undefined' ? null : options);
+    win.removeEventListener(event, callback, options === 'undefined' ? null : options);
 }
 
 /**
@@ -403,11 +406,11 @@ export function trigger(el, eventName, data){
     data = typeof data === 'undefined' ? {} : data;
 
     // Native
-    if(typeof window.CustomEvent === "function" ){
+    if(typeof win.CustomEvent === "function" ){
         event = new CustomEvent(eventName, {detail: data});
     }
     else{
-        event = document.createEvent('CustomEvent');
+        event = doc.createEvent('CustomEvent');
         event.initCustomEvent(eventName, true, true, data);
     }
 
@@ -440,7 +443,7 @@ export function toggle(el, value){
 * https://stackoverflow.com/a/494348/1081396
 */
 export function createElementFromHTML(htmlString) {
-    var div = document.createElement('div');
+    var div = doc.createElement('div');
     div.innerHTML = htmlString.trim();
 
     // Change this to div.childNodes to support multiple top-level nodes
@@ -546,7 +549,7 @@ export function getParentsUntilBody(item){
 
 // //utils are public, so we can use it wherever we want
 // // @ts-ignore
-// window.fp_utils = {
+// win.fp_utils = {
 //     $: $,
 //     deepExtend: deepExtend,
 //     hasClass: hasClass,

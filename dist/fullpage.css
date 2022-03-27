@@ -1,12 +1,12 @@
 /*!
- * fullPage 3.1.2
+ * fullPage 4.0.0
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
  * or Fullpage Commercial License for commercial use
  * http://alvarotrigo.com/fullPage/pricing/
  *
- * Copyright (C) 2018 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
+ * Copyright (C) 2021 http://alvarotrigo.com/fullPage - A project by Alvaro Trigo
  */
 html.fp-enabled,
 .fp-enabled body {
@@ -22,6 +22,8 @@ html.fp-enabled,
     -webkit-box-sizing: border-box; /* Safari<=5 Android<=3 */
     -moz-box-sizing: border-box; /* <=28 */
     box-sizing: border-box;
+    height: 100%;
+    display: block;
 }
 .fp-slide {
     float: left;
@@ -38,17 +40,17 @@ html.fp-enabled,
     -webkit-transition: all 0.3s ease-out; /* Safari<=6 Android<=4.3 */
     transition: all 0.3s ease-out;
 }
-.fp-section.fp-table, .fp-slide.fp-table {
-    display: table;
-    table-layout:fixed;
+.fp-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
 }
-.fp-tableCell {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
-}
+/* .fp-table::before , 
+.fp-table::after {
+      content:'';
+      flex:1;
+} */
 .fp-slidesContainer {
     float: left;
     position: relative;
@@ -62,35 +64,40 @@ html.fp-enabled,
     z-index: 4;
     top: 50%;
     cursor: pointer;
-    width: 0;
-    height: 0;
-    border-style: solid;
     margin-top: -38px;
     -webkit-transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
 }
-.fp-controlArrow.fp-prev {
+.fp-prev{
     left: 15px;
+}
+.fp-next{
+    right: 15px;
+}
+.fp-arrow{
     width: 0;
+    height: 0;
+    border-style: solid;
+}
+.fp-arrow.fp-prev {
     border-width: 38.5px 34px 38.5px 0;
     border-color: transparent #fff transparent transparent;
 }
-.fp-controlArrow.fp-next {
-    right: 15px;
+.fp-arrow.fp-next {
     border-width: 38.5px 0 38.5px 34px;
     border-color: transparent transparent transparent #fff;
 }
-.fp-scrollable {
+/* .fp-scrollable {
     overflow: hidden;
     position: relative;
-}
-.fp-scroller{
+} */
+/* .fp-scroller{
     overflow: hidden;
-}
-.iScrollIndicator{
+} */
+/* .iScrollIndicator{
     border: 0 !important;
-}
+} */
 .fp-notransition {
     -webkit-transition: none !important;
     transition: none !important;
@@ -213,14 +220,35 @@ html.fp-enabled,
     left: 20px;
 }
 .fp-auto-height.fp-section,
-.fp-auto-height .fp-slide,
-.fp-auto-height .fp-tableCell{
+.fp-auto-height .fp-slide{
     height: auto !important;
 }
 
+/* Used with autoScrolling: false */ 
+.fp-scrollable .fp-section,
+.fp-scrollable .fp-slide{
+   /* Fallback for browsers that do not support Custom Properties */
+   height: 100vh;
+   height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Disabling vertical centering on scrollable elements */
+.fp-overflow{
+    justify-content: flex-start;
+}
+
+.fp-overflow{
+    overflow-y: scroll;
+    height: 100%;
+    outline:none;
+}
+
+.fp-overflow.fp-table{
+    display: block;
+}
+
 .fp-responsive .fp-auto-height-responsive.fp-section,
-.fp-responsive .fp-auto-height-responsive .fp-slide,
-.fp-responsive .fp-auto-height-responsive .fp-tableCell {
+.fp-responsive .fp-auto-height-responsive .fp-slide{
     height: auto !important;
 }
 
@@ -234,4 +262,62 @@ html.fp-enabled,
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+.fp-snaps{
+    overflow-y: auto !important;
+    height: 100% !important;
+}
+.fp-snaps body{
+    height: 100% !important;
+    -ms-scroll-snap-type: y mandatory;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll !important;
+        scroll-behavior: smooth;
+}
+.fp-snaps .fp-section{
+    scroll-snap-align: start;
+}
+.fp-snaps .fullpage-wrapper{
+    height: auto !important;
+}
+
+/* Used for DragAndMove*/
+.fp-disable-snap body{
+    scroll-behavior: unset;
+    scroll-snap-type: none;
+}
+
+/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+.fp-scroll-mac .fp-overflow::-webkit-scrollbar {
+    background-color: transparent;
+    width: 9px;
+}
+.fp-scroll-mac .fp-overflow::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.fp-scroll-mac .fp-overflow::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.4);
+    border-radius: 16px;
+    border: 4px solid transparent;
+}
+.fp-warning,
+.fp-watermark{
+    z-index: 9999999;
+    position: absolute;
+    bottom: 0;
+}
+.fp-warning,
+.fp-watermark a{
+    text-decoration: none;
+    color: #000;
+    background: rgba(255,255,255,0.6);
+    padding: 5px 8px;
+    font-size: 14px;
+    font-family: arial;
+    color: black;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 12px;
 }

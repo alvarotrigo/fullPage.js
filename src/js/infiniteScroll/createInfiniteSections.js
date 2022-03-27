@@ -15,15 +15,16 @@ import { getYmovement } from '../common/utilsFP.js';
 */
 export function createInfiniteSections(v){
     setState({isDoingContinousVertical: true});
+    var activeSectionItem = getState().activeSection.item;
     
     // Scrolling down
     if (!v.isMovementUp) {
         // Move all previous sections to after the active section
-        utils.after(getState().activeSection.item, utils.prevAll(v.activeSection, SECTION_SEL).reverse());
+        utils.after(activeSectionItem, utils.prevAll(activeSectionItem, SECTION_SEL).reverse());
     }
     else { // Scrolling up
         // Move all next sections to before the active section
-        utils.before(getState().activeSection.item, utils.nextAll(v.activeSection, SECTION_SEL));
+        utils.before(activeSectionItem, utils.nextAll(activeSectionItem, SECTION_SEL));
     }
 
     // Maintain the displayed position (now that we changed the element order)
@@ -33,7 +34,7 @@ export function createInfiniteSections(v){
     keepSlidesPosition();
 
     // save for later the elements that still need to be reordered
-    v.wrapAroundElements = v.activeSection;
+    v.wrapAroundElements = activeSectionItem;
 
     // Recalculate animation variables
     v.dtop = v.element.offsetTop;

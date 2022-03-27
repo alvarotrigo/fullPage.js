@@ -12,6 +12,7 @@ import {
 } from '../common/selectors.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { getBulletLinkName } from './getBulletLinkName.js';
+import { doc } from '../common/constants.js';
 
 export function tooltipTextHandler(){
     /*jshint validthis:true */
@@ -39,10 +40,10 @@ export function activateNavDots(name, sectionIndex){
 export function addVerticalNavigation(){
     utils.remove(utils.$(SECTION_NAV_SEL));
 
-    var navigation = document.createElement('div');
+    var navigation = doc.createElement('div');
     navigation.setAttribute('id', SECTION_NAV);
 
-    var divUl = document.createElement('ul');
+    var divUl = doc.createElement('ul');
     navigation.appendChild(divUl);
 
     utils.appendTo(navigation, $body);

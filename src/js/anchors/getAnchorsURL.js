@@ -1,8 +1,10 @@
+import { win } from "../common/constants.js";
+
 //gets the URL anchors (section and slide)
 export function getAnchorsURL(){
     var section;
     var slide;
-    var hash = window.location.hash;
+    var hash = win.location.hash;
 
     if(hash.length){
         //getting the anchor link in the URL and deleting the `#`

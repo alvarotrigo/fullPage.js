@@ -8,7 +8,7 @@ import { setBodyClass } from './stateClasses.js';
 import { setKeyboardScrolling } from './keyboard/setKeyboardScrolling.js';
 import { toggleCssSnapsWhenPossible } from './fitToSection.js';
 import { DESTROYED } from './common/selectors.js';
-import { FP } from './common/constants.js';
+import { doc, FP } from './common/constants.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { prepareDom } from './dom/prepareDom.js';
 import { afterRenderActions } from './dom/afterRenderActions.js';
@@ -35,7 +35,7 @@ export function init(){
     //setting the class for the body element
     setBodyClass();
 
-    if(document.readyState === 'complete'){
+    if(doc.readyState === 'complete'){
         scrollToAnchor();
     }
     utils.windowAddEvent('load', scrollToAnchor);

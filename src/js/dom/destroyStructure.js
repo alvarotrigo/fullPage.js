@@ -22,6 +22,7 @@ import {
     SLIDES_WRAPPER_SEL,
     SLIDES_ARROW_SEL
 } from '../common/selectors.js';
+import { win } from '../common/constants.js';
 
 /*
 * Removes inline styles added by fullpage.js
@@ -112,7 +113,7 @@ export function destroyStructure(){
     });
 
     //scrolling the page to the top with no animation
-    window.scrollTo(0, 0);
+    win.scrollTo(0, 0);
 
     //removing selectors
     var usedSelectors = [SECTION, SLIDE, SLIDES_CONTAINER];

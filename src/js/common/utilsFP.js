@@ -7,6 +7,7 @@ import {
     NO_TRANSITION,
     SECTION_SEL
 } from './selectors.js';
+import { doc } from './constants.js';
 /**
 * Gets the active slide (or section) for the given section
 */
@@ -35,7 +36,7 @@ export function getScrollSettings(top){
 
     else if(options.fitToSection){
         position = top;
-        element = document.body;
+        element = doc.body;
     }
 
     //window real scrolling

@@ -1,7 +1,10 @@
+export const win = window;
+export const doc = document;
+
 export const isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
-export const isMacDevice = /(Mac|iPhone|iPod|iPad)/i.test(window.navigator.userAgent);
+export const isMacDevice = /(Mac|iPhone|iPod|iPad)/i.test(win.navigator.userAgent);
 // @ts-ignore
-export const isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
+export const isTouch = (('ontouchstart' in win) || (navigator.msMaxTouchPoints > 0) || (navigator.maxTouchPoints));
 
 // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
 export const focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';

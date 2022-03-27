@@ -3,7 +3,7 @@ import { getOptions } from './common/options.js';
 import { getState, state } from './common/state.js';
 import { fireCallback } from './callbacks/fireCallback.js';
 import { isResponsiveMode } from './responsive.js';
-import { isMacDevice, isTouchDevice, isTouch } from './common/constants.js';
+import { isMacDevice, isTouchDevice, isTouch, win, doc } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { 
     AUTO_HEIGHT,
@@ -18,7 +18,7 @@ EventEmitter.on('bindEvents', bindEvents);
 function bindEvents(){
     
     //after DOM and images are loaded
-    window.addEventListener('load', function(){
+    win.addEventListener('load', function(){
         if(getOptions().scrollOverflow && !getOptions().scrollBar){
             scrollOverflowHandler.makeScrollable();
             scrollOverflowHandler.afterSectionLoads();
@@ -52,7 +52,7 @@ export const scrollOverflowHandler = {
     afterSectionLoads: function(){
         
         // Unfocusing the scrollable element from the orgin section/slide
-        if( document.activeElement === this.focusedElem){
+        if( doc.activeElement === this.focusedElem){
             // @ts-ignore
             this.focusedElem.blur();
         }
@@ -102,7 +102,7 @@ export const scrollOverflowHandler = {
     },
 
     shouldBeScrollable: function(item){
-        return item.scrollHeight > window.innerHeight;
+        return item.scrollHeight > win.innerHeight;
     },
 
     isScrolled: function(direction, el){

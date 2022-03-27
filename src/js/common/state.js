@@ -1,3 +1,4 @@
+import { win } from './constants.js';
 import * as utils from './utils.js';
 
 export const state = {
@@ -25,7 +26,7 @@ export const state = {
     isDoingContinousVertical: false
 };
 // @ts-ignore
-window.state = state;
+win.state = state;
 
 export function setState(props){
     Object.assign(state, props);

@@ -1,7 +1,6 @@
 import { terser } from "rollup-plugin-terser";
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
-import { customPlugin } from "./customPlugin.js";
 
 const licenseContent = `/*!
 * fullPage 4.0.0
@@ -185,7 +184,6 @@ module.exports = [
                     'document': 'document',
                     'window': 'window'
                 },
-                plugins: []
             },
             {
                 file: "dist/fullpage.min.js",

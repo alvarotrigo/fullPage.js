@@ -1,4 +1,4 @@
-import { isTouch, isTouchDevice } from "../common/constants.js";
+import { isTouch, isTouchDevice, win } from "../common/constants.js";
 import { getOptions } from "../common/options.js";
 import { setState } from "../common/state.js";
 import { setBodyClass } from "../stateClasses.js";
@@ -52,10 +52,10 @@ function setUrlHash(url){
     }else{
         //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
         if(isTouchDevice || isTouch){
-            window.history.replaceState(undefined, undefined, '#' + url);
+            win.history.replaceState(undefined, undefined, '#' + url);
         }else{
-            var baseUrl = window.location.href.split('#')[0];
-            window.location.replace( baseUrl + '#' + url );
+            var baseUrl = win.location.href.split('#')[0];
+            win.location.replace( baseUrl + '#' + url );
         }
     }
 }

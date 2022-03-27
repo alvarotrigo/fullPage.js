@@ -1,7 +1,7 @@
 import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options.js';
 import { getState, setState, state } from '../common/state.js';
-import { FP } from '../common/constants.js';
+import { doc, FP } from '../common/constants.js';
 import { $htmlBody } from '../common/cache.js';
 import { transformContainer } from '../common/transformContainer.js';
 import { scrollTo } from '../common/scrollTo.js';
@@ -52,7 +52,6 @@ export function scrollPage(section, callback, isMovementUp){
         "anchorLink": section.anchor,
         "sectionIndex": section.index(),
         "activeSlide": section.activeSlide ? section.activeSlide.item : null,
-        "activeSection": getState().activeSection.item,
         "leavingSection": getState().activeSection.index() + 1,
 
         //caching the value of isResizing at the momment the function is called
@@ -67,7 +66,7 @@ export function scrollPage(section, callback, isMovementUp){
     };
 
     //quiting when destination scroll is the same as the current one
-    if((v.activeSection == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop(getOptions()) === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ return; }
+    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop(getOptions()) === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ return; }
 
     if(v.activeSlide != null){
         slideAnchorLink = utils.getAttr(v.activeSlide, 'data-anchor');
@@ -111,7 +110,7 @@ export function scrollPage(section, callback, isMovementUp){
 
     //pausing media of the leaving section (if we are not just resizing, as destinatino will be the same one)
     if(!v.localIsResizing){
-        stopMedia(v.activeSection);
+        stopMedia(getState().activeSection.item);
     }
 
     utils.addClass(element, ACTIVE);
@@ -252,7 +251,7 @@ function performMovement(v){
 */
 function afterSectionLoads(v){
     if(getOptions().fitToSection){
-        utils.css(document.body, {'scroll-snap-type': 'y mandatory'});
+        utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
     }
     
     setState({isBeyondFullpage: false});

@@ -44,7 +44,6 @@ gulp.task('update-version', function(done){
 
 gulp.task('vendors', function(done) {
     gulp.src([
-        './vendors/scrolloverflow.js',
         './vendors/easings.js'
         ])
         .pipe(sourcemaps.init())

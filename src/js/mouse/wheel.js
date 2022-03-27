@@ -8,7 +8,7 @@ import { setOldPageY, mouseMoveHandler } from '../mouse/move.js';
 import { addTouchHandler, removeTouchHandler } from '../touch';
 import { scrolling } from '../scroll/scrolling.js';
 import { getControlPressed } from '../keyboard/index.js';
-import { FP } from '../common/constants.js';
+import { doc, FP, win } from '../common/constants.js';
 import {
     COMPLETELY_SEL,
     NORMAL_SCROLL
@@ -40,7 +40,7 @@ function addMouseWheelHandler(){
     var prefix = '';
     var _addEventListener;
 
-    if (window.addEventListener){
+    if (win.addEventListener){
         _addEventListener = "addEventListener";
     }else{
         _addEventListener = "attachEvent";
@@ -48,14 +48,14 @@ function addMouseWheelHandler(){
     }
 
     // detect available wheel event
-    var support = 'onwheel' in document.createElement('div') ? 'wheel' : // Modern browsers support "wheel"
+    var support = 'onwheel' in doc.createElement('div') ? 'wheel' : // Modern browsers support "wheel"
                 // @ts-ignore
-                document.onmousewheel !== undefined ? 'mousewheel' : // Webkit and IE support at least "mousewheel"
+                doc.onmousewheel !== undefined ? 'mousewheel' : // Webkit and IE support at least "mousewheel"
                 'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
     var passiveEvent = getPassiveOptionsIfPossible();
 
     if(support == 'DOMMouseScroll'){
-        document[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
+        doc[ _addEventListener ](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
     }
 
     //handle MozMousePixelScroll in older Firefox
@@ -79,13 +79,13 @@ function addMiddleWheelHandler(){
 * After this function is called, the mousewheel and trackpad movements won't scroll through sections.
 */
 function removeMouseWheelHandler(){
-    if (document.addEventListener) {
+    if (doc.addEventListener) {
         utils.docRemoveEvent('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
         utils.docRemoveEvent('wheel', MouseWheelHandler, false); //Firefox
         utils.docRemoveEvent('MozMousePixelScroll', MouseWheelHandler, false); //old Firefox
     } else {
         // @ts-ignore
-        document.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
+        doc.detachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
     }
 }
 
@@ -126,7 +126,7 @@ function MouseWheelHandler(e) {
     //autoscrolling and not zooming?
     if(getOptions().autoScrolling && !getControlPressed() && !isNormalScroll){
         // cross-browser wheel delta
-        e = e || window.event;
+        e = e || win.event;
         var value = e.wheelDelta || -e.deltaY || -e.detail;
         var delta = Math.max(-1, Math.min(1, value));
 

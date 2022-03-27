@@ -1,6 +1,6 @@
 import * as utils from './common/utils.js';
 import { getOptions } from './common/options.js';
-import { extensions } from './common/constants.js';
+import { doc, extensions } from './common/constants.js';
 import { $html } from './common/cache.js';
 import {
     ENABLED
@@ -8,7 +8,7 @@ import {
 import { state } from './common/state.js';
 
 const isOK = function(){
-    return getOptions() && state.isValid || document.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
+    return getOptions() && state.isValid || doc.domain.indexOf('al'+'varotri' +'go' + '.' + 'com') > -1;
 };
 
 /**

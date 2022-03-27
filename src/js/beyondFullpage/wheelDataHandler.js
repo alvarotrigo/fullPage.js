@@ -1,4 +1,5 @@
 
+import { win } from '../common/constants.js';
 import * as utils from '../common/utils.js';
 
 export const wheelDataHandler = (function(){
@@ -9,7 +10,7 @@ export const wheelDataHandler = (function(){
 
     return {
         registerEvent: function(e){
-            e = e || window.event;
+            e = e || win.event;
             var value = e.wheelDelta || -e.deltaY || -e.detail;
             var delta = Math.max(-1, Math.min(1, value));
             var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';

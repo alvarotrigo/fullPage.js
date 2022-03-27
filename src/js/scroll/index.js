@@ -6,6 +6,7 @@ import { moveTo } from './moveTo.js';
 import { moveSectionDown } from './moveSectionDown.js';
 import { moveSectionUp } from './moveSectionUp.js';
 import { scrollPage } from './scrollPage.js';
+import { doc } from '../common/constants.js';
 
 EventEmitter.on('bindEvents', bindEvents);
 EventEmitter.on('onDestroy', onDestroy);
@@ -16,7 +17,7 @@ function onDestroy(){
 
 function bindEvents(){
     utils.windowAddEvent('scroll', scrollHandler);
-    document.body.addEventListener('scroll', scrollHandler);
+    doc.body.addEventListener('scroll', scrollHandler);
 
     EventEmitter.on('onScrollPageAndSlide', function(params){
         scrollPageAndSlide(params.sectionAnchor, params.slideAnchor);

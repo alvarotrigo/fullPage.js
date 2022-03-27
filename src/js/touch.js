@@ -1,6 +1,6 @@
 import * as utils from './common/utils.js';
 import { getIsScrollAllowed } from './common/isScrollAllowed.js';
-import { isTouchDevice, isTouch } from './common/constants.js';
+import { isTouchDevice, isTouch, win } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { getOptions } from './common/options.js';
 import { getState, setState, state } from './common/state.js';
@@ -69,7 +69,7 @@ export function removeTouchHandler(){
 function touchMoveHandler(e){
     var activeSection = utils.closest(e.target, SECTION_SEL) || getState().activeSection.item;
     var hasActiveSectionOverflow = scrollOverflowHandler.isScrollable(getState().activeSection);
-    var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > (window.innerHeight / 100 * getOptions().touchSensitivity);
+    var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > (win.innerHeight / 100 * getOptions().touchSensitivity);
     var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity);
     var isHorizontalPredominantMove = utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY));
     var directionH = touchStartX > touchEndX ? 'right' : 'left';
@@ -193,7 +193,7 @@ function getMSPointer(){
     var pointer;
 
     //IE >= 11 & rest of browsers
-    if(window.PointerEvent){
+    if(win.PointerEvent){
         pointer = { down: 'pointerdown', move: 'pointermove'};
     }
 

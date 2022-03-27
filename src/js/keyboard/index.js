@@ -1,7 +1,7 @@
 //@ts-check
 import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options';
-import { FP, focusableElementsString } from '../common/constants.js';
+import { FP, focusableElementsString, doc } from '../common/constants.js';
 import { getSlideOrSection } from '../common/utilsFP.js';
 import { getIsScrollAllowed, setIsScrollAllowed } from '../common/isScrollAllowed.js';
 import { 
@@ -47,7 +47,7 @@ function onDestroy(){
 function keydownHandler(e) {
     clearTimeout(g_keydownId);
 
-    var activeElement = document.activeElement;
+    var activeElement = doc.activeElement;
     var keyCode = e.keyCode;
     var isPressingHorizontalArrows = [37,39].indexOf(keyCode) > -1;
     var canScrollWithKeyboard = getOptions().autoScrolling || isPressingHorizontalArrows;
@@ -78,7 +78,7 @@ function keydownHandler(e) {
 */
 function onkeydown(e){
     var shiftPressed = e.shiftKey;
-    var activeElement = document.activeElement;
+    var activeElement = doc.activeElement;
     var isMediaFocused = utils.matches(activeElement, 'video') || utils.matches(activeElement, 'audio');
     var isScrolled = {
         up: scrollOverflowHandler.isScrolled('up', getState().activeSection.item),
@@ -182,7 +182,7 @@ function blurHandler(){
 */
 function onTab(e){
     var isShiftPressed = e.shiftKey;
-    var activeElement = document.activeElement;
+    var activeElement = doc.activeElement;
     var focusableElements = getFocusables(getSlideOrSection(getState().activeSection.item));
 
     function preventAndFocusFirst(e){
@@ -234,7 +234,7 @@ function getFocusables(el){
 */
 function isFocusOutside(e){
     var allFocusables = getFocusables(document);
-    var currentFocusIndex = allFocusables.indexOf(document.activeElement);
+    var currentFocusIndex = allFocusables.indexOf(doc.activeElement);
     var focusDestinationIndex = e.shiftKey ? currentFocusIndex - 1 : currentFocusIndex + 1;
     var focusDestination = allFocusables[focusDestinationIndex];
     var destinationItemSlide = utils.closest(focusDestination, SLIDE_SEL);

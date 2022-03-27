@@ -3,7 +3,7 @@ import { getOptions, getContainer } from './common/options.js';
 import { updateState } from './stateUpdates.js';
 import { getState, state, setState } from './common/state.js';
 import { responsive } from './responsive.js';
-import { isTouchDevice, FP, isTouch }  from './common/constants.js';
+import { isTouchDevice, FP, isTouch, win, doc }  from './common/constants.js';
 import { landscapeScroll } from './slides/landscapeScroll.js';
 import { scrollOverflowHandler } from './scrolloverflow.js';
 import { 
@@ -80,7 +80,7 @@ function resizeActions(){
 
     // rebuild immediately on touch devices
     if (isTouchDevice) {
-        var activeElement = document.activeElement;
+        var activeElement = doc.activeElement;
 
         //if the keyboard is NOT visible
         if (!utils.matches(activeElement, 'textarea') && !utils.matches(activeElement, 'input') && !utils.matches(activeElement, 'select')) {
@@ -138,7 +138,7 @@ function reBuild(resizing){
     setState({isResizing: false});
 
     if(utils.isFunction( getOptions().afterResize ) && resizing){
-        getOptions().afterResize.call(getContainer(), window.innerWidth, window.innerHeight);
+        getOptions().afterResize.call(getContainer(), win.innerWidth, win.innerHeight);
     }
     if(utils.isFunction( getOptions().afterReBuild ) && !resizing){
         getOptions().afterReBuild.call(getContainer());
@@ -178,9 +178,9 @@ function setSectionsHeight(value){
 function setVhUnits(){
     if(!getOptions().autoScrolling || getOptions().scrollBar){
         // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-        let vh = window.innerHeight * 0.01;
+        let vh = win.innerHeight * 0.01;
 
         // Then we set the value in the --vh custom property to the root of the document
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        doc.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 }

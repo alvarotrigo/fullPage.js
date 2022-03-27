@@ -5,6 +5,7 @@ import { state, setState } from "./state.js";
 import { getOptions } from './options.js';
 import { SLIDES_WRAPPER } from './selectors.js';
 import { EventEmitter } from './eventEmitter.js';
+import { doc, win } from './constants.js';
 
 let g_animateScrollId;
 
@@ -33,8 +34,8 @@ export function scrollTo(element, to, duration, callback) {
 
     // Making sure we can trigger a scroll animation
     // when css scroll snap is active. Temporally disabling it.
-    if(element === document.body){
-        utils.css(document.body, {'scroll-snap-type': 'none'});
+    if(element === doc.body){
+        utils.css(doc.body, {'scroll-snap-type': 'none'});
     }
 
     var animateScroll = function(){
@@ -45,7 +46,7 @@ export function scrollTo(element, to, duration, callback) {
 
             if(duration){
                 // @ts-ignore
-                val = window.fp_easings[getOptions().easing](currentTime, start, change, duration);
+                val = win.fp_easings[getOptions().easing](currentTime, start, change, duration);
             }
 
             setScrolling(element, val);
@@ -74,7 +75,7 @@ function getScrolledPosition(element){
     var position;
 
     //is not the window element and is a slide?
-    if(element.self != window && utils.hasClass(element, SLIDES_WRAPPER)){
+    if(element.self != win && utils.hasClass(element, SLIDES_WRAPPER)){
         position = element.scrollLeft;
     }
     else if(!getOptions().autoScrolling || getOptions().scrollBar){

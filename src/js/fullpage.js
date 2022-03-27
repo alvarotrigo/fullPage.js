@@ -17,7 +17,7 @@ import * as utils from './common/utils.js';
 import { setOptions, setOption, getOptions } from './common/options.js';
 import { setContainer, getContainer } from './common/options.js';
 import { init } from './instance.js';
-import { FP } from './common/constants.js';
+import { FP, win } from './common/constants.js';
 import { $html, setCache } from './common/cache.js';
 import { displayWarnings } from './console.js';
 import { ENABLED } from './common/selectors.js';
@@ -49,7 +49,7 @@ export default function fullpage(containerSelector, options) {
     }
 
     // @ts-ignore
-    return window.fullpage_api;
+    return win.fullpage_api;
 }
 
 function setAPI(){
@@ -91,5 +91,5 @@ function setAPI(){
     });
 
     // @ts-ignore
-    window.fullpage_api = FP;
+    win.fullpage_api = FP;
 }

@@ -1,7 +1,7 @@
 import * as utils from '../common/utils.js';
 import { getScrollSettings } from '../common/utilsFP.js';
 import { getOptions } from '../common/options.js';
-import { FP } from '../common/constants.js';
+import { doc, FP } from '../common/constants.js';
 import { $htmlBody } from '../common/cache.js';
 import { getState, setState } from '../common/state.js';
 import { scrollTo } from '../common/scrollTo.js';
@@ -11,7 +11,7 @@ export function scrollBeyondFullPage(){
     var scrollSettings = getScrollSettings(dtop);
     FP.test.top = -dtop + 'px';
 
-    utils.css(document.body, {'scroll-snap-type': 'none'});
+    utils.css(doc.body, {'scroll-snap-type': 'none'});
     utils.css($htmlBody, {'scroll-behavior': 'unset'});
 
     setState({canScroll: false});

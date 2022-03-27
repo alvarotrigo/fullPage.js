@@ -2,7 +2,7 @@ import * as utils from './common/utils.js';
 import { getOptions, getContainer, getOriginals} from './common/options.js';
 import { setAutoScrolling } from './autoScrolling.js';
 import { setFitToSection } from './fitToSection.js';
-import { FP } from './common/constants.js';
+import { FP, win } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { 
     SECTION_NAV_SEL,
@@ -21,8 +21,8 @@ export function responsive(){
     var heightLimit = getOptions().responsiveHeight;
 
     //only calculating what we need. Remember its called on the resize event.
-    var isBreakingPointWidth = widthLimit && window.innerWidth < widthLimit;
-    var isBreakingPointHeight = heightLimit && window.innerHeight < heightLimit;
+    var isBreakingPointWidth = widthLimit && win.innerWidth < widthLimit;
+    var isBreakingPointHeight = heightLimit && win.innerHeight < heightLimit;
 
     if(widthLimit && heightLimit){
         setResponsive(isBreakingPointWidth || isBreakingPointHeight);

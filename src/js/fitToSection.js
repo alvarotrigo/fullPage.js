@@ -2,7 +2,7 @@ import * as utils from './common/utils.js';
 import { setVariableState } from './common/options.js';
 import { getOptions } from './common/options.js';
 import { $html } from './common/cache.js';
-import { FP } from './common/constants.js';
+import { doc, FP } from './common/constants.js';
 import {
     SNAPS
 } from './common/selectors.js';
@@ -38,7 +38,7 @@ export function toggleCssSnapsWhenPossible(value){
 * Checks for CSS scroll snaps support.
 */
 function isCssSnapsSupported(){
-    var style = document.documentElement.style;
+    var style = doc.documentElement.style;
     
     return 'scrollSnapAlign' in style ||
     'webkitScrollSnapAlign' in style ||
