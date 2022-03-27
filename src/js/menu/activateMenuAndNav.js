@@ -18,10 +18,12 @@ export function activateMenuAndNav(anchor, index){
 * Activating the website main menu elements according to the given slide name.
 */
 function activateMenuElement(name){
-    utils.$(getOptions().menu).forEach(function(menu) {
-        if(getOptions().menu && menu != null){
-            utils.removeClass(utils.$(ACTIVE_SEL, menu), ACTIVE);
-            utils.addClass(utils.$('[data-menuanchor="'+name+'"]', menu), ACTIVE);
-        }
-    });
+    if(getOptions().menu && getOptions().menu.length){
+        utils.$(getOptions().menu).forEach(function(menu) {
+            if(menu != null){
+                utils.removeClass(utils.$(ACTIVE_SEL, menu), ACTIVE);
+                utils.addClass(utils.$('[data-menuanchor="'+name+'"]', menu), ACTIVE);
+            }
+        });
+    }
 }

@@ -163,7 +163,6 @@ function MouseWheelHandler(e) {
         }
 
         if(state.canScroll){
-            console.log("MouseWheelHandler....");
             var averageEnd = utils.getAverage(scrollings, 10);
             var averageMiddle = utils.getAverage(scrollings, 70);
             var isAccelerating = averageEnd >= averageMiddle;

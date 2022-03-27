@@ -10,6 +10,7 @@ import {
 } from './common/selectors.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { scrolling } from './scroll/scrolling.js';
+import { scrollOverflowHandler } from './scrolloverflow.js';
 
 let touchStartY = 0;
 let touchStartX = 0;
@@ -67,13 +68,23 @@ export function removeTouchHandler(){
 */
 function touchMoveHandler(e){
     var activeSection = utils.closest(e.target, SECTION_SEL) || getState().activeSection.item;
+    var hasActiveSectionOverflow = scrollOverflowHandler.isScrollable(getState().activeSection);
+    var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > (window.innerHeight / 100 * getOptions().touchSensitivity);
+    var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity);
+    var isHorizontalPredominantMove = utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY));
+    var directionH = touchStartX > touchEndX ? 'right' : 'left';
+    var directionV = touchStartY > touchEndY ? 'down' : 'up';
+    var direction = isHorizontalPredominantMove ? directionH : directionV;
 
     if (isReallyTouch(e) ) {
         setState({isGrabbing: true});
 
-        if(getOptions().autoScrolling && !state.canScroll){
-            //preventing the easing on iOS devices
-            utils.preventDefault(e);
+        if(getOptions().autoScrolling){
+            if(!hasActiveSectionOverflow || (hasActiveSectionOverflow && !state.canScroll)){
+
+                //preventing the easing on iOS devices
+                utils.preventDefault(e);
+            }
         }
 
         var touchEvents = getEventsPage(e);
@@ -81,19 +92,26 @@ function touchMoveHandler(e){
         touchEndY = touchEvents.y;
         touchEndX = touchEvents.x;
 
+        if(getOptions().allowCorrectDirection){
+            setState({
+                canScroll: state.canScroll && state.direction == direction || state.direction !== direction,
+                slideMoving: state.slideMoving && state.direction == direction || state.direction !== direction
+            });
+        }
+
         //if movement in the X axys is greater than in the Y and the currect section has slides...
-        if (utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY))) {
+        if (isHorizontalPredominantMove) {
 
             //is the movement greater than the minimum resistance to scroll?
-            if (!state.slideMoving && Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity)) {
+            if (!state.slideMoving && isHorizontalMovementEnough) {
                 if (touchStartX > touchEndX) {
                     if(getIsScrollAllowed().m.right){
-                        setState({touchDirection: 'right'});
+                        setState({touchDirection: directionH});
                         EventEmitter.emit('moveSlideRight', {section: activeSection});
                     }
                 } else {
                     if(getIsScrollAllowed().m.left){
-                        setState({touchDirection: 'left'});
+                        setState({touchDirection: directionH});
                         EventEmitter.emit('moveSlideLeft', {section: activeSection});
                     }
                 }
@@ -104,14 +122,9 @@ function touchMoveHandler(e){
         else if(getOptions().autoScrolling && state.canScroll){
 
             //is the movement greater than the minimum resistance to scroll?
-            if (Math.abs(touchStartY - touchEndY) > (window.innerHeight / 100 * getOptions().touchSensitivity)) {
-                if (touchStartY > touchEndY) {
-                    setState({touchDirection: 'down'});
-                    scrolling('down');
-                } else if (touchEndY > touchStartY) {
-                    setState({touchDirection: 'up'});
-                    scrolling('up');
-                }
+            if (isVerticalMovementEnough) {
+                setState({touchDirection: directionV});
+                scrolling(directionV);
             }
         }
     }

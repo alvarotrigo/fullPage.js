@@ -73,7 +73,7 @@ fullPage를 써서 상업용 웹사이트, 주제, 프로젝트, 앱을 개발�
 ### 오픈소스 라이선스
 [GNU GPL 라이선스 v3](https://www.gnu.org/licenses/gpl-3.0.html)과 호환되는 라이선스 하에서 오픈소스 앱을 만드신다면, GPLv3 조건에서 fullPage를 사용하실 수 있습니다.
 
-**자바스크립트와 CSS 파일에 있는 개발자를 밝히는 말은 (결합이나 최소화 이후에도) 그대로 두셔야 합니다**
+**You will have to provide a prominent notice that fullPage.js is in use. 자바스크립트와 CSS 파일에 있는 개발자를 밝히는 말은 (결합이나 최소화 이후에도) 그대로 두셔야 합니다**
 
 [fullPage의 라이선스에 대해 더 자세히 읽어보기](https://alvarotrigo.com/fullPage/pricing/).
 
@@ -181,74 +181,80 @@ $(document).ready(function() {
 
 모든 옵션이 들어간 더 복잡한 초기 설정은 아래와 같이 코딩될 수 있습니다.
 ```javascript
-	new fullpage('#fullpage', {
-		//이동
-		menu: '#menu',
-		lockAnchors: false,
-		anchors:['firstPage', 'secondPage'],
-		navigation: false,
-		navigationPosition: 'right',
-		navigationTooltips: ['firstSlide', 'secondSlide'],
-		showActiveTooltip: false,
-		slidesNavigation: false,
-		slidesNavPosition: 'bottom',
+new fullpage('#fullpage', {
+	//이동
+	menu: '#menu',
+	lockAnchors: false,
+	anchors:['firstPage', 'secondPage'],
+	navigation: false,
+	navigationPosition: 'right',
+	navigationTooltips: ['firstSlide', 'secondSlide'],
+	showActiveTooltip: false,
+	slidesNavigation: false,
+	slidesNavPosition: 'bottom',
 
-		//스크롤
-		css3: true,
-		scrollingSpeed: 700,
-		autoScrolling: true,
-		fitToSection: true,
-		fitToSectionDelay: 1000,
-		scrollBar: false,
-		easing: 'easeInOutCubic',
-		easingcss3: 'ease',
-		loopBottom: false,
-		loopTop: false,
-		loopHorizontal: true,
-		continuousVertical: false,
-		continuousHorizontal: false,
-		scrollHorizontally: false,
-		interlockedSlides: false,
-		dragAndMove: false,
-		offsetSections: false,
-		resetSliders: false,
-		fadingEffect: false,
-		normalScrollElements: '#element1, .element2',
-		scrollOverflow: false,
-		scrollOverflowReset: false,
-		scrollOverflowOptions: null,
-		touchSensitivity: 15,
-		bigSectionsDestination: null,
+	//스크롤
+	css3: true,
+	scrollingSpeed: 700,
+	autoScrolling: true,
+	fitToSection: true,
+	fitToSectionDelay: 1000,
+	scrollBar: false,
+	easing: 'easeInOutCubic',
+	easingcss3: 'ease',
+	loopBottom: false,
+	loopTop: false,
+	loopHorizontal: true,
+	continuousVertical: false,
+	continuousHorizontal: false,
+	scrollHorizontally: false,
+	interlockedSlides: false,
+	dragAndMove: false,
+	offsetSections: false,
+	resetSliders: false,
+	fadingEffect: false,
+	normalScrollElements: '#element1, .element2',
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
+	scrollOverflowReset: false,
+	touchSensitivity: 15,
+	bigSectionsDestination: null,
 
-		//접근성
-		keyboardScrolling: true,
-		animateAnchor: true,
-		recordHistory: true,
+	//접근성
+	keyboardScrolling: true,
+	animateAnchor: true,
+	recordHistory: true,
+	allowCorrectDirection: false,
 
-		//디자인
-		controlArrows: true,
-		verticalCentered: true,
-		sectionsColor : ['#ccc', '#fff'],
-		paddingTop: '3em',
-		paddingBottom: '10px',
-		fixedElements: '#header, .footer',
-		responsiveWidth: 0,
-		responsiveHeight: 0,
-		responsiveSlides: false,
-		parallax: false,
-		parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
-		dropEffect: false,
-		dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
-		waterEffect: false,
-		waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
-		cards: false,
-		cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
+	//디자인
+	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
+	verticalCentered: true,
+	sectionsColor : ['#ccc', '#fff'],
+	paddingTop: '3em',
+	paddingBottom: '10px',
+	fixedElements: '#header, .footer',
+	responsiveWidth: 0,
+	responsiveHeight: 0,
+	responsiveSlides: false,
+	parallax: false,
+	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+	dropEffect: false,
+	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
+	waterEffect: false,
+	waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
+	cards: false,
+	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
-		//맞춤 선택자
-		sectionSelector: '.section',
-		slideSelector: '.slide',
+	//맞춤 선택자
+	sectionSelector: '.section',
+	slideSelector: '.slide',
 
-		lazyLoading: true,
+	lazyLoading: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//사건(이벤트)
 	onLeave: function(origin, destination, direction){},
@@ -381,6 +387,8 @@ new fullpage('#fullpage', {
 
 - `controlArrows`: (기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
 
+- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+
 - `verticalCentered`: (기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. `true`로 설정되면 컨텐츠가 라이브러리로 포장됩니다. 위임(delegation)을 사용하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오는 것을 고려해 보세요.
 
 - `scrollingSpeed`: (기본값 `700`) 스크롤 이동 속도를 0.001초 단위로 설정합니다.
@@ -463,6 +471,8 @@ new fullpage('#fullpage', {
 
 - `recordHistory`: (기본값 `true`) 웹사이트 상태를 브라우저 방문 기록에 맞게 밀지를 정의합니다. `true`로 설정되면 웹사이트의 각 구역/슬라이드가 새로운 페이지가 되어 브라우저의 뒤로 가기/앞으로 가기 버튼을 누르면 구역/슬라이드를 스크롤하여 웹사이트의 이전 방문 페이지나 다음 페이지로 이동합니다. `false`로 설정되면 URL이 계속 바뀌어도 브라우저 방문 기록에 아무런 영향을 미치지 않습니다. `autoScrolling:false`값을 쓰면 이 옵션이 자동으로 꺼집니다.
 
+- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+
 - `menu`: (기본값 `false`) 선택자를 써서 구역에 링크할 메뉴를 구체적으로 정할 수 있습니다. 이렇게 하면 `active` 클래스를 써서 구역을 스크롤할때 메뉴에 있는 대응하는 요소가 활성화됩니다. 이렇게 하면 메뉴를 만드는 것이 아니라 `active` 클래스를 대응하는 앵커 링크와 함께 주어진 메뉴에 있는 요소에 추가만 합니다. 구역에 메뉴 요소의 링크를 걸기 위해서는 구역 안에서 사용된 것과 동일한 앵커 링크와 함께 사용하기 위해 HTML 5 데이터-태크(`data-menuanchor`)가 필요합니다. 다음은 예시입니다.
 ```html
 <ul id="myMenu">
@@ -493,17 +503,12 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: (기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
 
-- `scrollOverflow`: (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 위임을 하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오시는 걸 고려해 보세요.
-`true`로 설정하시는 경우 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js) 벤더 라이브러리가 필요합니다. 이 파일은 fullPage.js 플러그인 이전에 불러와야 합니다 하지만 jQuery (사용하시는 경우) 후에. 다음은 예시입니다.
+- `scrollOverflow`: (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`. 구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
-```html
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="fullpage.js"></script>
-```
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
-특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`
-
-구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
+- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다.
 
@@ -536,6 +541,10 @@ new fullpage('#fullpage', {
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
+
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## 방법
 어떻게 작동하는지 [여기](http://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.
@@ -987,14 +996,14 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
 ![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)
-[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
+- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/
@@ -1003,15 +1012,8 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://www.sanyang.com.tw/service/Conception/
-- http://trasmissione-energia.terna.it/
 - http://www.villareginateodolinda.it
-- http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://dancingroad.com
-- http://www.camanihome.com/
-
-[여기](http://libscore.com/#$.fn.fullpage)서 나머지 사용자 목록을 보실 수 있습니다.
 
 ## 기부
 두 팔 벌려 기부를 환영합니다 :)

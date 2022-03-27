@@ -16,7 +16,6 @@ import { getBulletLinkName } from './getBulletLinkName.js';
 
 //Scrolls the slider to the given slide destination for the given section
 export function slideBulletHandler(e){
-    console.log(this);
     utils.preventDefault(e);
 
     setState({scrollTrigger: 'horizontalNav'});

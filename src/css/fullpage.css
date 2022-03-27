@@ -282,6 +282,12 @@ html.fp-enabled,
     height: auto !important;
 }
 
+/* Used for DragAndMove*/
+.fp-disable-snap body{
+    scroll-behavior: unset;
+    scroll-snap-type: none;
+}
+
 /* Customize website's scrollbar like Mac OS
 Not supports in Firefox and IE */
 .fp-scroll-mac .fp-overflow::-webkit-scrollbar {

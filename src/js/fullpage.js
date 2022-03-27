@@ -23,7 +23,7 @@ import { displayWarnings } from './console.js';
 import { ENABLED } from './common/selectors.js';
 import { EventEmitter } from './common/eventEmitter.js';
 
-export default function initialise(containerSelector, options) {
+export default function fullpage(containerSelector, options) {
     setCache();
 
     //only once my friend!
@@ -53,7 +53,11 @@ export default function initialise(containerSelector, options) {
 }
 
 function setAPI(){
-    FP.getFullpageData = function(){ return getOptions(); };
+    FP.getFullpageData = function(){ 
+        return {
+            options: getOptions()
+        };
+    };
 
     //public functions
     FP.version = '3.1.1';

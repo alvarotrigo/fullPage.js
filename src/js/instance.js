@@ -26,11 +26,11 @@ export function init(){
 
     setOptionsFromDOM();
     prepareDom();
+    toggleCssSnapsWhenPossible(true);
     setAllowScrolling(true);
     setMouseHijack(true);
     setAutoScrolling(getOptions().autoScrolling, 'internal');
     responsive();
-    toggleCssSnapsWhenPossible(true);
     
     //setting the class for the body element
     setBodyClass();
@@ -57,7 +57,7 @@ export function destroy(all){
     setKeyboardScrolling(false);
     utils.addClass(getContainer(), DESTROYED);
 
-    EventEmitter.emit(document, 'onDestroy');
+    EventEmitter.emit('onDestroy');
 
     //lets make a mess!
     if(all){

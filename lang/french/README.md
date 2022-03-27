@@ -75,7 +75,7 @@ Si vous voulez utiliser fullPage pour développer des sites, thèmes, projets et
 ### Licence open-source
 Si vous créez une application open source sous une licence compatible avec la [licence GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html), vous pouvez utiliser fullPage sous les termes de la GPLv3.
 
-**Les commentaires de crédit dans les fichiers JavaScript et CSS doivent être conservés intacts.** (même après la combinaison ou la minification)
+**You will have to provide a prominent notice that fullPage.js is in use. Les commentaires de crédit dans les fichiers JavaScript et CSS doivent être conservés intacts.** (même après la combinaison ou la minification)
 
 [En savoir plus sur la licence de fullPage](https://alvarotrigo.com/fullPage/pricing/).
 
@@ -227,9 +227,9 @@ var myFullpage = new fullpage('#fullpage', {
 	resetSliders: false,
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
-	scrollOverflow: false,
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
-	scrollOverflowOptions: null,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
@@ -237,9 +237,14 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
+	allowCorrectDirection: false,
 
 	//Design
 	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
 	verticalCentered: true,
 	sectionsColor : ['#ccc', '#fff'],
 	paddingTop: '3em',
@@ -262,6 +267,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//événements
 	onLeave: function(origin, destination, direction){},
@@ -401,6 +407,8 @@ new fullpage('#fullpage', {
 
 - `controlArrows` : (par défaut `true`) Détermine s'il faut utiliser les flèches de contrôle pour que les diapositives se déplacent vers la droite ou vers la gauche.
 
+- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+
 - `verticalCentered` : (par défaut `true`) Centrer verticalement le contenu à l'intérieur des sections. Lorsqu'il est réglé sur ` true `, votre contenu sera enveloppé par la bibliothèque. Envisagez d'utiliser la délégation ou de charger vos autres scripts dans le callback `afterRender`.
 
 - `scrollingSpeed` : (par défaut `700`) Vitesse en millisecondes pour les transitions de défilement.
@@ -485,6 +493,8 @@ Pour définir le pourcentage de chaque section, l'attribut `data-percentage` doi
 
 - `recordHistory` : (par défaut `true`) Définit si l'état du site doit être poussé dans l'historique du navigateur. Quand il est défini à `true`, chaque section/glissière du site agira comme une nouvelle page et les boutons avant et arrière du navigateur feront défiler les sections/glissières pour atteindre l'état précédent ou suivant du site. Quand il est réglé sur `false`, l'URL continuera à changer mais n'aura aucun effet sur l'historique du navigateur. Cette option est automatiquement désactivée lors de l'utilisation de `autoScrolling:false`.
 
+- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+
 - `menu` : (par défaut `false`) Un sélecteur peut être utilisé pour spécifier le menu à lier avec les sections. De cette façon, le défilement des sections activera l'élément correspondant dans le menu en utilisant la classe `active`.
 Cela ne générera pas de menu mais ajoutera simplement la classe `active` à l'élément du menu donné avec les liens d'ancrage correspondants.
 Afin de lier les éléments du menu avec les sections, un data-tag HTML 5 (`data-menuanchor`) sera nécessaire à utiliser avec les mêmes liens d'ancrage que ceux utilisés dans les sections. Exemple :
@@ -517,18 +527,11 @@ menu : #myMenu
 
 - `slidesNavPosition` : (par défaut `bottom`) Définit la position de la barre de navigation en mode paysage pour les curseurs. Admet les valeurs `top` et `bottom`. Vous pouvez modifier les styles CSS pour déterminer la distance du haut ou du bas ainsi que tout autre style tel que la couleur.
 
-- `scrollOverflow` : (par défaut `false`) définit si oui ou non il faut créer un défilement pour la section/glissière dans le cas où son contenu est plus grand que la hauteur de celle-ci. Quand il est défini à `true`, votre contenu sera enveloppé par le plugin. Pensez à utiliser la délégation ou à charger vos autres scripts dans le callback `afterRender`.
-Dans le cas où vous le mettez à `true`, il nécessite la bibliothèque du fournisseur [`scrollloverflow.min.js`] (https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js). Ce fichier doit être chargé avant le plugin fullPage.js, mais après jQuery ( en cas d'utilisation).
-Par exemple :
-
-```html
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="fullpage.js"></script>
-```
-
-Afin d'éviter que fullpage.js ne crée la barre de défilement dans certaines sections ou diapositives, utilisez la classe `fp-noscroll`. Par exemple : `<div class="section fp-noscroll">`
+- `scrollOverflow` : (par défaut `true`) définit si oui ou non il faut créer un défilement pour la section/glissière dans le cas où son contenu est plus grand que la hauteur de celle-ci. Afin d'éviter que fullpage.js ne crée la barre de défilement dans certaines sections ou diapositives, utilisez la classe `fp-noscroll`. Par exemple : `<div class="section fp-noscroll">`
 
 Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif lorsque vous utilisez `fp-auto-height-responsive` dans l'élément section.
+
+- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - Le `scrollOverflowReset` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Quand il est défini à `true`, il fait défiler le contenu de la section/glissière avec la barre de défilement en partant vers une autre section verticale. De cette façon, la section/glissière affichera toujours le début de son contenu, même si elle défile à partir d'une section située en dessous.
 
@@ -561,6 +564,10 @@ Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif
 - `cardsOptions` : (par défaut : `{ perspective : 100, fadeContent : true, fadeBackground : true}`). Vous permet de configurer les paramètres pour l'effet des cartes quand vous utilisez l'option `cards:true`. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading` : (par défaut `true`) Le chargement paresseux est actif par défaut ce qui signifie qu'il chargera paresseusement tout élément média contenant l'attribut `data-src` comme détaillé dans la [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/french/#lazy-loading) . Si vous voulez utiliser une autre bibliothèque de chargement paresseux, vous pouvez désactiver cette fonctionnalité de fullpage.js.
+
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## Méthodes
 Vous pouvez les voir en action [ici](http://alvarotrigo.com/fullPage/examples/methods.html)
@@ -1023,14 +1030,14 @@ Vous voulez créer des fichiers de distribution fullpage.js ? Veuillez consulter
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
 ![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)
-[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
+- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/
@@ -1039,15 +1046,8 @@ Vous voulez créer des fichiers de distribution fullpage.js ? Veuillez consulter
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://www.sanyang.com.tw/service/Conception/
-- http://trasmissione-energia.terna.it/
 - http://www.villareginateodolinda.it
-- http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://dancingroad.com
-- http://www.camanihome.com/
-
-Vous pouvez trouver une autre liste [ici](http://libscore.com/#$.fn.fullpage).
 
 ## Des dons
 Les dons seraient plus que bienvenus :)

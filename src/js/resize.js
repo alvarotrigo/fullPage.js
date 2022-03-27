@@ -36,9 +36,7 @@ function onDestroy(){
 * Resize event handler.
 */        
 function resizeHandler(){
-
     if(!g_isConsecutiveResize){
-        // what is this for??!!
         if(getOptions().autoScrolling && !getOptions().scrollBar || !getOptions().fitToSection){
             setSectionsHeight(utils.getWindowHeight());
         }
@@ -87,7 +85,6 @@ function resizeActions(){
         //if the keyboard is NOT visible
         if (!utils.matches(activeElement, 'textarea') && !utils.matches(activeElement, 'input') && !utils.matches(activeElement, 'select')) {
             var currentHeight = utils.getWindowHeight();
-
             //making sure the change in the viewport size is enough to force a rebuild. (20 % of the window to avoid problems when hidding scroll bars)
             if( Math.abs(currentHeight - previousHeight) > (20 * Math.max(previousHeight, currentHeight) / 100) ){
                 reBuild(true);
@@ -146,6 +143,8 @@ function reBuild(resizing){
     if(utils.isFunction( getOptions().afterReBuild ) && !resizing){
         getOptions().afterReBuild.call(getContainer());
     }
+
+    utils.trigger(getContainer(), 'afterRebuild');
 }
 
 /**

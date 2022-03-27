@@ -15,12 +15,11 @@ import { EventEmitter } from './common/eventEmitter.js';
 
 EventEmitter.on('bindEvents', bindEvents);
 
-
 function bindEvents(){
     
     //after DOM and images are loaded
     window.addEventListener('load', function(){
-        if(getOptions().scrollOverflow){
+        if(getOptions().scrollOverflow && !getOptions().scrollBar){
             scrollOverflowHandler.makeScrollable();
             scrollOverflowHandler.afterSectionLoads();
         }
@@ -103,8 +102,6 @@ export const scrollOverflowHandler = {
     },
 
     shouldBeScrollable: function(item){
-        console.log(item);
-        console.log(item.scrollHeight + ' vs ' + window.innerHeight);
         return item.scrollHeight > window.innerHeight;
     },
 

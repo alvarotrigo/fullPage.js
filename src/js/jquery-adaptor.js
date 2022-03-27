@@ -1,18 +1,18 @@
+import * as utils from './common/utils.js';
 import { FP } from "./common/constants.js";
 import { getOptions } from "./common/options.js";
-import * as utils from './common/utils.js';
+import fullpage from './fullpage.js';
 
 /**
  * jQuery adapter for fullPage.js 3.0.0
  */
- // @ts-ignore
- if(window.jQuery && window.fullpage){
+// @ts-ignore
+if(window.jQuery){
     (function ($, fullpage) {
         'use strict';
 
         // No jQuery No Go
         if (!$ || !fullpage) {
-            // @ts-ignore
             utils.showError('error', 'jQuery is required to use the jQuery fullpage adapter!');
             return;
         }
@@ -26,8 +26,7 @@ import * as utils from './common/utils.js';
                 getOptions().$.fn.fullpage[key] = FP[key];   
             });
         };
-
        
     // @ts-ignore
-    })(window.jQuery, window.fullpage);
+    })(window.jQuery, fullpage);
 }

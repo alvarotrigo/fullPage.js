@@ -72,7 +72,7 @@ fullPage.js 兼容所有的现代浏览器，以及一些旧版浏览器，如 I
 ### 开源许可证
 如果您使用与 [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html) 兼容的许可证创建开源应用程序，则可以在 GPLv3 条款下使用 fullPage。
 
-**JavaScript 和 CSS 文件中的认可的意见应保持完整的许可证 (即使在合并或压缩后）**
+**You will have to provide a prominent notice that fullPage.js is in use. JavaScript 和 CSS 文件中的认可的意见应保持完整的许可证 (即使在合并或压缩后）**
 
 [阅读更多关于 fullPage 的许可证](https://alvarotrigo.com/fullPage/pricing/)。
 
@@ -217,7 +217,8 @@ var myFullpage = new fullpage('#fullpage', {
 	resetSliders: false,
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
-	scrollOverflow: false,
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
 	scrollOverflowOptions: null,
 	touchSensitivity: 15,
@@ -227,9 +228,14 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
+	allowCorrectDirection: false,
 
 	//布局
 	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
 	verticalCentered: true,
 	sectionsColor : ['#ccc', '#fff'],
 	paddingTop: '3em',
@@ -253,6 +259,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//事件
 	onLeave: function(origin, destination, direction){},
@@ -390,6 +397,8 @@ new fullpage('#fullpage', {
 
 - `controlArrows`：（默认为 `true`）确定是否将 slide 的控制箭头向右或向左移动。
 
+- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+
 - `verticalCentered`：（默认为`true`）在 section 内部垂直居中。 当设置为 `true` 时，您的代码将被库包装。可考虑使用委托或在 `afterRender` 回调中加载其他脚本。
 
 - `scrollingSpeed`：（默认 `700` ）滚动转换的速度（以毫秒为单位）。
@@ -475,6 +484,8 @@ new fullpage('#fullpage', {
 
 - `recordHistory`: （默认为`true`）定义是否将网站的状态记录到浏览器的历史记录。 设置为 `true` 时，网站的每个 section/slide 片将作为新页面，浏览器的后退和前进按钮将滚动 section/slide 以达到网站的上一个或下一个状态。 当设置为 `false` 时，URL 将保持更改，但不会影响浏览器的历史记录。 使用 `autoScrolling：false` 时，该选项会自动关闭。
 
+- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+
 - `menu`: （默认 `false` ）选择器可以用来指定菜单链接到锚。 这样 section 的滚动将使用 active 状态激活菜单中的相应元素。这不会生成菜单，而只是将 active 状态添加到给定菜单中的元素，并带有相应的锚链接。
 为了将菜单的元素与各个部分相链接，将需要一个HTML 5 数据标签（data-menuanchor）来关联在 section中使用的锚链接。 例：
 ```html
@@ -506,18 +517,9 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: （默认`bottom`）定义滑块的横向导航栏的位置。 值为 `top` 和 `bottom` 。 您可能需要修改 CSS 样式以确定从顶部或底部距离以及任何其他样式（如颜色）。
 
-- `scrollOverflow`: （默认为 `false`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 当设置为 `true  ` 时，您的内容将被插件包裹。 考虑使用委托或在 `afterRender` 回调中加载其他脚本。
-如果设置为 `true`，则需要库 [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/scrolloverflow.min.js) 。 这个文件必须在 fullPage.js 插件之前而非jQuery（在使用它的情况下）加载。
-例如：
+- `scrollOverflow`: （默认为 `true`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`. 在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
 
-```html
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="fullpage.js"></script>
-```
-
-为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`
-
-在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
+- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`:（默认`false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。
 
@@ -551,6 +553,10 @@ new fullpage('#fullpage', {
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: （默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
+
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## 公共方法
 你可以在[这里](http://alvarotrigo.com/fullPage/examples/methods.html)看到它们
@@ -1003,15 +1009,14 @@ new fullpage('#fullpage', {
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
 ![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)
-[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
-
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
+- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/
@@ -1020,15 +1025,8 @@ new fullpage('#fullpage', {
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://www.sanyang.com.tw/service/Conception/
-- http://trasmissione-energia.terna.it/
 - http://www.villareginateodolinda.it
-- http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://dancingroad.com
-- http://www.camanihome.com/
-
-你可以在另一份列表 [这里](http://libscore.com/#$.fn.fullpage) 查找。
 
 ## 赞助
 非常欢迎您的捐款:)

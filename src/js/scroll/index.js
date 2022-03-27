@@ -17,9 +17,8 @@ function onDestroy(){
 function bindEvents(){
     utils.windowAddEvent('scroll', scrollHandler);
     document.body.addEventListener('scroll', scrollHandler);
-    console.log("adding... onScrollPageAndSlide ");
+
     EventEmitter.on('onScrollPageAndSlide', function(params){
-        console.log("on onScrollPageAndSlide...");
         scrollPageAndSlide(params.sectionAnchor, params.slideAnchor);
     });
 

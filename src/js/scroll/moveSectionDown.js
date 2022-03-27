@@ -4,7 +4,6 @@ import { EventEmitter } from '../common/eventEmitter.js';
 import { FP } from '../common/constants';
 import { $body } from "../common/cache.js";
 import { scrollPage } from "./scrollPage.js";
-import { moveSectionUp } from "./moveSectionUp.js";
 
 FP.moveSectionDown = moveSectionDown;
 

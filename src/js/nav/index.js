@@ -26,7 +26,6 @@ function onClickOrTouch(params){
     }
 
     else if(utils.matches(target, SLIDES_NAV_LINK_SEL) || utils.closest(target, SLIDES_NAV_LINK_SEL) != null){
-        console.log("pincho en dot");
         slideBulletHandler.call(target, params.e);
     }
 }

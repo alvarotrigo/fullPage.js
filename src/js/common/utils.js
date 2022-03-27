@@ -533,6 +533,17 @@ export function setSrc(element, attribute){
     element.removeAttribute('data-' + attribute);
 }
 
+export function getParentsUntilBody(item){
+    var parents = [item];
+
+    do{
+        item = item.parentNode;
+        parents.push(item);
+    }while(!matches(item, 'body'));
+
+    return parents;
+}
+
 // //utils are public, so we can use it wherever we want
 // // @ts-ignore
 // window.fp_utils = {

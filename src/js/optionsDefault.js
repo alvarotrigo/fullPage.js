@@ -95,7 +95,6 @@ export const defaultOptions = {
     onSlideLeave: null,
     afterResponsive: null,
 
-    dynamic: true,
     lazyLoading: true,
     observer: true
 };

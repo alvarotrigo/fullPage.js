@@ -18,11 +18,11 @@ const licenseContent = `/*!
 const terserOptions = {
     compress: {
         passes: 2,
-        drop_console: false,
+        drop_console: true,
     },
     mangle: {
         properties: {
-            // regex: "/_$/",
+            // regex: /_$/,
             keep_quoted: true,
             reserved: [
                 'fullpage',
@@ -177,7 +177,7 @@ module.exports = [
       
         output: [
             {
-                file: "build/fullpage.js",
+                file: "dist/fullpage.js",
                 name: "fullpage",
                 format: "umd",
                 banner: licenseContent,
@@ -188,7 +188,7 @@ module.exports = [
                 plugins: []
             },
             {
-                file: "build/fullpage.min.js",
+                file: "dist/fullpage.min.js",
                 name: "fullpage",
                 format: "umd",
                 banner: licenseContent,

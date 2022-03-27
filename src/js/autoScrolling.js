@@ -11,6 +11,7 @@ import { getState } from './common/state.js';
 import { FP } from './common/constants.js';
 import { $body, $htmlBody } from './common/cache.js';
 import { setRecordHistory } from './anchors/setRecordHistory.js';
+import { scrollTo } from './common/scrollTo.js';
 
 FP.setAutoScrolling = setAutoScrolling;
 FP.test.setAutoScrolling = setAutoScrolling;
@@ -67,6 +68,10 @@ export function setAutoScrolling(value, type){
 
         //scrolling the page to the section with no animation
         if (element != null) {
+            utils.css($htmlBody, {
+                'scroll-behavior': 'unset'
+            });
+
             var scrollSettings = getScrollSettings(element.offsetTop);
             scrollSettings.element.scrollTo(0, scrollSettings.options);
         }

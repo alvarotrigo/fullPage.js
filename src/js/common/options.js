@@ -24,9 +24,8 @@ export function getOptions(){
 
 export function setOptions(options){
     console.error("setOptions.....");
-    g_options = utils.deepExtend(defaultOptions, options);
+    g_options = utils.deepExtend({}, defaultOptions, options);
     originals = Object.assign({}, g_options);
-    console.log(g_options);
 }
 
 export function getOriginals(){

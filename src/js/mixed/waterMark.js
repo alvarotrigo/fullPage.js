@@ -6,7 +6,6 @@ import { getLast } from '../common/utils.js';
 EventEmitter.on('bindEvents', init);
 
 function init(){
-    console.log(getOptions().credits);
     const position = getOptions().credits.position;
     const positionStyle = ['left', 'right'].indexOf(position) > -1 ? `${position}: 0;` : '';
     const waterMark = `

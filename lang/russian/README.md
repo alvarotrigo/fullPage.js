@@ -73,7 +73,7 @@ fullPage.js полностью функционирует во всех совр
 ### Лицензия с открытым исходным кодом
 Если вы создаёте приложение с открытым исходным кодом по лицензии, совместимой с [Лицензией GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html), вы можете использовать fullPage на условиях GPLv3.
 
-**Сведения об авторе в JavaScript и файлах CSS должны оставаться без изменений** (даже после комбинации или минификации)
+**You will have to provide a prominent notice that fullPage.js is in use. Сведения об авторе в JavaScript и файлах CSS должны оставаться без изменений** (даже после комбинации или минификации)
 
 [Прочесть больше о лицензии fullPage](https://alvarotrigo.com/fullPage/pricing/).
 
@@ -218,9 +218,9 @@ var myFullpage = new fullpage('#fullpage', {
 	resetSliders: false,
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
-	scrollOverflow: false,
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
-	scrollOverflowOptions: null,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
@@ -228,9 +228,14 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
+	allowCorrectDirection: false,
 
 	//Дизайн
 	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
 	verticalCentered: true,
 	sectionsColor : ['#ccc', '#fff'],
 	paddingTop: '3em',
@@ -253,6 +258,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//события
 	onLeave: function(origin, destination, direction){},
@@ -389,6 +395,8 @@ new fullpage('#fullpage', {
 
 - `controlArrows`: (по умолчанию `true`) Определяет использование клавиш-стрелок для передвижения вправо или влево при просмотре слайдов.
 
+- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+
 - `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. При установке данного расширения - `true`, ваш контент будет обёрнут библиотекой. Рассмотрите возможность делегирования или загрузите ваши скрипты для обратного вызова `afterRender`.
 
 - `scrollingSpeed`: (по умолчанию `700`) Ускорьте на миллисекунды переходы при скроллинге.
@@ -467,6 +475,8 @@ new fullpage('#fullpage', {
 
 - `recordHistory`: (по умолчанию `true`) Определяет, нужно ли отображать состояние сайта в истории браузера. При установке значения `true` каждый раздел/слайд сайта будет действовать как новая страница, и кнопки браузера «назад» и «вперёд» прокрутят разделы/слайды для перехода к предыдущему или следующему состоянию сайта. При установке значения `false` URL будет продолжать меняться, но не отразится на истории браузера. Данная опция отключается автоматически при использовании опции `autoScrolling:false`.
 
+- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+
 - `menu`: (по умолчанию `false`) Селектор может использоваться для связи элементов меню с разделами. Таким образом, скроллинг разделов активирует соответствующий элемент меню при помощи класса `active`.
 Это не приведёт к созданию нового меню, а лишь добавит класс `active` элементу в имеющемся меню с соответствующими ссылками с привязками.
 Чтобы связать элементы меню с разделами, необходимо будет использовать информационный блок HTML 5 (`data-menuanchor`) с теми же ссылками с привязками, которые используются в разделах. Пример:
@@ -499,18 +509,9 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: (по умолчанию `bottom`) Определяет местоположение горизонтальной навигационной панели для слайдеров. Возможные значения: `top` и `bottom`. При желании вы можете настроить стили CSS для определения расстояния от верхней до нижней части, так же как и любой другой стиль, например, цвет.
 
-- `scrollOverflow`: (по умолчанию `false`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. При установке значения `true` ваш контент будет обёрнут плагином. Рассмотрите возможность делегирования или загрузите ваши скрипты для обратного вызова `afterRender`.
-При установке значения `true` необходима библиотека разработчика [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js), которая должна быть загружена до загрузки плагина fullPage.js, но после jQuery (если используется).
-Например:
+- `scrollOverflow`: (по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
 
-```html
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="fullpage.js"></script>
-```
-
-Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`
-
-Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
+- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже.
 
@@ -544,6 +545,10 @@ new fullpage('#fullpage', {
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: (по умолчанию `true`) Отложенная загрузка включена по умолчанию, что означает, что данная опция будет осуществлять отложенную загрузку любого медиа-элемента, содержащего атрибут `data-src`, как описано в [документации отложенной загрузки](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отложенная-загрузка). Если вы желаете использовать любую другую библиотеку отложенной загрузки, вы можете деактивировать данную функцию fullpage.js.
+
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## Функции
 Можете увидеть их в действии [здесь](http://alvarotrigo.com/fullPage/examples/methods.html)
@@ -998,14 +1003,14 @@ new fullpage('#fullpage', {
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
 ![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)
-[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
+- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/
@@ -1014,15 +1019,8 @@ new fullpage('#fullpage', {
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://www.sanyang.com.tw/service/Conception/
-- http://trasmissione-energia.terna.it/
 - http://www.villareginateodolinda.it
-- http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://dancingroad.com
-- http://www.camanihome.com/
-
-Вы можете найти ещё один список [здесь](http://libscore.com/#$.fn.fullpage).
 
 ## Денежные переводы
 Денежные переводы более чем приветствуются :)

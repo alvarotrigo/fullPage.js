@@ -20,7 +20,8 @@ import { addInternalSelectors } from './addInternalSelectors.js';
 * Works over the DOM structure to set it up for the current fullpage getOptions().
 */
 export function prepareDom(){
-    utils.css(getContainer(), {
+    
+    utils.css(utils.getParentsUntilBody(getContainer()), {
         'height': '100%',
         'position': 'relative'
     });

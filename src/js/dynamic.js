@@ -70,11 +70,6 @@ function didSectionsOrSlidesChange(){
 function onContentChange(mutations){
     var _didSlidesChange = didSlidesChange();
 
-    if(!getOptions().dynamic){
-        return;
-    }
-    console.log("onContentChange");
-
     if( didSectionsOrSlidesChange() && !state.isDoingContinousVertical){
         if(getOptions().observer){
             // Temporally disabling the observer while 

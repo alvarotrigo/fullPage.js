@@ -77,7 +77,7 @@ Si quieres usar fullpage para desarrollo de páginas comerciales, templates, the
 Si estás creando una aplicación de código libre bajo una licencia compatible con la liencia de [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), podrás hacer uso de fullPage bajo los términos de la licencia GPLv3.
 [Read more about fullPage's license](https://alvarotrigo.com/fullPage/pricing/).
 
-**The credit comments in the JavaScript and CSS files should be kept intact** (even after combination or minification)
+**Tendrás que añadir un aviso destacado indicando que la página usa fullPage.js. Los créditos en los comentarios en los ficheros JavaScript y CSS tendrán que mantenerse intactos.** (Incluso después de ser minificados/comprimidos)
 
 ## Uso
 Como podéis ver en los ejemplos disponibles, es necesario incluir:
@@ -224,19 +224,24 @@ new fullpage('#fullpage', {
 	resetSliders: false,
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
-	scrollOverflow: false,
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
-	scrollOverflowOptions: null,
 	touchSensitivity: 15,
-	bigSectionsDestination: null,
+	bigSectionsfDestination: null,
 
 	//Accesibilidad
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
+	allowCorrectDirection: false,
 
 	//Diseno
 	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
 	verticalCentered: true,
 	sectionsColor : ['#ccc', '#fff'],
 	paddingTop: '3em',
@@ -257,6 +262,9 @@ new fullpage('#fullpage', {
 	//Selectores personalizados
 	sectionSelector: '.section',
 	slideSelector: '.slide',
+
+	lazyLoading: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//Eventos
 	onLeave: function(origin, destination, direction){},
@@ -392,6 +400,8 @@ new fullpage('#fullpage', {
 
 - `controlArrows`: (por defecto `true`) Determina si usar flechas de control en las diapositivas para deslizar hacia la derecha o izquierda.
 
+- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+
 - `verticalCentered`: (por defecto `true`) centrado vertical de las secciones y diapositivas. Cuando se usa `true`, el contenido de cada sección y diapositiva será envuelto por la librería dentro de un elemento contenedor. Considera usar delegación en eventos Javascript o usar los eventos dentro del callback `afterRender`.
 
 - `scrollingSpeed`: (por defecto `700`) Velocidad de deslizamiento en milisegundos.
@@ -476,6 +486,8 @@ Para definir el porcentaje de la sección hay que hacer uso del atributo `data-p
 
 - `recordHistory`: (por defecto `true`) Determina si el estado de la página se guardará en la historia del navegador. Cuando se define la opción a `true` cada sección/diapositiva de la página actuará como una nueva página y el botón de "página anterior" o "página siguiente" del navegador desplazará las secciones/diapositivas de la página hasta alcanzar el estado de la página anterior o siguiente respectivamente. Cuando se define la opción a `false`, la URL seguirá cambiando con los enlaces de anclaje correspondientes pero no tendrán ningún efecto en la historia del navegador. Esta opción está automáticamente definida como `false` cuando se usa la opción `autoScrolling:false`.
 
+- `allowCorrectDirection:` (por defecto `false`). Determina si permitir o no que el visitante pueda cambiar/corregir la direccion mientras la página se está desplazando de una section a otra si el visitante hace scroll hacia la dirección opuesta.
+
 - `menu`: (por defecto `false`) Se puede usar un selector para especificar el menú de la página al que las secciones hacen referencia. De este modo, el desplazamiento vertical entre las secciones activará el elemento correspondiente del menú usando la clase `active`.
 Esta opción no generará ningún menú, sino que simplemente añade la clase `active` al elemento del menú con el enlace de anclaje correspondiente a la sección.
 Para relacionar los elementos del menú con las secciones se requiere del uso del atributo `data-menuanchor` que tendrá que tener el mismo valor que el enlace de anclaje que la sección a la que haga referencia. Por ejemplo:
@@ -508,17 +520,9 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: (por defecto `bottom`) Determina la posición que tomará la navegación para las diapositivas horizontales de la página. Admite los valores `top` y `bottom`. Tal vez quieras modificar la distancia inferior o superior usando estilos CSS así como el color de los mismos.
 
-- `scrollOverflow`: (por defecto `false`) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Cuando se define a `true`, el contenido de la sección/diapositiva será envuelto por fullPage.js en un elemento contenedor. En estos casos, considera usar delegación o usar los eventos Javascript en el callback `afterRender`.
-Cuando se usa `true` esta opción requiere del uso de la librería externa [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js) y ésta debe de ser añadida antes que fullPage.js, pero después de jQuery (en caso de usarlo). Por ejemplo:
+- `scrollOverflow`: (por defecto `true`) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Para evitar que fullPage.js cree la barra de desplazamiento en ciertas secciones o diapositivas, haz uso de la clase `fp-noscroll`. Por ejemplo: `<div class="section fp-noscroll">`. Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clase `fp-auto-height-responsive` en la sección. [Más información](https://github.com/alvarotrigo/fullPage.js#responsive-auto-height-sections).
 
-```html
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="fullpage.js"></script>
-```
-
-Para evitar que fullPage.js cree la barra de desplazamiento en ciertas secciones o diapositivas, haz uso de la clase `fp-noscroll`. Por ejemplo: `<div class="section fp-noscroll">`
-
-Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clase `fp-auto-height-responsive` en la sección. [Más información](https://github.com/alvarotrigo/fullPage.js#responsive-auto-height-sections).
+- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`: (por defecto `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Cuando se define a `true` fullPage.js moverá el contenido de la seccion o diapositiva hacia arriba cuando se abandone la seccion o diapositiva hacia otra sección vertical. De este modo, cuando se llega a una sección que usa barra de desplazamiento, se mostrará siempre el principio de su contenido.
 
@@ -551,6 +555,10 @@ Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clas
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Permite configurar los parámetros para el efecto de Cards cuando se usa la opcón `cards:true`. [Lee más acerca de la opción cards aquí](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `lazyLoading`: (por defecto `true`) La carga pasiva está activa por defecto, lo que significa que cargará pasivamente cualquier elemento multimedia que contenga el atributo `data-src` como se detalla en la [carga pasiva de elementos multimedia](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#carga-pasiva-de-elementos-multimedia). Si quieres usar otra librería de carga pasiva puedes deshabilitar esta funcionalidad usando `false`.
+
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## Métodos
 Puedes verlos en acción [aquí](https://alvarotrigo.com/fullPage/examples/methods.html)
@@ -996,14 +1004,14 @@ Sólo disponible en inglés :)
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
 ![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)
-[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
+- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/
@@ -1012,15 +1020,8 @@ Sólo disponible en inglés :)
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://www.sanyang.com.tw/service/Conception/
-- http://trasmissione-energia.terna.it/
 - http://www.villareginateodolinda.it
-- http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://dancingroad.com
-- http://www.camanihome.com/
-
-Puedes encontrar otra lista más extensa [aquí](http://libscore.com/#$.fn.fullpage).
 
 ## Donaciones
 ¡Agradeceré cualquier donación!
