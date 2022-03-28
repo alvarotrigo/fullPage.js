@@ -151,15 +151,27 @@
       }();
     }
 
-    var _require = require("../common/constants.js"),
-        win$1 = _require.win;
+    var win = window;
+    var doc = document;
+    var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
+    var isMacDevice = /(Mac|iPhone|iPod|iPad)/i.test(win.navigator.userAgent); // @ts-ignore
+
+    var isTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints > 0 || navigator.maxTouchPoints; // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
+
+    var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'; // cache common elements
+
+    var FP = {
+      test: {},
+      shared: {}
+    };
+    var extensions = ['parallax', 'scrollOverflowReset', 'dragAndMove', 'offsetSections', 'fadingEffect', 'responsiveSlides', 'continuousHorizontal', 'interlockedSlides', 'scrollHorizontally', 'resetSliders', 'cards', 'dropEffect', 'waterEffect'];
+
     /**
     * forEach polyfill for IE
     * https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Browser_Compatibility
     */
 
-
-    if (win$1.NodeList && !NodeList.prototype.forEach) {
+    if (win.NodeList && !NodeList.prototype.forEach) {
       NodeList.prototype.forEach = function (callback, thisArg) {
         thisArg = thisArg || window;
 
@@ -201,21 +213,6 @@
         configurable: true
       });
     }
-
-    var win = window;
-    var doc = document;
-    var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
-    var isMacDevice = /(Mac|iPhone|iPod|iPad)/i.test(win.navigator.userAgent); // @ts-ignore
-
-    var isTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints > 0 || navigator.maxTouchPoints; // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
-
-    var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'; // cache common elements
-
-    var FP = {
-      test: {},
-      shared: {}
-    };
-    var extensions = ['parallax', 'scrollOverflowReset', 'dragAndMove', 'offsetSections', 'fadingEffect', 'responsiveSlides', 'continuousHorizontal', 'interlockedSlides', 'scrollHorizontally', 'resetSliders', 'cards', 'dropEffect', 'waterEffect'];
 
     //utils
     /**
@@ -289,7 +286,7 @@
     */
 
     function getWindowHeight() {
-      return 'innerHeight' in window ? win.innerHeight : doc.documentElement.offsetHeight;
+      return 'innerHeight' in win ? win.innerHeight : doc.documentElement.offsetHeight;
     }
     /**
     * Gets the window width.
@@ -725,13 +722,13 @@
       element.setAttribute(attribute, getAttr(element, 'data-' + attribute));
       element.removeAttribute('data-' + attribute);
     }
-    function getParentsUntilBody(item) {
+    function getParentsUntil(item, topParentSelector) {
       var parents = [item];
 
       do {
         item = item.parentNode;
         parents.push(item);
-      } while (!matches(item, 'body'));
+      } while (!matches(item, topParentSelector));
 
       return parents;
     } // //utils are public, so we can use it wherever we want
@@ -1080,7 +1077,6 @@
       return g_options || defaultOptions;
     }
     function setOptions(options) {
-      console.error("setOptions.....");
       g_options = deepExtend({}, defaultOptions, options);
       originals = Object.assign({}, g_options);
     }
@@ -1666,87 +1662,6 @@
       setVariableState('recordHistory', value, type);
     }
 
-    //@ts-check
-    var g_animateScrollId;
-    EventEmitter.on('bindEvents', bindEvents$b);
-
-    function bindEvents$b() {
-      EventEmitter.on('onDestroy', onDestroy$8);
-    }
-
-    function onDestroy$8() {
-      clearTimeout(g_animateScrollId);
-    }
-    /**
-    * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
-    * http://stackoverflow.com/a/16136789/1081396
-    */
-
-
-    function scrollTo(element, to, duration, callback) {
-      var start = getScrolledPosition(element);
-      var change = to - start;
-      var currentTime = 0;
-      var increment = 20;
-      setState({
-        activeAnimation: true
-      });
-      var isCallbackFired = false; // Making sure we can trigger a scroll animation
-      // when css scroll snap is active. Temporally disabling it.
-
-      if (element === doc.body) {
-        css(doc.body, {
-          'scroll-snap-type': 'none'
-        });
-      }
-
-      var animateScroll = function animateScroll() {
-        if (state.activeAnimation) {
-          //in order to stope it from other function whenever we want
-          var val = to;
-          currentTime += increment;
-
-          if (duration) {
-            // @ts-ignore
-            val = win.fp_easings[getOptions().easing](currentTime, start, change, duration);
-          }
-
-          setScrolling(element, val);
-
-          if (currentTime < duration) {
-            clearTimeout(g_animateScrollId);
-            g_animateScrollId = setTimeout(animateScroll, increment);
-          } else if (typeof callback !== 'undefined' && !isCallbackFired) {
-            callback();
-            isCallbackFired = true;
-          }
-        } else if (currentTime < duration && !isCallbackFired) {
-          callback();
-          isCallbackFired = true;
-        }
-      };
-
-      animateScroll();
-    }
-    /**
-    * Getting the position of the element to scroll when using jQuery animations
-    */
-
-    function getScrolledPosition(element) {
-      var position; //is not the window element and is a slide?
-
-      if (element.self != win && hasClass(element, SLIDES_WRAPPER)) {
-        position = element.scrollLeft;
-      } else if (!getOptions().autoScrolling || getOptions().scrollBar) {
-        position = getScrollTop(getOptions());
-      } else {
-        position = element.offsetTop;
-      } //gets the top property of the wrapper
-
-
-      return position;
-    }
-
     FP.setAutoScrolling = setAutoScrolling;
     FP.test.setAutoScrolling = setAutoScrolling;
     /**
@@ -1916,9 +1831,9 @@
       return hasClass($body, RESPONSIVE);
     }
 
-    EventEmitter.on('bindEvents', bindEvents$a);
+    EventEmitter.on('bindEvents', bindEvents$b);
 
-    function bindEvents$a() {
+    function bindEvents$b() {
       //after DOM and images are loaded
       win.addEventListener('load', function () {
         if (getOptions().scrollOverflow && !getOptions().scrollBar) {
@@ -2218,6 +2133,87 @@
       setVariableState('scrollingSpeed', value, type);
     }
 
+    //@ts-check
+    var g_animateScrollId;
+    EventEmitter.on('bindEvents', bindEvents$a);
+
+    function bindEvents$a() {
+      EventEmitter.on('onDestroy', onDestroy$8);
+    }
+
+    function onDestroy$8() {
+      clearTimeout(g_animateScrollId);
+    }
+    /**
+    * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
+    * http://stackoverflow.com/a/16136789/1081396
+    */
+
+
+    function scrollTo(element, to, duration, callback) {
+      var start = getScrolledPosition(element);
+      var change = to - start;
+      var currentTime = 0;
+      var increment = 20;
+      setState({
+        activeAnimation: true
+      });
+      var isCallbackFired = false; // Making sure we can trigger a scroll animation
+      // when css scroll snap is active. Temporally disabling it.
+
+      if (element === doc.body) {
+        css(doc.body, {
+          'scroll-snap-type': 'none'
+        });
+      }
+
+      var animateScroll = function animateScroll() {
+        if (state.activeAnimation) {
+          //in order to stope it from other function whenever we want
+          var val = to;
+          currentTime += increment;
+
+          if (duration) {
+            // @ts-ignore
+            val = win.fp_easings[getOptions().easing](currentTime, start, change, duration);
+          }
+
+          setScrolling(element, val);
+
+          if (currentTime < duration) {
+            clearTimeout(g_animateScrollId);
+            g_animateScrollId = setTimeout(animateScroll, increment);
+          } else if (typeof callback !== 'undefined' && !isCallbackFired) {
+            callback();
+            isCallbackFired = true;
+          }
+        } else if (currentTime < duration && !isCallbackFired) {
+          callback();
+          isCallbackFired = true;
+        }
+      };
+
+      animateScroll();
+    }
+    /**
+    * Getting the position of the element to scroll when using jQuery animations
+    */
+
+    function getScrolledPosition(element) {
+      var position; //is not the window element and is a slide?
+
+      if (element.self != win && hasClass(element, SLIDES_WRAPPER)) {
+        position = element.scrollLeft;
+      } else if (!getOptions().autoScrolling || getOptions().scrollBar) {
+        position = getScrollTop(getOptions());
+      } else {
+        position = element.offsetTop;
+      } //gets the top property of the wrapper
+
+
+      return position;
+    }
+
     /**
     * Plays video and audio elements.
     */
@@ -2466,7 +2462,7 @@
         },
         //caching the value of isResizing at the momment the function is called
         //because it will be checked later inside a setTimeout and the value might change
-        localIsResizing: state.isResizing
+        "localIsResizing": state.isResizing
       };
       v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
       v.direction = v.direction ? v.direction : v.xMovement; //important!! Only do it when not resizing
@@ -3991,7 +3987,7 @@
 
 
     function isFocusOutside(e) {
-      var allFocusables = getFocusables(document);
+      var allFocusables = getFocusables(doc);
       var currentFocusIndex = allFocusables.indexOf(doc.activeElement);
       var focusDestinationIndex = e.shiftKey ? currentFocusIndex - 1 : currentFocusIndex + 1;
       var focusDestination = allFocusables[focusDestinationIndex];
@@ -4056,7 +4052,7 @@
         doc[_addEventListener](prefix + 'MozMousePixelScroll', MouseWheelHandler, passiveEvent);
       } //handle MozMousePixelScroll in older Firefox
       else {
-        document[_addEventListener](prefix + support, MouseWheelHandler, passiveEvent);
+        doc[_addEventListener](prefix + support, MouseWheelHandler, passiveEvent);
       }
     }
     /**
@@ -4940,7 +4936,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-2-27".split("-"),
+      var n = "2022-2-28".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5053,7 +5049,7 @@
     */
 
     function prepareDom() {
-      css(getParentsUntilBody(getContainer()), {
+      css(getParentsUntil(getContainer(), 'body'), {
         'height': '100%',
         'position': 'relative'
       }); //adding a class to recognize the container internally in the code

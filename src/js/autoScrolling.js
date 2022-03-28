@@ -11,7 +11,6 @@ import { getState } from './common/state.js';
 import { FP } from './common/constants.js';
 import { $body, $htmlBody } from './common/cache.js';
 import { setRecordHistory } from './anchors/setRecordHistory.js';
-import { scrollTo } from './common/scrollTo.js';
 
 FP.setAutoScrolling = setAutoScrolling;
 FP.test.setAutoScrolling = setAutoScrolling;

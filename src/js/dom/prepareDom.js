@@ -21,7 +21,7 @@ import { addInternalSelectors } from './addInternalSelectors.js';
 */
 export function prepareDom(){
     
-    utils.css(utils.getParentsUntilBody(getContainer()), {
+    utils.css(utils.getParentsUntil(getContainer(), 'body'), {
         'height': '100%',
         'position': 'relative'
     });

@@ -233,7 +233,7 @@ function getFocusables(el){
 * Determines whether the focus is outside fullpage.js sections/slides or not.
 */
 function isFocusOutside(e){
-    var allFocusables = getFocusables(document);
+    var allFocusables = getFocusables(doc);
     var currentFocusIndex = allFocusables.indexOf(doc.activeElement);
     var focusDestinationIndex = e.shiftKey ? currentFocusIndex - 1 : currentFocusIndex + 1;
     var focusDestination = allFocusables[focusDestinationIndex];

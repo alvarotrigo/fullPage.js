@@ -1,5 +1,5 @@
-import { win } from './constants.js';
 import * as utils from './utils.js';
+import { win } from './constants.js';
 
 export const state = {
     numSections: 0,

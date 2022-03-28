@@ -60,7 +60,7 @@ function addMouseWheelHandler(){
 
     //handle MozMousePixelScroll in older Firefox
     else{
-        document[ _addEventListener ](prefix + support, MouseWheelHandler, passiveEvent);
+        doc[ _addEventListener ](prefix + support, MouseWheelHandler, passiveEvent);
     }
 }
 

@@ -55,7 +55,7 @@ export function landscapeScroll(slides, destiny, direction){
 
         //caching the value of isResizing at the momment the function is called
         //because it will be checked later inside a setTimeout and the value might change
-        localIsResizing: state.isResizing
+        "localIsResizing": state.isResizing
     };
     v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
     v.direction = v.direction ? v.direction : v.xMovement;

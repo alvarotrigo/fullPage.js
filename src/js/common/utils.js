@@ -72,7 +72,7 @@ export function hasClass(el, className){
 * Gets the window height. Crossbrowser.
 */
 export function getWindowHeight(){
-    return 'innerHeight' in window ? win.innerHeight : doc.documentElement.offsetHeight;
+    return 'innerHeight' in win ? win.innerHeight : doc.documentElement.offsetHeight;
 }
 
 /**
@@ -536,13 +536,13 @@ export function setSrc(element, attribute){
     element.removeAttribute('data-' + attribute);
 }
 
-export function getParentsUntilBody(item){
+export function getParentsUntil(item, topParentSelector){
     var parents = [item];
 
     do{
         item = item.parentNode;
         parents.push(item);
-    }while(!matches(item, 'body'));
+    }while(!matches(item, topParentSelector));
 
     return parents;
 }

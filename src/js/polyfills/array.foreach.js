@@ -1,4 +1,4 @@
-const { win } = require("../common/constants.js");
+import { win } from "../common/constants.js";
 
 /**
 * forEach polyfill for IE
