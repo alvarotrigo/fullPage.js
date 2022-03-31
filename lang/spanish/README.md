@@ -234,7 +234,7 @@ new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: false,
+	allowCorrectDirection: true,
 
 	//Diseno
 	controlArrows: true,
@@ -264,17 +264,20 @@ new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//Eventos
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position){}
 });
 ```
 
@@ -396,13 +399,11 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `v2compatible`: (por defecto `false`). Determina si será 100% compatible con código escrito para la version 2 de fullpage.js, ignorando nuevas funcionalides de la nueva version. Callbacks y clases de estado se comportarán como lo hacían en la version 2. **Esta opción será eliminada en algún momento en un futuro**
-
 - `controlArrows`: (por defecto `true`) Determina si usar flechas de control en las diapositivas para deslizar hacia la derecha o izquierda.
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (por defecto `true`) centrado vertical de las secciones y diapositivas. Cuando se usa `true`, el contenido de cada sección y diapositiva será envuelto por la librería dentro de un elemento contenedor. Considera usar delegación en eventos Javascript o usar los eventos dentro del callback `afterRender`.
+- `verticalCentered`: (por defecto `true`) centrado vertical de las secciones y diapositivas usando flexbox.
 
 - `scrollingSpeed`: (por defecto `700`) Velocidad de deslizamiento en milisegundos.
 
@@ -436,7 +437,7 @@ Otras librerías puede ser usadas si se desea.
 
 - `autoScrolling`: (por defecto `true`) Determina si usar desplazamiento "automático" o "a saltos" o usar el desplazamiento tradicional de cualquier página. También afecta al modo en el que las secciones se ajustan a la ventana en tabletas y dispositivos móviles.
 
-- `fitToSection`: (por defecto `true`) Determina si "encajar" las secciones en el navegador o no. Esto tiene sentido cuando se usa `autoScrolling:false` o `scrollBar:false` o el modo responsive. Cuando se usa `true` la sección actual se desplazará en la pantalla hasta llegar el contenido de la ventana. De lo contrario el usuario podrá desplazarse libremente y parar en mitad de 2 secciones.
+- `fitToSection`: (por defecto `true`) Determina si "encajar" las secciones en el navegador o no. Esto tiene sentido cuando se usa `autoScrolling:false` o `scrollBar:false` o el modo responsive. Cuando se usa `true` la sección actual se desplazará en la pantalla hasta llegar el contenido de la ventana usando. De lo contrario el usuario podrá desplazarse libremente y parar en mitad de 2 secciones.
 
 - `fitToSectionDelay`: (por defecto `1000`). Si `fitToSection` está activo, esta opción define el tiempo en milisegundos que esperará fullpage.js desde que el usuario dejó de desplazarse hasta que la sección se encaja en la ventana.
 
@@ -486,7 +487,7 @@ Para definir el porcentaje de la sección hay que hacer uso del atributo `data-p
 
 - `recordHistory`: (por defecto `true`) Determina si el estado de la página se guardará en la historia del navegador. Cuando se define la opción a `true` cada sección/diapositiva de la página actuará como una nueva página y el botón de "página anterior" o "página siguiente" del navegador desplazará las secciones/diapositivas de la página hasta alcanzar el estado de la página anterior o siguiente respectivamente. Cuando se define la opción a `false`, la URL seguirá cambiando con los enlaces de anclaje correspondientes pero no tendrán ningún efecto en la historia del navegador. Esta opción está automáticamente definida como `false` cuando se usa la opción `autoScrolling:false`.
 
-- `allowCorrectDirection:` (por defecto `false`). Determina si permitir o no que el visitante pueda cambiar/corregir la direccion mientras la página se está desplazando de una section a otra si el visitante hace scroll hacia la dirección opuesta.
+- `allowCorrectDirection:` (por defecto `true`). Determina si permitir o no que el visitante pueda cambiar/corregir la direccion mientras la página se está desplazando de una section a otra si el visitante hace scroll hacia la dirección opuesta.
 
 - `menu`: (por defecto `false`) Se puede usar un selector para especificar el menú de la página al que las secciones hacen referencia. De este modo, el desplazamiento vertical entre las secciones activará el elemento correspondiente del menú usando la clase `active`.
 Esta opción no generará ningún menú, sino que simplemente añade la clase `active` al elemento del menú con el enlace de anclaje correspondiente a la sección.
@@ -525,8 +526,6 @@ new fullpage('#fullpage', {
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`: (por defecto `false`) [Extensión de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Cuando se define a `true` fullPage.js moverá el contenido de la seccion o diapositiva hacia arriba cuando se abandone la seccion o diapositiva hacia otra sección vertical. De este modo, cuando se llega a una sección que usa barra de desplazamiento, se mostrará siempre el principio de su contenido.
-
-- `scrollOverflowOptions`: cuando se usa la opción de `scrollOverflow:true` fullPage.js hará uso de una versión modificada de la [librería iScroll.js](https://github.com/cubiq/iscroll/). Puedes personalizar el comportamiento de dicho componente aportando a fullPage.js las opciones de iScroll que deseas usar haciendo uso de esta opción. Mira [la documentacion de iScroll](https://github.com/cubiq/iscroll) para más información.
 
 - `sectionSelector`: (por defecto `.section`) Determina el selector Javascript que fullPage.js usará para determinar lo que es una sección. Puede que necesites cambiarlo para evitar problemas con otras librerías que usen el mismo selector que usa fullPage.js por defecto.
 
@@ -749,7 +748,7 @@ Algunos eventos de callback, como `onLeave`, contienen Objectos como parámetros
 - `isFirst`: *(Boolean)* determina si el elemento es el primero de su tipo.
 - `isLast`: *(Boolean)* determina si el elemento es el último de su tipo.
 
-### afterLoad (`origin`, `destination`, `direction`)
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
 Se dispara cuando una sección ha sido cargada completamente en la ventana, una vez que el desplazamiento ha terminado.
 Parámetros:
 
@@ -763,7 +762,7 @@ Por ejemplo:
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin, destination, direction){
+	afterLoad: function(origin, destination, direction, trigger){
 		var loadedSection = this;
 
 		//usando su índice
@@ -779,7 +778,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### onLeave (`origin`, `destination`, `direction`)
+### onLeave (`origin`, `destination`, `direction`, `trigger`)
 Se dispara una vez que el usuario abandona la sección, durante la transición a la nueva sección.
 Si devuelves `false` el movimiento se cancelará antes de que tenga lugar.
 
@@ -793,7 +792,7 @@ Por ejemplo:
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
+	onLeave: function(origin, destination, direction, trigger){
 		var leavingSection = this;
 
 		//después de abandonar la sección 2
@@ -808,16 +807,30 @@ new fullpage('#fullpage', {
 });
 ```
 
-#### Cancelando un desplazamiento antes de que tenga lugar
-Puedes cancelar un desplazamiento si devuelves `false` en el callback `onLeave`:
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
 
 ```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		//prevenimos el desplazamiento si la sección de destino es la tercera de la página
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
 });
 ```
@@ -837,7 +850,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterResize(width, height)
+### afterResize(`width`, `height`)
 Será disparado después de que la ventana del navegador sea reajustada en tamaño. Justo después de que las secciones se hayan reajustado.
 
 Parámetros:
@@ -886,7 +899,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
 Será disparado una vez cargue la diapositiva de una sección, después que el desplazamiento haya terminado.
 
 Parámetros:
@@ -902,7 +915,7 @@ Ejemplo:
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( section, origin, destination, direction){
+	afterSlideLoad: function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//primera diapositiva de la segunda sección
@@ -921,7 +934,7 @@ new fullpage('#fullpage', {
 
 
 ---
-### onSlideLeave (`section`, `origin`, `destination`, `direction`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
 Será disparado una vez que el usuario abandone la diapositiva actual para ir a otra, durante la transición hacia la nueva diapositiva.
 Devolver `false`.
 Si devuelves `false`, el movimiento se cancelará antes de que tenga lugar.
@@ -937,7 +950,7 @@ Ejemplo:
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave: function( section, origin, destination, direction){
+	onSlideLeave: function( section, origin, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//abandonando la primera diapositiva de la segunda sección y moviendo hacia la derecha
@@ -955,6 +968,28 @@ new fullpage('#fullpage', {
 
 #### Cancelando un desplazamiento antes de que tenga lugar
 Puedes cancelar el desplazamiento devolviendo `false` en el callback `onSlideLeave`. Exactamente igual que cuando se usa [`onLeave`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#cancelando-un-desplazamiento-antes-de-que-tenga-lugar).
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`)
+This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
 
 # Reportando problemas
 1. Por favor, usa el buscador en Github issues para buscar tu duda o problema antes de preguntar.

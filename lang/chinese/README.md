@@ -220,7 +220,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflow: true,
 	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
-	scrollOverflowOptions: null,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
@@ -228,7 +227,7 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: false,
+	allowCorrectDirection: true,
 
 	//布局
 	controlArrows: true,
@@ -259,17 +258,20 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//事件
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position){}
 });
 ```
 
@@ -393,13 +395,11 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `v2compatible` : (默认 `false` ). 确定是否使其与版本 2 编写的任何代码 100％ 兼容，忽略版本 3 的新功能或 api 更改。状态类型，回调签名等的将按照版本 2 相同的方式。**请注意该选项将在之后的某个时候被移除** 。
-
 - `controlArrows`：（默认为 `true`）确定是否将 slide 的控制箭头向右或向左移动。
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`：（默认为`true`）在 section 内部垂直居中。 当设置为 `true` 时，您的代码将被库包装。可考虑使用委托或在 `afterRender` 回调中加载其他脚本。
+- `verticalCentered`：（默认为`true`）在 section 内部垂直居中。(Uses flexbox)
 
 - `scrollingSpeed`：（默认 `700` ）滚动转换的速度（以毫秒为单位）。
 
@@ -484,7 +484,7 @@ new fullpage('#fullpage', {
 
 - `recordHistory`: （默认为`true`）定义是否将网站的状态记录到浏览器的历史记录。 设置为 `true` 时，网站的每个 section/slide 片将作为新页面，浏览器的后退和前进按钮将滚动 section/slide 以达到网站的上一个或下一个状态。 当设置为 `false` 时，URL 将保持更改，但不会影响浏览器的历史记录。 使用 `autoScrolling：false` 时，该选项会自动关闭。
 
-- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+- `allowCorrectDirection:` (default `true`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
 
 - `menu`: （默认 `false` ）选择器可以用来指定菜单链接到锚。 这样 section 的滚动将使用 active 状态激活菜单中的相应元素。这不会生成菜单，而只是将 active 状态添加到给定菜单中的元素，并带有相应的锚链接。
 为了将菜单的元素与各个部分相链接，将需要一个HTML 5 数据标签（data-menuanchor）来关联在 section中使用的锚链接。 例：
@@ -522,8 +522,6 @@ new fullpage('#fullpage', {
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`:（默认`false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。
-
-- `scrollOverflowOptions`: 当使用 scrollOverflow：true 时，fullpage.js 将使用 [iScroll.js 库文件](https://github.com/cubiq/iscroll/) 的派生和修改版本。 您可以通过为要使用的 iScroll.js 选项提供 fullpage.js 来自定义滚动行为。 查看 [它的文档](https://github.com/cubiq/iscroll) 了解更多信息。
 
 - `sectionSelector`: （默认`.section`）定义用于插件部分的 Javascript 选择器。 有时可能需要更改，以避免与使用与 fullpage.js 相同的选择器的其他插件的问题。
 
@@ -757,7 +755,7 @@ fullpage_api.responsiveSlides.toSlides();
 - `isFirst`: *(Boolean)* 判断游标是否在第一行。
 - `isLast`: *(Boolean)* 判断游标是否在最后一行。
 
-### afterLoad (`origin`, `destination`, `direction`)
+### afterLoad (`origin`, `destination`, `direction` ,`trigger`)
 滚动结束之后，一旦加载了 section ，就会触发回调。参数：
 
 - `origin`: *(Object)* 前置 section
@@ -770,7 +768,7 @@ fullpage_api.responsiveSlides.toSlides();
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin){
+	afterLoad: function(origin, destination, direction, trigger){
 		var loadedSection = this;
 
 		//使用 index
@@ -786,7 +784,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### onLeave (`origin`, `destination`, `direction`)
+### onLeave (`origin`, `destination`, `direction`, `trigger`)
 一旦用户离开 section ，过渡到新 section ，就会触发此回调。
 返回 “false” 将在移动发生之前取消移动。
 
@@ -800,7 +798,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
+	onLeave: function(origin, destination, direction, trigger){
 		var leavingSection = this;
 
 		//离开第二个section后
@@ -815,16 +813,30 @@ new fullpage('#fullpage', {
 });
 ```
 
-#### 触发之前取消滚动
-您可以通过在 `onLeave` 回调函数上返回 `false` 来取消滚动：
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
 
 ```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		//如果目标是第三个section，它将不会滚动
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
 });
 ```
@@ -844,7 +856,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterResize()
+### afterResize(`width`, `height`)
 调整浏览器窗口大小后，会触发此回调。 就在 section 被调整之后。
 
 参数：
@@ -893,7 +905,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
 滚动结束后，加载一个 section 的 slide 后触发回调。
 
 参数：
@@ -909,7 +921,7 @@ new fullpage('#fullpage', {
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( section, origin, destination, direction){
+	afterSlideLoad: function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//第二个section的第一个slide
@@ -927,7 +939,7 @@ new fullpage('#fullpage', {
 ```
 
 ---
-### onSlideLeave (`section`, `origin`, `destination`, `direction`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
 一旦用户离开 slide 转到另一个 slide ，就会触发此回调。返回 `false` 将在移动发生之前取消移动。
 
 参数：
@@ -942,7 +954,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave: function( section, origin, destination, direction){
+	onSlideLeave: function( section, origin, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//留下第二个section的第一个slide
@@ -960,6 +972,28 @@ new fullpage('#fullpage', {
 
 #### 在发生移动之前取消移动
 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`)
+This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
 
 # 问题反馈
 1. 请在提问之前使用 [issue](https://github.com/alvarotrigo/fullPage.js/issues) 搜索查找您的问题。

@@ -228,7 +228,7 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: false,
+	allowCorrectDirection: true,
 
 	//Дизайн
 	controlArrows: true,
@@ -258,17 +258,20 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//события
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position){}
 });
 ```
 
@@ -391,13 +394,11 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `v2compatible`: (значение по умолчанию: `false`). Определяет 100% совместимость с любым кодом, написанным для версии 2, игнорируя новые функции или изменения API версии 3. Классы состояний, сигнатуры обратных вызовов и т.п. будут работать так же, как в версии 2. **Обращаем ваше внимание на то, что данная опция в будущем будет удалена.**.
-
 - `controlArrows`: (по умолчанию `true`) Определяет использование клавиш-стрелок для передвижения вправо или влево при просмотре слайдов.
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. При установке данного расширения - `true`, ваш контент будет обёрнут библиотекой. Рассмотрите возможность делегирования или загрузите ваши скрипты для обратного вызова `afterRender`.
+- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. (Uses flexbox)
 
 - `scrollingSpeed`: (по умолчанию `700`) Ускорьте на миллисекунды переходы при скроллинге.
 
@@ -475,7 +476,7 @@ new fullpage('#fullpage', {
 
 - `recordHistory`: (по умолчанию `true`) Определяет, нужно ли отображать состояние сайта в истории браузера. При установке значения `true` каждый раздел/слайд сайта будет действовать как новая страница, и кнопки браузера «назад» и «вперёд» прокрутят разделы/слайды для перехода к предыдущему или следующему состоянию сайта. При установке значения `false` URL будет продолжать меняться, но не отразится на истории браузера. Данная опция отключается автоматически при использовании опции `autoScrolling:false`.
 
-- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+- `allowCorrectDirection:` (default `true`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
 
 - `menu`: (по умолчанию `false`) Селектор может использоваться для связи элементов меню с разделами. Таким образом, скроллинг разделов активирует соответствующий элемент меню при помощи класса `active`.
 Это не приведёт к созданию нового меню, а лишь добавит класс `active` элементу в имеющемся меню с соответствующими ссылками с привязками.
@@ -514,8 +515,6 @@ new fullpage('#fullpage', {
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже.
-
-- `scrollOverflowOptions`: при применении scrollOverflow:true fullpage.js будет использовать модифицированную версию [iScroll.js libary](https://github.com/cubiq/iscroll/). Вы можете настроить поведение прокрутки, обеспечив fullpage.js опциями iScroll.js, которые вы хотите использовать. Более подробную информацию вы можете найти в [документации](https://github.com/cubiq/iscroll).
 
 - `sectionSelector`: (по умолчанию `.section`) Определяет селектор Javascript, используемый для разделов с плагинами. Иногда требуется изменить его, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и fullpage.js.
 
@@ -749,7 +748,7 @@ fullpage_api.responsiveSlides.toSlides();
 - `isFirst`: *(Boolean)* определяет, является ли объект первым дочерним элементом.
 - `isLast`: *(Boolean)* определяет, является ли объект последним дочерним элементом.
 
-### afterLoad (`origin`, `destination`, `direction`)
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
 Обратный вызов активируется после загрузки разделов и завершения прокрутки.
 Параметры:
 
@@ -763,7 +762,7 @@ fullpage_api.responsiveSlides.toSlides();
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin){
+	afterLoad: function(origin, destination, direction, trigger){
 		var loadedSection = this;
 
 		//использование индекса
@@ -779,7 +778,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### onLeave (`index`, `nextIndex`, `direction`)
+### onLeave (`index`, `nextIndex`, `direction`, `trigger`)
 Этот обратный вызов активируется, когда пользователь покидает раздел, при переходе к новому разделу.
 Возврат `false` отменит переход до его осуществления.
 
@@ -793,7 +792,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
+	onLeave: function(origin, destination, direction, trigger){
 		var leavingSection = this;
 
 		//после покидания раздела 2
@@ -808,20 +807,33 @@ new fullpage('#fullpage', {
 });
 ```
 
-#### Отмена прокрутки до её осуществления
-Вы можете отменить прокрутку, установив возврат `false` на обратном вызове `onLeave`:
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
 
 ```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		//прокрутка не будет осуществлена, если заданный раздел – раздел 3
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
 });
 ```
-
 ---
 ### afterRender()
 Этот обратный вызов активируется сразу после того, как создаётся структура страницы. Данный обратный вызов вы можете использовать для инициализации других плагинов или активации любого кода, для чего требуется готовый документ (так как плагин изменяет DOM для создания финальной структуры). Более подробную информацию вы найдёте в разделе [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions).
@@ -837,7 +849,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterResize()
+### afterResize(`width`, `height`)
 Этот обратный вызов активируется после изменения размера окна браузера. Сразу после изменения размера разделов.
 
 Параметры:
@@ -886,7 +898,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
 Обратный вызов активируется после загрузки слайда раздела и окончания прокрутки.
 
 Параметры:
@@ -902,7 +914,7 @@ new fullpage('#fullpage', {
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( section, origin, destination, direction){
+	afterSlideLoad: function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//первый слайд второго раздела
@@ -921,7 +933,7 @@ new fullpage('#fullpage', {
 
 
 ---
-### onSlideLeave (`section`, `origin`, `destination`, `direction`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
 Этот обратный вызов активируется после того, как пользователь покидает слайд для перехода к другому, при переходе к новому слайду.
 Возврат `false` отменит переход до его осуществления.
 
@@ -937,7 +949,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave: function( section, origin, destination, direction){
+	onSlideLeave: function( section, origin, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//переход от первого слайда 2го раздела вправо
@@ -955,6 +967,29 @@ new fullpage('#fullpage', {
 
 #### Отмена перехода до его осуществления
 Вы можете отменить переход с помощью возврата `false` на обратном вызове `onSlideLeave`. [То же самое, что и при отмене перехода с помощью `onLeave`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отмена-перехода-до-его-осуществления).
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`)
+This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
+
 
 # Сообщение о проблемах
 1. Пожалуйста, перед вопросом поищите свою проблему с помощью поиска github issues.

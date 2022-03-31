@@ -224,7 +224,7 @@ new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: false,
+	allowCorrectDirection: true,
 
 	//디자인
 	controlArrows: true,
@@ -254,17 +254,20 @@ new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//사건(이벤트)
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position){}
 });
 ```
 
@@ -383,13 +386,11 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `v2compatible`: (기본값 `false`). 버전 3의 새로운 기능이나 api 변화를 무시하고 버전 2에 맞게 만들어진 모든 코드와 100% 호환 가능한지를 결정합니다. 상태 클래스, 콜백 시그니처 등이 버전 2에서 작동했던 것과 마찬가지로 완전히 동일하게 작동합니다. **이 옵션은 언젠가는 없어질 것임을 염두해 주십시오**.
-
 - `controlArrows`: (기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. `true`로 설정되면 컨텐츠가 라이브러리로 포장됩니다. 위임(delegation)을 사용하거나 `afterRender` 콜백에 있는 다른 스크립트를 불러오는 것을 고려해 보세요.
+- `verticalCentered`: (기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (Uses flexbox)
 
 - `scrollingSpeed`: (기본값 `700`) 스크롤 이동 속도를 0.001초 단위로 설정합니다.
 
@@ -471,7 +472,7 @@ new fullpage('#fullpage', {
 
 - `recordHistory`: (기본값 `true`) 웹사이트 상태를 브라우저 방문 기록에 맞게 밀지를 정의합니다. `true`로 설정되면 웹사이트의 각 구역/슬라이드가 새로운 페이지가 되어 브라우저의 뒤로 가기/앞으로 가기 버튼을 누르면 구역/슬라이드를 스크롤하여 웹사이트의 이전 방문 페이지나 다음 페이지로 이동합니다. `false`로 설정되면 URL이 계속 바뀌어도 브라우저 방문 기록에 아무런 영향을 미치지 않습니다. `autoScrolling:false`값을 쓰면 이 옵션이 자동으로 꺼집니다.
 
-- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+- `allowCorrectDirection:` (default `true`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
 
 - `menu`: (기본값 `false`) 선택자를 써서 구역에 링크할 메뉴를 구체적으로 정할 수 있습니다. 이렇게 하면 `active` 클래스를 써서 구역을 스크롤할때 메뉴에 있는 대응하는 요소가 활성화됩니다. 이렇게 하면 메뉴를 만드는 것이 아니라 `active` 클래스를 대응하는 앵커 링크와 함께 주어진 메뉴에 있는 요소에 추가만 합니다. 구역에 메뉴 요소의 링크를 걸기 위해서는 구역 안에서 사용된 것과 동일한 앵커 링크와 함께 사용하기 위해 HTML 5 데이터-태크(`data-menuanchor`)가 필요합니다. 다음은 예시입니다.
 ```html
@@ -504,15 +505,10 @@ new fullpage('#fullpage', {
 - `slidesNavPosition`: (기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
 
 - `scrollOverflow`: (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다. 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`. 구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
-- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
-
-- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - `scrollOverflowReset`: (기본값 `false`) [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다.
-
-- `scrollOverflowOptions`: scrollOverflow:true를 쓰시면 fullpage.js가 [iScroll.js 라이브러리](https://github.com/cubiq/iscroll/)의 포크(forked) 및 수정 버전을 사용합니다. iScroll.js 옵션을 fullpage.js에게 주시면 스크롤 행위를 맞춤화하실 수 있습니다. 더 자세한 정보를 알고 싶으시다면 [기록 문서](https://github.com/cubiq/iscroll)를 방문해 보세요.
 
 - `sectionSelector`: (기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
@@ -743,7 +739,7 @@ fullpage_api.responsiveSlides.toSlides();
 - `isFirst`: *(Boolean)* 아이템이 첫 번째 자식인지를 결정합니다.
 - `isLast`: *(Boolean)* 아이템이 마지막 자식인지를 결정합니다.
 
-### afterLoad (`origin`, `destination`, `direction`)
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
 구역을 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
 매개 변수:
 
@@ -757,7 +753,7 @@ fullpage_api.responsiveSlides.toSlides();
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin){
+	afterLoad: function(origin, destination, direction, trigger){
 		var loadedSection = this;
 
 		//색인 사용
@@ -773,7 +769,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### onLeave (`origin`, `destination`, `direction`)
+### onLeave (`origin`, `destination`, `direction`, `trigger`)
 사용자가 구역을 떠나고 새로운 구역으로 이동하는 와중에 콜백이 실행됩니다.
 `false`로 되돌리면 발동하기 전에 취소됩니다.
 
@@ -787,7 +783,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
+	onLeave: function(origin, destination, direction, trigger){
 		var leavingSection = this;
 
 		//구역 2를 떠난 후
@@ -802,20 +798,33 @@ new fullpage('#fullpage', {
 });
 ```
 
-#### 스크롤을 실행하기 전 취소
-`onLeave` 콜백에서 `false`로 되돌려서 스크롤을 취소하실 수 있습니다.
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
 
 ```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		//목적지가 세번째 구역인 경우 스크롤되지 않음
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
 });
 ```
-
 ---
 ### afterRender()
 페이지 구조가 생성된 직후에 이 콜백이 실행됩니다. (이 플러그인이 DOM을 수정해서 결과 구조를 만들기 때문에) 다른 플러그인을 초기 설정하거나 문서(document)가 있어야 준비되는 모든 코드를 실행하고자 할 때 이 콜백을 쓰시면 됩니다. 더 자세한 정보를 원하신다면 [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)을 참조해 주세요.
@@ -831,7 +840,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterResize(width, height)
+### afterResize(`width`, `height`)
 브라우저 창의 크기가 바뀐 뒤에 이 콜백이 실행됩니다. 구역 크기가 바뀐 직후에 실행됩니다.
 
 매개 변수:
@@ -843,7 +852,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	afterResize: function(){
+	afterResize: function(width, height){
 		var pluginContainer = this;
 		alert("The sections have finished resizing");
 	}
@@ -880,7 +889,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
 구역의 슬라이드를 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
 매개 변수:
 
@@ -895,7 +904,7 @@ new fullpage('#fullpage', {
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( section, origin, destination, direction){
+	afterSlideLoad: function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//두번째 구역의 첫번째 슬라이드
@@ -914,7 +923,7 @@ new fullpage('#fullpage', {
 
 
 ---
-### onSlideLeave (`section`, `origin`, `destination`, `direction`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
 사용자가 슬라이드를 떠나서 다른 슬라이드로 이동하는 와중에 콜백이 실행됩니다.
 `false`로 되돌리면 발동하기 전에 취소됩니다.
 
@@ -930,7 +939,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave: function( section, origin, destination, direction){
+	onSlideLeave: function( section, origin, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//두번째 구역의 첫번째 슬라이드를 떠나서 오른쪽으로 이동
@@ -948,6 +957,28 @@ new fullpage('#fullpage', {
 
 #### 실행되기 전에 이동 취소
 `onSlideLeave` 콜백에서 `false`로 되돌려서 취소하실 수 있습니다. [`onLeave` 취소와 동일합니다](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%8A%A4%ED%81%AC%EB%A1%A4%EC%9D%84-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0-%EC%A0%84-%EC%B7%A8%EC%86%8C).
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`)
+This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
 
 # 문제 알리기
 1. 문의하시기 이전에 먼저 github 검색으로 찾아보시기 바랍니다.

@@ -229,7 +229,7 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: false,
+	allowCorrectDirection: true,
 
 	//Design
 	controlArrows: true,
@@ -259,17 +259,20 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//events
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position){}
 });
 ```
 
@@ -392,13 +395,11 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `v2compatible`: (default `false`). Determines whether to make it 100% compatible with any code written for version 2, ignoring new features or api changes of version 3. State classes, callbacks signature etc. will work exactly in the same way as it did on verion 2. **Note that this option will be removed at some point in the future.**.
-
 - `controlArrows`: (default `true`) Determines whether to use control arrows for the slides to move right or left.
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one.
 
-- `verticalCentered`: (default `true`) Vertically centering of the content within sections. When set to `true`, your content will be wrapped by the library. Consider using delegation or load your other scripts in the `afterRender` callback.
+- `verticalCentered`: (default `true`) Vertically centering of the content using flexbox.
 
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
@@ -483,7 +484,7 @@ To define the percentage of each section the attribute `data-percentage` must be
 
 - `recordHistory`: (default `true`) Defines whether to push the state of the site to the browser's history. When set to `true` each section/slide of the site will act as a new page and the back and forward buttons of the browser will scroll the sections/slides to reach the previous or next state of the site. When set to `false`, the URL will keep changing but will have no effect on the browser's history. This option is automatically turned off when using `autoScrolling:false`.
 
-- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction.
+- `allowCorrectDirection:` (default `true`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction.
 
 - `menu`: (default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
@@ -757,13 +758,14 @@ Some callbacks, such as `onLeave` will contain Object type of parameters contain
 - `isFirst`: *(Boolean)* determines if the item is the first child.
 - `isLast`: *(Boolean)* determines if the item is the last child.
 
-### afterLoad (origin, destination, direction)
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
 Callback fired once the sections have been loaded, after the scrolling has ended.
 Parameters:
 
 - `origin`: *(Object)* section of origin.
 - `destination`: *(Object)* destination section.
 - `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
 
 Example:
 
@@ -771,7 +773,7 @@ Example:
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin, destination, direction){
+	afterLoad: function(origin, destination, direction, trigger){
 		var loadedSection = this;
 
 		//using index
@@ -786,8 +788,9 @@ new fullpage('#fullpage', {
 	}
 });
 ```
+
 ---
-### onLeave (`origin`, `destination`, `direction`)
+### onLeave (`origin`, `destination`, `direction`, `trigger`)
 This callback is fired once the user leaves a section, in the transition to the new section.
 Returning `false` will cancel the move before it takes place.
 
@@ -796,12 +799,13 @@ Parameters:
 - `origin`:  *(Object)* section of origin.
 - `destination`: *(Object)* destination section.
 - `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
 
 Example:
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
+	onLeave: function(origin, destination, direction, trigger){
 		var leavingSection = this;
 
 		//after leaving section 2
@@ -816,16 +820,31 @@ new fullpage('#fullpage', {
 });
 ```
 
-#### Cancelling the scroll before it takes place
-You can cancel the scroll by returning `false` on the `onLeave` callback:
+
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
 
 ```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		//it won't scroll if the destination is the 3rd section
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
 });
 ```
@@ -845,7 +864,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterResize(width, height)
+### afterResize(`width`, `height`)
 This callback is fired after resizing the browser's window. Just after the sections are resized.
 
 Parameters:
@@ -894,7 +913,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
 Callback fired once the slide of a section have been loaded, after the scrolling has ended.
 
 Parameters:
@@ -903,6 +922,7 @@ Parameters:
 - `origin`: *(Object)* horizontal slide of origin.
 - `destination`: *(Object)* destination horizontal slide.
 - `direction`: *(String)* `right` or `left` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
 
 Example:
 
@@ -910,7 +930,7 @@ Example:
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( section, origin, destination, direction){
+	afterSlideLoad: function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//first slide of the second section
@@ -929,7 +949,7 @@ new fullpage('#fullpage', {
 
 
 ---
-### onSlideLeave (`section`, `origin`, `destination`, `direction`)
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
 This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
 Returning `false` will cancel the move before it takes place.
 
@@ -939,12 +959,13 @@ Parameters:
 - `origin`: *(Object)* horizontal slide of origin.
 - `destination`: *(Object)* destination horizontal slide.
 - `direction`: *(String)* `right` or `left` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
 
 Example:
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave: function( section, origin, destination, direction){
+	onSlideLeave: function( section, origin, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//leaving the first slide of the 2nd Section to the right
@@ -962,6 +983,28 @@ new fullpage('#fullpage', {
 
 #### Cancelling a move before it takes place
 You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same as when canceling a movement with `onLeave`](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place).
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`)
+This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
 
 # Reporting issues
 1. Please, look for your issue before asking using the github issues search.

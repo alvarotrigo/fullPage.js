@@ -549,8 +549,8 @@
         return doc.body.scrollTop;
       }
 
-      var doc = doc.documentElement;
-      return (win.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+      var docElement = doc.documentElement;
+      return (win.pageYOffset || docElement.scrollTop) - (docElement.clientTop || 0);
     }
     /**
     * Gets the siblings of the passed element
@@ -1014,7 +1014,7 @@
       keyboardScrolling: true,
       animateAnchor: true,
       recordHistory: true,
-      allowCorrectDirection: false,
+      allowCorrectDirection: true,
       //design
       scrollOverflowMacStyle: true,
       controlArrows: true,
@@ -1046,7 +1046,6 @@
       sectionSelector: SECTION_DEFAULT_SEL,
       slideSelector: SLIDE_DEFAULT_SEL,
       //events
-      v2compatible: false,
       afterLoad: null,
       onLeave: null,
       afterRender: null,
@@ -1156,7 +1155,7 @@
 
       this.index = function () {
         if (this.isSection) {
-          return state.sections.indexOf(this);
+          return this.siblings().indexOf(this);
         } else if (this.parent && this.parent.slides) {
           return this.parent.slides.indexOf(this);
         }
@@ -1166,7 +1165,15 @@
     };
 
     Item.prototype.siblings = function () {
-      return this.isSection ? state.sections : this.parent.slides;
+      if (this.isSection) {
+        if (this.isVisible) {
+          return state.sections;
+        } else {
+          return state.sectionsIncludingHidden;
+        }
+      }
+
+      return this.parent.slides;
     };
 
     Item.prototype.prev = function () {
@@ -1218,6 +1225,162 @@
       plainItem.call(this, el);
     };
 
+    /**
+    * Gets the active slide (or section) for the given section
+    */
+
+    function getSlideOrSection(destiny) {
+      var slide = $(SLIDE_ACTIVE_SEL, destiny);
+
+      if (slide.length) {
+        destiny = slide[0];
+      }
+
+      return destiny;
+    }
+    function isFullPageAbove() {
+      return getContainer().getBoundingClientRect().bottom >= 0;
+    }
+    /**
+    * Gets the scrolling settings depending on the plugin autoScrolling option
+    */
+
+    function getScrollSettings(top) {
+      var options = getOptions();
+      var position;
+      var element; //top property animation
+
+      if (options.autoScrolling && !options.scrollBar) {
+        position = -top;
+        element = $(WRAPPER_SEL)[0];
+      } else if (options.fitToSection) {
+        position = top;
+        element = doc.body;
+      } //window real scrolling
+      else {
+        position = top;
+        element = window;
+      }
+
+      return {
+        options: position,
+        element: element
+      };
+    }
+    /**
+    * Scrolls the page / slider the given number of pixels.
+    * It will do it one or another way dependiong on the library's config.
+    */
+
+    function setScrolling(element, val) {
+      if (!getOptions().autoScrolling || getOptions().scrollBar || element.self != window && hasClass(element, SLIDES_WRAPPER)) {
+        //scrolling horizontally through the slides?
+        if (element.self != window && hasClass(element, SLIDES_WRAPPER)) {
+          element.scrollLeft = val;
+        } //vertical scroll
+        else {
+          element.scrollTo(0, val);
+        }
+      } else {
+        element.style.top = val + 'px';
+      }
+    }
+    /**
+    * Adds transition animations for the given element
+    */
+
+    function addAnimation(element) {
+      var transition = 'transform ' + getOptions().scrollingSpeed + 'ms ' + getOptions().easingcss3;
+      removeClass(element, NO_TRANSITION);
+      return css(element, {
+        '-webkit-transition': transition,
+        'transition': transition
+      });
+    }
+    /**
+    * Retuns `up` or `down` depending on the scrolling movement to reach its destination
+    * from the current section.
+    */
+
+    function getYmovement(activeSection, destiny) {
+      var fromIndex = activeSection.index();
+      var toIndex = index(destiny, SECTION_SEL);
+
+      if (fromIndex == toIndex) {
+        return 'none';
+      }
+
+      if (fromIndex > toIndex) {
+        return 'up';
+      }
+
+      return 'down';
+    }
+    /**
+    * Remove transition animations for the given element
+    */
+
+    function removeAnimation(element) {
+      return addClass(element, NO_TRANSITION);
+    }
+    /**
+    * Returns the cross-browser transform string.
+    */
+
+    function getTransforms(translate3d) {
+      return {
+        '-webkit-transform': translate3d,
+        '-moz-transform': translate3d,
+        '-ms-transform': translate3d,
+        'transform': translate3d
+      };
+    }
+
+    var silentScrollId;
+    /**
+    * Adds a css3 transform property to the container class with or without animation depending on the animated param.
+    */
+
+    function transformContainer(translate3d, animated) {
+      if (animated) {
+        addAnimation(getContainer());
+      } else {
+        removeAnimation(getContainer());
+      }
+
+      clearTimeout(silentScrollId);
+      css(getContainer(), getTransforms(translate3d));
+      FP.test.translate3d = translate3d; //syncronously removing the class after the animation has been applied.
+
+      silentScrollId = setTimeout(function () {
+        removeClass(getContainer(), NO_TRANSITION);
+      }, 10);
+    }
+
+    /**
+    * Scrolls silently (with no animation) the page to the given Y position.
+    */
+
+    function silentScroll(top) {
+      // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
+      // that's why we round it to 0.
+      var roundedTop = Math.round(top);
+
+      if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
+        var translate3d = 'translate3d(0px, -' + roundedTop + 'px, 0px)';
+        transformContainer(translate3d, false);
+      } else if (getOptions().autoScrolling && !getOptions().scrollBar) {
+        css(getContainer(), {
+          'top': -roundedTop + 'px'
+        });
+        FP.test.top = -roundedTop + 'px';
+      } else {
+        var scrollSettings = getScrollSettings(roundedTop);
+        setScrolling(scrollSettings.element, scrollSettings.options);
+      }
+    }
+
+    var g_prevActiveSectionIndex = null;
     /** 
      * Updates the state of the app.
      */
@@ -1250,17 +1413,13 @@
             addClass(state.activeSlide.item, ACTIVE);
           }
         }
-      }); // Hidding the active section ?
-
-      if (!state.activeSection && state.sections.length && !getState().isBeyondFullpage) {
-        state.activeSection = state.sections[0];
-        state.activeSection.isActive = true;
-        addClass(state.activeSection.item, ACTIVE); //scrollPage(state.activeSection);
-      }
+      });
+      scrollToNewActiveSection();
     }
     function updateStructuralState() {
-      var sectionsItems = getVisible($(getOptions().sectionSelector, getContainer()));
-      var allSections = Array.from(sectionsItems).map(function (item) {
+      var allSectionItems = $(getOptions().sectionSelector, getContainer());
+      var sectionsItems = getVisible(allSectionItems);
+      var allSections = Array.from(allSectionItems).map(function (item) {
         return new SectionPanel(item);
       });
       var sections = allSections.filter(function (item) {
@@ -1268,7 +1427,14 @@
       });
       var slides = sections.reduce(function (acc, section) {
         return acc.concat(section.slides);
-      }, []);
+      }, []); // keeping track of the previously active section
+
+      var prevActiveSectionItem = state.activeSection ? state.activeSection.item : null;
+
+      if (prevActiveSectionItem) {
+        g_prevActiveSectionIndex = getPanelByElement(state.sectionsIncludingHidden, prevActiveSectionItem).index();
+      }
+
       state.numSections = sectionsItems.length;
       state.numSlides = sections.reduce(function (acc, section) {
         return acc + section.slides.length;
@@ -1279,8 +1445,45 @@
       state.panels = state.sections.concat(state.slides);
     }
     /**
+     * When changes in the DOM take place there's a change 
+     * the active section is now hidden or removed. 
+     * fullPage.js will scroll to the closest section nearby.
+     */
+
+    function scrollToNewActiveSection() {
+      // Hidding / removing the active section ?
+      if (!state.activeSection && state.sections.length && !getState().isBeyondFullpage) {
+        if (g_prevActiveSectionIndex != null) {
+          var newActiveSection;
+          var prevIndex = g_prevActiveSectionIndex - 1;
+          var nextIndex = g_prevActiveSectionIndex + 1;
+
+          do {
+            prevIndex = prevIndex - 1;
+            nextIndex = nextIndex + 1;
+            newActiveSection = state.sections[prevIndex] || state.sections[g_prevActiveSectionIndex + 1];
+
+            if (newActiveSection) {
+              break;
+            }
+          } while (prevIndex >= 0 || nextIndex < state.numSections);
+
+          if (newActiveSection) {
+            state.activeSection = newActiveSection;
+            state.activeSection.isActive = true;
+            addClass(state.activeSection.item, ACTIVE);
+          }
+        }
+      }
+
+      if (state.activeSection) {
+        silentScroll(state.activeSection.item.offsetTop);
+      }
+    }
+    /**
     * Section object
     */
+
 
     var SectionPanel = function SectionPanel(el) {
       var _this = this;
@@ -1499,158 +1702,6 @@
         }
       };
       return paramsPerEvent[eventName]();
-    }
-
-    /**
-    * Gets the active slide (or section) for the given section
-    */
-
-    function getSlideOrSection(destiny) {
-      var slide = $(SLIDE_ACTIVE_SEL, destiny);
-
-      if (slide.length) {
-        destiny = slide[0];
-      }
-
-      return destiny;
-    }
-    /**
-    * Gets the scrolling settings depending on the plugin autoScrolling option
-    */
-
-    function getScrollSettings(top) {
-      var options = getOptions();
-      var position;
-      var element; //top property animation
-
-      if (options.autoScrolling && !options.scrollBar) {
-        position = -top;
-        element = $(WRAPPER_SEL)[0];
-      } else if (options.fitToSection) {
-        position = top;
-        element = doc.body;
-      } //window real scrolling
-      else {
-        position = top;
-        element = window;
-      }
-
-      return {
-        options: position,
-        element: element
-      };
-    }
-    /**
-    * Scrolls the page / slider the given number of pixels.
-    * It will do it one or another way dependiong on the library's config.
-    */
-
-    function setScrolling(element, val) {
-      if (!getOptions().autoScrolling || getOptions().scrollBar || element.self != window && hasClass(element, SLIDES_WRAPPER)) {
-        //scrolling horizontally through the slides?
-        if (element.self != window && hasClass(element, SLIDES_WRAPPER)) {
-          element.scrollLeft = val;
-        } //vertical scroll
-        else {
-          element.scrollTo(0, val);
-        }
-      } else {
-        element.style.top = val + 'px';
-      }
-    }
-    /**
-    * Adds transition animations for the given element
-    */
-
-    function addAnimation(element) {
-      var transition = 'transform ' + getOptions().scrollingSpeed + 'ms ' + getOptions().easingcss3;
-      removeClass(element, NO_TRANSITION);
-      return css(element, {
-        '-webkit-transition': transition,
-        'transition': transition
-      });
-    }
-    /**
-    * Retuns `up` or `down` depending on the scrolling movement to reach its destination
-    * from the current section.
-    */
-
-    function getYmovement(activeSection, destiny) {
-      var fromIndex = activeSection.index();
-      var toIndex = index(destiny, SECTION_SEL);
-
-      if (fromIndex == toIndex) {
-        return 'none';
-      }
-
-      if (fromIndex > toIndex) {
-        return 'up';
-      }
-
-      return 'down';
-    }
-    /**
-    * Remove transition animations for the given element
-    */
-
-    function removeAnimation(element) {
-      return addClass(element, NO_TRANSITION);
-    }
-    /**
-    * Returns the cross-browser transform string.
-    */
-
-    function getTransforms(translate3d) {
-      return {
-        '-webkit-transform': translate3d,
-        '-moz-transform': translate3d,
-        '-ms-transform': translate3d,
-        'transform': translate3d
-      };
-    }
-
-    var silentScrollId;
-    /**
-    * Adds a css3 transform property to the container class with or without animation depending on the animated param.
-    */
-
-    function transformContainer(translate3d, animated) {
-      if (animated) {
-        addAnimation(getContainer());
-      } else {
-        removeAnimation(getContainer());
-      }
-
-      clearTimeout(silentScrollId);
-      css(getContainer(), getTransforms(translate3d));
-      FP.test.translate3d = translate3d; //syncronously removing the class after the animation has been applied.
-
-      silentScrollId = setTimeout(function () {
-        removeClass(getContainer(), NO_TRANSITION);
-      }, 10);
-    }
-
-    /**
-    * Scrolls silently (with no animation) the page to the given Y position.
-    */
-
-    function silentScroll(top) {
-      // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
-      // that's why we round it to 0.
-      var roundedTop = Math.round(top);
-
-      if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
-        var translate3d = 'translate3d(0px, -' + roundedTop + 'px, 0px)';
-        transformContainer(translate3d, false);
-      } else if (getOptions().autoScrolling && !getOptions().scrollBar) {
-        css(getContainer(), {
-          'top': -roundedTop + 'px'
-        });
-        FP.test.top = -roundedTop + 'px';
-      } else {
-        var scrollSettings = getScrollSettings(roundedTop);
-        setScrolling(scrollSettings.element, scrollSettings.options);
-      }
     }
 
     FP.setRecordHistory = setRecordHistory;
@@ -2058,7 +2109,7 @@
     function onClickOrTouch$2(params) {
       var target = params.target;
 
-      if (matches(target, SLIDES_ARROW_SEL)) {
+      if (matches(target, SLIDES_ARROW_SEL) || closest(target, SLIDES_ARROW_SEL)) {
         slideArrowHandler.call(target, params);
       }
     } //Scrolling horizontally when clicking on the slider controls.
@@ -2657,6 +2708,61 @@
       }
     }
 
+    var startingSection = null;
+    FP.getActiveSection = getActiveSection;
+    function getStartingSection() {
+      return startingSection;
+    }
+    /**
+    * Styling vertical sections
+    */
+
+    function styleSection(section) {
+      var sectionElem = section.item;
+      var hasSlides = section.allSlidesItems.length;
+      var index = section.index(); //if no active section is defined, the 1st one will be the default one
+
+      if (!index && !getState().activeSection) {
+        addClass(sectionElem, ACTIVE);
+        updateState();
+      }
+
+      startingSection = getState().activeSection.item;
+
+      if (getOptions().paddingTop) {
+        css(sectionElem, {
+          'padding-top': getOptions().paddingTop
+        });
+      }
+
+      if (getOptions().paddingBottom) {
+        css(sectionElem, {
+          'padding-bottom': getOptions().paddingBottom
+        });
+      }
+
+      if (typeof getOptions().sectionsColor[index] !== 'undefined') {
+        css(sectionElem, {
+          'background-color': getOptions().sectionsColor[index]
+        });
+      }
+
+      if (typeof getOptions().anchors[index] !== 'undefined') {
+        sectionElem.setAttribute('data-anchor', section.anchor);
+      }
+
+      if (!hasSlides) {
+        addTableClass(section);
+      }
+    }
+    /**
+    * Gets the active section.
+    */
+
+    function getActiveSection() {
+      return getState().activeSection;
+    }
+
     var g_wrapperObserver;
     var g_wrapperObserveConfig = {
       attributes: false,
@@ -2668,19 +2774,11 @@
     FP.render = onContentChange;
 
     function bindEvents$9() {
-      if (getOptions().observer) {
-        setWrapperObserver(createObserver($(WRAPPER_SEL)[0], onContentChange, getWrapperObserver()));
+      if (getOptions().observer && "MutationObserver" in window) {
+        g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
       }
 
       EventEmitter.on('contentChanged', onContentChange);
-    }
-
-    function setWrapperObserver(value) {
-      g_wrapperObserver = value;
-    }
-
-    function getWrapperObserver() {
-      return g_wrapperObserveConfig;
     }
     /**
      * Creates a Mutation observer.
@@ -2711,10 +2809,23 @@
 
 
     function onContentChange(mutations) {
-      var _didSlidesChange = didSlidesChange();
+      var _didSlidesChange = didSlidesChange(); // var i = 0, length = mutations.length;
+      // while( i < length){
+      //     for(var a = 0; a < mutations[i].removedNodes.length; a++){
+      //         if(utils.matches(mutations[i].removedNodes[a], SECTION_ACTIVE_SEL)){
+      //             let prevActiveSection = getPanelByElement(state.sectionsIncludingHidden, mutations[i].removedNodes[a]);
+      //             setState({
+      //                 prevActiveSectionPrev: prevActiveSection.prev(),
+      //                 prevActiveSectionNext: prevActiveSection.next()
+      //             });
+      //         }
+      //     }
+      //     i++;
+      // }
+
 
       if (didSectionsOrSlidesChange() && !state.isDoingContinousVertical) {
-        if (getOptions().observer) {
+        if (getOptions().observer && g_wrapperObserver) {
           // Temporally disabling the observer while 
           // we modidy the DOM again
           g_wrapperObserver.disconnect();
@@ -2735,15 +2846,20 @@
         if (_didSlidesChange) {
           remove($(SLIDES_NAV_SEL));
           remove($(SLIDES_ARROW_SEL));
-          getState().sections.forEach(function (section) {
-            if (section.slides.length) {
+        }
+
+        getState().sections.forEach(function (section) {
+          if (section.slides.length) {
+            if (_didSlidesChange) {
               styleSlides(section);
             }
-          });
-        }
+          } else {
+            styleSection(section);
+          }
+        });
       }
 
-      if (getOptions().observer) {
+      if (getOptions().observer && g_wrapperObserver) {
         g_wrapperObserver.observe($(WRAPPER_SEL)[0], g_wrapperObserveConfig);
       }
     }
@@ -2842,6 +2958,63 @@
       };
     }();
 
+    function scrollBeyondFullPage() {
+      var dtop = getDestinationOffset();
+      var scrollSettings = getScrollSettings(dtop);
+      FP.test.top = -dtop + 'px';
+      css(doc.body, {
+        'scroll-snap-type': 'none'
+      });
+      css($htmlBody, {
+        'scroll-behavior': 'unset'
+      });
+      setState({
+        canScroll: false
+      });
+      scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
+        setTimeout(function () {
+          setState({
+            isBeyondFullpage: true
+          });
+          setState({
+            canScroll: true
+          });
+        }, 30);
+      });
+    }
+    function onKeyDown() {
+      if (!isFullPageAbove()) {
+        return;
+      } else {
+        scrollUpToFullpage();
+      }
+    }
+    function scrollUpToFullpage() {
+      var scrollSettings = getScrollSettings(getLast(getState().sections).item.offsetTop);
+      setState({
+        canScroll: false
+      });
+      scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
+        setState({
+          canScroll: true
+        });
+        setState({
+          isBeyondFullpage: false
+        });
+        setState({
+          isAboutToScrollToFullPage: false
+        });
+      });
+    }
+
+    function getDestinationOffset() {
+      if (!getOptions().css3) {
+        return getLast(getState().sections).item.offsetTop + getLast(getState().sections).item.offsetHeight;
+      }
+
+      return getScrollTop(getOptions()) + getWindowHeight();
+    }
+
     function beyondFullPageHandler(container, e) {
       new Date().getTime();
       var pauseScroll = getState().isBeyondFullpage && container.getBoundingClientRect().bottom >= 0 && wheelDataHandler.getDirection() === 'up';
@@ -2875,21 +3048,7 @@
             setState({
               scrollTrigger: 'wheel'
             });
-            scrollSettings = getScrollSettings(getLast(getState().sections).item.offsetTop);
-            setState({
-              canScroll: false
-            });
-            scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
-              setState({
-                canScroll: true
-              });
-              setState({
-                isBeyondFullpage: false
-              });
-              setState({
-                isAboutToScrollToFullPage: false
-              });
-            });
+            scrollUpToFullpage();
             preventDefault(e);
             return false;
           }
@@ -3241,7 +3400,8 @@
       var isFastSpeed = getOptions().scrollingSpeed < 700;
       var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
       setState({
-        touchDirection: 'none'
+        touchDirection: 'none',
+        top: Math.abs(v.dtop)
       }); // using CSS3 translate functionality
 
       if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
@@ -3790,7 +3950,9 @@
       //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
       windowAddEvent('blur', blurHandler); //Sliding with arrow keys, both, vertical and horizontal
 
-      docAddEvent('keydown', keydownHandler); //to prevent scrolling while zooming
+      docAddEvent('keydown', keydownHandler); // for fitToSection:true
+
+      $body.addEventListener('keydown', cancelDirectionKeyEvents); //to prevent scrolling while zooming
 
       docAddEvent('keyup', keyUpHandler);
       EventEmitter.on('onDestroy', onDestroy$5);
@@ -3832,12 +3994,8 @@
         up: scrollOverflowHandler.isScrolled('up', getState().activeSection.item),
         down: scrollOverflowHandler.isScrolled('down', getState().activeSection.item)
       };
-      var isUsingHorizontalArrowKeys = [37, 39].indexOf(e.keyCode) > -1; //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
-
-      if (shouldCancelKeyboardNavigation(e)) {
-        preventDefault(e);
-      } //do nothing if we can not scroll or we are not using horizotnal key arrows.
-
+      var isUsingHorizontalArrowKeys = [37, 39].indexOf(e.keyCode) > -1;
+      cancelDirectionKeyEvents(e); //do nothing if we can not scroll or we are not using horizotnal key arrows.
 
       if (!state.canScroll && !isUsingHorizontalArrowKeys) {
         return;
@@ -3852,7 +4010,13 @@
         case 38:
         case 33:
           if (getIsScrollAllowed().k.up && isScrolled.up) {
-            moveSectionUp();
+            if (state.isBeyondFullpage) {
+              EventEmitter.emit('onKeyDown', {
+                e: e
+              });
+            } else {
+              moveSectionUp();
+            }
           }
 
           break;
@@ -3870,7 +4034,11 @@
         case 40:
         case 34:
           if (getIsScrollAllowed().k.down && isScrolled.down) {
-            // space bar?
+            if (state.isBeyondFullpage) {
+              return;
+            } // space bar?
+
+
             if (e.keyCode !== 32 || !isMediaFocused) {
               moveSectionDown();
             }
@@ -3998,7 +4166,14 @@
 
     function shouldCancelKeyboardNavigation(e) {
       var keyControls = [40, 38, 32, 33, 34];
-      return keyControls.indexOf(e.keyCode) > -1;
+      return keyControls.indexOf(e.keyCode) > -1 && !state.isBeyondFullpage;
+    } //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
+
+
+    function cancelDirectionKeyEvents(e) {
+      if (shouldCancelKeyboardNavigation(e)) {
+        e.preventDefault();
+      }
     }
 
     function getControlPressed() {
@@ -4561,44 +4736,12 @@
       }
     }
 
-    function scrollBeyondFullPage() {
-      var dtop = getDestinationOffset();
-      var scrollSettings = getScrollSettings(dtop);
-      FP.test.top = -dtop + 'px';
-      css(doc.body, {
-        'scroll-snap-type': 'none'
-      });
-      css($htmlBody, {
-        'scroll-behavior': 'unset'
-      });
-      setState({
-        canScroll: false
-      });
-      scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
-        setTimeout(function () {
-          setState({
-            isBeyondFullpage: true
-          });
-          setState({
-            canScroll: true
-          });
-        }, 30);
-      });
-    }
-
-    function getDestinationOffset() {
-      if (!getOptions().css3) {
-        return getLast(getState().sections).item.offsetTop + getLast(getState().sections).item.offsetHeight;
-      }
-
-      return getScrollTop(getOptions()) + getWindowHeight();
-    }
-
     EventEmitter.on('bindEvents', bindEvents$4);
 
     function bindEvents$4() {
       docAddEvent('wheel', wheelDataHandler.registerEvent, getPassiveOptionsIfPossible());
       EventEmitter.on('scrollBeyondFullpage', scrollBeyondFullPage);
+      EventEmitter.on('onKeyDown', onKeyDown);
     }
 
     EventEmitter.on('bindEvents', bindEvents$3);
@@ -4617,6 +4760,10 @@
 
 
     function menuItemsHandler(e) {
+      setState({
+        scrollTrigger: 'menu'
+      });
+
       if ($(getOptions().menu)[0] && (getOptions().lockAnchors || !getOptions().anchors.length)) {
         preventDefault(e);
         /*jshint validthis:true */
@@ -4936,7 +5083,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-2-28".split("-"),
+      var n = "2022-2-31".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -4970,56 +5117,6 @@
         setIsScrollAllowed(value, 'all', 'k');
         getOptions().keyboardScrolling = value;
       }
-    }
-
-    var startingSection = null;
-    FP.getActiveSection = getActiveSection;
-    function getStartingSection() {
-      return startingSection;
-    }
-    /**
-    * Styling vertical sections
-    */
-
-    function styleSection(section) {
-      var sectionElem = section.item;
-      var index = section.index(); //if no active section is defined, the 1st one will be the default one
-
-      if (!index && !getState().activeSection) {
-        addClass(sectionElem, ACTIVE);
-        updateState();
-      }
-
-      startingSection = getState().activeSection.item;
-
-      if (getOptions().paddingTop) {
-        css(sectionElem, {
-          'padding-top': getOptions().paddingTop
-        });
-      }
-
-      if (getOptions().paddingBottom) {
-        css(sectionElem, {
-          'padding-bottom': getOptions().paddingBottom
-        });
-      }
-
-      if (typeof getOptions().sectionsColor[index] !== 'undefined') {
-        css(sectionElem, {
-          'background-color': getOptions().sectionsColor[index]
-        });
-      }
-
-      if (typeof getOptions().anchors[index] !== 'undefined') {
-        sectionElem.setAttribute('data-anchor', section.anchor);
-      }
-    }
-    /**
-    * Gets the active section.
-    */
-
-    function getActiveSection() {
-      return getState().activeSection;
     }
 
     /**
@@ -5075,8 +5172,6 @@
 
         if (slides.length > 0) {
           styleSlides(section);
-        } else {
-          addTableClass(section);
         }
       } //fixed elements need to be moved out of the plugin container due to problems with CSS3.
 

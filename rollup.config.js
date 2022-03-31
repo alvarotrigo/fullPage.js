@@ -93,6 +93,7 @@ const terserOptions = {
 
                 // Callbacks
                 'afterLoad',
+                'beforeLeave',
                 'onLeave',
                 'afterRender',
                 'afterResize',
@@ -100,7 +101,8 @@ const terserOptions = {
                 'afterSlideLoad',
                 'onSlideLeave',
                 'afterResponsive',
-                'dynamic',
+                'onScrollOverflow',
+
                 'lazyLoading',
                 'observer',
 

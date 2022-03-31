@@ -237,7 +237,7 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: false,
+	allowCorrectDirection: true,
 
 	//Design
 	controlArrows: true,
@@ -267,17 +267,20 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
 	//événements
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position){}
 });
 ```
 
@@ -403,13 +406,11 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `v2compatible` : (par défaut `false`). Détermine s'il faut le rendre 100% compatible avec n'importe quel code écrit pour la version 2, en ignorant les nouvelles fonctionnalités ou les changements api de la version 3. Les classes d'état, la signature de rappel, etc. fonctionneront exactement de la même manière que sur la version 2. **Notez que cette option sera supprimée à un moment donné dans le futur.
-
 - `controlArrows` : (par défaut `true`) Détermine s'il faut utiliser les flèches de contrôle pour que les diapositives se déplacent vers la droite ou vers la gauche.
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered` : (par défaut `true`) Centrer verticalement le contenu à l'intérieur des sections. Lorsqu'il est réglé sur ` true `, votre contenu sera enveloppé par la bibliothèque. Envisagez d'utiliser la délégation ou de charger vos autres scripts dans le callback `afterRender`.
+- `verticalCentered` : (par défaut `true`) Centrer verticalement le contenu à l'intérieur des sections. (Uses flexbox)
 
 - `scrollingSpeed` : (par défaut `700`) Vitesse en millisecondes pour les transitions de défilement.
 
@@ -493,7 +494,7 @@ Pour définir le pourcentage de chaque section, l'attribut `data-percentage` doi
 
 - `recordHistory` : (par défaut `true`) Définit si l'état du site doit être poussé dans l'historique du navigateur. Quand il est défini à `true`, chaque section/glissière du site agira comme une nouvelle page et les boutons avant et arrière du navigateur feront défiler les sections/glissières pour atteindre l'état précédent ou suivant du site. Quand il est réglé sur `false`, l'URL continuera à changer mais n'aura aucun effet sur l'historique du navigateur. Cette option est automatiquement désactivée lors de l'utilisation de `autoScrolling:false`.
 
-- `allowCorrectDirection:` (default `false`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
+- `allowCorrectDirection:` (default `true`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
 
 - `menu` : (par défaut `false`) Un sélecteur peut être utilisé pour spécifier le menu à lier avec les sections. De cette façon, le défilement des sections activera l'élément correspondant dans le menu en utilisant la classe `active`.
 Cela ne générera pas de menu mais ajoutera simplement la classe `active` à l'élément du menu donné avec les liens d'ancrage correspondants.
@@ -534,8 +535,6 @@ Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 - Le `scrollOverflowReset` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Quand il est défini à `true`, il fait défiler le contenu de la section/glissière avec la barre de défilement en partant vers une autre section verticale. De cette façon, la section/glissière affichera toujours le début de son contenu, même si elle défile à partir d'une section située en dessous.
-
-- `scrollOverflowOptions` : en utilisant scrollOverflow:true fullpage.js utilisera une version bifurquée et modifiée de la bibliothèque [iScroll.js](https://github.com/cubiq/iscroll/). Vous pouvez personnaliser le comportement de défilement en fournissant à fullpage.js les options iScroll.js que vous souhaitez utiliser. Consultez [sa documentation](https://github.com/cubiq/iscroll) pour plus d'informations.
 
 - `sectionSelector` : (par défaut `.section`) Définit le sélecteur Javascript utilisé pour les sections du plugin. Il peut avoir besoin d'être changé parfois pour éviter des problèmes avec d'autres plugins utilisant les mêmes sélecteurs que fullpage.js.
 
@@ -754,7 +753,7 @@ Certains callbacks, tels que `onLeave` contiendront des paramètres de type Obje
 - `isFirst` : *( Boolean )* détermine si l'item est le premier enfant.
 - `isLast` : *( Boolean)* détermine si l'item est le dernier enfant.
 
-### afterLoad (origine, destination, direction)
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
 Le callback est déclenché une fois que les sections ont été chargées, après la fin du défilement.
 Paramètres :
 
@@ -768,7 +767,7 @@ Exemple :
 new fullpage('#fullpage', {
 	des ancres : ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad : function(origine, destination, direction){
+	afterLoad : function(origine, destination, direction, trigger){
 		var loadedSection = this;
 
 		//indice d'utilisation
@@ -790,7 +789,7 @@ Exemple:s
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin, destination, direction){
+	afterLoad: function(origin, destination, direction, trigger){
 		var loadedSection = this;
 
 		//using index
@@ -806,7 +805,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-#### onLeave (`origin`, `destination`, `direction`)
+#### onLeave (`origin`, `destination`, `direction`, `trigger`)
 Ce callback est déclenché dès que l'utilisateur quitte une section, dans la transition vers la nouvelle section.
 Si vous retournez `false`, le coup sera annulé avant qu'il n'ait lieu.
 
@@ -820,7 +819,7 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave : function(origine, destination, direction){(onLeave)
+	onLeave : function(origine, destination, direction, trigger){
 		var leavingSection = this;
 
 		//après avoir quitté la section 2
@@ -835,18 +834,33 @@ new fullpage('#fullpage', {
 }) ;
 ```
 
-#### Annuler le parchemin avant qu'il n'ait lieu
-Vous pouvez annuler le parchemin en retournant `false` sur le callback `onLeave` :
 
-```Javascript
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
+
+```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave : function(origine, destination, direction){(onLeave)
-		//il ne défilera pas si la destination est la 3ème section
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
-}) ;
+});
 ```
 
 ---
@@ -864,7 +878,7 @@ new fullpage('#fullpage', {
 }) ;
 ```
 ---
-### afterResize(largeur, hauteur)
+### afterResize(`largeur`, `hauteur`)
 Ce rappel est déclenché après le redimensionnement de la fenêtre du navigateur. Juste après le redimensionnement des sections.
 
 Paramètres :
@@ -913,7 +927,7 @@ new fullpage('#fullpage', {
 }) ;
 ```
 ---
-### afterSlideLoad (`section`), `origine`, `destination`, `direction`)
+### afterSlideLoad (`section`), `origine`, `destination`, `direction`, `trigger`)
 Callback tiré une fois que la diapositive d'une section a été chargée, après que le défilement soit terminé.
 
 Paramètres :
@@ -930,7 +944,7 @@ Exemple :
 new fullpage('#fullpage', {
 	anchors : 'firstPage','secondPage','thirdPage','fourthPage','lastPage'],
 
-	afterSlideLoad : function( section, origin, destination, direction){
+	afterSlideLoad : function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//première diapositive de la deuxième section
@@ -949,7 +963,7 @@ new fullpage('#fullpage', {
 
 
 ---
-### onSlideLeave (`section`, `origine`, `destination`, `direction`)
+### onSlideLeave (`section`, `origine`, `destination`, `direction`, `trigger`)
 Ce callback est déclenché une fois que l'utilisateur quitte une glissière pour aller vers une autre, dans la transition vers la nouvelle glissière.
 Si vous retournez `false', le coup sera annulé avant qu'il n'ait lieu.
 
@@ -964,7 +978,7 @@ Exemple :
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave : function( section, origine, destination, direction){
+	onSlideLeave : function( section, origine, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//en laissant la première diapositive de la 2ème section vers la droite
@@ -982,6 +996,28 @@ new fullpage('#fullpage', {
 
 #### Annuler un coup avant qu'il n'ait lieu
 Vous pouvez annuler un coup en retournant `false` sur le callback `onSlideLeave`. [Identique à l'annulation d'un mouvement avec `onLeave`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french/#annuler-le-parchemin-avant-quil-nait-lieu).
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`)
+This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
 
 # Signaler les problèmes
 1. S'il vous plaît, cherchez votre problème avant de demander à l'aide de la recherche de problèmes github.
