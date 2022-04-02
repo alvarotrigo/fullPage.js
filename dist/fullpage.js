@@ -333,6 +333,13 @@
       return item.nextElementSibling;
     }
     /**
+    * Gets the last element from the passed list of elements.
+    */
+
+    function last(item) {
+      return item[item.length - 1];
+    }
+    /**
     * Gets index from the passed element.
     * @param {String} selector is optional.
     */
@@ -656,7 +663,7 @@
           item.parentNode.removeChild(item);
         }
       }
-    }
+    } //https://jsfiddle.net/w1rktecz/
 
     function untilAll(item, selector, fn) {
       var sibling = item[fn];
@@ -731,48 +738,48 @@
       } while (!matches(item, topParentSelector));
 
       return parents;
-    } // //utils are public, so we can use it wherever we want
-    // // @ts-ignore
-    // win.fp_utils = {
-    //     $: $,
-    //     deepExtend: deepExtend,
-    //     hasClass: hasClass,
-    //     getWindowHeight: getWindowHeight,
-    //     css: css,
-    //     prev: prev,
-    //     next: next,
-    //     last: last,
-    //     index: index,
-    //     getList: getList,
-    //     hide: hide,
-    //     show: show,
-    //     isArrayOrList: isArrayOrList,
-    //     addClass: addClass,
-    //     removeClass: removeClass,
-    //     appendTo: appendTo,
-    //     wrap: wrap,
-    //     wrapAll: wrapAll,
-    //     wrapInner: wrapInner,
-    //     unwrap: unwrap,
-    //     closest: closest,
-    //     after: after,
-    //     before: before,
-    //     insertBefore: insertBefore,
-    //     getScrollTop: getScrollTop,
-    //     siblings: siblings,
-    //     preventDefault: preventDefault,
-    //     isFunction: isFunction,
-    //     trigger: trigger,
-    //     matches: matches,
-    //     toggle: toggle,
-    //     createElementFromHTML: createElementFromHTML,
-    //     remove: remove,
-    //     filter: filter,
-    //     untilAll: untilAll,
-    //     nextAll: nextAll,
-    //     prevAll: prevAll,
-    //     showError: showError
-    // };
+    } //utils are public, so we can use it wherever we want
+    // @ts-ignore
+
+    window["fp_utils"] = {
+      "$": $,
+      "deepExtend": deepExtend,
+      "hasClass": hasClass,
+      "getWindowHeight": getWindowHeight,
+      "css": css,
+      "prev": prev,
+      "next": next,
+      "last": last,
+      "index": index,
+      "getList": getList,
+      "hide": hide,
+      "show": show,
+      "isArrayOrList": isArrayOrList,
+      "addClass": addClass,
+      "removeClass": removeClass,
+      "appendTo": appendTo,
+      "wrap": wrap,
+      "wrapAll": wrapAll,
+      "unwrap": unwrap,
+      "closest": closest,
+      "after": after,
+      "before": before,
+      "insertBefore": insertBefore,
+      "getScrollTop": getScrollTop,
+      "siblings": siblings,
+      "preventDefault": preventDefault,
+      "isFunction": isFunction,
+      "trigger": trigger,
+      "matches": matches,
+      "toggle": toggle,
+      "createElementFromHTML": createElementFromHTML,
+      "remove": remove,
+      // "filter": filter,
+      "untilAll": untilAll,
+      "nextAll": nextAll,
+      "prevAll": prevAll,
+      "showError": showError
+    };
 
     function _typeof(obj) {
       "@babel/helpers - typeof";
@@ -863,7 +870,8 @@
       isWindowFocused: true,
       previousDestTop: 0,
       windowsHeight: getWindowHeight(),
-      isDoingContinousVertical: false
+      isDoingContinousVertical: false,
+      timeouts: {}
     }; // @ts-ignore
 
     win.state = state;
@@ -874,9 +882,9 @@
       return state;
     }
 
-    EventEmitter.on('bindEvents', bindEvents$c);
+    EventEmitter.on('bindEvents', bindEvents$d);
 
-    function bindEvents$c() {
+    function bindEvents$d() {
       //Scrolls to the section when clicking the navigation bullet
       //simulating the jQuery .on('click') event using delegation
       ['click', 'touchstart'].forEach(function (eventName) {
@@ -1154,13 +1162,7 @@
       this.container = closest(el, SLIDES_CONTAINER_SEL) || closest(el, WRAPPER_SEL);
 
       this.index = function () {
-        if (this.isSection) {
-          return this.siblings().indexOf(this);
-        } else if (this.parent && this.parent.slides) {
-          return this.parent.slides.indexOf(this);
-        }
-
-        return 0;
+        return this.siblings().indexOf(this);
       };
     };
 
@@ -1173,7 +1175,7 @@
         }
       }
 
-      return this.parent.slides;
+      return this.parent ? this.parent.slides : 0;
     };
 
     Item.prototype.prev = function () {
@@ -1432,7 +1434,8 @@
       var prevActiveSectionItem = state.activeSection ? state.activeSection.item : null;
 
       if (prevActiveSectionItem) {
-        g_prevActiveSectionIndex = getPanelByElement(state.sectionsIncludingHidden, prevActiveSectionItem).index();
+        var panel = getPanelByElement(state.sectionsIncludingHidden, prevActiveSectionItem);
+        g_prevActiveSectionIndex = panel ? panel.index() : 0;
       }
 
       state.numSections = sectionsItems.length;
@@ -1882,9 +1885,9 @@
       return hasClass($body, RESPONSIVE);
     }
 
-    EventEmitter.on('bindEvents', bindEvents$b);
+    EventEmitter.on('bindEvents', bindEvents$c);
 
-    function bindEvents$b() {
+    function bindEvents$c() {
       //after DOM and images are loaded
       win.addEventListener('load', function () {
         if (getOptions().scrollOverflow && !getOptions().scrollBar) {
@@ -2186,9 +2189,9 @@
 
     //@ts-check
     var g_animateScrollId;
-    EventEmitter.on('bindEvents', bindEvents$a);
+    EventEmitter.on('bindEvents', bindEvents$b);
 
-    function bindEvents$a() {
+    function bindEvents$b() {
       EventEmitter.on('onDestroy', onDestroy$8);
     }
 
@@ -2479,9 +2482,19 @@
 
     var g_afterSlideLoadsId;
     FP.landscapeScroll = landscapeScroll;
+    EventEmitter.on('bindEvents', bindEvents$a);
+
+    function bindEvents$a() {
+      EventEmitter.on('onPerformMovement', onPerformMovement);
+    }
+
+    function onPerformMovement() {
+      clearTimeout(g_afterSlideLoadsId);
+    }
     /**
     * Scrolls horizontal sliders.
     */
+
 
     function landscapeScroll(slides, destiny, direction) {
       var sectionElem = closest(slides, SECTION_SEL);
@@ -2570,6 +2583,7 @@
         var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';
         FP.test.translate3dH[v.sectionIndex] = translate3d;
         css(addAnimation($(SLIDES_CONTAINER_SEL, slides)), getTransforms(translate3d));
+        clearTimeout(g_afterSlideLoadsId);
         g_afterSlideLoadsId = setTimeout(function () {
           if (fireCallback) {
             afterSlideLoads(v);
@@ -2701,7 +2715,7 @@
       var startingSlide = section.activeSlide || null; //if the slide won't be an starting point, the default will be the first one
       //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
 
-      if (startingSlide != null && (getState().activeSection.index() !== 0 || getState().activeSection.index() === 0 && startingSlide.index() !== 0)) {
+      if (startingSlide != null && state.activeSection && (state.activeSection.index() !== 0 || state.activeSection.index() === 0 && startingSlide.index() !== 0)) {
         silentLandscapeScroll(startingSlide.item, 'internal');
       } else {
         addClass(slidesElems[0], ACTIVE);
@@ -3400,9 +3414,9 @@
       var isFastSpeed = getOptions().scrollingSpeed < 700;
       var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
       setState({
-        touchDirection: 'none',
-        top: Math.abs(v.dtop)
-      }); // using CSS3 translate functionality
+        touchDirection: 'none'
+      });
+      EventEmitter.emit('onPerformMovement'); // using CSS3 translate functionality
 
       if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
         // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
@@ -3430,6 +3444,7 @@
         css($htmlBody, {
           'scroll-behavior': 'unset'
         });
+        clearTimeout(g_afterSectionLoadsId);
         scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
           if (getOptions().scrollBar) {
             /* Hack!
@@ -3437,7 +3452,7 @@
             scrolled to a smaller section by using the mousewheel (auto scrolling) rather than draging the scroll bar.
              When using scrollBar:true It seems like the scroll events still getting propagated even after the scrolling animation has finished.
             */
-            setTimeout(function () {
+            g_afterSectionLoadsId = setTimeout(function () {
               afterSectionLoads(v);
             }, 30);
           } else {
@@ -3475,7 +3490,6 @@
       setState({
         isBeyondFullpage: false
       });
-      console.error("afterSectionLoads");
       continuousVerticalFixSectionOrder(v); //callback (afterLoad) if the site is not just resizing and readjusting the slides
 
       if (isFunction(getOptions().afterLoad) && !v.localIsResizing) {
@@ -4571,16 +4585,12 @@
       if (hasClass(getContainer(), DESTROYED)) {
         return;
       } //nothing to do if the plugin was destroyed
+      //updating global vars
 
 
       setState({
-        isResizing: true
-      }); //updating global vars
-
-      setState({
-        windowsHeight: getWindowHeight()
-      });
-      setState({
+        isResizing: true,
+        windowsHeight: getWindowHeight(),
         windowsWidth: getWindowWidth()
       });
       var sections = getState().sections;
@@ -5083,7 +5093,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-2-31".split("-"),
+      var n = "2022-3-2".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
