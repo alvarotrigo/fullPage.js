@@ -284,8 +284,8 @@ html.fp-enabled,
 
 /* Used for DragAndMove*/
 .fp-disable-snap body{
-    scroll-behavior: unset;
-    scroll-snap-type: none;
+    scroll-behavior: unset !important;
+    scroll-snap-type: none !important;
 }
 
 /* Customize website's scrollbar like Mac OS

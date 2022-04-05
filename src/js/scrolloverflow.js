@@ -8,6 +8,8 @@ import { $body } from './common/cache.js';
 import { 
     AUTO_HEIGHT,
     AUTO_HEIGHT_RESPONSIVE,
+    OVERFLOW,
+    OVERFLOW_SEL,
     SLIDE_ACTIVE_SEL
 } from './common/selectors.js';
 import { getNodes } from './common/item.js';
@@ -57,8 +59,8 @@ export const scrollOverflowHandler = {
             this.focusedElem.blur();
         }
 
-        if(utils.$('.fp-overflow', getState().activeSection.item)[0]){
-            this.focusedElem = utils.$('.fp-overflow', getState().activeSection.item)[0];
+        if(utils.$(OVERFLOW_SEL, getState().activeSection.item)[0]){
+            this.focusedElem = utils.$(OVERFLOW_SEL, getState().activeSection.item)[0];
             this.focusedElem.focus();
         }
     },
@@ -79,10 +81,10 @@ export const scrollOverflowHandler = {
                 let item = scrollOverflowHandler.scrollable(el.item);
                 const shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
                 if(shouldBeScrollable){
-                    utils.addClass(item, 'fp-overflow');
+                    utils.addClass(item, OVERFLOW);
                     item.setAttribute('tabindex', '-1');
                 }else{
-                    utils.removeClass(item, 'fp-overflow');
+                    utils.removeClass(item, OVERFLOW);
                     item.removeAttribute('tabindex');
                 }
 
@@ -147,7 +149,7 @@ export const scrollOverflowHandler = {
                 });
             }
 
-            if(utils.hasClass(e.target, 'fp-overflow') && state.canScroll){
+            if(utils.hasClass(e.target, OVERFLOW) && state.canScroll){
                 if(
                     scrollOverflowHandler.isScrolled(direction, e.target) &&
                     scrollOverflowHandler.shouldMovePage()

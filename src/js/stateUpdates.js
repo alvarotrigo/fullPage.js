@@ -1,7 +1,7 @@
 import * as utils from './common/utils.js';
 import { getOptions, getContainer } from './common/options.js';
 import { getPanelByElement, Item } from './common/item.js';
-import { ACTIVE } from './common/selectors.js';
+import { ACTIVE, OVERFLOW } from './common/selectors.js';
 import { getState, state } from './common/state.js';
 import { silentScroll } from './common/silentScroll.js';
 
@@ -16,7 +16,7 @@ export function updateState(){
     state.sections.map(function(section){
         let isActive = utils.hasClass(section.item, ACTIVE);
         section.isActive = isActive;
-        section.hasScroll = utils.hasClass(section.item, 'fp-overflow');
+        section.hasScroll = utils.hasClass(section.item, OVERFLOW);
         if(isActive){
             state.activeSection = section;
         }
@@ -24,7 +24,7 @@ export function updateState(){
         if(section.slides.length){
             section.slides.map(function(slide){
                 let isActiveSlide = utils.hasClass(slide.item, ACTIVE);
-                slide.hasScroll = utils.hasClass(slide.item, 'fp-overflow');
+                slide.hasScroll = utils.hasClass(slide.item, OVERFLOW);
                 slide.isActive = isActiveSlide;
                 if(isActiveSlide){
                     section.activeSlide = slide;

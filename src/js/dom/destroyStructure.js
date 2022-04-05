@@ -20,7 +20,8 @@ import {
     SLIDES_CONTAINER,
     SLIDES_CONTAINER_SEL,
     SLIDES_WRAPPER_SEL,
-    SLIDES_ARROW_SEL
+    SLIDES_ARROW_SEL,
+    OVERFLOW
 } from '../common/selectors.js';
 import { win } from '../common/constants.js';
 
@@ -81,7 +82,7 @@ export function destroyStructure(){
     //removing added classes
     getNodes(getState().panels).forEach(function(item){
         if(getOptions().scrollOverflow){
-            utils.removeClass(item, 'fp-overflow');
+            utils.removeClass(item, OVERFLOW);
         }
         utils.removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
         var previousStyles = utils.getAttr(item, 'data-fp-styles');

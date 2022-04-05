@@ -3,6 +3,7 @@ import { getOptions } from '../common/options.js';
 import { state } from '../common/state.js';
 import { 
     ACTIVE,
+    OVERFLOW,
     SLIDES_CONTAINER_SEL,
     WRAPPER_SEL
  } from '../common/selectors.js';
@@ -26,7 +27,7 @@ export const Item = function(el, selector){
     this.item = el;
     this.isVisible = utils.isVisible(el);
     this.isActive = utils.hasClass(el, ACTIVE);
-    this.hasScroll = utils.hasClass(el, 'fp-overflow');
+    this.hasScroll = utils.hasClass(el, OVERFLOW);
     this.isSection = selector === getOptions().sectionSelector;
     this.container = utils.closest(el, SLIDES_CONTAINER_SEL) || utils.closest(el, WRAPPER_SEL);
     this.index = function(){

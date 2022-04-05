@@ -50,6 +50,8 @@ export const SLIDES_WRAPPER_SEL =    '.' + SLIDES_WRAPPER;
 export const SLIDES_CONTAINER =      'fp-slidesContainer';
 export const SLIDES_CONTAINER_SEL =  '.' + SLIDES_CONTAINER;
 export const TABLE =                 'fp-table';
+export const OVERFLOW =              'fp-overflow';
+export const OVERFLOW_SEL =          '.' + OVERFLOW;
 
 // slide nav
 export const SLIDES_NAV =            'fp-slidesNav';

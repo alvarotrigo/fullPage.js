@@ -959,7 +959,9 @@
     var SLIDES_WRAPPER_SEL = '.' + SLIDES_WRAPPER;
     var SLIDES_CONTAINER = 'fp-slidesContainer';
     var SLIDES_CONTAINER_SEL = '.' + SLIDES_CONTAINER;
-    var TABLE = 'fp-table'; // slide nav
+    var TABLE = 'fp-table';
+    var OVERFLOW = 'fp-overflow';
+    var OVERFLOW_SEL = '.' + OVERFLOW; // slide nav
 
     var SLIDES_NAV = 'fp-slidesNav';
     var SLIDES_NAV_SEL = '.' + SLIDES_NAV;
@@ -1157,7 +1159,7 @@
       this.item = el;
       this.isVisible = isVisible(el);
       this.isActive = hasClass(el, ACTIVE);
-      this.hasScroll = hasClass(el, 'fp-overflow');
+      this.hasScroll = hasClass(el, OVERFLOW);
       this.isSection = selector === getOptions().sectionSelector;
       this.container = closest(el, SLIDES_CONTAINER_SEL) || closest(el, WRAPPER_SEL);
 
@@ -1392,7 +1394,7 @@
       state.sections.map(function (section) {
         var isActive = hasClass(section.item, ACTIVE);
         section.isActive = isActive;
-        section.hasScroll = hasClass(section.item, 'fp-overflow');
+        section.hasScroll = hasClass(section.item, OVERFLOW);
 
         if (isActive) {
           state.activeSection = section;
@@ -1401,7 +1403,7 @@
         if (section.slides.length) {
           section.slides.map(function (slide) {
             var isActiveSlide = hasClass(slide.item, ACTIVE);
-            slide.hasScroll = hasClass(slide.item, 'fp-overflow');
+            slide.hasScroll = hasClass(slide.item, OVERFLOW);
             slide.isActive = isActiveSlide;
 
             if (isActiveSlide) {
@@ -1923,8 +1925,8 @@
           this.focusedElem.blur();
         }
 
-        if ($('.fp-overflow', getState().activeSection.item)[0]) {
-          this.focusedElem = $('.fp-overflow', getState().activeSection.item)[0];
+        if ($(OVERFLOW_SEL, getState().activeSection.item)[0]) {
+          this.focusedElem = $(OVERFLOW_SEL, getState().activeSection.item)[0];
           this.focusedElem.focus();
         }
       },
@@ -1941,10 +1943,10 @@
             var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
 
             if (shouldBeScrollable) {
-              addClass(item, 'fp-overflow');
+              addClass(item, OVERFLOW);
               item.setAttribute('tabindex', '-1');
             } else {
-              removeClass(item, 'fp-overflow');
+              removeClass(item, OVERFLOW);
               item.removeAttribute('tabindex');
             } // updating the state now in case 
             // this is executed on page load (after images load)
@@ -2005,7 +2007,7 @@
             });
           }
 
-          if (hasClass(e.target, 'fp-overflow') && state.canScroll) {
+          if (hasClass(e.target, OVERFLOW) && state.canScroll) {
             if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
               EventEmitter.emit('onScrollOverflowScrolled', {
                 direction: direction
@@ -2823,20 +2825,7 @@
 
 
     function onContentChange(mutations) {
-      var _didSlidesChange = didSlidesChange(); // var i = 0, length = mutations.length;
-      // while( i < length){
-      //     for(var a = 0; a < mutations[i].removedNodes.length; a++){
-      //         if(utils.matches(mutations[i].removedNodes[a], SECTION_ACTIVE_SEL)){
-      //             let prevActiveSection = getPanelByElement(state.sectionsIncludingHidden, mutations[i].removedNodes[a]);
-      //             setState({
-      //                 prevActiveSectionPrev: prevActiveSection.prev(),
-      //                 prevActiveSectionNext: prevActiveSection.next()
-      //             });
-      //         }
-      //     }
-      //     i++;
-      // }
-
+      var _didSlidesChange = didSlidesChange();
 
       if (didSectionsOrSlidesChange() && !state.isDoingContinousVertical) {
         if (getOptions().observer && g_wrapperObserver) {
@@ -5308,7 +5297,7 @@
 
       getNodes(getState().panels).forEach(function (item) {
         if (getOptions().scrollOverflow) {
-          removeClass(item, 'fp-overflow');
+          removeClass(item, OVERFLOW);
         }
 
         removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
