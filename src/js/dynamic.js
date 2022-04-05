@@ -13,6 +13,7 @@ import {
 } from './common/selectors.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { FP } from './common/constants.js';
+import { styleSection } from './sections.js';
 
 let g_wrapperObserver;
 const g_wrapperObserveConfig = {
@@ -26,20 +27,11 @@ EventEmitter.on('bindEvents', bindEvents);
 
 FP.render = onContentChange;
 
-function bindEvents(){
-    if(getOptions().observer){
-        setWrapperObserver(createObserver(utils.$(WRAPPER_SEL)[0], onContentChange, getWrapperObserver()));
+function bindEvents(){    
+    if(getOptions().observer && "MutationObserver" in window){
+        g_wrapperObserver = createObserver(utils.$(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
     }
     EventEmitter.on('contentChanged', onContentChange);
-}
-
-
-function setWrapperObserver(value){
-    g_wrapperObserver = value;
-}
-
-function getWrapperObserver(){
-    return g_wrapperObserveConfig;
 }
 
 /**
@@ -71,7 +63,7 @@ function onContentChange(mutations){
     var _didSlidesChange = didSlidesChange();
 
     if( didSectionsOrSlidesChange() && !state.isDoingContinousVertical){
-        if(getOptions().observer){
+        if(getOptions().observer && g_wrapperObserver){
             // Temporally disabling the observer while 
             // we modidy the DOM again
             g_wrapperObserver.disconnect();
@@ -93,16 +85,20 @@ function onContentChange(mutations){
         if(_didSlidesChange){
             utils.remove(utils.$(SLIDES_NAV_SEL));
             utils.remove(utils.$(SLIDES_ARROW_SEL));
+        }
 
-            getState().sections.forEach(function(section){
-                if(section.slides.length){
+        getState().sections.forEach(function(section){
+            if(section.slides.length){
+                if(_didSlidesChange){
                     styleSlides(section);
                 }
-            });
-        }
+            }else{
+                styleSection(section);
+            }
+        });
     }
 
-    if(getOptions().observer){
+    if(getOptions().observer && g_wrapperObserver){
         g_wrapperObserver.observe(utils.$(WRAPPER_SEL)[0], g_wrapperObserveConfig);
     }
 }

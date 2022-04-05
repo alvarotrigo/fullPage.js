@@ -85,7 +85,6 @@ export const defaultOptions = {
     slideSelector: SLIDE_DEFAULT_SEL,
 
     //events
-    v2compatible: false,
     afterLoad: null,
     onLeave: null,
     afterRender: null,

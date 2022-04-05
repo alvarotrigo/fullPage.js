@@ -92,12 +92,7 @@ function touchMoveHandler(e){
         touchEndY = touchEvents.y;
         touchEndX = touchEvents.x;
 
-        if(getOptions().allowCorrectDirection){
-            setState({
-                canScroll: state.canScroll && state.direction == direction || state.direction !== direction,
-                slideMoving: state.slideMoving && state.direction == direction || state.direction !== direction
-            });
-        }
+        setState({touchDirection: direction});
 
         //if movement in the X axys is greater than in the Y and the currect section has slides...
         if (isHorizontalPredominantMove) {
@@ -106,12 +101,10 @@ function touchMoveHandler(e){
             if (!state.slideMoving && isHorizontalMovementEnough) {
                 if (touchStartX > touchEndX) {
                     if(getIsScrollAllowed().m.right){
-                        setState({touchDirection: directionH});
                         EventEmitter.emit('moveSlideRight', {section: activeSection});
                     }
                 } else {
                     if(getIsScrollAllowed().m.left){
-                        setState({touchDirection: directionH});
                         EventEmitter.emit('moveSlideLeft', {section: activeSection});
                     }
                 }
@@ -123,7 +116,6 @@ function touchMoveHandler(e){
 
             //is the movement greater than the minimum resistance to scroll?
             if (isVerticalMovementEnough) {
-                setState({touchDirection: directionV});
                 scrolling(directionV);
             }
         }

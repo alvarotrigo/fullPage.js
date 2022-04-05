@@ -1,13 +1,17 @@
 import * as utils from './common/utils.js';
 import { getOptions, getContainer } from './common/options.js';
-import { Item } from './common/item.js';
+import { getPanelByElement, Item } from './common/item.js';
 import { ACTIVE } from './common/selectors.js';
 import { getState, state } from './common/state.js';
+import { silentScroll } from './common/silentScroll.js';
+
+let g_prevActiveSectionIndex = null;
 
 /** 
  * Updates the state of the app.
  */
 export function updateState(){
+
     state.activeSection = null;
     state.sections.map(function(section){
         let isActive = utils.hasClass(section.item, ACTIVE);
@@ -36,22 +40,24 @@ export function updateState(){
         }
     });
 
-    // Hidding the active section ?
-    if(!state.activeSection && state.sections.length && !getState().isBeyondFullpage){
-        state.activeSection = state.sections[0];
-        state.activeSection.isActive = true;
-        utils.addClass(state.activeSection.item, ACTIVE);
-        //scrollPage(state.activeSection);
-    }
+    scrollToNewActiveSection();
 }
 
 export function updateStructuralState(){
-    var sectionsItems = utils.getVisible(utils.$(getOptions().sectionSelector, getContainer()));
-    var allSections = Array.from(sectionsItems).map( item => new SectionPanel(item));
+    var allSectionItems = utils.$(getOptions().sectionSelector, getContainer());
+    var sectionsItems = utils.getVisible(allSectionItems);
+    var allSections = Array.from(allSectionItems).map( item => new SectionPanel(item));
     var sections = allSections.filter( item => item.isVisible);
     var slides = sections.reduce(function(acc, section){
         return acc.concat(section.slides);
     }, []);
+
+    // keeping track of the previously active section
+    var prevActiveSectionItem = state.activeSection ? state.activeSection.item : null;
+    if(prevActiveSectionItem){
+        let panel = getPanelByElement(state.sectionsIncludingHidden, prevActiveSectionItem);
+        g_prevActiveSectionIndex = panel ? panel.index() : 0;
+    }
 
     state.numSections = sectionsItems.length;
     state.numSlides = sections.reduce( function(acc, section){
@@ -62,6 +68,41 @@ export function updateStructuralState(){
     state.sectionsIncludingHidden = allSections;
     state.slides = slides;
     state.panels = state.sections.concat(state.slides);
+}
+
+/**
+ * When changes in the DOM take place there's a change 
+ * the active section is now hidden or removed. 
+ * fullPage.js will scroll to the closest section nearby.
+ */
+function scrollToNewActiveSection(){
+
+    // Hidding / removing the active section ?
+    if(!state.activeSection && state.sections.length && !getState().isBeyondFullpage){
+        if(g_prevActiveSectionIndex != null){
+            let newActiveSection;
+            let prevIndex = g_prevActiveSectionIndex -1;
+            let nextIndex = g_prevActiveSectionIndex +1;
+            do{
+                prevIndex = prevIndex - 1;
+                nextIndex = nextIndex + 1;
+                newActiveSection = state.sections[prevIndex] || state.sections[g_prevActiveSectionIndex + 1];
+                if(newActiveSection){
+                    break;
+                }
+            }while(prevIndex >= 0 || nextIndex < state.numSections);
+
+            if(newActiveSection){
+                state.activeSection = newActiveSection;  
+                state.activeSection.isActive = true;
+                utils.addClass(state.activeSection.item, ACTIVE);
+            }           
+        }
+    }
+
+    if(state.activeSection){
+        silentScroll(state.activeSection.item.offsetTop);
+    }
 }
 
 

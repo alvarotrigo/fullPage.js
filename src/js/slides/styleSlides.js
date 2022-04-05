@@ -1,6 +1,6 @@
 import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options.js';
-import { getState } from '../common/state.js';
+import { state } from '../common/state.js';
 import { addTableClass } from '../common/addTableClass.js';
 import {
     SLIDES_WRAPPER_SEL,
@@ -58,7 +58,7 @@ export function styleSlides(section){
 
     //if the slide won't be an starting point, the default will be the first one
     //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
-    if( startingSlide != null && (getState().activeSection.index() !== 0 || (getState().activeSection.index() === 0 && startingSlide.index() !== 0))){
+    if( startingSlide != null && state.activeSection && (state.activeSection.index() !== 0 || (state.activeSection.index() === 0 && startingSlide.index() !== 0))){
         silentLandscapeScroll(startingSlide.item, 'internal');
     }else{
         utils.addClass(slidesElems[0], ACTIVE);

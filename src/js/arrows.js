@@ -18,7 +18,7 @@ EventEmitter.on('onClickOrTouch', onClickOrTouch);
 
 function onClickOrTouch(params){
     var target = params.target;
-    if(utils.matches(target, SLIDES_ARROW_SEL)){
+    if(utils.matches(target, SLIDES_ARROW_SEL) || utils.closest(target, SLIDES_ARROW_SEL)){
         slideArrowHandler.call(target, params);
     }
 }

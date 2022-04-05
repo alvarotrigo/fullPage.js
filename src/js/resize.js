@@ -3,7 +3,7 @@ import { getOptions, getContainer } from './common/options.js';
 import { updateState } from './stateUpdates.js';
 import { getState, state, setState } from './common/state.js';
 import { responsive } from './responsive.js';
-import { isTouchDevice, FP, isTouch, win, doc }  from './common/constants.js';
+import { isTouchDevice, FP, win, doc }  from './common/constants.js';
 import { landscapeScroll } from './slides/landscapeScroll.js';
 import { scrollOverflowHandler } from './scrolloverflow.js';
 import { 
@@ -105,11 +105,12 @@ function resizeActions(){
 function reBuild(resizing){
     if(utils.hasClass(getContainer(), DESTROYED)){ return; }  //nothing to do if the plugin was destroyed
 
-    setState({isResizing: true});
-
     //updating global vars
-    setState({windowsHeight: utils.getWindowHeight()});
-    setState({windowsWidth: utils.getWindowWidth()});
+    setState({
+        isResizing: true,
+        windowsHeight: utils.getWindowHeight(),
+        windowsWidth: utils.getWindowWidth()
+    });
 
     var sections = getState().sections;
     for (var i = 0; i < sections.length; ++i) {

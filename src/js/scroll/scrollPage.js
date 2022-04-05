@@ -84,7 +84,6 @@ export function scrollPage(section, callback, isMovementUp){
 
         //for the callback
         v.direction = direction;
-        setState({direction: direction});
 
         if(utils.isFunction( getOptions().beforeLeave )){
             
@@ -185,6 +184,8 @@ function performMovement(v){
     var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed; 
     setState({touchDirection: 'none'});
 
+    EventEmitter.emit('onPerformMovement');
+
     // using CSS3 translate functionality
     if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
 
@@ -214,6 +215,7 @@ function performMovement(v){
         FP.test.top = -v.dtop + 'px';
 
         utils.css($htmlBody, {'scroll-behavior': 'unset'});
+        clearTimeout(g_afterSectionLoadsId);
 
         scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function(){
             if(getOptions().scrollBar){
@@ -224,7 +226,7 @@ function performMovement(v){
 
                 When using scrollBar:true It seems like the scroll events still getting propagated even after the scrolling animation has finished.
                 */
-                setTimeout(function(){
+                g_afterSectionLoadsId = setTimeout(function(){
                     afterSectionLoads(v);
                 },30);
             }else{
@@ -255,7 +257,6 @@ function afterSectionLoads(v){
     }
     
     setState({isBeyondFullpage: false});
-    console.error("afterSectionLoads");
     continuousVerticalFixSectionOrder(v);
 
     //callback (afterLoad) if the site is not just resizing and readjusting the slides

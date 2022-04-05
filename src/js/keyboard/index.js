@@ -1,9 +1,9 @@
 //@ts-check
 import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options';
-import { FP, focusableElementsString, doc } from '../common/constants.js';
+import { focusableElementsString, doc } from '../common/constants.js';
 import { getSlideOrSection } from '../common/utilsFP.js';
-import { getIsScrollAllowed, setIsScrollAllowed } from '../common/isScrollAllowed.js';
+import { getIsScrollAllowed } from '../common/isScrollAllowed.js';
 import { 
     SECTION_ACTIVE_SEL,
     SLIDE_ACTIVE_SEL,
@@ -17,6 +17,7 @@ import { EventEmitter } from '../common/eventEmitter.js';
 import { moveSectionUp } from '../scroll/moveSectionUp.js';
 import { moveSectionDown } from '../scroll/moveSectionDown.js';
 import { moveTo } from '../scroll/moveTo.js';
+import { $body } from '../common/cache.js';
 
 let g_controlPressed;
 let g_keydownId;
@@ -29,6 +30,9 @@ function bindEvents(){
 
     //Sliding with arrow keys, both, vertical and horizontal
     utils.docAddEvent('keydown', keydownHandler);
+
+    // for fitToSection:true
+    $body.addEventListener('keydown', cancelDirectionKeyEvents);
 
     //to prevent scrolling while zooming
     utils.docAddEvent('keyup', keyUpHandler);
@@ -87,10 +91,7 @@ function onkeydown(e){
 
     var isUsingHorizontalArrowKeys = [37,39].indexOf(e.keyCode) > -1;
     
-    //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
-    if(shouldCancelKeyboardNavigation(e)){
-        utils.preventDefault(e);
-    }
+    cancelDirectionKeyEvents(e);
     
     //do nothing if we can not scroll or we are not using horizotnal key arrows.
     if(!state.canScroll && !isUsingHorizontalArrowKeys){
@@ -104,7 +105,11 @@ function onkeydown(e){
         case 38:
         case 33:
             if(getIsScrollAllowed().k.up && isScrolled.up){
-                moveSectionUp();
+                if( state.isBeyondFullpage ){
+                    EventEmitter.emit('onKeyDown', {e: e});
+                }else{
+                    moveSectionUp();
+                }
             }
             break;
 
@@ -118,6 +123,10 @@ function onkeydown(e){
         case 40:
         case 34:
             if(getIsScrollAllowed().k.down && isScrolled.down){
+                if( state.isBeyondFullpage ){
+                    return;
+                }
+                
                 // space bar?
                 if(e.keyCode !== 32 || !isMediaFocused){
                     moveSectionDown();
@@ -245,7 +254,14 @@ function isFocusOutside(e){
 
 function shouldCancelKeyboardNavigation(e){
     var keyControls = [40, 38, 32, 33, 34];
-    return keyControls.indexOf(e.keyCode) > -1;
+    return keyControls.indexOf(e.keyCode) > -1 && !state.isBeyondFullpage;
+}
+
+//preventing the scroll with arrow keys & spacebar & Page Up & Down keys
+function cancelDirectionKeyEvents(e){
+    if(shouldCancelKeyboardNavigation(e)){
+        e.preventDefault();
+    }
 }
 
 export function getControlPressed(){

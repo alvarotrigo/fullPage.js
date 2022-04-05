@@ -865,7 +865,7 @@
       activeAnimation: false,
       canScroll: true,
       touchDirection: 'none',
-      direction: 'none',
+      wheelDirection: 'none',
       isGrabbing: false,
       isWindowFocused: true,
       previousDestTop: 0,
@@ -1022,7 +1022,7 @@
       keyboardScrolling: true,
       animateAnchor: true,
       recordHistory: true,
-      allowCorrectDirection: true,
+      allowCorrectDirection: false,
       //design
       scrollOverflowMacStyle: true,
       controlArrows: true,
@@ -3315,9 +3315,6 @@
 
 
         v.direction = direction;
-        setState({
-          direction: direction
-        });
 
         if (isFunction(getOptions().beforeLeave)) {
           if (fireCallbackOncePerScroll('beforeLeave', v) === false) {
@@ -3694,32 +3691,21 @@
         var touchEvents = getEventsPage(e);
         touchEndY = touchEvents.y;
         touchEndX = touchEvents.x;
-
-        if (getOptions().allowCorrectDirection) {
-          setState({
-            canScroll: state.canScroll && state.direction == direction || state.direction !== direction,
-            slideMoving: state.slideMoving && state.direction == direction || state.direction !== direction
-          });
-        } //if movement in the X axys is greater than in the Y and the currect section has slides...
-
+        setState({
+          touchDirection: direction
+        }); //if movement in the X axys is greater than in the Y and the currect section has slides...
 
         if (isHorizontalPredominantMove) {
           //is the movement greater than the minimum resistance to scroll?
           if (!state.slideMoving && isHorizontalMovementEnough) {
             if (touchStartX > touchEndX) {
               if (getIsScrollAllowed().m.right) {
-                setState({
-                  touchDirection: directionH
-                });
                 EventEmitter.emit('moveSlideRight', {
                   section: activeSection
                 });
               }
             } else {
               if (getIsScrollAllowed().m.left) {
-                setState({
-                  touchDirection: directionH
-                });
                 EventEmitter.emit('moveSlideLeft', {
                   section: activeSection
                 });
@@ -3730,9 +3716,6 @@
         else if (getOptions().autoScrolling && state.canScroll) {
           //is the movement greater than the minimum resistance to scroll?
           if (isVerticalMovementEnough) {
-            setState({
-              touchDirection: directionV
-            });
             scrolling(directionV);
           }
         }
@@ -4313,7 +4296,7 @@
         var delta = Math.max(-1, Math.min(1, value));
         var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
         var isScrollingVertically = Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta) || Math.abs(e.deltaX) < Math.abs(e.deltaY) || !horizontalDetection;
-        var direction = delta < 0 ? 'down' : 'up'; //Limiting the array to 150 (lets not waste memory!)
+        var direction = delta < 0 ? 'down' : delta > 0 ? 'up' : 'none'; //Limiting the array to 150 (lets not waste memory!)
 
         if (scrollings.length > 149) {
           scrollings.shift();
@@ -4336,11 +4319,9 @@
           scrollings = [];
         }
 
-        if (getOptions().allowCorrectDirection) {
-          setState({
-            canScroll: state.canScroll && state.direction == direction || state.direction !== direction
-          });
-        }
+        setState({
+          wheelDirection: direction
+        });
 
         if (state.canScroll) {
           var averageEnd = getAverage(scrollings, 10);
@@ -5093,7 +5074,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-2".split("-"),
+      var n = "2022-3-5".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 

@@ -30,19 +30,21 @@ export const Item = function(el, selector){
     this.isSection = selector === getOptions().sectionSelector;
     this.container = utils.closest(el, SLIDES_CONTAINER_SEL) || utils.closest(el, WRAPPER_SEL);
     this.index = function(){
-        if(this.isSection){
-            return state.sections.indexOf(this);
-        }else if(this.parent && this.parent.slides){
-            return this.parent.slides.indexOf(this);
-        } 
-        return 0;
+        return this.siblings().indexOf(this);
     };
 };
 
-
-
 Item.prototype.siblings = function(){
-    return this.isSection ? state.sections : this.parent.slides;
+    if(this.isSection){
+        if(this.isVisible){
+            return state.sections;
+        }
+        else{
+            return state.sectionsIncludingHidden;
+        }
+    }
+    
+    return this.parent ? this.parent.slides : 0;
 };
 
 Item.prototype.prev = function(){

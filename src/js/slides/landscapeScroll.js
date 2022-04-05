@@ -17,10 +17,21 @@ import { lazyLoad } from '../lazyLoad/lazyLoad.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activeSlidesNavigation } from '../nav/slides.js';
 import { toggleControlArrows } from '../arrows.js';
+import { EventEmitter } from '../common/eventEmitter.js';
 
 let g_afterSlideLoadsId;
-
 FP.landscapeScroll = landscapeScroll;
+
+EventEmitter.on('bindEvents', bindEvents);
+
+function bindEvents(){
+    EventEmitter.on('onPerformMovement', onPerformMovement);
+}
+
+function onPerformMovement(){
+    clearTimeout(g_afterSlideLoadsId);
+}
+
 
 /**
 * Scrolls horizontal sliders.
@@ -114,6 +125,7 @@ function performHorizontalMove(slides, v, fireCallback){
         FP.test.translate3dH[v.sectionIndex] = translate3d;
         utils.css(addAnimation(utils.$(SLIDES_CONTAINER_SEL, slides)), getTransforms(translate3d));
 
+        clearTimeout(g_afterSlideLoadsId);
         g_afterSlideLoadsId = setTimeout(function(){
             if(fireCallback){
                 afterSlideLoads(v);

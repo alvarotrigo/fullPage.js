@@ -1,5 +1,5 @@
 import * as utils from './utils.js';
-import { getOptions } from './options.js';
+import { getContainer, getOptions } from './options.js';
 import { 
     SLIDE_ACTIVE_SEL, 
     WRAPPER_SEL, 
@@ -18,6 +18,10 @@ export function getSlideOrSection(destiny){
     }
 
     return destiny;
+}
+
+export function isFullPageAbove(){
+    return getContainer().getBoundingClientRect().bottom >= 0;
 }
 
 /**

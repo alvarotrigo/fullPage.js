@@ -1,10 +1,9 @@
 import * as utils from '../common/utils.js';
 import { getState, setState } from "../common/state.js";
 import { setPrevTime } from '../common/tick.js';
-import { getOptions } from '../common/options.js';
-import { scrollTo } from '../common/scrollTo.js';
 import { wheelDataHandler } from './wheelDataHandler.js';
 import { getScrollSettings } from '../common/utilsFP.js';
+import { scrollUpToFullpage } from './scrollBeyondFullPage.js';
 
 export function beyondFullPageHandler(container, e){
     var curTime = new Date().getTime();
@@ -37,14 +36,7 @@ export function beyondFullPageHandler(container, e){
                 setState({isAboutToScrollToFullPage: true});
                 setState({scrollTrigger: 'wheel'});
 
-                scrollSettings = getScrollSettings(utils.getLast(getState().sections).item.offsetTop);
-                setState({canScroll: false});
-                
-                scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function(){
-                    setState({canScroll: true});
-                    setState({isBeyondFullpage: false});
-                    setState({isAboutToScrollToFullPage: false});
-                });
+                scrollUpToFullpage();
                 
                 utils.preventDefault(e);
                 return false;
@@ -60,7 +52,6 @@ export function beyondFullPageHandler(container, e){
         }   
     }
 }
-
 
 var keyframeTime = (function(){
     let isNew = false;

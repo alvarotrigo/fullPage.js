@@ -1,5 +1,5 @@
 import * as utils from '../common/utils.js';
-import { getScrollSettings } from '../common/utilsFP.js';
+import { getScrollSettings, isFullPageAbove } from '../common/utilsFP.js';
 import { getOptions } from '../common/options.js';
 import { doc, FP } from '../common/constants.js';
 import { $htmlBody } from '../common/cache.js';
@@ -20,6 +20,25 @@ export function scrollBeyondFullPage(){
             setState({isBeyondFullpage: true});
             setState({canScroll: true});
         },30);
+    });
+}
+
+export function onKeyDown(){
+    if(!isFullPageAbove()){
+        return;
+    }else{
+        scrollUpToFullpage();
+    }    
+}
+
+export function scrollUpToFullpage(){
+    var scrollSettings = getScrollSettings(utils.getLast(getState().sections).item.offsetTop);
+    setState({canScroll: false});
+    
+    scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function(){
+        setState({canScroll: true});
+        setState({isBeyondFullpage: false});
+        setState({isAboutToScrollToFullPage: false});
     });
 }
 

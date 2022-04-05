@@ -227,7 +227,6 @@ var myFullpage = new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: true,
 
 	//布局
 	controlArrows: true,
@@ -483,8 +482,6 @@ new fullpage('#fullpage', {
 - `animateAnchor`: （默认`true`）定义锚点（＃）将以动画方式滚动或直接加载到目标 section。
 
 - `recordHistory`: （默认为`true`）定义是否将网站的状态记录到浏览器的历史记录。 设置为 `true` 时，网站的每个 section/slide 片将作为新页面，浏览器的后退和前进按钮将滚动 section/slide 以达到网站的上一个或下一个状态。 当设置为 `false` 时，URL 将保持更改，但不会影响浏览器的历史记录。 使用 `autoScrolling：false` 时，该选项会自动关闭。
-
-- `allowCorrectDirection:` (default `true`). Determines whether or not to allow the user to change/correct direction while the scrolling of the page has already started and the user scrolls on the opposite direction. (translation required)
 
 - `menu`: （默认 `false` ）选择器可以用来指定菜单链接到锚。 这样 section 的滚动将使用 active 状态激活菜单中的相应元素。这不会生成菜单，而只是将 active 状态添加到给定菜单中的元素，并带有相应的锚链接。
 为了将菜单的元素与各个部分相链接，将需要一个HTML 5 数据标签（data-menuanchor）来关联在 section中使用的锚链接。 例：

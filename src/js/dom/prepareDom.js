@@ -54,8 +54,6 @@ export function prepareDom(){
         // if there's any slide
         if (slides.length > 0) {
             styleSlides(section);
-        }else{
-            addTableClass(section);
         }
     }
 

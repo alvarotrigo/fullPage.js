@@ -4,6 +4,7 @@ import { ACTIVE } from './common/selectors.js';
 import { updateState } from './stateUpdates.js';
 import { getState } from './common/state.js';
 import { FP } from './common/constants.js';
+import { addTableClass } from './common/addTableClass.js';
 
 let startingSection = null;
 FP.getActiveSection = getActiveSection;
@@ -17,6 +18,7 @@ export function getStartingSection(){
 */
 export function styleSection(section){
     var sectionElem = section.item;
+    var hasSlides = section.allSlidesItems.length;
     var index = section.index();
 
     //if no active section is defined, the 1st one will be the default one
@@ -40,6 +42,10 @@ export function styleSection(section){
 
     if (typeof getOptions().anchors[index] !== 'undefined') {
         sectionElem.setAttribute('data-anchor', section.anchor);
+    }
+
+    if(!hasSlides){
+        addTableClass(section);
     }
 }
 

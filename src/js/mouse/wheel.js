@@ -132,7 +132,7 @@ function MouseWheelHandler(e) {
 
         var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
         var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
-        var direction = delta < 0 ? 'down': 'up';
+        var direction = delta < 0 ? 'down': delta > 0 ? 'up' : 'none';
 
         //Limiting the array to 150 (lets not waste memory!)
         if(scrollings.length > 149){
@@ -158,9 +158,7 @@ function MouseWheelHandler(e) {
             scrollings = [];
         }
 
-        if(getOptions().allowCorrectDirection){
-           setState({canScroll: state.canScroll && state.direction == direction || state.direction !== direction});
-        }
+        setState({wheelDirection: direction});
 
         if(state.canScroll){
             var averageEnd = utils.getAverage(scrollings, 10);

@@ -18,12 +18,13 @@ export const state = {
     activeAnimation: false,
     canScroll: true,
     touchDirection: 'none',
-    direction: 'none',
+    wheelDirection: 'none',
     isGrabbing: false,
     isWindowFocused: true,
     previousDestTop: 0,
     windowsHeight: utils.getWindowHeight(),
-    isDoingContinousVertical: false
+    isDoingContinousVertical: false,
+    timeouts: {}
 };
 // @ts-ignore
 win.state = state;

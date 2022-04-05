@@ -258,27 +258,6 @@ export function wrapAll(toWrap, wrapper) {
 
 /**
 * Usage:
-* wrapInner(document.querySelector('#pepe'), '<div class="test">afdas</div>');
-* wrapInner(document.querySelector('#pepe'), element);
-*
-* https://jsfiddle.net/zexxz0tw/6/
-*
-* https://stackoverflow.com/a/21817590/1081396
-*/
-export function wrapInner(parent, wrapper) {
-    if (typeof wrapper === "string"){
-        wrapper = createElementFromHTML(wrapper);
-    }
-
-    parent.appendChild(wrapper);
-
-    while(parent.firstChild !== wrapper){
-        wrapper.appendChild(parent.firstChild);
-    }
-}
-
-/**
-* Usage:
 * unwrap(document.querySelector('#pepe'));
 * unwrap(element);
 *
@@ -350,8 +329,8 @@ export function getScrollTop(options){
     if(typeof options !== 'undefined' && options.fitToSection){
         return doc.body.scrollTop;
     }
-    var doc = doc.documentElement;
-    return (win.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+    var docElement = doc.documentElement;
+    return (win.pageYOffset || docElement.scrollTop)  - (docElement.clientTop || 0);
 }
 
 /**
@@ -463,13 +442,6 @@ export function remove(items){
     }
 }
 
-/**
-* Filters an array by the passed filter funtion.
-*/
-export function filter(el, filterFn){
-    Array.prototype.filter.call(el, filterFn);
-}
-
 //https://jsfiddle.net/w1rktecz/
 export function untilAll(item, selector, fn){
     var sibling = item[fn];
@@ -547,45 +519,44 @@ export function getParentsUntil(item, topParentSelector){
     return parents;
 }
 
-// //utils are public, so we can use it wherever we want
-// // @ts-ignore
-// win.fp_utils = {
-//     $: $,
-//     deepExtend: deepExtend,
-//     hasClass: hasClass,
-//     getWindowHeight: getWindowHeight,
-//     css: css,
-//     prev: prev,
-//     next: next,
-//     last: last,
-//     index: index,
-//     getList: getList,
-//     hide: hide,
-//     show: show,
-//     isArrayOrList: isArrayOrList,
-//     addClass: addClass,
-//     removeClass: removeClass,
-//     appendTo: appendTo,
-//     wrap: wrap,
-//     wrapAll: wrapAll,
-//     wrapInner: wrapInner,
-//     unwrap: unwrap,
-//     closest: closest,
-//     after: after,
-//     before: before,
-//     insertBefore: insertBefore,
-//     getScrollTop: getScrollTop,
-//     siblings: siblings,
-//     preventDefault: preventDefault,
-//     isFunction: isFunction,
-//     trigger: trigger,
-//     matches: matches,
-//     toggle: toggle,
-//     createElementFromHTML: createElementFromHTML,
-//     remove: remove,
-//     filter: filter,
-//     untilAll: untilAll,
-//     nextAll: nextAll,
-//     prevAll: prevAll,
-//     showError: showError
-// };
+//utils are public, so we can use it wherever we want
+// @ts-ignore
+window["fp_utils"] = {
+    "$": $,
+    "deepExtend": deepExtend,
+    "hasClass": hasClass,
+    "getWindowHeight": getWindowHeight,
+    "css": css,
+    "prev": prev,
+    "next": next,
+    "last": last,
+    "index": index,
+    "getList": getList,
+    "hide": hide,
+    "show": show,
+    "isArrayOrList": isArrayOrList,
+    "addClass": addClass,
+    "removeClass": removeClass,
+    "appendTo": appendTo,
+    "wrap": wrap,
+    "wrapAll": wrapAll,
+    "unwrap": unwrap,
+    "closest": closest,
+    "after": after,
+    "before": before,
+    "insertBefore": insertBefore,
+    "getScrollTop": getScrollTop,
+    "siblings": siblings,
+    "preventDefault": preventDefault,
+    "isFunction": isFunction,
+    "trigger": trigger,
+    "matches": matches,
+    "toggle": toggle,
+    "createElementFromHTML": createElementFromHTML,
+    "remove": remove,
+    // "filter": filter,
+    "untilAll": untilAll,
+    "nextAll": nextAll,
+    "prevAll": prevAll,
+    "showError": showError
+};

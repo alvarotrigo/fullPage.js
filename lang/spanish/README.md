@@ -234,7 +234,6 @@ new fullpage('#fullpage', {
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
-	allowCorrectDirection: true,
 
 	//Diseno
 	controlArrows: true,
@@ -486,8 +485,6 @@ Para definir el porcentaje de la sección hay que hacer uso del atributo `data-p
 - `animateAnchor`: (por defecto `true`) Determina si al cargar la página usando un enlace de anclaje (#) ésta se desplazará a la sección de destino o si por el contrario cargará la página directamente en dicha sección.
 
 - `recordHistory`: (por defecto `true`) Determina si el estado de la página se guardará en la historia del navegador. Cuando se define la opción a `true` cada sección/diapositiva de la página actuará como una nueva página y el botón de "página anterior" o "página siguiente" del navegador desplazará las secciones/diapositivas de la página hasta alcanzar el estado de la página anterior o siguiente respectivamente. Cuando se define la opción a `false`, la URL seguirá cambiando con los enlaces de anclaje correspondientes pero no tendrán ningún efecto en la historia del navegador. Esta opción está automáticamente definida como `false` cuando se usa la opción `autoScrolling:false`.
-
-- `allowCorrectDirection:` (por defecto `true`). Determina si permitir o no que el visitante pueda cambiar/corregir la direccion mientras la página se está desplazando de una section a otra si el visitante hace scroll hacia la dirección opuesta.
 
 - `menu`: (por defecto `false`) Se puede usar un selector para especificar el menú de la página al que las secciones hacen referencia. De este modo, el desplazamiento vertical entre las secciones activará el elemento correspondiente del menú usando la clase `active`.
 Esta opción no generará ningún menú, sino que simplemente añade la clase `active` al elemento del menú con el enlace de anclaje correspondiente a la sección.
