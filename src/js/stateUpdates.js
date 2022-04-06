@@ -98,11 +98,11 @@ function scrollToNewActiveSection(){
                 utils.addClass(state.activeSection.item, ACTIVE);
             }           
         }
-    }
 
-    if(state.activeSection){
-        silentScroll(state.activeSection.item.offsetTop);
-    }
+        if(state.activeSection){
+            silentScroll(state.activeSection.item.offsetTop);
+        }
+    }    
 }
 
 

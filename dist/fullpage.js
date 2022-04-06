@@ -1479,10 +1479,10 @@
             addClass(state.activeSection.item, ACTIVE);
           }
         }
-      }
 
-      if (state.activeSection) {
-        silentScroll(state.activeSection.item.offsetTop);
+        if (state.activeSection) {
+          silentScroll(state.activeSection.item.offsetTop);
+        }
       }
     }
     /**
@@ -5063,7 +5063,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-5".split("-"),
+      var n = "2022-3-6".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
