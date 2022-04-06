@@ -3846,20 +3846,21 @@
     */
 
     function moveSlide(direction, section) {
-      var activeSection = section == null ? getState().activeSection.item : section;
-      var slides = $(SLIDES_WRAPPER_SEL, activeSection)[0]; // more than one slide needed and nothing should be sliding
+      var activeSectionItem = section == null ? getState().activeSection.item : section;
+      var activeSection = getPanelByElement(state.sections, activeSectionItem);
+      var slides = $(SLIDES_WRAPPER_SEL, activeSectionItem)[0]; // more than one slide needed and nothing should be sliding
 
-      if (slides == null || state.slideMoving || getState().activeSection.slides.length < 2) {
+      if (slides == null || state.slideMoving || activeSection.slides.length < 2) {
         return;
       }
 
-      var currentSlide = getState().activeSection.activeSlide;
+      var currentSlide = activeSection.activeSlide;
       var destiny = direction === 'left' ? currentSlide.prev() : currentSlide.next(); //isn't there a next slide in the secuence?
 
       if (!destiny) {
         //respect loopHorizontal setting
         if (!getOptions().loopHorizontal) return;
-        destiny = direction === 'left' ? getLast(getState().activeSection.slides) : getState().activeSection.slides[0];
+        destiny = direction === 'left' ? getLast(activeSection.slides) : activeSection.slides[0];
       }
 
       setState({
