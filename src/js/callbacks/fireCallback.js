@@ -66,7 +66,8 @@ function getEventData(eventName, v){
             return {
                 section: nullOrSection(getState().activeSection),
                 slide: nullOrSlide(getState().activeSection.activeSlide),
-                position: v.position
+                position: v.position,
+                direction: v.direction
             };
         }
     };

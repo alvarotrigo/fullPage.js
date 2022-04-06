@@ -63,5 +63,6 @@ export function addSlidesNavigation(section){
     //centering it
     utils.css(nav, {'margin-left': '-' + (nav.innerWidth/2) + 'px'});
 
-    utils.addClass(utils.$('a', utils.$('li', nav)[0] ), ACTIVE);
+    var activeSlideIndex = section.activeSlide ? section.activeSlide.index() : 0;
+    utils.addClass(utils.$('a', utils.$('li', nav)[activeSlideIndex] ), ACTIVE);
 }

@@ -186,7 +186,7 @@ $(document).ready(function() {
 Более сложная инициализация с установкой всех параметров может выглядеть так:
 ```javascript
 var myFullpage = new fullpage('#fullpage', {
-	//Навигация
+	// Навигация
 	menu: '#menu',
 	lockAnchors: false,
 	anchors:['firstPage', 'secondPage'],
@@ -197,7 +197,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slidesNavigation: false,
 	slidesNavPosition: 'bottom',
 
-	//Скроллинг
+	// Скроллинг
 	css3: true,
 	scrollingSpeed: 700,
 	autoScrolling: true,
@@ -224,12 +224,12 @@ var myFullpage = new fullpage('#fullpage', {
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
-	//Доступ
+	// Доступ
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
 
-	//Дизайн
+	// Дизайн
 	controlArrows: true,
 	controlArrowsHTML: [
 		'<div class="fp-arrow"></div>', 
@@ -252,7 +252,7 @@ var myFullpage = new fullpage('#fullpage', {
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
-	//Настроить селекторы
+	// Настроить селекторы
 	sectionSelector: '.section',
 	slideSelector: '.slide',
 
@@ -260,7 +260,7 @@ var myFullpage = new fullpage('#fullpage', {
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
-	//события
+	// Cобытия
 	beforeLeave: function(origin, destination, direction, trigger){},
 	onLeave: function(origin, destination, direction, trigger){},
 	afterLoad: function(origin, destination, direction, trigger){},
@@ -270,7 +270,7 @@ var myFullpage = new fullpage('#fullpage', {
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction, trigger){},
 	onSlideLeave: function(section, origin, destination, direction, trigger){},
-	onScrollOverflow: function(section, slide, position){}
+	onScrollOverflow: function(section, slide, position, direction){}
 });
 ```
 
@@ -806,7 +806,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-This callback is fired right **before** leaving the section, just before the transition takes place.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
 
 You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
 
@@ -833,7 +833,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterRender()
-Этот обратный вызов активируется сразу после того, как создаётся структура страницы. Данный обратный вызов вы можете использовать для инициализации других плагинов или активации любого кода, для чего требуется готовый документ (так как плагин изменяет DOM для создания финальной структуры). Более подробную информацию вы найдёте в разделе [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions).
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется сразу после того, как создаётся структура страницы. Данный обратный вызов вы можете использовать для инициализации других плагинов или активации любого кода, для чего требуется готовый документ (так как плагин изменяет DOM для создания финальной структуры). Более подробную информацию вы найдёте в разделе [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions).
 
 Пример:
 
@@ -847,7 +847,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-Этот обратный вызов активируется после изменения размера окна браузера. Сразу после изменения размера разделов.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется после изменения размера окна браузера. Сразу после изменения размера разделов.
 
 Параметры:
 
@@ -866,7 +866,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
 
 Example:
 
@@ -879,7 +879,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-Этот обратный вызов активируется после того, как fullpage.js переходит из стандартного режима в отзывчивый режим или из отзывчивого в стандартный.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется после того, как fullpage.js переходит из стандартного режима в отзывчивый режим или из отзывчивого в стандартный.
 
 Параметры:
 
@@ -896,7 +896,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-Обратный вызов активируется после загрузки слайда раздела и окончания прокрутки.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Обратный вызов активируется после загрузки слайда раздела и окончания прокрутки.
 
 Параметры:
 
@@ -931,7 +931,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-Этот обратный вызов активируется после того, как пользователь покидает слайд для перехода к другому, при переходе к новому слайду.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется после того, как пользователь покидает слайд для перехода к другому, при переходе к новому слайду.
 Возврат `false` отменит переход до его осуществления.
 
 Параметр:
@@ -967,20 +967,21 @@ new fullpage('#fullpage', {
 
 
 ---
-### onScrollOverflow (`section`, `slide`, `position`)
-This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+### onScrollOverflow (`section`, `slide`, `position`, `direction`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
 
 Parameters:
 
 - `section`: *(Object)* active vertical section.
 - `slide`: *(Object)* horizontal slide of origin.
 - `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+- `direction`: *(String)* `up` or `down`
 
 Example:
 
 ```javascript
 new fullpage('#fullpage', {
-	onScrollOverflow: function( section, slide, position){
+	onScrollOverflow: function( section, slide, position, direction){
 		console.log(section);
 		console.log("position: " + position);
 	}

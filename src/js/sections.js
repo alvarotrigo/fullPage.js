@@ -22,7 +22,7 @@ export function styleSection(section){
     var index = section.index();
 
     //if no active section is defined, the 1st one will be the default one
-    if(!index && !getState().activeSection) {
+    if(!getState().activeSection && section.isVisible) {
         utils.addClass(sectionElem, ACTIVE);
         updateState();
     }

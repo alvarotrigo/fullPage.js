@@ -185,7 +185,7 @@ $(document).ready(function() {
 所有选项的更复杂的初始化如下所示：
 ```javascript
 var myFullpage = new fullpage('#fullpage', {
-	//导航
+	// 导航
 	menu: '#menu',
 	lockAnchors: false,
 	anchors:['firstPage', 'secondPage'],
@@ -196,7 +196,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slidesNavigation: false,
 	slidesNavPosition: 'bottom',
 
-	//滚动
+	// 滚动
 	css3: true,
 	scrollingSpeed: 700,
 	autoScrolling: true,
@@ -223,12 +223,12 @@ var myFullpage = new fullpage('#fullpage', {
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
-	//可访问
+	// 可访问
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
 
-	//布局
+	// 布局
 	controlArrows: true,
 	controlArrowsHTML: [
 		'<div class="fp-arrow"></div>', 
@@ -252,7 +252,7 @@ var myFullpage = new fullpage('#fullpage', {
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
 
-	//自定义选择器
+	// 自定义选择器
 	sectionSelector: '.section',
 	slideSelector: '.slide',
 
@@ -260,7 +260,7 @@ var myFullpage = new fullpage('#fullpage', {
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
-	//事件
+	// 事件
 	beforeLeave: function(origin, destination, direction, trigger){},
 	onLeave: function(origin, destination, direction, trigger){},
 	afterLoad: function(origin, destination, direction, trigger){},
@@ -270,7 +270,7 @@ var myFullpage = new fullpage('#fullpage', {
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction, trigger){},
 	onSlideLeave: function(section, origin, destination, direction, trigger){},
-	onScrollOverflow: function(section, slide, position){}
+	onScrollOverflow: function(section, slide, position, direction){}
 });
 ```
 
@@ -812,7 +812,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-This callback is fired right **before** leaving the section, just before the transition takes place.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
 
 You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
 
@@ -840,7 +840,7 @@ new fullpage('#fullpage', {
 
 ---
 ### afterRender()
-这个回调在页面结构生成后立即被触发。 这是您要用来初始化其他插件的回调函数，或者触发任何需要 DOM 准备就绪的代码（因为这个插件修改了 DOM 来创建最终的结构）。 请参阅 [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) 了解更多信息。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 这个回调在页面结构生成后立即被触发。 这是您要用来初始化其他插件的回调函数，或者触发任何需要 DOM 准备就绪的代码（因为这个插件修改了 DOM 来创建最终的结构）。 请参阅 [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) 了解更多信息。
 
 例如：
 
@@ -854,7 +854,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-调整浏览器窗口大小后，会触发此回调。 就在 section 被调整之后。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 调整浏览器窗口大小后，会触发此回调。 就在 section 被调整之后。
 
 参数：
 
@@ -873,7 +873,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-通过调用 `fullpage_api.reBuild（）` 手动重新构建 fullpage.js 后，将触发此回调。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 通过调用 `fullpage_api.reBuild（）` 手动重新构建 fullpage.js 后，将触发此回调。
 
 例如：
 
@@ -886,7 +886,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-在 fullpage.js 从正常模式变为响应模式或从响应模式变为正常模式之后，此回调将被触发。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 在 fullpage.js 从正常模式变为响应模式或从响应模式变为正常模式之后，此回调将被触发。
 
 参数：
 
@@ -903,7 +903,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-滚动结束后，加载一个 section 的 slide 后触发回调。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 滚动结束后，加载一个 section 的 slide 后触发回调。
 
 参数：
 
@@ -937,7 +937,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-一旦用户离开 slide 转到另一个 slide ，就会触发此回调。返回 `false` 将在移动发生之前取消移动。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 一旦用户离开 slide 转到另一个 slide ，就会触发此回调。返回 `false` 将在移动发生之前取消移动。
 
 参数：
 
@@ -968,24 +968,25 @@ new fullpage('#fullpage', {
 ```
 
 #### 在发生移动之前取消移动
-您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
 
 
 ---
-### onScrollOverflow (`section`, `slide`, `position`)
-This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+### onScrollOverflow (`section`, `slide`, `position`, `direction`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
 
 Parameters:
 
 - `section`: *(Object)* active vertical section.
 - `slide`: *(Object)* horizontal slide of origin.
 - `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+- `direction`: *(String)* `up` or `down`
 
 Example:
 
 ```javascript
 new fullpage('#fullpage', {
-	onScrollOverflow: function( section, slide, position){
+	onScrollOverflow: function( section, slide, position, direction){
 		console.log(section);
 		console.log("position: " + position);
 	}

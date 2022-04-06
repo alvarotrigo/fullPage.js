@@ -145,7 +145,8 @@ export const scrollOverflowHandler = {
             
             if(utils.isFunction(getOptions().onScrollOverflow) ){
                 fireCallback('onScrollOverflow', {
-                    position: currentPosition
+                    position: currentPosition,
+                    direction: direction
                 });
             }
 

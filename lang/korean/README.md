@@ -182,7 +182,7 @@ $(document).ready(function() {
 모든 옵션이 들어간 더 복잡한 초기 설정은 아래와 같이 코딩될 수 있습니다.
 ```javascript
 new fullpage('#fullpage', {
-	//이동
+	// 이동
 	menu: '#menu',
 	lockAnchors: false,
 	anchors:['firstPage', 'secondPage'],
@@ -193,7 +193,7 @@ new fullpage('#fullpage', {
 	slidesNavigation: false,
 	slidesNavPosition: 'bottom',
 
-	//스크롤
+	// 스크롤
 	css3: true,
 	scrollingSpeed: 700,
 	autoScrolling: true,
@@ -220,12 +220,12 @@ new fullpage('#fullpage', {
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
-	//접근성
+	// 접근성
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
 
-	//디자인
+	// 디자인
 	controlArrows: true,
 	controlArrowsHTML: [
 		'<div class="fp-arrow"></div>', 
@@ -248,7 +248,7 @@ new fullpage('#fullpage', {
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
-	//맞춤 선택자
+	// 맞춤 선택자
 	sectionSelector: '.section',
 	slideSelector: '.slide',
 
@@ -256,7 +256,7 @@ new fullpage('#fullpage', {
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
-	//사건(이벤트)
+	// 사건(이벤트)
 	beforeLeave: function(origin, destination, direction, trigger){},
 	onLeave: function(origin, destination, direction, trigger){},
 	afterLoad: function(origin, destination, direction, trigger){},
@@ -266,7 +266,7 @@ new fullpage('#fullpage', {
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction, trigger){},
 	onSlideLeave: function(section, origin, destination, direction, trigger){},
-	onScrollOverflow: function(section, slide, position){}
+	onScrollOverflow: function(section, slide, position, direction){}
 });
 ```
 
@@ -797,7 +797,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-This callback is fired right **before** leaving the section, just before the transition takes place.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
 
 You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
 
@@ -824,7 +824,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterRender()
-페이지 구조가 생성된 직후에 이 콜백이 실행됩니다. (이 플러그인이 DOM을 수정해서 결과 구조를 만들기 때문에) 다른 플러그인을 초기 설정하거나 문서(document)가 있어야 준비되는 모든 코드를 실행하고자 할 때 이 콜백을 쓰시면 됩니다. 더 자세한 정보를 원하신다면 [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)을 참조해 주세요.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 페이지 구조가 생성된 직후에 이 콜백이 실행됩니다. (이 플러그인이 DOM을 수정해서 결과 구조를 만들기 때문에) 다른 플러그인을 초기 설정하거나 문서(document)가 있어야 준비되는 모든 코드를 실행하고자 할 때 이 콜백을 쓰시면 됩니다. 더 자세한 정보를 원하신다면 [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)을 참조해 주세요.
 
 예시:
 
@@ -838,7 +838,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-브라우저 창의 크기가 바뀐 뒤에 이 콜백이 실행됩니다. 구역 크기가 바뀐 직후에 실행됩니다.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 브라우저 창의 크기가 바뀐 뒤에 이 콜백이 실행됩니다. 구역 크기가 바뀐 직후에 실행됩니다.
 
 매개 변수:
 
@@ -857,7 +857,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
 
 예시:
 
@@ -870,7 +870,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-fullpage.js가 정상 모드에서 반응형 모드로 바뀌거나 반응형 모드에서 정상 모드로 바뀌고 나면 이 콜백이 실행됩니다.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) fullpage.js가 정상 모드에서 반응형 모드로 바뀌거나 반응형 모드에서 정상 모드로 바뀌고 나면 이 콜백이 실행됩니다.
 
 매개 변수:
 
@@ -887,7 +887,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-구역의 슬라이드를 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 구역의 슬라이드를 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
 매개 변수:
 
 - `section`: *(Object)* 활성화된 수직 구역.
@@ -921,7 +921,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-사용자가 슬라이드를 떠나서 다른 슬라이드로 이동하는 와중에 콜백이 실행됩니다.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 사용자가 슬라이드를 떠나서 다른 슬라이드로 이동하는 와중에 콜백이 실행됩니다.
 `false`로 되돌리면 발동하기 전에 취소됩니다.
 
 매개 변수:
@@ -957,20 +957,21 @@ new fullpage('#fullpage', {
 
 
 ---
-### onScrollOverflow (`section`, `slide`, `position`)
-This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+### onScrollOverflow (`section`, `slide`, `position`, `direction`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
 
 Parameters:
 
 - `section`: *(Object)* active vertical section.
 - `slide`: *(Object)* horizontal slide of origin.
 - `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+- `direction`: *(String)* `up` or `down`
 
 Example:
 
 ```javascript
 new fullpage('#fullpage', {
-	onScrollOverflow: function( section, slide, position){
+	onScrollOverflow: function( section, slide, position, direction){
 		console.log(section);
 		console.log("position: " + position);
 	}

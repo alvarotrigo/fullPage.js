@@ -187,7 +187,7 @@ A more complex initialization with all options set could look like this:
 ```javascript
 
 var myFullpage = new fullpage('#fullpage', {
-	//Navigation
+	// Navigation
 	menu: '#menu',
 	lockAnchors: false,
 	anchors:['firstPage', 'secondPage'],
@@ -198,7 +198,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slidesNavigation: false,
 	slidesNavPosition: 'bottom',
 
-	//Scrolling
+	// Scrolling
 	css3: true,
 	scrollingSpeed: 700,
 	autoScrolling: true,
@@ -225,12 +225,12 @@ var myFullpage = new fullpage('#fullpage', {
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
-	//Accessibility
+	// Accessibility
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
 
-	//Design
+	// Design
 	controlArrows: true,
 	controlArrowsHTML: [
 		'<div class="fp-arrow"></div>', 
@@ -253,7 +253,7 @@ var myFullpage = new fullpage('#fullpage', {
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
-	//Custom selectors
+	// Custom selectors
 	sectionSelector: '.section',
 	slideSelector: '.slide',
 
@@ -261,7 +261,7 @@ var myFullpage = new fullpage('#fullpage', {
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
-	//events
+	// Events
 	beforeLeave: function(origin, destination, direction, trigger){},
 	onLeave: function(origin, destination, direction, trigger){},
 	afterLoad: function(origin, destination, direction, trigger){},
@@ -271,7 +271,7 @@ var myFullpage = new fullpage('#fullpage', {
 	afterResponsive: function(isResponsive){},
 	afterSlideLoad: function(section, origin, destination, direction, trigger){},
 	onSlideLeave: function(section, origin, destination, direction, trigger){},
-	onScrollOverflow: function(section, slide, position){}
+	onScrollOverflow: function(section, slide, position, direction){}
 });
 ```
 
@@ -756,7 +756,7 @@ Some callbacks, such as `onLeave` will contain Object type of parameters contain
 - `isLast`: *(Boolean)* determines if the item is the last child.
 
 ### afterLoad (`origin`, `destination`, `direction`, `trigger`)
-Callback fired once the sections have been loaded, after the scrolling has ended.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Callback fired once the sections have been loaded, after the scrolling has ended.
 Parameters:
 
 - `origin`: *(Object)* section of origin.
@@ -788,7 +788,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onLeave (`origin`, `destination`, `direction`, `trigger`)
-This callback is fired once the user leaves a section, in the transition to the new section.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired once the user leaves a section, in the transition to the new section.
 Returning `false` will cancel the move before it takes place.
 
 Parameters:
@@ -820,7 +820,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-This callback is fired right **before** leaving the section, just before the transition takes place.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
 
 You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
 
@@ -848,7 +848,7 @@ new fullpage('#fullpage', {
 
 ---
 ### afterRender()
-This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or fire any code which requires the document to be ready (as this plugin modifies the DOM to create the resulting structure). See [FAQs](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) for more info.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired just after the structure of the page is generated. This is the callback you want to use to initialize other plugins or fire any code which requires the document to be ready (as this plugin modifies the DOM to create the resulting structure). See [FAQs](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) for more info.
 
 Example:
 
@@ -862,7 +862,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-This callback is fired after resizing the browser's window. Just after the sections are resized.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after resizing the browser's window. Just after the sections are resized.
 
 Parameters:
 
@@ -881,7 +881,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
 
 Example:
 
@@ -894,7 +894,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-This callback is fired after fullpage.js changes from normal to responsive mode or from responsive mode to normal mode.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after fullpage.js changes from normal to responsive mode or from responsive mode to normal mode.
 
 Parameters:
 
@@ -911,7 +911,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-Callback fired once the slide of a section have been loaded, after the scrolling has ended.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Callback fired once the slide of a section have been loaded, after the scrolling has ended.
 
 Parameters:
 
@@ -947,7 +947,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired once the user leaves an slide to go to another, in the transition to the new slide.
 Returning `false` will cancel the move before it takes place.
 
 Parameters:
@@ -983,20 +983,21 @@ You can cancel a move by returning `false` on the `onSlideLeave` callback. [Same
 
 
 ---
-### onScrollOverflow (`section`, `slide`, `position`)
-This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+### onScrollOverflow (`section`, `slide`, `position`, `direction`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
 
 Parameters:
 
 - `section`: *(Object)* active vertical section.
 - `slide`: *(Object)* horizontal slide of origin.
 - `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+- `direction`: *(String)* `up` or `down`
 
 Example:
 
 ```javascript
 new fullpage('#fullpage', {
-	onScrollOverflow: function( section, slide, position){
+	onScrollOverflow: function( section, slide, position, direction){
 		console.log(section);
 		console.log("position: " + position);
 	}
