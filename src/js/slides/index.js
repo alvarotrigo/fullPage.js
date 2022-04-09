@@ -1,11 +1,14 @@
 import { nullOrSlide } from '../callbacks/nullOrSlide.js';
 import { EventEmitter } from '../common/eventEmitter.js';
-import { getState } from '../common/state.js';
+import { getState, state } from '../common/state.js';
 import { landscapeScroll, onDestroy } from './landscapeScroll.js';
 import { moveSlideLeft, moveSlideRight } from './moveSlide.js';
 import { FP } from '../common/constants.js';
 
 FP.getActiveSlide = getActiveSlide;
+FP.getScrollX = function(){
+    return state.scrollX;
+};
 
 EventEmitter.on('bindEvents', bindEvents);
 

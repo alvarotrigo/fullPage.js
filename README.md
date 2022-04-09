@@ -554,6 +554,28 @@ new fullpage('#fullpage', {
 ## Métodos
 Puedes verlos en acción [aquí](https://alvarotrigo.com/fullPage/examples/methods.html)
 
+### getActiveSection()
+[Demo](https://codepen.io/alvarotrigo/pen/VdpzRN/) Gets an Object (type [Section](https://github.com/alvarotrigo/fullPage.js#callbacks)) containing the active section and its properties.
+
+```javascript
+fullpage_api.getActiveSection();
+```
+
+### getActiveSlide()
+[Demo](https://codepen.io/alvarotrigo/pen/VdpzRN/) Gets an Object (type [Slide](https://github.com/alvarotrigo/fullPage.js#callbacks)) containing the active slide and its properties.
+
+```javascript
+fullpage_api.getActiveSlide();
+```
+
+### getScrollY() & getScrollX
+[Demo](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` Gets the Y position of the fullPage wrapper. `getScrollX` gets the X position of the active horizontal slide.
+
+```javascript
+fullpage_api.getScrollY();
+fullpage_api.getScrollX();
+```
+
 ### moveSectionUp()
 [Demostración](https://codepen.io/alvarotrigo/pen/GJXNMN) Desplaza la página hacia arriba una sección:
 ```javascript
@@ -755,7 +777,7 @@ new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 	afterLoad: function(origin, destination, direction, trigger){
-		var loadedSection = this;
+		var origin = this;
 
 		//usando su índice
 		if(destination.index == 2){
@@ -785,7 +807,7 @@ Por ejemplo:
 ```javascript
 new fullpage('#fullpage', {
 	onLeave: function(origin, destination, direction, trigger){
-		var leavingSection = this;
+		var origin = this;
 
 		//después de abandonar la sección 2
 		if(origin.index == 1 && direction =='down'){

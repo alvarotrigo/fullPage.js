@@ -118,6 +118,9 @@ function performHorizontalMove(slides, v, fireCallback){
     var destinyPos = v.destinyPos;
 
     activeSlidesNavigation(v.slidesNav, v.slideIndex);
+    setState({
+        scrollX: Math.round(destinyPos.left)
+    });
 
     if(getOptions().css3){
         var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';

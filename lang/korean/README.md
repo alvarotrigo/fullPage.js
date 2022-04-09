@@ -550,6 +550,14 @@ fullpage_api.getActiveSection();
 fullpage_api.getActiveSlide();
 ```
 
+### getScrollY() & getScrollX
+[Demo](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` Gets the Y position of the fullPage wrapper. `getScrollX` gets the X position of the active horizontal slide.
+
+```javascript
+fullpage_api.getScrollY();
+fullpage_api.getScrollX();
+```
+
 ### moveSectionUp()
 [데모](http://codepen.io/alvarotrigo/pen/GJXNMN) [데모](http://codepen.io/alvarotrigo/pen/GJXNMN) 한 구역 위로 스크롤합니다.
 ```javascript
@@ -745,7 +753,7 @@ new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 	afterLoad: function(origin, destination, direction, trigger){
-		var loadedSection = this;
+		var origin = this;
 
 		//색인 사용
 		if(origin.index == 2){
@@ -775,7 +783,7 @@ new fullpage('#fullpage', {
 ```javascript
 new fullpage('#fullpage', {
 	onLeave: function(origin, destination, direction, trigger){
-		var leavingSection = this;
+		var origin = this;
 
 		//구역 2를 떠난 후
 		if(origin.index == 1 && direction =='down'){

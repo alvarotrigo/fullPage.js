@@ -558,6 +558,14 @@ fullpage_api.getActiveSection();
 fullpage_api.getActiveSlide();
 ```
 
+### getScrollY() & getScrollX
+[Demo](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` Gets the Y position of the fullPage wrapper. `getScrollX` gets the X position of the active horizontal slide.
+
+```javascript
+fullpage_api.getScrollY();
+fullpage_api.getScrollX();
+```
+
 ### moveSectionUp()
 [Демо](http://codepen.io/alvarotrigo/pen/GJXNMN) Прокручивает на один раздел вверх:
 ```javascript
@@ -755,7 +763,7 @@ new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 	afterLoad: function(origin, destination, direction, trigger){
-		var loadedSection = this;
+		var origin = this;
 
 		//использование индекса
 		if(origin.index == 2){
@@ -785,7 +793,7 @@ new fullpage('#fullpage', {
 ```javascript
 new fullpage('#fullpage', {
 	onLeave: function(origin, destination, direction, trigger){
-		var leavingSection = this;
+		var origin = this;
 
 		//после покидания раздела 2
 		if(origin.index == 1 && direction =='down'){

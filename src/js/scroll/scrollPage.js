@@ -25,6 +25,9 @@ import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 
 FP.moveTo = moveTo;
+FP.getScrollY = function(){
+    return state.scrollY;
+};
 
 let g_afterSectionLoadsId;
 let g_transitionLapseId;
@@ -182,7 +185,10 @@ function getDestinationPosition(element){
 function performMovement(v){
     var isFastSpeed = getOptions().scrollingSpeed < 700;
     var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed; 
-    setState({touchDirection: 'none'});
+    setState({
+        touchDirection: 'none',
+        scrollY: Math.round(v.dtop)
+    });
 
     EventEmitter.emit('onPerformMovement');
 

@@ -871,7 +871,9 @@
       previousDestTop: 0,
       windowsHeight: getWindowHeight(),
       isDoingContinousVertical: false,
-      timeouts: {}
+      timeouts: {},
+      scrollY: 0,
+      scrollX: 0
     }; // @ts-ignore
 
     win.state = state;
@@ -2034,6 +2036,9 @@
     function performHorizontalMove(slides, v, fireCallback) {
       var destinyPos = v.destinyPos;
       activeSlidesNavigation(v.slidesNav, v.slideIndex);
+      setState({
+        scrollX: Math.round(destinyPos.left)
+      });
 
       if (getOptions().css3) {
         var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';
@@ -3282,6 +3287,11 @@
     }
 
     FP.moveTo = moveTo;
+
+    FP.getScrollY = function () {
+      return state.scrollY;
+    };
+
     var g_afterSectionLoadsId;
     var g_transitionLapseId;
     EventEmitter.on('onDestroy', onDestroy$6);
@@ -3436,7 +3446,8 @@
       var isFastSpeed = getOptions().scrollingSpeed < 700;
       var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
       setState({
-        touchDirection: 'none'
+        touchDirection: 'none',
+        scrollY: Math.round(v.dtop)
       });
       EventEmitter.emit('onPerformMovement'); // using CSS3 translate functionality
 
@@ -4194,7 +4205,7 @@
 
 
     function cancelDirectionKeyEvents(e) {
-      if (shouldCancelKeyboardNavigation(e)) {
+      if (shouldCancelKeyboardNavigation(e) && !closest(e.target, OVERFLOW_SEL)) {
         e.preventDefault();
       }
     }
@@ -5000,6 +5011,11 @@
     }
 
     FP.getActiveSlide = getActiveSlide;
+
+    FP.getScrollX = function () {
+      return state.scrollX;
+    };
+
     EventEmitter.on('bindEvents', bindEvents);
 
     function bindEvents() {
@@ -5093,7 +5109,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-9".split("-"),
+      var n = "2022-3-10".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5509,7 +5525,7 @@
       }; //public functions
 
 
-      FP.version = '3.1.1';
+      FP.version = '4.0.0';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

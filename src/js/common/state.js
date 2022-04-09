@@ -24,7 +24,9 @@ export const state = {
     previousDestTop: 0,
     windowsHeight: utils.getWindowHeight(),
     isDoingContinousVertical: false,
-    timeouts: {}
+    timeouts: {},
+    scrollY: 0,
+    scrollX: 0
 };
 // @ts-ignore
 win.state = state;

@@ -8,7 +8,8 @@ import {
     SECTION_ACTIVE_SEL,
     SLIDE_ACTIVE_SEL,
     SLIDE_SEL,
-    SECTION_SEL
+    SECTION_SEL,
+    OVERFLOW_SEL
 } from '../common/selectors.js';
 import { getState, setState, state } from '../common/state.js';
 import { moveSlideLeft, moveSlideRight } from '../slides/moveSlide.js';
@@ -259,7 +260,7 @@ function shouldCancelKeyboardNavigation(e){
 
 //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
 function cancelDirectionKeyEvents(e){
-    if(shouldCancelKeyboardNavigation(e)){
+    if(shouldCancelKeyboardNavigation(e) && !utils.closest(e.target, OVERFLOW_SEL)){
         e.preventDefault();
     }
 }
