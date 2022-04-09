@@ -43,6 +43,8 @@ export function scrollHandler(e){
         var screen_mid = currentScroll + (utils.getWindowHeight() / 2.0);
         var isAtBottom = $body.scrollHeight - utils.getWindowHeight() === currentScroll;
         var sections =  getState().sections;
+        
+        setState({scrollY: currentScroll});
 
         //when using `auto-height` for a small last section it won't be centered in the viewport
         if(isAtBottom){

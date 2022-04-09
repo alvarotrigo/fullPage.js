@@ -4848,7 +4848,10 @@
         var visibleSectionIndex = 0;
         var screen_mid = currentScroll + getWindowHeight() / 2.0;
         var isAtBottom = $body.scrollHeight - getWindowHeight() === currentScroll;
-        var sections = getState().sections; //when using `auto-height` for a small last section it won't be centered in the viewport
+        var sections = getState().sections;
+        setState({
+          scrollY: currentScroll
+        }); //when using `auto-height` for a small last section it won't be centered in the viewport
 
         if (isAtBottom) {
           visibleSectionIndex = sections.length - 1;
