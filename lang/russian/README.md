@@ -202,7 +202,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
-	fitToSectionDelay: 1000,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -397,7 +396,7 @@ new fullpage('#fullpage', {
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. (Uses flexbox)
+- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
 - `scrollingSpeed`: (по умолчанию `700`) Ускорьте на миллисекунды переходы при скроллинге.
 
@@ -432,8 +431,6 @@ new fullpage('#fullpage', {
 - `autoScrolling`: (по умолчанию `true`) Определяет использование «автоматического» скроллинга или «обычного». Также эта опция влияет на размещение разделов в окне браузера/устройства для планшетов и мобильных устройств.
 
 - `fitToSection`: (по умолчанию `true`) Определяет, нужна ли подстройка разделов под окно просмотра. При установке значения `true` для данной опции текущий активный раздел всегда будет заполнять окно просмотра. В противном случае пользователь будет иметь возможность остановиться на середине раздела (когда )
-
-- `fitToSectionDelay`: (по умолчанию 1000). Если для опции `fitToSection` установлено значение `true`, данная функция замедлит подстройку на настроенные миллисекунды.
 
 - `scrollBar`: (по умолчанию `false`) Определяет, будет ли использоваться полоса прокрутки на сайте. При использовании полосы прокрутки функция `autoScrolling` будет работать как обычно. Пользователь по-прежнему сможет пролистывать сайт с помощью полосы прокрутки, и fullPage.js подстроит раздел под экран по окончании скроллинга.
 

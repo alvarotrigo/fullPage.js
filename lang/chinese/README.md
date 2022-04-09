@@ -201,7 +201,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
-	fitToSectionDelay: 1000,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -398,7 +397,7 @@ new fullpage('#fullpage', {
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`：（默认为`true`）在 section 内部垂直居中。(Uses flexbox)
+- `verticalCentered`：（默认为`true`）在 section 内部垂直居中。(Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
 - `scrollingSpeed`：（默认 `700` ）滚动转换的速度（以毫秒为单位）。
 
@@ -433,9 +432,6 @@ new fullpage('#fullpage', {
 - `autoScrolling`: （默认为 `true` ）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
 
 - `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
-
-- `fitToSectionDelay`: （默认 1000 ）。 如果 `fitToSection` 设置为 true ，则延迟
-以毫秒为单位进行拟合。
 
 - `scrollBar`: （默认 `false` ）确定是否使用站点的滚动条。 在使用滚动条的情况下，`autoScrolling` 功能仍将按预期工作。 用户也可以使用滚动条自由滚动网站，当滚动完成时，fullPage.js 将适配屏幕上的部分。
 

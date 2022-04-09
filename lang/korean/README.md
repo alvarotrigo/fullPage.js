@@ -198,7 +198,6 @@ new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
-	fitToSectionDelay: 1000,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -389,7 +388,7 @@ new fullpage('#fullpage', {
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (Uses flexbox)
+- `verticalCentered`: (기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
 - `scrollingSpeed`: (기본값 `700`) 스크롤 이동 속도를 0.001초 단위로 설정합니다.
 
@@ -423,8 +422,6 @@ new fullpage('#fullpage', {
 - `autoScrolling`: (기본값 `true`) "automatic" 스크롤을 쓸지 "normal" 스크롤을 쓸지를 정의합니다. 태블릿과 스마트폰 브라우저/기기 창에서 구역이 들어맞는 방법에도 영향을 미칩니다.
 
 - `fitToSection`: (기본값 `true`) 구역을 모바일 지원(viewport)에 맞출지 말지를 결정합니다. `true`로 설정하면 현재 활성화된 구역이 항상 모바일 지원(viewport) 전체를 가득 채웁니다. 그렇지 않은 경우에는 사용자는 구역 중간에서 자유롭게 멈출 수 있습니다.
-
-- `fitToSectionDelay`: (기본값 1000). `fitToSection`이 true로 설정되면 설정된 1000분의 1초 단위로 맞춤을 지연합니다.
 
 - `scrollBar`: (기본값 `false`) 웹사이트에 스크롤 막대기를 쓸지 말지를 결정합니다. 스크롤 막대기를 쓰는 경우 `autoScrolling` 기능이 여전히 예상대로 작동할 것입니다. 또한 사용자는 스크롤 막대기로 웹사이트에서 이동할 수도 있으며 스크롤이 끝나면 fullPage.js가 화면 구역에 맞춰집니다.
 

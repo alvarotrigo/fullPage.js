@@ -4,7 +4,6 @@ import { stopMedia, playMedia} from '../media.js';
 import { updateState } from '../stateUpdates.js';
 import { getState, setState, state } from '../common/state.js';
 import { lazyLoad } from '../lazyLoad/lazyLoad.js';
-import { g_isCssSnapsSupported, fitToSection } from '../fitToSection.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activateMenuAndNav } from '../menu/activateMenuAndNav.js';
 import { $body } from '../common/cache.js';
@@ -143,22 +142,6 @@ export function scrollHandler(e){
             g_scrollId = setTimeout(function(){
                 setState({isScrolling: false});
             }, 100);
-        }
-
-        if(getOptions().fitToSection && (!g_isCssSnapsSupported || getOptions().scrollBar)){
-            //for the auto adjust of the viewport to fit a whole section
-            clearTimeout(g_scrollId2);
-
-            g_scrollId2 = setTimeout(function(){
-                //checking it again in case it changed during the delay
-                if(getOptions().fitToSection &&
-
-                    //is the destination element bigger than the viewport?
-                    getState().activeSection.item.offsetHeight <= state.windowsHeight
-                ){
-                    fitToSection();
-                }
-            }, getOptions().fitToSectionDelay);
         }
     }
 }

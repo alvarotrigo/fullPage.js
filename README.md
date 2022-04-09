@@ -59,6 +59,8 @@ A simple and easy to use library that creates fullscreen scrolling websites (als
 Suggestion are more than welcome, not only for feature requests but also for coding style improvements.
 Let's make this a great library to make people's lives easier!
 
+[Migration from v3 to v4]()
+
 ## Compatibility
 fullPage.js is fully functional on all modern browsers, as well as some old ones such as Internet Explorer 9, Opera 12, etc.
 It works with browsers with CSS3 support and with the ones which don't have it, making it ideal for old browsers compatibility.
@@ -203,7 +205,6 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
-	fitToSectionDelay: 1000,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -398,7 +399,7 @@ new fullpage('#fullpage', {
 
 - `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one.
 
-- `verticalCentered`: (default `true`) Vertically centering of the content using flexbox.
+- `verticalCentered`: (default `true`) Vertically centering of the content using flexbox. You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
 - `scrollingSpeed`: (default `700`) Speed in milliseconds for the scrolling transitions.
 
@@ -433,9 +434,6 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](http://jqueryui.com
 - `autoScrolling`: (default `true`) Defines whether to use the "automatic" scrolling or the "normal" one. It also has affects the way the sections fit in the browser/device window in tablets and mobile phones.
 
 - `fitToSection`: (default `true`) Determines whether or not to fit sections to the viewport or not. When set to `true` the current active section will always fill the whole viewport. Otherwise the user will be free to stop in the middle of a section.
-
-- `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
-the fitting by the configured milliseconds.
 
 - `scrollBar`: (default `false`) Determines whether to use scroll bar for the **vertical sections** on site or not. In case of using scroll bar, the `autoScrolling` functionality will still work as expected. The user will also be free to scroll the site with the scroll bar and fullPage.js will fit the section in the screen when scrolling finishes.
 

@@ -12,6 +12,32 @@
 
     <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+        .actions{
+            position: absolute;
+            z-index: 999;
+            top: 70px;
+            left: 50px;
+        }
+        .actions li{
+            display: inline-block;
+        }
+        .actions button {
+            padding: 0.93em 1.87em;
+            background: #35495e;
+            border-radius: 5px;
+            border: 0;
+            color: #fff;
+            margin: 7px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background: #fff;
+            color: #35495e;
+        }
+    </style>
 
     <!--[if IE]>
         <script type="text/javascript">
@@ -19,7 +45,11 @@
         </script>
     <![endif]-->
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    
     <script type="text/javascript" src="../dist/fullpage.js"></script>
 
     <script type="text/javascript">
@@ -45,26 +75,6 @@
             });
         });
     </script>
-
-    <style type="text/css">
-    #actions{
-        position:fixed;
-        top: 73px;
-        left: 30px;
-        z-index: 99999;
-    }
-    #actions a{
-        background: rgba(0,0,0,0.8);
-        padding: 7px;
-        margin: 2px;
-        color: #ccc;
-        display: inline-block;
-    }
-    #actions a:hover{
-        color: #fff;
-        background: #81A140;
-    }
-    </style>
 </head>
 <body>
 
@@ -120,10 +130,10 @@
     <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
 </ul>
 
-<div id="actions">
-    <a id="moveSectionUp" href="#">moveSectionUp</a>
-    <a id="moveSectionDown" href="#">moveSectionDown</a>
-</div>
+<ul class="actions">
+    <li><button id="moveSectionUp">Move Section Up</button></li>
+    <li><button id="moveSectionDown">Move Section Down</button></li>
+</ul>
 
 <div id="fullpage">
     <div class="section">

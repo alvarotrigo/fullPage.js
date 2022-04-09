@@ -79,12 +79,11 @@
 	<div class="section " id="section0">
 		<h1>fullPage.js</h1>
 		<p>Continuous Scrolling Enabled</p>
-		<img src="imgs/fullPage.png" alt="fullPage" />
 	</div>
 	<div class="section" id="section1">
 		<div class="intro">
-			<h1>Around the world scrolling</h1>
-			<p>Go to the first section and scroll up or to the last one and scroll down to see how it works.</p>
+			<h1>Keep Scrolling</h1>
+			<p>Move to the first section and scroll up or move to the last and scroll down to see how it works.</p>
 		</div>
 	</div>
 	<div class="section" id="section2">
@@ -105,13 +104,13 @@
       anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
       menu: '#menu',
       continuousVertical: true,
-      afterLoad: function(anchorLink, index){
-            console.log("AFTER LOAD - anchorLink:" +anchorLink + " index:" +index );
-        },
-        onLeave: function(index, nextIndex, direction){
-            console.log("ONLEAVE - index:" +index + " nextIndex:" +nextIndex  + " direction:" + direction);
-
-        },
+      navigation: true,
+      afterLoad: function(origin, destination, direction, trigger){
+        console.log("afterLoad: destination:" + destination.index);
+      },
+      onLeave: function(origin, destination, direction, trigger){
+        console.log("onLeave: destination:" + destination.index);
+      },
     });
 </script>
 

@@ -4616,11 +4616,14 @@
         scrollOverflowHandler.makeScrollable();
       }
 
-      var sectionIndex = getState().activeSection.index(); //isn't it the first section?
+      var sectionIndex = getState().activeSection.index();
 
-      if (sectionIndex) {
-        //adjusting the position for the current section
-        silentMoveTo(sectionIndex + 1);
+      if (!state.isBeyondFullpage) {
+        //isn't it the first section?
+        if (sectionIndex) {
+          //adjusting the position for the current section
+          silentMoveTo(sectionIndex + 1);
+        }
       }
 
       setState({
@@ -4934,16 +4937,6 @@
             });
           }, 100);
         }
-
-        if (getOptions().fitToSection && (!g_isCssSnapsSupported || getOptions().scrollBar)) {
-          //for the auto adjust of the viewport to fit a whole section
-          clearTimeout(g_scrollId2);
-          g_scrollId2 = setTimeout(function () {
-            //checking it again in case it changed during the delay
-            if (getOptions().fitToSection && //is the destination element bigger than the viewport?
-            getState().activeSection.item.offsetHeight <= state.windowsHeight) ;
-          }, getOptions().fitToSectionDelay);
-        }
       }
     }
 
@@ -5100,7 +5093,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-6".split("-"),
+      var n = "2022-3-9".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 

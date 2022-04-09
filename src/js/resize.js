@@ -130,10 +130,12 @@ function reBuild(resizing){
 
     var sectionIndex = getState().activeSection.index();
 
-    //isn't it the first section?
-    if(sectionIndex){
-        //adjusting the position for the current section
-        silentMoveTo(sectionIndex + 1);
+    if(!state.isBeyondFullpage){
+        //isn't it the first section?
+        if(sectionIndex){
+            //adjusting the position for the current section
+            silentMoveTo(sectionIndex + 1);
+        }
     }
 
     setState({isResizing: false});
