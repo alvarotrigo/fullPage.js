@@ -25,19 +25,28 @@ gulp.task('css', function(done) {
  * Updates version number in credit comments, window variable and README.md
  */
 gulp.task('update-version', function(done){
+
+    // updating sources
     gulp.src([
-        './src/fullpage.js',
-        './src/fullpage.extensions.js',
-        './src/fullpage.css',
-    ])
-    .pipe(replace(/(FP\.version = ')([\d\.])+(')/g, "$1" + fpPackage.version + "$3"))
-    .pipe(replace(/(fullPage )([\d\.]+)/g, "$1" + fpPackage.version))
-    .pipe(gulp.dest('./src/'));
+        './src/js/fullpage.js',
+        './src/js-extensions/fullpage.js',
+        './src/css/fullpage.css'
+    ], { base: "./" })
+        .pipe(replace(/(FP\.version = ')([\d\.])+(')/g, "$1" + fpPackage.version + "$3"))
+        .pipe(replace(/(fullPage )([\d\.]+)/g, "$1" + fpPackage.version))
+        .pipe(gulp.dest('.'));
 
     // updating readme version
-    gulp.src('./README.md')
+    gulp.src([
+        './README.md',
+        './lang/chinese/README.md',
+        './lang/french/README.md',
+        './lang/korean/README.md',
+        './lang/russian/README.md',
+        './lang/spanish/README.md',
+    ], { base: "./" })
         .pipe(replace(/(fullPage.js-v)([\d\.]+)/g, "$1" + fpPackage.version))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('.'));
 
     done();
 });

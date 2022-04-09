@@ -60,7 +60,7 @@ function setAPI(){
     };
 
     //public functions
-    FP.version = '3.1.1';
+    FP.version = '4.0.0';
 
     FP.test = Object.assign(FP.test, {
         top: '0px',
