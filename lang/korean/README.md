@@ -27,7 +27,7 @@
 - [워드프레스 테마](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 확장 프로그램](http://alvarotrigo.com/fullPage/extensions/)
 - [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-
+- [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
 ---
 
 (단일 페이지 웹사이트 또는 한페이지 사이트로도 알려진) 전체 화면 스크롤 웹사이트를 만드는 간단하고 쓰기 쉬운 라이브러리입니다. 전체 화면 스크롤 웹사이트를 만들 수 있으며 웹사이트 구역 안에 수평 방향 슬라이더를 추가할 수 있습니다.

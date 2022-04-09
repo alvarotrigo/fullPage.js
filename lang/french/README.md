@@ -28,7 +28,7 @@
 - [Thème Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensions fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Questions fréquemment demandées](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-
+- [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
 ---
 
 Une bibliothèque simple et facile à utiliser pour créer des sites Web qui défile en plein écran (aussi connus sous le nom de sites web d'une seule page ou d'une page).

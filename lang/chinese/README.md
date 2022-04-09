@@ -27,7 +27,7 @@
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 扩展](http://alvarotrigo.com/fullPage/extensions/)
 - [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-
+- [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
 ---
 
 通过调用本库可轻易创建全屏滚动网站(也称为单页网站)。
