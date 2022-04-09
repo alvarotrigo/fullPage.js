@@ -1,0 +1,1 @@
+You can privately report issues at help@alvarotrigo.com
