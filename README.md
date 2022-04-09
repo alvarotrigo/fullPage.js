@@ -164,9 +164,6 @@ new fullpage('#fullpage', {
 	autoScrolling:true,
 	scrollHorizontally: true
 });
-
-//métodos
-fullpage_api.setAllowScrolling(false);
 ```
 
 #### Inicialización con jQuery

@@ -158,9 +158,6 @@ new fullpage('#fullpage', {
 	autoScrolling:true,
 	scrollHorizontally: true
 });
-
-//methods
-fullpage_api.setAllowScrolling(false);
 ```
 
 #### 使用 jQuery 进行初始化
