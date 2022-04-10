@@ -1,6 +1,6 @@
 # fullPage.js
 ![предварительный просмотр](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
-![совместимость](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
+![совместимость](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.png)
 
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js/#fullpagejs">English</a> |
