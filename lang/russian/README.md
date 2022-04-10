@@ -104,9 +104,6 @@ npm install fullpage.js
 <!-- Следующая строчка опциональна. Необходима лишь в случае, если вы используете опцию css3:false и хотите использовать другие анимационные эффекты, кроме "linear", "swing" или "easeInOutCubic". -->
 <script src="vendors/easings.min.js"></script>
 
-<!-- Следующая строчка опциональна, необходима лишь в случае, если вы хотите использовать опцию `scrollOverflow:true` -->
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 

@@ -103,10 +103,6 @@ npm install fullpage.js
 <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "easeInOutCubic". -->
 <script src="vendors/easings.min.js"></script>
 
-
-<!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
