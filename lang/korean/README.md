@@ -102,9 +102,6 @@ npm install fullpage.js
 <!-- 아래는 선택사항입니다. css3:false 옵션을 쓰시면서 "linear", "swing" 또는 "easeInOutCubic" 대신 다른 전환(easing) 효과를 원하시는 경우에만 필요합니다. -->
 <script src="vendors/easings.min.js"></script>
 
-<!-- 아래 선은 `scrollOverflow:true` 옵션을 쓰시는 경우에만 넣으셔야 합니다. -->
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 

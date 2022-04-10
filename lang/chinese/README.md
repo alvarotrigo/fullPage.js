@@ -105,8 +105,6 @@ npm install fullpage.js
 <!-- 以下行是可选的。 只有在使用选项 css3:false ，并且您希望使用其他缓动效果，而非 linear 、 swing 或 easeInOutCubic 时才有必要。 -->
 <script src="vendors/easings.min.js"></script>
 
-<!-- 以下行仅在使用选项 scrollOverflow:true 的情况下是必需的 -->
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 

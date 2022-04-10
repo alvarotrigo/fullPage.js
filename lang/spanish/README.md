@@ -105,9 +105,6 @@ npm install fullpage.js
 <!-- Esta línea es opcional. Sólamente es necesaria si se hace uso de la opción `css3:false` y se quiere usar otro efecto `easing` en lugar de `linear`, `swing` o `easeInOutCubic`. -->
 <script src="vendors/easings.min.js"></script>
 
-<!-- Esta línea es opcional y sólamente es necesaria en caso de usar la opción `scrollOverflow:true`. -->
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 

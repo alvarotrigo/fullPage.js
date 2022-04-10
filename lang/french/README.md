@@ -105,9 +105,6 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
 <!-- Cette ligne suivante est facultative. Seulement nécessaire si vous utilisez l'option css3:false et que vous voulez utiliser d'autres effets d'assouplissement plutôt que "easeInOutCubic". -->
 <script src="vendors/easings.min.js"></script>
 
-<!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
