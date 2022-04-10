@@ -1,6 +1,6 @@
 # fullPage.js
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
-![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.gif?v=2)
+![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.png)
 
 <p align="center">
   <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
@@ -59,8 +59,8 @@
 集思广益，让这个库更加强大，让写代码更轻松！
 
 ## 兼容性
-fullPage.js 兼容所有的现代浏览器，以及一些旧版浏览器，如 Internet Explorer 9，Opera 12 等都能兼容。
-可兼容支持 CSS3 的浏览器与非支持 CSS3 的浏览器，适用于旧版浏览器。 同时，手机、平板电脑和触摸屏电脑还提供触屏支持。
+fullPage.js is fully functional on all modern browsers and with IE 11. If you need to support IE < 11 consider using [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
+It also provides touch support for mobile phones, tablets and touch screen computers.
 
 特别感谢 [Browserstack](http://www.browserstack.com/) 支持 fullpage.js 。
 

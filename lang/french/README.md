@@ -61,8 +61,7 @@ Les suggestions sont les bienvenues, non seulement pour les demandes de fonction
 Faisons de cette bibliothèque une grande bibliothèque pour rendre la vie des gens plus facile !
 
 ## Compatibilité
-fullPage.js est entièrement fonctionnel sur tous les navigateurs modernes, ainsi que sur certains anciens comme Internet Explorer 9, Opera 12, etc.
-Il fonctionne avec les navigateurs supportant CSS3 et avec ceux qui ne l'ont pas, ce qui le rend idéal pour la compatibilité avec les anciens navigateurs.
+fullPage.js est entièrement fonctionnel sur tous les navigateurs modernes & IE 11.
 Il fournit également un support tactile pour les téléphones mobiles, les tablettes et les ordinateurs à écran tactile.
 
 Remerciements particuliers à [Browserstack](http://www.browserstack.com/) pour son soutien à fullpage.js.

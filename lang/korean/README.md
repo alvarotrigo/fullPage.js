@@ -59,9 +59,8 @@
 이 라이브러리를 멋지게 만들어서 사람들의 삶을 더 편리하게 가꾸어 보아요!
 
 ## 호환성
-fullPage.js는 모든 최신 브라우저에서 기능을 100% 발휘하며 Internet Explorer 9, Opera 12 등 이전 브라우저에서도 마찬가지로 작동됩니다.
-CSS3 지원이 되는 브라우저와 지원되지 않는 브라우저 모두에서 잘 작동되기 때문에 이전 브라우저와의 호환성에 적합합니다.
-스마트폰, 태블릿, 터치화면 컴퓨터의 터치 지원도 됩니다.
+fullPage.js is fully functional on all modern browsers and with IE 11. If you need to support IE < 11 consider using [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
+It also provides touch support for mobile phones, tablets and touch screen computers.
 
 fullpage.js를 지원해 주시는 [Browserstack](http://www.browserstack.com/)에게 특별히 감사드립니다.
 

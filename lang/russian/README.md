@@ -60,9 +60,8 @@
 Давайте вместе создадим замечательную библиотеку, чтобы облегчить жизнь пользователям!
 
 ## Совместимость
-fullPage.js полностью функционирует во всех современных браузерах, также, как и в некоторых устаревших, таких как Internet Explorer 9, Opera 12 и т.д.
-Работает в браузерах, имеющих и не имеющих поддержку CSS3, что обеспечивает идеальную совместимость с устаревшими браузерами.
-Обеспечивает поддержку сенсорного управления для мобильных телефонов, планшетов и компьютеров с сенсорным экраном.
+fullPage.js is fully functional on all modern browsers and with IE 11. If you need to support IE < 11 consider using [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
+It also provides touch support for mobile phones, tablets and touch screen computers.
 
 Выражаем особую благодарность [Browserstack](http://www.browserstack.com/) за поддержку fullpage.js.
 

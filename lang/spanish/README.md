@@ -61,8 +61,7 @@ Las sugerencias serán más que bienvenidas, no solamente por pedidos de nuevas 
 ¡Hagamos de fullPage.js una gran librería para facilitar la vida de las personas!
 
 ## Compatibilidad
-fullPage.js es totalmente compatible y funcional con cualquier navegador moderno, así como en alguno de los antiguos tales como Internet Explorer 9 u Opera 12.
-Funciona con navegadores que soportan CSS3 tanto en aquellos que no lo soportan, haciéndolo ideal incluso con navegadores antiguos.
+fullPage.js es totalmente compatible y funcional con cualquier navegador moderno y con IE 11. Si necesitas soporte para IE < 11 considera usar [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
 También provee soporte táctil en dispositivos móviles, tabletas y ordenadores con pantalla táctil.
 
 Gracias a [Browserstack](https://www.browserstack.com/) por dar soporte a fullPage.js.
@@ -554,15 +553,16 @@ new fullpage('#fullpage', {
 ## Métodos
 Puedes verlos en acción [aquí](https://alvarotrigo.com/fullPage/examples/methods.html)
 
+
 ### getActiveSection()
-[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 获取包含激活 section 及其属性的对象（键入[ Section ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。
+[Demo](https://codepen.io/alvarotrigo/pen/VdpzRN/) Gets an Object (type [Section](https://github.com/alvarotrigo/fullPage.js#callbacks)) containing the active section and its properties.
 
 ```javascript
 fullpage_api.getActiveSection();
 ```
 
 ### getActiveSlide()
-[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/)  获取包含激活滑块及其属性的对象（键入[ Slide ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。）。
+[Demo](https://codepen.io/alvarotrigo/pen/VdpzRN/) Gets an Object (type [Slide](https://github.com/alvarotrigo/fullPage.js#callbacks)) containing the active slide and its properties.
 
 ```javascript
 fullpage_api.getActiveSlide();
