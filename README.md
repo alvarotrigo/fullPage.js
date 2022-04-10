@@ -119,6 +119,7 @@ Each section will be defined with an element containing the `section` class.
 The active section by default will be the first section, which is taken as the home page.
 
 Sections should be placed inside a wrapper (`<div id="fullpage">` in this case). The wrapper can not be the `body` element.
+
 ```html
 <div id="fullpage">
 	<div class="section">Some section</div>
@@ -127,12 +128,15 @@ Sections should be placed inside a wrapper (`<div id="fullpage">` in this case).
 	<div class="section">Some section</div>
 </div>
 ```
+
 If you want to define a different starting point rather than the first section or the first slide of a section, just add the class `active` to the section and slide you want to load first.
+
 ```html
 <div class="section active">Some section</div>
 ```
 
 In order to create a landscape slider within a section, each slide will be defined by default with an element containing the `slide` class:
+
 ```html
 <div class="section">
 	<div class="slide"> Slide 1 </div>
@@ -140,7 +144,8 @@ In order to create a landscape slider within a section, each slide will be defin
 	<div class="slide"> Slide 3 </div>
 	<div class="slide"> Slide 4 </div>
 </div>
-````
+```
+
 You can see a fully working example of the HTML structure in the [`simple.html` file](https://github.com/alvarotrigo/fullPage.js/blob/master/examples/simple.html).
 
 ### Initialization
@@ -154,9 +159,6 @@ new fullpage('#fullpage', {
 	autoScrolling:true,
 	scrollHorizontally: true
 });
-
-//methods
-fullpage_api.setAllowScrolling(false);
 ```
 
 #### Initialization with jQuery
