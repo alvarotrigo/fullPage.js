@@ -195,9 +195,10 @@ p{
  * --------------------------------------- */
  #demosMenu{
 	position:fixed;
-	bottom: 10px;
-	right:10px;
+	top: 20px;
+	right:20px;
 	z-index: 999;
+	padding: 5px 10px;
  }
 
 /* Buttons
