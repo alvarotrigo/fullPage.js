@@ -12,6 +12,32 @@
 
     <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+        .actions{
+            position: absolute;
+            z-index: 999;
+            top: 70px;
+            left: 50px;
+        }
+        .actions li{
+            display: inline-block;
+        }
+        .actions button {
+            padding: 0.93em 1.87em;
+            background: #35495e;
+            border-radius: 5px;
+            border: 0;
+            color: #fff;
+            margin: 7px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background: #fff;
+            color: #35495e;
+        }
+    </style>
 
     <!--[if IE]>
         <script type="text/javascript">
@@ -19,7 +45,11 @@
         </script>
     <![endif]-->
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    
     <script type="text/javascript" src="../dist/fullpage.js"></script>
 
     <script type="text/javascript">
@@ -45,74 +75,64 @@
             });
         });
     </script>
-
-    <style type="text/css">
-    #actions{
-        position:fixed;
-        top: 73px;
-        left: 30px;
-        z-index: 99999;
-    }
-    #actions a{
-        background: rgba(0,0,0,0.8);
-        padding: 7px;
-        margin: 2px;
-        color: #ccc;
-        display: inline-block;
-    }
-    #actions a:hover{
-        color: #fff;
-        background: #81A140;
-    }
-    </style>
 </head>
 <body>
 
 <select id="demosMenu">
-  <option selected>Choose Demo</option>
-  <option id="jquery-adapter">jQuery adapter</option>
-  <option id="active-slide">Active section and slide</option>
-  <option id="auto-height">Auto height</option>
-  <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
-  <option id="backgrounds">Background images</option>
-  <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
-  <option id="background-video">Background video</option>
-  <option id="callbacks-v2-compatible">Callbacks version 2</option>
-  <option id="callbacks-v3">Callbacks version 3</option>
-  <option id="continuous-horizontal">Continuous horizontal</option>
-  <option id="continuous-vertical">Continuous vertical</option>
-  <option id="parallax">Parallax</option>
-  <option id="css3">CSS3</option>
-  <option id="drag-and-move">Drag And Move</option>
-  <option id="easing">Easing</option>
-  <option id="fading-effect">Fading Effect</option>
-  <option id="fixed-headers">Fixed headers</option>
-  <option id="gradient-backgrounds">Gradient backgrounds</option>
-  <option id="interlocked-slides">Interlocked Slides</option>
-  <option id="looping">Looping</option>
-  <option id="methods">Methods</option>
-  <option id="navigation-vertical">Vertical navigation dots</option>
-  <option id="navigation-horizontal">Horizontal navigation dots</option>
-  <option id="navigation-tooltips">Navigation tooltips</option>
-  <option id="no-anchor">No anchor links</option>
-  <option id="normal-scroll">Normal scrolling</option>
-  <option id="normalScrollElements">Normal scroll elements</option>
-  <option id="offset-sections">Offset sections</option>
-  <option id="one-section">One single section</option>
-  <option id="reset-sliders">Reset sliders</option>
-  <option id="responsive-auto-height">Responsive Auto Height</option>
-  <option id="responsive-height">Responsive Height</option>
-  <option id="responsive-width">Responsive Width</option>
-  <option id="responsive-slides">Responsive Slides</option>
-  <option id="scrollBar">Scroll bar enabled</option>
-  <option id="scroll-horizontally">Scroll horizontally</option>
-  <option id="scrollOverflow">Scroll inside sections and slides</option>
-  <option id="scrollOverflow-reset">ScrollOverflow Reset</option>
-  <option id="lazy-load">Lazy load</option>
-  <option id="scrolling-speed">Scrolling speed</option>
-  <option id="trigger-animations">Trigger animations</option>
-  <option id="vue-fullpage">Vue-fullpage component</option>
-</select>
+    <option selected>Choose Demo</option>
+    <option id="simple">Simple</option>
+    <option id="custom-arrows">Custom arrows</option>
+    <option id="hide-sections">Hide sections</option>
+    <option id="scroll-after-fullpage">Scroll after fullpage</option>
+    <option id="observer">Observer</option>
+    <option id="jquery-adapter">jQuery adapter</option>
+    <option id="active-slide">Active section and slide</option>
+    <option id="auto-height">Auto height</option>
+    <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
+    <option id="backgrounds">Background images</option>
+    <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
+    <option id="background-video">Background video</option>
+    <option id="callbacks">Callbacks</option>
+    <option id="continuous-horizontal">Continuous horizontal (premium)</option>
+    <option id="continuous-vertical">Continuous vertical</option>
+    <option id="parallax">Parallax (premium)</option>
+    <option id="cards">Cards 3d (premium)</option>
+    <option id="water-effect">Water effect (premium)</option>
+    <option id="drop-effect">Drop effect (premium)</option>
+    <option id="css3">CSS3</option>
+    <option id="drag-and-move">Drag And Move (premium)</option>
+    <option id="easing-css3">Easing CSS</option>
+    <option id="easing-js">Easing JS</option>
+    <option id="fading-effect">Fading Effect (premium)</option>
+    <option id="fixed-headers">Fixed headers</option>
+    <option id="gradient-backgrounds">Gradient backgrounds</option>
+    <option id="interlocked-slides">Interlocked Slides (premium)</option>
+    <option id="looping">Looping</option>
+    <option id="methods">Methods</option>
+    <option id="navigation-vertical">Vertical navigation dots</option>
+    <option id="navigation-horizontal">Horizontal navigation dots</option>
+    <option id="navigation-tooltips">Navigation tooltips</option>
+    <option id="no-anchor">No anchor links</option>
+    <option id="normal-scroll">Normal scrolling</option>
+    <option id="normalScrollElements">Normal scroll elements</option>
+    <option id="offset-sections">Offset sections (premium)</option>
+    <option id="one-section">One single section</option>
+    <option id="reset-sliders">Reset sliders (premium)</option>
+    <option id="responsive-auto-height">Responsive Auto Height</option>
+    <option id="responsive-height">Responsive Height</option>
+    <option id="responsive-width">Responsive Width</option>
+    <option id="responsive-slides">Responsive Slides (premium)</option>
+    <option id="scrollBar">Scroll bar enabled</option>
+    <option id="scroll-horizontally">Scroll horizontally (premium)</option>
+    <option id="scrollOverflow">Scroll inside sections and slides</option>
+    <option id="scrollOverflow-reset">ScrollOverflow Reset (premium)</option>
+    <option id="lazy-load">Lazy load</option>
+    <option id="scrolling-speed">Scrolling speed</option>
+    <option id="trigger-animations">Trigger animations</option>
+    <option id="vue-fullpage">Vue component</option>
+    <option id="react-fullpage">React component</option>
+    <option id="angular-fullpage">Angular component</option>
+  </select>
 
 <ul id="menu">
     <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
@@ -120,10 +140,10 @@
     <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
 </ul>
 
-<div id="actions">
-    <a id="moveSectionUp" href="#">moveSectionUp</a>
-    <a id="moveSectionDown" href="#">moveSectionDown</a>
-</div>
+<ul class="actions">
+    <li><button id="moveSectionUp">Move Section Up</button></li>
+    <li><button id="moveSectionDown">Move Section Down</button></li>
+</ul>
 
 <div id="fullpage">
     <div class="section">

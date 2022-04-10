@@ -15,6 +15,9 @@
     .intro p{
         color: #fff;
     }
+    video{
+      width: 50%;
+    }
     </style>
 
     <!--[if IE]>
@@ -26,85 +29,103 @@
 <body>
 
 <select id="demosMenu">
-  <option selected>Choose Demo</option>
-  <option id="jquery-adapter">jQuery adapter</option>
-  <option id="active-slide">Active section and slide</option>
-  <option id="auto-height">Auto height</option>
-  <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
-  <option id="backgrounds">Background images</option>
-  <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
-  <option id="background-video">Background video</option>
-  <option id="callbacks-v2-compatible">Callbacks version 2</option>
-  <option id="callbacks-v3">Callbacks version 3</option>
-  <option id="continuous-horizontal">Continuous horizontal</option>
-  <option id="continuous-vertical">Continuous vertical</option>
-  <option id="parallax">Parallax</option>
-  <option id="css3">CSS3</option>
-  <option id="drag-and-move">Drag And Move</option>
-  <option id="easing">Easing</option>
-  <option id="fading-effect">Fading Effect</option>
-  <option id="fixed-headers">Fixed headers</option>
-  <option id="gradient-backgrounds">Gradient backgrounds</option>
-  <option id="interlocked-slides">Interlocked Slides</option>
-  <option id="looping">Looping</option>
-  <option id="methods">Methods</option>
-  <option id="navigation-vertical">Vertical navigation dots</option>
-  <option id="navigation-horizontal">Horizontal navigation dots</option>
-  <option id="navigation-tooltips">Navigation tooltips</option>
-  <option id="no-anchor">No anchor links</option>
-  <option id="normal-scroll">Normal scrolling</option>
-  <option id="normalScrollElements">Normal scroll elements</option>
-  <option id="offset-sections">Offset sections</option>
-  <option id="one-section">One single section</option>
-  <option id="reset-sliders">Reset sliders</option>
-  <option id="responsive-auto-height">Responsive Auto Height</option>
-  <option id="responsive-height">Responsive Height</option>
-  <option id="responsive-width">Responsive Width</option>
-  <option id="responsive-slides">Responsive Slides</option>
-  <option id="scrollBar">Scroll bar enabled</option>
-  <option id="scroll-horizontally">Scroll horizontally</option>
-  <option id="scrollOverflow">Scroll inside sections and slides</option>
-  <option id="scrollOverflow-reset">ScrollOverflow Reset</option>
-  <option id="lazy-load">Lazy load</option>
-  <option id="scrolling-speed">Scrolling speed</option>
-  <option id="trigger-animations">Trigger animations</option>
-  <option id="vue-fullpage">Vue-fullpage component</option>
-</select>
+    <option selected>Choose Demo</option>
+    <option id="simple">Simple</option>
+    <option id="custom-arrows">Custom arrows</option>
+    <option id="hide-sections">Hide sections</option>
+    <option id="scroll-after-fullpage">Scroll after fullpage</option>
+    <option id="observer">Observer</option>
+    <option id="jquery-adapter">jQuery adapter</option>
+    <option id="active-slide">Active section and slide</option>
+    <option id="auto-height">Auto height</option>
+    <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
+    <option id="backgrounds">Background images</option>
+    <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
+    <option id="background-video">Background video</option>
+    <option id="callbacks">Callbacks</option>
+    <option id="continuous-horizontal">Continuous horizontal (premium)</option>
+    <option id="continuous-vertical">Continuous vertical</option>
+    <option id="parallax">Parallax (premium)</option>
+    <option id="cards">Cards 3d (premium)</option>
+    <option id="water-effect">Water effect (premium)</option>
+    <option id="drop-effect">Drop effect (premium)</option>
+    <option id="css3">CSS3</option>
+    <option id="drag-and-move">Drag And Move (premium)</option>
+    <option id="easing-css3">Easing CSS</option>
+    <option id="easing-js">Easing JS</option>
+    <option id="fading-effect">Fading Effect (premium)</option>
+    <option id="fixed-headers">Fixed headers</option>
+    <option id="gradient-backgrounds">Gradient backgrounds</option>
+    <option id="interlocked-slides">Interlocked Slides (premium)</option>
+    <option id="looping">Looping</option>
+    <option id="methods">Methods</option>
+    <option id="navigation-vertical">Vertical navigation dots</option>
+    <option id="navigation-horizontal">Horizontal navigation dots</option>
+    <option id="navigation-tooltips">Navigation tooltips</option>
+    <option id="no-anchor">No anchor links</option>
+    <option id="normal-scroll">Normal scrolling</option>
+    <option id="normalScrollElements">Normal scroll elements</option>
+    <option id="offset-sections">Offset sections (premium)</option>
+    <option id="one-section">One single section</option>
+    <option id="reset-sliders">Reset sliders (premium)</option>
+    <option id="responsive-auto-height">Responsive Auto Height</option>
+    <option id="responsive-height">Responsive Height</option>
+    <option id="responsive-width">Responsive Width</option>
+    <option id="responsive-slides">Responsive Slides (premium)</option>
+    <option id="scrollBar">Scroll bar enabled</option>
+    <option id="scroll-horizontally">Scroll horizontally (premium)</option>
+    <option id="scrollOverflow">Scroll inside sections and slides</option>
+    <option id="scrollOverflow-reset">ScrollOverflow Reset (premium)</option>
+    <option id="lazy-load">Lazy load</option>
+    <option id="scrolling-speed">Scrolling speed</option>
+    <option id="trigger-animations">Trigger animations</option>
+    <option id="vue-fullpage">Vue component</option>
+    <option id="react-fullpage">React component</option>
+    <option id="angular-fullpage">Angular component</option>
+  </select>
 
 
 <div id="fullpage">
     <div class="section intro">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M?mute=1" frameborder="0" allowfullscreen data-autoplay></iframe>
-      <p>
-        The video will automatically start playing as I'm usign the attribute `data-autoplay`.
-      </p>
-      <p>
-        And because I'm not using the attribute `data-keepplaying` the video will automatically stop playing after leaving the section or slide.
-      </p>
-      <p>
-        Notice videos will only autoPlay in Desktop devices due to browser limitations. Also, it won't autoplay in Chrome browser unless you use the parameter ?mute=1 on the `src` attribute URL
-      </p>
+      <div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M?mute=1" frameborder="0" allowfullscreen data-autoplay></iframe>
+        <p>
+          The video will automatically start playing as I'm usign the attribute `data-autoplay`.
+        </p>
+        <p>
+          And because I'm not using the attribute `data-keepplaying` the video will automatically stop playing after leaving the section or slide.
+        </p>
+        <p>
+          Notice videos will only autoPlay in Desktop devices due to browser limitations. Also, it won't autoplay in Chrome browser unless you use the parameter ?mute=1 on the `src` attribute URL
+        </p>
+      </div>
     </div>
     <div class="section">
         <div class="slide">
-          <h1>HTML 5 videos</h1>
-          <video loop muted controls="false" data-autoplay>
-            <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
-          </video>
+          <div>
+            <h1>HTML 5 videos</h1>
+            <video loop muted controls="false" data-autoplay>
+              <source src="http://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              <source src="http://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+            </video>
+          </div>
         </div>
         <div class="slide intro">
-          <h1>In slides!</h1>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
+          <div>
+            <h1>In slides!</h1>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/qiCVPpI9l3M" frameborder="0" allowfullscreen data-autoplay></iframe>
+          </div>
         </div>
     </div>
     <div class="section">
-      <h1>Audio</h1>
-      <audio controls="" data-autoplay>
-          <source src="imgs/horse.ogg" type="audio/ogg">
-          <source src="imgs/horse.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-      </audio>
+      <div>
+        <h1>Audio</h1>
+        <audio controls="" data-autoplay>
+            <source src="imgs/horse.ogg" type="audio/ogg">
+            <source src="imgs/horse.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+      </div>
     </div>
 </div>
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Custom Arrows - fullPage.js</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage.js using CSS3 transformations." />
+	<meta name="keywords"  content="fullpage,jquery,anchor,links,inside,demo,css,css3" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+        .my-arrow{
+            font-size: 4em;
+        }
+    </style>
+</head>
+<body>
+
+
+<select id="demosMenu">
+    <option selected>Choose Demo</option>
+    <option id="simple">Simple</option>
+    <option id="custom-arrows">Custom arrows</option>
+    <option id="hide-sections">Hide sections</option>
+    <option id="scroll-after-fullpage">Scroll after fullpage</option>
+    <option id="observer">Observer</option>
+    <option id="jquery-adapter">jQuery adapter</option>
+    <option id="active-slide">Active section and slide</option>
+    <option id="auto-height">Auto height</option>
+    <option id="autoplay-video-and-audio">Autoplay Video and Audio</option>
+    <option id="backgrounds">Background images</option>
+    <option id="backgrounds-fixed">Fixed fullscreen backgrounds</option>
+    <option id="background-video">Background video</option>
+    <option id="callbacks">Callbacks</option>
+    <option id="continuous-horizontal">Continuous horizontal (premium)</option>
+    <option id="continuous-vertical">Continuous vertical</option>
+    <option id="parallax">Parallax (premium)</option>
+    <option id="cards">Cards 3d (premium)</option>
+    <option id="water-effect">Water effect (premium)</option>
+    <option id="drop-effect">Drop effect (premium)</option>
+    <option id="css3">CSS3</option>
+    <option id="drag-and-move">Drag And Move (premium)</option>
+    <option id="easing-css3">Easing CSS</option>
+    <option id="easing-js">Easing JS</option>
+    <option id="fading-effect">Fading Effect (premium)</option>
+    <option id="fixed-headers">Fixed headers</option>
+    <option id="gradient-backgrounds">Gradient backgrounds</option>
+    <option id="interlocked-slides">Interlocked Slides (premium)</option>
+    <option id="looping">Looping</option>
+    <option id="methods">Methods</option>
+    <option id="navigation-vertical">Vertical navigation dots</option>
+    <option id="navigation-horizontal">Horizontal navigation dots</option>
+    <option id="navigation-tooltips">Navigation tooltips</option>
+    <option id="no-anchor">No anchor links</option>
+    <option id="normal-scroll">Normal scrolling</option>
+    <option id="normalScrollElements">Normal scroll elements</option>
+    <option id="offset-sections">Offset sections (premium)</option>
+    <option id="one-section">One single section</option>
+    <option id="reset-sliders">Reset sliders (premium)</option>
+    <option id="responsive-auto-height">Responsive Auto Height</option>
+    <option id="responsive-height">Responsive Height</option>
+    <option id="responsive-width">Responsive Width</option>
+    <option id="responsive-slides">Responsive Slides (premium)</option>
+    <option id="scrollBar">Scroll bar enabled</option>
+    <option id="scroll-horizontally">Scroll horizontally (premium)</option>
+    <option id="scrollOverflow">Scroll inside sections and slides</option>
+    <option id="scrollOverflow-reset">ScrollOverflow Reset (premium)</option>
+    <option id="lazy-load">Lazy load</option>
+    <option id="scrolling-speed">Scrolling speed</option>
+    <option id="trigger-animations">Trigger animations</option>
+    <option id="vue-fullpage">Vue component</option>
+    <option id="react-fullpage">React component</option>
+    <option id="angular-fullpage">Angular component</option>
+  </select>
+
+
+<div id="fullpage">
+	<div class="section " id="section0">
+        <div class="slide">
+            <h1>fullPage.js</h1>
+		    <p>Use custom arrows for horizontal slides</p>
+        </div>
+        <div class="slide">
+            <h1>Cool uh?</h1>
+		    <p>We are now using Font Awesome icons instead</p>
+        </div>
+
+		
+	</div>
+	<div class="section" id="section1">
+		<div class="intro">
+			<h1>Control</h1>
+			<p>
+                Have total control over your arrows HTML by <br />using the `controlArrowsHTML` option.
+			</p>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>Check it out!</h1>
+			<p>You'll love it</p>
+		</div>
+	</div>
+</div>
+
+<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+<script type="text/javascript" src="../dist/fullpage.js"></script>
+<script type="text/javascript" src="examples.js"></script>
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE'],
+        controlArrows: true,
+        controlArrowsHTML: [
+            '<div class="my-arrow"><i class="fas fa-arrow-alt-circle-left"></i></i></div>',
+            '<div class="my-arrow"><i class="fas fa-arrow-alt-circle-right"></i></div>',
+        ]
+    });
+</script>
+
+</body>
+</html>

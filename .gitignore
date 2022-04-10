@@ -7,4 +7,11 @@ node_modules/
 **/node_modules/
 package-lock.json
 src/fullpage.extensions.js
+src/js-extensions/**
+src/js/mixed/index.js
+dist/fullpage.extensions.js
 examples/bug**
+gulp/secret.js
+build/**
+local/**
+rollup.ext.config.js

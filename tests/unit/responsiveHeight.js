@@ -31,7 +31,7 @@ QUnit.test('Testing responsiveHeight', function(assert) {
     setTimeout(function(){
         checkIsResponsive(FP, assert);
         done();
-    }, 300);
+    }, 800);
 });
 
 QUnit.test('Testing responsiveHeight on page load', function(assert) {
@@ -61,5 +61,5 @@ QUnit.test('Testing responsiveHeight undo responsive on resize up', function(ass
     setTimeout(function(){
         checkIsNotResponsive(FP, assert);
         done();
-    }, 300);
+    }, 1900);
 });

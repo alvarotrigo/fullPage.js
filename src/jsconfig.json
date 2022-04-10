@@ -1,0 +1,7 @@
+{
+    "compilerOptions": { 
+        "checkJs": true,
+    },
+    "updateImportsOnFileMove": "prompt",
+    "include": ["js/**/*"],
+}

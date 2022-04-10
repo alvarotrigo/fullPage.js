@@ -61,13 +61,13 @@ function upAndDown(assert, done, FP, params, prefix){
         assert.equal($(SECTION_ACTIVE_SEL).index(), 1, prefix + ': We expect section 2 to be active');
         done();
         triggerKeydown(params.up, params.shift, 'up');
-    },200);
+    },800);
 
     setTimeout(function(){
         assert.deepEqual(getTransform(FP.test.translate3d), ['0', '0', '0'], prefix + `: We expect sections transformation to be [0, 0, 0]`);
         assert.equal($(SECTION_ACTIVE_SEL).index(), 0, prefix + ': We expect section 1 to be active');
         done();
-    },200*2);
+    },800*2);
 }
 
 QUnit.test('Testing keyboardScrolling:true with keydown up & down', function(assert) {
@@ -353,5 +353,3 @@ QUnit.test('Testing setKeyboardScrolling(false, "up, left")', function(assert) {
         done();
     }, 200*4);
 });
-
-

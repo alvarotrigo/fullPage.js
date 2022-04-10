@@ -8,10 +8,12 @@ QUnit.test('Testing onSlideLeave callback v3 fullpage-moveSlideRight', function(
     var cont = 0;
 
     for(i = 0; i < 3; i++, cont++){
-        setTimeout(afterMove.bind(null, i), cont * 100);
+        
+        afterMove(i);
     }
 
     function afterMove(i){
+        console.log("-----------------  " + i);
         FP.moveSlideRight();
 
         assert.equal(onSlideLeave.section.index, 0, 'We expect section index to be correct');
@@ -142,157 +144,157 @@ QUnit.test('Testing onSlideLeave v3 from 1st slide to last', function(assert) {
 });
 
 
-// afterSlideLoad
-// ---------------------------------------
-QUnit.test('Testing afterSlideLoad callback v3', function(assert) {
-    var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// // afterSlideLoad
+// // ---------------------------------------
+// QUnit.test('Testing afterSlideLoad callback v3', function(assert) {
+//     var id = '#fullpage-moveSlideRight';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    var done = assert.async(1);
+//     var done = assert.async(1);
 
-    FP.moveSlideRight();
+//     FP.moveSlideRight();
 
-    assert.equal(slideLoaded[0], false, 'We expect slide 1.1 to not be loaded');
-    assert.equal(slideLoaded[1], false, 'We expect slide 1.2 to not be loaded');
-    assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
+//     assert.equal(slideLoaded[0], false, 'We expect slide 1.1 to not be loaded');
+//     assert.equal(slideLoaded[1], false, 'We expect slide 1.2 to not be loaded');
+//     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
 
-    setTimeout(function(){
-        assert.equal(slideLoaded[1], true, 'We expect slide 1.2 to be loaded');
-        assert.equal(areOthersLoaded(slideLoaded), 1, 'We expect only 1 slide to be loaded');
+//     setTimeout(function(){
+//         assert.equal(slideLoaded[1], true, 'We expect slide 1.2 to be loaded');
+//         assert.equal(areOthersLoaded(slideLoaded), 1, 'We expect only 1 slide to be loaded');
 
-        assert.equal(afterSlideLoad.section.index, 0, 'We expect section index to be correct');
-        assert.equal(afterSlideLoad.section.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterSlideLoad.section.isFirst, true, 'We expect section isFirst to be correct');
-        assert.equal(afterSlideLoad.section.isLast, false, 'We expect section isLast to be correct');
+//         assert.equal(afterSlideLoad.section.index, 0, 'We expect section index to be correct');
+//         assert.equal(afterSlideLoad.section.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterSlideLoad.section.isFirst, true, 'We expect section isFirst to be correct');
+//         assert.equal(afterSlideLoad.section.isLast, false, 'We expect section isLast to be correct');
 
-        assert.equal(afterSlideLoad.destination.index, 1, 'We expect destination index to be correct');
-        assert.equal(afterSlideLoad.destination.anchor, 'slide2', 'We expect destination anchor to be correct');
-        assert.equal(afterSlideLoad.destination.isFirst, false, 'We expect destination isFirst to be correct');
-        assert.equal(afterSlideLoad.destination.isLast, false, 'We expect destination isLast to be correct');
+//         assert.equal(afterSlideLoad.destination.index, 1, 'We expect destination index to be correct');
+//         assert.equal(afterSlideLoad.destination.anchor, 'slide2', 'We expect destination anchor to be correct');
+//         assert.equal(afterSlideLoad.destination.isFirst, false, 'We expect destination isFirst to be correct');
+//         assert.equal(afterSlideLoad.destination.isLast, false, 'We expect destination isLast to be correct');
 
-        assert.equal(afterSlideLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterSlideLoad.origin.anchor, 'slide1', 'We expect origin anchor to be correct');
-        assert.equal(afterSlideLoad.origin.isFirst, true, 'We expect origin isFirst to be correct');
-        assert.equal(afterSlideLoad.origin.isLast, false, 'We expect origin isLast to be correct');
+//         assert.equal(afterSlideLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterSlideLoad.origin.anchor, 'slide1', 'We expect origin anchor to be correct');
+//         assert.equal(afterSlideLoad.origin.isFirst, true, 'We expect origin isFirst to be correct');
+//         assert.equal(afterSlideLoad.origin.isLast, false, 'We expect origin isLast to be correct');
 
-        assert.equal(afterSlideLoad.direction, 'right', 'We expect direction to be correct');
+//         assert.equal(afterSlideLoad.direction, 'right', 'We expect direction to be correct');
 
-        done();
-    }, 100);
-});
-
-
-QUnit.test('Testing afterSlideLoad callback v3 with anchors', function(assert) {
-    var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({scrollingSpeed:50}, allBasicOptionsV3, sectionsAndSlidesCallbacksV3));
-
-    var done = assert.async(1);
-
-    FP.moveSlideRight();
-
-    setTimeout(function(){
-        assert.equal(afterSlideLoad.section.index, 0, 'We expect section index to be correct');
-        assert.equal(afterSlideLoad.section.anchor, 'page1', 'We expect section anchor to be correct');
-        assert.equal(afterSlideLoad.section.isFirst, true, 'We expect section isFirst to be correct');
-        assert.equal(afterSlideLoad.section.isLast, false, 'We expect section isLast to be correct');
-
-        assert.equal(afterSlideLoad.destination.index, 1, 'We expect destination index to be correct');
-        assert.equal(afterSlideLoad.destination.anchor, 'slide2', 'We expect destination anchor to be correct');
-        assert.equal(afterSlideLoad.destination.isFirst, false, 'We expect isFirst to be correct');
-        assert.equal(afterSlideLoad.destination.isLast, false, 'We expect isLast to be correct');
-
-        assert.equal(afterSlideLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterSlideLoad.origin.anchor, 'slide1', 'We expect origin anchor to be correct');
-        assert.equal(afterSlideLoad.origin.isFirst, true, 'We expect origin isFirst to be correct');
-        assert.equal(afterSlideLoad.origin.isLast, false, 'We expect origin isLast to be correct');
-
-        assert.equal(afterSlideLoad.direction, 'right', 'We expect direction to be correct');
-        done();
-    }, 100);
-});
+//         done();
+//     }, 100);
+// });
 
 
+// QUnit.test('Testing afterSlideLoad callback v3 with anchors', function(assert) {
+//     var id = '#fullpage-moveSlideRight';
+//     var FP = initFullpageNew(id, Object.assign({scrollingSpeed:50}, allBasicOptionsV3, sectionsAndSlidesCallbacksV3));
 
-//this test should be reviewed.
-//at the moment the afterSlideLoad callback doesn't get fired on page load, no matter what
-//section is active by default. But... Probably it should...
-QUnit.test('Testing afterSlideLoad callback v3 with active 2nd section and 1st slide active', function(assert) {
-    var id = '#fullpage-first-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+//     var done = assert.async(1);
 
-    assert.equal(slideLoaded[1], false, 'We expect section 2 to not be loaded');
-    assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
-    assert.equal(afterSlideLoad, '', 'We expect no values for the callback');
-});
+//     FP.moveSlideRight();
+
+//     setTimeout(function(){
+//         assert.equal(afterSlideLoad.section.index, 0, 'We expect section index to be correct');
+//         assert.equal(afterSlideLoad.section.anchor, 'page1', 'We expect section anchor to be correct');
+//         assert.equal(afterSlideLoad.section.isFirst, true, 'We expect section isFirst to be correct');
+//         assert.equal(afterSlideLoad.section.isLast, false, 'We expect section isLast to be correct');
+
+//         assert.equal(afterSlideLoad.destination.index, 1, 'We expect destination index to be correct');
+//         assert.equal(afterSlideLoad.destination.anchor, 'slide2', 'We expect destination anchor to be correct');
+//         assert.equal(afterSlideLoad.destination.isFirst, false, 'We expect isFirst to be correct');
+//         assert.equal(afterSlideLoad.destination.isLast, false, 'We expect isLast to be correct');
+
+//         assert.equal(afterSlideLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterSlideLoad.origin.anchor, 'slide1', 'We expect origin anchor to be correct');
+//         assert.equal(afterSlideLoad.origin.isFirst, true, 'We expect origin isFirst to be correct');
+//         assert.equal(afterSlideLoad.origin.isLast, false, 'We expect origin isLast to be correct');
+
+//         assert.equal(afterSlideLoad.direction, 'right', 'We expect direction to be correct');
+//         done();
+//     }, 100);
+// });
 
 
 
-//this test should be reviewed.
-//at the moment the afterSlideLoad callback doesn't get fired on page load, no matter what
-//section is active by default. But... Probably it should...
-QUnit.test('Testing afterSlideLoad callback v3 with active 2nd section and middle slide active', function(assert) {
-    var id = '#fullpage-middle-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// //this test should be reviewed.
+// //at the moment the afterSlideLoad callback doesn't get fired on page load, no matter what
+// //section is active by default. But... Probably it should...
+// QUnit.test('Testing afterSlideLoad callback v3 with active 2nd section and 1st slide active', function(assert) {
+//     var id = '#fullpage-first-slide-active-in-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    assert.equal(slideLoaded[1], false, 'We expect middle slide to not be loaded');
-    assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
-    assert.equal(afterSlideLoad, '', 'We expect no values for the afterSlideLoad callback');
-});
-
-
-//this test should be reviewed.
-//at the moment the afterSlideLoad callback doesn't get fired on page load, no matter what
-//section is active by default. But... Probably it should...
-QUnit.test('Testing afterSlideLoad callback v3 with active 2nd section and single slide active', function(assert) {
-    var id = '#fullpage-single-slide-in-second-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-
-    assert.equal(slideLoaded[0], false, 'We expect the single slide to not be loaded');
-    assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 sections to be loaded');
-    assert.equal(afterSlideLoad, '', 'We expect no values for the callback');
-});
+//     assert.equal(slideLoaded[1], false, 'We expect section 2 to not be loaded');
+//     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
+//     assert.equal(afterSlideLoad, '', 'We expect no values for the callback');
+// });
 
 
-// afterRender
-// ---------------------------------------
-QUnit.test('Testing afterRender callback v3 with section', function(assert) {
-    var id = '#fullpage';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    assert.equal(sectionLoaded[0], true, 'We expect section 1 be loaded');
-    assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 1 section to be loaded');
-});
+// //this test should be reviewed.
+// //at the moment the afterSlideLoad callback doesn't get fired on page load, no matter what
+// //section is active by default. But... Probably it should...
+// QUnit.test('Testing afterSlideLoad callback v3 with active 2nd section and middle slide active', function(assert) {
+//     var id = '#fullpage-middle-slide-active-in-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-QUnit.test('Testing afterRender callback v3 with slides', function(assert) {
-    var id = '#fullpage-moveSlideRight';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+//     assert.equal(slideLoaded[1], false, 'We expect middle slide to not be loaded');
+//     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 slides to be loaded');
+//     assert.equal(afterSlideLoad, '', 'We expect no values for the afterSlideLoad callback');
+// });
 
-    assert.deepEqual(afterRender, [0, 0], 'We expect Section 0.0 be loaded');
-});
 
-QUnit.test('Testing afterRender callback v3 on fullpage-2nd-active-section', function(assert) {
-    var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-    assert.deepEqual(afterRender, [1, -1], 'We expect Section 1 be loaded');
-});
+// //this test should be reviewed.
+// //at the moment the afterSlideLoad callback doesn't get fired on page load, no matter what
+// //section is active by default. But... Probably it should...
+// QUnit.test('Testing afterSlideLoad callback v3 with active 2nd section and single slide active', function(assert) {
+//     var id = '#fullpage-single-slide-in-second-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-QUnit.test('Testing afterRender callback v3 on fullpage-middle-slide-active-in-2nd-active-section', function(assert) {
-    var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-    assert.deepEqual(afterRender, [1, -1], 'We expect Section 1.1 be loaded');
-});
+//     assert.equal(slideLoaded[0], false, 'We expect the single slide to not be loaded');
+//     assert.equal(areOthersLoaded(slideLoaded), 0, 'We expect 0 sections to be loaded');
+//     assert.equal(afterSlideLoad, '', 'We expect no values for the callback');
+// });
 
-QUnit.test('Testing afterRender callback v3 on fullpage-first-slide-active-in-2nd-active-section', function(assert) {
-    var id = '#fullpage-first-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-    assert.deepEqual(afterRender, [1, 0], 'We expect Section 1.0 be loaded');
-});
 
-QUnit.test('Testing afterRender callback v3 on fullpage-sigle-slide-active-in-2nd-active-section', function(assert) {
-    var id = '#fullpage-sigle-slide-active-in-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-    assert.deepEqual(afterRender, [1, 0], 'We expect Section 1.0 be loaded');
-});
+// // afterRender
+// // ---------------------------------------
+// QUnit.test('Testing afterRender callback v3 with section', function(assert) {
+//     var id = '#fullpage';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+
+//     assert.equal(sectionLoaded[0], true, 'We expect section 1 be loaded');
+//     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 1 section to be loaded');
+// });
+
+// QUnit.test('Testing afterRender callback v3 with slides', function(assert) {
+//     var id = '#fullpage-moveSlideRight';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+
+//     assert.deepEqual(afterRender, [0, 0], 'We expect Section 0.0 be loaded');
+// });
+
+// QUnit.test('Testing afterRender callback v3 on fullpage-2nd-active-section', function(assert) {
+//     var id = '#fullpage-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+//     assert.deepEqual(afterRender, [1, -1], 'We expect Section 1 be loaded');
+// });
+
+// QUnit.test('Testing afterRender callback v3 on fullpage-middle-slide-active-in-2nd-active-section', function(assert) {
+//     var id = '#fullpage-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+//     assert.deepEqual(afterRender, [1, -1], 'We expect Section 1.1 be loaded');
+// });
+
+// QUnit.test('Testing afterRender callback v3 on fullpage-first-slide-active-in-2nd-active-section', function(assert) {
+//     var id = '#fullpage-first-slide-active-in-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+//     assert.deepEqual(afterRender, [1, 0], 'We expect Section 1.0 be loaded');
+// });
+
+// QUnit.test('Testing afterRender callback v3 on fullpage-sigle-slide-active-in-2nd-active-section', function(assert) {
+//     var id = '#fullpage-sigle-slide-active-in-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+//     assert.deepEqual(afterRender, [1, 0], 'We expect Section 1.0 be loaded');
+// });
 
 
 
@@ -345,293 +347,293 @@ QUnit.test('Testing afterLoad callback v3 on scroll with section', function(asse
 });
 
 
-QUnit.test('Testing afterLoad callback v3 on scroll with section and anchors', function(assert) {
-    var id = '#fullpage-sections-and-slides-with-data-anchor';
-    var done = assert.async(1);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// QUnit.test('Testing afterLoad callback v3 on scroll with section and anchors', function(assert) {
+//     var id = '#fullpage-sections-and-slides-with-data-anchor';
+//     var done = assert.async(1);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    FP.moveSectionDown();
-
-    setTimeout(function(){
+//     FP.moveSectionDown();
+
+//     setTimeout(function(){
 
-        assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, 'page2', 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//         assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, 'page2', 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-        assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, 'page1', 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+//         assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, 'page1', 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
 
-        done();
-        FP.moveSectionDown();
-    }, 100);
-});
+//         done();
+//         FP.moveSectionDown();
+//     }, 100);
+// });
 
-QUnit.test('Testing afterLoad v3 when autoScrolling:false with section', function(assert) {
-    var id = '#fullpage-no-slides';
-    var done = assert.async(2);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
+// QUnit.test('Testing afterLoad v3 when autoScrolling:false with section', function(assert) {
+//     var id = '#fullpage-no-slides';
+//     var done = assert.async(2);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
 
-    simulateScroll(window.innerHeight);
+//     simulateScroll(window.innerHeight);
 
-    setTimeout(function(){
-        assert.equal(sectionLoaded[1], true, 'We expect section 2 be loaded');
-        assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 2 section to be loaded');
+//     setTimeout(function(){
+//         assert.equal(sectionLoaded[1], true, 'We expect section 2 be loaded');
+//         assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 2 section to be loaded');
 
-        assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//         assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-        console.warn(afterLoad);
-        assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+//         console.warn(afterLoad);
+//         assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
 
-        assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
+//         assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
 
-        done();
-        simulateScroll(window.innerHeight * 2);
-    }, 100);
+//         done();
+//         simulateScroll(window.innerHeight * 2);
+//     }, 100);
 
-    setTimeout(function(){
-        assert.equal(sectionLoaded[2], true, 'We expect section 3 be loaded');
-        assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only section 3 to be loaded');
+//     setTimeout(function(){
+//         assert.equal(sectionLoaded[2], true, 'We expect section 3 be loaded');
+//         assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only section 3 to be loaded');
 
-        assert.equal(afterLoad.destination.index, 2, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//         assert.equal(afterLoad.destination.index, 2, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-        assert.equal(afterLoad.origin.index, 1, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, false, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+//         assert.equal(afterLoad.origin.index, 1, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, false, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
 
-        assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
-        done();
-    }, 100*2);
-});
+//         assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
+//         done();
+//     }, 100*2);
+// });
 
 
-QUnit.test('Testing afterLoad v3 when autoScrollingkey: "value", false with section and anchors', function(assert) {
-    var id = '#fullpage-sections-and-slides-with-data-anchor';
-    var done = assert.async(1);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
+// QUnit.test('Testing afterLoad v3 when autoScrollingkey: "value", false with section and anchors', function(assert) {
+//     var id = '#fullpage-sections-and-slides-with-data-anchor';
+//     var done = assert.async(1);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
 
-     simulateScroll(window.innerHeight);
+//      simulateScroll(window.innerHeight);
 
-    setTimeout(function(){
+//     setTimeout(function(){
 
-        assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, 'page2', 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//         assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, 'page2', 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-        assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, 'page1', 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+//         assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, 'page1', 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
 
-        done();
-    }, 100);
-});
+//         done();
+//     }, 100);
+// });
 
 
-QUnit.test('Testing afterLoad callback v3 with fullpage-2nd-active-section', function(assert) {
-    var id = '#fullpage-2nd-active-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// QUnit.test('Testing afterLoad callback v3 with fullpage-2nd-active-section', function(assert) {
+//     var id = '#fullpage-2nd-active-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    assert.equal(sectionLoaded[1], true, 'We expect section 2 to be loaded');
-    assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-    assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 1 slide to be loaded');
-    assert.equal(afterLoad.destination.index, 1, 'We expect no values for the callback');
-    assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-    assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
-});
+//     assert.equal(sectionLoaded[1], true, 'We expect section 2 to be loaded');
+//     assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 1 slide to be loaded');
+//     assert.equal(afterLoad.destination.index, 1, 'We expect no values for the callback');
+//     assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//     assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+// });
 
 
-QUnit.test('Testing afterLoad callback v3 with fullpage-first-slide-active-in-2nd-section', function(assert) {
-    var id = '#fullpage-first-slide-active-in-2nd-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// QUnit.test('Testing afterLoad callback v3 with fullpage-first-slide-active-in-2nd-section', function(assert) {
+//     var id = '#fullpage-first-slide-active-in-2nd-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    assert.equal(sectionLoaded[0], true, 'We expect section 1 to be loaded');
-    assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 0 sections to be loaded');
+//     assert.equal(sectionLoaded[0], true, 'We expect section 1 to be loaded');
+//     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect 0 sections to be loaded');
 
-    assert.equal(afterLoad.destination.index, 0, 'We expect section index to be correct');
-    assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-    assert.equal(afterLoad.destination.isFirst, true, 'We expect section isFirst to be correct');
-    assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//     assert.equal(afterLoad.destination.index, 0, 'We expect section index to be correct');
+//     assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//     assert.equal(afterLoad.destination.isFirst, true, 'We expect section isFirst to be correct');
+//     assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-    assert.equal(afterLoad.origin.index, 0, 'We expect section index to be correct');
-    assert.equal(afterLoad.origin.anchor, null, 'We expect section anchor to be correct');
-    assert.equal(afterLoad.origin.isFirst, true, 'We expect section isFirst to be correct');
-    assert.equal(afterLoad.origin.isLast, false, 'We expect section isLast to be correct');
+//     assert.equal(afterLoad.origin.index, 0, 'We expect section index to be correct');
+//     assert.equal(afterLoad.origin.anchor, null, 'We expect section anchor to be correct');
+//     assert.equal(afterLoad.origin.isFirst, true, 'We expect section isFirst to be correct');
+//     assert.equal(afterLoad.origin.isLast, false, 'We expect section isLast to be correct');
 
-    assert.equal(afterLoad.direction, null, 'We expect section direction to be correct');
-});
+//     assert.equal(afterLoad.direction, null, 'We expect section direction to be correct');
+// });
 
 
-QUnit.test('Testing afterLoad callback v3 with fullpage-middle-slide-active-in-2nd-section', function(assert) {
-    var id = '#fullpage-middle-slide-active-in-2nd-section';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// QUnit.test('Testing afterLoad callback v3 with fullpage-middle-slide-active-in-2nd-section', function(assert) {
+//     var id = '#fullpage-middle-slide-active-in-2nd-section';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    assert.equal(sectionLoaded[1], false, 'We expect section 2 be loaded');
-    assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 2 section to be loaded');
+//     assert.equal(sectionLoaded[1], false, 'We expect section 2 be loaded');
+//     assert.equal(areOthersLoaded(sectionLoaded), 1, 'We expect only 2 section to be loaded');
 
-    assert.equal(afterLoad.destination.index, 0, 'We expect section index to be correct');
-    assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-    assert.equal(afterLoad.destination.isFirst, true, 'We expect section isFirst to be correct');
-    assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//     assert.equal(afterLoad.destination.index, 0, 'We expect section index to be correct');
+//     assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//     assert.equal(afterLoad.destination.isFirst, true, 'We expect section isFirst to be correct');
+//     assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-    assert.equal(afterLoad.origin.index, 0, 'We expect section index to be correct');
-    assert.equal(afterLoad.origin.anchor, null, 'We expect section anchor to be correct');
-    assert.equal(afterLoad.origin.isFirst, true, 'We expect section isFirst to be correct');
-    assert.equal(afterLoad.origin.isLast, false, 'We expect section isLast to be correct');
+//     assert.equal(afterLoad.origin.index, 0, 'We expect section index to be correct');
+//     assert.equal(afterLoad.origin.anchor, null, 'We expect section anchor to be correct');
+//     assert.equal(afterLoad.origin.isFirst, true, 'We expect section isFirst to be correct');
+//     assert.equal(afterLoad.origin.isLast, false, 'We expect section isLast to be correct');
 
-    assert.equal(afterLoad.direction, null, 'We expect section direction to be correct');
-});
+//     assert.equal(afterLoad.direction, null, 'We expect section direction to be correct');
+// });
 
 
-// onLeave
-// ---------------------------------------
-QUnit.test('Testing onLeave callback v3 on scroll with section', function(assert) {
-    var id = '#fullpage-no-slides';
-    var done = assert.async(2);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+// // onLeave
+// // ---------------------------------------
+// QUnit.test('Testing onLeave callback v3 on scroll with section', function(assert) {
+//     var id = '#fullpage-no-slides';
+//     var done = assert.async(2);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
 
-    FP.moveSectionDown();
+//     FP.moveSectionDown();
 
-    setTimeout(function(){
-        assert.equal(sectionLoaded[0], false, 'We expect section 1 to not be loaded anymore');
+//     setTimeout(function(){
+//         assert.equal(sectionLoaded[0], false, 'We expect section 1 to not be loaded anymore');
 
-        assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+//         assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
 
-        assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+//         assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
 
-        assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
+//         assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
 
-        done();
-        FP.moveSectionDown();
-    }, 100);
-
-    setTimeout(function(){
-        assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded anymore');
-
-        assert.equal(afterLoad.destination.index, 2, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
-
-        assert.equal(afterLoad.origin.index, 1, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, false, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
-
-        assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
-        done();
-    }, 100*2);
-});
-
-QUnit.test('Testing onLeave v3 when autoScrolling:false with section', function(assert) {
-    var id = '#fullpage-no-slides';
-    var done = assert.async(2);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
-
-    simulateScroll(window.innerHeight);
-
-    setTimeout(function(){
-        assert.equal(sectionLoaded[0], false, 'We expect section 1 to not be loaded anymore');
-
-        assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
-
-        assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
-
-        assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
-
-        done();
-        simulateScroll(window.innerHeight * 2);
-    }, 100);
-
-    setTimeout(function(){
-        assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded anymore');
-
-        assert.equal(afterLoad.destination.index, 2, 'We expect section index to be correct');
-        assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
-        assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
-
-        assert.equal(afterLoad.origin.index, 1, 'We expect origin index to be correct');
-        assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
-        assert.equal(afterLoad.origin.isFirst, false, 'We expect isFirst to be correct');
-        assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
-
-        assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
-        done();
-    }, 100*2);
-});
-
-QUnit.test('Testing onLeave v3 does not get fired on page load', function(assert) {
-    var id = '#fullpage-no-slides';
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-
-    assert.equal(onLeave, '', 'We expect no values for the callback');
-});
-
-QUnit.test('Testing onLeave when autoScrolling:false with section and anchors', function(assert) {
-    var id = '#fullpage-sections-and-slides-with-data-anchor';
-    var done = assert.async(1);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
-
-    simulateScroll(window.innerHeight);
-
-    setTimeout(function(){
-        console.log(onLeave);
-        assert.equal(onLeave.destination.index, 1, 'We expect section index to be correct');
-        assert.equal(onLeave.destination.anchor, 'page2', 'We expect section anchor to be correct');
-        assert.equal(onLeave.destination.isFirst, false, 'We expect section isFirst to be correct');
-        assert.equal(onLeave.destination.isLast, false, 'We expect section isLast to be correct');
-
-        assert.equal(onLeave.origin.index, 0, 'We expect origin index to be correct');
-        assert.equal(onLeave.origin.anchor, 'page1', 'We expect origin anchor to be correct');
-        assert.equal(onLeave.origin.isFirst, true, 'We expect isFirst to be correct');
-        assert.equal(onLeave.origin.isLast, false, 'We expect isLast to be correct');
-
-        done();
-    }, 100);
-});
-
-
-// afterResize
-// ---------------------------------------
-QUnit.test('Testing afterResize', function(assert) {
-    var id = '#fullpage';
-    var done = assert.async(1);
-    var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
-
-    //emulating resize event
-    window.innerHeight = 100;
-    window.dispatchEvent(new Event('resize'));
-    assert.equal(afterResize, false, 'We expect afterResize to not get fired synchronously');
-
-    setTimeout(function(){
-        assert.equal(afterResize, `${window.innerWidth}, ${window.innerHeight}`, 'We expect afterResize to get fired with some delay');
-        done();
-    }, 450);
-});
+//         done();
+//         FP.moveSectionDown();
+//     }, 100);
+
+//     setTimeout(function(){
+//         assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded anymore');
+
+//         assert.equal(afterLoad.destination.index, 2, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+
+//         assert.equal(afterLoad.origin.index, 1, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, false, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+
+//         assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
+//         done();
+//     }, 100*2);
+// });
+
+// QUnit.test('Testing onLeave v3 when autoScrolling:false with section', function(assert) {
+//     var id = '#fullpage-no-slides';
+//     var done = assert.async(2);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
+
+//     simulateScroll(window.innerHeight);
+
+//     setTimeout(function(){
+//         assert.equal(sectionLoaded[0], false, 'We expect section 1 to not be loaded anymore');
+
+//         assert.equal(afterLoad.destination.index, 1, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+
+//         assert.equal(afterLoad.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, true, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+
+//         assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
+
+//         done();
+//         simulateScroll(window.innerHeight * 2);
+//     }, 100);
+
+//     setTimeout(function(){
+//         assert.equal(sectionLoaded[1], false, 'We expect section 2 to not be loaded anymore');
+
+//         assert.equal(afterLoad.destination.index, 2, 'We expect section index to be correct');
+//         assert.equal(afterLoad.destination.anchor, null, 'We expect section anchor to be correct');
+//         assert.equal(afterLoad.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(afterLoad.destination.isLast, false, 'We expect section isLast to be correct');
+
+//         assert.equal(afterLoad.origin.index, 1, 'We expect origin index to be correct');
+//         assert.equal(afterLoad.origin.anchor, null, 'We expect origin anchor to be correct');
+//         assert.equal(afterLoad.origin.isFirst, false, 'We expect isFirst to be correct');
+//         assert.equal(afterLoad.origin.isLast, false, 'We expect isLast to be correct');
+
+//         assert.equal(afterLoad.direction, 'down', 'We expect isLast to be correct');
+//         done();
+//     }, 100*2);
+// });
+
+// QUnit.test('Testing onLeave v3 does not get fired on page load', function(assert) {
+//     var id = '#fullpage-no-slides';
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+
+//     assert.equal(onLeave, '', 'We expect no values for the callback');
+// });
+
+// QUnit.test('Testing onLeave when autoScrolling:false with section and anchors', function(assert) {
+//     var id = '#fullpage-sections-and-slides-with-data-anchor';
+//     var done = assert.async(1);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50, autoScrolling:false}));
+
+//     simulateScroll(window.innerHeight);
+
+//     setTimeout(function(){
+//         console.log(onLeave);
+//         assert.equal(onLeave.destination.index, 1, 'We expect section index to be correct');
+//         assert.equal(onLeave.destination.anchor, 'page2', 'We expect section anchor to be correct');
+//         assert.equal(onLeave.destination.isFirst, false, 'We expect section isFirst to be correct');
+//         assert.equal(onLeave.destination.isLast, false, 'We expect section isLast to be correct');
+
+//         assert.equal(onLeave.origin.index, 0, 'We expect origin index to be correct');
+//         assert.equal(onLeave.origin.anchor, 'page1', 'We expect origin anchor to be correct');
+//         assert.equal(onLeave.origin.isFirst, true, 'We expect isFirst to be correct');
+//         assert.equal(onLeave.origin.isLast, false, 'We expect isLast to be correct');
+
+//         done();
+//     }, 100);
+// });
+
+
+// // afterResize
+// // ---------------------------------------
+// QUnit.test('Testing afterResize', function(assert) {
+//     var id = '#fullpage';
+//     var done = assert.async(1);
+//     var FP = initFullpageNew(id, Object.assign({}, sectionsAndSlidesCallbacksV3, {scrollingSpeed: 50}));
+
+//     //emulating resize event
+//     window.innerHeight = 100;
+//     window.dispatchEvent(new Event('resize'));
+//     assert.equal(afterResize, false, 'We expect afterResize to not get fired synchronously');
+
+//     setTimeout(function(){
+//         assert.equal(afterResize, `${window.innerWidth}, ${window.innerHeight}`, 'We expect afterResize to get fired with some delay');
+//         done();
+//     }, 450);
+// });
 

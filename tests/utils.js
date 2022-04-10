@@ -8,6 +8,8 @@ var WRAPPER_SEL =           '.' + WRAPPER;
 // slimscroll
 var SCROLLABLE =            'fp-scrollable';
 var SCROLLABLE_SEL =        '.' + SCROLLABLE;
+var OVERFLOW =              'fp-overflow';
+var OVERFLOW_SEL =              '.' + OVERFLOW;
 
 // util
 var RESPONSIVE =            'fp-responsive';
@@ -27,6 +29,8 @@ var SECTION_SEL =           '.' + SECTION;
 var SECTION_ACTIVE_SEL =    SECTION_SEL + ACTIVE_SEL;
 var SECTION_FIRST_SEL =     SECTION_SEL + ':first';
 var SECTION_LAST_SEL =      SECTION_SEL + ':last';
+var TABLE =                 'fp-table';
+var TABLE_SEL =             '.' + TABLE;
 var TABLE_CELL =            'fp-tableCell';
 var TABLE_CELL_SEL =        '.' + TABLE_CELL;
 var AUTO_HEIGHT =           'fp-auto-height';
@@ -122,7 +126,7 @@ function areOthersLazyLoaded(){
             slides.each(function(){
                 var slide = $(this);
                 if(!section.hasClass(ACTIVE) || section.hasClass(ACTIVE) && !slide.hasClass(ACTIVE)){
-                    isAnyOtherLoaded = isAnyOtherLoaded || isAnyLazyLoaded(slide);
+                    isAnyOtherLoaded = isAnyOtherLoaded || isAnyLazyLoaded(slide);
                 }
             });
 
@@ -294,13 +298,34 @@ function getTop(selector){
 
 //overwritting the scrollTop function of jQuery to simulate scroll
 //when using autoScrolling:false or scrollBar:true
-function simulateScroll(scrollValue){
-    window.pageYOffset = (function(){
-        return scrollValue;
-    })();
+function simulateScroll(scrollValue, FP){
+    if(FP && FP.test.options.fitToSection){
+        console.warn("-. ENTRA.....................");
+        document.body.scrollTo(0, scrollValue);
+    }
+    else{
+        window.pageYOffset = (function(){
+            return scrollValue;
+        })();
+    }
 
     trigger(window, 'scroll');
 }
+
+function showFullpage(id){
+    console.log("showing...");
+    jQuery(id).show();
+    $('#qunit').hide();
+    $('#qunit-fixture').addClass('show-fixture');
+}
+window.showFullpage = showFullpage;
+
+function showQunit(id){
+    $(id).hide();
+    $('#qunit').show();
+    $('#qunit-fixture').removeClass('show-fixture');
+}
+window.showQunit = showQunit;
 
 function simulateMouseWheel(type){
     var multiplier = type === 'up' ? -1 : 1;
@@ -349,8 +374,16 @@ function trigger(el, eventName, data){
     var event;
     data = typeof data === 'undefined' ? {} : data;
 
+    var windowEvents = ['resize', 'focus', 'blur'];
+
+    debugger;
+    if(windowEvents.indexOf(eventName) > -1){
+        
+        event = new Event(eventName);
+        event.details = data;
+    }
     // Native
-    if (window.CustomEvent) {
+    else if (window.CustomEvent) {
         event = new CustomEvent(eventName, {detail: data});
     }
     else{

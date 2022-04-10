@@ -12,12 +12,12 @@
 </p>
 
 <p align="center">
-	Available for <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> and <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
+	Доступно для <a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>, <a href="https://github.com/alvarotrigo/react-fullpage">React</a> и <a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>.
 </p>
 
 ---
 
-![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v3.1.2-brightgreen.svg)
+![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v4.0.0-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -28,6 +28,7 @@
 - [Тема Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Расширения fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
+- [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
 ---
 
 Простая и удобная в использовании библиотека для создания веб-сайтов с полноэкранной прокруткой (также известных, как одностраничные сайты).
@@ -59,9 +60,8 @@
 Давайте вместе создадим замечательную библиотеку, чтобы облегчить жизнь пользователям!
 
 ## Совместимость
-fullPage.js полностью функционирует во всех современных браузерах, также, как и в некоторых устаревших, таких как Internet Explorer 9, Opera 12 и т.д.
-Работает в браузерах, имеющих и не имеющих поддержку CSS3, что обеспечивает идеальную совместимость с устаревшими браузерами.
-Обеспечивает поддержку сенсорного управления для мобильных телефонов, планшетов и компьютеров с сенсорным экраном.
+fullPage.js is fully functional on all modern browsers and with IE 11. If you need to support IE < 11 consider using [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
+It also provides touch support for mobile phones, tablets and touch screen computers.
 
 Выражаем особую благодарность [Browserstack](http://www.browserstack.com/) за поддержку fullpage.js.
 
@@ -73,7 +73,7 @@ fullPage.js полностью функционирует во всех совр
 ### Лицензия с открытым исходным кодом
 Если вы создаёте приложение с открытым исходным кодом по лицензии, совместимой с [Лицензией GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html), вы можете использовать fullPage на условиях GPLv3.
 
-**Сведения об авторе в JavaScript и файлах CSS должны оставаться без изменений** (даже после комбинации или минификации)
+**You will have to provide a prominent notice that fullPage.js is in use. Сведения об авторе в JavaScript и файлах CSS должны оставаться без изменений** (даже после комбинации или минификации)
 
 [Прочесть больше о лицензии fullPage](https://alvarotrigo.com/fullPage/pricing/).
 
@@ -158,9 +158,6 @@ new fullpage('#fullpage', {
 	autoScrolling:true,
 	scrollHorizontally: true
 });
-
-//methods
-fullpage_api.setAllowScrolling(false);
 ```
 
 #### Инициализация с jQuery
@@ -186,7 +183,7 @@ $(document).ready(function() {
 Более сложная инициализация с установкой всех параметров может выглядеть так:
 ```javascript
 var myFullpage = new fullpage('#fullpage', {
-	//Навигация
+	// Навигация
 	menu: '#menu',
 	lockAnchors: false,
 	anchors:['firstPage', 'secondPage'],
@@ -197,12 +194,11 @@ var myFullpage = new fullpage('#fullpage', {
 	slidesNavigation: false,
 	slidesNavPosition: 'bottom',
 
-	//Скроллинг
+	// Скроллинг
 	css3: true,
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
-	fitToSectionDelay: 1000,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -218,19 +214,23 @@ var myFullpage = new fullpage('#fullpage', {
 	resetSliders: false,
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
-	scrollOverflow: false,
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
-	scrollOverflowOptions: null,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
-	//Доступ
+	// Доступ
 	keyboardScrolling: true,
 	animateAnchor: true,
 	recordHistory: true,
 
-	//Дизайн
+	// Дизайн
 	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
 	verticalCentered: true,
 	sectionsColor : ['#ccc', '#fff'],
 	paddingTop: '3em',
@@ -248,21 +248,25 @@ var myFullpage = new fullpage('#fullpage', {
 	cards: false,
 	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
 
-	//Настроить селекторы
+	// Настроить селекторы
 	sectionSelector: '.section',
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	observer: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
-	//события
-	onLeave: function(origin, destination, direction){},
-	afterLoad: function(origin, destination, direction){},
+	// Cобытия
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
 	afterRender: function(){},
 	afterResize: function(width, height){},
 	afterReBuild: function(){},
 	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction){},
-	onSlideLeave: function(section, origin, destination, direction){}
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position, direction){}
 });
 ```
 
@@ -380,16 +384,16 @@ fullpage.js [предоставляет ряд расширений](http://alva
 - `licenseKey`: (по умолчанию `null`). **Эта опция является обязательной.** Если вы используете fullPage для проекта с закрытым исходным кодом, то вам следует воспользоваться лицензионным ключом, предоставляемым при приобретении коммерческой лицензии fullPage.если ваш проект открыт с открытым исходным кодом, [свяжитесь со мной](https://alvarotrigo.com/fullPage/extensions/requestKey.html), чтобы получить лицензионный ключ.. Вы можете прочесть подробнее о лицензиях [здесь](https://github.com/alvarotrigo/fullPage.js#license) и [на веб-сайте](https://alvarotrigo.com/fullPage/pricing/). Пример:
 
 ```javascript
-new fullpage({
+new fullpage('#fullpage', {
     licenseKey: 'YOUR_KEY_HERE'
 });
 ```
 
-- `v2compatible`: (значение по умолчанию: `false`). Определяет 100% совместимость с любым кодом, написанным для версии 2, игнорируя новые функции или изменения API версии 3. Классы состояний, сигнатуры обратных вызовов и т.п. будут работать так же, как в версии 2. **Обращаем ваше внимание на то, что данная опция в будущем будет удалена.**.
-
 - `controlArrows`: (по умолчанию `true`) Определяет использование клавиш-стрелок для передвижения вправо или влево при просмотре слайдов.
 
-- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. При установке данного расширения - `true`, ваш контент будет обёрнут библиотекой. Рассмотрите возможность делегирования или загрузите ваши скрипты для обратного вызова `afterRender`.
+- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+
+- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
 - `scrollingSpeed`: (по умолчанию `700`) Ускорьте на миллисекунды переходы при скроллинге.
 
@@ -424,8 +428,6 @@ new fullpage('#fullpage', {
 - `autoScrolling`: (по умолчанию `true`) Определяет использование «автоматического» скроллинга или «обычного». Также эта опция влияет на размещение разделов в окне браузера/устройства для планшетов и мобильных устройств.
 
 - `fitToSection`: (по умолчанию `true`) Определяет, нужна ли подстройка разделов под окно просмотра. При установке значения `true` для данной опции текущий активный раздел всегда будет заполнять окно просмотра. В противном случае пользователь будет иметь возможность остановиться на середине раздела (когда )
-
-- `fitToSectionDelay`: (по умолчанию 1000). Если для опции `fitToSection` установлено значение `true`, данная функция замедлит подстройку на настроенные миллисекунды.
 
 - `scrollBar`: (по умолчанию `false`) Определяет, будет ли использоваться полоса прокрутки на сайте. При использовании полосы прокрутки функция `autoScrolling` будет работать как обычно. Пользователь по-прежнему сможет пролистывать сайт с помощью полосы прокрутки, и fullPage.js подстроит раздел под экран по окончании скроллинга.
 
@@ -499,22 +501,11 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: (по умолчанию `bottom`) Определяет местоположение горизонтальной навигационной панели для слайдеров. Возможные значения: `top` и `bottom`. При желании вы можете настроить стили CSS для определения расстояния от верхней до нижней части, так же как и любой другой стиль, например, цвет.
 
-- `scrollOverflow`: (по умолчанию `false`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. При установке значения `true` ваш контент будет обёрнут плагином. Рассмотрите возможность делегирования или загрузите ваши скрипты для обратного вызова `afterRender`.
-При установке значения `true` необходима библиотека разработчика [`scrolloverflow.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/vendors/scrolloverflow.min.js), которая должна быть загружена до загрузки плагина fullPage.js, но после jQuery (если используется).
-Например:
+- `scrollOverflow`: (по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
 
-```html
-<script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
-<script type="text/javascript" src="fullpage.js"></script>
-```
+- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
-Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`
-
-Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
-
-- `scrollOverflowReset`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже.
-
-- `scrollOverflowOptions`: при применении scrollOverflow:true fullpage.js будет использовать модифицированную версию [iScroll.js libary](https://github.com/cubiq/iscroll/). Вы можете настроить поведение прокрутки, обеспечив fullpage.js опциями iScroll.js, которые вы хотите использовать. Более подробную информацию вы можете найти в [документации](https://github.com/cubiq/iscroll).
+- `scrollOverflowReset`: (по умолчанию `false`) [Расширение fullpage.js](http://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
 - `sectionSelector`: (по умолчанию `.section`) Определяет селектор Javascript, используемый для разделов с плагинами. Иногда требуется изменить его, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и fullpage.js.
 
@@ -545,6 +536,10 @@ new fullpage('#fullpage', {
 
 - `lazyLoading`: (по умолчанию `true`) Отложенная загрузка включена по умолчанию, что означает, что данная опция будет осуществлять отложенную загрузку любого медиа-элемента, содержащего атрибут `data-src`, как описано в [документации отложенной загрузки](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отложенная-загрузка). Если вы желаете использовать любую другую библиотеку отложенной загрузки, вы можете деактивировать данную функцию fullpage.js.
 
+- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+
+- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+
 ## Функции
 Можете увидеть их в действии [здесь](http://alvarotrigo.com/fullPage/examples/methods.html)
 
@@ -560,6 +555,14 @@ fullpage_api.getActiveSection();
 
 ```javascript
 fullpage_api.getActiveSlide();
+```
+
+### getScrollY() & getScrollX
+[Demo](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` Gets the Y position of the fullPage wrapper. `getScrollX` gets the X position of the active horizontal slide.
+
+```javascript
+fullpage_api.getScrollY();
+fullpage_api.getScrollX();
 ```
 
 ### moveSectionUp()
@@ -744,7 +747,7 @@ fullpage_api.responsiveSlides.toSlides();
 - `isFirst`: *(Boolean)* определяет, является ли объект первым дочерним элементом.
 - `isLast`: *(Boolean)* определяет, является ли объект последним дочерним элементом.
 
-### afterLoad (`origin`, `destination`, `direction`)
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
 Обратный вызов активируется после загрузки разделов и завершения прокрутки.
 Параметры:
 
@@ -758,8 +761,8 @@ fullpage_api.responsiveSlides.toSlides();
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterLoad: function(origin){
-		var loadedSection = this;
+	afterLoad: function(origin, destination, direction, trigger){
+		var origin = this;
 
 		//использование индекса
 		if(origin.index == 2){
@@ -774,7 +777,7 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### onLeave (`index`, `nextIndex`, `direction`)
+### onLeave (`index`, `nextIndex`, `direction`, `trigger`)
 Этот обратный вызов активируется, когда пользователь покидает раздел, при переходе к новому разделу.
 Возврат `false` отменит переход до его осуществления.
 
@@ -788,8 +791,8 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		var leavingSection = this;
+	onLeave: function(origin, destination, direction, trigger){
+		var origin = this;
 
 		//после покидания раздела 2
 		if(origin.index == 1 && direction =='down'){
@@ -803,23 +806,36 @@ new fullpage('#fullpage', {
 });
 ```
 
-#### Отмена прокрутки до её осуществления
-Вы можете отменить прокрутку, установив возврат `false` на обратном вызове `onLeave`:
+---
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
+
+You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
+
+Parameters:
+
+- `origin`:  *(Object)* section of origin.
+- `destination`: *(Object)* destination section.
+- `direction`: *(String)* it will take the values `up` or `down` depending on the scrolling direction.
+- `trigger`: *(String)* indicates what triggered the scroll. It can be: "wheel", "keydown", "menu", "slideArrow", "verticalNav", "horizontalNav".
+
+Example:
 
 ```javascript
+
+var cont = 0;
 new fullpage('#fullpage', {
-	onLeave: function(origin, destination, direction){
-		//прокрутка не будет осуществлена, если заданный раздел – раздел 3
-		if(destination.index == 2){
-			return false;
-		}
+	beforeLeave: function(origin, destination, direction, trigger){
+
+		// prevents scroll until we scroll 4 times
+		cont++;
+		return cont === 4;
 	}
 });
 ```
-
 ---
 ### afterRender()
-Этот обратный вызов активируется сразу после того, как создаётся структура страницы. Данный обратный вызов вы можете использовать для инициализации других плагинов или активации любого кода, для чего требуется готовый документ (так как плагин изменяет DOM для создания финальной структуры). Более подробную информацию вы найдёте в разделе [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions).
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется сразу после того, как создаётся структура страницы. Данный обратный вызов вы можете использовать для инициализации других плагинов или активации любого кода, для чего требуется готовый документ (так как плагин изменяет DOM для создания финальной структуры). Более подробную информацию вы найдёте в разделе [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions).
 
 Пример:
 
@@ -832,8 +848,8 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterResize()
-Этот обратный вызов активируется после изменения размера окна браузера. Сразу после изменения размера разделов.
+### afterResize(`width`, `height`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется после изменения размера окна браузера. Сразу после изменения размера разделов.
 
 Параметры:
 
@@ -852,7 +868,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
 
 Example:
 
@@ -865,7 +881,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-Этот обратный вызов активируется после того, как fullpage.js переходит из стандартного режима в отзывчивый режим или из отзывчивого в стандартный.
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется после того, как fullpage.js переходит из стандартного режима в отзывчивый режим или из отзывчивого в стандартный.
 
 Параметры:
 
@@ -881,8 +897,8 @@ new fullpage('#fullpage', {
 });
 ```
 ---
-### afterSlideLoad (`section`, `origin`, `destination`, `direction`)
-Обратный вызов активируется после загрузки слайда раздела и окончания прокрутки.
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Обратный вызов активируется после загрузки слайда раздела и окончания прокрутки.
 
 Параметры:
 
@@ -897,7 +913,7 @@ new fullpage('#fullpage', {
 new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
-	afterSlideLoad: function( section, origin, destination, direction){
+	afterSlideLoad: function( section, origin, destination, direction, trigger){
 		var loadedSlide = this;
 
 		//первый слайд второго раздела
@@ -916,8 +932,8 @@ new fullpage('#fullpage', {
 
 
 ---
-### onSlideLeave (`section`, `origin`, `destination`, `direction`)
-Этот обратный вызов активируется после того, как пользователь покидает слайд для перехода к другому, при переходе к новому слайду.
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) Этот обратный вызов активируется после того, как пользователь покидает слайд для перехода к другому, при переходе к новому слайду.
 Возврат `false` отменит переход до его осуществления.
 
 Параметр:
@@ -932,7 +948,7 @@ new fullpage('#fullpage', {
 
 ```javascript
 new fullpage('#fullpage', {
-	onSlideLeave: function( section, origin, destination, direction){
+	onSlideLeave: function( section, origin, destination, direction, trigger){
 		var leavingSlide = this;
 
 		//переход от первого слайда 2го раздела вправо
@@ -950,6 +966,30 @@ new fullpage('#fullpage', {
 
 #### Отмена перехода до его осуществления
 Вы можете отменить переход с помощью возврата `false` на обратном вызове `onSlideLeave`. [То же самое, что и при отмене перехода с помощью `onLeave`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отмена-перехода-до-его-осуществления).
+
+
+---
+### onScrollOverflow (`section`, `slide`, `position`, `direction`)
+[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+
+Parameters:
+
+- `section`: *(Object)* active vertical section.
+- `slide`: *(Object)* horizontal slide of origin.
+- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
+- `direction`: *(String)* `up` or `down`
+
+Example:
+
+```javascript
+new fullpage('#fullpage', {
+	onScrollOverflow: function( section, slide, position, direction){
+		console.log(section);
+		console.log("position: " + position);
+	}
+});
+```
+
 
 # Сообщение о проблемах
 1. Пожалуйста, перед вопросом поищите свою проблему с помощью поиска github issues.
@@ -983,8 +1023,6 @@ new fullpage('#fullpage', {
 - [Интеграция fullPage.js с Wordpress (Обучение)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## Кто пользуется fullPage.js
-Если вы хотите, чтобы ваша страница была указана в этом списке, пожалуйста, <a href="mailto:alvaro@alvarotrigo.com">свяжитесь со мной</a> и пришлите URL.
-
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
 ![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)
@@ -1000,14 +1038,14 @@ new fullpage('#fullpage', {
 ![Mi](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mi-6.png)
 
 ![Mercedes](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/mercedes-5.png)
-[![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)](http://www.sanyang.com.tw/service/Conception/)
+![sym](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/sym-5.png)
 ![Bugatti](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/bugatti-5.png)
 ![eDarling](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/edarling-5.png)
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.newjumoconcept.com/
 - http://www.shootinggalleryasia.com/
+- http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
 - http://thekorner.fr/
@@ -1016,15 +1054,8 @@ new fullpage('#fullpage', {
 - http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
-- http://www.sanyang.com.tw/service/Conception/
-- http://trasmissione-energia.terna.it/
 - http://www.villareginateodolinda.it
-- http://www.kesstrio.com
 - http://ded-morozz.kiev.ua/
-- http://dancingroad.com
-- http://www.camanihome.com/
-
-Вы можете найти ещё один список [здесь](http://libscore.com/#$.fn.fullpage).
 
 ## Денежные переводы
 Денежные переводы более чем приветствуются :)
