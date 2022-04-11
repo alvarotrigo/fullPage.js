@@ -25,7 +25,8 @@ const terserOptions = {
             keep_quoted: true,
             reserved: [
                 'fullpage',
-
+                'jQuery',
+                
                 // options
                 'menu',
                 'anchors',
