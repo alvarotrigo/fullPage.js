@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.3
+* fullPage 4.0.4
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -993,16 +993,15 @@
       hybrid: false,
       licenseKey: '',
       credits: {
-        enabled: true,
-        label: 'Made with fullPage.js',
-        position: 'right'
+        "enabled": true,
+        "label": 'Made with fullPage.js',
+        "position": 'right'
       },
       //scrolling
       css3: true,
       scrollingSpeed: 700,
       autoScrolling: true,
       fitToSection: true,
-      fitToSectionDelay: 1000,
       easing: 'easeInOutCubic',
       easingcss3: 'ease',
       loopBottom: false,
@@ -1059,6 +1058,7 @@
       slideSelector: SLIDE_DEFAULT_SEL,
       //events
       afterLoad: null,
+      beforeLeave: null,
       onLeave: null,
       afterRender: null,
       afterResize: null,
@@ -1066,6 +1066,7 @@
       afterSlideLoad: null,
       onSlideLeave: null,
       afterResponsive: null,
+      onScrollOverflow: null,
       lazyLoading: true,
       observer: true
     };
@@ -5112,7 +5113,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-11".split("-"),
+      var n = "2022-3-12".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5528,7 +5529,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.3';
+      FP.version = '4.0.4';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

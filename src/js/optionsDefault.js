@@ -16,9 +16,9 @@ export const defaultOptions = {
 
     licenseKey: '',
     credits: {
-        enabled: true,
-        label: 'Made with fullPage.js',
-        position: 'right'
+        "enabled": true,
+        "label": 'Made with fullPage.js',
+        "position": 'right'
     },
 
     //scrolling
@@ -26,7 +26,6 @@ export const defaultOptions = {
     scrollingSpeed: 700,
     autoScrolling: true,
     fitToSection: true,
-    fitToSectionDelay: 1000,
     easing: 'easeInOutCubic',
     easingcss3: 'ease',
     loopBottom: false,
@@ -86,6 +85,7 @@ export const defaultOptions = {
 
     //events
     afterLoad: null,
+    beforeLeave: null,
     onLeave: null,
     afterRender: null,
     afterResize: null,
@@ -93,6 +93,7 @@ export const defaultOptions = {
     afterSlideLoad: null,
     onSlideLeave: null,
     afterResponsive: null,
+    onScrollOverflow: null,
 
     lazyLoading: true,
     observer: true

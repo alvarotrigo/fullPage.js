@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 
 const licenseContent = `/*!
-* fullPage 4.0.3
+* fullPage 4.0.4
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -41,11 +41,12 @@ const terserOptions = {
                 'slidesNavPosition',
                 'scrollBar',
                 'hybrid',
+                'licenseKey',
+                'credits',
                 'css3',
                 'scrollingSpeed',
                 'autoScrolling',
                 'fitToSection',
-                'fitToSectionDelay',
                 'easing',
                 'easingcss3',
                 'loopBottom',
@@ -65,6 +66,7 @@ const terserOptions = {
                 'touchSensitivity',
                 'touchWrapper',
                 'bigSectionsDestination',
+                'keyboardScrolling',
                 'animateAnchor',
                 'recordHistory',
                 'allowCorrectDirection',
@@ -132,6 +134,8 @@ const terserOptions = {
                 'destroy',
                 'getActiveSection',
                 'getActiveSlide',
+                'getScrollY',
+                'getScrollX',
                 'landscapeScroll',
                 'test',
                 'shared',
