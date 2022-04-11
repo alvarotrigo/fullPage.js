@@ -30,6 +30,8 @@ gulp.task('update-version', function(done){
     gulp.src([
         './src/js/fullpage.js',
         './src/js-extensions/fullpage.js',
+        './rollup.config.js',
+        './rollup.ext.config.js',
         './src/css/fullpage.css'
     ], { base: "./" })
         .pipe(replace(/(FP\.version = ')([\d\.])+(')/g, "$1" + fpPackage.version + "$3"))

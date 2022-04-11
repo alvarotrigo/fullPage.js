@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.0
+* fullPage 4.0.3
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -5528,7 +5528,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.2';
+      FP.version = '4.0.3';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
