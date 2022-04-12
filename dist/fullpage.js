@@ -1829,7 +1829,7 @@
 
       for (var i = 0; i < numSlides; i++) {
         var slide = $(SLIDE_SEL, sectionElem)[i];
-        appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">' + getBulletLinkName(i, 'Slide', slide) + '</span><span></span></a></li>'), $('ul', nav)[0]);
+        appendTo(createElementFromHTML('<li><a href="#"><span class="fp-sr-only">' + encodeURI(getBulletLinkName(i, 'Slide', slide)) + '</span><span></span></a></li>'), $('ul', nav)[0]);
       } //centering it
 
 
@@ -2354,7 +2354,7 @@
           link = section.anchor;
         }
 
-        li += '<li><a href="#' + link + '"><span class="fp-sr-only">' + getBulletLinkName(section.index(), 'Section') + '</span><span></span></a>'; // Only add tooltip if needed (defined by user)
+        li += '<li><a href="#' + encodeURI(link) + '"><span class="fp-sr-only">' + encodeURI(getBulletLinkName(section.index(), 'Section')) + '</span><span></span></a>'; // Only add tooltip if needed (defined by user)
 
         var tooltip = getOptions().navigationTooltips[section.index()];
 

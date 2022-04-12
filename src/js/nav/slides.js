@@ -57,7 +57,7 @@ export function addSlidesNavigation(section){
 
     for(var i=0; i< numSlides; i++){
         var slide = utils.$(SLIDE_SEL, sectionElem)[i];
-        utils.appendTo(utils.createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ getBulletLinkName(i, 'Slide', slide) +'</span><span></span></a></li>'), utils.$('ul', nav)[0] );
+        utils.appendTo(utils.createElementFromHTML('<li><a href="#"><span class="fp-sr-only">'+ encodeURI(getBulletLinkName(i, 'Slide', slide)) +'</span><span></span></a></li>'), utils.$('ul', nav)[0] );
     }
 
     //centering it
