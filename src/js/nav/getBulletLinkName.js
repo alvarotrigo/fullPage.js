@@ -6,7 +6,7 @@ import { getOptions } from "../common/options.js";
 */
 export function getBulletLinkName(i, defaultName, item){
     var anchor = defaultName === 'Section' ? getOptions().anchors[i] : utils.getAttr(item, 'data-anchor');
-    return getOptions().navigationTooltips[i] || 
+    return encodeURI(getOptions().navigationTooltips[i] || 
         anchor || 
-        defaultName + ' ' + (i+1);
+        defaultName + ' ' + (i+1));
 }

@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.4
+* fullPage 4.0.5
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -867,6 +867,7 @@
       touchDirection: 'none',
       wheelDirection: 'none',
       isGrabbing: false,
+      isUsingWheel: false,
       isWindowFocused: true,
       previousDestTop: 0,
       windowsHeight: getWindowHeight(),
@@ -1786,7 +1787,7 @@
 
     function getBulletLinkName(i, defaultName, item) {
       var anchor = defaultName === 'Section' ? getOptions().anchors[i] : getAttr(item, 'data-anchor');
-      return getOptions().navigationTooltips[i] || anchor || defaultName + ' ' + (i + 1);
+      return encodeURI(getOptions().navigationTooltips[i] || anchor || defaultName + ' ' + (i + 1));
     }
 
     function slideBulletHandler(e) {
@@ -2354,7 +2355,7 @@
           link = section.anchor;
         }
 
-        li += '<li><a href="#' + link + '"><span class="fp-sr-only">' + getBulletLinkName(section.index(), 'Section') + '</span><span></span></a>'; // Only add tooltip if needed (defined by user)
+        li += '<li><a href="#' + encodeURI(link) + '"><span class="fp-sr-only">' + getBulletLinkName(section.index(), 'Section') + '</span><span></span></a>'; // Only add tooltip if needed (defined by user)
 
         var tooltip = getOptions().navigationTooltips[section.index()];
 
@@ -2670,7 +2671,7 @@
         var timeDiff = this.timeLastScroll - scrollOverflowHandler.timeBeforeReachingLimit;
         var isUsingTouch = isTouchDevice || isTouch;
         var isGrabbing = isUsingTouch && state.isGrabbing;
-        var isNotFirstTimeReachingLimit = !isUsingTouch && timeDiff > 600;
+        var isNotFirstTimeReachingLimit = state.isUsingWheel && timeDiff > 600;
         return isGrabbing && timeDiff > 400 || isNotFirstTimeReachingLimit;
       },
       onPanelScroll: function () {
@@ -3715,7 +3716,8 @@
 
       if (isReallyTouch(e)) {
         setState({
-          isGrabbing: true
+          isGrabbing: true,
+          isUsingWheel: false
         });
 
         if (getOptions().autoScrolling) {
@@ -4312,7 +4314,16 @@
     function MouseWheelHandler(e) {
       var curTime = new Date().getTime();
       var isNormalScroll = hasClass($(COMPLETELY_SEL)[0], NORMAL_SCROLL);
-      var isScrollAllowedBeyondFullPage = beyondFullPageHandler(getContainer(), e); //is scroll allowed?
+      var isScrollAllowedBeyondFullPage = beyondFullPageHandler(getContainer(), e);
+
+      if (!state.isUsingWheel) {
+        setState({
+          isGrabbing: false,
+          isUsingWheel: true,
+          touchDirection: 'none'
+        });
+      } //is scroll allowed?
+
 
       if (!getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
         preventDefault(e);
@@ -5113,7 +5124,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-12".split("-"),
+      var n = "2022-3-13".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5529,7 +5540,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.4';
+      FP.version = '4.0.5';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

@@ -109,6 +109,14 @@ function MouseWheelHandler(e) {
     var isNormalScroll = utils.hasClass(utils.$(COMPLETELY_SEL)[0], NORMAL_SCROLL);
     var isScrollAllowedBeyondFullPage = beyondFullPageHandler(getContainer(), e);
 
+    if(!state.isUsingWheel){
+        setState({
+            isGrabbing: false,
+            isUsingWheel: true,
+            touchDirection: 'none'
+        });
+    }
+
     //is scroll allowed?
     if (!getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
         utils.preventDefault(e);

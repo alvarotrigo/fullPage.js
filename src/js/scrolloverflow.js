@@ -131,7 +131,7 @@ export const scrollOverflowHandler = {
         var timeDiff = this.timeLastScroll - scrollOverflowHandler.timeBeforeReachingLimit;
         var isUsingTouch = isTouchDevice || isTouch;
         var isGrabbing = isUsingTouch && state.isGrabbing;
-        var isNotFirstTimeReachingLimit = !isUsingTouch && timeDiff > 600;
+        var isNotFirstTimeReachingLimit = state.isUsingWheel && timeDiff > 600;
     
         return isGrabbing && timeDiff > 400 || isNotFirstTimeReachingLimit;
     },
