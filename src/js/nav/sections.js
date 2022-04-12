@@ -64,7 +64,7 @@ export function addVerticalNavigation(){
             link = section.anchor;
         }
 
-        li += '<li><a href="#' + encodeURI(link) + '"><span class="fp-sr-only">' + encodeURI(getBulletLinkName(section.index(), 'Section')) + '</span><span></span></a>';
+        li += '<li><a href="#' + encodeURI(link) + '"><span class="fp-sr-only">' + getBulletLinkName(section.index(), 'Section') + '</span><span></span></a>';
 
         // Only add tooltip if needed (defined by user)
         var tooltip = getOptions().navigationTooltips[section.index()];

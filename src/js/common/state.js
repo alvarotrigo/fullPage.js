@@ -20,6 +20,7 @@ export const state = {
     touchDirection: 'none',
     wheelDirection: 'none',
     isGrabbing: false,
+    isUsingWheel: false,
     isWindowFocused: true,
     previousDestTop: 0,
     windowsHeight: utils.getWindowHeight(),

@@ -77,7 +77,10 @@ function touchMoveHandler(e){
     var direction = isHorizontalPredominantMove ? directionH : directionV;
 
     if (isReallyTouch(e) ) {
-        setState({isGrabbing: true});
+        setState({
+            isGrabbing: true,
+            isUsingWheel: false
+        });
 
         if(getOptions().autoScrolling){
             if(!hasActiveSectionOverflow || (hasActiveSectionOverflow && !state.canScroll)){
