@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.5
+* fullPage 4.0.6
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -5051,7 +5051,7 @@
 
 
     function getActiveSlide() {
-      return nullOrSlide(getState().activeSection.activeSlide.item);
+      return nullOrSlide(getState().activeSection.activeSlide);
     }
 
     EventEmitter.on('bindEvents', init$1);
@@ -5117,14 +5117,14 @@
               o: e.split("-")[2] === 8 * (ACTIVE.length - 2) + "",
               l: c
             };
-          }(n), s && (getOptions().credits && s && s.v <= e && s.l === n.split(t[0])[4] || function (t) {
+          }(n), s && (getOptions().credits && s && e <= s.v && s.l === n.split(t[0])[4] || function (t) {
             var n = i[r()]().join("");
             return t && 0 === n.indexOf(t) && t.length === n.length;
           }(n) || s.o) || !1)
         });
       });
       var t = ["-"];
-      var n = "2022-3-13".split("-"),
+      var n = "2022-3-19".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5540,7 +5540,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.5';
+      FP.version = '4.0.6';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

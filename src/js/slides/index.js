@@ -30,5 +30,5 @@ function bindEvents(){
 * Gets the active slide.
 */
 export function getActiveSlide(){
-    return nullOrSlide(getState().activeSection.activeSlide.item);
+    return nullOrSlide(getState().activeSection.activeSlide);
 }
