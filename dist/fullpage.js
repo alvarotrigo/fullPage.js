@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.6
+* fullPage 4.0.7
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -5124,7 +5124,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-19".split("-"),
+      var n = "2022-3-20".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5133,7 +5133,7 @@
       }
 
       function o(t) {
-        return isNaN(t) ? t.charCodeAt(0) - 72 : t;
+        return t ? isNaN(t) ? t.charCodeAt(0) - 72 : t : "";
       }
 
       function a(t) {
@@ -5540,7 +5540,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.6';
+      FP.version = '4.0.7';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
