@@ -69,13 +69,7 @@ export function removeTouchHandler(){
 function touchMoveHandler(e){
     var activeSection = utils.closest(e.target, SECTION_SEL) || getState().activeSection.item;
     var hasActiveSectionOverflow = scrollOverflowHandler.isScrollable(getState().activeSection);
-    var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > (win.innerHeight / 100 * getOptions().touchSensitivity);
-    var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity);
-    var isHorizontalPredominantMove = utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY));
-    var directionH = touchStartX > touchEndX ? 'right' : 'left';
-    var directionV = touchStartY > touchEndY ? 'down' : 'up';
-    var direction = isHorizontalPredominantMove ? directionH : directionV;
-
+    
     if (isReallyTouch(e) ) {
         setState({
             isGrabbing: true,
@@ -94,6 +88,13 @@ function touchMoveHandler(e){
 
         touchEndY = touchEvents.y;
         touchEndX = touchEvents.x;
+
+        var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > (win.innerHeight / 100 * getOptions().touchSensitivity);
+        var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > (utils.getWindowWidth() / 100 * getOptions().touchSensitivity);
+        var isHorizontalPredominantMove = utils.$(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > (Math.abs(touchStartY - touchEndY));
+        var directionH = touchStartX > touchEndX ? 'right' : 'left';
+        var directionV = touchStartY > touchEndY ? 'down' : 'up';
+        var direction = isHorizontalPredominantMove ? directionH : directionV;
 
         setState({touchDirection: direction});
 

@@ -3707,12 +3707,6 @@
     function touchMoveHandler(e) {
       var activeSection = closest(e.target, SECTION_SEL) || getState().activeSection.item;
       var hasActiveSectionOverflow = scrollOverflowHandler.isScrollable(getState().activeSection);
-      var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > win.innerHeight / 100 * getOptions().touchSensitivity;
-      var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > getWindowWidth() / 100 * getOptions().touchSensitivity;
-      var isHorizontalPredominantMove = $(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY);
-      var directionH = touchStartX > touchEndX ? 'right' : 'left';
-      var directionV = touchStartY > touchEndY ? 'down' : 'up';
-      var direction = isHorizontalPredominantMove ? directionH : directionV;
 
       if (isReallyTouch(e)) {
         setState({
@@ -3730,6 +3724,12 @@
         var touchEvents = getEventsPage(e);
         touchEndY = touchEvents.y;
         touchEndX = touchEvents.x;
+        var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > win.innerHeight / 100 * getOptions().touchSensitivity;
+        var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > getWindowWidth() / 100 * getOptions().touchSensitivity;
+        var isHorizontalPredominantMove = $(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY);
+        var directionH = touchStartX > touchEndX ? 'right' : 'left';
+        var directionV = touchStartY > touchEndY ? 'down' : 'up';
+        var direction = isHorizontalPredominantMove ? directionH : directionV;
         setState({
           touchDirection: direction
         }); //if movement in the X axys is greater than in the Y and the currect section has slides...
@@ -5124,7 +5124,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-20".split("-"),
+      var n = "2022-3-26".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
