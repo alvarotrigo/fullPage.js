@@ -6,6 +6,7 @@ import { isResponsiveMode } from './responsive.js';
 import { isMacDevice, isTouchDevice, isTouch, win, doc } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { 
+    ACTIVE_SEL,
     AUTO_HEIGHT,
     AUTO_HEIGHT_RESPONSIVE,
     OVERFLOW,
@@ -59,7 +60,7 @@ export const scrollOverflowHandler = {
             this.focusedElem.blur();
         }
 
-        if(utils.$(OVERFLOW_SEL, getState().activeSection.item)[0]){
+        if(utils.$(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]){
             this.focusedElem = utils.$(OVERFLOW_SEL, getState().activeSection.item)[0];
             this.focusedElem.focus();
         }
