@@ -29,8 +29,9 @@ export function scrollTo(element, to, duration, callback) {
     var change = to - start;
     var currentTime = 0;
     var increment = 20;
-    setState({activeAnimation: true});
     var isCallbackFired = false;
+
+    setState({activeAnimation: true});
 
     // Making sure we can trigger a scroll animation
     // when css scroll snap is active. Temporally disabling it.

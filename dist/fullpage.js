@@ -1419,10 +1419,10 @@
       var change = to - start;
       var currentTime = 0;
       var increment = 20;
+      var isCallbackFired = false;
       setState({
         activeAnimation: true
-      });
-      var isCallbackFired = false; // Making sure we can trigger a scroll animation
+      }); // Making sure we can trigger a scroll animation
       // when css scroll snap is active. Temporally disabling it.
 
       if (element === doc.body) {
@@ -2605,7 +2605,7 @@
           this.focusedElem.blur();
         }
 
-        if ($(OVERFLOW_SEL, getState().activeSection.item)[0]) {
+        if ($(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]) {
           this.focusedElem = $(OVERFLOW_SEL, getState().activeSection.item)[0];
           this.focusedElem.focus();
         }
@@ -3517,9 +3517,12 @@
 
     function afterSectionLoads(v) {
       if (getOptions().fitToSection) {
-        css(doc.body, {
-          'scroll-snap-type': 'y mandatory'
-        });
+        // Removing CSS snaps for auto-scrolling sections
+        if (hasClass($(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)) {
+          css(doc.body, {
+            'scroll-snap-type': 'none'
+          });
+        }
       }
 
       setState({
@@ -4969,15 +4972,27 @@
 
             setPageStatus(slideIndex, slideAnchorLink, anchorLink);
             updateState();
-          } //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+          }
 
+          if (getOptions().fitToSection) {
+            // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+            clearTimeout(g_scrollId);
+            g_scrollId = setTimeout(function () {
+              setState({
+                isScrolling: false
+              });
+              var fixedSections = state.sections.filter(function (section) {
+                var sectionValues = section.item.getBoundingClientRect();
+                return Math.round(sectionValues.bottom) === Math.round(getWindowHeight()) || Math.round(sectionValues.top) === 0;
+              }); // No section is fitting the viewport? Let's fix that!
 
-          clearTimeout(g_scrollId);
-          g_scrollId = setTimeout(function () {
-            setState({
-              isScrolling: false
-            });
-          }, 100);
+              if (!fixedSections.length) {
+                css(doc.body, {
+                  'scroll-snap-type': 'y mandatory'
+                });
+              }
+            }, 300);
+          }
         }
       }
     }
@@ -5140,7 +5155,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-26".split("-"),
+      var n = "2022-4-9".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
