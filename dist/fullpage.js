@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.6
+* fullPage 4.0.7
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1419,10 +1419,10 @@
       var change = to - start;
       var currentTime = 0;
       var increment = 20;
+      var isCallbackFired = false;
       setState({
         activeAnimation: true
-      });
-      var isCallbackFired = false; // Making sure we can trigger a scroll animation
+      }); // Making sure we can trigger a scroll animation
       // when css scroll snap is active. Temporally disabling it.
 
       if (element === doc.body) {
@@ -2605,7 +2605,7 @@
           this.focusedElem.blur();
         }
 
-        if ($(OVERFLOW_SEL, getState().activeSection.item)[0]) {
+        if ($(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]) {
           this.focusedElem = $(OVERFLOW_SEL, getState().activeSection.item)[0];
           this.focusedElem.focus();
         }
@@ -3517,9 +3517,12 @@
 
     function afterSectionLoads(v) {
       if (getOptions().fitToSection) {
-        css(doc.body, {
-          'scroll-snap-type': 'y mandatory'
-        });
+        // Removing CSS snaps for auto-scrolling sections
+        if (hasClass($(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)) {
+          css(doc.body, {
+            'scroll-snap-type': 'none'
+          });
+        }
       }
 
       setState({
@@ -3707,12 +3710,6 @@
     function touchMoveHandler(e) {
       var activeSection = closest(e.target, SECTION_SEL) || getState().activeSection.item;
       var hasActiveSectionOverflow = scrollOverflowHandler.isScrollable(getState().activeSection);
-      var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > win.innerHeight / 100 * getOptions().touchSensitivity;
-      var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > getWindowWidth() / 100 * getOptions().touchSensitivity;
-      var isHorizontalPredominantMove = $(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY);
-      var directionH = touchStartX > touchEndX ? 'right' : 'left';
-      var directionV = touchStartY > touchEndY ? 'down' : 'up';
-      var direction = isHorizontalPredominantMove ? directionH : directionV;
 
       if (isReallyTouch(e)) {
         setState({
@@ -3730,6 +3727,12 @@
         var touchEvents = getEventsPage(e);
         touchEndY = touchEvents.y;
         touchEndX = touchEvents.x;
+        var isVerticalMovementEnough = Math.abs(touchStartY - touchEndY) > win.innerHeight / 100 * getOptions().touchSensitivity;
+        var isHorizontalMovementEnough = Math.abs(touchStartX - touchEndX) > getWindowWidth() / 100 * getOptions().touchSensitivity;
+        var isHorizontalPredominantMove = $(SLIDES_WRAPPER_SEL, activeSection).length && Math.abs(touchStartX - touchEndX) > Math.abs(touchStartY - touchEndY);
+        var directionH = touchStartX > touchEndX ? 'right' : 'left';
+        var directionV = touchStartY > touchEndY ? 'down' : 'up';
+        var direction = isHorizontalPredominantMove ? directionH : directionV;
         setState({
           touchDirection: direction
         }); //if movement in the X axys is greater than in the Y and the currect section has slides...
@@ -3989,7 +3992,7 @@
 
       docAddEvent('keydown', keydownHandler); // for fitToSection:true
 
-      $body.addEventListener('keydown', cancelDirectionKeyEvents); //to prevent scrolling while zooming
+      $body.addEventListener('keydown', onBodyClick); //to prevent scrolling while zooming
 
       docAddEvent('keyup', keyUpHandler);
       EventEmitter.on('onDestroy', onDestroy$5);
@@ -3999,19 +4002,23 @@
       clearTimeout(g_keydownId);
       docRemoveEvent('keydown', keydownHandler);
       docRemoveEvent('keyup', keyUpHandler);
+    }
+
+    function isInsideInput() {
+      var activeElement = doc.activeElement;
+      return matches(activeElement, 'textarea') || matches(activeElement, 'input') || matches(activeElement, 'select') || getAttr(activeElement, 'contentEditable') == "true" || getAttr(activeElement, 'contentEditable') == '';
     } //Sliding with arrow keys, both, vertical and horizontal
 
 
     function keydownHandler(e) {
       clearTimeout(g_keydownId);
-      var activeElement = doc.activeElement;
       var keyCode = e.keyCode;
       var isPressingHorizontalArrows = [37, 39].indexOf(keyCode) > -1;
       var canScrollWithKeyboard = getOptions().autoScrolling || isPressingHorizontalArrows; //tab?
 
       if (keyCode === 9) {
         onTab(e);
-      } else if (!matches(activeElement, 'textarea') && !matches(activeElement, 'input') && !matches(activeElement, 'select') && getAttr(activeElement, 'contentEditable') !== "true" && getAttr(activeElement, 'contentEditable') !== '' && getOptions().keyboardScrolling && canScrollWithKeyboard) {
+      } else if (!isInsideInput() && getOptions().keyboardScrolling && canScrollWithKeyboard) {
         g_controlPressed = e.ctrlKey;
         g_keydownId = setTimeout(function () {
           onkeydown(e);
@@ -4202,8 +4209,20 @@
     }
 
     function shouldCancelKeyboardNavigation(e) {
+      // https://keycode.info/for/34
+      // 40 = arrow down
+      // 38 = arrow up
+      // 32 = spacebar
+      // 33  = PageUp
+      // 34 = PageDown
       var keyControls = [40, 38, 32, 33, 34];
       return keyControls.indexOf(e.keyCode) > -1 && !state.isBeyondFullpage;
+    }
+
+    function onBodyClick(e) {
+      if (!isInsideInput()) {
+        cancelDirectionKeyEvents(e);
+      }
     } //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
 
 
@@ -4953,15 +4972,27 @@
 
             setPageStatus(slideIndex, slideAnchorLink, anchorLink);
             updateState();
-          } //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+          }
 
+          if (getOptions().fitToSection) {
+            // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+            clearTimeout(g_scrollId);
+            g_scrollId = setTimeout(function () {
+              setState({
+                isScrolling: false
+              });
+              var fixedSections = state.sections.filter(function (section) {
+                var sectionValues = section.item.getBoundingClientRect();
+                return Math.round(sectionValues.bottom) === Math.round(getWindowHeight()) || Math.round(sectionValues.top) === 0;
+              }); // No section is fitting the viewport? Let's fix that!
 
-          clearTimeout(g_scrollId);
-          g_scrollId = setTimeout(function () {
-            setState({
-              isScrolling: false
-            });
-          }, 100);
+              if (!fixedSections.length) {
+                css(doc.body, {
+                  'scroll-snap-type': 'y mandatory'
+                });
+              }
+            }, 300);
+          }
         }
       }
     }
@@ -5124,7 +5155,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-3-19".split("-"),
+      var n = "2022-4-9".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5133,7 +5164,7 @@
       }
 
       function o(t) {
-        return isNaN(t) ? t.charCodeAt(0) - 72 : t;
+        return t ? isNaN(t) ? t.charCodeAt(0) - 72 : t : "";
       }
 
       function a(t) {
@@ -5540,7 +5571,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.6';
+      FP.version = '4.0.7';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

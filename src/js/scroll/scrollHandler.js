@@ -15,6 +15,7 @@ import {
 import { fireCallbackOncePerScroll } from '../callbacks/fireCallbacksOncePerScroll.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
+import { doc } from '../common/constants.js';
 
 var lastScroll = 0;
 let g_scrollId;
@@ -139,11 +140,25 @@ export function scrollHandler(e){
                 updateState();
             }
 
-            //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
-            clearTimeout(g_scrollId);
-            g_scrollId = setTimeout(function(){
-                setState({isScrolling: false});
-            }, 100);
+            if(getOptions().fitToSection){
+
+                // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+                clearTimeout(g_scrollId);
+                g_scrollId = setTimeout(function(){
+                    setState({isScrolling: false});
+
+                    var fixedSections = state.sections.filter(function(section){
+                        var sectionValues = section.item.getBoundingClientRect();
+                        return Math.round(sectionValues.bottom) === Math.round(utils.getWindowHeight()) ||
+                            Math.round(sectionValues.top) === 0;
+                    });
+
+                    // No section is fitting the viewport? Let's fix that!
+                    if(!fixedSections.length){
+                        utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
+                    }
+                }, 300);   
+            }
         }
     }
 }

@@ -18,7 +18,8 @@ import { activateMenuAndNav } from '../menu/activateMenuAndNav.js';
 import { 
     AUTO_HEIGHT,
     COMPLETELY,
-    ACTIVE
+    ACTIVE,
+    SECTION_ACTIVE_SEL
 } from '../common/selectors.js';
 import { fireCallbackOncePerScroll } from '../callbacks/fireCallbacksOncePerScroll.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
@@ -259,7 +260,11 @@ function performMovement(v){
 */
 function afterSectionLoads(v){
     if(getOptions().fitToSection){
-        utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
+
+        // Removing CSS snaps for auto-scrolling sections
+        if(utils.hasClass(utils.$(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)){
+            utils.css(doc.body, {'scroll-snap-type': 'none'});
+        }
     }
     
     setState({isBeyondFullpage: false});

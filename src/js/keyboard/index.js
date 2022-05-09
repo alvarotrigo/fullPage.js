@@ -33,7 +33,7 @@ function bindEvents(){
     utils.docAddEvent('keydown', keydownHandler);
 
     // for fitToSection:true
-    $body.addEventListener('keydown', cancelDirectionKeyEvents);
+    $body.addEventListener('keydown', onBodyClick);
 
     //to prevent scrolling while zooming
     utils.docAddEvent('keyup', keyUpHandler);
@@ -48,11 +48,20 @@ function onDestroy(){
     utils.docRemoveEvent('keyup', keyUpHandler);
 }
 
+function isInsideInput(){
+    var activeElement = doc.activeElement;
+
+    return utils.matches(activeElement, 'textarea') || 
+        utils.matches(activeElement, 'input') || 
+        utils.matches(activeElement, 'select') ||
+        utils.getAttr(activeElement, 'contentEditable') == "true" || 
+        utils.getAttr(activeElement, 'contentEditable') == '';
+}
+
 //Sliding with arrow keys, both, vertical and horizontal
 function keydownHandler(e) {
     clearTimeout(g_keydownId);
 
-    var activeElement = doc.activeElement;
     var keyCode = e.keyCode;
     var isPressingHorizontalArrows = [37,39].indexOf(keyCode) > -1;
     var canScrollWithKeyboard = getOptions().autoScrolling || isPressingHorizontalArrows;
@@ -62,11 +71,7 @@ function keydownHandler(e) {
         onTab(e);
     }
 
-    else if(!utils.matches(activeElement, 'textarea') && 
-        !utils.matches(activeElement, 'input') && 
-        !utils.matches(activeElement, 'select') &&
-        utils.getAttr(activeElement, 'contentEditable') !== "true" && 
-        utils.getAttr(activeElement, 'contentEditable') !== '' &&
+    else if( !isInsideInput() &&
         getOptions().keyboardScrolling && 
         canScrollWithKeyboard){
 
@@ -254,8 +259,20 @@ function isFocusOutside(e){
 }
 
 function shouldCancelKeyboardNavigation(e){
+    // https://keycode.info/for/34
+    // 40 = arrow down
+    // 38 = arrow up
+    // 32 = spacebar
+    // 33  = PageUp
+    // 34 = PageDown
     var keyControls = [40, 38, 32, 33, 34];
     return keyControls.indexOf(e.keyCode) > -1 && !state.isBeyondFullpage;
+}
+
+function onBodyClick(e){
+    if(!isInsideInput()){
+        cancelDirectionKeyEvents(e);
+    }
 }
 
 //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
