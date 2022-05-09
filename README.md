@@ -772,7 +772,7 @@ new fullpage('#fullpage', {
 	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 
 	afterLoad: function(origin, destination, direction, trigger){
-		var loadedSection = this;
+		var origin = this;
 
 		//using index
 		if(origin.index == 2){
