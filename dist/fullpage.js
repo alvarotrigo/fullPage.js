@@ -2657,7 +2657,7 @@
         var scrollableItem = scrollOverflowHandler.scrollable(el);
         var positionY = scrollableItem.scrollTop;
         var isTopReached = direction === 'up' && positionY <= 0;
-        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= scrollableItem.offsetHeight + positionY;
+        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
         var isScrolled = isTopReached || isBottomReached;
 
         if (!isScrolled) {
