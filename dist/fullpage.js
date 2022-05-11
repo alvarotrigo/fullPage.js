@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.7
+* fullPage 4.0.8
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -3648,14 +3648,18 @@
     var touchEndX = 0;
     var MSPointer = getMSPointer();
     var events = {
-      touchmove: 'ontouchmove' in window ? 'touchmove' : MSPointer.move,
-      touchstart: 'ontouchstart' in window ? 'touchstart' : MSPointer.down
+      touchmove: 'ontouchmove' in window ? 'touchmove' : MSPointer ? MSPointer.move : null,
+      touchstart: 'ontouchstart' in window ? 'touchstart' : MSPointer ? MSPointer.down : null
     };
     /**
     * Adds the possibility to auto scroll through sections on touch devices.
     */
 
     function addTouchHandler() {
+      if (!events.touchmove) {
+        return;
+      }
+
       if (isTouchDevice || isTouch) {
         if (getOptions().autoScrolling) {
           $body.removeEventListener(events.touchmove, preventBouncing, {
@@ -3682,6 +3686,10 @@
     */
 
     function removeTouchHandler() {
+      if (!events.touchmove) {
+        return;
+      }
+
       if (isTouchDevice || isTouch) {
         // normalScrollElements requires it off #2691
         if (getOptions().autoScrolling) {
@@ -5155,7 +5163,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-4-9".split("-"),
+      var n = "2022-4-11".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5571,7 +5579,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.7';
+      FP.version = '4.0.8';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
