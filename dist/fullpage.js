@@ -885,9 +885,9 @@
       return state;
     }
 
-    EventEmitter.on('bindEvents', bindEvents$d);
+    EventEmitter.on('bindEvents', bindEvents$c);
 
-    function bindEvents$d() {
+    function bindEvents$c() {
       //Scrolls to the section when clicking the navigation bullet
       //simulating the jQuery .on('click') event using delegation
       ['click', 'touchstart'].forEach(function (eventName) {
@@ -898,7 +898,7 @@
     }
 
     function internalEvents() {
-      EventEmitter.on('onDestroy', onDestroy$9);
+      EventEmitter.on('onDestroy', onDestroy$8);
     }
 
     function delegatedEvents(e) {
@@ -908,7 +908,7 @@
       });
     }
 
-    function onDestroy$9() {
+    function onDestroy$8() {
       ['click', 'touchstart'].forEach(function (eventName) {
         docRemoveEvent(eventName, delegatedEvents);
       });
@@ -1398,28 +1398,16 @@
     }
 
     //@ts-check
-    var g_animateScrollId;
-    EventEmitter.on('bindEvents', bindEvents$c);
-
-    function bindEvents$c() {
-      EventEmitter.on('onDestroy', onDestroy$8);
-    }
-
-    function onDestroy$8() {
-      clearTimeout(g_animateScrollId);
-    }
     /**
     * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
     * http://stackoverflow.com/a/16136789/1081396
     */
 
-
     function scrollTo(element, to, duration, callback) {
       var start = getScrolledPosition(element);
       var change = to - start;
-      var currentTime = 0;
-      var increment = 20;
       var isCallbackFired = false;
+      var startTime;
       setState({
         activeAnimation: true
       }); // Making sure we can trigger a scroll animation
@@ -1431,22 +1419,28 @@
         });
       }
 
-      var animateScroll = function animateScroll() {
+      var animateScroll = function animateScroll(timestamp) {
         if (state.activeAnimation) {
           //in order to stope it from other function whenever we want
           var val = to;
-          currentTime += increment;
+
+          if (!startTime) {
+            startTime = timestamp;
+          }
+
+          var currentTime = Math.floor(timestamp - startTime);
 
           if (duration) {
             // @ts-ignore
             val = win.fp_easings[getOptions().easing](currentTime, start, change, duration);
           }
 
-          setScrolling(element, val);
+          if (currentTime <= duration) {
+            setScrolling(element, val);
+          }
 
           if (currentTime < duration) {
-            clearTimeout(g_animateScrollId);
-            g_animateScrollId = setTimeout(animateScroll, increment);
+            window.requestAnimationFrame(animateScroll);
           } else if (typeof callback !== 'undefined' && !isCallbackFired) {
             callback();
             isCallbackFired = true;
@@ -1457,7 +1451,7 @@
         }
       };
 
-      animateScroll();
+      window.requestAnimationFrame(animateScroll);
     }
     /**
     * Getting the position of the element to scroll when using jQuery animations
@@ -2833,7 +2827,7 @@
     FP.render = onContentChange;
 
     function bindEvents$9() {
-      if (getOptions().observer && "MutationObserver" in window) {
+      if (getOptions().observer && "MutationObserver" in window && $(WRAPPER_SEL)[0]) {
         g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
       }
 
@@ -2905,7 +2899,7 @@
         });
       }
 
-      if (getOptions().observer && g_wrapperObserver) {
+      if (getOptions().observer && g_wrapperObserver && $(WRAPPER_SEL)[0]) {
         g_wrapperObserver.observe($(WRAPPER_SEL)[0], g_wrapperObserveConfig);
       }
     }
@@ -4624,6 +4618,13 @@
             reBuild(true);
             previousHeight = currentHeight;
           }
+        } // on Android devices the browser scrolls to the focused element
+        // messing up the whole page structure. So we need to update the
+        // translate3d value when the keyboard shows/hides
+
+
+        if (getOptions().autoScrolling && !getOptions().scrollBar) {
+          silentMoveTo(state.activeSection.index() + 1);
         }
       } else {
         adjustToNewViewport();
@@ -5163,7 +5164,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-4-11".split("-"),
+      var n = "2022-4-19".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
