@@ -4575,6 +4575,7 @@
         }
       }
 
+      fitToActiveSection();
       g_isConsecutiveResize = true; //in order to call the functions only when the resize is finished
       //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing    
 
@@ -4587,6 +4588,17 @@
         resizeActions();
         g_isConsecutiveResize = false; // }
       }, 400);
+    }
+
+    function fitToActiveSection() {
+      if (isTouchDevice) {
+        // on Android devices the browser scrolls to the focused element
+        // messing up the whole page structure. So we need to update the
+        // translate3d value when the keyboard shows/hides
+        if (getOptions().autoScrolling && !getOptions().scrollBar) {
+          silentMoveTo(state.activeSection.index() + 1);
+        }
+      }
     }
     /**
     * When resizing the site, we adjust the heights of the sections, slimScroll...
@@ -5164,7 +5176,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-4-19".split("-"),
+      var n = "2022-4-20".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
