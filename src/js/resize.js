@@ -17,6 +17,7 @@ let previousHeight = utils.getWindowHeight();
 let windowsWidth = utils.getWindowWidth();
 let g_resizeId;
 let g_isConsecutiveResize = false;
+let g_resizeMobileHandlerId;
 FP.reBuild = reBuild;
 
 EventEmitter.on('bindEvents', bindEvents);
@@ -29,6 +30,7 @@ function bindEvents(){
 
 function onDestroy(){
     clearTimeout(g_resizeId);
+    clearTimeout(g_resizeMobileHandlerId);
     utils.windowRemoveEvent('resize', resizeHandler);
 }
 
@@ -41,6 +43,8 @@ function resizeHandler(){
             setSectionsHeight(utils.getWindowHeight());
         }
     }
+
+    fitToActiveSection();
 
     g_isConsecutiveResize = true;
 
@@ -57,6 +61,29 @@ function resizeHandler(){
             g_isConsecutiveResize = false;
         // }
     }, 400);
+}
+
+function fitToActiveSection(){
+
+    if (isTouchDevice) {
+
+        // Issue #4393 and previously in v3, #3336
+        // (some apps or browsers, like Chrome/Firefox will delay a bit to scroll 
+        // to the focused input
+        for(var i = 0; i< 4; i++){
+            g_resizeMobileHandlerId = setTimeout(function(){
+                window.requestAnimationFrame(function(){
+                    
+                    // on Android devices the browser scrolls to the focused element
+                    // messing up the whole page structure. So we need to update the
+                    // translate3d value when the keyboard shows/hides
+                    if(getOptions().autoScrolling && !getOptions().scrollBar){
+                        silentMoveTo(state.activeSection.index() + 1);
+                    }
+                });
+            }, 200 * i);
+        }
+    }
 }
 
 
