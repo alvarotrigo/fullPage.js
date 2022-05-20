@@ -28,7 +28,9 @@ EventEmitter.on('bindEvents', bindEvents);
 FP.render = onContentChange;
 
 function bindEvents(){    
-    if(getOptions().observer && "MutationObserver" in window){
+    if(getOptions().observer && 
+        "MutationObserver" in window &&
+        utils.$(WRAPPER_SEL)[0]){
         g_wrapperObserver = createObserver(utils.$(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
     }
     EventEmitter.on('contentChanged', onContentChange);
@@ -98,7 +100,7 @@ function onContentChange(mutations){
         });
     }
 
-    if(getOptions().observer && g_wrapperObserver){
+    if(getOptions().observer && g_wrapperObserver && utils.$(WRAPPER_SEL)[0]){
         g_wrapperObserver.observe(utils.$(WRAPPER_SEL)[0], g_wrapperObserveConfig);
     }
 }
