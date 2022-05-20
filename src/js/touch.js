@@ -18,14 +18,17 @@ let touchEndY = 0;
 let touchEndX = 0;
 const MSPointer = getMSPointer();
 const events = {
-    touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer.move,
-    touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer.down
+    touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer ? MSPointer.move : null,
+    touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer ? MSPointer.down : null
 };
 
 /**
 * Adds the possibility to auto scroll through sections on touch devices.
 */
 export function addTouchHandler(){
+    if(!events.touchmove){
+        return;
+    }
     if(isTouchDevice || isTouch){
         if(getOptions().autoScrolling){
             $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
@@ -46,6 +49,9 @@ export function addTouchHandler(){
 * Removes the auto scrolling for touch devices.
 */
 export function removeTouchHandler(){
+    if(!events.touchmove){
+        return;
+    }
     if(isTouchDevice || isTouch){
         // normalScrollElements requires it off #2691
         if(getOptions().autoScrolling){
