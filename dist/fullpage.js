@@ -4550,6 +4550,7 @@
     var windowsWidth = getWindowWidth();
     var g_resizeId;
     var g_isConsecutiveResize = false;
+    var g_resizeMobileHandlerId;
     FP.reBuild = reBuild;
     EventEmitter.on('bindEvents', bindEvents$6);
 
@@ -4561,6 +4562,7 @@
 
     function onDestroy$3() {
       clearTimeout(g_resizeId);
+      clearTimeout(g_resizeMobileHandlerId);
       windowRemoveEvent('resize', resizeHandler);
     }
     /*
@@ -4592,11 +4594,20 @@
 
     function fitToActiveSection() {
       if (isTouchDevice) {
-        // on Android devices the browser scrolls to the focused element
-        // messing up the whole page structure. So we need to update the
-        // translate3d value when the keyboard shows/hides
-        if (getOptions().autoScrolling && !getOptions().scrollBar) {
-          silentMoveTo(state.activeSection.index() + 1);
+        // Issue #4393 and previously in v3, #3336
+        // (some apps or browsers, like Chrome/Firefox will delay a bit to scroll 
+        // to the focused input
+        for (var i = 0; i < 4; i++) {
+          g_resizeMobileHandlerId = setTimeout(function () {
+            window.requestAnimationFrame(function () {
+              // on Android devices the browser scrolls to the focused element
+              // messing up the whole page structure. So we need to update the
+              // translate3d value when the keyboard shows/hides
+              if (getOptions().autoScrolling && !getOptions().scrollBar) {
+                silentMoveTo(state.activeSection.index() + 1);
+              }
+            });
+          }, 200 * i);
         }
       }
     }
@@ -4630,13 +4641,6 @@
             reBuild(true);
             previousHeight = currentHeight;
           }
-        } // on Android devices the browser scrolls to the focused element
-        // messing up the whole page structure. So we need to update the
-        // translate3d value when the keyboard shows/hides
-
-
-        if (getOptions().autoScrolling && !getOptions().scrollBar) {
-          silentMoveTo(state.activeSection.index() + 1);
         }
       } else {
         adjustToNewViewport();
