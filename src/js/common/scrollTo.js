@@ -4,21 +4,7 @@ import { setScrolling } from './utilsFP.js';
 import { state, setState } from "./state.js";
 import { getOptions } from './options.js';
 import { SLIDES_WRAPPER } from './selectors.js';
-import { EventEmitter } from './eventEmitter.js';
 import { doc, win } from './constants.js';
-
-let g_animateScrollId;
-
-EventEmitter.on('bindEvents', bindEvents);
-
-function bindEvents(){
-    EventEmitter.on('onDestroy', onDestroy);
-}
-
-function onDestroy(){
-    clearTimeout(g_animateScrollId);
-}
-
 
 /**
 * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
@@ -27,9 +13,8 @@ function onDestroy(){
 export function scrollTo(element, to, duration, callback) {
     var start = getScrolledPosition(element);
     var change = to - start;
-    var currentTime = 0;
-    var increment = 20;
     var isCallbackFired = false;
+    var startTime;
 
     setState({activeAnimation: true});
 
@@ -39,22 +24,26 @@ export function scrollTo(element, to, duration, callback) {
         utils.css(doc.body, {'scroll-snap-type': 'none'});
     }
 
-    var animateScroll = function(){
+    var animateScroll = function(timestamp){
         if(state.activeAnimation){ //in order to stope it from other function whenever we want
             var val = to;
+            if (!startTime){
+                startTime = timestamp;
+            }
 
-            currentTime += increment;
+            var currentTime = Math.floor(timestamp - startTime);
 
             if(duration){
                 // @ts-ignore
                 val = win.fp_easings[getOptions().easing](currentTime, start, change, duration);
             }
 
-            setScrolling(element, val);
+            if(currentTime <= duration) {
+                setScrolling(element, val);
+            }
 
             if(currentTime < duration) {
-                clearTimeout(g_animateScrollId);
-                g_animateScrollId = setTimeout(animateScroll, increment);
+                window.requestAnimationFrame(animateScroll);
             }else if(typeof callback !== 'undefined' && !isCallbackFired){
                 callback();
                 isCallbackFired = true;
@@ -65,7 +54,7 @@ export function scrollTo(element, to, duration, callback) {
         }
     };
 
-    animateScroll();
+    window.requestAnimationFrame(animateScroll);
 }
 
 
