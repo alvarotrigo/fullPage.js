@@ -4999,7 +4999,7 @@
             updateState();
           }
 
-          if (getOptions().fitToSection) {
+          if (getOptions().fitToSection && state.canScroll) {
             // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
             clearTimeout(g_scrollId);
             g_scrollId = setTimeout(function () {
