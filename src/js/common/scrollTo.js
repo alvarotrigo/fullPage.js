@@ -49,7 +49,7 @@ export function scrollTo(element, to, duration, callback) {
                 callback();
                 isCallbackFired = true;
             }
-        }else if (currentTime < duration && !isCallbackFired){
+        }else if (!isCallbackFired){
             callback();
             isCallbackFired = true;
         }
