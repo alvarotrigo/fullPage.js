@@ -1445,7 +1445,7 @@
             callback();
             isCallbackFired = true;
           }
-        } else if (currentTime < duration && !isCallbackFired) {
+        } else if (!isCallbackFired) {
           callback();
           isCallbackFired = true;
         }
