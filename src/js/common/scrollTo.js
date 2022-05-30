@@ -25,13 +25,14 @@ export function scrollTo(element, to, duration, callback) {
     }
 
     var animateScroll = function(timestamp){
+        if (!startTime){
+            startTime = timestamp;
+        }
+
+        var currentTime = Math.floor(timestamp - startTime);
+
         if(state.activeAnimation){ //in order to stope it from other function whenever we want
             var val = to;
-            if (!startTime){
-                startTime = timestamp;
-            }
-
-            var currentTime = Math.floor(timestamp - startTime);
 
             if(duration){
                 // @ts-ignore
@@ -48,7 +49,7 @@ export function scrollTo(element, to, duration, callback) {
                 callback();
                 isCallbackFired = true;
             }
-        }else if (currentTime < duration && !isCallbackFired){
+        }else if (!isCallbackFired){
             callback();
             isCallbackFired = true;
         }

@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 
 const licenseContent = `/*!
-* fullPage 4.0.8
+* fullPage 4.0.9
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only

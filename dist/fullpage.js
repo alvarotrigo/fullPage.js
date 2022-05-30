@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.8
+* fullPage 4.0.9
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1420,15 +1420,15 @@
       }
 
       var animateScroll = function animateScroll(timestamp) {
+        if (!startTime) {
+          startTime = timestamp;
+        }
+
+        var currentTime = Math.floor(timestamp - startTime);
+
         if (state.activeAnimation) {
           //in order to stope it from other function whenever we want
           var val = to;
-
-          if (!startTime) {
-            startTime = timestamp;
-          }
-
-          var currentTime = Math.floor(timestamp - startTime);
 
           if (duration) {
             // @ts-ignore
@@ -1445,7 +1445,7 @@
             callback();
             isCallbackFired = true;
           }
-        } else if (currentTime < duration && !isCallbackFired) {
+        } else if (!isCallbackFired) {
           callback();
           isCallbackFired = true;
         }
@@ -4999,7 +4999,7 @@
             updateState();
           }
 
-          if (getOptions().fitToSection) {
+          if (getOptions().fitToSection && state.canScroll) {
             // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
             clearTimeout(g_scrollId);
             g_scrollId = setTimeout(function () {
@@ -5180,7 +5180,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-4-20".split("-"),
+      var n = "2022-4-30".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5596,7 +5596,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.8';
+      FP.version = '4.0.9';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
