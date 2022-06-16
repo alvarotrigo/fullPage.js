@@ -47,7 +47,7 @@ A simple and easy to use library that creates fullscreen scrolling websites (als
 - [Opções](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#opções)
 - [Métodos](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#métodos)
 - [Callbacks](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#callbacks)
-- [Reportando falhas](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#reportando-falhas)
+- [Relatando problemas](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#relatando-problemas)
 - [Contribuindo para o fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#contribuindo-para-o-fullpagejs)
 - [Changelog](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#changelog)
 - [Tarefas de Build](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#tarefas-de-build)
