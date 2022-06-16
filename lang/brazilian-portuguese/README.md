@@ -377,7 +377,7 @@ Depois de adquirir o arquivo de extensão, você precisará adicioná-lo antes d
 <script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
 ```
 
-Uma chave de ativação e uma chave de licença serão necessárias para cada extensão. [Veja mais detalhes sobre isso aqui](https://github.com/alvarotrigo/fullPage.js/wiki/How-to-activate-a-fullPage.js-extension).
+Uma chave de ativação e uma chave de licença serão necessárias para cada extensão. [Veja mais detalhes sobre isso aqui](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/how-to-activate-fullpage-extension.md).
 
 Então você poderá usá-los e configurá-los conforme explicado em [Opções](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#opções).
 
@@ -1038,7 +1038,7 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 - [Wordpress Plugin for Divi](https://alvarotrigo.com/fullPage/wordpress-plugin-divi/)
 - [Wordpress Plugin for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 
-## Quem está usando fullPage.js
+## Quem está usando o fullPage.js
 
 [![Google](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/google-4.png)](http://www.yourprimer.com/)
 ![Coca-cola](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/cocacola-4.png)
