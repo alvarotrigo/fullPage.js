@@ -15,6 +15,7 @@ import {
 } from './common/selectors.js';
 import { getNodes } from './common/item.js';
 import { EventEmitter } from './common/eventEmitter.js';
+import { getSlideOrSection } from './common/utilsFP.js';
 
 EventEmitter.on('bindEvents', bindEvents);
 
@@ -30,7 +31,8 @@ function bindEvents(){
 
     if(getOptions().scrollOverflow){
         getNodes(getState().panels).forEach(function(el){
-            el.addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+            scrollOverflowHandler.getScrollableItem(el).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+
             el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving);
             el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving);
             el.addEventListener('keydown', scrollOverflowHandler.blurFocusOnAfterLoad);
@@ -79,7 +81,7 @@ export const scrollOverflowHandler = {
             ){
                 return;
             }else{
-                let item = scrollOverflowHandler.scrollable(el.item);
+                let item = getSlideOrSection(el.item);
                 const shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
                 if(shouldBeScrollable){
                     utils.addClass(item, OVERFLOW);
@@ -96,8 +98,14 @@ export const scrollOverflowHandler = {
         });
     },
 
-    scrollable: function(sectionItem){
-        return utils.$(SLIDE_ACTIVE_SEL, sectionItem)[0] || sectionItem;
+    getScrollableItem: function(sectionItem){
+        var panel = getSlideOrSection(sectionItem);
+
+        return utils.$(OVERFLOW_SEL, panel)[0] || panel;
+    },
+
+    hasScroll: function(panelItem){
+        return utils.hasClass(panelItem, OVERFLOW) || utils.$(OVERFLOW_SEL, panelItem)[0] != null;
     },
 
     isScrollable: function(panel){
@@ -115,7 +123,7 @@ export const scrollOverflowHandler = {
         if(!getOptions().scrollOverflow){
             return true;
         }
-        var scrollableItem = scrollOverflowHandler.scrollable(el);
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
         var positionY = scrollableItem.scrollTop;
         var isTopReached = direction === 'up' && positionY <=0;
         var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);

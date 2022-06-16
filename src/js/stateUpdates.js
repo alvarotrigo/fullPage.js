@@ -5,6 +5,7 @@ import { ACTIVE, OVERFLOW } from './common/selectors.js';
 import { getState, state } from './common/state.js';
 import { silentScroll } from './common/silentScroll.js';
 import { silentLandscapeScroll } from './slides/silentLandscapeScroll.js';
+import { scrollOverflowHandler } from './scrolloverflow.js';
 
 let g_prevActiveSectionIndex = null;
 let g_prevActiveSlideIndex = null;
@@ -18,7 +19,7 @@ export function updateState(){
     state.sections.map(function(section){
         let isActive = utils.hasClass(section.item, ACTIVE);
         section.isActive = isActive;
-        section.hasScroll = utils.hasClass(section.item, OVERFLOW);
+        section.hasScroll = scrollOverflowHandler.hasScroll(section.item);
         if(isActive){
             state.activeSection = section;
         }
@@ -27,7 +28,7 @@ export function updateState(){
             section.activeSlide = null;
             section.slides.map(function(slide){
                 let isActiveSlide = utils.hasClass(slide.item, ACTIVE);
-                slide.hasScroll = utils.hasClass(slide.item, OVERFLOW);
+                slide.hasScroll = scrollOverflowHandler.hasScroll(section.item);
                 slide.isActive = isActiveSlide;
                 if(isActiveSlide){
                     section.activeSlide = slide;
