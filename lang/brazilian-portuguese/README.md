@@ -32,7 +32,7 @@
 - [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
 ---
 
-A simple and easy to use library that creates fullscreen scrolling websites (also known as single page websites or onepage sites) and adds landscape sliders inside the sections of the site.
+Uma biblioteca simples e fácil de usar que cria sites de rolagem em tela cheia (também conhecidos como sites de página única ou sites de uma página) e adiciona controles deslizantes de paisagem dentro das seções do site.
 
 - [Introdução](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#introdução)
 - [Compatibilidade](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#compatibilidade)
