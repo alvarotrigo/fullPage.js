@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.9
+* fullPage 4.0.10
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -2124,6 +2124,320 @@
       setScrollingSpeed(getOriginals().scrollingSpeed, 'internal');
     }
 
+    FP.setRecordHistory = setRecordHistory;
+    /**
+    * Defines wheter to record the history for each hash change in the URL.
+    */
+
+    function setRecordHistory(value, type) {
+      setVariableState('recordHistory', value, type);
+    }
+
+    FP.setAutoScrolling = setAutoScrolling;
+    FP.test.setAutoScrolling = setAutoScrolling;
+    /**
+    * Sets the autoScroll option.
+    * It changes the scroll bar visibility and the history of the site as a result.
+    */
+
+    function setAutoScrolling(value, type) {
+      //removing the transformation
+      if (!value) {
+        silentScroll(0);
+      }
+
+      setVariableState('autoScrolling', value, type);
+      var element = getState().activeSection.item;
+
+      if (getOptions().autoScrolling && !getOptions().scrollBar) {
+        css($htmlBody, {
+          'overflow': 'hidden',
+          'height': '100%'
+        });
+        removeClass($body, 'fp-scrollable');
+        setRecordHistory(getOriginals().recordHistory, 'internal'); //for IE touch devices
+
+        css(getContainer(), {
+          '-ms-touch-action': 'none',
+          'touch-action': 'none'
+        });
+
+        if (element != null) {
+          //moving the container up
+          silentScroll(element.offsetTop);
+        }
+      } else {
+        css($htmlBody, {
+          'overflow': 'visible',
+          'height': 'initial'
+        });
+        addClass($body, 'fp-scrollable');
+        var recordHistory = !getOptions().autoScrolling ? false : getOriginals().recordHistory;
+        setRecordHistory(recordHistory, 'internal'); //for IE touch devices
+
+        css(getContainer(), {
+          '-ms-touch-action': '',
+          'touch-action': ''
+        }); //scrolling the page to the section with no animation
+
+        if (element != null) {
+          css($htmlBody, {
+            'scroll-behavior': 'unset'
+          });
+          var scrollSettings = getScrollSettings(element.offsetTop);
+          scrollSettings.element.scrollTo(0, scrollSettings.options);
+        }
+      }
+    }
+
+    FP.setFitToSection = setFitToSection;
+    FP.fitToSection = fitToSection;
+    var g_isCssSnapsSupported = function () {
+      return isCssSnapsSupported();
+    }();
+    /**
+    * Sets fitToSection
+    */
+
+    function setFitToSection(value, type) {
+      toggleCssSnapsWhenPossible(value);
+      setVariableState('fitToSection', value, type);
+    }
+    /**
+    * Adds or removes CSS snaps scrolling behaviour depending on the given value.
+    */
+
+    function toggleCssSnapsWhenPossible(value) {
+      if (g_isCssSnapsSupported) {
+        var canAddSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar) && value;
+        var toggleFunction = canAddSnaps ? addClass : removeClass;
+        toggleFunction($html, SNAPS);
+      }
+    }
+    /**
+    * Checks for CSS scroll snaps support.
+    */
+
+    function isCssSnapsSupported() {
+      var style = doc.documentElement.style;
+      return 'scrollSnapAlign' in style || 'webkitScrollSnapAlign' in style || 'msScrollSnapAlign' in style;
+    }
+    /**
+    * Fits the site to the nearest active section
+    */
+
+
+    function fitToSection() {// //checking fitToSection again in case it was set to false before the timeout delay
+      // if(canScroll){
+      //     //allows to scroll to an active section and
+      //     //if the section is already active, we prevent firing callbacks
+      //     isResizing = true;
+      //     scrollPage(state.activeSection);
+      //     isResizing = false;
+      // }
+    }
+
+    FP.setResponsive = setResponsive;
+    /**
+    * Checks if the site needs to get responsive and disables autoScrolling if so.
+    * A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS.
+    */
+
+    function responsive() {
+      var widthLimit = getOptions().responsive || getOptions().responsiveWidth; //backwards compatiblity
+
+      var heightLimit = getOptions().responsiveHeight; //only calculating what we need. Remember its called on the resize event.
+
+      var isBreakingPointWidth = widthLimit && win.innerWidth < widthLimit;
+      var isBreakingPointHeight = heightLimit && win.innerHeight < heightLimit;
+
+      if (widthLimit && heightLimit) {
+        setResponsive(isBreakingPointWidth || isBreakingPointHeight);
+      } else if (widthLimit) {
+        setResponsive(isBreakingPointWidth);
+      } else if (heightLimit) {
+        setResponsive(isBreakingPointHeight);
+      }
+    }
+    /**
+    * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
+    * are smaller than the set limit values.
+    */
+
+    function setResponsive(active) {
+      var isResponsive = isResponsiveMode();
+
+      if (active) {
+        if (!isResponsive) {
+          setAutoScrolling(false, 'internal');
+          setFitToSection(false, 'internal');
+          hide($(SECTION_NAV_SEL));
+          addClass($body, RESPONSIVE);
+
+          if (isFunction(getOptions().afterResponsive)) {
+            getOptions().afterResponsive.call(getContainer(), active);
+          } //when on page load, we will remove scrolloverflow if necessary
+          // if(getOptions().scrollOverflow){
+          //     createScrollBarForAll();
+          // }
+
+        }
+      } else if (isResponsive) {
+        setAutoScrolling(getOriginals().autoScrolling, 'internal');
+        setFitToSection(getOriginals().autoScrolling, 'internal');
+        show($(SECTION_NAV_SEL));
+        removeClass($body, RESPONSIVE);
+
+        if (isFunction(getOptions().afterResponsive)) {
+          getOptions().afterResponsive.call(getContainer(), active);
+        }
+      }
+    }
+    /**
+    * Determines whether fullpage.js is in responsive mode or not.
+    */
+
+
+    function isResponsiveMode() {
+      return hasClass($body, RESPONSIVE);
+    }
+
+    EventEmitter.on('bindEvents', bindEvents$a);
+
+    function bindEvents$a() {
+      //after DOM and images are loaded
+      win.addEventListener('load', function () {
+        if (getOptions().scrollOverflow && !getOptions().scrollBar) {
+          scrollOverflowHandler.makeScrollable();
+          scrollOverflowHandler.afterSectionLoads();
+        }
+      });
+
+      if (getOptions().scrollOverflow) {
+        getNodes(getState().panels).forEach(function (el) {
+          scrollOverflowHandler.getScrollableItem(el).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+          el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving);
+          el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving);
+          el.addEventListener('keydown', scrollOverflowHandler.blurFocusOnAfterLoad);
+        });
+      }
+    }
+
+    var scrollOverflowHandler = {
+      focusedElem: null,
+      timeBeforeReachingLimit: null,
+      timeLastScroll: null,
+      preventScrollWhileMoving: function preventScrollWhileMoving(e) {
+        if (!state.canScroll) {
+          preventDefault(e);
+          return false;
+        }
+      },
+      afterSectionLoads: function afterSectionLoads() {
+        // Unfocusing the scrollable element from the orgin section/slide
+        if (doc.activeElement === this.focusedElem) {
+          // @ts-ignore
+          this.focusedElem.blur();
+        }
+
+        if ($(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]) {
+          this.focusedElem = $(OVERFLOW_SEL, getState().activeSection.item)[0];
+          this.focusedElem.focus();
+        }
+      },
+      makeScrollable: function makeScrollable() {
+        if (getOptions().scrollOverflowMacStyle && !isMacDevice) {
+          addClass($body, 'fp-scroll-mac');
+        }
+
+        getState().panels.forEach(function (el) {
+          if (hasClass(el.item, 'fp-noscroll') || hasClass(el.item, AUTO_HEIGHT) || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
+            return;
+          } else {
+            var item = getSlideOrSection(el.item);
+            var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
+
+            if (shouldBeScrollable) {
+              addClass(item, OVERFLOW);
+              item.setAttribute('tabindex', '-1');
+            } else {
+              removeClass(item, OVERFLOW);
+              item.removeAttribute('tabindex');
+            } // updating the state now in case 
+            // this is executed on page load (after images load)
+
+
+            el.hasScroll = shouldBeScrollable;
+          }
+        });
+      },
+      getScrollableItem: function getScrollableItem(sectionItem) {
+        var panel = getSlideOrSection(sectionItem);
+        return $(OVERFLOW_SEL, panel)[0] || panel;
+      },
+      hasScroll: function hasScroll(panelItem) {
+        return hasClass(panelItem, OVERFLOW) || $(OVERFLOW_SEL, panelItem)[0] != null;
+      },
+      isScrollable: function isScrollable(panel) {
+        return panel.isSection && panel.activeSlide ? panel.activeSlide.hasScroll : panel.hasScroll;
+      },
+      shouldBeScrollable: function shouldBeScrollable(item) {
+        return item.scrollHeight > win.innerHeight;
+      },
+      isScrolled: function isScrolled(direction, el) {
+        if (!state.canScroll) {
+          return false;
+        }
+
+        if (!getOptions().scrollOverflow) {
+          return true;
+        }
+
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
+        var positionY = scrollableItem.scrollTop;
+        var isTopReached = direction === 'up' && positionY <= 0;
+        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
+        var isScrolled = isTopReached || isBottomReached;
+
+        if (!isScrolled) {
+          this.timeBeforeReachingLimit = new Date().getTime();
+        }
+
+        return isScrolled;
+      },
+      shouldMovePage: function shouldMovePage() {
+        this.timeLastScroll = new Date().getTime();
+        var timeDiff = this.timeLastScroll - scrollOverflowHandler.timeBeforeReachingLimit;
+        var isUsingTouch = isTouchDevice || isTouch;
+        var isGrabbing = isUsingTouch && state.isGrabbing;
+        var isNotFirstTimeReachingLimit = state.isUsingWheel && timeDiff > 600;
+        return isGrabbing && timeDiff > 400 || isNotFirstTimeReachingLimit;
+      },
+      onPanelScroll: function () {
+        var prevPosition = 0;
+        return function (e) {
+          var currentPosition = e.target.scrollTop;
+          var direction = state.touchDirection !== 'none' ? state.touchDirection : prevPosition < currentPosition ? 'down' : 'up';
+          prevPosition = currentPosition;
+
+          if (isFunction(getOptions().onScrollOverflow)) {
+            fireCallback('onScrollOverflow', {
+              position: currentPosition,
+              direction: direction
+            });
+          }
+
+          if (hasClass(e.target, OVERFLOW) && state.canScroll) {
+            if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
+              EventEmitter.emit('onScrollOverflowScrolled', {
+                direction: direction
+              });
+            }
+          }
+        };
+      }()
+    };
+
     var g_prevActiveSectionIndex = null;
     var g_prevActiveSlideIndex = null;
     /** 
@@ -2135,7 +2449,7 @@
       state.sections.map(function (section) {
         var isActive = hasClass(section.item, ACTIVE);
         section.isActive = isActive;
-        section.hasScroll = hasClass(section.item, OVERFLOW);
+        section.hasScroll = scrollOverflowHandler.hasScroll(section.item);
 
         if (isActive) {
           state.activeSection = section;
@@ -2145,7 +2459,7 @@
           section.activeSlide = null;
           section.slides.map(function (slide) {
             var isActiveSlide = hasClass(slide.item, ACTIVE);
-            slide.hasScroll = hasClass(slide.item, OVERFLOW);
+            slide.hasScroll = scrollOverflowHandler.hasScroll(section.item);
             slide.isActive = isActiveSlide;
 
             if (isActiveSlide) {
@@ -2382,316 +2696,6 @@
         destination: getState().sections[indexBullet]
       });
     }
-
-    FP.setRecordHistory = setRecordHistory;
-    /**
-    * Defines wheter to record the history for each hash change in the URL.
-    */
-
-    function setRecordHistory(value, type) {
-      setVariableState('recordHistory', value, type);
-    }
-
-    FP.setAutoScrolling = setAutoScrolling;
-    FP.test.setAutoScrolling = setAutoScrolling;
-    /**
-    * Sets the autoScroll option.
-    * It changes the scroll bar visibility and the history of the site as a result.
-    */
-
-    function setAutoScrolling(value, type) {
-      //removing the transformation
-      if (!value) {
-        silentScroll(0);
-      }
-
-      setVariableState('autoScrolling', value, type);
-      var element = getState().activeSection.item;
-
-      if (getOptions().autoScrolling && !getOptions().scrollBar) {
-        css($htmlBody, {
-          'overflow': 'hidden',
-          'height': '100%'
-        });
-        removeClass($body, 'fp-scrollable');
-        setRecordHistory(getOriginals().recordHistory, 'internal'); //for IE touch devices
-
-        css(getContainer(), {
-          '-ms-touch-action': 'none',
-          'touch-action': 'none'
-        });
-
-        if (element != null) {
-          //moving the container up
-          silentScroll(element.offsetTop);
-        }
-      } else {
-        css($htmlBody, {
-          'overflow': 'visible',
-          'height': 'initial'
-        });
-        addClass($body, 'fp-scrollable');
-        var recordHistory = !getOptions().autoScrolling ? false : getOriginals().recordHistory;
-        setRecordHistory(recordHistory, 'internal'); //for IE touch devices
-
-        css(getContainer(), {
-          '-ms-touch-action': '',
-          'touch-action': ''
-        }); //scrolling the page to the section with no animation
-
-        if (element != null) {
-          css($htmlBody, {
-            'scroll-behavior': 'unset'
-          });
-          var scrollSettings = getScrollSettings(element.offsetTop);
-          scrollSettings.element.scrollTo(0, scrollSettings.options);
-        }
-      }
-    }
-
-    FP.setFitToSection = setFitToSection;
-    FP.fitToSection = fitToSection;
-    var g_isCssSnapsSupported = function () {
-      return isCssSnapsSupported();
-    }();
-    /**
-    * Sets fitToSection
-    */
-
-    function setFitToSection(value, type) {
-      toggleCssSnapsWhenPossible(value);
-      setVariableState('fitToSection', value, type);
-    }
-    /**
-    * Adds or removes CSS snaps scrolling behaviour depending on the given value.
-    */
-
-    function toggleCssSnapsWhenPossible(value) {
-      if (g_isCssSnapsSupported) {
-        var canAddSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar) && value;
-        var toggleFunction = canAddSnaps ? addClass : removeClass;
-        toggleFunction($html, SNAPS);
-      }
-    }
-    /**
-    * Checks for CSS scroll snaps support.
-    */
-
-    function isCssSnapsSupported() {
-      var style = doc.documentElement.style;
-      return 'scrollSnapAlign' in style || 'webkitScrollSnapAlign' in style || 'msScrollSnapAlign' in style;
-    }
-    /**
-    * Fits the site to the nearest active section
-    */
-
-
-    function fitToSection() {// //checking fitToSection again in case it was set to false before the timeout delay
-      // if(canScroll){
-      //     //allows to scroll to an active section and
-      //     //if the section is already active, we prevent firing callbacks
-      //     isResizing = true;
-      //     scrollPage(state.activeSection);
-      //     isResizing = false;
-      // }
-    }
-
-    FP.setResponsive = setResponsive;
-    /**
-    * Checks if the site needs to get responsive and disables autoScrolling if so.
-    * A class `fp-responsive` is added to the plugin's container in case the user wants to use it for his own responsive CSS.
-    */
-
-    function responsive() {
-      var widthLimit = getOptions().responsive || getOptions().responsiveWidth; //backwards compatiblity
-
-      var heightLimit = getOptions().responsiveHeight; //only calculating what we need. Remember its called on the resize event.
-
-      var isBreakingPointWidth = widthLimit && win.innerWidth < widthLimit;
-      var isBreakingPointHeight = heightLimit && win.innerHeight < heightLimit;
-
-      if (widthLimit && heightLimit) {
-        setResponsive(isBreakingPointWidth || isBreakingPointHeight);
-      } else if (widthLimit) {
-        setResponsive(isBreakingPointWidth);
-      } else if (heightLimit) {
-        setResponsive(isBreakingPointHeight);
-      }
-    }
-    /**
-    * Turns fullPage.js to normal scrolling mode when the viewport `width` or `height`
-    * are smaller than the set limit values.
-    */
-
-    function setResponsive(active) {
-      var isResponsive = isResponsiveMode();
-
-      if (active) {
-        if (!isResponsive) {
-          setAutoScrolling(false, 'internal');
-          setFitToSection(false, 'internal');
-          hide($(SECTION_NAV_SEL));
-          addClass($body, RESPONSIVE);
-
-          if (isFunction(getOptions().afterResponsive)) {
-            getOptions().afterResponsive.call(getContainer(), active);
-          } //when on page load, we will remove scrolloverflow if necessary
-          // if(getOptions().scrollOverflow){
-          //     createScrollBarForAll();
-          // }
-
-        }
-      } else if (isResponsive) {
-        setAutoScrolling(getOriginals().autoScrolling, 'internal');
-        setFitToSection(getOriginals().autoScrolling, 'internal');
-        show($(SECTION_NAV_SEL));
-        removeClass($body, RESPONSIVE);
-
-        if (isFunction(getOptions().afterResponsive)) {
-          getOptions().afterResponsive.call(getContainer(), active);
-        }
-      }
-    }
-    /**
-    * Determines whether fullpage.js is in responsive mode or not.
-    */
-
-
-    function isResponsiveMode() {
-      return hasClass($body, RESPONSIVE);
-    }
-
-    EventEmitter.on('bindEvents', bindEvents$a);
-
-    function bindEvents$a() {
-      //after DOM and images are loaded
-      win.addEventListener('load', function () {
-        if (getOptions().scrollOverflow && !getOptions().scrollBar) {
-          scrollOverflowHandler.makeScrollable();
-          scrollOverflowHandler.afterSectionLoads();
-        }
-      });
-
-      if (getOptions().scrollOverflow) {
-        getNodes(getState().panels).forEach(function (el) {
-          el.addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
-          el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving);
-          el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving);
-          el.addEventListener('keydown', scrollOverflowHandler.blurFocusOnAfterLoad);
-        });
-      }
-    }
-
-    var scrollOverflowHandler = {
-      focusedElem: null,
-      timeBeforeReachingLimit: null,
-      timeLastScroll: null,
-      preventScrollWhileMoving: function preventScrollWhileMoving(e) {
-        if (!state.canScroll) {
-          preventDefault(e);
-          return false;
-        }
-      },
-      afterSectionLoads: function afterSectionLoads() {
-        // Unfocusing the scrollable element from the orgin section/slide
-        if (doc.activeElement === this.focusedElem) {
-          // @ts-ignore
-          this.focusedElem.blur();
-        }
-
-        if ($(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]) {
-          this.focusedElem = $(OVERFLOW_SEL, getState().activeSection.item)[0];
-          this.focusedElem.focus();
-        }
-      },
-      makeScrollable: function makeScrollable() {
-        if (getOptions().scrollOverflowMacStyle && !isMacDevice) {
-          addClass($body, 'fp-scroll-mac');
-        }
-
-        getState().panels.forEach(function (el) {
-          if (hasClass(el.item, 'fp-noscroll') || hasClass(el.item, AUTO_HEIGHT) || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
-            return;
-          } else {
-            var item = scrollOverflowHandler.scrollable(el.item);
-            var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
-
-            if (shouldBeScrollable) {
-              addClass(item, OVERFLOW);
-              item.setAttribute('tabindex', '-1');
-            } else {
-              removeClass(item, OVERFLOW);
-              item.removeAttribute('tabindex');
-            } // updating the state now in case 
-            // this is executed on page load (after images load)
-
-
-            el.hasScroll = shouldBeScrollable;
-          }
-        });
-      },
-      scrollable: function scrollable(sectionItem) {
-        return $(SLIDE_ACTIVE_SEL, sectionItem)[0] || sectionItem;
-      },
-      isScrollable: function isScrollable(panel) {
-        return panel.isSection && panel.activeSlide ? panel.activeSlide.hasScroll : panel.hasScroll;
-      },
-      shouldBeScrollable: function shouldBeScrollable(item) {
-        return item.scrollHeight > win.innerHeight;
-      },
-      isScrolled: function isScrolled(direction, el) {
-        if (!state.canScroll) {
-          return false;
-        }
-
-        if (!getOptions().scrollOverflow) {
-          return true;
-        }
-
-        var scrollableItem = scrollOverflowHandler.scrollable(el);
-        var positionY = scrollableItem.scrollTop;
-        var isTopReached = direction === 'up' && positionY <= 0;
-        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
-        var isScrolled = isTopReached || isBottomReached;
-
-        if (!isScrolled) {
-          this.timeBeforeReachingLimit = new Date().getTime();
-        }
-
-        return isScrolled;
-      },
-      shouldMovePage: function shouldMovePage() {
-        this.timeLastScroll = new Date().getTime();
-        var timeDiff = this.timeLastScroll - scrollOverflowHandler.timeBeforeReachingLimit;
-        var isUsingTouch = isTouchDevice || isTouch;
-        var isGrabbing = isUsingTouch && state.isGrabbing;
-        var isNotFirstTimeReachingLimit = state.isUsingWheel && timeDiff > 600;
-        return isGrabbing && timeDiff > 400 || isNotFirstTimeReachingLimit;
-      },
-      onPanelScroll: function () {
-        var prevPosition = 0;
-        return function (e) {
-          var currentPosition = e.target.scrollTop;
-          var direction = state.touchDirection !== 'none' ? state.touchDirection : prevPosition < currentPosition ? 'down' : 'up';
-          prevPosition = currentPosition;
-
-          if (isFunction(getOptions().onScrollOverflow)) {
-            fireCallback('onScrollOverflow', {
-              position: currentPosition,
-              direction: direction
-            });
-          }
-
-          if (hasClass(e.target, OVERFLOW) && state.canScroll) {
-            if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
-              EventEmitter.emit('onScrollOverflowScrolled', {
-                direction: direction
-              });
-            }
-          }
-        };
-      }()
-    };
 
     function addTableClass(element) {
       if (!getOptions().verticalCentered) {
@@ -5180,7 +5184,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-4-30".split("-"),
+      var n = "2022-5-16".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5596,7 +5600,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.9';
+      FP.version = '4.0.10';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
