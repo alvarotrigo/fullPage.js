@@ -383,7 +383,7 @@ Então você poderá usá-los e configurá-los conforme explicado em [Opções](
 
 ## Opções
 
-- `licenseKey`: (padrão `null`). **Esta opção é obrigatória.** Se você usar fullPage em um projeto de código não aberto, deverá usar a chave de licença fornecida na compra da licença comercial fullPage. Se o seu projeto for de código aberto e for compatível com a licença GPLv3, você pode usar a opção `gplv3-license`. Leia mais sobre licenças [aqui](https://github.com/alvarotrigo/fullPage.js#license) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
+- `licenseKey`: (padrão `null`). **Esta opção é obrigatória.** Se você usar fullPage em um projeto de código não aberto, deverá usar a chave de licença fornecida na compra da licença comercial fullPage. Se o seu projeto for de código aberto e for compatível com a licença GPLv3, você pode usar a opção `gplv3-license`. Leia mais sobre licenças [aqui](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#licença) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
 
 ```javascript
 new fullpage('#fullpage', {
@@ -441,7 +441,7 @@ Requer o arquivo `vendors/easings.min.js` ou [jQuery UI](http://jqueryui.com/) p
 
 - `normalScrollElements`: (padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/RmVazM) Se você quiser evitar a rolagem automática ao rolar sobre alguns elementos, esta é a opção que você precisa usar. (útil para mapas, divs de rolagem etc.) Requer uma string com os seletores Javascript para esses elementos. (Por exemplo: `normalScrollElements: '#element1, .element2'`). Esta opção não deve ser aplicada a nenhum elemento de seção/slide.
 
-- `bigSectionsDestination`: (padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/vYLdMrx) Define como rolar para uma seção cuja altura é maior que a viewport e quando não estiver usando `scrollOverflow: verdadeiro`. (Leia [como criar seções menores ou maiores](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#creating-smaller-or-bigger-sections)). Por padrão, fullPage.js rola para o topo se você vier de uma seção acima do destino e para baixo se você vier de uma seção abaixo do destino. Os valores possíveis são `top`, `bottom`, `null`.
+- `bigSectionsDestination`: (padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/vYLdMrx) Define como rolar para uma seção cuja altura é maior que a viewport e quando não estiver usando `scrollOverflow: verdadeiro`. (Leia [como criar seções menores ou maiores](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#criando-seções-maiores-ou-menores)). Por padrão, fullPage.js rola para o topo se você vier de uma seção acima do destino e para baixo se você vier de uma seção abaixo do destino. Os valores possíveis são `top`, `bottom`, `null`.
 
 - `keyboardScrolling`: (padrão `true`) Define se o conteúdo pode ser navegado usando o teclado.
 
@@ -542,7 +542,7 @@ new fullpage('#fullpage', {
 
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `lazyLoading`: (padrão `true`) O carregamento lento está ativo por padrão, o que significa que carregará lentamente qualquer elemento de mídia contendo o atributo `data-src` conforme detalhado nos [documentos de carregamento lento](https://github. com/alvarotrigo/fullPage.js#lazy-loading) . Se você quiser usar qualquer outra biblioteca de carregamento lento, você pode desativar esse recurso fullpage.js.
+- `lazyLoading`: (padrão `true`) O carregamento lento está ativo por padrão, o que significa que carregará lentamente qualquer elemento de mídia contendo o atributo `data-src` conforme detalhado nos [documentos de carregamento lento](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#lazy-loading). Se você quiser usar qualquer outra biblioteca de carregamento lento, você pode desativar esse recurso fullpage.js.
 
 - `observer`: (padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.
 
