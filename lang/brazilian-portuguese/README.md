@@ -69,7 +69,7 @@ Um agradeicmento especial para [Browserstack](http://www.browserstack.com/) por 
 ## Licença
 
 ### Licença comercial
-Se você quiser usar fullPage para desenvolver sites, temas, projetos e aplicativos de código não aberto, a licença Comercial é a licença apropriada. Com esta opção, seu código-fonte é mantido proprietário. O que significa que você não precisará alterar todo o código-fonte do aplicativo para uma licença de código aberto. [[Comprar uma licença comercial do Fullpage]](https://alvarotrigo.com/fullPage/pricing/)
+Se você quiser usar fullPage para desenvolver sites, temas, projetos e aplicativos de código não aberto, a licença Comercial é a licença apropriada. Com esta opção, seu código-fonte é mantido proprietário. O que significa que você não precisará alterar todo o código-fonte do aplicativo para uma licença de código aberto. [Comprar uma licença comercial do Fullpage](https://alvarotrigo.com/fullPage/pricing/)
 
 ### Licença Open source
 Se você estiver criando um aplicativo de código aberto sob uma licença compatível com a [licença GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html), poderá usar o fullPage sob os termos da GPLv3 .
