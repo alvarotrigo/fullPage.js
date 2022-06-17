@@ -2943,10 +2943,12 @@
       var canTriggerEvent = true;
       var prevWheelTime = new Date().getTime();
       var result;
+      var isScrollingOnInit = !win.fullpage_api;
       return function (scrollTrigger, callback) {
         var currentTime = new Date().getTime();
         var timeThreshold = scrollTrigger === 'wheel' ? getOptions().scrollingSpeed : 100;
-        canTriggerEvent = currentTime - prevWheelTime >= timeThreshold;
+        canTriggerEvent = isScrollingOnInit || currentTime - prevWheelTime >= timeThreshold;
+        isScrollingOnInit = !win.fullpage_api;
 
         if (canTriggerEvent) {
           result = callback();
@@ -5184,7 +5186,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-5-16".split("-"),
+      var n = "2022-5-17".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
