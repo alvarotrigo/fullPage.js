@@ -4610,7 +4610,13 @@
               // messing up the whole page structure. So we need to update the
               // translate3d value when the keyboard shows/hides
               if (getOptions().autoScrolling && !getOptions().scrollBar) {
+                setState({
+                  isResizing: true
+                });
                 silentMoveTo(state.activeSection.index() + 1);
+                setState({
+                  isResizing: false
+                });
               }
             });
           }, 200 * i);
@@ -5186,7 +5192,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-5-17".split("-"),
+      var n = "2022-5-21".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
