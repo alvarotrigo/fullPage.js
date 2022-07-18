@@ -120,7 +120,7 @@ export const scrollOverflowHandler = {
         if(!state.canScroll){
             return false;
         }
-        if(!getOptions().scrollOverflow){
+        if(!getOptions().scrollOverflow || !utils.hasClass(el, OVERFLOW)){
             return true;
         }
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
