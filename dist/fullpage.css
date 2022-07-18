@@ -321,3 +321,7 @@ Not supports in Firefox and IE */
     border-radius: 3px;
     margin: 12px;
 }
+.fp-noscroll {
+    justify-content: flex-start;
+    overflow: hidden;
+}

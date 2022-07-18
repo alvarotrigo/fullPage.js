@@ -2389,7 +2389,7 @@
           return false;
         }
 
-        if (!getOptions().scrollOverflow) {
+        if (!getOptions().scrollOverflow || !hasClass(el, OVERFLOW)) {
           return true;
         }
 
@@ -5192,7 +5192,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-5-21".split("-"),
+      var n = "2022-6-18".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5518,9 +5518,12 @@
       var l = getOptions()['li' + 'c' + 'enseK' + 'e' + 'y'];
       var msgStyle = 'font-size: 15px;background:yellow;';
 
-      if (!isOK()) {
+      if (getOptions().licenseKey.trim() === '') {
         showError('error', 'Fullpage.js requires a `licenseKey` option. Read about it on the following URL:');
         showError('error', 'https://github.com/alvarotrigo/fullPage.js#options');
+      } else if (!isOK()) {
+        showError('error', 'Incorrect `licenseKey`. Get one for fullPage.js version 4 here:');
+        showError('error', 'https://alvarotrigo.com/fullPage/pricing');
       } else if (l && l.length < 20) {
         console.warn('%c This website was made using fullPage.js slider. More info on the following website:', msgStyle);
         console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
