@@ -5009,27 +5009,31 @@
 
             setPageStatus(slideIndex, slideAnchorLink, anchorLink);
             updateState();
-          }
+          } //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
 
-          if (getOptions().fitToSection && state.canScroll) {
-            // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
-            clearTimeout(g_scrollId);
-            g_scrollId = setTimeout(function () {
-              setState({
-                isScrolling: false
+
+          clearTimeout(g_scrollId);
+          g_scrollId = setTimeout(function () {
+            setState({
+              isScrolling: false
+            });
+          }, 100);
+        }
+
+        if (getOptions().fitToSection && state.canScroll) {
+          clearTimeout(g_scrollId2);
+          g_scrollId2 = setTimeout(function () {
+            var fixedSections = state.sections.filter(function (section) {
+              var sectionValues = section.item.getBoundingClientRect();
+              return Math.round(sectionValues.bottom) === Math.round(getWindowHeight()) || Math.round(sectionValues.top) === 0;
+            }); // No section is fitting the viewport? Let's fix that!
+
+            if (!fixedSections.length) {
+              css(doc.body, {
+                'scroll-snap-type': 'y mandatory'
               });
-              var fixedSections = state.sections.filter(function (section) {
-                var sectionValues = section.item.getBoundingClientRect();
-                return Math.round(sectionValues.bottom) === Math.round(getWindowHeight()) || Math.round(sectionValues.top) === 0;
-              }); // No section is fitting the viewport? Let's fix that!
-
-              if (!fixedSections.length) {
-                css(doc.body, {
-                  'scroll-snap-type': 'y mandatory'
-                });
-              }
-            }, 300);
-          }
+            }
+          }, 300);
         }
       }
     }
@@ -5192,7 +5196,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-6-18".split("-"),
+      var n = "2022-6-27".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
