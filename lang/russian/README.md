@@ -17,7 +17,7 @@
 
 ---
 
-![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v4.0.9-brightgreen.svg)
+![Версия fullPage.js](http://img.shields.io/badge/fullPage.js-v4.0.10-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -992,7 +992,7 @@ new fullpage('#fullpage', {
 1. Пожалуйста, перед вопросом поищите свою проблему с помощью поиска github issues.
 2. Убедитесь, что используете последнюю версию fullpage.js. Техподдержка не работает со старыми версиями.
 3. Воспользуйтесь [форумом Github Issues](https://github.com/alvarotrigo/fullPage.js/issues), чтобы задать вопрос.
-4. **Потребуется отдельное воспроизведение проблемы.** По возможности используйте для этого [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) или [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp).
+4. **Потребуется отдельное воспроизведение проблемы.** По возможности используйте для этого [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) или [codepen](https://codepen.io/alvarotrigo/pen/qqabrp).
 
 # Внесение предложений для fullpage.js
 Пожалуйста, прочтите [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)

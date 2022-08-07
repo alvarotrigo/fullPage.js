@@ -78,7 +78,9 @@ function fitToActiveSection(){
                     // messing up the whole page structure. So we need to update the
                     // translate3d value when the keyboard shows/hides
                     if(getOptions().autoScrolling && !getOptions().scrollBar){
+                        setState({isResizing: true});
                         silentMoveTo(state.activeSection.index() + 1);
+                        setState({isResizing: false});
                     }
                 });
             }, 200 * i);

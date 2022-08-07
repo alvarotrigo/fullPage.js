@@ -140,25 +140,32 @@ export function scrollHandler(e){
                 updateState();
             }
 
-            if(getOptions().fitToSection && state.canScroll){
+            //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
+            clearTimeout(g_scrollId);
+            g_scrollId = setTimeout(function(){
+                setState({isScrolling: false});
+            }, 100);
 
-                // Small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
-                clearTimeout(g_scrollId);
-                g_scrollId = setTimeout(function(){
-                    setState({isScrolling: false});
+        }
 
-                    var fixedSections = state.sections.filter(function(section){
-                        var sectionValues = section.item.getBoundingClientRect();
-                        return Math.round(sectionValues.bottom) === Math.round(utils.getWindowHeight()) ||
-                            Math.round(sectionValues.top) === 0;
-                    });
+            
 
-                    // No section is fitting the viewport? Let's fix that!
-                    if(!fixedSections.length){
-                        utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
-                    }
-                }, 300);   
-            }
+        if(getOptions().fitToSection && state.canScroll){
+
+            clearTimeout(g_scrollId2);
+            g_scrollId2 = setTimeout(function(){
+
+                var fixedSections = state.sections.filter(function(section){
+                    var sectionValues = section.item.getBoundingClientRect();
+                    return Math.round(sectionValues.bottom) === Math.round(utils.getWindowHeight()) ||
+                        Math.round(sectionValues.top) === 0;
+                });
+
+                // No section is fitting the viewport? Let's fix that!
+                if(!fixedSections.length){
+                    utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
+                }
+            }, 300);   
         }
     }
 }

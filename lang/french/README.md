@@ -17,13 +17,13 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v4.0.9-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v4.0.10-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [Demo en ligne](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [Demo en ligne](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/qqabrp)
 - [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 - [Thème Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensions fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
@@ -1019,7 +1019,7 @@ new fullpage('#fullpage', {
 1. S'il vous plaît, cherchez votre problème avant de demander à l'aide de la recherche de problèmes github.
 2. Assurez-vous d'utiliser la dernière version de fullpage.js. Aucun support n'est fourni pour les anciennes versions.
 3. Utilisez [le forum Github Issues] (https://github.com/alvarotrigo/fullPage.js/issues) pour créer des problèmes.
-4. **Une reproduction isolée du numéro sera exigée.** Si possible, utilisez[jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) ou[codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) pour cela.
+4. **Une reproduction isolée du numéro sera exigée.** Si possible, utilisez[jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) ou[codepen](https://codepen.io/alvarotrigo/pen/qqabrp) pour cela.
 
 # Contribuer à fullpage.js
 Veuillez consulter[Contribuer à fullpage.js] (https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)

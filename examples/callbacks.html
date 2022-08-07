@@ -266,7 +266,7 @@
             addToLog('afterLoad', params);
 
             console.log("--- afterLoad ---");
-            console.log(params);
+            console.log(this);
             console.log('===============');
 
             deleteLog = true;
@@ -281,9 +281,7 @@
             };
 
             console.log("--- onScrollOverflow ---");
-            console.log(section);
-            console.log(slide);
-            console.log("position: " + position);
+            console.log(params);
             
             if(deleteLog){
                 document.getElementById('callbacksDiv').innerHTML = '';

@@ -70,7 +70,9 @@ export function scrollPage(section, callback, isMovementUp){
     };
 
     //quiting when destination scroll is the same as the current one
-    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop(getOptions()) === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ return; }
+    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop(getOptions()) === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ 
+        return; 
+    }
 
     if(v.activeSlide != null){
         slideAnchorLink = utils.getAttr(v.activeSlide, 'data-anchor');

@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.9
+ * fullPage 4.0.10
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -237,9 +237,11 @@ html.fp-enabled,
     justify-content: flex-start;
 }
 
+.fp-overflow.fp-auto-height-responsive,
+.fp-overflow.fp-auto-height,
 .fp-overflow{
     overflow-y: scroll;
-    height: 100%;
+    height: 100% !important;
     outline:none;
 }
 
@@ -320,4 +322,8 @@ Not supports in Firefox and IE */
     display: inline-block;
     border-radius: 3px;
     margin: 12px;
+}
+.fp-noscroll {
+    justify-content: flex-start;
+    overflow: hidden;
 }
