@@ -76,7 +76,6 @@ export const scrollOverflowHandler = {
         getState().panels.forEach(function(el){
             if(
                 utils.hasClass(el.item, 'fp-noscroll') || 
-                utils.hasClass(el.item, AUTO_HEIGHT) ||
                 utils.hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()
             ){
                 return;
@@ -120,10 +119,13 @@ export const scrollOverflowHandler = {
         if(!state.canScroll){
             return false;
         }
-        if(!getOptions().scrollOverflow || !utils.hasClass(el, OVERFLOW)){
+
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
+
+        if(!getOptions().scrollOverflow || !utils.hasClass(scrollableItem, OVERFLOW)){
             return true;
         }
-        var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
+        
         var positionY = scrollableItem.scrollTop;
         var isTopReached = direction === 'up' && positionY <=0;
         var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
