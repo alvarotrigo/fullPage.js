@@ -10,6 +10,6 @@
   "license": "GPLv3",
   "dependencies": {
     "browserify": "^16.2.2",
-    "fullpage.js": "^3.0.2"
+    "fullpage.js": "^4.0.10"
   }
 }

@@ -2351,7 +2351,7 @@
         }
 
         getState().panels.forEach(function (el) {
-          if (hasClass(el.item, 'fp-noscroll') || hasClass(el.item, AUTO_HEIGHT) || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
+          if (hasClass(el.item, 'fp-noscroll') || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
             return;
           } else {
             var item = getSlideOrSection(el.item);
@@ -2389,11 +2389,12 @@
           return false;
         }
 
-        if (!getOptions().scrollOverflow || !hasClass(el, OVERFLOW)) {
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
+
+        if (!getOptions().scrollOverflow || !hasClass(scrollableItem, OVERFLOW)) {
           return true;
         }
 
-        var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
         var positionY = scrollableItem.scrollTop;
         var isTopReached = direction === 'up' && positionY <= 0;
         var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
@@ -5196,7 +5197,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-6-27".split("-"),
+      var n = "2022-7-7".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 

@@ -237,9 +237,11 @@ html.fp-enabled,
     justify-content: flex-start;
 }
 
+.fp-overflow.fp-auto-height-responsive,
+.fp-overflow.fp-auto-height,
 .fp-overflow{
     overflow-y: scroll;
-    height: 100%;
+    height: 100% !important;
     outline:none;
 }
 
