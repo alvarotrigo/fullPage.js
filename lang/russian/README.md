@@ -992,7 +992,7 @@ new fullpage('#fullpage', {
 1. Пожалуйста, перед вопросом поищите свою проблему с помощью поиска github issues.
 2. Убедитесь, что используете последнюю версию fullpage.js. Техподдержка не работает со старыми версиями.
 3. Воспользуйтесь [форумом Github Issues](https://github.com/alvarotrigo/fullPage.js/issues), чтобы задать вопрос.
-4. **Потребуется отдельное воспроизведение проблемы.** По возможности используйте для этого [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) или [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp).
+4. **Потребуется отдельное воспроизведение проблемы.** По возможности используйте для этого [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) или [codepen](https://codepen.io/alvarotrigo/pen/qqabrp).
 
 # Внесение предложений для fullpage.js
 Пожалуйста, прочтите [Contributing to fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)

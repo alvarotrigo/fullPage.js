@@ -980,7 +980,7 @@ new fullpage('#fullpage', {
 1. 문의하시기 이전에 먼저 github 검색으로 찾아보시기 바랍니다.
 2. fullpage.js 최신 버전을 쓰시기 바랍니다. 이전 버전은 지원해 드리지 않습니다.
 3. [Github 문제 포럼](https://github.com/alvarotrigo/fullPage.js/issues)을 활용해 보세요.
-4. **문제만 따로 떼어내어 재현해야 합니다.** 가능하다면 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/)이나 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp)을 활용하시기 바랍니다.
+4. **문제만 따로 떼어내어 재현해야 합니다.** 가능하다면 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/)이나 [codepen](https://codepen.io/alvarotrigo/pen/qqabrp)을 활용하시기 바랍니다.
 
 # fullpage.js에 기여하기
 [fullpage.js에 기여하기](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)를 방문해 주세요.

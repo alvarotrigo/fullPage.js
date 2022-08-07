@@ -22,7 +22,7 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [示例](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [示例](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/qqabrp)
 - [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 扩展](http://alvarotrigo.com/fullPage/extensions/)
@@ -996,7 +996,7 @@ new fullpage('#fullpage', {
 1. 请在提问之前使用 [issue](https://github.com/alvarotrigo/fullPage.js/issues) 搜索查找您的问题。
 2. 确保使用最新的 fullpage.js 版本，不支持旧版本。
 3. 使用 [Github 问题论坛](https://github.com/alvarotrigo/fullPage.js/issues) 来创建问题。
-4. **对问题进行复现** 如果可以，请使用 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) 或 [codepen](http://codepen.io/alvarotrigo/pen/NxyPPp) 。
+4. **对问题进行复现** 如果可以，请使用 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) 或 [codepen](https://codepen.io/alvarotrigo/pen/qqabrp) 。
 
 # 贡献到 fullpage.js
 请参阅 [贡献到 fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js) 
