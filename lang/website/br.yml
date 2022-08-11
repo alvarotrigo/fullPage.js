@@ -1,0 +1,173 @@
+#Page meta data
+title: fullPage.js | Plugin para site de seções de rolagem de uma página
+description: fullPage plugin por Alvaro Trigo. Crie páginas em tela cheia de forma rápida e simples. Plugin jQuery de seções de rolagem de uma página. Estalo do mouse.
+keywords: fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,snap,snapping,apple,scroll,sections
+og-title: encaixe de rolagem de página inteira. Crie páginas em tela cheia de forma rápida e simples
+og-description: A roda do mouse se encaixa nas seções. Rápido e simples de usar.
+twitter-description: Ótima biblioteca Javascript para criar sites de rolagem em tela cheia
+
+#Sections content
+Create Beautiful Fullscreen Scrolling Websites: Crie belos sites de rolagem em tela cheia
+Download: Download
+View on GitHub: Ver no GitHub
+Open: Abrir
+fullPage.js is actively mantained and community driven.: fullPage.js é orientado e mantido ativamente pela comunidade.
+Solving developers' issues since 2013.: Resolvendo problemas de desenvolvedores desde 2013.
+commits: commits
+closed issues: issues fechadas
+contributors: contribuidores
+The best!: O melhor!
+Compatible: Compatível
+Easy!: Fácil!
+See in Codepen: Veja no Codepen
+Touch me!: Toque-me!
+Designed for mobiles and tablets, totally responsive.: Projetado para celulares e tablets, totalmente responsivo.
+Because not only kids like to grab things.: Porque não só as crianças gostam de pegar coisas.
+
+#menu
+Wordpress Theme: Tema de WordPress
+WordPress: WordPress
+Examples: Exemplos
+Pricing: Preços
+Docs: Documentação
+Contact: Contato
+
+#sections content
+Proud of being the most complete framework of its kind.: Orgulho de ser o mais completo framework de seu gênero.
+Trusted by the most innovative companies.: Confiado pelas companhias mais inovadoras.
+Working in modern and old browsers too! Even IE 9!: Funcionando em navegadores modernos e antigos também! Até no IE 9!
+Make a beautiful site for all! Not just a few!: Faça um site bonito para todos! Não apenas alguns!
+fullPage.js is designed to be easy to use and customize.: fullPage.js é projetado para ser fácil de usar e customizável.
+It inludes tens of examples, great documentation and both community and personal support.: Inclui dezenas de exemplos, ótima documentação e tanto suporte da comunidade quanto individual.
+
+#sections content
+Navigation: Navegação
+Scroll Bar Enabled: Barra de rolagem habilitada
+Normal scrolling: Rolagem normal
+Continuous vertical: Vertical contínua
+Without anchor links (same URL): Sem links âncora (mesma URL)
+Vertical navigation dots: Pontos de navegação verticais
+Horizontal navigation dots: Pontos de navegação horizontais
+Extensions: Extensões
+Cards 3D: Cards 3D
+Parallax: Parallax
+Continuous Horizontal: Horizontal Contínua
+Interlocked Slides: Slides Intertravados
+Reset Sliders: Controles Deslizantes de Redefinição
+Responsive Slides: Slides Responsivos
+Scroll Horizontally: Role Horizontalmente
+Fading Effect: Efeito de Desvanecimento
+Offset Sections: Seções de Deslocamento
+Drag And Move: Arraste e Mova
+ScrollOverflow Reset: Redefinição de ScrollOverflow
+Design: Design
+Responsive: Responsivo
+Full backgrounds: Planos de fundo inteiros
+Full background videos:  Vídeos de fundo inteiros
+Auto-height sections: Seções de altura automática
+Gradient backgrounds: Planos de fundo com Gradiente
+Scrolling inside sections and slides: Rolagem dentro de seções e slides
+Adding fixed header and footer: Adicionando cabeçalho e rodapé fixos
+One single section: Seção única
+Other: Outros
+Animations on scrolling: Animações ao rolar
+Callbacks: Callbacks
+Functions and methods: Funções e métodos
+
+documentation-link: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese#fullpagejs
+extensions-link: https://alvarotrigo.com/fullPage/extensions/br/
+lang: br
+flag-name: flag-brazilian
+language-name: Português Brasileiro
+canonical-link: https://alvarotrigo.com/fullPage/br/
+language-menu:
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+
+
+# Extensions website
+Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Precisa de algum recurso extra? Fullpage.js fornece extensões que você pode usar para melhorar seu comportamento já incrível!
+Parallax Backgrounds: Planos de fundo com Parallax
+Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.: Cria um efeito de Parallax para os fundos de seções e slides ao rolar e deslizar.
+Buy: Comprar
+Demo: Demonstração
+#ScrollOverflow Reset: ScrollOverflow Reset
+Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.: Rola para trás o conteúdo da seção/slide com a barra de rolagem ao deixá-la para que sempre esteja no início.
+#Drag And Move: Drag And Move
+Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers.: Permite mover-se entre seções e slides clicando e arrastando o mouse, bem como deslizando com os dedos.
+#Offset Sections: Offset Sections
+Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section.: Fornece uma maneira de usar seções que não sejam de tela cheia com base na porcentagem. Ideal para mostrar aos visitantes que há mais conteúdo no site, mostrando parte da seção seguinte ou anterior.
+#Fading Effect: Fading Effect
+Provides a fading effect for vertical sections and horizontal slides or for any of them separately.: Fornece um efeito de desvanecimento para seções verticais e slides horizontais ou para qualquer um deles separadamente.
+#Responsive Slides: Responsive Slides
+Allows the turn of horizontal slides into vertical sections on responsive or by using external functions.: Permite a conversão de slides horizontais em seções verticais no responsivo ou usando funções externas.
+#Continuous Horizontal: Continuous Horizontal
+Provides the continuous horizontal scrolling feature for all the sliders.: Fornece o recurso de rolagem horizontal contínua para todos os controles deslizantes.
+#Interlocked Slides: Interlocked Slides
+Provides a way to force the moving of sliders in other sections when sliding the visible one.: Fornece uma maneira de forçar o movimento dos controles deslizantes em outras seções ao deslizar o visível.
+#Scroll Horizontally: Scroll Horizontally
+Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!: Fornece rolagem horizontal nos controles deslizantes usando a roda do mouse ou o trackpad. Ideal para contar histórias!
+#Reset Sliders: Reset Sliders
+Forces fullpage.js to reset every slider after leaving its section. This way when the users goes back it will always be in the first slide of the slider.: Força fullpage.js a redefinir cada controle deslizante após sair de sua seção. Dessa forma, quando os usuários voltarem, ele sempre estará no primeiro slide do controle deslizante.
+Which license should I use?: Qual licença eu devo usar?
+For up to 1 website: Para até 1 website
+Hobby: Hobby
+1 domain: 1 domínio
+Minified source code: Código fonte minificado
+Free updates: Atualizações grátis
+License agreement: Contrato de licença
+For up to 5 websites: Para até 5 websites
+Professional: Profissional
+Best value!: Melhor valor!
+5 domains: 5 domínios
+For unlimited websites: Para sites ilimitados
+Business: Business
+Unlimited Domains: Domínios ilimitados
+Common activation key: Chave de ativação genérica
+Use in SaaS product: Use em produtos SaaS
+Refund: Reembolso
+Updates: Atualizações
+Staging / dev domains: Domínios de Staging / desenvolvimento
+Trusted by the world’s most innovative companies: Confiado pelas companhias mais inovadoras do mundo
+People love fullPage.js!: Pessoas amam fullPage.js!
+Vertical Navigation: Navegação Vertical
+Add the stylesheet after jquery.fullpage.css and... that's it!: Adicione os estilos depois de jquery.fullpage.css e... é isso!
+Available in 2 sizes: Disponível em 2 tamanhos
+Get all navigation styles from Â£9: Consiga todos os estilos de navegação por Â£9
+30-Day Money Back Guarrantee: Garantia de devolução do dinheiro em 30 dias
+Subscribe: Inscreva-se
+Get notified of new extensions or fullpage.js relevant announcements.: Receba notificações sobre novas extensões ou anúncios relevantes do fullpage.js.
+Activation Key per Domain: Chave de Ativação por Domínio
+Only if no activation key was generated.: Apenas se nenhuma chave de ativação foi gerada.
+Read the license refund terms: Leia os termos de licença de reembolso.
+1 month support: 1 mês de suporte
+Isolated reproductions might be required.: Reproduções isoladas podem ser necessárias.
+Read the license support terms: Leia os termos de licença de suporte.
+6 months support: 6 meses de suporte
+Unlimited support: Suporte prioritário ilimitado
+Redistribute: Redistribuir
+Got questions? Check the: Possui dúvidas? Confira o
+30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement: 30 dias de reembolso garantido para qualquer compra sob as condições detalhadas no Contrato de Licença
+fullPage.js Refund Terms: Termos de reembolso do fullPage.js
+All licenses include free updates for the purchased license and buyers will be notified by mail of new releases.: Todas as licenças incluem atualizações gratuitas para a licença adquirida e os compradores serão notificados por correio sobre novos lançamentos.
+Upon request: A pedido
+new activation keys can be provided for staging or developing domains to a maximum of 3.: novas chaves de ativação podem ser fornecidas para domínios de teste ou desenvolvimento até um máximo de 3 chaves.
+No activation key is necessary for `localhost` and `127.0.0.1`.: Nenhuma chave de ativação é necessária para localhost e 127.0.0.1.
+Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.: Quaisquer outros domínios de teste exigirão uma licença (Professional ou Business) que permita gerar uma nova chave para eles.
+Your email address: Seu endereço de email
+Generate only 1 activation key. No dev/staging domains possible.: Gere apenas uma chave de ativação. Sem domínios de desenvolvimento/staging.
+Price varies depending on the extension: Preço varia dependendo da extensão
+Generate up to 5 activation keys. Dev/staging domains included.: Gere até 5 chaves de ativação. Domínios de desenvolvimento/staging inclusos.
+Generate a common activation key: Gere uma chave de ativação genérica
+Within a product: Dentro de um produto
+Mobile applications: Aplicações mobile
+
+language-menu-extensions:
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
