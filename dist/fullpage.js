@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.11
+* fullPage 4.0.10
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -2346,12 +2346,7 @@
         }
       },
       makeScrollable: function makeScrollable() {
-        if (isResponsiveMode()) {
-          getState().panels.forEach(function (el) {
-            addClass(el.item, AUTO_HEIGHT_RESPONSIVE);
-          });
-          return;
-        } else if (getOptions().scrollOverflowMacStyle && !isMacDevice) {
+        if (getOptions().scrollOverflowMacStyle && !isMacDevice) {
           addClass($body, 'fp-scroll-mac');
         }
 
@@ -2363,8 +2358,12 @@
             var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
 
             if (shouldBeScrollable) {
-              addClass(item, OVERFLOW);
-              item.setAttribute('tabindex', '-1');
+              if (isResponsiveMode()) {
+                addClass(el.item, AUTO_HEIGHT_RESPONSIVE);
+              } else {
+                addClass(item, OVERFLOW);
+                item.setAttribute('tabindex', '-1');
+              }
             } else {
               removeClass(item, OVERFLOW);
               item.removeAttribute('tabindex');
@@ -5621,7 +5620,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.11';
+      FP.version = '4.0.10';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
