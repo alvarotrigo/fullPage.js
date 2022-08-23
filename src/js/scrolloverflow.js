@@ -33,9 +33,8 @@ function bindEvents(){
         getNodes(getState().panels).forEach(function(el){
             scrollOverflowHandler.getScrollableItem(el).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
 
-            el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving);
-            el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving);
-            el.addEventListener('keydown', scrollOverflowHandler.blurFocusOnAfterLoad);
+            el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
+            el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
         });
     }
 }
@@ -55,15 +54,15 @@ export const scrollOverflowHandler = {
     },
 
     afterSectionLoads: function(){
-        
+
         // Unfocusing the scrollable element from the orgin section/slide
         if( doc.activeElement === this.focusedElem){
             // @ts-ignore
             this.focusedElem.blur();
         }
-
-        if(utils.$(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]){
-            this.focusedElem = utils.$(OVERFLOW_SEL, getState().activeSection.item)[0];
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item);
+        if( scrollableItem){
+            this.focusedElem = scrollableItem;
             this.focusedElem.focus();
         }
     },
@@ -143,7 +142,7 @@ export const scrollOverflowHandler = {
         var isUsingTouch = isTouchDevice || isTouch;
         var isGrabbing = isUsingTouch && state.isGrabbing;
         var isNotFirstTimeReachingLimit = state.isUsingWheel && timeDiff > 600;
-    
+
         return isGrabbing && timeDiff > 400 || isNotFirstTimeReachingLimit;
     },
     onPanelScroll: (function(){

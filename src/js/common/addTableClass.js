@@ -5,7 +5,7 @@ import { scrollOverflowHandler } from '../scrolloverflow.js';
 
 export function addTableClass(element){
 
-    if( !getOptions().verticalCentered){
+    if(!getOptions().verticalCentered){
         return;
     }
 
