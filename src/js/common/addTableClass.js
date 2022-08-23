@@ -1,11 +1,17 @@
 import * as utils from './utils.js';
 import { getOptions } from "./options.js";
-import { TABLE } from './selectors.js';
+import { AUTO_HEIGHT, TABLE } from './selectors.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
 
 export function addTableClass(element){
 
-    if(!getOptions().verticalCentered){
+    if( !getOptions().verticalCentered){
+        return;
+    }
+
+    // overflowing sections when scrollOverflow is disabled will be autoHeight
+    if(!getOptions().scrollOverflow && scrollOverflowHandler.shouldBeScrollable(element.item)){
+        utils.addClass(element.item, AUTO_HEIGHT);
         return;
     }
 
