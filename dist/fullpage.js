@@ -2358,12 +2358,8 @@
             var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
 
             if (shouldBeScrollable) {
-              if (isResponsiveMode()) {
-                addClass(el.item, AUTO_HEIGHT_RESPONSIVE);
-              } else {
-                addClass(item, OVERFLOW);
-                item.setAttribute('tabindex', '-1');
-              }
+              addClass(item, OVERFLOW);
+              item.setAttribute('tabindex', '-1');
             } else {
               removeClass(item, OVERFLOW);
               item.removeAttribute('tabindex');
@@ -2704,6 +2700,12 @@
 
     function addTableClass(element) {
       if (!getOptions().verticalCentered) {
+        return;
+      } // overflowing sections when scrollOverflow is disabled will be autoHeight
+
+
+      if (!getOptions().scrollOverflow && scrollOverflowHandler.shouldBeScrollable(element.item)) {
+        addClass(element.item, AUTO_HEIGHT);
         return;
       }
 
