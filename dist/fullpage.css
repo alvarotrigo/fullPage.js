@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.10
+ * fullPage 4.0.11
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -303,6 +303,9 @@ Not supports in Firefox and IE */
     background-color: rgba(0,0,0,.4);
     border-radius: 16px;
     border: 4px solid transparent;
+}
+.fp-responsive.fp-scroll-mac .fp-overflow::-webkit-scrollbar {
+    display: none;
 }
 .fp-warning,
 .fp-watermark{
