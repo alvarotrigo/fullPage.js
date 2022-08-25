@@ -270,7 +270,7 @@ function shouldCancelKeyboardNavigation(e){
 }
 
 function onBodyClick(e){
-    if(!isInsideInput()){
+    if(!isInsideInput() && getOptions().fitToSection){
         cancelDirectionKeyEvents(e);
     }
 }
