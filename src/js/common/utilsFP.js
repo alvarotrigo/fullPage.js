@@ -38,11 +38,6 @@ export function getScrollSettings(top){
         element = utils.$(WRAPPER_SEL)[0];
     }
 
-    else if(options.fitToSection){
-        position = top;
-        element = doc.body;
-    }
-
     //window real scrolling
     else{
         position = top;

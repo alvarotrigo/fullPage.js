@@ -6,7 +6,7 @@ import { getState, setState, state } from '../common/state.js';
 import { lazyLoad } from '../lazyLoad/lazyLoad.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activateMenuAndNav } from '../menu/activateMenuAndNav.js';
-import { $body } from '../common/cache.js';
+import { $body, $html } from '../common/cache.js';
 import { getYmovement } from '../common/utilsFP.js';
 import { 
     COMPLETELY,
@@ -38,7 +38,7 @@ export function scrollHandler(e){
     }
     
     if(!getOptions().autoScrolling || getOptions().scrollBar){
-        var currentScroll = utils.getScrollTop(getOptions());
+        var currentScroll = utils.getScrollTop();
         var scrollDirection = getScrollDirection(currentScroll);
         var visibleSectionIndex = 0;
         var screen_mid = currentScroll + (utils.getWindowHeight() / 2.0);
@@ -163,7 +163,7 @@ export function scrollHandler(e){
 
                 // No section is fitting the viewport? Let's fix that!
                 if(!fixedSections.length){
-                    utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
+                    utils.css($html, {'scroll-snap-type': 'y mandatory'});
                 }
             }, 300);   
         }
@@ -199,7 +199,7 @@ function isCompletelyInViewPort(movement){
     var bottom = top + utils.getWindowHeight();
 
     if(movement == 'up'){
-        return bottom >= (utils.getScrollTop(getOptions()) + utils.getWindowHeight());
+        return bottom >= (utils.getScrollTop() + utils.getWindowHeight());
     }
-    return top <= utils.getScrollTop(getOptions());
+    return top <= utils.getScrollTop();
 }

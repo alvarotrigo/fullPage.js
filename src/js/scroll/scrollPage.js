@@ -2,7 +2,7 @@ import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options.js';
 import { getState, setState, state } from '../common/state.js';
 import { doc, FP } from '../common/constants.js';
-import { $htmlBody } from '../common/cache.js';
+import { $html, $htmlBody } from '../common/cache.js';
 import { transformContainer } from '../common/transformContainer.js';
 import { scrollTo } from '../common/scrollTo.js';
 import { getScrollSettings, getYmovement } from '../common/utilsFP.js';
@@ -70,7 +70,7 @@ export function scrollPage(section, callback, isMovementUp){
     };
 
     //quiting when destination scroll is the same as the current one
-    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop(getOptions()) === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ 
+    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop() === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ 
         return; 
     }
 
@@ -265,7 +265,7 @@ function afterSectionLoads(v){
 
         // Removing CSS snaps for auto-scrolling sections
         if(utils.hasClass(utils.$(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)){
-            utils.css(doc.body, {'scroll-snap-type': 'none'});
+            utils.css($html, {'scroll-snap-type': 'none'});
         }
     }
     

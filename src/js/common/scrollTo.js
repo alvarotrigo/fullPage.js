@@ -1,10 +1,11 @@
 //@ts-check
 import * as utils from './utils.js';
 import { setScrolling } from './utilsFP.js';
-import { state, setState } from "./state.js";
+import { state, setState, getState } from "./state.js";
 import { getOptions } from './options.js';
 import { SLIDES_WRAPPER } from './selectors.js';
 import { doc, win } from './constants.js';
+import { $html } from './cache.js';
 
 /**
 * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
@@ -20,8 +21,9 @@ export function scrollTo(element, to, duration, callback) {
 
     // Making sure we can trigger a scroll animation
     // when css scroll snap is active. Temporally disabling it.
-    if(element === doc.body){
-        utils.css(doc.body, {'scroll-snap-type': 'none'});
+    var usingSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar);
+    if(usingSnaps){
+        utils.css($html, {'scroll-snap-type': 'none'});
     }
 
     var animateScroll = function(timestamp){
@@ -70,7 +72,7 @@ function getScrolledPosition(element){
         position = element.scrollLeft;
     }
     else if(!getOptions().autoScrolling || getOptions().scrollBar){
-        position = utils.getScrollTop(getOptions());
+        position = utils.getScrollTop();
     }
     else{
         position = element.offsetTop;

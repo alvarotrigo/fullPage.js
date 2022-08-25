@@ -325,10 +325,7 @@ export function insertBefore(reference, beforeElement, el){
 }
 
 //http://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
-export function getScrollTop(options){
-    if(typeof options !== 'undefined' && options.fitToSection){
-        return doc.body.scrollTop;
-    }
+export function getScrollTop(){
     var docElement = doc.documentElement;
     return (win.pageYOffset || docElement.scrollTop)  - (docElement.clientTop || 0);
 }

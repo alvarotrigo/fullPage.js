@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.11
+ * fullPage 4.0.10
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -269,19 +269,13 @@ html.fp-enabled,
 .fp-snaps{
     overflow-y: auto !important;
     height: 100% !important;
-}
-.fp-snaps body{
-    height: 100% !important;
     -ms-scroll-snap-type: y mandatory;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll !important;
-        scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
 }
+
 .fp-snaps .fp-section{
     scroll-snap-align: start;
-}
-.fp-snaps .fullpage-wrapper{
-    height: auto !important;
 }
 
 /* Used for DragAndMove*/

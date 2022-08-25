@@ -32,9 +32,6 @@ function bindEvents(){
     //Sliding with arrow keys, both, vertical and horizontal
     utils.docAddEvent('keydown', keydownHandler);
 
-    // for fitToSection:true
-    $body.addEventListener('keydown', onBodyClick);
-
     //to prevent scrolling while zooming
     utils.docAddEvent('keyup', keyUpHandler);
 
@@ -64,7 +61,7 @@ function keydownHandler(e) {
 
     var keyCode = e.keyCode;
     var isPressingHorizontalArrows = [37,39].indexOf(keyCode) > -1;
-    var canScrollWithKeyboard = getOptions().autoScrolling || isPressingHorizontalArrows;
+    var canScrollWithKeyboard = getOptions().autoScrolling || getOptions().fitToSection || isPressingHorizontalArrows;
     
     //tab?
     if(keyCode === 9){
@@ -267,12 +264,6 @@ function shouldCancelKeyboardNavigation(e){
     // 34 = PageDown
     var keyControls = [40, 38, 32, 33, 34];
     return keyControls.indexOf(e.keyCode) > -1 && !state.isBeyondFullpage;
-}
-
-function onBodyClick(e){
-    if(!isInsideInput() && getOptions().fitToSection){
-        cancelDirectionKeyEvents(e);
-    }
 }
 
 //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
