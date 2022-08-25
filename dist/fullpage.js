@@ -2316,9 +2316,12 @@
       if (getOptions().scrollOverflow) {
         getNodes(getState().panels).forEach(function (el) {
           scrollOverflowHandler.getScrollableItem(el).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
-          el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving);
-          el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving);
-          el.addEventListener('keydown', scrollOverflowHandler.blurFocusOnAfterLoad);
+          el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {
+            passive: false
+          });
+          el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {
+            passive: false
+          });
         });
       }
     }
@@ -2340,8 +2343,10 @@
           this.focusedElem.blur();
         }
 
-        if ($(OVERFLOW_SEL + ACTIVE_SEL, getState().activeSection.item)[0]) {
-          this.focusedElem = $(OVERFLOW_SEL, getState().activeSection.item)[0];
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item);
+
+        if (scrollableItem) {
+          this.focusedElem = scrollableItem;
           this.focusedElem.focus();
         }
       },
@@ -4235,7 +4240,7 @@
     }
 
     function onBodyClick(e) {
-      if (!isInsideInput()) {
+      if (!isInsideInput() && getOptions().fitToSection) {
         cancelDirectionKeyEvents(e);
       }
     } //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
@@ -5203,7 +5208,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-7-23".split("-"),
+      var n = "2022-7-25".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
