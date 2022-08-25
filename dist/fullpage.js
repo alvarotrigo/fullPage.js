@@ -1401,16 +1401,20 @@
     }
 
     //@ts-check
+
+    var _g_animateScroll;
     /**
     * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
     * http://stackoverflow.com/a/16136789/1081396
     */
+
 
     function scrollTo(element, to, duration, callback) {
       var start = getScrolledPosition(element);
       var change = to - start;
       var isCallbackFired = false;
       var startTime;
+      var wasAnimationActive = state.activeAnimation;
       setState({
         activeAnimation: true
       }); // Making sure we can trigger a scroll animation
@@ -1422,9 +1426,14 @@
         css($html, {
           'scroll-snap-type': 'none'
         });
+      } // Cancelling any possible previous animations (io: clicking on nav dots very fast)
+
+
+      if (_g_animateScroll) {
+        window.cancelAnimationFrame(_g_animateScroll);
       }
 
-      var animateScroll = function animateScroll(timestamp) {
+      _g_animateScroll = function g_animateScroll(timestamp) {
         if (!startTime) {
           startTime = timestamp;
         }
@@ -1445,18 +1454,24 @@
           }
 
           if (currentTime < duration) {
-            window.requestAnimationFrame(animateScroll);
+            window.requestAnimationFrame(_g_animateScroll);
           } else if (typeof callback !== 'undefined' && !isCallbackFired) {
             callback();
+            setState({
+              activeAnimation: false
+            });
             isCallbackFired = true;
           }
-        } else if (!isCallbackFired) {
+        } else if (!isCallbackFired && !wasAnimationActive) {
           callback();
+          setState({
+            activeAnimation: false
+          });
           isCallbackFired = true;
         }
       };
 
-      window.requestAnimationFrame(animateScroll);
+      window.requestAnimationFrame(_g_animateScroll);
     }
     /**
     * Getting the position of the element to scroll when using jQuery animations
