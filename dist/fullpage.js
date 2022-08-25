@@ -551,11 +551,7 @@
       }
     } //http://stackoverflow.com/questions/3464876/javascript-get-window-x-y-position-for-scroll
 
-    function getScrollTop(options) {
-      if (typeof options !== 'undefined' && options.fitToSection) {
-        return doc.body.scrollTop;
-      }
-
+    function getScrollTop() {
       var docElement = doc.documentElement;
       return (win.pageYOffset || docElement.scrollTop) - (docElement.clientTop || 0);
     }
@@ -1261,9 +1257,6 @@
       if (options.autoScrolling && !options.scrollBar) {
         position = -top;
         element = $(WRAPPER_SEL)[0];
-      } else if (options.fitToSection) {
-        position = top;
-        element = doc.body;
       } //window real scrolling
       else {
         position = top;
@@ -1397,6 +1390,16 @@
       setVariableState('scrollingSpeed', value, type);
     }
 
+    var $body = null;
+    var $html = null;
+    var $htmlBody = null; // caching common elements
+
+    function setCache() {
+      $body = $('body')[0];
+      $html = $('html')[0];
+      $htmlBody = $('html, body');
+    }
+
     //@ts-check
     /**
     * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
@@ -1413,8 +1416,10 @@
       }); // Making sure we can trigger a scroll animation
       // when css scroll snap is active. Temporally disabling it.
 
-      if (element === doc.body) {
-        css(doc.body, {
+      var usingSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar);
+
+      if (usingSnaps) {
+        css($html, {
           'scroll-snap-type': 'none'
         });
       }
@@ -1463,7 +1468,7 @@
       if (element.self != win && hasClass(element, SLIDES_WRAPPER)) {
         position = element.scrollLeft;
       } else if (!getOptions().autoScrolling || getOptions().scrollBar) {
-        position = getScrollTop(getOptions());
+        position = getScrollTop();
       } else {
         position = element.offsetTop;
       } //gets the top property of the wrapper
@@ -1666,16 +1671,6 @@
           }
         }
       });
-    }
-
-    var $body = null;
-    var $html = null;
-    var $htmlBody = null; // caching common elements
-
-    function setCache() {
-      $body = $('body')[0];
-      $html = $('html')[0];
-      $htmlBody = $('html, body');
     }
 
     /**
@@ -3020,7 +3015,7 @@
       var dtop = getDestinationOffset();
       var scrollSettings = getScrollSettings(dtop);
       FP.test.top = -dtop + 'px';
-      css(doc.body, {
+      css($html, {
         'scroll-snap-type': 'none'
       });
       css($htmlBody, {
@@ -3070,7 +3065,7 @@
         return getLast(getState().sections).item.offsetTop + getLast(getState().sections).item.offsetHeight;
       }
 
-      return getScrollTop(getOptions()) + getWindowHeight();
+      return getScrollTop() + getWindowHeight();
     }
 
     function beyondFullPageHandler(container, e) {
@@ -3345,7 +3340,7 @@
         "direction": null
       }; //quiting when destination scroll is the same as the current one
 
-      if (getState().activeSection.item == element && !state.isResizing || getOptions().scrollBar && getScrollTop(getOptions()) === v.dtop && !hasClass(element, AUTO_HEIGHT)) {
+      if (getState().activeSection.item == element && !state.isResizing || getOptions().scrollBar && getScrollTop() === v.dtop && !hasClass(element, AUTO_HEIGHT)) {
         return;
       }
 
@@ -3531,7 +3526,7 @@
       if (getOptions().fitToSection) {
         // Removing CSS snaps for auto-scrolling sections
         if (hasClass($(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)) {
-          css(doc.body, {
+          css($html, {
             'scroll-snap-type': 'none'
           });
         }
@@ -4010,9 +4005,7 @@
       //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
       windowAddEvent('blur', blurHandler); //Sliding with arrow keys, both, vertical and horizontal
 
-      docAddEvent('keydown', keydownHandler); // for fitToSection:true
-
-      $body.addEventListener('keydown', onBodyClick); //to prevent scrolling while zooming
+      docAddEvent('keydown', keydownHandler); //to prevent scrolling while zooming
 
       docAddEvent('keyup', keyUpHandler);
       EventEmitter.on('onDestroy', onDestroy$5);
@@ -4034,7 +4027,7 @@
       clearTimeout(g_keydownId);
       var keyCode = e.keyCode;
       var isPressingHorizontalArrows = [37, 39].indexOf(keyCode) > -1;
-      var canScrollWithKeyboard = getOptions().autoScrolling || isPressingHorizontalArrows; //tab?
+      var canScrollWithKeyboard = getOptions().autoScrolling || getOptions().fitToSection || isPressingHorizontalArrows; //tab?
 
       if (keyCode === 9) {
         onTab(e);
@@ -4237,12 +4230,6 @@
       // 34 = PageDown
       var keyControls = [40, 38, 32, 33, 34];
       return keyControls.indexOf(e.keyCode) > -1 && !state.isBeyondFullpage;
-    }
-
-    function onBodyClick(e) {
-      if (!isInsideInput() && getOptions().fitToSection) {
-        cancelDirectionKeyEvents(e);
-      }
     } //preventing the scroll with arrow keys & spacebar & Page Up & Down keys
 
 
@@ -4923,7 +4910,7 @@
       }
 
       if (!getOptions().autoScrolling || getOptions().scrollBar) {
-        var currentScroll = getScrollTop(getOptions());
+        var currentScroll = getScrollTop();
         var scrollDirection = getScrollDirection(currentScroll);
         var visibleSectionIndex = 0;
         var screen_mid = currentScroll + getWindowHeight() / 2.0;
@@ -5041,7 +5028,7 @@
             }); // No section is fitting the viewport? Let's fix that!
 
             if (!fixedSections.length) {
-              css(doc.body, {
+              css($html, {
                 'scroll-snap-type': 'y mandatory'
               });
             }
@@ -5078,10 +5065,10 @@
       var bottom = top + getWindowHeight();
 
       if (movement == 'up') {
-        return bottom >= getScrollTop(getOptions()) + getWindowHeight();
+        return bottom >= getScrollTop() + getWindowHeight();
       }
 
-      return top <= getScrollTop(getOptions());
+      return top <= getScrollTop();
     }
 
     EventEmitter.on('bindEvents', bindEvents$1);
