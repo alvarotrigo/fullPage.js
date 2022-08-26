@@ -880,6 +880,9 @@
     function getState() {
       return state;
     }
+    function getActivePanel() {
+      return state.activeSection && state.activeSection.activeSlide ? state.activeSection.activeSlide : state.activeSection;
+    }
 
     EventEmitter.on('bindEvents', bindEvents$c);
 
@@ -1204,6 +1207,14 @@
       return null;
     };
 
+    Item.prototype["prevPanel"] = function () {
+      return this.prev() || (this.parent ? this.parent.prev() : null);
+    };
+
+    Item.prototype["nextPanel"] = function () {
+      return this.next() || (this.parent ? this.parent.next() : null);
+    };
+
     Item.prototype.getSiblings = function () {
       if (this.isSection) {
         return state.sections;
@@ -1241,6 +1252,13 @@
       }
 
       return destiny;
+    }
+    function getSlideOrSectionPanel(panel) {
+      if (!panel) {
+        return null;
+      }
+
+      return panel.activeSlide ? panel.activeSlide : panel;
     }
     function isFullPageAbove() {
       return getContainer().getBoundingClientRect().bottom >= 0;
@@ -2100,6 +2118,7 @@
           canScroll: true
         });
         playMedia(v.destiny);
+        EventEmitter.emit('afterSlideLoads', v);
       } //letting them slide again
 
 
@@ -3485,14 +3504,14 @@
         if (getOptions().scrollingSpeed) {
           clearTimeout(g_afterSectionLoadsId);
           g_afterSectionLoadsId = setTimeout(function () {
-            afterSectionLoads(v); //disabling canScroll when using fastSpeed
+            afterSectionLoads$1(v); //disabling canScroll when using fastSpeed
 
             setState({
               canScroll: !isFastSpeed || FP.test.isTesting
             });
           }, getOptions().scrollingSpeed);
         } else {
-          afterSectionLoads(v);
+          afterSectionLoads$1(v);
         }
       } // using JS to animate
       else {
@@ -3510,10 +3529,10 @@
              When using scrollBar:true It seems like the scroll events still getting propagated even after the scrolling animation has finished.
             */
             g_afterSectionLoadsId = setTimeout(function () {
-              afterSectionLoads(v);
+              afterSectionLoads$1(v);
             }, 30);
           } else {
-            afterSectionLoads(v); //disabling canScroll when using fastSpeed
+            afterSectionLoads$1(v); //disabling canScroll when using fastSpeed
 
             setState({
               canScroll: !isFastSpeed || FP.test.isTesting
@@ -3537,7 +3556,7 @@
     */
 
 
-    function afterSectionLoads(v) {
+    function afterSectionLoads$1(v) {
       if (getOptions().fitToSection) {
         // Removing CSS snaps for auto-scrolling sections
         if (hasClass($(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)) {
@@ -3569,6 +3588,7 @@
       setState({
         canScroll: true
       });
+      EventEmitter.emit('afterSectionLoads', v);
 
       if (isFunction(v.callback)) {
         v.callback();
@@ -4014,6 +4034,7 @@
     //@ts-check
     var g_controlPressed;
     var g_keydownId;
+    var g_elToFocus;
     EventEmitter.on('bindEvents', bindEvents$8);
 
     function bindEvents$8() {
@@ -4024,6 +4045,8 @@
 
       docAddEvent('keyup', keyUpHandler);
       EventEmitter.on('onDestroy', onDestroy$5);
+      EventEmitter.on('afterSlideLoads', onAfterSlideLoads);
+      EventEmitter.on('afterSectionLoads', afterSectionLoads);
     }
 
     function onDestroy$5() {
@@ -4206,9 +4229,70 @@
       //we prevent the tab action to keep it in the last focusable element
 
 
-      if (!isShiftPressed && activeElement == focusableElements[focusableElements.length - 1] || isShiftPressed && activeElement == focusableElements[0]) {
+      var isFirstFocusableInSection = activeElement == focusableElements[0];
+      var isLastFocusableInSection = activeElement == focusableElements[focusableElements.length - 1];
+      var isNextItem = !isShiftPressed && isLastFocusableInSection;
+      var isPrevItem = isShiftPressed && isFirstFocusableInSection;
+
+      if (isPrevItem || isNextItem) {
         preventDefault(e);
+        var focusInfo = getPanelWithFocusable(isPrevItem);
+        var destinationPanel = focusInfo ? focusInfo.panel : null;
+
+        if (destinationPanel) {
+          var destinationSection = destinationPanel.isSection ? destinationPanel : destinationPanel.parent;
+          EventEmitter.emit('onScrollPageAndSlide', {
+            sectionAnchor: destinationSection.index() + 1,
+            slideAnchor: destinationPanel.isSection ? 0 : destinationPanel.index()
+          });
+          g_elToFocus = focusInfo.itemToFocus;
+          preventDefault(e);
+        }
       }
+    }
+
+    function onAfterSlideLoads(v) {
+      focusItem();
+    }
+
+    function afterSectionLoads(v) {
+      if (!closest(g_elToFocus, SLIDE_SEL) || closest(g_elToFocus, SLIDE_ACTIVE_SEL)) {
+        focusItem();
+      }
+    }
+
+    function focusItem() {
+      if (g_elToFocus) {
+        g_elToFocus.focus();
+        g_elToFocus = null;
+      }
+    }
+    /**
+     * Get's the panel containing the element to focus.
+     *
+     */
+
+
+    function getPanelWithFocusable(isPrevItem) {
+      var action = isPrevItem ? 'prevPanel' : 'nextPanel';
+      var focusableElements = [];
+      var panelWithFocusables;
+      var currentPanel = getSlideOrSectionPanel(getActivePanel()[action]());
+
+      do {
+        focusableElements = getFocusables(currentPanel.item);
+
+        if (focusableElements.length) {
+          panelWithFocusables = {
+            panel: currentPanel,
+            itemToFocus: focusableElements[isPrevItem ? focusableElements.length - 1 : 0]
+          };
+        }
+
+        currentPanel = getSlideOrSectionPanel(currentPanel[action]());
+      } while (currentPanel && focusableElements.length === 0);
+
+      return panelWithFocusables;
     }
     /**
     * Gets all the focusable elements inside the passed element.
@@ -5210,7 +5294,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-7-25".split("-"),
+      var n = "2022-7-26".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
