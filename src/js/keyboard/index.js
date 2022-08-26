@@ -2,7 +2,7 @@
 import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options';
 import { focusableElementsString, doc } from '../common/constants.js';
-import { getSlideOrSection } from '../common/utilsFP.js';
+import { getSlideOrSection, getSlideOrSectionPanel } from '../common/utilsFP.js';
 import { getIsScrollAllowed } from '../common/isScrollAllowed.js';
 import { 
     SECTION_ACTIVE_SEL,
@@ -11,17 +11,17 @@ import {
     SECTION_SEL,
     OVERFLOW_SEL
 } from '../common/selectors.js';
-import { getState, setState, state } from '../common/state.js';
+import { getActivePanel, getState, setState, state } from '../common/state.js';
 import { moveSlideLeft, moveSlideRight } from '../slides/moveSlide.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { moveSectionUp } from '../scroll/moveSectionUp.js';
 import { moveSectionDown } from '../scroll/moveSectionDown.js';
 import { moveTo } from '../scroll/moveTo.js';
-import { $body } from '../common/cache.js';
 
 let g_controlPressed;
 let g_keydownId;
+let g_elToFocus;
 
 EventEmitter.on('bindEvents', bindEvents);
 
@@ -36,6 +36,9 @@ function bindEvents(){
     utils.docAddEvent('keyup', keyUpHandler);
 
     EventEmitter.on('onDestroy', onDestroy);
+
+    EventEmitter.on('afterSlideLoads', onAfterSlideLoads);
+    EventEmitter.on('afterSectionLoads', afterSectionLoads);
 }
 
 
@@ -221,11 +224,71 @@ function onTab(e){
 
     //when reached the first or last focusable element of the section/slide
     //we prevent the tab action to keep it in the last focusable element
-    if(!isShiftPressed && activeElement == focusableElements[focusableElements.length - 1] ||
-        isShiftPressed && activeElement == focusableElements[0]
-    ){
+    const isFirstFocusableInSection = activeElement == focusableElements[0];
+    const isLastFocusableInSection = activeElement == focusableElements[focusableElements.length - 1];
+    const isNextItem = !isShiftPressed && isLastFocusableInSection;
+    const isPrevItem = isShiftPressed && isFirstFocusableInSection;
+
+    if( isPrevItem || isNextItem ){
         utils.preventDefault(e);
+
+        var focusInfo = getPanelWithFocusable(isPrevItem);
+        var destinationPanel = focusInfo ? focusInfo.panel : null;
+
+        if(destinationPanel){
+            var destinationSection = destinationPanel.isSection ? destinationPanel : destinationPanel.parent;
+
+            EventEmitter.emit('onScrollPageAndSlide', {
+                sectionAnchor: destinationSection.index() + 1,
+                slideAnchor: destinationPanel.isSection ? 0 : destinationPanel.index()
+            });
+            g_elToFocus = focusInfo.itemToFocus;
+            utils.preventDefault(e);
+        }
     }
+}
+
+function onAfterSlideLoads(v){
+    focusItem();
+}
+
+function afterSectionLoads(v){
+    if(!utils.closest(g_elToFocus, SLIDE_SEL) || utils.closest(g_elToFocus, SLIDE_ACTIVE_SEL)){
+        focusItem();
+    }
+}
+
+function focusItem(){
+    if(g_elToFocus){
+        g_elToFocus.focus();
+        g_elToFocus = null;
+    }
+}
+
+/**
+ * Get's the panel containing the element to focus.
+ *
+ */
+function getPanelWithFocusable(isPrevItem){
+    var action = isPrevItem ? 'prevPanel' : 'nextPanel';
+    var focusableElements = [];
+    var panelWithFocusables;
+    var currentPanel = getSlideOrSectionPanel(getActivePanel()[action]());
+    
+    do{
+        focusableElements = getFocusables(currentPanel.item);
+
+        if(focusableElements.length){
+            panelWithFocusables = {
+                panel: currentPanel,
+                itemToFocus: focusableElements[isPrevItem ? focusableElements.length -1 : 0]
+            };
+        }
+        currentPanel = getSlideOrSectionPanel(currentPanel[action]());
+
+    }while(currentPanel && focusableElements.length === 0);
+
+    return panelWithFocusables;
 }
 
 

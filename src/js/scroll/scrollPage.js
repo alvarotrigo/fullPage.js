@@ -292,6 +292,8 @@ function afterSectionLoads(v){
 
     setState({canScroll: true});
 
+    EventEmitter.emit('afterSectionLoads', v);
+
     if(utils.isFunction(v.callback)){
         v.callback();
     }

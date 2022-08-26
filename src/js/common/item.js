@@ -68,6 +68,14 @@ Item.prototype.next = function(){
     return null;            
 };
 
+Item.prototype.prevPanel = function(){
+    return this.prev() || (this.parent ? this.parent.prev() : null);
+};
+
+Item.prototype.nextPanel = function(){
+    return this.next() || (this.parent ? this.parent.next() : null);
+};
+
 Item.prototype.getSiblings = function(){
     if(this.isSection){
         return state.sections;

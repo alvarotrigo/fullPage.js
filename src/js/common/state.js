@@ -48,3 +48,7 @@ export function getActiveDefaultSection(sections){
     }
     return section[0];
 }
+
+export function getActivePanel(){
+    return state.activeSection.slides.length ? state.activeSection.activeSlide : state.activeSection;
+}

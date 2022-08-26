@@ -20,6 +20,13 @@ export function getSlideOrSection(destiny){
     return destiny;
 }
 
+export function getSlideOrSectionPanel(panel){
+    if(!panel){
+        return null;
+    }
+    return panel.activeSlide ? panel.activeSlide : panel;
+}
+
 export function isFullPageAbove(){
     return getContainer().getBoundingClientRect().bottom >= 0;
 }
