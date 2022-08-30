@@ -11,9 +11,6 @@ export function scrollBeyondFullPage(){
     var scrollSettings = getScrollSettings(dtop);
     FP.test.top = -dtop + 'px';
 
-    utils.css($html, {'scroll-snap-type': 'none'});
-    utils.css($htmlBody, {'scroll-behavior': 'unset'});
-
     setState({canScroll: false});
     scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function(){
         setTimeout(function(){

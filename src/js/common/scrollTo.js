@@ -22,13 +22,6 @@ export function scrollTo(element, to, duration, callback) {
 
     setState({activeAnimation: true});
 
-    // Making sure we can trigger a scroll animation
-    // when css scroll snap is active. Temporally disabling it.
-    var usingSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar);
-    if(usingSnaps){
-        utils.css($html, {'scroll-snap-type': 'none'});
-    }
-
     // Cancelling any possible previous animations (io: clicking on nav dots very fast)
     if(g_animateScroll){
         window.cancelAnimationFrame(g_animateScroll);

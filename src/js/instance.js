@@ -6,7 +6,6 @@ import { setMouseHijack } from './mouse/wheel.js';
 import { responsive } from './responsive.js';
 import { setBodyClass } from './stateClasses.js';
 import { setKeyboardScrolling } from './keyboard/setKeyboardScrolling.js';
-import { toggleCssSnapsWhenPossible } from './fitToSection.js';
 import { DESTROYED } from './common/selectors.js';
 import { doc, FP } from './common/constants.js';
 import { EventEmitter } from './common/eventEmitter.js';
@@ -26,7 +25,6 @@ export function init(){
 
     setOptionsFromDOM();
     prepareDom();
-    toggleCssSnapsWhenPossible(true);
     setAllowScrolling(true);
     setMouseHijack(true);
     setAutoScrolling(getOptions().autoScrolling, 'internal');

@@ -6,7 +6,7 @@ import { getState, setState, state } from '../common/state.js';
 import { lazyLoad } from '../lazyLoad/lazyLoad.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activateMenuAndNav } from '../menu/activateMenuAndNav.js';
-import { $body, $html } from '../common/cache.js';
+import { $body } from '../common/cache.js';
 import { getYmovement } from '../common/utilsFP.js';
 import { 
     COMPLETELY,
@@ -15,7 +15,7 @@ import {
 import { fireCallbackOncePerScroll } from '../callbacks/fireCallbacksOncePerScroll.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
-import { doc } from '../common/constants.js';
+import { fitToSection } from '../fitToSection.js';
 
 var lastScroll = 0;
 let g_scrollId;
@@ -149,7 +149,6 @@ export function scrollHandler(e){
         }
 
             
-
         if(getOptions().fitToSection && state.canScroll){
 
             clearTimeout(g_scrollId2);
@@ -163,9 +162,9 @@ export function scrollHandler(e){
 
                 // No section is fitting the viewport? Let's fix that!
                 if(!fixedSections.length){
-                    utils.css($html, {'scroll-snap-type': 'y mandatory'});
+                    fitToSection();
                 }
-            }, 300);   
+            }, getOptions().fitToSectionDelay);   
         }
     }
 }

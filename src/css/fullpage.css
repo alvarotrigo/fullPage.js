@@ -266,24 +266,6 @@ html.fp-enabled,
     border: 0;
 }
 
-.fp-snaps{
-    overflow-y: auto !important;
-    height: 100% !important;
-    -ms-scroll-snap-type: y mandatory;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-}
-
-.fp-snaps .fp-section{
-    scroll-snap-align: start;
-}
-
-/* Used for DragAndMove*/
-.fp-disable-snap body{
-    scroll-behavior: unset !important;
-    scroll-snap-type: none !important;
-}
-
 /* Customize website's scrollbar like Mac OS
 Not supports in Firefox and IE */
 .fp-scroll-mac .fp-overflow::-webkit-scrollbar {

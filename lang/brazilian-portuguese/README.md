@@ -202,6 +202,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
+	fitToSectionDelay: 600,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -430,6 +431,9 @@ Requer o arquivo `vendors/easings.min.js` ou [jQuery UI](http://jqueryui.com/) p
 - `autoScrolling`: (padrão `true`) Define se deve ser usada a rolagem "automática" ou a "normal". Também afeta a maneira como as seções se encaixam na janela do navegador/dispositivo em tablets e telefones celulares.
 
 - `fitToSection`: (padrão `true`) Determina se as seções devem ou não ser ajustadas à viewport. Quando definido como `true`, a seção ativa atual sempre preencherá toda a janela de visualização. Caso contrário, o usuário estará livre para parar no meio de uma seção.
+
+- `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
+the fitting by the configured milliseconds.
 
 - `scrollBar`: (padrão `false`) Determina se a barra de rolagem deve ser usada para as **seções verticais** no site ou não. No caso de usar a barra de rolagem, a funcionalidade `autoScrolling` ainda funcionará conforme o esperado. O usuário também estará livre para rolar o site com a barra de rolagem e fullPage.js caberá na seção na tela quando a rolagem terminar.
 

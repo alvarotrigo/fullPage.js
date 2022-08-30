@@ -196,6 +196,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
+	fitToSectionDelay: 600,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -425,6 +426,8 @@ new fullpage('#fullpage', {
 - `css3`: （默认 `true` ）。 定义 section 或 slide 转换动画使用 JavaScript 还是 CSS3 。 有助于通过支持 CSS3 的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为 `true` ，并且浏览器不支持 CSS3 ，则将使用后者。
 
 - `autoScrolling`: （默认为 `true` ）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
+
+- `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
 
 - `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
 

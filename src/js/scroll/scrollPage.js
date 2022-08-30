@@ -223,7 +223,6 @@ function performMovement(v){
         var scrollSettings = getScrollSettings(v.dtop);
         FP.test.top = -v.dtop + 'px';
 
-        utils.css($htmlBody, {'scroll-behavior': 'unset'});
         clearTimeout(g_afterSectionLoadsId);
 
         scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function(){
@@ -260,15 +259,7 @@ function performMovement(v){
 /**
 * Actions to do once the section is loaded.
 */
-function afterSectionLoads(v){
-    if(getOptions().fitToSection){
-
-        // Removing CSS snaps for auto-scrolling sections
-        if(utils.hasClass(utils.$(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)){
-            utils.css($html, {'scroll-snap-type': 'none'});
-        }
-    }
-    
+function afterSectionLoads(v){    
     setState({isBeyondFullpage: false});
     continuousVerticalFixSectionOrder(v);
 
