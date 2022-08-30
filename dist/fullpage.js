@@ -2331,6 +2331,84 @@
       return hasClass($body, RESPONSIVE);
     }
 
+    function addTableClass(element) {
+      if (!getOptions().verticalCentered) {
+        return;
+      } // Overflowing sections when scrollOverflow is disabled will be autoHeight
+      // and won't require vertical aligment
+
+
+      if (!getOptions().scrollOverflow && scrollOverflowHandler.shouldBeScrollable(element.item)) {
+        return;
+      }
+
+      if (!scrollOverflowHandler.isScrollable(element)) {
+        //In case we are styling for the 2nd time as in with reponsiveSlides
+        if (!hasClass(element.item, TABLE)) {
+          addClass(element.item, TABLE);
+        }
+      }
+    }
+
+    var startingSection = null;
+    FP.getActiveSection = getActiveSection;
+    function getStartingSection() {
+      return startingSection;
+    }
+    /**
+    * Styling vertical sections
+    */
+
+    function styleSection(section) {
+      var sectionElem = section.item;
+      var hasSlides = section.allSlidesItems.length;
+      var index = section.index(); //if no active section is defined, the 1st one will be the default one
+
+      if (!getState().activeSection && section.isVisible) {
+        addClass(sectionElem, ACTIVE);
+        updateState();
+      }
+
+      startingSection = getState().activeSection.item;
+
+      if (getOptions().paddingTop) {
+        css(sectionElem, {
+          'padding-top': getOptions().paddingTop
+        });
+      }
+
+      if (getOptions().paddingBottom) {
+        css(sectionElem, {
+          'padding-bottom': getOptions().paddingBottom
+        });
+      }
+
+      if (typeof getOptions().sectionsColor[index] !== 'undefined') {
+        css(sectionElem, {
+          'background-color': getOptions().sectionsColor[index]
+        });
+      }
+
+      if (typeof getOptions().anchors[index] !== 'undefined') {
+        sectionElem.setAttribute('data-anchor', section.anchor);
+      }
+
+      if (!hasSlides) {
+        addTableClass(section);
+      }
+    }
+    /**
+    * Gets the active section.
+    */
+
+    function getActiveSection() {
+      return getState().activeSection;
+    }
+
+    function getSectionFromPanel(panel) {
+      return panel.isSection ? panel : panel.parent;
+    }
+
     EventEmitter.on('bindEvents', bindEvents$a);
 
     function bindEvents$a() {
@@ -2372,9 +2450,10 @@
           this.focusedElem.blur();
         }
 
-        var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item);
+        var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item); // On desktop we focus the scrollable to be able to use the mouse wheel
+        // We avoid it on mobile due to a bug in iOS Safari
 
-        if (scrollableItem) {
+        if (scrollableItem && !isTouchDevice && !isTouch) {
           this.focusedElem = scrollableItem;
           this.focusedElem.focus();
         }
@@ -2392,18 +2471,37 @@
             var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
 
             if (shouldBeScrollable) {
-              addClass(item, OVERFLOW);
-              item.setAttribute('tabindex', '-1');
+              if (isResponsiveMode()) {
+                scrollOverflowHandler.addTmpAutoHeight(el);
+              } else {
+                scrollOverflowHandler.removeTmpAutoHeight(el);
+                addClass(item, OVERFLOW);
+                item.setAttribute('tabindex', '-1');
+              }
             } else {
+              scrollOverflowHandler.removeTmpAutoHeight(el);
               removeClass(item, OVERFLOW);
               item.removeAttribute('tabindex');
             } // updating the state now in case 
             // this is executed on page load (after images load)
 
 
-            el.hasScroll = shouldBeScrollable;
+            el.hasScroll = shouldBeScrollable && !isResponsiveMode();
           }
         });
+      },
+      addTmpAutoHeight: function addTmpAutoHeight(el) {
+        var section = getSectionFromPanel(el);
+        addClass(section.item, AUTO_HEIGHT);
+        section.tmpAutoHeight = true;
+      },
+      removeTmpAutoHeight: function removeTmpAutoHeight(panel) {
+        var section = getSectionFromPanel(panel);
+
+        if (section.tmpAutoHeight) {
+          section.tmpAutoHeight = false;
+          removeClass(section.item, AUTO_HEIGHT);
+        }
       },
       getScrollableItem: function getScrollableItem(sectionItem) {
         var panel = getSlideOrSection(sectionItem);
@@ -2732,25 +2830,6 @@
       });
     }
 
-    function addTableClass(element) {
-      if (!getOptions().verticalCentered) {
-        return;
-      } // overflowing sections when scrollOverflow is disabled will be autoHeight
-
-
-      if (!getOptions().scrollOverflow && scrollOverflowHandler.shouldBeScrollable(element.item)) {
-        addClass(element.item, AUTO_HEIGHT);
-        return;
-      }
-
-      if (!scrollOverflowHandler.isScrollable(element)) {
-        //In case we are styling for the 2nd time as in with reponsiveSlides
-        if (!hasClass(element.item, TABLE)) {
-          addClass(element.item, TABLE);
-        }
-      }
-    }
-
     /**
     * Styles the horizontal slides for a section.
     */
@@ -2804,61 +2883,6 @@
       } else {
         addClass(slidesElems[0], ACTIVE);
       }
-    }
-
-    var startingSection = null;
-    FP.getActiveSection = getActiveSection;
-    function getStartingSection() {
-      return startingSection;
-    }
-    /**
-    * Styling vertical sections
-    */
-
-    function styleSection(section) {
-      var sectionElem = section.item;
-      var hasSlides = section.allSlidesItems.length;
-      var index = section.index(); //if no active section is defined, the 1st one will be the default one
-
-      if (!getState().activeSection && section.isVisible) {
-        addClass(sectionElem, ACTIVE);
-        updateState();
-      }
-
-      startingSection = getState().activeSection.item;
-
-      if (getOptions().paddingTop) {
-        css(sectionElem, {
-          'padding-top': getOptions().paddingTop
-        });
-      }
-
-      if (getOptions().paddingBottom) {
-        css(sectionElem, {
-          'padding-bottom': getOptions().paddingBottom
-        });
-      }
-
-      if (typeof getOptions().sectionsColor[index] !== 'undefined') {
-        css(sectionElem, {
-          'background-color': getOptions().sectionsColor[index]
-        });
-      }
-
-      if (typeof getOptions().anchors[index] !== 'undefined') {
-        sectionElem.setAttribute('data-anchor', section.anchor);
-      }
-
-      if (!hasSlides) {
-        addTableClass(section);
-      }
-    }
-    /**
-    * Gets the active section.
-    */
-
-    function getActiveSection() {
-      return getState().activeSection;
     }
 
     var g_wrapperObserver;
@@ -4659,7 +4683,9 @@
     EventEmitter.on('bindEvents', bindEvents$6);
 
     function bindEvents$6() {
-      //when resizing the site, we adjust the heights of the sections, slimScroll...
+      // Setting VH correctly in mobile devices
+      resizeHandler(); //when resizing the site, we adjust the heights of the sections, slimScroll...
+
       windowAddEvent('resize', resizeHandler);
       EventEmitter.on('onDestroy', onDestroy$3);
     }
@@ -4732,7 +4758,7 @@
       });
       setSectionsHeight('');
 
-      if (getOptions().fitToSection && !getOptions().autoScrolling && !state.isBeyondFullpage) {
+      if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
         setVhUnits();
       }
 
@@ -5294,7 +5320,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-7-26".split("-"),
+      var n = "2022-7-30".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
