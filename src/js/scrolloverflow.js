@@ -60,7 +60,10 @@ export const scrollOverflowHandler = {
             this.focusedElem.blur();
         }
         var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item);
-        if( scrollableItem){
+
+        // On desktop we focus the scrollable to be able to use the mouse wheel
+        // We avoid it on mobile due to a bug in iOS Safari
+        if( scrollableItem && !isTouchDevice && !isTouch){
             this.focusedElem = scrollableItem;
             this.focusedElem.focus();
         }
