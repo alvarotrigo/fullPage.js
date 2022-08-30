@@ -6,16 +6,15 @@ import { isResponsiveMode } from './responsive.js';
 import { isMacDevice, isTouchDevice, isTouch, win, doc } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { 
-    ACTIVE_SEL,
     AUTO_HEIGHT,
     AUTO_HEIGHT_RESPONSIVE,
     OVERFLOW,
     OVERFLOW_SEL,
-    SLIDE_ACTIVE_SEL
 } from './common/selectors.js';
 import { getNodes } from './common/item.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { getSlideOrSection } from './common/utilsFP.js';
+import { getSectionFromPanel } from './sections.js';
 
 EventEmitter.on('bindEvents', bindEvents);
 
@@ -81,19 +80,45 @@ export const scrollOverflowHandler = {
             }else{
                 let item = getSlideOrSection(el.item);
                 const shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
+
                 if(shouldBeScrollable){
-                    utils.addClass(item, OVERFLOW);
-                    item.setAttribute('tabindex', '-1');
-                }else{
+
+                    if(isResponsiveMode()){
+                        scrollOverflowHandler.addTmpAutoHeight(el);
+                    }
+                    else{
+                        scrollOverflowHandler.removeTmpAutoHeight(el);
+
+                        utils.addClass(item, OVERFLOW);
+                        item.setAttribute('tabindex', '-1');
+                    }
+                }
+                else{
+                    scrollOverflowHandler.removeTmpAutoHeight(el);
+                    
                     utils.removeClass(item, OVERFLOW);
                     item.removeAttribute('tabindex');
                 }
 
                 // updating the state now in case 
                 // this is executed on page load (after images load)
-                el.hasScroll = shouldBeScrollable;
+                el.hasScroll = shouldBeScrollable && !isResponsiveMode();
             }
         });
+    },
+
+    addTmpAutoHeight: function(el){
+        var section = getSectionFromPanel(el);
+        utils.addClass(section.item, AUTO_HEIGHT);
+        section.tmpAutoHeight = true;
+    },
+
+    removeTmpAutoHeight: function(panel){
+        var section = getSectionFromPanel(panel);
+        if(section.tmpAutoHeight){
+            section.tmpAutoHeight = false;
+            utils.removeClass(section.item, AUTO_HEIGHT);
+        }
     },
 
     getScrollableItem: function(sectionItem){
