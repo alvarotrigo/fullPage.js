@@ -51,6 +51,7 @@ export const SLIDES_CONTAINER_SEL =  '.' + SLIDES_CONTAINER;
 export const TABLE =                 'fp-table';
 export const OVERFLOW =              'fp-overflow';
 export const OVERFLOW_SEL =          '.' + OVERFLOW;
+export const IS_OVERFLOW =           'fp-is-overflow';
 
 // slide nav
 export const SLIDES_NAV =            'fp-slidesNav';

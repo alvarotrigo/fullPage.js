@@ -4,6 +4,7 @@ import { state } from '../common/state.js';
 import { 
     ACTIVE,
     OVERFLOW,
+    OVERFLOW_SEL,
     SLIDES_CONTAINER_SEL,
     WRAPPER_SEL
  } from '../common/selectors.js';
@@ -27,7 +28,7 @@ export const Item = function(el, selector){
     this.item = el;
     this.isVisible = utils.isVisible(el);
     this.isActive = utils.hasClass(el, ACTIVE);
-    this.hasScroll = utils.hasClass(el, OVERFLOW);
+    this.hasScroll = utils.hasClass(el, OVERFLOW) || utils.$(OVERFLOW_SEL, el)[0] != null;
     this.isSection = selector === getOptions().sectionSelector;
     this.container = utils.closest(el, SLIDES_CONTAINER_SEL) || utils.closest(el, WRAPPER_SEL);
     this.index = function(){

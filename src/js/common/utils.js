@@ -258,6 +258,23 @@ export function wrapAll(toWrap, wrapper) {
 
 /**
 * Usage:
+* wrapInner(document.querySelector('#pepe'), '<div class="test">afdas</div>');
+* wrapInner(document.querySelector('#pepe'), element);
+*
+* https://jsfiddle.net/zexxz0tw/6/
+*
+* https://stackoverflow.com/a/21817590/1081396
+*/
+export function wrapInner(parent, wrapper) {
+    parent.appendChild(wrapper);
+
+    while(parent.firstChild !== wrapper){
+        wrapper.appendChild(parent.firstChild);
+    }
+}
+
+/**
+* Usage:
 * unwrap(document.querySelector('#pepe'));
 * unwrap(element);
 *

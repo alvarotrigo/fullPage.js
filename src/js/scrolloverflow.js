@@ -3,15 +3,14 @@ import { getOptions } from './common/options.js';
 import { getState, state } from './common/state.js';
 import { fireCallback } from './callbacks/fireCallback.js';
 import { isResponsiveMode } from './responsive.js';
-import { isMacDevice, isTouchDevice, isTouch, win, doc } from './common/constants.js';
+import { isMacDevice, isTouchDevice, isTouch, win, doc, isIE11 } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { 
-    AUTO_HEIGHT,
     AUTO_HEIGHT_RESPONSIVE,
+    IS_OVERFLOW,
     OVERFLOW,
-    OVERFLOW_SEL,
+    OVERFLOW_SEL
 } from './common/selectors.js';
-import { getNodes } from './common/item.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { getSlideOrSection } from './common/utilsFP.js';
 import { getSectionFromPanel } from './sections.js';
@@ -27,15 +26,6 @@ function bindEvents(){
             scrollOverflowHandler.afterSectionLoads();
         }
     });
-
-    if(getOptions().scrollOverflow){
-        getNodes(getState().panels).forEach(function(el){
-            scrollOverflowHandler.getScrollableItem(el).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
-
-            el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
-            el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
-        });
-    }
 }
 
 export const scrollOverflowHandler = {
@@ -75,6 +65,9 @@ export const scrollOverflowHandler = {
         }
         
         getState().panels.forEach(function(el){
+            if(el.slides && el.slides.length){
+                return;
+            }
             if(
                 utils.hasClass(el.item, 'fp-noscroll') || 
                 utils.hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()
@@ -83,44 +76,50 @@ export const scrollOverflowHandler = {
             }else{
                 let item = getSlideOrSection(el.item);
                 const shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
+                var section = getSectionFromPanel(el);
 
-                if(shouldBeScrollable){
-
-                    if(isResponsiveMode()){
-                        scrollOverflowHandler.addTmpAutoHeight(el);
-                    }
-                    else{
-                        scrollOverflowHandler.removeTmpAutoHeight(el);
-
-                        utils.addClass(item, OVERFLOW);
-                        item.setAttribute('tabindex', '-1');
-                    }
+                if(isIE11){
+                    var toggleAction = shouldBeScrollable ? 'addClass' : 'removeClass';
+                    utils[toggleAction](section.item, IS_OVERFLOW); 
+                    utils[toggleAction](el.item, IS_OVERFLOW);  
                 }
                 else{
-                    scrollOverflowHandler.removeTmpAutoHeight(el);
-                    
-                    utils.removeClass(item, OVERFLOW);
-                    item.removeAttribute('tabindex');
+                    utils.addClass(section.item, IS_OVERFLOW); 
+                    utils.addClass(el.item, IS_OVERFLOW);  
+                }
+                
+                if(!el.hasScroll){
+                    scrollOverflowHandler.createWrapper(item);
+                    scrollOverflowHandler.bindEvents(item);
                 }
 
                 // updating the state now in case 
                 // this is executed on page load (after images load)
-                el.hasScroll = shouldBeScrollable && !isResponsiveMode();
+                el.hasScroll = true;
             }
         });
     },
 
-    addTmpAutoHeight: function(el){
-        var section = getSectionFromPanel(el);
-        utils.addClass(section.item, AUTO_HEIGHT);
-        section.tmpAutoHeight = true;
+    bindEvents: function(item){
+        scrollOverflowHandler.getScrollableItem(item).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+
+        item.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
+        item.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
     },
 
-    removeTmpAutoHeight: function(panel){
-        var section = getSectionFromPanel(panel);
-        if(section.tmpAutoHeight){
-            section.tmpAutoHeight = false;
-            utils.removeClass(section.item, AUTO_HEIGHT);
+    createWrapper: function(item){
+        var overflowWrapper = document.createElement('div');
+        overflowWrapper.className = OVERFLOW;
+
+        utils.wrapInner(item, overflowWrapper);
+        overflowWrapper.setAttribute('tabindex', '-1');
+    },
+
+    destroyWrapper: function(item){
+        var overflowWrapper = utils.$(OVERFLOW_SEL, item)[0];
+        if(overflowWrapper){
+            utils.unwrap(overflowWrapper);
+            item.removeAttribute('tabindex');
         }
     },
 
@@ -139,7 +138,8 @@ export const scrollOverflowHandler = {
     },
 
     shouldBeScrollable: function(item){
-        return item.scrollHeight > win.innerHeight;
+        var scrollable = scrollOverflowHandler.getScrollableItem(item);
+        return scrollable.scrollHeight > win.innerHeight;
     },
 
     isScrolled: function(direction, el){
@@ -153,9 +153,13 @@ export const scrollOverflowHandler = {
             return true;
         }
         
+        // ie11 wrongly calculates scrollHeight when using the CSS style
+        // overflow: auto   It adds 1 more pixel compared to offsetHeight
+        var ie11offset = isIE11 ? 1 : 0;
+
         var positionY = scrollableItem.scrollTop;
         var isTopReached = direction === 'up' && positionY <=0;
-        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
+        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY) + ie11offset;
         var isScrolled = isTopReached || isBottomReached;
 
         if(!isScrolled){

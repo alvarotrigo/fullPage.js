@@ -50,12 +50,7 @@ function setResponsive(active){
             utils.addClass($body, RESPONSIVE);
             if(utils.isFunction( getOptions().afterResponsive )){
                 getOptions().afterResponsive.call( getContainer(), active);
-            }
-
-            //when on page load, we will remove scrolloverflow if necessary
-            // if(getOptions().scrollOverflow){
-            //     createScrollBarForAll();
-            // }
+            }            
         }
     }
     else if(isResponsive){
