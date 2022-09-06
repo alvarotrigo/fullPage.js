@@ -3014,7 +3014,7 @@
             return;
           }
 
-          if (hasClass(el.item, 'fp-noscroll') || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
+          if (hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
             return;
           } else {
             var item = getSlideOrSection(el.item);
@@ -3085,7 +3085,7 @@
 
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
 
-        if (!getOptions().scrollOverflow || !hasClass(scrollableItem, OVERFLOW)) {
+        if (!getOptions().scrollOverflow || !hasClass(scrollableItem, OVERFLOW) || hasClass(getSlideOrSection(el), 'fp-noscroll')) {
           return true;
         } // ie11 wrongly calculates scrollHeight when using the CSS style
         // overflow: auto   It adds 1 more pixel compared to offsetHeight
