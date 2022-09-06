@@ -308,6 +308,5 @@ Not supports in Firefox and IE */
     margin: 12px;
 }
 .fp-noscroll {
-    justify-content: flex-start;
     overflow: hidden;
 }
