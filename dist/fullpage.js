@@ -156,7 +156,8 @@
     var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
     var isMacDevice = /(Mac|iPhone|iPod|iPad)/i.test(win.navigator.userAgent); // @ts-ignore
 
-    var isTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints > 0 || navigator.maxTouchPoints; // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
+    var isTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints > 0 || navigator.maxTouchPoints;
+    var isIE11 = !!window.MSInputMethodContext && !!document.documentMode; // taken from https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js
 
     var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'; // cache common elements
 
@@ -480,6 +481,23 @@
     }
     /**
     * Usage:
+    * wrapInner(document.querySelector('#pepe'), '<div class="test">afdas</div>');
+    * wrapInner(document.querySelector('#pepe'), element);
+    *
+    * https://jsfiddle.net/zexxz0tw/6/
+    *
+    * https://stackoverflow.com/a/21817590/1081396
+    */
+
+    function wrapInner(parent, wrapper) {
+      parent.appendChild(wrapper);
+
+      while (parent.firstChild !== wrapper) {
+        wrapper.appendChild(parent.firstChild);
+      }
+    }
+    /**
+    * Usage:
     * unwrap(document.querySelector('#pepe'));
     * unwrap(element);
     *
@@ -777,6 +795,60 @@
       "showError": showError
     };
 
+    var utils = /*#__PURE__*/Object.freeze({
+        __proto__: null,
+        showError: showError,
+        isVisible: isVisible,
+        getVisible: getVisible,
+        $: $,
+        deepExtend: deepExtend,
+        hasClass: hasClass,
+        getWindowHeight: getWindowHeight,
+        getWindowWidth: getWindowWidth,
+        css: css,
+        prev: prev,
+        next: next,
+        last: last,
+        index: index,
+        getList: getList,
+        hide: hide,
+        show: show,
+        isArrayOrList: isArrayOrList,
+        addClass: addClass,
+        removeClass: removeClass,
+        appendTo: appendTo,
+        wrap: wrap,
+        wrapAll: wrapAll,
+        wrapInner: wrapInner,
+        unwrap: unwrap,
+        closest: closest,
+        after: after,
+        before: before,
+        insertBefore: insertBefore,
+        getScrollTop: getScrollTop,
+        siblings: siblings,
+        preventDefault: preventDefault,
+        getAttr: getAttr,
+        docAddEvent: docAddEvent,
+        windowAddEvent: windowAddEvent,
+        docRemoveEvent: docRemoveEvent,
+        windowRemoveEvent: windowRemoveEvent,
+        isFunction: isFunction,
+        trigger: trigger,
+        matches: matches,
+        toggle: toggle,
+        createElementFromHTML: createElementFromHTML,
+        remove: remove,
+        untilAll: untilAll,
+        nextAll: nextAll,
+        prevAll: prevAll,
+        toArray: toArray,
+        getLast: getLast,
+        getAverage: getAverage,
+        setSrc: setSrc,
+        getParentsUntil: getParentsUntil
+    });
+
     function _typeof(obj) {
       "@babel/helpers - typeof";
 
@@ -932,8 +1004,7 @@
     var ACTIVE = 'active';
     var ACTIVE_SEL = '.' + ACTIVE;
     var COMPLETELY = 'fp-completely';
-    var COMPLETELY_SEL = '.' + COMPLETELY;
-    var SNAPS = 'fp-snaps'; // section
+    var COMPLETELY_SEL = '.' + COMPLETELY; // section
 
     var SECTION_DEFAULT_SEL = '.section';
     var SECTION = 'fp-section';
@@ -963,7 +1034,8 @@
     var SLIDES_CONTAINER_SEL = '.' + SLIDES_CONTAINER;
     var TABLE = 'fp-table';
     var OVERFLOW = 'fp-overflow';
-    var OVERFLOW_SEL = '.' + OVERFLOW; // slide nav
+    var OVERFLOW_SEL = '.' + OVERFLOW;
+    var IS_OVERFLOW = 'fp-is-overflow'; // slide nav
 
     var SLIDES_NAV = 'fp-slidesNav';
     var SLIDES_NAV_SEL = '.' + SLIDES_NAV;
@@ -1002,6 +1074,7 @@
       scrollingSpeed: 700,
       autoScrolling: true,
       fitToSection: true,
+      fitToSectionDelay: 600,
       easing: 'easeInOutCubic',
       easingcss3: 'ease',
       loopBottom: false,
@@ -1162,7 +1235,7 @@
       this.item = el;
       this.isVisible = isVisible(el);
       this.isActive = hasClass(el, ACTIVE);
-      this.hasScroll = hasClass(el, OVERFLOW);
+      this.hasScroll = hasClass(el, OVERFLOW) || $(OVERFLOW_SEL, el)[0] != null;
       this.isSection = selector === getOptions().sectionSelector;
       this.container = closest(el, SLIDES_CONTAINER_SEL) || closest(el, WRAPPER_SEL);
 
@@ -1435,17 +1508,7 @@
       var wasAnimationActive = state.activeAnimation;
       setState({
         activeAnimation: true
-      }); // Making sure we can trigger a scroll animation
-      // when css scroll snap is active. Temporally disabling it.
-
-      var usingSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar);
-
-      if (usingSnaps) {
-        css($html, {
-          'scroll-snap-type': 'none'
-        });
-      } // Cancelling any possible previous animations (io: clicking on nav dots very fast)
-
+      }); // Cancelling any possible previous animations (io: clicking on nav dots very fast)
 
       if (_g_animateScroll) {
         window.cancelAnimationFrame(_g_animateScroll);
@@ -2210,60 +2273,559 @@
         }); //scrolling the page to the section with no animation
 
         if (element != null) {
-          css($htmlBody, {
-            'scroll-behavior': 'unset'
-          });
           var scrollSettings = getScrollSettings(element.offsetTop);
           scrollSettings.element.scrollTo(0, scrollSettings.options);
         }
       }
     }
 
+    //@ts-check
+    /**
+    * Adds sections before or after the current one to create the infinite effect.
+    */
+
+    function createInfiniteSections(v) {
+      setState({
+        isDoingContinousVertical: true
+      });
+      var activeSectionItem = getState().activeSection.item; // Scrolling down
+
+      if (!v.isMovementUp) {
+        // Move all previous sections to after the active section
+        after(activeSectionItem, prevAll(activeSectionItem, SECTION_SEL).reverse());
+      } else {
+        // Scrolling up
+        // Move all next sections to before the active section
+        before(activeSectionItem, nextAll(activeSectionItem, SECTION_SEL));
+      } // Maintain the displayed position (now that we changed the element order)
+
+
+      silentScroll(getState().activeSection.item.offsetTop); // Maintain the active slides visible in the viewport
+
+      keepSlidesPosition$1(); // save for later the elements that still need to be reordered
+
+      v.wrapAroundElements = activeSectionItem; // Recalculate animation variables
+
+      v.dtop = v.element.offsetTop;
+      v.yMovement = getYmovement(getState().activeSection, v.element);
+      return v;
+    }
+    /**
+    * Maintains the active slides in the viewport
+    * (Because the `scroll` animation might get lost with some actions, such as when using continuousVertical)
+    */
+
+    function keepSlidesPosition$1() {
+      var activeSlides = $(SLIDE_ACTIVE_SEL);
+
+      for (var i = 0; i < activeSlides.length; i++) {
+        silentLandscapeScroll(activeSlides[i], 'internal');
+      }
+    }
+
+    //@ts-check
+    /**
+    * Maintains the active slides in the viewport
+    * (Because the `scroll` animation might get lost with some actions, such as when using continuousVertical)
+    */
+
+    function keepSlidesPosition() {
+      var activeSlides = $(SLIDE_ACTIVE_SEL);
+
+      for (var i = 0; i < activeSlides.length; i++) {
+        silentLandscapeScroll(activeSlides[i], 'internal');
+      }
+    }
+    /**
+    * Fix section order after continuousVertical changes have been animated
+    */
+
+
+    function continuousVerticalFixSectionOrder(v) {
+      // If continuousVertical is in effect (and autoScrolling would also be in effect then),
+      // finish moving the elements around so the direct navigation will function more simply
+      if (v.wrapAroundElements == null) {
+        return;
+      }
+
+      if (v.isMovementUp) {
+        before($(SECTION_SEL)[0], v.wrapAroundElements);
+      } else {
+        after($(SECTION_SEL)[getState().sections.length - 1], v.wrapAroundElements);
+      }
+
+      silentScroll(getState().activeSection.item.offsetTop); // Maintain the active slides visible in the viewport
+
+      keepSlidesPosition();
+      setState({
+        isDoingContinousVertical: false
+      });
+    }
+
+    /**
+    * Makes sure lazyload is done for other sections in the viewport that are not the
+    * active one. 
+    */
+
+    function lazyLoadOthers() {
+      var hasAutoHeightSections = $(AUTO_HEIGHT_SEL)[0] || isResponsiveMode() && $(AUTO_HEIGHT_RESPONSIVE_SEL)[0]; //quitting when it doesn't apply
+
+      if (!getOptions().lazyLoading || !hasAutoHeightSections) {
+        return;
+      } //making sure to lazy load auto-height sections that are in the viewport
+
+
+      $(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function (section) {
+        if (isSectionInViewport(section)) {
+          lazyLoad(section);
+        }
+      });
+    }
+    /**
+    * Determines whether a section is in the viewport or not.
+    */
+
+    function isSectionInViewport(el) {
+      var rect = el.getBoundingClientRect();
+      var top = rect.top;
+      var bottom = rect.bottom; //sometimes there's a 1px offset on the bottom of the screen even when the 
+      //section's height is the window.innerHeight one. I guess because pixels won't allow decimals.
+      //using this prevents from lazyLoading the section that is not yet visible 
+      //(only 1 pixel offset is)
+
+      var pixelOffset = 2;
+      var isTopInView = top + pixelOffset < state.windowsHeight && top > 0;
+      var isBottomInView = bottom > pixelOffset && bottom < state.windowsHeight;
+      return isTopInView || isBottomInView;
+    }
+
+    function tooltipTextHandler() {
+      /*jshint validthis:true */
+      trigger(prev(this), 'click');
+    }
+    /**
+    * Activating the vertical navigation bullets according to the given slide name.
+    */
+
+    function activateNavDots(name, sectionIndex) {
+      var nav = $(SECTION_NAV_SEL)[0];
+
+      if (getOptions().navigation && nav != null && nav.style.display !== 'none') {
+        removeClass($(ACTIVE_SEL, nav), ACTIVE);
+
+        if (name) {
+          addClass($('a[href="#' + name + '"]', nav), ACTIVE);
+        } else {
+          addClass($('a', $('li', nav)[sectionIndex]), ACTIVE);
+        }
+      }
+    }
+    /**
+    * Creates a vertical navigation bar.
+    */
+
+    function addVerticalNavigation() {
+      remove($(SECTION_NAV_SEL));
+      var navigation = doc.createElement('div');
+      navigation.setAttribute('id', SECTION_NAV);
+      var divUl = doc.createElement('ul');
+      navigation.appendChild(divUl);
+      appendTo(navigation, $body);
+      var nav = $(SECTION_NAV_SEL)[0];
+      addClass(nav, 'fp-' + getOptions().navigationPosition);
+
+      if (getOptions().showActiveTooltip) {
+        addClass(nav, SHOW_ACTIVE_TOOLTIP);
+      }
+
+      var li = '';
+
+      for (var i = 0; i < getState().sections.length; i++) {
+        var section = getState().sections[i];
+        var link = '';
+
+        if (getOptions().anchors.length) {
+          link = section.anchor;
+        }
+
+        li += '<li><a href="#' + encodeURI(link) + '"><span class="fp-sr-only">' + getBulletLinkName(section.index(), 'Section') + '</span><span></span></a>'; // Only add tooltip if needed (defined by user)
+
+        var tooltip = getOptions().navigationTooltips[section.index()];
+
+        if (typeof tooltip !== 'undefined' && tooltip !== '') {
+          li += '<div class="' + SECTION_NAV_TOOLTIP + ' fp-' + getOptions().navigationPosition + '">' + tooltip + '</div>';
+        }
+
+        li += '</li>';
+      }
+
+      $('ul', nav)[0].innerHTML = li; //activating the current active section
+
+      var bullet = $('li', $(SECTION_NAV_SEL)[0])[getState().activeSection.index()];
+      addClass($('a', bullet), ACTIVE);
+    } //Scrolls to the section when clicking the navigation bullet
+
+    function sectionBulletHandler(e) {
+      if (e.preventDefault) {
+        preventDefault(e);
+      }
+
+      setState({
+        scrollTrigger: 'verticalNav'
+      });
+      /*jshint validthis:true */
+      // @ts-ignore
+
+      var indexBullet = index(closest(this, SECTION_NAV_SEL + ' li'));
+      EventEmitter.emit('scrollPage', {
+        destination: getState().sections[indexBullet]
+      });
+    }
+
+    /**
+    * Sets to active the current menu and vertical nav items.
+    */
+
+    function activateMenuAndNav(anchor, index) {
+      activateMenuElement(anchor);
+      activateNavDots(anchor, index);
+    }
+    /**
+    * Activating the website main menu elements according to the given slide name.
+    */
+
+    function activateMenuElement(name) {
+      if (getOptions().menu && getOptions().menu.length) {
+        $(getOptions().menu).forEach(function (menu) {
+          if (menu != null) {
+            removeClass($(ACTIVE_SEL, menu), ACTIVE);
+            addClass($('[data-menuanchor="' + name + '"]', menu), ACTIVE);
+          }
+        });
+      }
+    }
+
+    new Date().getTime();
+    /**
+     * Triggers the callback once per scroll wheel action.
+     * Based on scrolling speed delay.
+     */
+
+    var oncePerScroll = function () {
+      var canTriggerEvent = true;
+      var prevWheelTime = new Date().getTime();
+      var result;
+      var isScrollingOnInit = !win.fullpage_api;
+      return function (scrollTrigger, callback) {
+        var currentTime = new Date().getTime();
+        var timeThreshold = scrollTrigger === 'wheel' ? getOptions().scrollingSpeed : 100;
+        canTriggerEvent = isScrollingOnInit || currentTime - prevWheelTime >= timeThreshold;
+        isScrollingOnInit = !win.fullpage_api;
+
+        if (canTriggerEvent) {
+          result = callback();
+          prevWheelTime = currentTime;
+        }
+
+        return typeof result !== 'undefined' ? result : true;
+      };
+    }();
+
+    /**
+    * Fires the wheel event once per mouse wheel trigger.
+    */
+
+    function fireCallbackOncePerScroll(callbackName, params) {
+      if (!isFunction(getOptions().beforeLeave)) {
+        return;
+      }
+
+      var result = oncePerScroll(getState().scrollTrigger, function () {
+        return fireCallback(callbackName, params);
+      });
+      return result;
+    }
+
+    FP.moveTo = moveTo;
+
+    FP.getScrollY = function () {
+      return state.scrollY;
+    };
+
+    var g_afterSectionLoadsId;
+    var g_transitionLapseId;
+    EventEmitter.on('onDestroy', onDestroy$6);
+    /**
+    * Scrolls the site to the given element and scrolls to the slide if a callback is given.
+    */
+
+    function scrollPage(section, callback, isMovementUp) {
+      var element = section.item;
+
+      if (element == null) {
+        return;
+      } //there's no element to scroll, leaving the function
+
+
+      var dtop = getDestinationPosition(element);
+      var slideAnchorLink;
+      var slideIndex; //local variables
+
+      var v = {
+        "element": element,
+        "callback": callback,
+        "isMovementUp": isMovementUp,
+        "dtop": dtop,
+        "yMovement": getYmovement(getState().activeSection, element),
+        "anchorLink": section.anchor,
+        "sectionIndex": section.index(),
+        "activeSlide": section.activeSlide ? section.activeSlide.item : null,
+        "leavingSection": getState().activeSection.index() + 1,
+        //caching the value of isResizing at the momment the function is called
+        //because it will be checked later inside a setTimeout and the value might change
+        "localIsResizing": state.isResizing,
+        "items": {
+          "origin": getState().activeSection,
+          "destination": section
+        },
+        "direction": null
+      }; //quiting when destination scroll is the same as the current one
+
+      if (getState().activeSection.item == element && !state.isResizing || getOptions().scrollBar && getScrollTop() === v.dtop && !hasClass(element, AUTO_HEIGHT)) {
+        return;
+      }
+
+      if (v.activeSlide != null) {
+        slideAnchorLink = getAttr(v.activeSlide, 'data-anchor');
+        slideIndex = index(v.activeSlide, null);
+      } //callback (onLeave) if the site is not just resizing and readjusting the slides
+
+
+      if (!v.localIsResizing) {
+        var direction = v.yMovement; //required for continousVertical
+
+        if (typeof isMovementUp !== 'undefined') {
+          direction = isMovementUp ? 'up' : 'down';
+        } //for the callback
+
+
+        v.direction = direction;
+
+        if (isFunction(getOptions().beforeLeave)) {
+          if (fireCallbackOncePerScroll('beforeLeave', v) === false) {
+            return;
+          }
+        }
+
+        if (isFunction(getOptions().onLeave)) {
+          if (!fireCallback('onLeave', v)) {
+            return;
+          }
+        }
+      } // If continuousVertical && we need to wrap around
+
+
+      if (getOptions().autoScrolling && getOptions().continuousVertical && typeof v.isMovementUp !== "undefined" && (!v.isMovementUp && v.yMovement == 'up' || // Intending to scroll down but about to go up or
+      v.isMovementUp && v.yMovement == 'down')) {
+        // intending to scroll up but about to go down
+        v = createInfiniteSections(v);
+      } //pausing media of the leaving section (if we are not just resizing, as destinatino will be the same one)
+
+
+      if (!v.localIsResizing) {
+        stopMedia(getState().activeSection.item);
+      }
+
+      addClass(element, ACTIVE);
+      removeClass(siblings(element), ACTIVE);
+      updateState();
+      lazyLoad(element); //preventing from activating the MouseWheelHandler event
+      //more than once if the page is scrolling
+
+      setState({
+        canScroll: FP.test.isTesting
+      });
+      setPageStatus(slideIndex, slideAnchorLink, v.anchorLink);
+      performMovement(v); //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+
+      setState({
+        lastScrolledDestiny: v.anchorLink
+      }); //avoid firing it twice (as it does also on scroll)
+
+      activateMenuAndNav(v.anchorLink, v.sectionIndex);
+    }
+
+    function onDestroy$6() {
+      clearTimeout(g_afterSectionLoadsId);
+      clearTimeout(g_transitionLapseId);
+    }
+    /**
+    * Returns the destination Y position based on the scrolling direction and
+    * the height of the section.
+    */
+
+
+    function getDestinationPosition(element) {
+      var elementHeight = element.offsetHeight;
+      var elementTop = element.offsetTop; //top of the desination will be at the top of the viewport
+
+      var position = elementTop;
+      var isScrollingDown = elementTop > state.previousDestTop;
+      var sectionBottom = position - getWindowHeight() + elementHeight;
+      var bigSectionsDestination = getOptions().bigSectionsDestination; //is the destination element bigger than the viewport?
+
+      if (elementHeight > getWindowHeight()) {
+        //scrolling up?
+        if (!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom') {
+          position = sectionBottom;
+        }
+      } //sections equal or smaller than the viewport height && scrolling down? ||  is resizing and its in the last section
+      else if (isScrollingDown || state.isResizing && next(element) == null) {
+        //The bottom of the destination will be at the bottom of the viewport
+        position = sectionBottom;
+      }
+      /*
+      Keeping record of the last scrolled position to determine the scrolling direction.
+      No conventional methods can be used as the scroll bar might not be present
+      AND the section might not be active if it is auto-height and didnt reach the middle
+      of the viewport.
+      */
+
+
+      setState({
+        previousDestTop: position
+      });
+      return position;
+    }
+    /**
+    * Performs the vertical movement (by CSS3 or by jQuery)
+    */
+
+
+    function performMovement(v) {
+      var isFastSpeed = getOptions().scrollingSpeed < 700;
+      var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
+      setState({
+        touchDirection: 'none',
+        scrollY: Math.round(v.dtop)
+      });
+      EventEmitter.emit('onPerformMovement'); // using CSS3 translate functionality
+
+      if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
+        // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
+        // that's why we round it to 0.
+        var translate3d = 'translate3d(0px, -' + Math.round(v.dtop) + 'px, 0px)';
+        transformContainer(translate3d, true); //even when the scrollingSpeed is 0 there's a little delay, which might cause the
+        //scrollingSpeed to change in case of using silentMoveTo();ç
+
+        if (getOptions().scrollingSpeed) {
+          clearTimeout(g_afterSectionLoadsId);
+          g_afterSectionLoadsId = setTimeout(function () {
+            afterSectionLoads$1(v); //disabling canScroll when using fastSpeed
+
+            setState({
+              canScroll: !isFastSpeed || FP.test.isTesting
+            });
+          }, getOptions().scrollingSpeed);
+        } else {
+          afterSectionLoads$1(v);
+        }
+      } // using JS to animate
+      else {
+        var scrollSettings = getScrollSettings(v.dtop);
+        FP.test.top = -v.dtop + 'px';
+        clearTimeout(g_afterSectionLoadsId);
+        scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
+          if (getOptions().scrollBar) {
+            /* Hack!
+            The timeout prevents setting the most dominant section in the viewport as "active" when the user
+            scrolled to a smaller section by using the mousewheel (auto scrolling) rather than draging the scroll bar.
+             When using scrollBar:true It seems like the scroll events still getting propagated even after the scrolling animation has finished.
+            */
+            g_afterSectionLoadsId = setTimeout(function () {
+              afterSectionLoads$1(v);
+            }, 30);
+          } else {
+            afterSectionLoads$1(v); //disabling canScroll when using fastSpeed
+
+            setState({
+              canScroll: !isFastSpeed || FP.test.isTesting
+            });
+          }
+        });
+      } // enabling canScroll after the minimum transition laps
+
+
+      if (isFastSpeed) {
+        clearTimeout(g_transitionLapseId);
+        g_transitionLapseId = setTimeout(function () {
+          setState({
+            canScroll: true
+          });
+        }, transitionLapse);
+      }
+    }
+    /**
+    * Actions to do once the section is loaded.
+    */
+
+
+    function afterSectionLoads$1(v) {
+      setState({
+        isBeyondFullpage: false
+      });
+      continuousVerticalFixSectionOrder(v); //callback (afterLoad) if the site is not just resizing and readjusting the slides
+
+      if (isFunction(getOptions().afterLoad) && !v.localIsResizing) {
+        fireCallback('afterLoad', v);
+      }
+
+      updateState();
+
+      if (!v.localIsResizing) {
+        playMedia(v.element);
+      }
+
+      addClass(v.element, COMPLETELY);
+      removeClass(siblings(v.element), COMPLETELY);
+      lazyLoadOthers();
+      scrollOverflowHandler.afterSectionLoads();
+      setState({
+        canScroll: true
+      });
+      EventEmitter.emit('afterSectionLoads', v);
+
+      if (isFunction(v.callback)) {
+        v.callback();
+      }
+    }
+
     FP.setFitToSection = setFitToSection;
     FP.fitToSection = fitToSection;
-    var g_isCssSnapsSupported = function () {
-      return isCssSnapsSupported();
-    }();
     /**
     * Sets fitToSection
     */
 
     function setFitToSection(value, type) {
-      toggleCssSnapsWhenPossible(value);
       setVariableState('fitToSection', value, type);
-    }
-    /**
-    * Adds or removes CSS snaps scrolling behaviour depending on the given value.
-    */
-
-    function toggleCssSnapsWhenPossible(value) {
-      if (g_isCssSnapsSupported) {
-        var canAddSnaps = getOptions().fitToSection && (!getOptions().autoScrolling || getOptions().scrollBar) && value;
-        var toggleFunction = canAddSnaps ? addClass : removeClass;
-        toggleFunction($html, SNAPS);
-      }
-    }
-    /**
-    * Checks for CSS scroll snaps support.
-    */
-
-    function isCssSnapsSupported() {
-      var style = doc.documentElement.style;
-      return 'scrollSnapAlign' in style || 'webkitScrollSnapAlign' in style || 'msScrollSnapAlign' in style;
     }
     /**
     * Fits the site to the nearest active section
     */
 
-
-    function fitToSection() {// //checking fitToSection again in case it was set to false before the timeout delay
-      // if(canScroll){
-      //     //allows to scroll to an active section and
-      //     //if the section is already active, we prevent firing callbacks
-      //     isResizing = true;
-      //     scrollPage(state.activeSection);
-      //     isResizing = false;
-      // }
+    function fitToSection() {
+      //checking fitToSection again in case it was set to false before the timeout delay
+      if (state.canScroll) {
+        //allows to scroll to an active section and
+        //if the section is already active, we prevent firing callbacks
+        setState({
+          isResizing: true
+        });
+        scrollPage(state.activeSection);
+        setState({
+          isResizing: false
+        });
+      }
     }
 
     FP.setResponsive = setResponsive;
@@ -2305,11 +2867,7 @@
 
           if (isFunction(getOptions().afterResponsive)) {
             getOptions().afterResponsive.call(getContainer(), active);
-          } //when on page load, we will remove scrolloverflow if necessary
-          // if(getOptions().scrollOverflow){
-          //     createScrollBarForAll();
-          // }
-
+          }
         }
       } else if (isResponsive) {
         setAutoScrolling(getOriginals().autoScrolling, 'internal');
@@ -2419,18 +2977,6 @@
           scrollOverflowHandler.afterSectionLoads();
         }
       });
-
-      if (getOptions().scrollOverflow) {
-        getNodes(getState().panels).forEach(function (el) {
-          scrollOverflowHandler.getScrollableItem(el).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
-          el.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {
-            passive: false
-          });
-          el.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {
-            passive: false
-          });
-        });
-      }
     }
 
     var scrollOverflowHandler = {
@@ -2464,43 +3010,58 @@
         }
 
         getState().panels.forEach(function (el) {
+          if (el.slides && el.slides.length) {
+            return;
+          }
+
           if (hasClass(el.item, 'fp-noscroll') || hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()) {
             return;
           } else {
             var item = getSlideOrSection(el.item);
             var shouldBeScrollable = scrollOverflowHandler.shouldBeScrollable(el.item);
+            var section = getSectionFromPanel(el);
 
-            if (shouldBeScrollable) {
-              if (isResponsiveMode()) {
-                scrollOverflowHandler.addTmpAutoHeight(el);
-              } else {
-                scrollOverflowHandler.removeTmpAutoHeight(el);
-                addClass(item, OVERFLOW);
-                item.setAttribute('tabindex', '-1');
-              }
+            if (isIE11) {
+              var toggleAction = shouldBeScrollable ? 'addClass' : 'removeClass';
+              utils[toggleAction](section.item, IS_OVERFLOW);
+              utils[toggleAction](el.item, IS_OVERFLOW);
             } else {
-              scrollOverflowHandler.removeTmpAutoHeight(el);
-              removeClass(item, OVERFLOW);
-              item.removeAttribute('tabindex');
+              addClass(section.item, IS_OVERFLOW);
+              addClass(el.item, IS_OVERFLOW);
+            }
+
+            if (!el.hasScroll) {
+              scrollOverflowHandler.createWrapper(item);
+              scrollOverflowHandler.bindEvents(item);
             } // updating the state now in case 
             // this is executed on page load (after images load)
 
 
-            el.hasScroll = shouldBeScrollable && !isResponsiveMode();
+            el.hasScroll = true;
           }
         });
       },
-      addTmpAutoHeight: function addTmpAutoHeight(el) {
-        var section = getSectionFromPanel(el);
-        addClass(section.item, AUTO_HEIGHT);
-        section.tmpAutoHeight = true;
+      bindEvents: function bindEvents(item) {
+        scrollOverflowHandler.getScrollableItem(item).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+        item.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {
+          passive: false
+        });
+        item.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {
+          passive: false
+        });
       },
-      removeTmpAutoHeight: function removeTmpAutoHeight(panel) {
-        var section = getSectionFromPanel(panel);
+      createWrapper: function createWrapper(item) {
+        var overflowWrapper = document.createElement('div');
+        overflowWrapper.className = OVERFLOW;
+        wrapInner(item, overflowWrapper);
+        overflowWrapper.setAttribute('tabindex', '-1');
+      },
+      destroyWrapper: function destroyWrapper(item) {
+        var overflowWrapper = $(OVERFLOW_SEL, item)[0];
 
-        if (section.tmpAutoHeight) {
-          section.tmpAutoHeight = false;
-          removeClass(section.item, AUTO_HEIGHT);
+        if (overflowWrapper) {
+          unwrap(overflowWrapper);
+          item.removeAttribute('tabindex');
         }
       },
       getScrollableItem: function getScrollableItem(sectionItem) {
@@ -2514,7 +3075,8 @@
         return panel.isSection && panel.activeSlide ? panel.activeSlide.hasScroll : panel.hasScroll;
       },
       shouldBeScrollable: function shouldBeScrollable(item) {
-        return item.scrollHeight > win.innerHeight;
+        var scrollable = scrollOverflowHandler.getScrollableItem(item);
+        return scrollable.scrollHeight > win.innerHeight;
       },
       isScrolled: function isScrolled(direction, el) {
         if (!state.canScroll) {
@@ -2525,11 +3087,14 @@
 
         if (!getOptions().scrollOverflow || !hasClass(scrollableItem, OVERFLOW)) {
           return true;
-        }
+        } // ie11 wrongly calculates scrollHeight when using the CSS style
+        // overflow: auto   It adds 1 more pixel compared to offsetHeight
 
+
+        var ie11offset = isIE11 ? 1 : 0;
         var positionY = scrollableItem.scrollTop;
         var isTopReached = direction === 'up' && positionY <= 0;
-        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY);
+        var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY) + ie11offset;
         var isScrolled = isTopReached || isBottomReached;
 
         if (!isScrolled) {
@@ -2747,89 +3312,6 @@
       addClass($(getOptions().slideSelector, getContainer()), SLIDE);
     }
 
-    function tooltipTextHandler() {
-      /*jshint validthis:true */
-      trigger(prev(this), 'click');
-    }
-    /**
-    * Activating the vertical navigation bullets according to the given slide name.
-    */
-
-    function activateNavDots(name, sectionIndex) {
-      var nav = $(SECTION_NAV_SEL)[0];
-
-      if (getOptions().navigation && nav != null && nav.style.display !== 'none') {
-        removeClass($(ACTIVE_SEL, nav), ACTIVE);
-
-        if (name) {
-          addClass($('a[href="#' + name + '"]', nav), ACTIVE);
-        } else {
-          addClass($('a', $('li', nav)[sectionIndex]), ACTIVE);
-        }
-      }
-    }
-    /**
-    * Creates a vertical navigation bar.
-    */
-
-    function addVerticalNavigation() {
-      remove($(SECTION_NAV_SEL));
-      var navigation = doc.createElement('div');
-      navigation.setAttribute('id', SECTION_NAV);
-      var divUl = doc.createElement('ul');
-      navigation.appendChild(divUl);
-      appendTo(navigation, $body);
-      var nav = $(SECTION_NAV_SEL)[0];
-      addClass(nav, 'fp-' + getOptions().navigationPosition);
-
-      if (getOptions().showActiveTooltip) {
-        addClass(nav, SHOW_ACTIVE_TOOLTIP);
-      }
-
-      var li = '';
-
-      for (var i = 0; i < getState().sections.length; i++) {
-        var section = getState().sections[i];
-        var link = '';
-
-        if (getOptions().anchors.length) {
-          link = section.anchor;
-        }
-
-        li += '<li><a href="#' + encodeURI(link) + '"><span class="fp-sr-only">' + getBulletLinkName(section.index(), 'Section') + '</span><span></span></a>'; // Only add tooltip if needed (defined by user)
-
-        var tooltip = getOptions().navigationTooltips[section.index()];
-
-        if (typeof tooltip !== 'undefined' && tooltip !== '') {
-          li += '<div class="' + SECTION_NAV_TOOLTIP + ' fp-' + getOptions().navigationPosition + '">' + tooltip + '</div>';
-        }
-
-        li += '</li>';
-      }
-
-      $('ul', nav)[0].innerHTML = li; //activating the current active section
-
-      var bullet = $('li', $(SECTION_NAV_SEL)[0])[getState().activeSection.index()];
-      addClass($('a', bullet), ACTIVE);
-    } //Scrolls to the section when clicking the navigation bullet
-
-    function sectionBulletHandler(e) {
-      if (e.preventDefault) {
-        preventDefault(e);
-      }
-
-      setState({
-        scrollTrigger: 'verticalNav'
-      });
-      /*jshint validthis:true */
-      // @ts-ignore
-
-      var indexBullet = index(closest(this, SECTION_NAV_SEL + ' li'));
-      EventEmitter.emit('scrollPage', {
-        destination: getState().sections[indexBullet]
-      });
-    }
-
     /**
     * Styles the horizontal slides for a section.
     */
@@ -2998,32 +3480,6 @@
       } : false;
     }
 
-    new Date().getTime();
-    /**
-     * Triggers the callback once per scroll wheel action.
-     * Based on scrolling speed delay.
-     */
-
-    var oncePerScroll = function () {
-      var canTriggerEvent = true;
-      var prevWheelTime = new Date().getTime();
-      var result;
-      var isScrollingOnInit = !win.fullpage_api;
-      return function (scrollTrigger, callback) {
-        var currentTime = new Date().getTime();
-        var timeThreshold = scrollTrigger === 'wheel' ? getOptions().scrollingSpeed : 100;
-        canTriggerEvent = isScrollingOnInit || currentTime - prevWheelTime >= timeThreshold;
-        isScrollingOnInit = !win.fullpage_api;
-
-        if (canTriggerEvent) {
-          result = callback();
-          prevWheelTime = currentTime;
-        }
-
-        return typeof result !== 'undefined' ? result : true;
-      };
-    }();
-
     var wheelDataHandler = function () {
       var _prevTime = new Date().getTime();
 
@@ -3073,12 +3529,6 @@
       var dtop = getDestinationOffset();
       var scrollSettings = getScrollSettings(dtop);
       FP.test.top = -dtop + 'px';
-      css($html, {
-        'scroll-snap-type': 'none'
-      });
-      css($htmlBody, {
-        'scroll-behavior': 'unset'
-      });
       setState({
         canScroll: false
       });
@@ -3194,430 +3644,6 @@
         return isNew;
       };
     }();
-
-    //@ts-check
-    /**
-    * Adds sections before or after the current one to create the infinite effect.
-    */
-
-    function createInfiniteSections(v) {
-      setState({
-        isDoingContinousVertical: true
-      });
-      var activeSectionItem = getState().activeSection.item; // Scrolling down
-
-      if (!v.isMovementUp) {
-        // Move all previous sections to after the active section
-        after(activeSectionItem, prevAll(activeSectionItem, SECTION_SEL).reverse());
-      } else {
-        // Scrolling up
-        // Move all next sections to before the active section
-        before(activeSectionItem, nextAll(activeSectionItem, SECTION_SEL));
-      } // Maintain the displayed position (now that we changed the element order)
-
-
-      silentScroll(getState().activeSection.item.offsetTop); // Maintain the active slides visible in the viewport
-
-      keepSlidesPosition$1(); // save for later the elements that still need to be reordered
-
-      v.wrapAroundElements = activeSectionItem; // Recalculate animation variables
-
-      v.dtop = v.element.offsetTop;
-      v.yMovement = getYmovement(getState().activeSection, v.element);
-      return v;
-    }
-    /**
-    * Maintains the active slides in the viewport
-    * (Because the `scroll` animation might get lost with some actions, such as when using continuousVertical)
-    */
-
-    function keepSlidesPosition$1() {
-      var activeSlides = $(SLIDE_ACTIVE_SEL);
-
-      for (var i = 0; i < activeSlides.length; i++) {
-        silentLandscapeScroll(activeSlides[i], 'internal');
-      }
-    }
-
-    //@ts-check
-    /**
-    * Maintains the active slides in the viewport
-    * (Because the `scroll` animation might get lost with some actions, such as when using continuousVertical)
-    */
-
-    function keepSlidesPosition() {
-      var activeSlides = $(SLIDE_ACTIVE_SEL);
-
-      for (var i = 0; i < activeSlides.length; i++) {
-        silentLandscapeScroll(activeSlides[i], 'internal');
-      }
-    }
-    /**
-    * Fix section order after continuousVertical changes have been animated
-    */
-
-
-    function continuousVerticalFixSectionOrder(v) {
-      // If continuousVertical is in effect (and autoScrolling would also be in effect then),
-      // finish moving the elements around so the direct navigation will function more simply
-      if (v.wrapAroundElements == null) {
-        return;
-      }
-
-      if (v.isMovementUp) {
-        before($(SECTION_SEL)[0], v.wrapAroundElements);
-      } else {
-        after($(SECTION_SEL)[getState().sections.length - 1], v.wrapAroundElements);
-      }
-
-      silentScroll(getState().activeSection.item.offsetTop); // Maintain the active slides visible in the viewport
-
-      keepSlidesPosition();
-      setState({
-        isDoingContinousVertical: false
-      });
-    }
-
-    /**
-    * Makes sure lazyload is done for other sections in the viewport that are not the
-    * active one. 
-    */
-
-    function lazyLoadOthers() {
-      var hasAutoHeightSections = $(AUTO_HEIGHT_SEL)[0] || isResponsiveMode() && $(AUTO_HEIGHT_RESPONSIVE_SEL)[0]; //quitting when it doesn't apply
-
-      if (!getOptions().lazyLoading || !hasAutoHeightSections) {
-        return;
-      } //making sure to lazy load auto-height sections that are in the viewport
-
-
-      $(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function (section) {
-        if (isSectionInViewport(section)) {
-          lazyLoad(section);
-        }
-      });
-    }
-    /**
-    * Determines whether a section is in the viewport or not.
-    */
-
-    function isSectionInViewport(el) {
-      var rect = el.getBoundingClientRect();
-      var top = rect.top;
-      var bottom = rect.bottom; //sometimes there's a 1px offset on the bottom of the screen even when the 
-      //section's height is the window.innerHeight one. I guess because pixels won't allow decimals.
-      //using this prevents from lazyLoading the section that is not yet visible 
-      //(only 1 pixel offset is)
-
-      var pixelOffset = 2;
-      var isTopInView = top + pixelOffset < state.windowsHeight && top > 0;
-      var isBottomInView = bottom > pixelOffset && bottom < state.windowsHeight;
-      return isTopInView || isBottomInView;
-    }
-
-    /**
-    * Sets to active the current menu and vertical nav items.
-    */
-
-    function activateMenuAndNav(anchor, index) {
-      activateMenuElement(anchor);
-      activateNavDots(anchor, index);
-    }
-    /**
-    * Activating the website main menu elements according to the given slide name.
-    */
-
-    function activateMenuElement(name) {
-      if (getOptions().menu && getOptions().menu.length) {
-        $(getOptions().menu).forEach(function (menu) {
-          if (menu != null) {
-            removeClass($(ACTIVE_SEL, menu), ACTIVE);
-            addClass($('[data-menuanchor="' + name + '"]', menu), ACTIVE);
-          }
-        });
-      }
-    }
-
-    /**
-    * Fires the wheel event once per mouse wheel trigger.
-    */
-
-    function fireCallbackOncePerScroll(callbackName, params) {
-      if (!isFunction(getOptions().beforeLeave)) {
-        return;
-      }
-
-      var result = oncePerScroll(getState().scrollTrigger, function () {
-        return fireCallback(callbackName, params);
-      });
-      return result;
-    }
-
-    FP.moveTo = moveTo;
-
-    FP.getScrollY = function () {
-      return state.scrollY;
-    };
-
-    var g_afterSectionLoadsId;
-    var g_transitionLapseId;
-    EventEmitter.on('onDestroy', onDestroy$6);
-    /**
-    * Scrolls the site to the given element and scrolls to the slide if a callback is given.
-    */
-
-    function scrollPage(section, callback, isMovementUp) {
-      var element = section.item;
-
-      if (element == null) {
-        return;
-      } //there's no element to scroll, leaving the function
-
-
-      var dtop = getDestinationPosition(element);
-      var slideAnchorLink;
-      var slideIndex; //local variables
-
-      var v = {
-        "element": element,
-        "callback": callback,
-        "isMovementUp": isMovementUp,
-        "dtop": dtop,
-        "yMovement": getYmovement(getState().activeSection, element),
-        "anchorLink": section.anchor,
-        "sectionIndex": section.index(),
-        "activeSlide": section.activeSlide ? section.activeSlide.item : null,
-        "leavingSection": getState().activeSection.index() + 1,
-        //caching the value of isResizing at the momment the function is called
-        //because it will be checked later inside a setTimeout and the value might change
-        "localIsResizing": state.isResizing,
-        "items": {
-          "origin": getState().activeSection,
-          "destination": section
-        },
-        "direction": null
-      }; //quiting when destination scroll is the same as the current one
-
-      if (getState().activeSection.item == element && !state.isResizing || getOptions().scrollBar && getScrollTop() === v.dtop && !hasClass(element, AUTO_HEIGHT)) {
-        return;
-      }
-
-      if (v.activeSlide != null) {
-        slideAnchorLink = getAttr(v.activeSlide, 'data-anchor');
-        slideIndex = index(v.activeSlide, null);
-      } //callback (onLeave) if the site is not just resizing and readjusting the slides
-
-
-      if (!v.localIsResizing) {
-        var direction = v.yMovement; //required for continousVertical
-
-        if (typeof isMovementUp !== 'undefined') {
-          direction = isMovementUp ? 'up' : 'down';
-        } //for the callback
-
-
-        v.direction = direction;
-
-        if (isFunction(getOptions().beforeLeave)) {
-          if (fireCallbackOncePerScroll('beforeLeave', v) === false) {
-            return;
-          }
-        }
-
-        if (isFunction(getOptions().onLeave)) {
-          if (!fireCallback('onLeave', v)) {
-            return;
-          }
-        }
-      } // If continuousVertical && we need to wrap around
-
-
-      if (getOptions().autoScrolling && getOptions().continuousVertical && typeof v.isMovementUp !== "undefined" && (!v.isMovementUp && v.yMovement == 'up' || // Intending to scroll down but about to go up or
-      v.isMovementUp && v.yMovement == 'down')) {
-        // intending to scroll up but about to go down
-        v = createInfiniteSections(v);
-      } //pausing media of the leaving section (if we are not just resizing, as destinatino will be the same one)
-
-
-      if (!v.localIsResizing) {
-        stopMedia(getState().activeSection.item);
-      }
-
-      addClass(element, ACTIVE);
-      removeClass(siblings(element), ACTIVE);
-      updateState();
-      lazyLoad(element); //preventing from activating the MouseWheelHandler event
-      //more than once if the page is scrolling
-
-      setState({
-        canScroll: FP.test.isTesting
-      });
-      setPageStatus(slideIndex, slideAnchorLink, v.anchorLink);
-      performMovement(v); //flag to avoid callingn `scrollPage()` twice in case of using anchor links
-
-      setState({
-        lastScrolledDestiny: v.anchorLink
-      }); //avoid firing it twice (as it does also on scroll)
-
-      activateMenuAndNav(v.anchorLink, v.sectionIndex);
-    }
-
-    function onDestroy$6() {
-      clearTimeout(g_afterSectionLoadsId);
-      clearTimeout(g_transitionLapseId);
-    }
-    /**
-    * Returns the destination Y position based on the scrolling direction and
-    * the height of the section.
-    */
-
-
-    function getDestinationPosition(element) {
-      var elementHeight = element.offsetHeight;
-      var elementTop = element.offsetTop; //top of the desination will be at the top of the viewport
-
-      var position = elementTop;
-      var isScrollingDown = elementTop > state.previousDestTop;
-      var sectionBottom = position - getWindowHeight() + elementHeight;
-      var bigSectionsDestination = getOptions().bigSectionsDestination; //is the destination element bigger than the viewport?
-
-      if (elementHeight > getWindowHeight()) {
-        //scrolling up?
-        if (!isScrollingDown && !bigSectionsDestination || bigSectionsDestination === 'bottom') {
-          position = sectionBottom;
-        }
-      } //sections equal or smaller than the viewport height && scrolling down? ||  is resizing and its in the last section
-      else if (isScrollingDown || state.isResizing && next(element) == null) {
-        //The bottom of the destination will be at the bottom of the viewport
-        position = sectionBottom;
-      }
-      /*
-      Keeping record of the last scrolled position to determine the scrolling direction.
-      No conventional methods can be used as the scroll bar might not be present
-      AND the section might not be active if it is auto-height and didnt reach the middle
-      of the viewport.
-      */
-
-
-      setState({
-        previousDestTop: position
-      });
-      return position;
-    }
-    /**
-    * Performs the vertical movement (by CSS3 or by jQuery)
-    */
-
-
-    function performMovement(v) {
-      var isFastSpeed = getOptions().scrollingSpeed < 700;
-      var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
-      setState({
-        touchDirection: 'none',
-        scrollY: Math.round(v.dtop)
-      });
-      EventEmitter.emit('onPerformMovement'); // using CSS3 translate functionality
-
-      if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
-        // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
-        // that's why we round it to 0.
-        var translate3d = 'translate3d(0px, -' + Math.round(v.dtop) + 'px, 0px)';
-        transformContainer(translate3d, true); //even when the scrollingSpeed is 0 there's a little delay, which might cause the
-        //scrollingSpeed to change in case of using silentMoveTo();ç
-
-        if (getOptions().scrollingSpeed) {
-          clearTimeout(g_afterSectionLoadsId);
-          g_afterSectionLoadsId = setTimeout(function () {
-            afterSectionLoads$1(v); //disabling canScroll when using fastSpeed
-
-            setState({
-              canScroll: !isFastSpeed || FP.test.isTesting
-            });
-          }, getOptions().scrollingSpeed);
-        } else {
-          afterSectionLoads$1(v);
-        }
-      } // using JS to animate
-      else {
-        var scrollSettings = getScrollSettings(v.dtop);
-        FP.test.top = -v.dtop + 'px';
-        css($htmlBody, {
-          'scroll-behavior': 'unset'
-        });
-        clearTimeout(g_afterSectionLoadsId);
-        scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function () {
-          if (getOptions().scrollBar) {
-            /* Hack!
-            The timeout prevents setting the most dominant section in the viewport as "active" when the user
-            scrolled to a smaller section by using the mousewheel (auto scrolling) rather than draging the scroll bar.
-             When using scrollBar:true It seems like the scroll events still getting propagated even after the scrolling animation has finished.
-            */
-            g_afterSectionLoadsId = setTimeout(function () {
-              afterSectionLoads$1(v);
-            }, 30);
-          } else {
-            afterSectionLoads$1(v); //disabling canScroll when using fastSpeed
-
-            setState({
-              canScroll: !isFastSpeed || FP.test.isTesting
-            });
-          }
-        });
-      } // enabling canScroll after the minimum transition laps
-
-
-      if (isFastSpeed) {
-        clearTimeout(g_transitionLapseId);
-        g_transitionLapseId = setTimeout(function () {
-          setState({
-            canScroll: true
-          });
-        }, transitionLapse);
-      }
-    }
-    /**
-    * Actions to do once the section is loaded.
-    */
-
-
-    function afterSectionLoads$1(v) {
-      if (getOptions().fitToSection) {
-        // Removing CSS snaps for auto-scrolling sections
-        if (hasClass($(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)) {
-          css($html, {
-            'scroll-snap-type': 'none'
-          });
-        }
-      }
-
-      setState({
-        isBeyondFullpage: false
-      });
-      continuousVerticalFixSectionOrder(v); //callback (afterLoad) if the site is not just resizing and readjusting the slides
-
-      if (isFunction(getOptions().afterLoad) && !v.localIsResizing) {
-        fireCallback('afterLoad', v);
-      }
-
-      updateState();
-
-      if (!v.localIsResizing) {
-        playMedia(v.element);
-      }
-
-      addClass(v.element, COMPLETELY);
-      removeClass(siblings(v.element), COMPLETELY);
-      lazyLoadOthers();
-      scrollOverflowHandler.afterSectionLoads();
-      setState({
-        canScroll: true
-      });
-      EventEmitter.emit('afterSectionLoads', v);
-
-      if (isFunction(v.callback)) {
-        v.callback();
-      }
-    }
 
     FP.moveSectionDown = moveSectionDown;
     /**
@@ -5153,11 +5179,9 @@
             }); // No section is fitting the viewport? Let's fix that!
 
             if (!fixedSections.length) {
-              css($html, {
-                'scroll-snap-type': 'y mandatory'
-              });
+              fitToSection();
             }
-          }, 300);
+          }, getOptions().fitToSectionDelay);
         }
       }
     }
@@ -5320,7 +5344,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-7-30".split("-"),
+      var n = "2022-8-6".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5425,6 +5449,10 @@
       }
 
       enableYoutubeAPI();
+
+      if (getOptions().scrollOverflow) {
+        scrollOverflowHandler.makeScrollable();
+      }
     }
 
     FP.shared.afterRenderActions = afterRenderActions;
@@ -5554,7 +5582,7 @@
 
       getNodes(getState().panels).forEach(function (item) {
         if (getOptions().scrollOverflow) {
-          removeClass(item, OVERFLOW);
+          scrollOverflowHandler.destroyWrapper(item);
         }
 
         removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
@@ -5599,7 +5627,6 @@
       getOptions().scrollBar = getOptions().scrollBar || getOptions().hybrid;
       setOptionsFromDOM();
       prepareDom();
-      toggleCssSnapsWhenPossible(true);
       setAllowScrolling(true);
       setMouseHijack(true);
       setAutoScrolling(getOptions().autoScrolling, 'internal');
