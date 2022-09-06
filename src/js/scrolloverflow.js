@@ -69,7 +69,6 @@ export const scrollOverflowHandler = {
                 return;
             }
             if(
-                utils.hasClass(el.item, 'fp-noscroll') || 
                 utils.hasClass(el.item, AUTO_HEIGHT_RESPONSIVE) && isResponsiveMode()
             ){
                 return;
@@ -149,7 +148,10 @@ export const scrollOverflowHandler = {
 
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
 
-        if(!getOptions().scrollOverflow || !utils.hasClass(scrollableItem, OVERFLOW)){
+        if(!getOptions().scrollOverflow || 
+            !utils.hasClass(scrollableItem, OVERFLOW) ||
+            utils.hasClass(getSlideOrSection(el), 'fp-noscroll')
+        ){
             return true;
         }
         
