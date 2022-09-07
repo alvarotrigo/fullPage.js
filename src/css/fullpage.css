@@ -242,6 +242,7 @@ html.fp-enabled,
 /* Disabling vertical centering on scrollable elements */
 .fp-overflow{
     justify-content: flex-start;
+    max-height: 100%;
 }
 
 .fp-is-overflow .fp-overflow.fp-auto-height-responsive,
