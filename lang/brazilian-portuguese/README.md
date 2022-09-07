@@ -29,7 +29,7 @@
 - [Tema para Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Extensões fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/)
 - [Perguntas Frequentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-- [Migration from fullPage v3 to fullpage v4](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
+- [Migration from fullPage v3 to fullpage v4](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
 ---
 
 Uma biblioteca simples e fácil de usar que cria sites de rolagem em tela cheia (também conhecidos como sites de página única ou sites de uma página) e adiciona controles deslizantes de paisagem dentro das seções do site.

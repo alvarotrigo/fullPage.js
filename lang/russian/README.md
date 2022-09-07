@@ -29,7 +29,7 @@
 - [Тема Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Расширения fullpage.js](http://alvarotrigo.com/fullPage/extensions/)
 - [Часто задаваемые вопросы](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-- [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
+- [[Migration from fullPage v3 to fullpage v4]](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
 ---
 
 Простая и удобная в использовании библиотека для создания веб-сайтов с полноэкранной прокруткой (также известных, как одностраничные сайты).
