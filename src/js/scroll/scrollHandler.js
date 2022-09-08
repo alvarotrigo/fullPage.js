@@ -15,7 +15,7 @@ import {
 import { fireCallbackOncePerScroll } from '../callbacks/fireCallbacksOncePerScroll.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
-import { doc } from '../common/constants.js';
+import { fitToSection } from '../fitToSection.js';
 
 var lastScroll = 0;
 let g_scrollId;
@@ -38,7 +38,7 @@ export function scrollHandler(e){
     }
     
     if(!getOptions().autoScrolling || getOptions().scrollBar){
-        var currentScroll = utils.getScrollTop(getOptions());
+        var currentScroll = utils.getScrollTop();
         var scrollDirection = getScrollDirection(currentScroll);
         var visibleSectionIndex = 0;
         var screen_mid = currentScroll + (utils.getWindowHeight() / 2.0);
@@ -149,7 +149,6 @@ export function scrollHandler(e){
         }
 
             
-
         if(getOptions().fitToSection && state.canScroll){
 
             clearTimeout(g_scrollId2);
@@ -163,9 +162,9 @@ export function scrollHandler(e){
 
                 // No section is fitting the viewport? Let's fix that!
                 if(!fixedSections.length){
-                    utils.css(doc.body, {'scroll-snap-type': 'y mandatory'});
+                    fitToSection();
                 }
-            }, 300);   
+            }, getOptions().fitToSectionDelay);   
         }
     }
 }
@@ -199,7 +198,7 @@ function isCompletelyInViewPort(movement){
     var bottom = top + utils.getWindowHeight();
 
     if(movement == 'up'){
-        return bottom >= (utils.getScrollTop(getOptions()) + utils.getWindowHeight());
+        return bottom >= (utils.getScrollTop() + utils.getWindowHeight());
     }
-    return top <= utils.getScrollTop(getOptions());
+    return top <= utils.getScrollTop();
 }

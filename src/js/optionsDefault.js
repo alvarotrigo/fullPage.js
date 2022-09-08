@@ -26,6 +26,7 @@ export const defaultOptions = {
     scrollingSpeed: 700,
     autoScrolling: true,
     fitToSection: true,
+    fitToSectionDelay: 600,
     easing: 'easeInOutCubic',
     easingcss3: 'ease',
     loopBottom: false,

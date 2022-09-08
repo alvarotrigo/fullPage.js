@@ -176,6 +176,8 @@ function afterSlideLoads(v){
         setState({canScroll: true});
         
         playMedia(v.destiny);
+
+        EventEmitter.emit('afterSlideLoads', v);
     }
 
     //letting them slide again

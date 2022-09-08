@@ -8,7 +8,8 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <span>中文</span> |
-  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a>
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> | 
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese#fullpagejs">Português Brasileiro</a>
 </p>
 <p align="center">
 	适用于&nbsp;<a href="https://github.com/alvarotrigo/vue-fullpage.js">Vue</a>&nbsp;,&nbsp;<a href="https://github.com/alvarotrigo/react-fullpage">React</a>&nbsp;和&nbsp;<a href="https://github.com/alvarotrigo/angular-fullpage">Angular</a>
@@ -16,7 +17,7 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v4.0.10,2-brightgreen.svg)
+![fullPage.js version](http://img.shields.io/badge/fullPage.js-v4.0.11,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -27,7 +28,7 @@
 - [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [fullpage.js 扩展](http://alvarotrigo.com/fullPage/extensions/)
 - [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-- [[Migration from fullPage v3 to fullpage v4]](https://github.com/alvarotrigo/fullPage.js/wiki/Migration-from-fullPage-v3-to-fullPage-v4)
+- [[Migration from fullPage v3 to fullpage v4]](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
 ---
 
 通过调用本库可轻易创建全屏滚动网站(也称为单页网站)。
@@ -196,6 +197,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollingSpeed: 700,
 	autoScrolling: true,
 	fitToSection: true,
+	fitToSectionDelay: 600,
 	scrollBar: false,
 	easing: 'easeInOutCubic',
 	easingcss3: 'ease',
@@ -425,6 +427,8 @@ new fullpage('#fullpage', {
 - `css3`: （默认 `true` ）。 定义 section 或 slide 转换动画使用 JavaScript 还是 CSS3 。 有助于通过支持 CSS3 的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为 `true` ，并且浏览器不支持 CSS3 ，则将使用后者。
 
 - `autoScrolling`: （默认为 `true` ）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
+
+- `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
 
 - `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
 

@@ -23,6 +23,10 @@ FP.reBuild = reBuild;
 EventEmitter.on('bindEvents', bindEvents);
 
 function bindEvents(){
+
+    // Setting VH correctly in mobile devices
+    resizeHandler();
+
     //when resizing the site, we adjust the heights of the sections, slimScroll...
     utils.windowAddEvent('resize', resizeHandler);
     EventEmitter.on('onDestroy', onDestroy);
@@ -97,7 +101,7 @@ function resizeActions(){
 
     setSectionsHeight('');
 
-    if(getOptions().fitToSection && !getOptions().autoScrolling && !state.isBeyondFullpage){
+    if(!getOptions().autoScrolling && !state.isBeyondFullpage){
         setVhUnits();
     }
 

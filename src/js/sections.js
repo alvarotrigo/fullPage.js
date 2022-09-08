@@ -55,3 +55,7 @@ export function styleSection(section){
 function getActiveSection(){
     return getState().activeSection;
 }
+
+export function getSectionFromPanel(panel){
+    return panel.isSection ? panel : panel.parent;
+}

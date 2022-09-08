@@ -8,13 +8,13 @@ import { styleSlides } from '../slides/styleSlides.js';
 import { styleMenu } from '../menu/styleMenu.js';
 import { addVerticalNavigation } from '../nav/sections.js';
 import { enableYoutubeAPI } from '../media.js';
-import { scrollOverflowHandler } from '../scrolloverflow.js';
 import { 
     WRAPPER,
     ENABLED,
     DESTROYED
 } from '../common/selectors.js';
 import { addInternalSelectors } from './addInternalSelectors.js';
+import { scrollOverflowHandler } from '../scrolloverflow.js';
 
 /**
 * Works over the DOM structure to set it up for the current fullpage getOptions().
@@ -70,4 +70,8 @@ export function prepareDom(){
     }
 
     enableYoutubeAPI();
+
+    if(getOptions().scrollOverflow){
+        scrollOverflowHandler.makeScrollable();
+    }
 }

@@ -46,6 +46,7 @@ gulp.task('update-version', function(done){
         './lang/korean/README.md',
         './lang/russian/README.md',
         './lang/spanish/README.md',
+        './lang/brazilian-portuguese/README.md',
     ], { base: "./" })
         .pipe(replace(/(fullPage.js-v)([\d\.]+)/g, "$1" + fpPackage.version))
         .pipe(gulp.dest('.'));

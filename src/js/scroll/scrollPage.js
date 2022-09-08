@@ -2,7 +2,7 @@ import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options.js';
 import { getState, setState, state } from '../common/state.js';
 import { doc, FP } from '../common/constants.js';
-import { $htmlBody } from '../common/cache.js';
+import { $html, $htmlBody } from '../common/cache.js';
 import { transformContainer } from '../common/transformContainer.js';
 import { scrollTo } from '../common/scrollTo.js';
 import { getScrollSettings, getYmovement } from '../common/utilsFP.js';
@@ -70,7 +70,7 @@ export function scrollPage(section, callback, isMovementUp){
     };
 
     //quiting when destination scroll is the same as the current one
-    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop(getOptions()) === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ 
+    if((getState().activeSection.item == element && !state.isResizing) || (getOptions().scrollBar && utils.getScrollTop() === v.dtop && !utils.hasClass(element, AUTO_HEIGHT) )){ 
         return; 
     }
 
@@ -223,7 +223,6 @@ function performMovement(v){
         var scrollSettings = getScrollSettings(v.dtop);
         FP.test.top = -v.dtop + 'px';
 
-        utils.css($htmlBody, {'scroll-behavior': 'unset'});
         clearTimeout(g_afterSectionLoadsId);
 
         scrollTo(scrollSettings.element, scrollSettings.options, getOptions().scrollingSpeed, function(){
@@ -260,15 +259,7 @@ function performMovement(v){
 /**
 * Actions to do once the section is loaded.
 */
-function afterSectionLoads(v){
-    if(getOptions().fitToSection){
-
-        // Removing CSS snaps for auto-scrolling sections
-        if(utils.hasClass(utils.$(SECTION_ACTIVE_SEL)[0], AUTO_HEIGHT)){
-            utils.css(doc.body, {'scroll-snap-type': 'none'});
-        }
-    }
-    
+function afterSectionLoads(v){    
     setState({isBeyondFullpage: false});
     continuousVerticalFixSectionOrder(v);
 
@@ -291,6 +282,8 @@ function afterSectionLoads(v){
     scrollOverflowHandler.afterSectionLoads();
 
     setState({canScroll: true});
+
+    EventEmitter.emit('afterSectionLoads', v);
 
     if(utils.isFunction(v.callback)){
         v.callback();

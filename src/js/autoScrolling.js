@@ -67,10 +67,6 @@ export function setAutoScrolling(value, type){
 
         //scrolling the page to the section with no animation
         if (element != null) {
-            utils.css($htmlBody, {
-                'scroll-behavior': 'unset'
-            });
-
             var scrollSettings = getScrollSettings(element.offsetTop);
             scrollSettings.element.scrollTo(0, scrollSettings.options);
         }

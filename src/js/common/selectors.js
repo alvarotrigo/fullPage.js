@@ -17,7 +17,6 @@ export const ACTIVE =                'active';
 export const ACTIVE_SEL =            '.' + ACTIVE;
 export const COMPLETELY =            'fp-completely';
 export const COMPLETELY_SEL =        '.' + COMPLETELY;
-export const SNAPS =                 'fp-snaps';
 
 // section
 export const SECTION_DEFAULT_SEL =   '.section';
@@ -52,6 +51,7 @@ export const SLIDES_CONTAINER_SEL =  '.' + SLIDES_CONTAINER;
 export const TABLE =                 'fp-table';
 export const OVERFLOW =              'fp-overflow';
 export const OVERFLOW_SEL =          '.' + OVERFLOW;
+export const IS_OVERFLOW =           'fp-is-overflow';
 
 // slide nav
 export const SLIDES_NAV =            'fp-slidesNav';

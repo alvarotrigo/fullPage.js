@@ -4,7 +4,10 @@ import { setScrolling } from './utilsFP.js';
 import { state, setState } from "./state.js";
 import { getOptions } from './options.js';
 import { SLIDES_WRAPPER } from './selectors.js';
-import { doc, win } from './constants.js';
+import { win } from './constants.js';
+import { $html } from './cache.js';
+
+var g_animateScroll;
 
 /**
 * Simulates the animated scrollTop of jQuery. Used when css3:false or scrollBar:true or autoScrolling:false
@@ -15,16 +18,15 @@ export function scrollTo(element, to, duration, callback) {
     var change = to - start;
     var isCallbackFired = false;
     var startTime;
+    var wasAnimationActive = state.activeAnimation;
 
     setState({activeAnimation: true});
 
-    // Making sure we can trigger a scroll animation
-    // when css scroll snap is active. Temporally disabling it.
-    if(element === doc.body){
-        utils.css(doc.body, {'scroll-snap-type': 'none'});
+    // Cancelling any possible previous animations (io: clicking on nav dots very fast)
+    if(g_animateScroll){
+        window.cancelAnimationFrame(g_animateScroll);
     }
-
-    var animateScroll = function(timestamp){
+    g_animateScroll = function(timestamp){
         if (!startTime){
             startTime = timestamp;
         }
@@ -44,18 +46,20 @@ export function scrollTo(element, to, duration, callback) {
             }
 
             if(currentTime < duration) {
-                window.requestAnimationFrame(animateScroll);
+                window.requestAnimationFrame(g_animateScroll);
             }else if(typeof callback !== 'undefined' && !isCallbackFired){
                 callback();
+                setState({activeAnimation: false});
                 isCallbackFired = true;
             }
-        }else if (!isCallbackFired){
+        }else if (!isCallbackFired && !wasAnimationActive){
             callback();
+            setState({activeAnimation: false});
             isCallbackFired = true;
         }
     };
 
-    window.requestAnimationFrame(animateScroll);
+    window.requestAnimationFrame(g_animateScroll);
 }
 
 
@@ -70,7 +74,7 @@ function getScrolledPosition(element){
         position = element.scrollLeft;
     }
     else if(!getOptions().autoScrolling || getOptions().scrollBar){
-        position = utils.getScrollTop(getOptions());
+        position = utils.getScrollTop();
     }
     else{
         position = element.offsetTop;

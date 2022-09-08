@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.10
+ * fullPage 4.0.11
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -224,24 +224,33 @@ html.fp-enabled,
     height: auto !important;
 }
 
+.fp-responsive .fp-is-overflow.fp-section{
+    height: auto !important;
+}
+
 /* Used with autoScrolling: false */ 
+.fp-scrollable.fp-responsive .fp-is-overflow.fp-section,
 .fp-scrollable .fp-section,
 .fp-scrollable .fp-slide{
    /* Fallback for browsers that do not support Custom Properties */
    height: 100vh;
+   min-height: 100vh;
    height: calc(var(--vh, 1vh) * 100);
+   min-height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Disabling vertical centering on scrollable elements */
 .fp-overflow{
     justify-content: flex-start;
+    max-height: 100%;
 }
 
-.fp-overflow.fp-auto-height-responsive,
-.fp-overflow.fp-auto-height,
+.fp-is-overflow .fp-overflow.fp-auto-height-responsive,
+.fp-is-overflow .fp-overflow.fp-auto-height,
+.fp-is-overflow > .fp-overflow{
+    overflow-y: auto;
+}
 .fp-overflow{
-    overflow-y: scroll;
-    height: 100% !important;
     outline:none;
 }
 
@@ -264,30 +273,6 @@ html.fp-enabled,
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
-}
-
-.fp-snaps{
-    overflow-y: auto !important;
-    height: 100% !important;
-}
-.fp-snaps body{
-    height: 100% !important;
-    -ms-scroll-snap-type: y mandatory;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll !important;
-        scroll-behavior: smooth;
-}
-.fp-snaps .fp-section{
-    scroll-snap-align: start;
-}
-.fp-snaps .fullpage-wrapper{
-    height: auto !important;
-}
-
-/* Used for DragAndMove*/
-.fp-disable-snap body{
-    scroll-behavior: unset !important;
-    scroll-snap-type: none !important;
 }
 
 /* Customize website's scrollbar like Mac OS
@@ -323,7 +308,6 @@ Not supports in Firefox and IE */
     border-radius: 3px;
     margin: 12px;
 }
-.fp-noscroll {
-    justify-content: flex-start;
+.fp-noscroll .fp-overflow{
     overflow: hidden;
 }

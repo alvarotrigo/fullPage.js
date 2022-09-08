@@ -9,7 +9,16 @@ export function addTableClass(element){
         return;
     }
 
+    // Overflowing sections when scrollOverflow is disabled will be autoHeight
+    // and won't require vertical aligment
+    if( !getOptions().scrollOverflow && 
+        scrollOverflowHandler.shouldBeScrollable(element.item)
+    ){
+        return;
+    }
+
     if(!scrollOverflowHandler.isScrollable(element)){
+
         //In case we are styling for the 2nd time as in with reponsiveSlides
         if(!utils.hasClass(element.item, TABLE)){
             utils.addClass(element.item, TABLE);
