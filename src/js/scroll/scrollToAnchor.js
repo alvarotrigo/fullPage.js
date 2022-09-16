@@ -2,6 +2,8 @@ import { getOptions } from '../common/options.js';
 import { getAnchorsURL } from '../anchors/getAnchorsURL.js';
 import { scrollPageAndSlide } from './scrollPageAndSlide.js';
 import { silentMoveTo } from './silentMove.js';
+import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 
 /**
 * Scrolls to the anchor in the URL when loading the site
@@ -17,5 +19,7 @@ export function scrollToAnchor(){
         }else{
             silentMoveTo(sectionAnchor, slideAnchor);
         }
+    }else{
+        EventEmitter.emit(events.onAfterRenderNoAnchor, null);
     }
 }

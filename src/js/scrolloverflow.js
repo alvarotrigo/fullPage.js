@@ -14,18 +14,22 @@ import {
 import { EventEmitter } from './common/eventEmitter.js';
 import { getSlideOrSection } from './common/utilsFP.js';
 import { getSectionFromPanel } from './sections.js';
+import { events } from './common/events.js';
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
-    
-    //after DOM and images are loaded
-    win.addEventListener('load', function(){
-        if(getOptions().scrollOverflow && !getOptions().scrollBar){
-            scrollOverflowHandler.makeScrollable();
-            scrollOverflowHandler.afterSectionLoads();
-        }
-    });
+    // We can't focus scrollOverflow before scrolling
+    // to the anchor (if we need to)
+    EventEmitter.on(events.onAfterRenderNoAnchor, afterRender);
+    EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterSectionLoads);
+}
+
+function afterRender(){
+    if(getOptions().scrollOverflow && !getOptions().scrollBar){
+        scrollOverflowHandler.makeScrollable();
+        scrollOverflowHandler.afterSectionLoads();
+    }
 }
 
 export const scrollOverflowHandler = {
@@ -44,6 +48,10 @@ export const scrollOverflowHandler = {
 
     afterSectionLoads: function(){
 
+        if(!getOptions().scrollOverflow){
+            return;
+        }
+        
         // Unfocusing the scrollable element from the orgin section/slide
         if( doc.activeElement === this.focusedElem){
             // @ts-ignore
@@ -199,7 +207,7 @@ export const scrollOverflowHandler = {
                     scrollOverflowHandler.isScrolled(direction, e.target) &&
                     scrollOverflowHandler.shouldMovePage()
                 ){
-                    EventEmitter.emit('onScrollOverflowScrolled', {
+                    EventEmitter.emit(events.onScrollOverflowScrolled, {
                         direction: direction
                     });
                 }
