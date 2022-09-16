@@ -13,6 +13,7 @@ import {
 import { EventEmitter } from '../common/eventEmitter.js';
 import { getBulletLinkName } from './getBulletLinkName.js';
 import { doc } from '../common/constants.js';
+import { events } from '../common/events.js';
 
 export function tooltipTextHandler(){
     /*jshint validthis:true */
@@ -95,7 +96,7 @@ export function sectionBulletHandler(e){
     // @ts-ignore
     var indexBullet = utils.index(utils.closest(this, SECTION_NAV_SEL + ' li'));
 
-    EventEmitter.emit('scrollPage', {
+    EventEmitter.emit(events.scrollPage, {
         destination: getState().sections[indexBullet]
     });
 }

@@ -2,11 +2,12 @@ import * as utils from '../common/utils.js';
 import { getOptions } from '../common/options.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { setState } from '../common/state.js';
+import { events } from '../common/events.js';
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
-    EventEmitter.on('onClickOrTouch', onClickOrTouch);
+    EventEmitter.on(events.onClickOrTouch, onClickOrTouch);
 }
 
 function onClickOrTouch(params){
@@ -26,7 +27,7 @@ function menuItemsHandler(e){
         utils.preventDefault(e);
 
         /*jshint validthis:true */
-        EventEmitter.emit('onMenuClick', {anchor: 
+        EventEmitter.emit(events.onMenuClick, {anchor: 
             utils.getAttr(this, 'data-menuanchor')
         });
     }

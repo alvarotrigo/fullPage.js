@@ -1,6 +1,6 @@
 import * as utils from '../common/utils.js';
 import { FP } from '../common/constants.js';
-import { getState } from '../common/state.js';
+import { getState, state } from '../common/state.js';
 import { getOptions} from '../common/options.js';
 import {  playMedia } from '../media.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
@@ -12,6 +12,8 @@ import {
 import { getAnchorsURL } from '../anchors/getAnchorsURL.js';
 import { getStartingSection } from '../sections.js';
 import { getSectionByAnchor } from '../common/getSectionByAnchor.js';
+import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 
 FP.shared.afterRenderActions = afterRenderActions;
 

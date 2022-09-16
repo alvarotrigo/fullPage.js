@@ -13,6 +13,7 @@ import {
 import { getPanelByElement } from '../common/item.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { getBulletLinkName } from './getBulletLinkName.js';
+import { events } from '../common/events.js';
 
 //Scrolls the slider to the given slide destination for the given section
 export function slideBulletHandler(e){
@@ -26,7 +27,7 @@ export function slideBulletHandler(e){
     var section = getPanelByElement(getState().sections, sectionElem);
     var destiny = section.slides[utils.index(utils.closest(this, 'li'))];
 
-    EventEmitter.emit('landscapeScroll', {
+    EventEmitter.emit(events.landscapeScroll, {
         slides: slides, 
         destination: destiny.item
     });

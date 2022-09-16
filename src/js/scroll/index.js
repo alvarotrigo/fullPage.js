@@ -7,9 +7,10 @@ import { moveSectionDown } from './moveSectionDown.js';
 import { moveSectionUp } from './moveSectionUp.js';
 import { scrollPage } from './scrollPage.js';
 import { doc } from '../common/constants.js';
+import { events } from '../common/events.js';
 
-EventEmitter.on('bindEvents', bindEvents);
-EventEmitter.on('onDestroy', onDestroy);
+EventEmitter.on(events.bindEvents, bindEvents);
+EventEmitter.on(events.onDestroy, onDestroy);
 
 function onDestroy(){
     utils.windowRemoveEvent('scroll', scrollHandler);
@@ -19,20 +20,20 @@ function bindEvents(){
     utils.windowAddEvent('scroll', scrollHandler);
     doc.body.addEventListener('scroll', scrollHandler);
 
-    EventEmitter.on('onScrollPageAndSlide', function(params){
+    EventEmitter.on(events.onScrollPageAndSlide, function(params){
         scrollPageAndSlide(params.sectionAnchor, params.slideAnchor);
     });
 
-    EventEmitter.on('onMenuClick', function(params){
+    EventEmitter.on(events.onMenuClick, function(params){
         moveTo(params.anchor, undefined);
     });
 
-    EventEmitter.on('onScrollOverflowScrolled', function(params){
+    EventEmitter.on(events.onScrollOverflowScrolled, function(params){
         var scrollSection = (params.direction === 'down') ? moveSectionDown : moveSectionUp;
         scrollSection();
     });
 
-    EventEmitter.on('scrollPage', function(params){
+    EventEmitter.on(events.scrollPage, function(params){
         scrollPage(params.destination);
     });
 }

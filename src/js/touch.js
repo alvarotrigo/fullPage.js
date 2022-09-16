@@ -111,11 +111,11 @@ function touchMoveHandler(e){
             if (!state.slideMoving && isHorizontalMovementEnough) {
                 if (touchStartX > touchEndX) {
                     if(getIsScrollAllowed().m.right){
-                        EventEmitter.emit('moveSlideRight', {section: activeSection});
+                        EventEmitter.emit(events.moveSlideRight, {section: activeSection});
                     }
                 } else {
                     if(getIsScrollAllowed().m.left){
-                        EventEmitter.emit('moveSlideLeft', {section: activeSection});
+                        EventEmitter.emit(events.moveSlideLeft, {section: activeSection});
                     }
                 }
             }

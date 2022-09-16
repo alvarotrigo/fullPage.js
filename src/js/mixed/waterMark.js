@@ -1,9 +1,10 @@
 import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 import { getOptions } from '../common/options.js';
 import { state } from '../common/state.js';
 import { getLast } from '../common/utils.js';
 
-EventEmitter.on('bindEvents', init);
+EventEmitter.on(events.bindEvents, init);
 
 function init(){
     const position = getOptions().credits.position;

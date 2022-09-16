@@ -24,6 +24,7 @@ import {
 import { fireCallbackOncePerScroll } from '../callbacks/fireCallbacksOncePerScroll.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 
 FP.moveTo = moveTo;
 FP.getScrollY = function(){
@@ -33,7 +34,7 @@ FP.getScrollY = function(){
 let g_afterSectionLoadsId;
 let g_transitionLapseId;
 
-EventEmitter.on('onDestroy', onDestroy);
+EventEmitter.on(events.onDestroy, onDestroy);
 
 /**
 * Scrolls the site to the given element and scrolls to the slide if a callback is given.
@@ -193,7 +194,7 @@ function performMovement(v){
         scrollY: Math.round(v.dtop)
     });
 
-    EventEmitter.emit('onPerformMovement');
+    EventEmitter.emit(events.onPerformMovement);
 
     // using CSS3 translate functionality
     if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
@@ -283,7 +284,7 @@ function afterSectionLoads(v){
 
     setState({canScroll: true});
 
-    EventEmitter.emit('afterSectionLoads', v);
+    EventEmitter.emit(events.afterSectionLoads, v);
 
     if(utils.isFunction(v.callback)){
         v.callback();

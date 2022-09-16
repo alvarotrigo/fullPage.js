@@ -7,11 +7,12 @@ import {
 import { EventEmitter } from '../common/eventEmitter.js';
 import { slideBulletHandler } from './slides.js';
 import { sectionBulletHandler, tooltipTextHandler } from './sections.js';
+import { events } from '../common/events.js';
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
-    EventEmitter.on('onClickOrTouch', onClickOrTouch);
+    EventEmitter.on(events.onClickOrTouch, onClickOrTouch);
 }
 
 function onClickOrTouch(params){

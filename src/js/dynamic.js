@@ -14,6 +14,7 @@ import {
 import { EventEmitter } from './common/eventEmitter.js';
 import { FP } from './common/constants.js';
 import { styleSection } from './sections.js';
+import { events } from './common/events.js';
 
 let g_wrapperObserver;
 const g_wrapperObserveConfig = {
@@ -23,7 +24,7 @@ const g_wrapperObserveConfig = {
     characterData: true
 };
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 FP.render = onContentChange;
 
@@ -33,7 +34,7 @@ function bindEvents(){
         utils.$(WRAPPER_SEL)[0]){
         g_wrapperObserver = createObserver(utils.$(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
     }
-    EventEmitter.on('contentChanged', onContentChange);
+    EventEmitter.on(events.contentChanged, onContentChange);
 }
 
 /**

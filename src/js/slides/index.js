@@ -4,24 +4,25 @@ import { getState, state } from '../common/state.js';
 import { landscapeScroll, onDestroy } from './landscapeScroll.js';
 import { moveSlideLeft, moveSlideRight } from './moveSlide.js';
 import { FP } from '../common/constants.js';
+import { events } from '../common/events.js';
 
 FP.getActiveSlide = getActiveSlide;
 FP.getScrollX = function(){
     return state.scrollX;
 };
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
-    EventEmitter.on('onDestroy', onDestroy);
+    EventEmitter.on(events.onDestroy, onDestroy);
 
-    EventEmitter.on('landscapeScroll', function(params){
+    EventEmitter.on(events.landscapeScroll, function(params){
         landscapeScroll(params.slides, params.destination);
     });
-    EventEmitter.on('moveSlideRight', function(params){
+    EventEmitter.on(events.moveSlideRight, function(params){
         moveSlideRight(params.section);
     });
-    EventEmitter.on('moveSlideLeft', function(params){
+    EventEmitter.on(events.moveSlideLeft, function(params){
         moveSlideLeft(params.section);
     });
 }

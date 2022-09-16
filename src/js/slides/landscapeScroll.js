@@ -18,14 +18,15 @@ import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activeSlidesNavigation } from '../nav/slides.js';
 import { toggleControlArrows } from '../arrows.js';
 import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 
 let g_afterSlideLoadsId;
 FP.landscapeScroll = landscapeScroll;
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
-    EventEmitter.on('onPerformMovement', onPerformMovement);
+    EventEmitter.on(events.onPerformMovement, onPerformMovement);
 }
 
 function onPerformMovement(){
@@ -177,7 +178,7 @@ function afterSlideLoads(v){
         
         playMedia(v.destiny);
 
-        EventEmitter.emit('afterSlideLoads', v);
+        EventEmitter.emit(events.afterSlideLoads, v);
     }
 
     //letting them slide again
