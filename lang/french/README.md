@@ -393,11 +393,11 @@ Vous pourrez ensuite les utiliser et les configurer comme expliqué dans [option
 
 - `licenseKey` : (par défaut `null`).**Cette option est facultltative.** Si vous utilisez fullPage dans un projet non open source, vous devez utiliser la clé de licence fournie lors de l'achat de la Licence Commerciale fullPage. Si votre projet est open source, [contactez-moi](https://alvarotrigo.com/#contact) avec un lien vers son répertoire et je vous fournirai une clé de licence. Pour en savoir plus sur les licences [ici] (https://github.com/alvarotrigo/fullPage.js#license) et [sur le site Web] (https://alvarotrigo.com/fullPage/pricing/). Par exemple :
 
-```javascript
-new fullpage('#fullpage', {
-    licenceKey:'VOTRE_CLÉ_ICI'.
-});
-```
+	```javascript
+	new fullpage('#fullpage', {
+		licenceKey:'VOTRE_CLÉ_ICI'.
+	});
+	```
 
 - `controlArrows` : (par défaut `true`) Détermine s'il faut utiliser les flèches de contrôle pour que les diapositives se déplacent vers la droite ou vers la gauche.
 
@@ -410,17 +410,15 @@ new fullpage('#fullpage', {
 - `sectionsColor` : (default `none`) Définissez la propriété CSS `background-color` pour chaque section.
 Exemple :
 
-```Javascript
-new fullpage('#fullpage', {
-	sectionsCouleur : ['#f2f2f2f2','#4BBFC3','#7BAABE','whitesmoke','#000'],
-}) ;
-```
+	```Javascript
+	new fullpage('#fullpage', {
+		sectionsCouleur : ['#f2f2f2f2','#4BBFC3','#7BAABE','whitesmoke','#000'],
+	}) ;
+	```
 
 - `anchors` : (default `[]`) Définit les liens d'ancrage (#exemple) à afficher sur l'URL de chaque section. La valeur des ancres doit être unique. La position des ancres dans le tableau définira à quelles sections l'ancre est appliquée. (deuxième position pour la deuxième section et ainsi de suite). L'utilisation des ancres permet également de naviguer vers l'avant et vers l'arrière par le biais du navigateur. Cette option permet également aux utilisateurs de mettre en signet une section ou une diapositive spécifique. **Attention**, les ancres ne peuvent pas avoir la même valeur que n'importe quel élément ID sur le site (ou élément NOM pour IE). Maintenant les ancres peuvent être définies directement dans la structure HTML en utilisant l'attribut `data-anchor` comme expliqué ici.
 
 - `lockAnchors` : (default `false`) Détermine si les ancres dans l'URL auront un effet dans la bibliothèque. Vous pouvez toujours utiliser les ancres en interne pour vos propres fonctions et rappels, mais elles n'auront aucun effet sur le défilement du site. Utile si vous voulez combiner fullPage.js avec d'autres plugins en utilisant l'ancre dans l'URL.
-
-**important :** Il est utile de comprendre que les valeurs du tableau d'options `anchors` sont en corrélation directe avec l'élément avec la classe de `.section`par sa position dans le balisage.
 
 - `easing` : (default `easeInOutCubic`) Définit l'effet de transition à utiliser pour le défilement vertical et horizontal. Il nécessite le fichier `vendors/easings.min.js` ou [jQuery UI](http://jqueryui.com/) pour utiliser certaines de[ses transitions](http://api.jqueryui.com/easings/). D'autres bibliothèques pourraient être utilisées à la place.
 
@@ -475,9 +473,10 @@ new fullpage('#fullpage', {
 
 - `offsetSections` : (par défaut `false`) [Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Fournit un moyen d'utiliser des sections non plein écran basées sur le pourcentage. Idéal pour montrer aux visiteurs qu'il y a plus de contenu dans le site en affichant une partie de la section suivante ou précédente. Nécessite fullPage.js >= 3.0.1.
 Pour définir le pourcentage de chaque section, l'attribut `data-percentage` doit être utilisé. Le centrage de la section dans le viewport peut être déterminé en utilisant une valeur booléenne dans l'attribut `data-centered` (par défaut à `true` si non spécifié). Par exemple :
-``` html
-    <div class="section" data-percentage="80" data-centered="true">
-```
+
+	``` html
+	<div class="section" data-percentage="80" data-centered="true">
+	```
 
 - `resetSliders` : (par défaut `false`). Extension de fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non réinitialiser chaque curseur après avoir quitté sa section. Nécessite fullpage.js >= 3.0.1.
 
@@ -490,22 +489,23 @@ Pour définir le pourcentage de chaque section, l'attribut `data-percentage` doi
 - `menu` : (par défaut `false`) Un sélecteur peut être utilisé pour spécifier le menu à lier avec les sections. De cette façon, le défilement des sections activera l'élément correspondant dans le menu en utilisant la classe `active`.
 Cela ne générera pas de menu mais ajoutera simplement la classe `active` à l'élément du menu donné avec les liens d'ancrage correspondants.
 Afin de lier les éléments du menu avec les sections, un data-tag HTML 5 (`data-menuanchor`) sera nécessaire à utiliser avec les mêmes liens d'ancrage que ceux utilisés dans les sections. Exemple :
-```html
-<ul id="myMenu">
-	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">Première section</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">Seconde section</a></li>
-  <li data-menuanchor="thirdPage"><a href="#thirdPage">Troisième section</a></li>
-<li data-menuanchor="fourthPage"><a href="#fourthPage">Quatrième section</a></li>
-</ul>
-```
-```javascript
-new fullpage('#fullpage', {
-anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-menu : #myMenu
-}) ;
-```
 
-**Note:** l'élément de menu doit être placé en dehors du wrapper de la page entière afin d'éviter tout problème lors de l'utilisation de `css3:true`. Sinon, il sera ajouté au `body` par le plugin lui-même.
+	```html
+	<ul id="myMenu">
+		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">Première section</a></li>
+		<li data-menuanchor="secondPage"><a href="#secondPage">Seconde section</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Troisième section</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Quatrième section</a></li>
+	</ul>
+	```
+	```javascript
+	new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu : #myMenu
+	}) ;
+	```
+
+	**Note:** l'élément de menu doit être placé en dehors du wrapper de la page entière afin d'éviter tout problème lors de l'utilisation de `css3:true`. Sinon, il sera ajouté au `body` par le plugin lui-même.
 
 - `navigation` : (par défaut `false`) Si elle est définie à `true`, elle affichera une barre de navigation composée de petits cercles.
 

@@ -386,11 +386,11 @@ Luego podrás usar la extensión y configurarla tal y como se explica en las [op
 - `licenseKey`: (por defecto `null`). **Esta opción es obligatoria.** Si usas fullPage.js en un proyecto que no sea código abierto, entonces tendrás que usar la clave de licencia que obtendrás al adquirir la licencia comercial de fullPage. Si tu proyecto es de código abierto y es compatible con la licencia GPLv3, puedes [solicitar una licencia](https://alvarotrigo.com/fullPage/extensions/requestKey.html) con un link a su repositorio para obtener una clave de licencia.
 Puedes leer más acerca de las licencias [aquí](https://github.com/alvarotrigo/fullPage.js#license) y en la [página web](https://alvarotrigo.com/fullPage/pricing/). Por ejemplo.
 
-```javascript
-new fullpage('#fullpage', {
-    licenseKey: 'YOUR_KEY_HERE'
-});
-```
+	```javascript
+	new fullpage('#fullpage', {
+		licenseKey: 'YOUR_KEY_HERE'
+	});
+	```
 
 - `controlArrows`: (por defecto `true`) Determina si usar flechas de control en las diapositivas para deslizar hacia la derecha o izquierda.
 
@@ -402,12 +402,11 @@ new fullpage('#fullpage', {
 
 - `sectionsColor`: (por defecto `none`) Define la propiedad CSS `background-color` para cada sección.
 
-Ejemplo:
-```javascript
-new fullpage('#fullpage', {
-	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-});
-```
+	```javascript
+	new fullpage('#fullpage', {
+		sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+	});
+	```
 
 - `anchors`: (por defecto `[]`) Define los enlaces de anclaje (#ejemplo) que serán mostrados en la URL para cada sección. Los enlaces de anclaje deben ser únicos. La posición de los enlaces en el array definirá a qué sección serán aplicados. (la segunda posición será la segunda sección y así). Usar la navegación del navegador para moverse a la página anterior y siguiente será posible cuando se usen enlaces de anclaje. Éstos también ofrecen la posibilidad de guardar una sección o diapositiva específica a favoritos. **Ten cuidado!**: las etiquetas `data-anchor` no pueden tener el mismo valor que ninguna otra etiqueta ID en la página (o `name` para Internet Explorer).
 Ahora los enlaces de anclaje también se pueden definir directamente en la estructura HTML usando el atributo `data-anchor`.
@@ -468,9 +467,10 @@ Otras librerías puede ser usadas si se desea.
 
 - `offsetSections`: (por defecto `false`)[Extensión de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Provee una manera de usar secciones que no toman la pantalla completa sino un porcentaje determinado de la misma. Ideal para mostrar a los visitantes que hay más contenido en la página mostrando parte de sección siguiente o anterior.
 Para definir el porcentaje de la sección hay que hacer uso del atributo `data-percentage`. El centrado de la sección en la ventana puede definirse usando un valor booleano (true o false) en el atributo `data-centered`. (Por defecto será `true` si no se especifica). Por ejemplo:
-``` html
+
+	``` html
 	<div class="section" data-percentage="80" data-centered="true">
-```
+	```
 
 - `resetSliders`: (por defecto `false`). [Extensión de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Determina cuando reiniciar el carrusel de diapositivas de la sección al salir de ella, de modo que muestre la primera diapositiva cuando se vuelva a dicha sección.
 
@@ -483,22 +483,23 @@ Para definir el porcentaje de la sección hay que hacer uso del atributo `data-p
 - `menu`: (por defecto `false`) Se puede usar un selector para especificar el menú de la página al que las secciones hacen referencia. De este modo, el desplazamiento vertical entre las secciones activará el elemento correspondiente del menú usando la clase `active`.
 Esta opción no generará ningún menú, sino que simplemente añade la clase `active` al elemento del menú con el enlace de anclaje correspondiente a la sección.
 Para relacionar los elementos del menú con las secciones se requiere del uso del atributo `data-menuanchor` que tendrá que tener el mismo valor que el enlace de anclaje que la sección a la que haga referencia. Por ejemplo:
-```html
-<ul id="myMenu">
-	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-	<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-	<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
-</ul>
-```
-```javascript
-new fullpage('#fullpage', {
-	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-	menu: '#myMenu'
-});
-```
 
-**Nota:** el menú tiene que estar situado fuera del contenedor de fullpage para evitar problemas cuando se use `css3:true`. De lo contrario, el menú será automáticamente movido fuera de la estructura de fullPage.js y añadido en el `body`.
+	```html
+	<ul id="myMenu">
+		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+		<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+		<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+		<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+	</ul>
+	```
+	```javascript
+	new fullpage('#fullpage', {
+		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+		menu: '#myMenu'
+	});
+	```
+
+	**Nota:** el menú tiene que estar situado fuera del contenedor de fullpage para evitar problemas cuando se use `css3:true`. De lo contrario, el menú será automáticamente movido fuera de la estructura de fullPage.js y añadido en el `body`.
 
 - `navigation`: (por defecto `false`) Si se define a `true`, se mostrará una navegación lateral de círculos haciendo referencia a las secciones de la página.
 
