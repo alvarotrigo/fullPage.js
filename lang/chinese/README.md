@@ -17,16 +17,16 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v4.0.12,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.12,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [示例](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/qqabrp)
+- [示例](https://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/qqabrp)
 - [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
-- [Wordpress 的主题](http://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [fullpage.js 扩展](http://alvarotrigo.com/fullPage/extensions/)
+- [Wordpress 的主题](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [fullpage.js 扩展](https://alvarotrigo.com/fullPage/extensions/)
 - [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 - [[Migration from fullPage v3 to fullpage v4]](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
 ---
@@ -63,7 +63,7 @@
 fullPage.js is fully functional on all modern browsers and with IE 11. If you need to support IE < 11 consider using [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
 It also provides touch support for mobile phones, tablets and touch screen computers.
 
-特别感谢 [Browserstack](http://www.browserstack.com/) 支持 fullpage.js 。
+特别感谢 [Browserstack](https://www.browserstack.com/) 支持 fullpage.js 。
 
 ## 许可证
 
@@ -116,7 +116,7 @@ Using Webpack, Browserify or Require.js? Check <a href="https://github.com/alvar
 https://cdnjs.com/libraries/fullPage.js
 
 ### 要求 HTML 结构
-HTML 文件中的首行 HTML 代码必须使用 [HTML DOCTYPE 声明](http://www.corelangs.com/html/introduction/doctype.html)，否则可能会遇到代码段高度问题。HTML 5 doctype 中的示例： `<!DOCTYPE html>`.
+HTML 文件中的首行 HTML 代码必须使用 [HTML DOCTYPE 声明](https://www.corelangs.com/html/introduction/doctype.html)，否则可能会遇到代码段高度问题。HTML 5 doctype 中的示例： `<!DOCTYPE html>`.
 
 每个代码段定义为包含 `section` 类的元素。
 默认情况下，第一个 section 代码段，将被视为主页。
@@ -274,7 +274,7 @@ var myFullpage = new fullpage('#fullpage', {
 如果你在 section 中使用 fullPage.js 和锚链接（在每个 section 使用 `anchors` 选项或属性 `data-anchor` ），那么你将能够在一个 section 里使用锚链接直接导航到某个 slide。
 
 这是一个锚链接的例子：
-http://alvarotrigo.com/fullPage/#secondPage/2 （在你手动访问该 section/slide 就会看到的 URL ）
+https://alvarotrigo.com/fullPage/#secondPage/2 （在你手动访问该 section/slide 就会看到的 URL ）
 请注意，URL 的最后部分以 `＃secondPage / 2` 结尾。
 
 以下初始化：
@@ -304,7 +304,7 @@ URL `#secondPage/2`  结尾处的锚分别定义了目标 section 和 slide 。 
 **注意！**`data-anchor` 标记的值不能与站点上的任何 ID 元素（或 IE 的 NAME 元素）相同。
 
 ### 创建更小或更大的 section
-[演示](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js 提供了一种方法来删除 section 和 slide 的全屏高度限制。 可以创建高度小于或大于视图的section 。 这是页脚的理想方式。
+[演示](https://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js 提供了一种方法来删除 section 和 slide 的全屏高度限制。 可以创建高度小于或大于视图的section 。 这是页脚的理想方式。
 需明白所有 section 使用此功能并没有意义，这一点很重要。 如果网站的初始加载中有多个 section，则fullPage.js 将不会滚动以查看下一个 section ，因为它已经在视图中。
 
 创建更小的 section ，只需在要应用的 section 中使用 `fp-auto-height`  类即可，则可以调用您的 section/slide 中定义的高度。
@@ -322,13 +322,13 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 
 - `active` 被添加到当前可见 section 和 slide 。
 - `active` 被添加到当前菜单元素（如果使用 `menu` 选项）。
-- `fp-viewing-SECTION-SLIDE` 形式的类型被添加到网站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分将成为当前 section 和 slide 的锚（或索引，如果没有提供锚）。
+- `fp-viewing-SECTION-SLIDE` 形式的类型被添加到网站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分将成为当前 section 和 slide 的锚（或索引，如果没有提供锚）。
 - 当进入响应模式时，`fp-responsive` 添加到 `body` 元素
 - 当启用 fullpage.js 时，`fp-enabled` 添加到 `html` 元素。 （并在销毁时被移除）。
 - 当 fullPage.js 被销毁时，`fp-destroyed` 被添加到 fullpage.js 容器中。
 
 ### 懒加载
-[演示](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js 提供了一种延迟加载图像、视频和音频元素的方式，这样它们不会减缓网站的加载速度，也不会浪费数据传输。
+[演示](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js 提供了一种延迟加载图像、视频和音频元素的方式，这样它们不会减缓网站的加载速度，也不会浪费数据传输。
 当使用懒加载时，所有这些元素只有在进入视口时才会加载。
 要启用懒加载，您只需将 `src` 属性更改为 `data-src` ，如下所示：
 
@@ -352,7 +352,7 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 
 ```html
 <audio data-autoplay>
-	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
+	<source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
 </audio>
 ```
 
@@ -360,12 +360,12 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 嵌入式 HTML5 `<video>` / `<audio>` 和 Youtube iframe 在离开某个 section 或 slide 时自动暂停。 可以通过使用属性 `data-keepplaying` 来禁用。 例如：
 ```html
 <audio data-keepplaying>
-	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
+	<source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
 </audio>
 ```
 
 ### 使用扩展
-fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/) 您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9).
+fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/) 您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9).
 
 扩展需要使用在 [`dist` 文件夹](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/) 中的压缩文件 [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/fullpage.extensions.min.js)，而不是一贯的使用 fullPage.js 文件 (`fullpage.js` 或 `fullpage.min.js`)。
 
@@ -412,9 +412,9 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 - `lockAnchors`：（默认为 `false` ）确定 URL 中的锚是否在库中完全有效。 您仍然可以在函数和回调内部使用锚，但是它们在滚动网站时不起任何作用。 如果你想在 URL 中使用锚点来将 fullPage.js 和其他插件结合起来，那就很有用。
 
 - `easing` : (默认 `easeInOutCubic` ）定义用于垂直和水平滚动的过渡效果。
-它需要文件 `vendors/easings.min.js` 或 [jQuery UI](http://jqueryui.com/) 来使用 [它的转换](http://api.jqueryui.com/easings/) 。 其他库可以用来代替。
+它需要文件 `vendors/easings.min.js` 或 [jQuery UI](https://jqueryui.com/) 来使用 [它的转换](https://api.jqueryui.com/easings/) 。 其他库可以用来代替。
 
-- `easingcss3` : （默认 `ease` ）定义在使用 `css3：true` 的情况下使用的过渡效果。 你可以使用 [预定义的](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)（比如 `linear`，`ease-out` ...）或者使用 `贝塞尔曲线` 功能创建你自己的效果。 你可能想使用 [Matthew Lein CSS缓动动画工具](http://matthewlein.com/ceaser/) 。
+- `easingcss3` : （默认 `ease` ）定义在使用 `css3：true` 的情况下使用的过渡效果。 你可以使用 [预定义的](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)（比如 `linear`，`ease-out` ...）或者使用 `贝塞尔曲线` 功能创建你自己的效果。 你可能想使用 [Matthew Lein CSS缓动动画工具](https://matthewlein.com/ceaser/) 。
 
 - `loopTop`:（默认为 `false`）定义首尾链接滚动方式(首向上)。
 
@@ -448,13 +448,13 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 - `continuousVertical`:（默认为 `false`）定义首位链接循环(最后一个 section 向下滚动，滚动到第一个section，或第一个 section 向上滚动时滚动到最后一个 section )。 不兼容 `loopTop` ，`loopBottom` 或站点中存在的任何滚动条（`scrollBar：true` 或 `autoScrolling：false` ）。
 
-- `continuousHorizontal`: （默认 `false` ）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义首位链接循环(最后一个 section 向下滚动，滚动到第一个 section ，或第一个 section 向上滚动时滚动到最后一个 section)。 不兼容`loopHorizontal`。 需要 fullpage.js> = 3.0.1。
+- `continuousHorizontal`: （默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义首位链接循环(最后一个 section 向下滚动，滚动到第一个 section ，或第一个 section 向上滚动时滚动到最后一个 section)。 不兼容`loopHorizontal`。 需要 fullpage.js> = 3.0.1。
 
-- `scrollHorizontally`:（默认 `false` ）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 它是在使用: `autoScrolling:true` 的理想状态. 需要 fullpage.js> = 3.0.1。
+- `scrollHorizontally`:（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 它是在使用: `autoScrolling:true` 的理想状态. 需要 fullpage.js> = 3.0.1。
 
-- `interlockedSlides`: （默认`false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块同方向上滑动到其他区域。 可选的值是 `true`，`false` 或带有互锁部分的数组。 例如 `[1,3,5]` 从 1 开始。需要fullpage.js> = 3.0.1。
+- `interlockedSlides`: （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块同方向上滑动到其他区域。 可选的值是 `true`，`false` 或带有互锁部分的数组。 例如 `[1,3,5]` 从 1 开始。需要fullpage.js> = 3.0.1。
 
-- `dragAndMove`: （默认`false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指 section 或 slide 的触摸拖拽。 需要 fullpage.js> = 3.0.1。 可选的值是：
+- `dragAndMove`: （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指 section 或 slide 的触摸拖拽。 需要 fullpage.js> = 3.0.1。 可选的值是：
   - `true`: 启用该功能。
   - `false`: 禁用该功能。
   - `vertical`: 只能在垂直情况下启用该功能。
@@ -462,16 +462,16 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
   - `fingersonly`: 仅启用触摸设备的功能。
   - `mouseonly`: 仅启用桌面设备的功能（鼠标和触控板）。
 
-- `offsetSections`: （默认 `false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕 section 的方法。 通过显示下 section 或上 section 的内容，适合向访问者显示网站中的更多内容。 需要 fullPage.js> = 3.0.1
+- `offsetSections`: （默认 `false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕 section 的方法。 通过显示下 section 或上 section 的内容，适合向访问者显示网站中的更多内容。 需要 fullPage.js> = 3.0.1
 要定义每 section 的百分比，必须使用属性 `data-percentage` 。 可以通过在属性 `data-centered` 中使用布尔值来使视图中 section 居中（如果未指定，则默认为 `true` ）。 例如：
 
 	``` html
 	<div class="section" data-percentage="80" data-centered="true">
 	```
 
-- `resetSliders`: （默认 `false` ）。 [fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在离 section 后重置每个滑块。 需要fullpage.js> = 3.0.1。
+- `resetSliders`: （默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在离 section 后重置每个滑块。 需要fullpage.js> = 3.0.1。
 
-- `fadingEffect`: （默认 `false` ）。 [fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可选的值是 `true`，`false`，`sections`，`slides` 。 它可以应用于垂直或水平方向，或者同时应用于两者。 需要 fullpage.js> = 3.0.1。
+- `fadingEffect`: （默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可选的值是 `true`，`false`，`sections`，`slides` 。 它可以应用于垂直或水平方向，或者同时应用于两者。 需要 fullpage.js> = 3.0.1。
 
 - `animateAnchor`: （默认`true`）定义锚点（＃）将以动画方式滚动或直接加载到目标 section。
 
@@ -513,7 +513,7 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
-- `scrollOverflowReset`:（默认`false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。 Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
+- `scrollOverflowReset`:（默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。 Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
 - `sectionSelector`: （默认`.section`）定义用于插件部分的 Javascript 选择器。 有时可能需要更改，以避免与使用与 fullpage.js 相同的选择器的其他插件的问题。
 
@@ -523,22 +523,22 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 
 - `responsiveHeight`: （默认 `0` ）一个正常的滚动（`autoScrolling：false`）将在定义的高度下以像素为单位使用。 如果用户希望将自己的响应式 CSS 用于 body 标记，则会将 `fp-responsive` 类添加到 body 标记中。 例如，如果设置为 900 ，则每当浏览器的高度小于 900 时，插件将像正常站点一样滚动。
 
-- `responsiveSlides`: （默认`false`）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，slide 将变成垂直 section。 （通过使用上面详述的 `responsiveWidth` 或 `responsiveHeight` 选项）。 需要fullpage.js> = 3.0.1。
+- `responsiveSlides`: （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，slide 将变成垂直 section。 （通过使用上面详述的 `responsiveWidth` 或 `responsiveHeight` 选项）。 需要fullpage.js> = 3.0.1。
 
-- `parallax`: （默认 `false` ）[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+- `parallax`: （默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
 - `parallaxOptions`: （默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
 
-- `dropEffect` (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+- `dropEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 - `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `waterEffect` (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+- `waterEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 - `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `cards`: (default `false`) [Extension of fullpage.js](http://alvarotrigo.com/fullPage/extensions/) . 定义是否在 section/slide 上使用卡片效果。[了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+- `cards`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/) . 定义是否在 section/slide 上使用卡片效果。[了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
@@ -549,7 +549,7 @@ fullpage.js [提供了一组扩展](http://alvarotrigo.com/fullPage/extensions/)
 - `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## 公共方法
-你可以在[这里](http://alvarotrigo.com/fullPage/examples/methods.html)看到它们
+你可以在[这里](https://alvarotrigo.com/fullPage/examples/methods.html)看到它们
 
 ### getActiveSection()
 [示例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 获取包含激活 section 及其属性的对象（键入[ Section ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。
@@ -574,21 +574,21 @@ fullpage_api.getScrollX();
 ```
 
 ### moveSectionUp()
-[示例](http://codepen.io/alvarotrigo/pen/GJXNMN) 向上滚动一个 section：
+[示例](https://codepen.io/alvarotrigo/pen/GJXNMN) 向上滚动一个 section：
 
 ```javascript
 fullpage_api.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
-[示例](http://codepen.io/alvarotrigo/pen/jPvVZx) 向下滚动一个 section：
+[示例](https://codepen.io/alvarotrigo/pen/jPvVZx) 向下滚动一个 section：
 
 ```javascript
 fullpage_api.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-[示例](http://codepen.io/alvarotrigo/pen/doqOmY) 将页面滚动到目标 section 和滑动。section 从 1 开始，slide 从 0 开始。
+[示例](https://codepen.io/alvarotrigo/pen/doqOmY) 将页面滚动到目标 section 和滑动。section 从 1 开始，slide 从 0 开始。
 
 ```javascript
 /*滚动到锚链接`firstSlide`和为2的slide */
@@ -605,7 +605,7 @@ fullpage_api.moveTo(3);
 ```
 ---
 ### silentMoveTo(section, slide)
-[示例](http://codepen.io/alvarotrigo/pen/doqOeY) 与 [`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#moveto%E7%AC%AC%E8%8A%82-%E5%B9%BB%E7%81%AF%E7%89%87) 完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
+[示例](https://codepen.io/alvarotrigo/pen/doqOeY) 与 [`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#moveto%E7%AC%AC%E8%8A%82-%E5%B9%BB%E7%81%AF%E7%89%87) 完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
 
 ```javascript
 /*滚动到锚链接 firstSlide 和第二个 slide 的部分 */
@@ -613,21 +613,21 @@ fullpage_api.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
-[示例](http://codepen.io/alvarotrigo/pen/Wvgoyz) 将当前 slide 的水平滑块滚动到下一张 slide ：
+[示例](https://codepen.io/alvarotrigo/pen/Wvgoyz) 将当前 slide 的水平滑块滚动到下一张 slide ：
 
 ```javascript
 fullpage_api.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
-[示例](http://codepen.io/alvarotrigo/pen/gpdLjW) 将当前 slide 的水平滑块滚动到上一张 slide :
+[示例](https://codepen.io/alvarotrigo/pen/gpdLjW) 将当前 slide 的水平滑块滚动到上一张 slide :
 
 ```javascript
 fullpage_api.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
-[示例](http://codepen.io/alvarotrigo/pen/rVZWrR) 动态设置 autoScrolling 。
+[示例](https://codepen.io/alvarotrigo/pen/rVZWrR) 动态设置 autoScrolling 。
 定义页面滚动行为的方式。 如果设置为 `true`，则将使用"自动"滚动，否则将使用站点的"手动"或"正常"滚动。
 
 ```javascript
@@ -635,7 +635,7 @@ fullpage_api.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
-[示例](http://codepen.io/alvarotrigo/pen/GJXNYm) 设置选项 `fitToSection` 的值，确定是否自适应 section 在屏幕上。
+[示例](https://codepen.io/alvarotrigo/pen/GJXNYm) 设置选项 `fitToSection` 的值，确定是否自适应 section 在屏幕上。
 
 
 ```JavaScript
@@ -643,21 +643,21 @@ fullpage_api.setFitToSection(false);
 ```
 ---
 ### fitToSection()
-[示例](http://codepen.io/alvarotrigo/pen/JWWagj) 滚动到最接近视图中的激活 section。
+[示例](https://codepen.io/alvarotrigo/pen/JWWagj) 滚动到最接近视图中的激活 section。
 
 ```javascript
 fullpage_api.fitToSection();
 ```
 ---
 ### setLockAnchors(boolean)
-[示例](http://codepen.io/alvarotrigo/pen/yNxVRQ) 设置选项 `lockAnchors` 的值，以确定锚是否在 URL 中有影响。
+[示例](https://codepen.io/alvarotrigo/pen/yNxVRQ) 设置选项 `lockAnchors` 的值，以确定锚是否在 URL 中有影响。
 
 ```javascript
 fullpage_api.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-[示例](http://codepen.io/alvarotrigo/pen/EjeNdq) 添加或者禁止 fullpage 自动绑定的鼠标滑轮和移动触摸事件。 注意这不会禁用键盘滚动。 您将需要使用`setKeyboardScrolling` 。
+[示例](https://codepen.io/alvarotrigo/pen/EjeNdq) 添加或者禁止 fullpage 自动绑定的鼠标滑轮和移动触摸事件。 注意这不会禁用键盘滚动。 您将需要使用`setKeyboardScrolling` 。
 
 - `directions`：（可选参数）允许的值：`all`，`up`，`down`，`left`，`right` 或者设置组合参数，例如`down，right` 等逗号分隔。 它定义了启用或禁用滚动的方向。
 
@@ -674,7 +674,7 @@ fullpage_api.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
-[示例](http://codepen.io/alvarotrigo/pen/GJXNwm) 添加或者禁止键盘对 section/slide 的控制（默认绑定）。
+[示例](https://codepen.io/alvarotrigo/pen/GJXNwm) 添加或者禁止键盘对 section/slide 的控制（默认绑定）。
 
 - `directions`: （可选参数）允许的值：`all`，`up`，`down`，`left`，`right`或者它们的组合，用`down，right`等逗号分隔。 它定义了滚动将被启用或禁用的方向。
 
@@ -690,21 +690,21 @@ fullpage_api.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
-[示例](http://codepen.io/alvarotrigo/pen/rVZWQb) 定义是否为每个URL的变更纪录到浏览器中的历史记录中。
+[示例](https://codepen.io/alvarotrigo/pen/rVZWQb) 定义是否为每个URL的变更纪录到浏览器中的历史记录中。
 
 ```javascript
 fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[示例](http://codepen.io/alvarotrigo/pen/NqLbeY) 定义以毫秒为单位的滚动速度。
+[示例](https://codepen.io/alvarotrigo/pen/NqLbeY) 定义以毫秒为单位的滚动速度。
 
 ```javascript
 fullpage_api.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-[示例](http://codepen.io/alvarotrigo/pen/bdxBzv) 销毁插件事件以及可选的 HTML 标记和样式。理想选择配合使用 AJAX 加载内容时。
+[示例](https://codepen.io/alvarotrigo/pen/bdxBzv) 销毁插件事件以及可选的 HTML 标记和样式。理想选择配合使用 AJAX 加载内容时。
 
 - `type`: （可选参数）可以为空或 `all` 。 如果 `all` 被传递，fullpage.js 使用的 HTML 标记和样式将被删除。 这样，原始的 HTML 标记，将使用插件修改之前使用的标记。
 
@@ -725,28 +725,28 @@ fullpage_api.reBuild();
 ```
 ---
 ### setResponsive(boolean)
-[示例](http://codepen.io/alvarotrigo/pen/WxOyLA) 设置页面的响应模式。 当设置为 `true` 时，自动滚动将被关闭，结果与 `responsiveWidth` 或`responsiveHeight` 选项被触发时的结果完全相同。
+[示例](https://codepen.io/alvarotrigo/pen/WxOyLA) 设置页面的响应模式。 当设置为 `true` 时，自动滚动将被关闭，结果与 `responsiveWidth` 或`responsiveHeight` 选项被触发时的结果完全相同。
 
 ```javascript
 fullpage_api.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
-[fullpage.js 的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要 fullpage.js> = 3.0.1。将水平 slide 变成垂直 section。
+[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 需要 fullpage.js> = 3.0.1。将水平 slide 变成垂直 section。
 
 ```javascript
 fullpage_api.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
-[fullpage.js的扩展](http://alvarotrigo.com/fullPage/extensions/)。 需要 fullpage.js> = 3.0.1 。将原始 slide（现转换为垂直 section）重新转换为水平 slide。
+[fullpage.js的扩展](https://alvarotrigo.com/fullPage/extensions/)。 需要 fullpage.js> = 3.0.1 。将原始 slide（现转换为垂直 section）重新转换为水平 slide。
 
 ```javascript
 fullpage_api.responsiveSlides.toSlides();
 ```
 
 ## 回调函数
-[示例](http://codepen.io/alvarotrigo/pen/XbPNQv) 你可以在 [这里](http://alvarotrigo.com/fullPage/examples/callbacks.html) 看到他们。
+[示例](https://codepen.io/alvarotrigo/pen/XbPNQv) 你可以在 [这里](https://alvarotrigo.com/fullPage/examples/callbacks.html) 看到他们。
 
 一些回调，例如 `onLeave` 将包含 `Section` 或 `Slide` 类型的参数。 这些对象将包含以下属性：
 - `anchor`: *(String)* 项目的 anchorLink。
@@ -815,7 +815,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
 
 You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
 
@@ -843,7 +843,7 @@ new fullpage('#fullpage', {
 
 ---
 ### afterRender()
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 这个回调在页面结构生成后立即被触发。 这是您要用来初始化其他插件的回调函数，或者触发任何需要 DOM 准备就绪的代码（因为这个插件修改了 DOM 来创建最终的结构）。 请参阅 [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) 了解更多信息。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 这个回调在页面结构生成后立即被触发。 这是您要用来初始化其他插件的回调函数，或者触发任何需要 DOM 准备就绪的代码（因为这个插件修改了 DOM 来创建最终的结构）。 请参阅 [常见问题](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) 了解更多信息。
 
 例如：
 
@@ -857,7 +857,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 调整浏览器窗口大小后，会触发此回调。 就在 section 被调整之后。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 调整浏览器窗口大小后，会触发此回调。 就在 section 被调整之后。
 
 参数：
 
@@ -876,7 +876,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 通过调用 `fullpage_api.reBuild（）` 手动重新构建 fullpage.js 后，将触发此回调。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 通过调用 `fullpage_api.reBuild（）` 手动重新构建 fullpage.js 后，将触发此回调。
 
 例如：
 
@@ -889,7 +889,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 在 fullpage.js 从正常模式变为响应模式或从响应模式变为正常模式之后，此回调将被触发。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 在 fullpage.js 从正常模式变为响应模式或从响应模式变为正常模式之后，此回调将被触发。
 
 参数：
 
@@ -906,7 +906,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 滚动结束后，加载一个 section 的 slide 后触发回调。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 滚动结束后，加载一个 section 的 slide 后触发回调。
 
 参数：
 
@@ -940,7 +940,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 一旦用户离开 slide 转到另一个 slide ，就会触发此回调。返回 `false` 将在移动发生之前取消移动。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 一旦用户离开 slide 转到另一个 slide ，就会触发此回调。返回 `false` 将在移动发生之前取消移动。
 
 参数：
 
@@ -971,12 +971,12 @@ new fullpage('#fullpage', {
 ```
 
 #### 在发生移动之前取消移动
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
 
 
 ---
 ### onScrollOverflow (`section`, `slide`, `position`, `direction`)
-[Demo](http://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
 
 Parameters:
 
@@ -1013,11 +1013,11 @@ new fullpage('#fullpage', {
 
 # 参考资源
 - Wordpress Plugin [for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/).
-- [Wordpress theme](http://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Wordpress theme](https://alvarotrigo.com/fullPage/utils/wordpress.html)
 - [Official Vue.js wrapper component](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Official React.js wrapper component](https://github.com/alvarotrigo/react-fullpage)
 - [Official Angular wrapper component](https://github.com/alvarotrigo/angular-fullpage)
-- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (用于定义 `easingcss3` 的值)
+- [CSS Easing Animation Tool - Matthew Lein](https://matthewlein.com/ceaser/) (用于定义 `easingcss3` 的值)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](https://github.com/freestream/oc-parallax-plugin)
 - [fullPage.js wordpress plugin](https://wordpress.org/plugins/wp-fullpage/)
@@ -1026,7 +1026,7 @@ new fullpage('#fullpage', {
 - [fullPage.js ember-cli addon](https://www.npmjs.com/package/ember-cli-fullpagejs)
 - [fullPage.js Rails Ruby Gem](https://rubygems.org/gems/fullpagejs-rails)
 - [Angular fullPage.js - Adaptation for Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
-- [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
+- [Integrating fullPage.js with Wordpress (Tutorial)](https://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 
 ## 谁在使用 fullPage.js
 
@@ -1074,7 +1074,7 @@ new fullpage('#fullpage', {
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
 
 [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](https://www.browserstack.com/)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 [![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 
