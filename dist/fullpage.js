@@ -2081,7 +2081,6 @@
     }
 
     function onPerformMovement() {
-      console.warn("onPerformMovement...");
       clearTimeout(g_afterSlideLoadsId);
       setState({
         slideMoving: false
@@ -5349,7 +5348,7 @@
 
     !function () {
       EventEmitter.on(events$1.onInitialise, function () {
-        var n, a;
+        var n, a, l;
         setState({
           isValid: (getOptions().licenseKey, n = getOptions().licenseKey, a = function (n) {
             var e = parseInt("\x35\x31\x34").toString(16);
@@ -5396,10 +5395,10 @@
               o: e.split("-")[2] === 8 * (ACTIVE.length - 2) + "",
               l: p
             };
-          }(n), a && (getOptions().credits && a && e <= a.v && a.l === n.split(t[0])[4] || function (t) {
+          }(n), l = function (t) {
             var n = i[r()]().join("");
             return t && 0 === n.indexOf(t) && t.length === n.length;
-          }(n) || a.o) || !1)
+          }(n), (a || l) && (getOptions().credits && a && e <= a.v && a.l === n.split(t[0])[4] || l || a.o) || !1)
         });
       });
       var t = ["-"];
