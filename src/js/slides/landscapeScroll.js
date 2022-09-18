@@ -31,6 +31,7 @@ function bindEvents(){
 
 function onPerformMovement(){
     clearTimeout(g_afterSlideLoadsId);
+    setState({slideMoving: false});
 }
 
 
