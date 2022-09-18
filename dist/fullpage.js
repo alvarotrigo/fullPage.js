@@ -2081,7 +2081,11 @@
     }
 
     function onPerformMovement() {
+      console.warn("onPerformMovement...");
       clearTimeout(g_afterSlideLoadsId);
+      setState({
+        slideMoving: false
+      });
     }
     /**
     * Scrolls horizontal sliders.
@@ -5399,7 +5403,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-8-16".split("-"),
+      var n = "2022-8-18".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
