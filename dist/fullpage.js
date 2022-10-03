@@ -3876,7 +3876,7 @@
         });
 
         if (getOptions().autoScrolling) {
-          if (!hasActiveSectionOverflow || hasActiveSectionOverflow && !state.canScroll) {
+          if (hasActiveSectionOverflow && !state.canScroll) {
             //preventing the easing on iOS devices
             preventDefault(e);
           }
@@ -4841,6 +4841,8 @@
         isResizing: true
       });
       setSectionsHeight('');
+
+      console.log("resizeActions...");
 
       if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
         setVhUnits();
