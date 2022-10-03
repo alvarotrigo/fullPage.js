@@ -981,7 +981,7 @@
       return state.activeSection && state.activeSection.activeSlide ? state.activeSection.activeSlide : state.activeSection;
     }
 
-    var events$1 = {
+    var events = {
       onAfterRenderNoAnchor: 'onAfterRenderNoAnchor',
       onClickOrTouch: 'onClickOrTouch',
       moveSlideLeft: 'moveSlideLeft',
@@ -1003,7 +1003,7 @@
       afterSlideLoads: 'afterSlideLoads'
     };
 
-    EventEmitter.on(events$1.bindEvents, bindEvents$c);
+    EventEmitter.on(events.bindEvents, bindEvents$c);
 
     function bindEvents$c() {
       //Scrolls to the section when clicking the navigation bullet
@@ -1016,11 +1016,11 @@
     }
 
     function internalEvents() {
-      EventEmitter.on(events$1.onDestroy, onDestroy$8);
+      EventEmitter.on(events.onDestroy, onDestroy$8);
     }
 
     function delegatedEvents(e) {
-      EventEmitter.emit(events$1.onClickOrTouch, {
+      EventEmitter.emit(events.onClickOrTouch, {
         e: e,
         target: e.target
       });
@@ -1933,7 +1933,7 @@
       var slides = $(SLIDES_WRAPPER_SEL, closest(this, SECTION_SEL))[0];
       var section = getPanelByElement(getState().sections, sectionElem);
       var destiny = section.slides[index(closest(this, 'li'))];
-      EventEmitter.emit(events$1.landscapeScroll, {
+      EventEmitter.emit(events.landscapeScroll, {
         slides: slides,
         destination: destiny.item
       });
@@ -2001,7 +2001,7 @@
       return isScrollAllowed;
     }
 
-    EventEmitter.on(events$1.onClickOrTouch, onClickOrTouch$2);
+    EventEmitter.on(events.onClickOrTouch, onClickOrTouch$2);
 
     function onClickOrTouch$2(params) {
       var target = params.target;
@@ -2022,7 +2022,7 @@
           setState({
             scrollTrigger: 'slideArrow'
           });
-          EventEmitter.emit(events$1.moveSlideLeft, {
+          EventEmitter.emit(events.moveSlideLeft, {
             section: section
           });
         }
@@ -2031,7 +2031,7 @@
           setState({
             scrollTrigger: 'slideArrow'
           });
-          EventEmitter.emit(events$1.moveSlideRight, {
+          EventEmitter.emit(events.moveSlideRight, {
             section: section
           });
         }
@@ -2074,10 +2074,10 @@
 
     var g_afterSlideLoadsId;
     FP.landscapeScroll = landscapeScroll;
-    EventEmitter.on(events$1.bindEvents, bindEvents$b);
+    EventEmitter.on(events.bindEvents, bindEvents$b);
 
     function bindEvents$b() {
-      EventEmitter.on(events$1.onPerformMovement, onPerformMovement);
+      EventEmitter.on(events.onPerformMovement, onPerformMovement);
     }
 
     function onPerformMovement() {
@@ -2231,7 +2231,7 @@
           canScroll: true
         });
         playMedia(v.destiny);
-        EventEmitter.emit(events$1.afterSlideLoads, v);
+        EventEmitter.emit(events.afterSlideLoads, v);
       } //letting them slide again
 
 
@@ -2527,7 +2527,7 @@
       // @ts-ignore
 
       var indexBullet = index(closest(this, SECTION_NAV_SEL + ' li'));
-      EventEmitter.emit(events$1.scrollPage, {
+      EventEmitter.emit(events.scrollPage, {
         destination: getState().sections[indexBullet]
       });
     }
@@ -2604,7 +2604,7 @@
 
     var g_afterSectionLoadsId;
     var g_transitionLapseId;
-    EventEmitter.on(events$1.onDestroy, onDestroy$6);
+    EventEmitter.on(events.onDestroy, onDestroy$6);
     /**
     * Scrolls the site to the given element and scrolls to the slide if a callback is given.
     */
@@ -2759,7 +2759,7 @@
         touchDirection: 'none',
         scrollY: Math.round(v.dtop)
       });
-      EventEmitter.emit(events$1.onPerformMovement); // using CSS3 translate functionality
+      EventEmitter.emit(events.onPerformMovement); // using CSS3 translate functionality
 
       if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
         // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
@@ -2843,7 +2843,7 @@
       setState({
         canScroll: true
       });
-      EventEmitter.emit(events$1.afterSectionLoads, v);
+      EventEmitter.emit(events.afterSectionLoads, v);
 
       if (isFunction(v.callback)) {
         v.callback();
@@ -3017,13 +3017,13 @@
       return panel.isSection ? panel : panel.parent;
     }
 
-    EventEmitter.on(events$1.bindEvents, bindEvents$a);
+    EventEmitter.on(events.bindEvents, bindEvents$a);
 
     function bindEvents$a() {
       // We can't focus scrollOverflow before scrolling
       // to the anchor (if we need to)
-      EventEmitter.on(events$1.onAfterRenderNoAnchor, afterRender);
-      EventEmitter.on(events$1.afterSlideLoads, scrollOverflowHandler.afterSectionLoads);
+      EventEmitter.on(events.onAfterRenderNoAnchor, afterRender);
+      EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterSectionLoads);
     }
 
     function afterRender() {
@@ -3185,7 +3185,7 @@
 
           if (hasClass(e.target, OVERFLOW) && state.canScroll) {
             if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
-              EventEmitter.emit(events$1.onScrollOverflowScrolled, {
+              EventEmitter.emit(events.onScrollOverflowScrolled, {
                 direction: direction
               });
             }
@@ -3432,7 +3432,7 @@
       childList: true,
       characterData: true
     };
-    EventEmitter.on(events$1.bindEvents, bindEvents$9);
+    EventEmitter.on(events.bindEvents, bindEvents$9);
     FP.render = onContentChange;
 
     function bindEvents$9() {
@@ -3440,7 +3440,7 @@
         g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
       }
 
-      EventEmitter.on(events$1.contentChanged, onContentChange);
+      EventEmitter.on(events.contentChanged, onContentChange);
     }
     /**
      * Creates a Mutation observer.
@@ -3718,7 +3718,7 @@
       if (next != null) {
         scrollPage(next, null, false);
       } else if (hasContentBeyondFullPage()) {
-        EventEmitter.emit(events$1.scrollBeyondFullpage);
+        EventEmitter.emit(events.scrollBeyondFullpage);
       }
     }
 
@@ -3797,7 +3797,7 @@
     var touchEndY = 0;
     var touchEndX = 0;
     var MSPointer = getMSPointer();
-    var events = {
+    var pointers = {
       touchmove: 'ontouchmove' in window ? 'touchmove' : MSPointer ? MSPointer.move : null,
       touchstart: 'ontouchstart' in window ? 'touchstart' : MSPointer ? MSPointer.down : null
     };
@@ -3806,27 +3806,27 @@
     */
 
     function addTouchHandler() {
-      if (!events.touchmove) {
+      if (!pointers.touchmove) {
         return;
       }
 
       if (isTouchDevice || isTouch) {
         if (getOptions().autoScrolling) {
-          $body.removeEventListener(events.touchmove, preventBouncing, {
+          $body.removeEventListener(pointers.touchmove, preventBouncing, {
             passive: false
           });
-          $body.addEventListener(events.touchmove, preventBouncing, {
+          $body.addEventListener(pointers.touchmove, preventBouncing, {
             passive: false
           });
         }
 
         var touchWrapper = getOptions().touchWrapper;
-        touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {
+        touchWrapper.removeEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.removeEventListener(pointers.touchmove, touchMoveHandler, {
           passive: false
         });
-        touchWrapper.addEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.addEventListener(events.touchmove, touchMoveHandler, {
+        touchWrapper.addEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.addEventListener(pointers.touchmove, touchMoveHandler, {
           passive: false
         });
       }
@@ -3836,24 +3836,24 @@
     */
 
     function removeTouchHandler() {
-      if (!events.touchmove) {
+      if (!pointers.touchmove) {
         return;
       }
 
       if (isTouchDevice || isTouch) {
         // normalScrollElements requires it off #2691
         if (getOptions().autoScrolling) {
-          $body.removeEventListener(events.touchmove, touchMoveHandler, {
+          $body.removeEventListener(pointers.touchmove, touchMoveHandler, {
             passive: false
           });
-          $body.removeEventListener(events.touchmove, preventBouncing, {
+          $body.removeEventListener(pointers.touchmove, preventBouncing, {
             passive: false
           });
         }
 
         var touchWrapper = getOptions().touchWrapper;
-        touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {
+        touchWrapper.removeEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.removeEventListener(pointers.touchmove, touchMoveHandler, {
           passive: false
         });
       }
@@ -4143,7 +4143,7 @@
     var g_controlPressed;
     var g_keydownId;
     var g_elToFocus;
-    EventEmitter.on(events$1.bindEvents, bindEvents$8);
+    EventEmitter.on(events.bindEvents, bindEvents$8);
 
     function bindEvents$8() {
       //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
@@ -4152,9 +4152,9 @@
       docAddEvent('keydown', keydownHandler); //to prevent scrolling while zooming
 
       docAddEvent('keyup', keyUpHandler);
-      EventEmitter.on(events$1.onDestroy, onDestroy$5);
-      EventEmitter.on(events$1.afterSlideLoads, onAfterSlideLoads);
-      EventEmitter.on(events$1.afterSectionLoads, afterSectionLoads);
+      EventEmitter.on(events.onDestroy, onDestroy$5);
+      EventEmitter.on(events.afterSlideLoads, onAfterSlideLoads);
+      EventEmitter.on(events.afterSectionLoads, afterSectionLoads);
     }
 
     function onDestroy$5() {
@@ -4214,7 +4214,7 @@
         case 33:
           if (getIsScrollAllowed().k.up && isScrolled.up) {
             if (state.isBeyondFullpage) {
-              EventEmitter.emit(events$1.onKeyDown, {
+              EventEmitter.emit(events.onKeyDown, {
                 e: e
               });
             } else {
@@ -4349,7 +4349,7 @@
 
         if (destinationPanel) {
           var destinationSection = destinationPanel.isSection ? destinationPanel : destinationPanel.parent;
-          EventEmitter.emit(events$1.onScrollPageAndSlide, {
+          EventEmitter.emit(events.onScrollPageAndSlide, {
             sectionAnchor: destinationSection.index() + 1,
             slideAnchor: destinationPanel.isSection ? 0 : destinationPanel.index()
           });
@@ -4667,7 +4667,7 @@
     }
 
     var g_canFireMouseEnterNormalScroll = true;
-    EventEmitter.on(events$1.bindEvents, bindEvents$7);
+    EventEmitter.on(events.bindEvents, bindEvents$7);
 
     function bindEvents$7() {
       /**
@@ -4683,7 +4683,7 @@
         });
       }
 
-      EventEmitter.on(events$1.onDestroy, onDestroy$4);
+      EventEmitter.on(events.onDestroy, onDestroy$4);
     }
 
     function onDestroy$4() {
@@ -4764,14 +4764,14 @@
     var g_isConsecutiveResize = false;
     var g_resizeMobileHandlerId;
     FP.reBuild = reBuild;
-    EventEmitter.on(events$1.bindEvents, bindEvents$6);
+    EventEmitter.on(events.bindEvents, bindEvents$6);
 
     function bindEvents$6() {
       // Setting VH correctly in mobile devices
       resizeHandler(); //when resizing the site, we adjust the heights of the sections, slimScroll...
 
       windowAddEvent('resize', resizeHandler);
-      EventEmitter.on(events$1.onDestroy, onDestroy$3);
+      EventEmitter.on(events.onDestroy, onDestroy$3);
     }
 
     function onDestroy$3() {
@@ -4846,7 +4846,7 @@
         setVhUnits();
       }
 
-      EventEmitter.emit(events$1.contentChanged);
+      EventEmitter.emit(events.contentChanged);
       updateState(); //checking if it needs to get responsive
 
       responsive(); // rebuild immediately on touch devices
@@ -4994,13 +4994,13 @@
     }
 
     FP.setLockAnchors = setLockAnchors;
-    EventEmitter.on(events$1.bindEvents, bindEvents$5);
+    EventEmitter.on(events.bindEvents, bindEvents$5);
 
     function bindEvents$5() {
       //detecting any change on the URL to scroll to the given anchor link
       //(a way to detect back history button as we play with the hashes on the URL)
       windowAddEvent('hashchange', hashChangeHandler);
-      EventEmitter.on(events$1.onDestroy, onDestroy$2);
+      EventEmitter.on(events.onDestroy, onDestroy$2);
     }
 
     function onDestroy$2() {
@@ -5034,7 +5034,7 @@
           It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
           event is fired on every scroll too.*/
           if (sectionAnchor && sectionAnchor !== state.lastScrolledDestiny && !isFirstSlideMove || isFirstScrollMove || !state.slideMoving && state.lastScrolledSlide != slideAnchor) {
-            EventEmitter.emit(events$1.onScrollPageAndSlide, {
+            EventEmitter.emit(events.onScrollPageAndSlide, {
               sectionAnchor: sectionAnchor,
               slideAnchor: slideAnchor
             });
@@ -5043,18 +5043,18 @@
       }
     }
 
-    EventEmitter.on(events$1.bindEvents, bindEvents$4);
+    EventEmitter.on(events.bindEvents, bindEvents$4);
 
     function bindEvents$4() {
       docAddEvent('wheel', wheelDataHandler.registerEvent, getPassiveOptionsIfPossible());
-      EventEmitter.on(events$1.scrollBeyondFullpage, scrollBeyondFullPage);
-      EventEmitter.on(events$1.onKeyDown, onKeyDown);
+      EventEmitter.on(events.scrollBeyondFullpage, scrollBeyondFullPage);
+      EventEmitter.on(events.onKeyDown, onKeyDown);
     }
 
-    EventEmitter.on(events$1.bindEvents, bindEvents$3);
+    EventEmitter.on(events.bindEvents, bindEvents$3);
 
     function bindEvents$3() {
-      EventEmitter.on(events$1.onClickOrTouch, onClickOrTouch$1);
+      EventEmitter.on(events.onClickOrTouch, onClickOrTouch$1);
     }
 
     function onClickOrTouch$1(params) {
@@ -5075,16 +5075,16 @@
         preventDefault(e);
         /*jshint validthis:true */
 
-        EventEmitter.emit(events$1.onMenuClick, {
+        EventEmitter.emit(events.onMenuClick, {
           anchor: getAttr(this, 'data-menuanchor')
         });
       }
     }
 
-    EventEmitter.on(events$1.bindEvents, bindEvents$2);
+    EventEmitter.on(events.bindEvents, bindEvents$2);
 
     function bindEvents$2() {
-      EventEmitter.on(events$1.onClickOrTouch, onClickOrTouch);
+      EventEmitter.on(events.onClickOrTouch, onClickOrTouch);
     }
 
     function onClickOrTouch(params) {
@@ -5102,7 +5102,7 @@
     var lastScroll = 0;
     var g_scrollId;
     var g_scrollId2;
-    EventEmitter.on(events$1.onDestroy, onDestroy$1); //when scrolling...
+    EventEmitter.on(events.onDestroy, onDestroy$1); //when scrolling...
 
     function scrollHandler(e) {
       var currentSection;
@@ -5278,8 +5278,8 @@
       return top <= getScrollTop();
     }
 
-    EventEmitter.on(events$1.bindEvents, bindEvents$1);
-    EventEmitter.on(events$1.onDestroy, onDestroy);
+    EventEmitter.on(events.bindEvents, bindEvents$1);
+    EventEmitter.on(events.onDestroy, onDestroy);
 
     function onDestroy() {
       windowRemoveEvent('scroll', scrollHandler);
@@ -5288,17 +5288,17 @@
     function bindEvents$1() {
       windowAddEvent('scroll', scrollHandler);
       doc.body.addEventListener('scroll', scrollHandler);
-      EventEmitter.on(events$1.onScrollPageAndSlide, function (params) {
+      EventEmitter.on(events.onScrollPageAndSlide, function (params) {
         scrollPageAndSlide(params.sectionAnchor, params.slideAnchor);
       });
-      EventEmitter.on(events$1.onMenuClick, function (params) {
+      EventEmitter.on(events.onMenuClick, function (params) {
         moveTo$1(params.anchor, undefined);
       });
-      EventEmitter.on(events$1.onScrollOverflowScrolled, function (params) {
+      EventEmitter.on(events.onScrollOverflowScrolled, function (params) {
         var scrollSection = params.direction === 'down' ? moveSectionDown : moveSectionUp;
         scrollSection();
       });
-      EventEmitter.on(events$1.scrollPage, function (params) {
+      EventEmitter.on(events.scrollPage, function (params) {
         scrollPage(params.destination);
       });
     }
@@ -5309,17 +5309,17 @@
       return state.scrollX;
     };
 
-    EventEmitter.on(events$1.bindEvents, bindEvents);
+    EventEmitter.on(events.bindEvents, bindEvents);
 
     function bindEvents() {
-      EventEmitter.on(events$1.onDestroy, onDestroy$7);
-      EventEmitter.on(events$1.landscapeScroll, function (params) {
+      EventEmitter.on(events.onDestroy, onDestroy$7);
+      EventEmitter.on(events.landscapeScroll, function (params) {
         landscapeScroll(params.slides, params.destination);
       });
-      EventEmitter.on(events$1.moveSlideRight, function (params) {
+      EventEmitter.on(events.moveSlideRight, function (params) {
         moveSlideRight(params.section);
       });
-      EventEmitter.on(events$1.moveSlideLeft, function (params) {
+      EventEmitter.on(events.moveSlideLeft, function (params) {
         moveSlideLeft(params.section);
       });
     }
@@ -5332,7 +5332,7 @@
       return nullOrSlide(getState().activeSection.activeSlide);
     }
 
-    EventEmitter.on(events$1.bindEvents, init$1);
+    EventEmitter.on(events.bindEvents, init$1);
 
     function init$1() {
       var position = getOptions().credits.position;
@@ -5347,7 +5347,7 @@
     }
 
     !function () {
-      EventEmitter.on(events$1.onInitialise, function () {
+      EventEmitter.on(events.onInitialise, function () {
         var n, a, l;
         setState({
           isValid: (getOptions().licenseKey, n = getOptions().licenseKey, a = function (n) {
@@ -5591,7 +5591,7 @@
           silentMoveTo(sectionAnchor, slideAnchor);
         }
       } else {
-        EventEmitter.emit(events$1.onAfterRenderNoAnchor, null);
+        EventEmitter.emit(events.onAfterRenderNoAnchor, null);
       }
     }
 
@@ -5714,7 +5714,7 @@
       setMouseHijack(false);
       setKeyboardScrolling(false);
       addClass(getContainer(), DESTROYED);
-      EventEmitter.emit(events$1.onDestroy); //lets make a mess!
+      EventEmitter.emit(events.onDestroy); //lets make a mess!
 
       if (all) {
         destroyStructure();
@@ -5804,14 +5804,14 @@
 
       setOptions(options);
       setContainer(typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector);
-      EventEmitter.emit(events$1.onInitialise);
+      EventEmitter.emit(events.onInitialise);
       displayWarnings();
       setAPI();
 
       if (getContainer()) {
-        EventEmitter.emit(events$1.beforeInit);
+        EventEmitter.emit(events.beforeInit);
         init();
-        EventEmitter.emit(events$1.bindEvents);
+        EventEmitter.emit(events.bindEvents);
       } // @ts-ignore
 
 
