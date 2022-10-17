@@ -4842,8 +4842,6 @@
       });
       setSectionsHeight('');
 
-      console.log("resizeActions...");
-
       if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
         setVhUnits();
       }
@@ -5341,7 +5339,7 @@
       var positionStyle = ['left', 'right'].indexOf(position) > -1 ? "".concat(position, ": 0;") : '';
       var waterMark = "\n        <div class=\"fp-watermark\" style=\"".concat(positionStyle, "\">\n            <a href=\"https://alvarotrigo.com/fullPage/\" \n                rel=\"nofollow noopener\" \n                target=\"_blank\" \n                style=\"text-decoration:none; color: #000;\">\n                    ").concat(getOptions().credits.label, "\n            </a>\n        </div>\n    ");
       var lastSection = getLast(state.sections);
-      var shouldUseWaterMark = getOptions().credits.enabled && !state.isValid;
+      var shouldUseWaterMark = !state.isValid || getOptions().credits.enabled;
 
       if (lastSection && lastSection.item && shouldUseWaterMark) {
         lastSection.item.insertAdjacentHTML('beforeend', waterMark);
@@ -5404,7 +5402,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-9-3".split("-"),
+      var n = "2022-9-17".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
