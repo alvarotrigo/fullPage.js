@@ -220,9 +220,15 @@ html.fp-enabled,
 .fp-scrollable .fp-slide{
    /* Fallback for browsers that do not support Custom Properties */
    height: 100vh;
-   min-height: 100vh;
    height: calc(var(--vh, 1vh) * 100);
-   min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.fp-scrollable.fp-responsive .fp-is-overflow.fp-section:not(.fp-auto-height),
+.fp-scrollable .fp-section:not(.fp-auto-height),
+.fp-scrollable .fp-slide:not(.fp-auto-height){
+    /* Fallback for browsers that do not support Custom Properties */
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Disabling vertical centering on scrollable elements */
