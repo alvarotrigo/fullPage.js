@@ -22,6 +22,7 @@ import { $html, setCache } from './common/cache.js';
 import { displayWarnings } from './console.js';
 import { ENABLED } from './common/selectors.js';
 import { EventEmitter } from './common/eventEmitter.js';
+import { events } from './common/events.js';
 
 export default function fullpage(containerSelector, options) {
     setCache();
@@ -36,16 +37,16 @@ export default function fullpage(containerSelector, options) {
 
     setContainer(typeof containerSelector === 'string' ? utils.$(containerSelector)[0] : containerSelector);
 
-    EventEmitter.emit('onInitialise');
+    EventEmitter.emit(events.onInitialise);
 
     displayWarnings();
 
     setAPI();
 
     if(getContainer()){
-        EventEmitter.emit('beforeInit');
+        EventEmitter.emit(events.beforeInit);
         init();
-        EventEmitter.emit('bindEvents');
+        EventEmitter.emit(events.bindEvents);
     }
 
     // @ts-ignore
@@ -60,7 +61,7 @@ function setAPI(){
     };
 
     //public functions
-    FP.version = '4.0.11';
+    FP.version = '4.0.12';
 
     FP.test = Object.assign(FP.test, {
         top: '0px',

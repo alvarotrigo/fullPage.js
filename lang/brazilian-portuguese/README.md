@@ -18,16 +18,16 @@
 
 ---
 
-![fullPage.js version](http://img.shields.io/badge/fullPage.js-v4.0.11-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.12-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 &nbsp;&nbsp; **|**&nbsp;&nbsp; *7Kb gziped* &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
 
-- [Demo online](http://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
+- [Demo online](https://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/NxyPPp)
 - [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress plugin for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
-- [Tema para Wordpress](http://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [Extensões fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/)
+- [Tema para Wordpress](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+- [Extensões fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/)
 - [Perguntas Frequentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
 - [Migration from fullPage v3 to fullpage v4](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
 ---
@@ -64,7 +64,7 @@ Vamos fazer isso ser uma boa biblioteca para tornar a vida das pessoas mais fác
 fullPage.js é totalmente funcional em todos os navegadores modernos e no IE 11. Se você precisa dar suporte a versões anteriores ao IE 11, considere usar [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
 Ele também dá suporte ao toque para dispositivos móveis, tablets e computadores touch screen.
 
-Um agradeicmento especial para [Browserstack](http://www.browserstack.com/) por apoiar o fullpage.js.
+Um agradeicmento especial para [Browserstack](https://www.browserstack.com/) por apoiar o fullpage.js.
 
 ## Licença
 
@@ -114,7 +114,7 @@ Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.j
 https://cdnjs.com/libraries/fullPage.js
 
 ### Estrutura HTML necessária
-Inicie seu documento HTML com a [declaração HTML DOCTYPE](http://www.corelangs.com/html/introduction/doctype.html) obrigatória na primeira linha do seu código HTML. Caso contrário, você pode ter problemas com as alturas das seções. Os exemplos fornecidos usam o tipo de documento HTML5 `<!DOCTYPE html>`.
+Inicie seu documento HTML com a [declaração HTML DOCTYPE](https://www.corelangs.com/html/introduction/doctype.html) obrigatória na primeira linha do seu código HTML. Caso contrário, você pode ter problemas com as alturas das seções. Os exemplos fornecidos usam o tipo de documento HTML5 `<!DOCTYPE html>`.
 
 Cada seção será definida com um elemento contendo a classe `section`.
 A seção ativa por padrão será a primeira seção, que é considerada a página inicial.
@@ -277,7 +277,7 @@ var myFullpage = new fullpage('#fullpage', {
 ### Criando links para seções ou slides
 Se você estiver usando fullPage.js com links âncora para as seções (usando a opção `anchors` ou o atributo `data-anchor` em cada seção), poderá usar links âncora também para navegar diretamente para um determinado slide dentro de uma seção.
 
-Este seria um exemplo de um link com uma âncora: http://alvarotrigo.com/fullPage/#secondPage/2 (que é a URL que você verá quando acessar essa seção/slide manualmente)
+Este seria um exemplo de um link com uma âncora: https://alvarotrigo.com/fullPage/#secondPage/2 (que é a URL que você verá quando acessar essa seção/slide manualmente)
 Observe que a última parte da URL termina em `#secondPage/2`.
 
 Tendo a seguinte inicialização:
@@ -307,7 +307,7 @@ Observe que as âncoras de seção também podem ser definidas da mesma maneira,
 **Cuidado!** As tags `data-anchor` não podem ter o mesmo valor que qualquer elemento de ID no site (ou elemento NAME para IE).
 
 ### Criando seções maiores ou menores
-[Demonstração](http://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js fornece uma maneira de remover a restrição de altura total de suas seções e slides. É possível criar seções cuja altura seja menor ou maior que a viewport. Isso é ideal para rodapés.
+[Demonstração](https://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js fornece uma maneira de remover a restrição de altura total de suas seções e slides. É possível criar seções cuja altura seja menor ou maior que a viewport. Isso é ideal para rodapés.
 É importante perceber que não faz sentido ter todas as suas seções usando esse recurso. Se houver mais de uma seção no carregamento inicial do site, fullPage.js não rolará para ver a próxima, pois ela já estará na janela de visualização.
 
 Para criar seções menores, basta usar a classe `fp-auto-height` na seção que você deseja aplicá-la. Em seguida, ele terá a altura definida pelo conteúdo da sua seção/slide.
@@ -325,13 +325,13 @@ Fullpage.js adiciona várias classes em diferentes elementos para manter um regi
 
 - `active` é adicionado à seção e slide visíveis atuais.
 - `active` é adicionado ao elemento de menu atual (se estiver usando a opção `menu`).
-- Uma classe no formato `fp-viewing-SECTION-SLIDE` é adicionada ao elemento `body` do site. (ex: [`fp-viewing-secondPage-0`](http://alvarotrigo.com/fullPage/#secondPage)) As partes `SECTION` e `SLIDE` serão as âncoras (ou índices se nenhuma âncora for fornecida) da seção e slide atuais.
+- Uma classe no formato `fp-viewing-SECTION-SLIDE` é adicionada ao elemento `body` do site. (ex: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) As partes `SECTION` e `SLIDE` serão as âncoras (ou índices se nenhuma âncora for fornecida) da seção e slide atuais.
 - `fp-responsive` é adicionado ao elemento `body` ao entrar no modo responsivo
 - `fp-enabled` é adicionado ao elemento `html` quando fullpage.js está habilitado. (e removido quando destruído).
 - `fp-destroyed` é adicionado ao contêiner fullpage.js quando fullPage.js é destruído.
 
 ### Lazy Loading
-[Demonstração](http://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js fornece uma maneira de carregar imagens, vídeos e elementos de áudio de forma lenta para que eles não retardem o carregamento do seu site ou desperdicem desnecessariamente a transferência de dados.
+[Demonstração](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js fornece uma maneira de carregar imagens, vídeos e elementos de áudio de forma lenta para que eles não retardem o carregamento do seu site ou desperdicem desnecessariamente a transferência de dados.
 Ao usar o carregamento lento, todos esses elementos só serão carregados ao entrar na viewport.
 Para habilitar o carregamento lento, tudo o que você precisa fazer é alterar seu atributo `src` para `data-src` como mostrado abaixo:
 
@@ -355,19 +355,19 @@ Para reproduzi-lo no carregamento de seção/slide, use o atributo `data-autopla
 
 ```html
 <audio data-autoplay>
-	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
+	<source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
 </audio>
 ```
 
 #### Pausar ao sair
 Os iframes HTML5 `<vídeo>` / `<áudio>` incorporados e do YouTube são pausados automaticamente quando você sai de uma seção ou slide. Isso pode ser desabilitado usando o atributo `data-keepplaying`. Por exemplo:
 <audio data-keepplaying>
-	<source src="http://metakoncept.hr/horse.ogg" type="audio/ogg">
+	<source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
 </audio>
 ```
 
 ### Uso de extensões
-fullpage.js [fornece um conjunto de extensões](http://alvarotrigo.com/fullPage/extensions/br/) que você pode usar para aprimorar seus recursos padrão. Todos eles estão listados como [opções fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#opções).
+fullpage.js [fornece um conjunto de extensões](https://alvarotrigo.com/fullPage/extensions/br/) que você pode usar para aprimorar seus recursos padrão. Todos eles estão listados como [opções fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#opções).
 
 Extensões requer que você use o arquivo minificado [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/blob/master/dist/fullpage.extensions.min.js) que é dentro da [pasta `dist`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist) em vez do arquivo fullPage.js usual (`fullpage.js` ou `fullpage.min.js `).
 
@@ -416,9 +416,9 @@ Agora as âncoras podem ser definidas diretamente na estrutura HTML usando o atr
 **Importante** É útil entender que os valores no array de opções `anchors` se correlacionam diretamente com o elemento com a classe `.section` por sua posição na marcação.
 
 - `easing`: (padrão `easeInOutCubic`) Define o efeito de transição a ser usado para a rolagem vertical e horizontal.
-Requer o arquivo `vendors/easings.min.js` ou [jQuery UI](http://jqueryui.com/) para usar algumas de [suas transições](http://api.jqueryui.com/easings/) . Outras bibliotecas podem ser usadas em vez disso.
+Requer o arquivo `vendors/easings.min.js` ou [jQuery UI](https://jqueryui.com/) para usar algumas de [suas transições](https://api.jqueryui.com/easings/) . Outras bibliotecas podem ser usadas em vez disso.
 
-- `easingcss3`: (padrão `ease`) Define o efeito de transição a ser usado no caso de usar `css3:true`. Você pode usar os [predefinidos](http://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (como `linear`, `ease-out`...) ou criar seu próprios usando a função `cubic-bezier`. Você pode querer usar [Matthew Lein CSS Easing Animation Tool](http://matthewlein.com/ceaser/) para isso.
+- `easingcss3`: (padrão `ease`) Define o efeito de transição a ser usado no caso de usar `css3:true`. Você pode usar os [predefinidos](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (como `linear`, `ease-out`...) ou criar seu próprios usando a função `cubic-bezier`. Você pode querer usar [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) para isso.
 
 - `loopTop`: (padrão `false`) Define se a rolagem para cima na primeira seção deve rolar para a última ou não.
 
@@ -453,13 +453,13 @@ the fitting by the configured milliseconds.
 
 - `continuousVertical`: (padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira e se a rolagem para cima na primeira seção deve rolar para a última. Não compatível com `loopTop`, `loopBottom` ou qualquer barra de rolagem presente no site (`scrollBar:true` ou `autoScrolling:false`).
 
-- `continuousHorizontal`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se deslizar para a direita no último slide deve deslizar para a direita para o primeiro ou não, e se rolar para a esquerda no primeiro slide deve deslizar para a esquerda para o último ou não. Não compatível com `loopHorizontal`. Requer fullpage.js >= 3.0.1.
+- `continuousHorizontal`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deslizar para a direita no último slide deve deslizar para a direita para o primeiro ou não, e se rolar para a esquerda no primeiro slide deve deslizar para a esquerda para o último ou não. Não compatível com `loopHorizontal`. Requer fullpage.js >= 3.0.1.
 
-- `scrollHorizontally`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se desliza horizontalmente nos controles deslizantes usando a roda do mouse ou o trackpad. Ele só pode ser usado ao usar: `autoScrolling:true`. Ideal para contar histórias. Requer fullpage.js >= 3.0.1.
+- `scrollHorizontally`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se desliza horizontalmente nos controles deslizantes usando a roda do mouse ou o trackpad. Ele só pode ser usado ao usar: `autoScrolling:true`. Ideal para contar histórias. Requer fullpage.js >= 3.0.1.
 
-- `interlockedSlides`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Determina se mover um controle deslizante horizontal forçará o deslizamento dos controles deslizantes em outra seção na mesma direção. Os valores possíveis são `true`, `false` ou uma matriz com as seções interligadas. Por exemplo, `[1,3,5]` começando por 1. Requer fullpage.js >= 3.0.1.
+- `interlockedSlides`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Determina se mover um controle deslizante horizontal forçará o deslizamento dos controles deslizantes em outra seção na mesma direção. Os valores possíveis são `true`, `false` ou uma matriz com as seções interligadas. Por exemplo, `[1,3,5]` começando por 1. Requer fullpage.js >= 3.0.1.
 
-- `dragAndMove`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Ativa ou desativa o arrastar e deslizar de seções e slides usando o mouse ou os dedos. Requer fullpage.js >= 3.0.1. Os valores possíveis são:
+- `dragAndMove`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Ativa ou desativa o arrastar e deslizar de seções e slides usando o mouse ou os dedos. Requer fullpage.js >= 3.0.1. Os valores possíveis são:
   - `true`: habilita o recurso.
   - `false`: desativa o recurso.
   - `vertical`: habilita o recurso apenas verticalmente.
@@ -467,15 +467,15 @@ the fitting by the configured milliseconds.
   - `fingersonly`: habilita o recurso apenas para dispositivos de toque.
   - `mouseonly`: habilita o recurso apenas para dispositivos desktop (mouse e trackpad).
 
-- `offsetSections`: (padrão `false`)[Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Fornece uma maneira de usar seções que não sejam de tela cheia com base na porcentagem. Ideal para mostrar aos visitantes que há mais conteúdo no site, mostrando parte da seção seguinte ou anterior. Requer fullPage.js >= 3.0.1.
+- `offsetSections`: (padrão `false`)[Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Fornece uma maneira de usar seções que não sejam de tela cheia com base na porcentagem. Ideal para mostrar aos visitantes que há mais conteúdo no site, mostrando parte da seção seguinte ou anterior. Requer fullPage.js >= 3.0.1.
 Para definir a porcentagem de cada seção deve-se usar o atributo `data-percentage`. A centralização da seção na janela de visualização pode ser determinada usando um valor booleano no atributo `data-centered` (o padrão é `true` se não for especificado). Por exemplo:
 ``` html
     <div class="section" data-percentage="80" data-centered="true">
 ```
 
-- `resetSliders`: (padrão `false`). [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não redefinir cada controle deslizante após sair de sua seção. Requer fullpage.js >= 3.0.1.
+- `resetSliders`: (padrão `false`). [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não redefinir cada controle deslizante após sair de sua seção. Requer fullpage.js >= 3.0.1.
 
-- `fadingEffect`: (padrão `false`). [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se deve usar um efeito de desvanecimento ou não em vez do efeito de rolagem padrão. Os valores possíveis são `true`, `false`, `sections`, `slides`. Portanto, pode ser aplicado apenas verticalmente ou horizontalmente, ou em ambos ao mesmo tempo. Ele só pode ser usado ao usar: `autoScrolling:true`. Requer fullpage.js >= 3.0.1.
+- `fadingEffect`: (padrão `false`). [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve usar um efeito de desvanecimento ou não em vez do efeito de rolagem padrão. Os valores possíveis são `true`, `false`, `sections`, `slides`. Portanto, pode ser aplicado apenas verticalmente ou horizontalmente, ou em ambos ao mesmo tempo. Ele só pode ser usado ao usar: `autoScrolling:true`. Requer fullpage.js >= 3.0.1.
 
 - `animateAnchor`: (padrão `true`) Define se o carregamento do site quando dado uma âncora (#) rolará com a animação até seu destino ou será carregado diretamente na seção dada.
 
@@ -516,7 +516,7 @@ new fullpage('#fullpage', {
 
 - `scrollOverflow`: (padrão `true`) define se deve ou não criar um scroll para a seção/slide caso seu conteúdo seja maior que a altura do mesmo. Para evitar que fullpage.js crie a barra de rolagem em certas seções ou slides, use a classe `fp-noscroll`. Por exemplo: `<div class="section fp-noscroll">` Você também pode impedir que o scrolloverflow seja aplicado no modo responsivo ao usar `fp-auto-height-responsive` no elemento section.
 
-- `scrollOverflowReset`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Os valores possíveis são `true`, `false`, `sections`, `slides`. Quando definido como `true`, ele rola o conteúdo da seção/slide com uma barra de rolagem ao sair para outra seção/slide. Dessa forma, a seção/slide sempre mostrará o início de seu conteúdo, mesmo ao rolar de uma seção abaixo dela. Adicionar a classe `fp-no-scrollOverflowReset` na seção ou slide desativará esse recurso para esse painel específico.
+- `scrollOverflowReset`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Os valores possíveis são `true`, `false`, `sections`, `slides`. Quando definido como `true`, ele rola o conteúdo da seção/slide com uma barra de rolagem ao sair para outra seção/slide. Dessa forma, a seção/slide sempre mostrará o início de seu conteúdo, mesmo ao rolar de uma seção abaixo dela. Adicionar a classe `fp-no-scrollOverflowReset` na seção ou slide desativará esse recurso para esse painel específico.
 
 - `scrollOverflowMacStyle`: (padrão `false`). Quando ativa, esta opção usará um "estilo mac" para a barra de rolagem em vez do padrão, que será bem diferente em computadores Windows.
 
@@ -528,21 +528,21 @@ new fullpage('#fullpage', {
 
 - `responsiveHeight`: (padrão `0`) Um scroll normal (`autoScrolling:false`) será usado sob a altura definida em pixels. Uma classe `fp-responsive` é adicionada à tag body caso o usuário queira usá-la para seu próprio CSS responsivo. Por exemplo, se definido como 900, sempre que a altura do navegador for menor que 900, o plug-in rolará como um site normal.
 
-- `responsiveSlides`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Quando definido como "true", os slides serão transformados em seções verticais quando o modo responsivo for acionado. (usando as opções `responsiveWidth` ou `responsiveHeight` detalhadas acima). Requer fullpage.js >= 3.0.1.
+- `responsiveSlides`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Quando definido como "true", os slides serão transformados em seções verticais quando o modo responsivo for acionado. (usando as opções `responsiveWidth` ou `responsiveHeight` detalhadas acima). Requer fullpage.js >= 3.0.1.
 
-- `parallax`: (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar os efeitos de fundo de paralaxe em seções/slides. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+- `parallax`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar os efeitos de fundo de paralaxe em seções/slides. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
 - `parallaxOptions`: (padrão: `{ tipo: 'reveal', porcentagem: 62, propriedade: 'translate'}`). Permite configurar os parâmetros para o efeito de fundo de paralaxe ao usar a opção `parallax:true`. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
-- `dropEffect` (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito de soltar nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+- `dropEffect` (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito de soltar nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 - `dropEffectOptions`: (padrão: `{ velocidade: 2300, cor: '#F82F4D', zIndex: 9999}`). Permite configurar os parâmetros para o efeito de soltar ao usar a opção `dropEffect:true`.[Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `waterEffect` (padrão `false`) [Extensão de fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito água nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+- `waterEffect` (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito água nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 - `waterEffectOptions`: (padrão: `{ animateContent: true, animateOnMouseMove: true}`). Permite configurar os parâmetros para o efeito água ao usar a opção `waterEffect:true`.[Leia mais sobre como aplicar a opção efeito água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `cards`: (default `false`) [Extensões do fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+- `cards`: (default `false`) [Extensões do fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 - `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
@@ -553,7 +553,7 @@ new fullpage('#fullpage', {
 - `créditos`. (padrão `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada.
 
 ## Métodos
-Você pode vê-los em ação [aqui](http://alvarotrigo.com/fullPage/examples/methods.html)
+Você pode vê-los em ação [aqui](https://alvarotrigo.com/fullPage/examples/methods.html)
 
 ### getActiveSection()
 [Demonstração](https://codepen.io/alvarotrigo/pen/VdpzRN/) Obtém um objeto (tipo [Section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#callbacks)) contendo a seção ativa e suas propriedades.
@@ -578,19 +578,19 @@ fullpage_api.getScrollX();
 ```
 
 ### moveSectionUp()
-[Demonstração](http://codepen.io/alvarotrigo/pen/GJXNMN) Rola uma seção para cima:
+[Demonstração](https://codepen.io/alvarotrigo/pen/GJXNMN) Rola uma seção para cima:
 ```javascript
 fullpage_api.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
-[Demonstração](http://codepen.io/alvarotrigo/pen/jPvVZx) Rola uma seção para baixo:
+[Demonstração](https://codepen.io/alvarotrigo/pen/jPvVZx) Rola uma seção para baixo:
 ```javascript
 fullpage_api.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-[Demonstração](http://codepen.io/alvarotrigo/pen/doqOmY) Rola a página até a seção e o slide fornecidos. A primeira seção terá o índice 1 enquanto o primeiro slide, o visível por padrão, terá o índice 0.
+[Demonstração](https://codepen.io/alvarotrigo/pen/doqOmY) Rola a página até a seção e o slide fornecidos. A primeira seção terá o índice 1 enquanto o primeiro slide, o visível por padrão, terá o índice 0.
 ```javascript
 /*Rolando para a seção com o link âncora `firstSlide` e para o 2º Slide */
 fullpage_api.moveTo('firstSlide', 2);
@@ -606,7 +606,7 @@ fullpage_api.moveTo(3);
 ```
 ---
 ### silentMoveTo(section, slide)
-[Demonstração](http://codepen.io/alvarotrigo/pen/doqOeY)
+[Demonstração](https://codepen.io/alvarotrigo/pen/doqOeY)
 Exatamente igual ao [`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#movetosection-slide) mas neste caso ele realiza o scroll sem animação. Um salto direto para o destino.
 ```javascript
 /*Rolando para a seção com o link âncora `firstSlide` e para o 2º Slide */
@@ -614,21 +614,21 @@ fullpage_api.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
-[Demonstração](http://codepen.io/alvarotrigo/pen/Wvgoyz)
+[Demonstração](https://codepen.io/alvarotrigo/pen/Wvgoyz)
 Rola o controle deslizante horizontal da seção atual para o próximo slide:
 ```javascript
 fullpage_api.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
-[Demonstração](http://codepen.io/alvarotrigo/pen/gpdLjW)
+[Demonstração](https://codepen.io/alvarotrigo/pen/gpdLjW)
 Rola o controle deslizante horizontal da seção atual para o slide anterior:
 ```javascript
 fullpage_api.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
-[Demonstração](http://codepen.io/alvarotrigo/pen/rVZWrR) Define a configuração de rolagem em tempo real.
+[Demonstração](https://codepen.io/alvarotrigo/pen/rVZWrR) Define a configuração de rolagem em tempo real.
 Define a forma como a rolagem da página se comporta. Se estiver definido como `true`, usará a rolagem "automática", caso contrário, usará a rolagem "manual" ou "normal" do site.
 
 ```javascript
@@ -636,7 +636,7 @@ fullpage_api.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
-[Demonstração](http://codepen.io/alvarotrigo/pen/GJXNYm)
+[Demonstração](https://codepen.io/alvarotrigo/pen/GJXNYm)
 Define o valor para a opção `fitToSection` determinando se cabe ou não a seção na tela.
 
 ```javascript
@@ -644,7 +644,7 @@ fullpage_api.setFitToSection(false);
 ```
 ---
 ### fitToSection()
-[Demonstração](http://codepen.io/alvarotrigo/pen/JWWagj)
+[Demonstração](https://codepen.io/alvarotrigo/pen/JWWagj)
 Rola para a seção ativa mais próxima, ajustando-a na viewport.
 
 ```javascript
@@ -652,7 +652,7 @@ fullpage_api.fitToSection();
 ```
 ---
 ### setLockAnchors(boolean)
-[Demonstração](http://codepen.io/alvarotrigo/pen/yNxVRQ)
+[Demonstração](https://codepen.io/alvarotrigo/pen/yNxVRQ)
 Define o valor para a opção `lockAnchors` determinando se as âncoras terão algum efeito na URL ou não.
 
 ```javascript
@@ -660,7 +660,7 @@ fullpage_api.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-[Demonstração](http://codepen.io/alvarotrigo/pen/EjeNdq) Adiciona ou remove a possibilidade de rolar pelas seções/slides usando a roda do mouse/trackpad ou gestos de toque (que está ativo por padrão). Observe que isso não desativará a rolagem do teclado. Você precisaria usar `setKeyboardScrolling` para isso.
+[Demonstração](https://codepen.io/alvarotrigo/pen/EjeNdq) Adiciona ou remove a possibilidade de rolar pelas seções/slides usando a roda do mouse/trackpad ou gestos de toque (que está ativo por padrão). Observe que isso não desativará a rolagem do teclado. Você precisaria usar `setKeyboardScrolling` para isso.
 
 - `directions`: (parâmetro opcional) Valores admitidos: `all`, `up`, `down`, `left`, `right` ou uma combinação deles separados por vírgulas como `down, right`. Define a direção para a qual a rolagem será habilitada ou desabilitada.
 
@@ -677,7 +677,7 @@ fullpage_api.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
-[Demonstração](http://codepen.io/alvarotrigo/pen/GJXNwm) Adiciona ou remove a possibilidade de rolar pelas seções usando o teclado (que está ativo por padrão).
+[Demonstração](https://codepen.io/alvarotrigo/pen/GJXNwm) Adiciona ou remove a possibilidade de rolar pelas seções usando o teclado (que está ativo por padrão).
 
 - `directions`: (parâmetro opcional) Valores admitidos: `all`, `up`, `down`, `left`, `right` ou uma combinação deles separados por vírgulas como `down, right`. Ele define a direção para a qual a rolagem será habilitada ou desabilitada.
 
@@ -693,21 +693,21 @@ fullpage_api.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
-[Demonstração](http://codepen.io/alvarotrigo/pen/rVZWQb) Define se deve registrar o histórico para cada alteração de hash na URL.
+[Demonstração](https://codepen.io/alvarotrigo/pen/rVZWQb) Define se deve registrar o histórico para cada alteração de hash na URL.
 
 ```javascript
 fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[Demonstração](http://codepen.io/alvarotrigo/pen/NqLbeY) Define a velocidade de rolagem em milissegundos.
+[Demonstração](https://codepen.io/alvarotrigo/pen/NqLbeY) Define a velocidade de rolagem em milissegundos.
 
 ```javascript
 fullpage_api.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-[Demonstração](http://codepen.io/alvarotrigo/pen/bdxBzv) Destrói os eventos do plug-in e, opcionalmente, sua marcação e estilos HTML.
+[Demonstração](https://codepen.io/alvarotrigo/pen/bdxBzv) Destrói os eventos do plug-in e, opcionalmente, sua marcação e estilos HTML.
 Ideal para usar ao usar AJAX para carregar conteúdo.
 
 - `type`: (parâmetro opcional) pode ser vazio ou `all`. Se `all` for passado, a marcação HTML e os estilos usados por fullpage.js serão removidos. Desta forma, a marcação HTML original, aquela usada antes de qualquer modificação do plugin, será mantida.
@@ -729,13 +729,13 @@ fullpage_api.reBuild();
 ```
 ---
 ### setResponsive(boolean)
-[Demonstração](http://codepen.io/alvarotrigo/pen/WxOyLA) Define o modo responsivo da página. Quando definido como `true`, o autoScrolling será desativado e o resultado será exatamente o mesmo de quando as opções `responsiveWidth` ou `responsiveHeight` forem acionadas.
+[Demonstração](https://codepen.io/alvarotrigo/pen/WxOyLA) Define o modo responsivo da página. Quando definido como `true`, o autoScrolling será desativado e o resultado será exatamente o mesmo de quando as opções `responsiveWidth` ou `responsiveHeight` forem acionadas.
 ```javascript
 fullpage_api.setResponsive(true);
 ```
 ---
 ### responsiveSlides.toSections()
-[Extensões do fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Requer fullpage.js >= 3.0.1.
+[Extensões do fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Requer fullpage.js >= 3.0.1.
 Transforma slides horizontais em seções verticais.
 
 ```javascript
@@ -743,7 +743,7 @@ fullpage_api.responsiveSlides.toSections();
 ```
 ---
 ### responsiveSlides.toSlides()
-[Extensões do fullpage.js](http://alvarotrigo.com/fullPage/extensions/br/). Requer fullpage.js >= 3.0.1.
+[Extensões do fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Requer fullpage.js >= 3.0.1.
 Volta os slides originais (agora convertidos em seções verticais) em slides horizontais novamente.
 
 ```javascript
@@ -751,7 +751,7 @@ fullpage_api.responsiveSlides.toSlides();
 ```
 
 ## Callbacks
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Você pode vê-los em ação [aqui](http://alvarotrigo.com/fullPage/examples/callbacks.html).
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Você pode vê-los em ação [aqui](https://alvarotrigo.com/fullPage/examples/callbacks.html).
 
 Alguns retornos de chamada, como `onLeave`, conterão parâmetros do tipo Object contendo as seguintes propriedades:
 
@@ -762,7 +762,7 @@ Alguns retornos de chamada, como `onLeave`, conterão parâmetros do tipo Object
 - `isLast`: *(Boolean)* determina se o item é o último filho.
 
 ### afterLoad (`origin`, `destination`, `direction`, `trigger`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Callback acionado após o carregamento das seções, após o término da rolagem.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Callback acionado após o carregamento das seções, após o término da rolagem.
 Parâmetros:
 
 - `origin`: *(Object)* seção de origem.
@@ -794,7 +794,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onLeave (`origin`, `destination`, `direction`, `trigger`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado quando o usuário sai de uma seção, na transição para a nova seção.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado quando o usuário sai de uma seção, na transição para a nova seção.
 Retornar `false` cancelará a movimentação antes que ela ocorra.
 
 Parâmetros:
@@ -826,7 +826,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado imediatamente **antes** de sair da seção, pouco antes da transição.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado imediatamente **antes** de sair da seção, pouco antes da transição.
 
 Você pode usar esse retorno de chamada para impedir e cancelar a rolagem antes que ela ocorra retornando `false`.
 
@@ -854,7 +854,7 @@ new fullpage('#fullpage', {
 
 ---
 ### afterRender()
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado logo após a geração da estrutura da página. Este é o retorno de chamada que você deseja usar para inicializar outros plugins ou disparar qualquer código que exija que o documento esteja pronto (já que este plugin modifica o DOM para criar a estrutura resultante). Consulte [Perguntas Frequentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) para obter mais informações.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado logo após a geração da estrutura da página. Este é o retorno de chamada que você deseja usar para inicializar outros plugins ou disparar qualquer código que exija que o documento esteja pronto (já que este plugin modifica o DOM para criar a estrutura resultante). Consulte [Perguntas Frequentes](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions) para obter mais informações.
 
 Example:
 
@@ -868,7 +868,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Este retorno de chamada é acionado após o redimensionamento da janela do navegador. Logo após as seções serem redimensionadas.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Este retorno de chamada é acionado após o redimensionamento da janela do navegador. Logo após as seções serem redimensionadas.
 
 Parâmetros:
 
@@ -887,7 +887,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Este retorno de chamada é acionado após a reconstrução manual de fullpage.js chamando `fullpage_api.reBuild()`.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Este retorno de chamada é acionado após a reconstrução manual de fullpage.js chamando `fullpage_api.reBuild()`.
 
 Exemplo:
 
@@ -900,7 +900,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado depois que fullpage.js muda do modo normal para o modo responsivo ou do modo responsivo para o modo normal.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado depois que fullpage.js muda do modo normal para o modo responsivo ou do modo responsivo para o modo normal.
 
 Parâmetros:
 
@@ -917,7 +917,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) O retorno de chamada é acionado quando o slide de uma seção é carregado, após o término da rolagem.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) O retorno de chamada é acionado quando o slide de uma seção é carregado, após o término da rolagem.
 
 Parâmetros:
 
@@ -952,7 +952,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado quando o usuário sai de um slide para ir para outro, na transição para o novo slide.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Esse retorno de chamada é acionado quando o usuário sai de um slide para ir para outro, na transição para o novo slide.
 Retornar `false` cancelará a movimentação antes que ela ocorra.
 
 Parâmetros:
@@ -989,7 +989,7 @@ Você pode cancelar um movimento retornando `false` no retorno de chamada `onSli
 
 ---
 ### onScrollOverflow (`section`, `slide`, `position`, `direction`)
-[Demonstração](http://codepen.io/alvarotrigo/pen/XbPNQv) Este retorno de chamada é disparado quando uma rolagem dentro de uma seção rolável ao usar a opção fullPage.js `scrollOverflow: true`.
+[Demonstração](https://codepen.io/alvarotrigo/pen/XbPNQv) Este retorno de chamada é disparado quando uma rolagem dentro de uma seção rolável ao usar a opção fullPage.js `scrollOverflow: true`.
 
 Parâmetros:
 
@@ -1013,7 +1013,7 @@ new fullpage('#fullpage', {
 1. Por favor, procure seu problema antes de perguntar usando a pesquisa de Issues do github.
 2. Certifique-se de usar a versão mais recente do fullpage.js. Nenhum suporte é fornecido para versões mais antigas.
 3. Use o [fórum de Issues do Github](https://github.com/alvarotrigo/fullPage.js/issues) para criar Issues.
-4. **Será necessária uma reprodução isolada da edição.** Use o [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) ou [codepen](http://codepen.io/alvarotrigo /pen/NxyPPp) para isso, se possível.
+4. **Será necessária uma reprodução isolada da edição.** Use o [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) ou [codepen](https://codepen.io/alvarotrigo /pen/NxyPPp) para isso, se possível.
 
 # Contribuindo para fullpage.js
 Consulte [Contribuindo para o fullpage.js](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
@@ -1030,7 +1030,7 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 - [Componente wrapper Oificial para Vue.js](https://github.com/alvarotrigo/vue-fullpage.js)
 - [Componente wrapper Oificial para React.js ](https://github.com/alvarotrigo/react-fullpage)
 - [Angular Componente wrapper Oificial para Angular](https://github.com/alvarotrigo/angular-fullpage)
-- [CSS Easing Animation Tool - Matthew Lein](http://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
+- [CSS Easing Animation Tool - Matthew Lein](https://matthewlein.com/ceaser/) (useful to define the `easingcss3` value)
 - [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
 - [fullPage.js plugin for October CMS](https://github.com/freestream/oc-parallax-plugin)
 - [fullPage.js Angular2 directive](https://github.com/meiblorn/ng2-fullpage)
@@ -1038,7 +1038,7 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 - [fullPage.js ember-cli addon](https://www.npmjs.com/package/ember-cli-fullpagejs)
 - [fullPage.js Rails Ruby Gem](https://rubygems.org/gems/fullpagejs-rails)
 - [Angular fullPage.js - Adaptation for Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
-- [Integrating fullPage.js with Wordpress (Tutorial)](http://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
+- [Integrating fullPage.js with Wordpress (Tutorial)](https://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
 - [Wordpress Plugin for Divi](https://alvarotrigo.com/fullPage/wordpress-plugin-divi/)
 - [Wordpress Plugin for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 
@@ -1068,14 +1068,11 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://thekorner.fr/
 - http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-- http://ded-morozz.kiev.ua/
 
 ## Doações
 Doações serão mais que bem-vindas :)
@@ -1086,7 +1083,7 @@ Doações serão mais que bem-vindas :)
 Torne-se um patrocinador e obtenha seu logotipo em nosso README no Github com um link para seu site. [[Seja um patrocinador](https://alvarotrigo.com/#contact)] | [[Torne-se um patreon]](https://www.patreon.com/fullpagejs)
 
 [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](https://www.browserstack.com/)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 [![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 

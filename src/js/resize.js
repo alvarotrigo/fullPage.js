@@ -12,6 +12,7 @@ import {
 } from './common/selectors.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { silentMoveTo } from './scroll/silentMove.js';
+import { events } from './common/events.js';
 
 let previousHeight = utils.getWindowHeight();
 let windowsWidth = utils.getWindowWidth();
@@ -20,7 +21,7 @@ let g_isConsecutiveResize = false;
 let g_resizeMobileHandlerId;
 FP.reBuild = reBuild;
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
 
@@ -29,7 +30,7 @@ function bindEvents(){
 
     //when resizing the site, we adjust the heights of the sections, slimScroll...
     utils.windowAddEvent('resize', resizeHandler);
-    EventEmitter.on('onDestroy', onDestroy);
+    EventEmitter.on(events.onDestroy, onDestroy);
 }
 
 function onDestroy(){
@@ -105,7 +106,7 @@ function resizeActions(){
         setVhUnits();
     }
 
-    EventEmitter.emit('contentChanged');
+    EventEmitter.emit(events.contentChanged);
     updateState();
 
     //checking if it needs to get responsive

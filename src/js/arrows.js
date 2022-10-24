@@ -13,8 +13,9 @@ import {
 import { getIsScrollAllowed } from './common/isScrollAllowed.js';
 import { setState } from './common/state.js';
 import { EventEmitter } from './common/eventEmitter.js';
+import { events } from './common/events.js';
 
-EventEmitter.on('onClickOrTouch', onClickOrTouch);
+EventEmitter.on(events.onClickOrTouch, onClickOrTouch);
 
 function onClickOrTouch(params){
     var target = params.target;
@@ -33,12 +34,12 @@ function slideArrowHandler(){
     if (utils.hasClass(this, SLIDES_PREV)) {
         if(getIsScrollAllowed().m.left){
             setState({scrollTrigger: 'slideArrow'});
-            EventEmitter.emit('moveSlideLeft', {section: section});
+            EventEmitter.emit(events.moveSlideLeft, {section: section});
         }
     } else {
         if(getIsScrollAllowed().m.right){
             setState({scrollTrigger: 'slideArrow'});
-            EventEmitter.emit('moveSlideRight', {section: section});
+            EventEmitter.emit(events.moveSlideRight, {section: section});
         }
     }
 }

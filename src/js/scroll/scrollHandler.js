@@ -16,12 +16,13 @@ import { fireCallbackOncePerScroll } from '../callbacks/fireCallbacksOncePerScro
 import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { fitToSection } from '../fitToSection.js';
+import { events } from '../common/events.js';
 
 var lastScroll = 0;
 let g_scrollId;
 let g_scrollId2;
 
-EventEmitter.on('onDestroy', onDestroy);
+EventEmitter.on(events.onDestroy, onDestroy);
 
 //when scrolling...
 export function scrollHandler(e){

@@ -3,10 +3,11 @@ import { setMouseHijack } from './mouse/wheel.js';
 import { getOptions } from './common/options.js';
 import { FP } from './common/constants.js';
 import { EventEmitter } from './common/eventEmitter.js';
+import { events } from './common/events.js';
 
 let g_canFireMouseEnterNormalScroll = true;
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
     /**
@@ -23,7 +24,7 @@ function bindEvents(){
         });
     }
 
-    EventEmitter.on('onDestroy', onDestroy);
+    EventEmitter.on(events.onDestroy, onDestroy);
 }
 
 function onDestroy(){

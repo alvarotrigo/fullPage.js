@@ -4,15 +4,16 @@ import { state } from '../common/state.js';
 import { FP } from '../common/constants.js';
 import { getAnchorsURL } from '../anchors/getAnchorsURL.js';
 import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 
 FP.setLockAnchors = setLockAnchors;
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
     //detecting any change on the URL to scroll to the given anchor link
     //(a way to detect back history button as we play with the hashes on the URL)
     utils.windowAddEvent('hashchange', hashChangeHandler);
-    EventEmitter.on('onDestroy', onDestroy);
+    EventEmitter.on(events.onDestroy, onDestroy);
 }
 
 
@@ -48,7 +49,7 @@ function hashChangeHandler(){
             if ((sectionAnchor && sectionAnchor !== state.lastScrolledDestiny) && !isFirstSlideMove || 
                 isFirstScrollMove || 
                 (!state.slideMoving && state.lastScrolledSlide != slideAnchor )){
-                    EventEmitter.emit('onScrollPageAndSlide', {
+                    EventEmitter.emit(events.onScrollPageAndSlide, {
                         sectionAnchor: sectionAnchor,
                         slideAnchor: slideAnchor
                     });

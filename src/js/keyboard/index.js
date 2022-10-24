@@ -18,12 +18,13 @@ import { EventEmitter } from '../common/eventEmitter.js';
 import { moveSectionUp } from '../scroll/moveSectionUp.js';
 import { moveSectionDown } from '../scroll/moveSectionDown.js';
 import { moveTo } from '../scroll/moveTo.js';
+import { events } from '../common/events.js';
 
 let g_controlPressed;
 let g_keydownId;
 let g_elToFocus;
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
     //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
@@ -35,10 +36,10 @@ function bindEvents(){
     //to prevent scrolling while zooming
     utils.docAddEvent('keyup', keyUpHandler);
 
-    EventEmitter.on('onDestroy', onDestroy);
+    EventEmitter.on(events.onDestroy, onDestroy);
 
-    EventEmitter.on('afterSlideLoads', onAfterSlideLoads);
-    EventEmitter.on('afterSectionLoads', afterSectionLoads);
+    EventEmitter.on(events.afterSlideLoads, onAfterSlideLoads);
+    EventEmitter.on(events.afterSectionLoads, afterSectionLoads);
 }
 
 
@@ -112,7 +113,7 @@ function onkeydown(e){
         case 33:
             if(getIsScrollAllowed().k.up && isScrolled.up){
                 if( state.isBeyondFullpage ){
-                    EventEmitter.emit('onKeyDown', {e: e});
+                    EventEmitter.emit(events.onKeyDown, {e: e});
                 }else{
                     moveSectionUp();
                 }
@@ -238,7 +239,7 @@ function onTab(e){
         if(destinationPanel){
             var destinationSection = destinationPanel.isSection ? destinationPanel : destinationPanel.parent;
 
-            EventEmitter.emit('onScrollPageAndSlide', {
+            EventEmitter.emit(events.onScrollPageAndSlide, {
                 sectionAnchor: destinationSection.index() + 1,
                 slideAnchor: destinationPanel.isSection ? 0 : destinationPanel.index()
             });

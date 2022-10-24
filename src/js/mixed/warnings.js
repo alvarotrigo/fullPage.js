@@ -1,8 +1,9 @@
 import { doc } from '../common/constants.js';
 import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 import { state } from '../common/state.js';
 
-EventEmitter.on('bindEvents', showLicenseWarning);
+EventEmitter.on(events.bindEvents, showLicenseWarning);
 
 function showLicenseWarning(){
     const waterMark = `

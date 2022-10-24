@@ -1,8 +1,9 @@
 import * as utils from './common/utils.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { setState } from './common/state.js';
+import { events } from './common/events.js';
 
-EventEmitter.on('bindEvents', bindEvents);
+EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
 
@@ -18,11 +19,11 @@ function bindEvents(){
 }
 
 function internalEvents(){
-    EventEmitter.on('onDestroy', onDestroy); 
+    EventEmitter.on(events.onDestroy, onDestroy); 
 }
 
 function delegatedEvents(e){
-    EventEmitter.emit('onClickOrTouch', {e: e, target: e.target});
+    EventEmitter.emit(events.onClickOrTouch, {e: e, target: e.target});
 }
 
 function onDestroy(){

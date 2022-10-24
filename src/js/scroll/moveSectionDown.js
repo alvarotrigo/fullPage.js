@@ -4,6 +4,7 @@ import { EventEmitter } from '../common/eventEmitter.js';
 import { FP } from '../common/constants';
 import { $body } from "../common/cache.js";
 import { scrollPage } from "./scrollPage.js";
+import { events } from "../common/events.js";
 
 FP.moveSectionDown = moveSectionDown;
 
@@ -23,7 +24,7 @@ export function moveSectionDown(){
         scrollPage(next, null, false);
     }
     else if(hasContentBeyondFullPage()){
-        EventEmitter.emit('scrollBeyondFullpage');
+        EventEmitter.emit(events.scrollBeyondFullpage);
     }
 }
 

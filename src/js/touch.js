@@ -11,13 +11,14 @@ import {
 import { EventEmitter } from './common/eventEmitter.js';
 import { scrolling } from './scroll/scrolling.js';
 import { scrollOverflowHandler } from './scrolloverflow.js';
+import { events } from './common/events.js';
 
 let touchStartY = 0;
 let touchStartX = 0;
 let touchEndY = 0;
 let touchEndX = 0;
 const MSPointer = getMSPointer();
-const events = {
+const pointers = {
     touchmove: 'ontouchmove' in window ? 'touchmove' :  MSPointer ? MSPointer.move : null,
     touchstart: 'ontouchstart' in window ? 'touchstart' :  MSPointer ? MSPointer.down : null
 };
@@ -26,21 +27,21 @@ const events = {
 * Adds the possibility to auto scroll through sections on touch devices.
 */
 export function addTouchHandler(){
-    if(!events.touchmove){
+    if(!pointers.touchmove){
         return;
     }
     if(isTouchDevice || isTouch){
         if(getOptions().autoScrolling){
-            $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
-            $body.addEventListener(events.touchmove, preventBouncing, {passive: false});
+            $body.removeEventListener(pointers.touchmove, preventBouncing, {passive: false});
+            $body.addEventListener(pointers.touchmove, preventBouncing, {passive: false});
         }
 
         var touchWrapper = getOptions().touchWrapper;
-        touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+        touchWrapper.removeEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.removeEventListener(pointers.touchmove, touchMoveHandler, {passive: false});
 
-        touchWrapper.addEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.addEventListener(events.touchmove, touchMoveHandler, {passive: false});
+        touchWrapper.addEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.addEventListener(pointers.touchmove, touchMoveHandler, {passive: false});
     }
 }
 
@@ -49,19 +50,19 @@ export function addTouchHandler(){
 * Removes the auto scrolling for touch devices.
 */
 export function removeTouchHandler(){
-    if(!events.touchmove){
+    if(!pointers.touchmove){
         return;
     }
     if(isTouchDevice || isTouch){
         // normalScrollElements requires it off #2691
         if(getOptions().autoScrolling){
-            $body.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
-            $body.removeEventListener(events.touchmove, preventBouncing, {passive: false});
+            $body.removeEventListener(pointers.touchmove, touchMoveHandler, {passive: false});
+            $body.removeEventListener(pointers.touchmove, preventBouncing, {passive: false});
         }
 
         var touchWrapper = getOptions().touchWrapper;
-        touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {passive: false});
+        touchWrapper.removeEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.removeEventListener(pointers.touchmove, touchMoveHandler, {passive: false});
     }
 }
 
@@ -83,7 +84,7 @@ function touchMoveHandler(e){
         });
 
         if(getOptions().autoScrolling){
-            if(!hasActiveSectionOverflow || (hasActiveSectionOverflow && !state.canScroll)){
+            if(hasActiveSectionOverflow && !state.canScroll){
 
                 //preventing the easing on iOS devices
                 utils.preventDefault(e);
@@ -111,11 +112,11 @@ function touchMoveHandler(e){
             if (!state.slideMoving && isHorizontalMovementEnough) {
                 if (touchStartX > touchEndX) {
                     if(getIsScrollAllowed().m.right){
-                        EventEmitter.emit('moveSlideRight', {section: activeSection});
+                        EventEmitter.emit(events.moveSlideRight, {section: activeSection});
                     }
                 } else {
                     if(getIsScrollAllowed().m.left){
-                        EventEmitter.emit('moveSlideLeft', {section: activeSection});
+                        EventEmitter.emit(events.moveSlideLeft, {section: activeSection});
                     }
                 }
             }

@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.11
+ * fullPage 4.0.12
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -46,11 +46,6 @@ html.fp-enabled,
     justify-content: center;
     width: 100%;
 }
-/* .fp-table::before , 
-.fp-table::after {
-      content:'';
-      flex:1;
-} */
 .fp-slidesContainer {
     float: left;
     position: relative;
@@ -88,16 +83,6 @@ html.fp-enabled,
     border-width: 38.5px 0 38.5px 34px;
     border-color: transparent transparent transparent #fff;
 }
-/* .fp-scrollable {
-    overflow: hidden;
-    position: relative;
-} */
-/* .fp-scroller{
-    overflow: hidden;
-} */
-/* .iScrollIndicator{
-    border: 0 !important;
-} */
 .fp-notransition {
     -webkit-transition: none !important;
     transition: none !important;
@@ -222,6 +207,7 @@ html.fp-enabled,
 .fp-auto-height.fp-section,
 .fp-auto-height .fp-slide{
     height: auto !important;
+    min-height: auto !important;
 }
 
 .fp-responsive .fp-is-overflow.fp-section{
@@ -234,9 +220,15 @@ html.fp-enabled,
 .fp-scrollable .fp-slide{
    /* Fallback for browsers that do not support Custom Properties */
    height: 100vh;
-   min-height: 100vh;
    height: calc(var(--vh, 1vh) * 100);
-   min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.fp-scrollable.fp-responsive .fp-is-overflow.fp-section:not(.fp-auto-height),
+.fp-scrollable .fp-section:not(.fp-auto-height),
+.fp-scrollable .fp-slide:not(.fp-auto-height){
+    /* Fallback for browsers that do not support Custom Properties */
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Disabling vertical centering on scrollable elements */
@@ -261,6 +253,7 @@ html.fp-enabled,
 .fp-responsive .fp-auto-height-responsive.fp-section,
 .fp-responsive .fp-auto-height-responsive .fp-slide{
     height: auto !important;
+    min-height: auto !important;
 }
 
 /*Only display content to screen readers*/

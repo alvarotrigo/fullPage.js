@@ -14,6 +14,7 @@ import { afterRenderActions } from './dom/afterRenderActions.js';
 import { setAllowScrolling } from './scroll/setAllowScrolling.js';
 import { scrollToAnchor } from './scroll/scrollToAnchor.js';
 import { destroyStructure } from './dom/destroyStructure.js';
+import { events } from './common/events.js';
 
 FP.destroy = destroy;
 
@@ -55,7 +56,7 @@ export function destroy(all){
     setKeyboardScrolling(false);
     utils.addClass(getContainer(), DESTROYED);
 
-    EventEmitter.emit('onDestroy');
+    EventEmitter.emit(events.onDestroy);
 
     //lets make a mess!
     if(all){

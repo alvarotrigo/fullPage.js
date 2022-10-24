@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.11
+* fullPage 4.0.12
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -981,7 +981,29 @@
       return state.activeSection && state.activeSection.activeSlide ? state.activeSection.activeSlide : state.activeSection;
     }
 
-    EventEmitter.on('bindEvents', bindEvents$c);
+    var events = {
+      onAfterRenderNoAnchor: 'onAfterRenderNoAnchor',
+      onClickOrTouch: 'onClickOrTouch',
+      moveSlideLeft: 'moveSlideLeft',
+      moveSlideRight: 'moveSlideRight',
+      onInitialise: 'onInitialise',
+      beforeInit: 'beforeInit',
+      bindEvents: 'bindEvents',
+      onDestroy: 'onDestroy',
+      contentChanged: 'contentChanged',
+      onScrollOverflowScrolled: 'onScrollOverflowScrolled',
+      onScrollPageAndSlide: 'onScrollPageAndSlide',
+      onKeyDown: 'onKeyDown',
+      onMenuClick: 'onMenuClick',
+      scrollPage: 'scrollPage',
+      landscapeScroll: 'landscapeScroll',
+      scrollBeyondFullpage: 'scrollBeyondFullpage',
+      onPerformMovement: 'onPerformMovement',
+      afterSectionLoads: 'afterSectionLoads',
+      afterSlideLoads: 'afterSlideLoads'
+    };
+
+    EventEmitter.on(events.bindEvents, bindEvents$c);
 
     function bindEvents$c() {
       //Scrolls to the section when clicking the navigation bullet
@@ -994,11 +1016,11 @@
     }
 
     function internalEvents() {
-      EventEmitter.on('onDestroy', onDestroy$8);
+      EventEmitter.on(events.onDestroy, onDestroy$8);
     }
 
     function delegatedEvents(e) {
-      EventEmitter.emit('onClickOrTouch', {
+      EventEmitter.emit(events.onClickOrTouch, {
         e: e,
         target: e.target
       });
@@ -1911,7 +1933,7 @@
       var slides = $(SLIDES_WRAPPER_SEL, closest(this, SECTION_SEL))[0];
       var section = getPanelByElement(getState().sections, sectionElem);
       var destiny = section.slides[index(closest(this, 'li'))];
-      EventEmitter.emit('landscapeScroll', {
+      EventEmitter.emit(events.landscapeScroll, {
         slides: slides,
         destination: destiny.item
       });
@@ -1979,7 +2001,7 @@
       return isScrollAllowed;
     }
 
-    EventEmitter.on('onClickOrTouch', onClickOrTouch$2);
+    EventEmitter.on(events.onClickOrTouch, onClickOrTouch$2);
 
     function onClickOrTouch$2(params) {
       var target = params.target;
@@ -2000,7 +2022,7 @@
           setState({
             scrollTrigger: 'slideArrow'
           });
-          EventEmitter.emit('moveSlideLeft', {
+          EventEmitter.emit(events.moveSlideLeft, {
             section: section
           });
         }
@@ -2009,7 +2031,7 @@
           setState({
             scrollTrigger: 'slideArrow'
           });
-          EventEmitter.emit('moveSlideRight', {
+          EventEmitter.emit(events.moveSlideRight, {
             section: section
           });
         }
@@ -2052,14 +2074,17 @@
 
     var g_afterSlideLoadsId;
     FP.landscapeScroll = landscapeScroll;
-    EventEmitter.on('bindEvents', bindEvents$b);
+    EventEmitter.on(events.bindEvents, bindEvents$b);
 
     function bindEvents$b() {
-      EventEmitter.on('onPerformMovement', onPerformMovement);
+      EventEmitter.on(events.onPerformMovement, onPerformMovement);
     }
 
     function onPerformMovement() {
       clearTimeout(g_afterSlideLoadsId);
+      setState({
+        slideMoving: false
+      });
     }
     /**
     * Scrolls horizontal sliders.
@@ -2206,7 +2231,7 @@
           canScroll: true
         });
         playMedia(v.destiny);
-        EventEmitter.emit('afterSlideLoads', v);
+        EventEmitter.emit(events.afterSlideLoads, v);
       } //letting them slide again
 
 
@@ -2502,7 +2527,7 @@
       // @ts-ignore
 
       var indexBullet = index(closest(this, SECTION_NAV_SEL + ' li'));
-      EventEmitter.emit('scrollPage', {
+      EventEmitter.emit(events.scrollPage, {
         destination: getState().sections[indexBullet]
       });
     }
@@ -2579,7 +2604,7 @@
 
     var g_afterSectionLoadsId;
     var g_transitionLapseId;
-    EventEmitter.on('onDestroy', onDestroy$6);
+    EventEmitter.on(events.onDestroy, onDestroy$6);
     /**
     * Scrolls the site to the given element and scrolls to the slide if a callback is given.
     */
@@ -2734,7 +2759,7 @@
         touchDirection: 'none',
         scrollY: Math.round(v.dtop)
       });
-      EventEmitter.emit('onPerformMovement'); // using CSS3 translate functionality
+      EventEmitter.emit(events.onPerformMovement); // using CSS3 translate functionality
 
       if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
         // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
@@ -2818,7 +2843,7 @@
       setState({
         canScroll: true
       });
-      EventEmitter.emit('afterSectionLoads', v);
+      EventEmitter.emit(events.afterSectionLoads, v);
 
       if (isFunction(v.callback)) {
         v.callback();
@@ -2992,16 +3017,20 @@
       return panel.isSection ? panel : panel.parent;
     }
 
-    EventEmitter.on('bindEvents', bindEvents$a);
+    EventEmitter.on(events.bindEvents, bindEvents$a);
 
     function bindEvents$a() {
-      //after DOM and images are loaded
-      win.addEventListener('load', function () {
-        if (getOptions().scrollOverflow && !getOptions().scrollBar) {
-          scrollOverflowHandler.makeScrollable();
-          scrollOverflowHandler.afterSectionLoads();
-        }
-      });
+      // We can't focus scrollOverflow before scrolling
+      // to the anchor (if we need to)
+      EventEmitter.on(events.onAfterRenderNoAnchor, afterRender);
+      EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterSectionLoads);
+    }
+
+    function afterRender() {
+      if (getOptions().scrollOverflow && !getOptions().scrollBar) {
+        scrollOverflowHandler.makeScrollable();
+        scrollOverflowHandler.afterSectionLoads();
+      }
     }
 
     var scrollOverflowHandler = {
@@ -3015,7 +3044,11 @@
         }
       },
       afterSectionLoads: function afterSectionLoads() {
-        // Unfocusing the scrollable element from the orgin section/slide
+        if (!getOptions().scrollOverflow) {
+          return;
+        } // Unfocusing the scrollable element from the orgin section/slide
+
+
         if (doc.activeElement === this.focusedElem) {
           // @ts-ignore
           this.focusedElem.blur();
@@ -3152,7 +3185,7 @@
 
           if (hasClass(e.target, OVERFLOW) && state.canScroll) {
             if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
-              EventEmitter.emit('onScrollOverflowScrolled', {
+              EventEmitter.emit(events.onScrollOverflowScrolled, {
                 direction: direction
               });
             }
@@ -3399,7 +3432,7 @@
       childList: true,
       characterData: true
     };
-    EventEmitter.on('bindEvents', bindEvents$9);
+    EventEmitter.on(events.bindEvents, bindEvents$9);
     FP.render = onContentChange;
 
     function bindEvents$9() {
@@ -3407,7 +3440,7 @@
         g_wrapperObserver = createObserver($(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
       }
 
-      EventEmitter.on('contentChanged', onContentChange);
+      EventEmitter.on(events.contentChanged, onContentChange);
     }
     /**
      * Creates a Mutation observer.
@@ -3685,7 +3718,7 @@
       if (next != null) {
         scrollPage(next, null, false);
       } else if (hasContentBeyondFullPage()) {
-        EventEmitter.emit('scrollBeyondFullpage');
+        EventEmitter.emit(events.scrollBeyondFullpage);
       }
     }
 
@@ -3764,7 +3797,7 @@
     var touchEndY = 0;
     var touchEndX = 0;
     var MSPointer = getMSPointer();
-    var events = {
+    var pointers = {
       touchmove: 'ontouchmove' in window ? 'touchmove' : MSPointer ? MSPointer.move : null,
       touchstart: 'ontouchstart' in window ? 'touchstart' : MSPointer ? MSPointer.down : null
     };
@@ -3773,27 +3806,27 @@
     */
 
     function addTouchHandler() {
-      if (!events.touchmove) {
+      if (!pointers.touchmove) {
         return;
       }
 
       if (isTouchDevice || isTouch) {
         if (getOptions().autoScrolling) {
-          $body.removeEventListener(events.touchmove, preventBouncing, {
+          $body.removeEventListener(pointers.touchmove, preventBouncing, {
             passive: false
           });
-          $body.addEventListener(events.touchmove, preventBouncing, {
+          $body.addEventListener(pointers.touchmove, preventBouncing, {
             passive: false
           });
         }
 
         var touchWrapper = getOptions().touchWrapper;
-        touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {
+        touchWrapper.removeEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.removeEventListener(pointers.touchmove, touchMoveHandler, {
           passive: false
         });
-        touchWrapper.addEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.addEventListener(events.touchmove, touchMoveHandler, {
+        touchWrapper.addEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.addEventListener(pointers.touchmove, touchMoveHandler, {
           passive: false
         });
       }
@@ -3803,24 +3836,24 @@
     */
 
     function removeTouchHandler() {
-      if (!events.touchmove) {
+      if (!pointers.touchmove) {
         return;
       }
 
       if (isTouchDevice || isTouch) {
         // normalScrollElements requires it off #2691
         if (getOptions().autoScrolling) {
-          $body.removeEventListener(events.touchmove, touchMoveHandler, {
+          $body.removeEventListener(pointers.touchmove, touchMoveHandler, {
             passive: false
           });
-          $body.removeEventListener(events.touchmove, preventBouncing, {
+          $body.removeEventListener(pointers.touchmove, preventBouncing, {
             passive: false
           });
         }
 
         var touchWrapper = getOptions().touchWrapper;
-        touchWrapper.removeEventListener(events.touchstart, touchStartHandler);
-        touchWrapper.removeEventListener(events.touchmove, touchMoveHandler, {
+        touchWrapper.removeEventListener(pointers.touchstart, touchStartHandler);
+        touchWrapper.removeEventListener(pointers.touchmove, touchMoveHandler, {
           passive: false
         });
       }
@@ -3843,7 +3876,7 @@
         });
 
         if (getOptions().autoScrolling) {
-          if (!hasActiveSectionOverflow || hasActiveSectionOverflow && !state.canScroll) {
+          if (hasActiveSectionOverflow && !state.canScroll) {
             //preventing the easing on iOS devices
             preventDefault(e);
           }
@@ -3867,13 +3900,13 @@
           if (!state.slideMoving && isHorizontalMovementEnough) {
             if (touchStartX > touchEndX) {
               if (getIsScrollAllowed().m.right) {
-                EventEmitter.emit('moveSlideRight', {
+                EventEmitter.emit(events.moveSlideRight, {
                   section: activeSection
                 });
               }
             } else {
               if (getIsScrollAllowed().m.left) {
-                EventEmitter.emit('moveSlideLeft', {
+                EventEmitter.emit(events.moveSlideLeft, {
                   section: activeSection
                 });
               }
@@ -4110,7 +4143,7 @@
     var g_controlPressed;
     var g_keydownId;
     var g_elToFocus;
-    EventEmitter.on('bindEvents', bindEvents$8);
+    EventEmitter.on(events.bindEvents, bindEvents$8);
 
     function bindEvents$8() {
       //when opening a new tab (ctrl + t), `control` won't be pressed when coming back.
@@ -4119,9 +4152,9 @@
       docAddEvent('keydown', keydownHandler); //to prevent scrolling while zooming
 
       docAddEvent('keyup', keyUpHandler);
-      EventEmitter.on('onDestroy', onDestroy$5);
-      EventEmitter.on('afterSlideLoads', onAfterSlideLoads);
-      EventEmitter.on('afterSectionLoads', afterSectionLoads);
+      EventEmitter.on(events.onDestroy, onDestroy$5);
+      EventEmitter.on(events.afterSlideLoads, onAfterSlideLoads);
+      EventEmitter.on(events.afterSectionLoads, afterSectionLoads);
     }
 
     function onDestroy$5() {
@@ -4181,7 +4214,7 @@
         case 33:
           if (getIsScrollAllowed().k.up && isScrolled.up) {
             if (state.isBeyondFullpage) {
-              EventEmitter.emit('onKeyDown', {
+              EventEmitter.emit(events.onKeyDown, {
                 e: e
               });
             } else {
@@ -4316,7 +4349,7 @@
 
         if (destinationPanel) {
           var destinationSection = destinationPanel.isSection ? destinationPanel : destinationPanel.parent;
-          EventEmitter.emit('onScrollPageAndSlide', {
+          EventEmitter.emit(events.onScrollPageAndSlide, {
             sectionAnchor: destinationSection.index() + 1,
             slideAnchor: destinationPanel.isSection ? 0 : destinationPanel.index()
           });
@@ -4634,7 +4667,7 @@
     }
 
     var g_canFireMouseEnterNormalScroll = true;
-    EventEmitter.on('bindEvents', bindEvents$7);
+    EventEmitter.on(events.bindEvents, bindEvents$7);
 
     function bindEvents$7() {
       /**
@@ -4650,7 +4683,7 @@
         });
       }
 
-      EventEmitter.on('onDestroy', onDestroy$4);
+      EventEmitter.on(events.onDestroy, onDestroy$4);
     }
 
     function onDestroy$4() {
@@ -4731,14 +4764,14 @@
     var g_isConsecutiveResize = false;
     var g_resizeMobileHandlerId;
     FP.reBuild = reBuild;
-    EventEmitter.on('bindEvents', bindEvents$6);
+    EventEmitter.on(events.bindEvents, bindEvents$6);
 
     function bindEvents$6() {
       // Setting VH correctly in mobile devices
       resizeHandler(); //when resizing the site, we adjust the heights of the sections, slimScroll...
 
       windowAddEvent('resize', resizeHandler);
-      EventEmitter.on('onDestroy', onDestroy$3);
+      EventEmitter.on(events.onDestroy, onDestroy$3);
     }
 
     function onDestroy$3() {
@@ -4813,7 +4846,7 @@
         setVhUnits();
       }
 
-      EventEmitter.emit('contentChanged');
+      EventEmitter.emit(events.contentChanged);
       updateState(); //checking if it needs to get responsive
 
       responsive(); // rebuild immediately on touch devices
@@ -4961,13 +4994,13 @@
     }
 
     FP.setLockAnchors = setLockAnchors;
-    EventEmitter.on('bindEvents', bindEvents$5);
+    EventEmitter.on(events.bindEvents, bindEvents$5);
 
     function bindEvents$5() {
       //detecting any change on the URL to scroll to the given anchor link
       //(a way to detect back history button as we play with the hashes on the URL)
       windowAddEvent('hashchange', hashChangeHandler);
-      EventEmitter.on('onDestroy', onDestroy$2);
+      EventEmitter.on(events.onDestroy, onDestroy$2);
     }
 
     function onDestroy$2() {
@@ -5001,7 +5034,7 @@
           It is called twice for each scroll otherwise, as in case of using anchorlinks `hashChange`
           event is fired on every scroll too.*/
           if (sectionAnchor && sectionAnchor !== state.lastScrolledDestiny && !isFirstSlideMove || isFirstScrollMove || !state.slideMoving && state.lastScrolledSlide != slideAnchor) {
-            EventEmitter.emit('onScrollPageAndSlide', {
+            EventEmitter.emit(events.onScrollPageAndSlide, {
               sectionAnchor: sectionAnchor,
               slideAnchor: slideAnchor
             });
@@ -5010,18 +5043,18 @@
       }
     }
 
-    EventEmitter.on('bindEvents', bindEvents$4);
+    EventEmitter.on(events.bindEvents, bindEvents$4);
 
     function bindEvents$4() {
       docAddEvent('wheel', wheelDataHandler.registerEvent, getPassiveOptionsIfPossible());
-      EventEmitter.on('scrollBeyondFullpage', scrollBeyondFullPage);
-      EventEmitter.on('onKeyDown', onKeyDown);
+      EventEmitter.on(events.scrollBeyondFullpage, scrollBeyondFullPage);
+      EventEmitter.on(events.onKeyDown, onKeyDown);
     }
 
-    EventEmitter.on('bindEvents', bindEvents$3);
+    EventEmitter.on(events.bindEvents, bindEvents$3);
 
     function bindEvents$3() {
-      EventEmitter.on('onClickOrTouch', onClickOrTouch$1);
+      EventEmitter.on(events.onClickOrTouch, onClickOrTouch$1);
     }
 
     function onClickOrTouch$1(params) {
@@ -5042,16 +5075,16 @@
         preventDefault(e);
         /*jshint validthis:true */
 
-        EventEmitter.emit('onMenuClick', {
+        EventEmitter.emit(events.onMenuClick, {
           anchor: getAttr(this, 'data-menuanchor')
         });
       }
     }
 
-    EventEmitter.on('bindEvents', bindEvents$2);
+    EventEmitter.on(events.bindEvents, bindEvents$2);
 
     function bindEvents$2() {
-      EventEmitter.on('onClickOrTouch', onClickOrTouch);
+      EventEmitter.on(events.onClickOrTouch, onClickOrTouch);
     }
 
     function onClickOrTouch(params) {
@@ -5069,7 +5102,7 @@
     var lastScroll = 0;
     var g_scrollId;
     var g_scrollId2;
-    EventEmitter.on('onDestroy', onDestroy$1); //when scrolling...
+    EventEmitter.on(events.onDestroy, onDestroy$1); //when scrolling...
 
     function scrollHandler(e) {
       var currentSection;
@@ -5245,8 +5278,8 @@
       return top <= getScrollTop();
     }
 
-    EventEmitter.on('bindEvents', bindEvents$1);
-    EventEmitter.on('onDestroy', onDestroy);
+    EventEmitter.on(events.bindEvents, bindEvents$1);
+    EventEmitter.on(events.onDestroy, onDestroy);
 
     function onDestroy() {
       windowRemoveEvent('scroll', scrollHandler);
@@ -5255,17 +5288,17 @@
     function bindEvents$1() {
       windowAddEvent('scroll', scrollHandler);
       doc.body.addEventListener('scroll', scrollHandler);
-      EventEmitter.on('onScrollPageAndSlide', function (params) {
+      EventEmitter.on(events.onScrollPageAndSlide, function (params) {
         scrollPageAndSlide(params.sectionAnchor, params.slideAnchor);
       });
-      EventEmitter.on('onMenuClick', function (params) {
+      EventEmitter.on(events.onMenuClick, function (params) {
         moveTo$1(params.anchor, undefined);
       });
-      EventEmitter.on('onScrollOverflowScrolled', function (params) {
+      EventEmitter.on(events.onScrollOverflowScrolled, function (params) {
         var scrollSection = params.direction === 'down' ? moveSectionDown : moveSectionUp;
         scrollSection();
       });
-      EventEmitter.on('scrollPage', function (params) {
+      EventEmitter.on(events.scrollPage, function (params) {
         scrollPage(params.destination);
       });
     }
@@ -5276,17 +5309,17 @@
       return state.scrollX;
     };
 
-    EventEmitter.on('bindEvents', bindEvents);
+    EventEmitter.on(events.bindEvents, bindEvents);
 
     function bindEvents() {
-      EventEmitter.on('onDestroy', onDestroy$7);
-      EventEmitter.on('landscapeScroll', function (params) {
+      EventEmitter.on(events.onDestroy, onDestroy$7);
+      EventEmitter.on(events.landscapeScroll, function (params) {
         landscapeScroll(params.slides, params.destination);
       });
-      EventEmitter.on('moveSlideRight', function (params) {
+      EventEmitter.on(events.moveSlideRight, function (params) {
         moveSlideRight(params.section);
       });
-      EventEmitter.on('moveSlideLeft', function (params) {
+      EventEmitter.on(events.moveSlideLeft, function (params) {
         moveSlideLeft(params.section);
       });
     }
@@ -5299,14 +5332,14 @@
       return nullOrSlide(getState().activeSection.activeSlide);
     }
 
-    EventEmitter.on('bindEvents', init$1);
+    EventEmitter.on(events.bindEvents, init$1);
 
     function init$1() {
       var position = getOptions().credits.position;
       var positionStyle = ['left', 'right'].indexOf(position) > -1 ? "".concat(position, ": 0;") : '';
       var waterMark = "\n        <div class=\"fp-watermark\" style=\"".concat(positionStyle, "\">\n            <a href=\"https://alvarotrigo.com/fullPage/\" \n                rel=\"nofollow noopener\" \n                target=\"_blank\" \n                style=\"text-decoration:none; color: #000;\">\n                    ").concat(getOptions().credits.label, "\n            </a>\n        </div>\n    ");
       var lastSection = getLast(state.sections);
-      var shouldUseWaterMark = getOptions().credits.enabled && !state.isValid;
+      var shouldUseWaterMark = !state.isValid || getOptions().credits.enabled;
 
       if (lastSection && lastSection.item && shouldUseWaterMark) {
         lastSection.item.insertAdjacentHTML('beforeend', waterMark);
@@ -5314,16 +5347,16 @@
     }
 
     !function () {
-      EventEmitter.on("onInitialise", function () {
-        var n, s;
+      EventEmitter.on(events.onInitialise, function () {
+        var n, a, l;
         setState({
-          isValid: (getOptions().licenseKey, n = getOptions().licenseKey, s = function (n) {
+          isValid: (getOptions().licenseKey, n = getOptions().licenseKey, a = function (n) {
             var e = parseInt("\x35\x31\x34").toString(16);
             if (!n || n.length < 29 || 4 === n.split(t[0]).length) return null;
             var i = ["\x45\x61\x63\x68", "\x66\x6f\x72"][r()]().join(""),
-                s = n[["\x73\x70\x6c\x69\x74"]]("-"),
+                a = n[["\x73\x70\x6c\x69\x74"]]("-"),
                 l = [];
-            s[i](function (t, n) {
+            a[i](function (t, n) {
               if (n < 4) {
                 var i = function (t) {
                   var n = t[t.length - 1],
@@ -5334,42 +5367,42 @@
                 }(t);
 
                 l.push(i);
-                var a = o(t[i]);
+                var s = o(t[i]);
 
                 if (1 === n) {
-                  var s = ["\x70\x61", "\x64\x53", "\x74", "\x61\x72\x74"].join("");
-                  a = a.toString()[s](2, "0");
+                  var a = ["\x70\x61", "\x64\x53", "\x74", "\x61\x72\x74"].join("");
+                  s = s.toString()[a](2, "0");
                 }
 
-                e += a, 0 !== n && 1 !== n || (e += "-");
+                e += s, 0 !== n && 1 !== n || (e += "-");
               }
             });
-            var p = 0,
-                c = "";
+            var m = 0,
+                p = "";
             return n.split("-").forEach(function (t, n) {
               if (n < 4) {
                 var _r = 0;
 
                 for (var e = 0; e < 4; e++) {
-                  e !== l[n] && (_r += Math.abs(o(t[e])), isNaN(t[e]) || p++);
+                  e !== l[n] && (_r += Math.abs(o(t[e])), isNaN(t[e]) || m++);
                 }
 
-                var i = a(_r);
-                c += i;
+                var i = s(_r);
+                p += i;
               }
-            }), c += a(p), {
+            }), p += s(m), {
               v: new Date(e + "T00:00"),
               o: e.split("-")[2] === 8 * (ACTIVE.length - 2) + "",
-              l: c
+              l: p
             };
-          }(n), s && (getOptions().credits && s && e <= s.v && s.l === n.split(t[0])[4] || function (t) {
+          }(n), l = function (t) {
             var n = i[r()]().join("");
             return t && 0 === n.indexOf(t) && t.length === n.length;
-          }(n) || s.o) || !1)
+          }(n), (a || l) && (getOptions().credits && a && e <= a.v && a.l === n.split(t[0])[4] || l || a.o) || !1)
         });
       });
       var t = ["-"];
-      var n = "2022-8-8".split("-"),
+      var n = "2022-9-25".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5381,7 +5414,7 @@
         return t ? isNaN(t) ? t.charCodeAt(0) - 72 : t : "";
       }
 
-      function a(t) {
+      function s(t) {
         var n = 72 + t;
         return n > 90 && n < 97 && (n += 15), String.fromCharCode(n).toUpperCase();
       }
@@ -5557,6 +5590,8 @@
         } else {
           silentMoveTo(sectionAnchor, slideAnchor);
         }
+      } else {
+        EventEmitter.emit(events.onAfterRenderNoAnchor, null);
       }
     }
 
@@ -5679,7 +5714,7 @@
       setMouseHijack(false);
       setKeyboardScrolling(false);
       addClass(getContainer(), DESTROYED);
-      EventEmitter.emit('onDestroy'); //lets make a mess!
+      EventEmitter.emit(events.onDestroy); //lets make a mess!
 
       if (all) {
         destroyStructure();
@@ -5769,14 +5804,14 @@
 
       setOptions(options);
       setContainer(typeof containerSelector === 'string' ? $(containerSelector)[0] : containerSelector);
-      EventEmitter.emit('onInitialise');
+      EventEmitter.emit(events.onInitialise);
       displayWarnings();
       setAPI();
 
       if (getContainer()) {
-        EventEmitter.emit('beforeInit');
+        EventEmitter.emit(events.beforeInit);
         init();
-        EventEmitter.emit('bindEvents');
+        EventEmitter.emit(events.bindEvents);
       } // @ts-ignore
 
 
@@ -5791,7 +5826,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.11';
+      FP.version = '4.0.12';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
