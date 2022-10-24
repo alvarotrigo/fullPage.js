@@ -1067,14 +1067,11 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://thekorner.fr/
 - http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-- http://ded-morozz.kiev.ua/
 
 ## Donations
 Donations would be more than welcome :)

@@ -1038,14 +1038,11 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://thekorner.fr/
 - http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-- http://ded-morozz.kiev.ua/
 
 ## 기부
 두 팔 벌려 기부를 환영합니다 :)

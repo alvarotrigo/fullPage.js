@@ -1076,14 +1076,11 @@ Vous voulez créer des fichiers de distribution fullpage.js ? Veuillez consulter
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://thekorner.fr/
 - http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-- http://ded-morozz.kiev.ua/
 
 ## Des dons
 Les dons seraient plus que bienvenus :)

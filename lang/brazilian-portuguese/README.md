@@ -1068,14 +1068,11 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://thekorner.fr/
 - http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://educationaboveall.org/
 - http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-- http://ded-morozz.kiev.ua/
 
 ## Doações
 Doações serão mais que bem-vindas :)
