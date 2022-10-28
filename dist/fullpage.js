@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.12
+* fullPage 4.0.13
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -3433,7 +3433,7 @@
       characterData: true
     };
     EventEmitter.on(events.bindEvents, bindEvents$9);
-    FP.render = onContentChange;
+    FP["render"] = onContentChange;
 
     function bindEvents$9() {
       if (getOptions().observer && "MutationObserver" in window && $(WRAPPER_SEL)[0]) {
@@ -5402,7 +5402,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-9-25".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x39\x2d\x32\x38".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5826,7 +5826,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.12';
+      FP.version = '4.0.13';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
