@@ -1082,10 +1082,10 @@ Doações serão mais que bem-vindas :)
 ## Patrocinadores
 Torne-se um patrocinador e obtenha seu logotipo em nosso README no Github com um link para seu site. [[Seja um patrocinador](https://alvarotrigo.com/#contact)] | [[Torne-se um patreon]](https://www.patreon.com/fullpagejs)
 
+[![Codeless](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codeless.png)](https://codeless.co)
 [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
 [![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](https://www.browserstack.com/)
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
-[![CodeFirst](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png)](https://www.codefirst.co.uk)
 
 ### Pessoas
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
