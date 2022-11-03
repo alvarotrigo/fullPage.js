@@ -31,24 +31,11 @@ Want to be in the list? [Contact me](https://alvarotrigo.com/#contact) | [Become
         </a>
       </td>
       <td align="center" valign="middle">
-        <a href="https://www.codefirst.co.uk" target="_blank">
-          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codefirst2.png">
+        <a href="https://www.codeless.co" target="_blank">
+          <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codeless.png" alt="Codeless" title="Codeless" aria-label="Codeless">
         </a>
       </td>
     </tr>
   </tbody>
 </table>
 <!-- bronce end-->
-
-### People
-<table>
-    <tbody>
-      <tr>
-        <td align="center" valign="middle">
-          <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
-            <img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
-          </a>
-        </td>
-      </tr>
-    </tbody>
-</table>
