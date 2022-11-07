@@ -207,7 +207,6 @@ html.fp-enabled,
 .fp-auto-height.fp-section,
 .fp-auto-height .fp-slide{
     height: auto !important;
-    min-height: auto !important;
 }
 
 .fp-responsive .fp-is-overflow.fp-section{
