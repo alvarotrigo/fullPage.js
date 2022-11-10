@@ -207,9 +207,15 @@ export const scrollOverflowHandler = {
                     scrollOverflowHandler.isScrolled(direction, e.target) &&
                     scrollOverflowHandler.shouldMovePage()
                 ){
-                    EventEmitter.emit(events.onScrollOverflowScrolled, {
-                        direction: direction
-                    });
+                    // Checking again if we have a scrollable content
+                    // To avoid issues like #4479 where the scroll event gets
+                    // triggered after removing/hidding content if this was scrolled
+                    if(scrollOverflowHandler.shouldBeScrollable(getState().activeSection.item)){
+
+                        EventEmitter.emit(events.onScrollOverflowScrolled, {
+                            direction: direction
+                        });
+                    }
                 }
             }
         };
