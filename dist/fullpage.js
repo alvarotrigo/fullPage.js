@@ -3185,9 +3185,14 @@
 
           if (hasClass(e.target, OVERFLOW) && state.canScroll) {
             if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
-              EventEmitter.emit(events.onScrollOverflowScrolled, {
-                direction: direction
-              });
+              // Checking again if we have a scrollable content
+              // To avoid issues like #4479 where the scroll event gets
+              // triggered after removing/hidding content if this was scrolled
+              if (scrollOverflowHandler.shouldBeScrollable(getState().activeSection.item)) {
+                EventEmitter.emit(events.onScrollOverflowScrolled, {
+                  direction: direction
+                });
+              }
             }
           }
         };
@@ -5402,7 +5407,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x32\x2d\x39\x2d\x32\x38".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x31\x30".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
