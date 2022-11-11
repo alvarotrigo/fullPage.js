@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.12
+* fullPage 4.0.13
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -3185,9 +3185,14 @@
 
           if (hasClass(e.target, OVERFLOW) && state.canScroll) {
             if (scrollOverflowHandler.isScrolled(direction, e.target) && scrollOverflowHandler.shouldMovePage()) {
-              EventEmitter.emit(events.onScrollOverflowScrolled, {
-                direction: direction
-              });
+              // Checking again if we have a scrollable content
+              // To avoid issues like #4479 where the scroll event gets
+              // triggered after removing/hidding content if this was scrolled
+              if (scrollOverflowHandler.shouldBeScrollable(getState().activeSection.item)) {
+                EventEmitter.emit(events.onScrollOverflowScrolled, {
+                  direction: direction
+                });
+              }
             }
           }
         };
@@ -3433,7 +3438,7 @@
       characterData: true
     };
     EventEmitter.on(events.bindEvents, bindEvents$9);
-    FP.render = onContentChange;
+    FP["render"] = onContentChange;
 
     function bindEvents$9() {
       if (getOptions().observer && "MutationObserver" in window && $(WRAPPER_SEL)[0]) {
@@ -5402,7 +5407,7 @@
         });
       });
       var t = ["-"];
-      var n = "2022-9-25".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x31\x30".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5826,7 +5831,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.12';
+      FP.version = '4.0.13';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

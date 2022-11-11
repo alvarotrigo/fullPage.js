@@ -26,7 +26,7 @@ const g_wrapperObserveConfig = {
 
 EventEmitter.on(events.bindEvents, bindEvents);
 
-FP.render = onContentChange;
+FP["render"] = onContentChange;
 
 function bindEvents(){    
     if(getOptions().observer && 
