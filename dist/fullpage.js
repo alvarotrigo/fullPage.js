@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.14
+* fullPage 4.0.15
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -3058,8 +3058,12 @@
         // We avoid it on mobile due to a bug in iOS Safari
 
         if (scrollableItem && !isTouchDevice && !isTouch) {
-          this.focusedElem = scrollableItem;
-          this.focusedElem.focus();
+          this.focusedElem = scrollableItem; // Forcing the focus on the next paint 
+          // to avoid issue #4484 on Safari
+
+          requestAnimationFrame(function () {
+            scrollableItem.focus();
+          });
         }
       },
       makeScrollable: function makeScrollable() {
@@ -5407,7 +5411,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x31\x31".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x31\x35".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5831,7 +5835,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.14';
+      FP.version = '4.0.15';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
