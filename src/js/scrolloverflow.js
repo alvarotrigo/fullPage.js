@@ -63,7 +63,12 @@ export const scrollOverflowHandler = {
         // We avoid it on mobile due to a bug in iOS Safari
         if( scrollableItem && !isTouchDevice && !isTouch){
             this.focusedElem = scrollableItem;
-            this.focusedElem.focus();
+
+            // Forcing the focus on the next paint 
+            // to avoid issue #4484 on Safari
+            requestAnimationFrame(function(){
+                scrollableItem.focus();
+            });
         }
     },
 
