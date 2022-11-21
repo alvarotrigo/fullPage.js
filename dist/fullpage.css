@@ -222,9 +222,9 @@ html.fp-enabled,
    height: calc(var(--vh, 1vh) * 100);
 }
 
-.fp-scrollable.fp-responsive .fp-is-overflow.fp-section:not(.fp-auto-height),
-.fp-scrollable .fp-section:not(.fp-auto-height),
-.fp-scrollable .fp-slide:not(.fp-auto-height){
+.fp-scrollable.fp-responsive .fp-is-overflow.fp-section:not(.fp-auto-height):not([data-percentage]),
+.fp-scrollable .fp-section:not(.fp-auto-height):not([data-percentage]),
+.fp-scrollable .fp-slide:not(.fp-auto-height):not([data-percentage]){
     /* Fallback for browsers that do not support Custom Properties */
     min-height: 100vh;
     min-height: calc(var(--vh, 1vh) * 100);
