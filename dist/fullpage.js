@@ -3143,6 +3143,11 @@
       isScrolled: function isScrolled(direction, el) {
         if (!state.canScroll) {
           return false;
+        } // we won't allow scrolloverflow on scrollBar:true
+
+
+        if (getOptions().scrollBar) {
+          return true;
         }
 
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
@@ -3885,7 +3890,7 @@
         });
 
         if (getOptions().autoScrolling) {
-          if (hasActiveSectionOverflow && !state.canScroll) {
+          if (hasActiveSectionOverflow && !state.canScroll || getOptions().scrollBar) {
             //preventing the easing on iOS devices
             preventDefault(e);
           }
@@ -5411,7 +5416,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x31\x35".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x32\x31".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
