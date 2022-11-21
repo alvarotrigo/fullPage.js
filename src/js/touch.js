@@ -84,7 +84,7 @@ function touchMoveHandler(e){
         });
 
         if(getOptions().autoScrolling){
-            if(hasActiveSectionOverflow && !state.canScroll){
+            if( (hasActiveSectionOverflow && !state.canScroll) || getOptions().scrollBar){
 
                 //preventing the easing on iOS devices
                 utils.preventDefault(e);

@@ -159,6 +159,11 @@ export const scrollOverflowHandler = {
             return false;
         }
 
+        // we won't allow scrolloverflow on scrollBar:true
+        if(getOptions().scrollBar){
+            return true;
+        }
+
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
 
         if(!getOptions().scrollOverflow || 
