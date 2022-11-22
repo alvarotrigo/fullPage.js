@@ -63,7 +63,12 @@ export const scrollOverflowHandler = {
         // We avoid it on mobile due to a bug in iOS Safari
         if( scrollableItem && !isTouchDevice && !isTouch){
             this.focusedElem = scrollableItem;
-            this.focusedElem.focus();
+
+            // Forcing the focus on the next paint 
+            // to avoid issue #4484 on Safari
+            requestAnimationFrame(function(){
+                scrollableItem.focus();
+            });
         }
     },
 
@@ -152,6 +157,11 @@ export const scrollOverflowHandler = {
     isScrolled: function(direction, el){
         if(!state.canScroll){
             return false;
+        }
+
+        // we won't allow scrolloverflow on scrollBar:true
+        if(getOptions().scrollBar){
+            return true;
         }
 
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
