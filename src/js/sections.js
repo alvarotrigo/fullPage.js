@@ -25,8 +25,8 @@ export function styleSection(section){
     if(!getState().activeSection && section.isVisible) {
         utils.addClass(sectionElem, ACTIVE);
         updateState();
+        startingSection = getState().activeSection.item;
     }
-    startingSection = getState().activeSection.item;
 
     if(getOptions().paddingTop){
         utils.css(sectionElem, {'padding-top': getOptions().paddingTop});
