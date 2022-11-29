@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.15
+* fullPage 4.0.16
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -2975,9 +2975,8 @@
       if (!getState().activeSection && section.isVisible) {
         addClass(sectionElem, ACTIVE);
         updateState();
+        startingSection = getState().activeSection.item;
       }
-
-      startingSection = getState().activeSection.item;
 
       if (getOptions().paddingTop) {
         css(sectionElem, {
@@ -5416,7 +5415,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x32\x31".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x32\x39".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5840,7 +5839,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.15';
+      FP.version = '4.0.16';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
