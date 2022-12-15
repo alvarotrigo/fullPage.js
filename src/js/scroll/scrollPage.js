@@ -130,6 +130,8 @@ export function scrollPage(section, callback, isMovementUp){
 
     setPageStatus(slideIndex, slideAnchorLink, v.anchorLink);
 
+    EventEmitter.emit(events.onLeave, v);
+
     performMovement(v);
 
     //flag to avoid callingn `scrollPage()` twice in case of using anchor links
@@ -279,8 +281,6 @@ function afterSectionLoads(v){
     utils.removeClass(utils.siblings(v.element), COMPLETELY);
 
     lazyLoadOthers();
-
-    scrollOverflowHandler.afterSectionLoads();
 
     setState({canScroll: true});
 

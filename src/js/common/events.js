@@ -16,6 +16,8 @@ export const events = {
     landscapeScroll: 'landscapeScroll',
     scrollBeyondFullpage: 'scrollBeyondFullpage',
     onPerformMovement: 'onPerformMovement',
+    onSlideLeave: 'onSlideLeave',
+    onLeave: 'onLeave',
     afterSectionLoads: 'afterSectionLoads',
     afterSlideLoads: 'afterSlideLoads',
 };

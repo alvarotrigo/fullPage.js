@@ -118,6 +118,9 @@ function onkeydown(e){
                     moveSectionUp();
                 }
             }
+            else{
+                scrollOverflowHandler.focusScrollable();
+            }
             break;
 
         //down
@@ -139,6 +142,9 @@ function onkeydown(e){
                     moveSectionDown();
                 }
             }
+            else{
+                scrollOverflowHandler.focusScrollable();
+            }   
             break;
 
         //Home
