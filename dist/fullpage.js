@@ -999,6 +999,8 @@
       landscapeScroll: 'landscapeScroll',
       scrollBeyondFullpage: 'scrollBeyondFullpage',
       onPerformMovement: 'onPerformMovement',
+      onSlideLeave: 'onSlideLeave',
+      onLeave: 'onLeave',
       afterSectionLoads: 'afterSectionLoads',
       afterSlideLoads: 'afterSlideLoads'
     };
@@ -1016,7 +1018,7 @@
     }
 
     function internalEvents() {
-      EventEmitter.on(events.onDestroy, onDestroy$8);
+      EventEmitter.on(events.onDestroy, onDestroy$9);
     }
 
     function delegatedEvents(e) {
@@ -1026,7 +1028,7 @@
       });
     }
 
-    function onDestroy$8() {
+    function onDestroy$9() {
       ['click', 'touchstart'].forEach(function (eventName) {
         docRemoveEvent(eventName, delegatedEvents);
       });
@@ -2072,200 +2074,6 @@
       }
     }
 
-    var g_afterSlideLoadsId;
-    FP.landscapeScroll = landscapeScroll;
-    EventEmitter.on(events.bindEvents, bindEvents$b);
-
-    function bindEvents$b() {
-      EventEmitter.on(events.onPerformMovement, onPerformMovement);
-    }
-
-    function onPerformMovement() {
-      clearTimeout(g_afterSlideLoadsId);
-      setState({
-        slideMoving: false
-      });
-    }
-    /**
-    * Scrolls horizontal sliders.
-    */
-
-
-    function landscapeScroll(slides, destiny, direction) {
-      var sectionElem = closest(slides, SECTION_SEL);
-      var section = getState().sections.filter(function (section) {
-        return section.item == sectionElem;
-      })[0];
-      var slide = section.slides.filter(function (slide) {
-        return slide.item == destiny;
-      })[0];
-      var v = {
-        "slides": slides,
-        "destiny": destiny,
-        "direction": direction,
-        "destinyPos": {
-          "left": destiny.offsetLeft
-        },
-        "slideIndex": slide.index(),
-        "section": sectionElem,
-        "sectionIndex": section.index(),
-        "anchorLink": section.anchor,
-        "slidesNav": $(SLIDES_NAV_SEL, sectionElem)[0],
-        "slideAnchor": slide.anchor,
-        "prevSlide": section.activeSlide.item,
-        "prevSlideIndex": section.activeSlide.index(),
-        "items": {
-          "section": section,
-          "origin": section.activeSlide,
-          "destination": slide
-        },
-        //caching the value of isResizing at the momment the function is called
-        //because it will be checked later inside a setTimeout and the value might change
-        "localIsResizing": state.isResizing
-      };
-      v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
-      v.direction = v.direction ? v.direction : v.xMovement; //important!! Only do it when not resizing
-
-      if (!v.localIsResizing) {
-        //preventing from scrolling to the next/prev section when using scrollHorizontally
-        setState({
-          canScroll: false
-        });
-      }
-
-      if (getOptions().onSlideLeave) {
-        //if the site is not just resizing and readjusting the slides
-        if (!v.localIsResizing && v.xMovement !== 'none') {
-          if (isFunction(getOptions().onSlideLeave)) {
-            if (fireCallback('onSlideLeave', v) === false) {
-              setState({
-                slideMoving: false
-              });
-              return;
-            }
-          }
-        }
-      }
-
-      addClass(destiny, ACTIVE);
-      removeClass(siblings(destiny), ACTIVE);
-      updateState();
-
-      if (!v.localIsResizing) {
-        stopMedia(v.prevSlide);
-        lazyLoad(destiny);
-      }
-
-      toggleControlArrows(v); //only changing the URL if the slides are in the current section (not for resize re-adjusting)
-
-      if (section.isActive && !v.localIsResizing) {
-        setPageStatus(v.slideIndex, v.slideAnchor, v.anchorLink);
-      }
-
-      performHorizontalMove(slides, v, true);
-    }
-    /**
-    * Performs the horizontal movement. (CSS3 or jQuery)
-    *
-    * @param fireCallback {Boolean} - determines whether or not to fire the callback
-    */
-
-    function performHorizontalMove(slides, v, fireCallback) {
-      var destinyPos = v.destinyPos;
-      activeSlidesNavigation(v.slidesNav, v.slideIndex);
-      setState({
-        scrollX: Math.round(destinyPos.left)
-      });
-
-      if (getOptions().css3) {
-        var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';
-        FP.test.translate3dH[v.sectionIndex] = translate3d;
-        css(addAnimation($(SLIDES_CONTAINER_SEL, slides)), getTransforms(translate3d));
-        clearTimeout(g_afterSlideLoadsId);
-        g_afterSlideLoadsId = setTimeout(function () {
-          if (fireCallback) {
-            afterSlideLoads(v);
-          }
-        }, getOptions().scrollingSpeed);
-      } else {
-        FP.test.left[v.sectionIndex] = Math.round(destinyPos.left);
-        scrollTo(slides, Math.round(destinyPos.left), getOptions().scrollingSpeed, function () {
-          if (fireCallback) {
-            afterSlideLoads(v);
-          }
-        });
-      }
-    }
-    /**
-    * Retuns `right` or `left` depending on the scrolling movement to reach its destination
-    * from the current slide.
-    */
-
-
-    function getXmovement(fromIndex, toIndex) {
-      if (fromIndex == toIndex) {
-        return 'none';
-      }
-
-      if (fromIndex > toIndex) {
-        return 'left';
-      }
-
-      return 'right';
-    }
-
-    function onDestroy$7() {
-      clearTimeout(g_afterSlideLoadsId);
-    }
-
-    function afterSlideLoads(v) {
-      //if the site is not just resizing and readjusting the slides
-      if (!v.localIsResizing) {
-        if (isFunction(getOptions().afterSlideLoad)) {
-          fireCallback('afterSlideLoad', v);
-        } //needs to be inside the condition to prevent problems with continuousVertical and scrollHorizontally
-        //and to prevent double scroll right after a windows resize
-
-
-        setState({
-          canScroll: true
-        });
-        playMedia(v.destiny);
-        EventEmitter.emit(events.afterSlideLoads, v);
-      } //letting them slide again
-
-
-      setState({
-        slideMoving: false
-      });
-    }
-
-    /**
-    * Slides silently (with no animation) the active slider to the given slide.
-    * @param noCallback {bool} true or defined -> no callbacks
-    */
-
-    function silentLandscapeScroll(activeSlide, noCallbacks) {
-      setScrollingSpeed(0, 'internal');
-
-      if (typeof noCallbacks !== 'undefined') {
-        //preventing firing callbacks afterSlideLoad etc.
-        setState({
-          isResizing: true
-        });
-      }
-
-      landscapeScroll(closest(activeSlide, SLIDES_WRAPPER_SEL), activeSlide);
-
-      if (typeof noCallbacks !== 'undefined') {
-        setState({
-          isResizing: false
-        });
-      }
-
-      setScrollingSpeed(getOriginals().scrollingSpeed, 'internal');
-    }
-
     FP.setRecordHistory = setRecordHistory;
     /**
     * Defines wheter to record the history for each hash change in the URL.
@@ -2604,7 +2412,7 @@
 
     var g_afterSectionLoadsId;
     var g_transitionLapseId;
-    EventEmitter.on(events.onDestroy, onDestroy$6);
+    EventEmitter.on(events.onDestroy, onDestroy$8);
     /**
     * Scrolls the site to the given element and scrolls to the slide if a callback is given.
     */
@@ -2696,6 +2504,7 @@
         canScroll: FP.test.isTesting
       });
       setPageStatus(slideIndex, slideAnchorLink, v.anchorLink);
+      EventEmitter.emit(events.onLeave, v);
       performMovement(v); //flag to avoid callingn `scrollPage()` twice in case of using anchor links
 
       setState({
@@ -2705,7 +2514,7 @@
       activateMenuAndNav(v.anchorLink, v.sectionIndex);
     }
 
-    function onDestroy$6() {
+    function onDestroy$8() {
       clearTimeout(g_afterSectionLoadsId);
       clearTimeout(g_transitionLapseId);
     }
@@ -2839,7 +2648,6 @@
       addClass(v.element, COMPLETELY);
       removeClass(siblings(v.element), COMPLETELY);
       lazyLoadOthers();
-      scrollOverflowHandler.afterSectionLoads();
       setState({
         canScroll: true
       });
@@ -3016,54 +2824,95 @@
       return panel.isSection ? panel : panel.parent;
     }
 
-    EventEmitter.on(events.bindEvents, bindEvents$a);
+    var g_focusScrollableId;
+    EventEmitter.on(events.bindEvents, bindEvents$b);
 
-    function bindEvents$a() {
+    function bindEvents$b() {
       // We can't focus scrollOverflow before scrolling
       // to the anchor (if we need to)
       EventEmitter.on(events.onAfterRenderNoAnchor, afterRender);
-      EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterSectionLoads);
+      EventEmitter.on(events.onLeave, scrollOverflowHandler.onLeave);
+      EventEmitter.on(events.onSlideLeave, scrollOverflowHandler.onLeave);
+      EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterLoad);
+      EventEmitter.on(events.afterSectionLoads, scrollOverflowHandler.afterLoad);
+      EventEmitter.on(events.onDestroy, onDestroy$7);
+      docAddEvent('keyup', scrollOverflowHandler.keyUpHandler);
     }
 
     function afterRender() {
       if (getOptions().scrollOverflow && !getOptions().scrollBar) {
         scrollOverflowHandler.makeScrollable();
-        scrollOverflowHandler.afterSectionLoads();
+        scrollOverflowHandler.focusScrollable();
       }
+    }
+
+    function onDestroy$7() {
+      docRemoveEvent('keyup', scrollOverflowHandler.keyUpHandler);
     }
 
     var scrollOverflowHandler = {
       focusedElem: null,
+      shouldFocusScrollable: true,
+      isInnerScrollAllowed: true,
       timeBeforeReachingLimit: null,
       timeLastScroll: null,
-      preventScrollWhileMoving: function preventScrollWhileMoving(e) {
+      preventScrollWithMouseWheel: function preventScrollWithMouseWheel(e) {
         if (!state.canScroll) {
           preventDefault(e);
           return false;
         }
       },
-      afterSectionLoads: function afterSectionLoads() {
-        if (!getOptions().scrollOverflow) {
-          return;
-        } // Unfocusing the scrollable element from the orgin section/slide
+      preventScrollWithKeyboard: function preventScrollWithKeyboard(e) {
+        if (!scrollOverflowHandler.isInnerScrollAllowed) {
+          preventDefault(e);
+          return false;
+        }
+      },
+      keyUpHandler: function keyUpHandler() {
+        scrollOverflowHandler.shouldFocusScrollable = state.canScroll;
+      },
+      // Leaving sections or slides
+      onLeave: function onLeave() {
+        clearTimeout(g_focusScrollableId);
+        scrollOverflowHandler.isInnerScrollAllowed = false;
+      },
+      // Loading sections or slides
+      afterLoad: function afterLoad() {
+        scrollOverflowHandler.isInnerScrollAllowed = false; // Delaying it to avoid issues on Safari when focusing elements #4484 & #4493
 
-
+        clearTimeout(g_focusScrollableId);
+        g_focusScrollableId = setTimeout(function () {
+          scrollOverflowHandler.shouldFocusScrollable = state.canScroll;
+        }, 200);
+      },
+      // Unfocusing the scrollable element from the orgin section/slide
+      unfocusScrollable: function unfocusScrollable() {
         if (doc.activeElement === this.focusedElem) {
           // @ts-ignore
           this.focusedElem.blur();
+          scrollOverflowHandler.isInnerScrollAllowed = false;
+        }
+      },
+      focusScrollable: function focusScrollable() {
+        if (!getOptions().scrollOverflow || !scrollOverflowHandler.shouldFocusScrollable) {
+          return;
         }
 
+        scrollOverflowHandler.unfocusScrollable();
         var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item); // On desktop we focus the scrollable to be able to use the mouse wheel
         // We avoid it on mobile due to a bug in iOS Safari
 
         if (scrollableItem && !isTouchDevice && !isTouch) {
           this.focusedElem = scrollableItem; // Forcing the focus on the next paint 
-          // to avoid issue #4484 on Safari
+          // to avoid issue #4484 & #4493 on Safari
 
           requestAnimationFrame(function () {
             scrollableItem.focus();
+            scrollOverflowHandler.isInnerScrollAllowed = true;
           });
         }
+
+        scrollOverflowHandler.shouldFocusScrollable = false;
       },
       makeScrollable: function makeScrollable() {
         if (getOptions().scrollOverflowMacStyle && !isMacDevice) {
@@ -3104,10 +2953,10 @@
       },
       bindEvents: function bindEvents(item) {
         scrollOverflowHandler.getScrollableItem(item).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
-        item.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {
+        item.addEventListener('wheel', scrollOverflowHandler.preventScrollWithMouseWheel, {
           passive: false
         });
-        item.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {
+        item.addEventListener('keydown', scrollOverflowHandler.preventScrollWithKeyboard, {
           passive: false
         });
       },
@@ -3206,6 +3055,201 @@
         };
       }()
     };
+
+    var g_afterSlideLoadsId;
+    FP.landscapeScroll = landscapeScroll;
+    EventEmitter.on(events.bindEvents, bindEvents$a);
+
+    function bindEvents$a() {
+      EventEmitter.on(events.onPerformMovement, onPerformMovement);
+    }
+
+    function onPerformMovement() {
+      clearTimeout(g_afterSlideLoadsId);
+      setState({
+        slideMoving: false
+      });
+    }
+    /**
+    * Scrolls horizontal sliders.
+    */
+
+
+    function landscapeScroll(slides, destiny, direction) {
+      var sectionElem = closest(slides, SECTION_SEL);
+      var section = getState().sections.filter(function (section) {
+        return section.item == sectionElem;
+      })[0];
+      var slide = section.slides.filter(function (slide) {
+        return slide.item == destiny;
+      })[0];
+      var v = {
+        "slides": slides,
+        "destiny": destiny,
+        "direction": direction,
+        "destinyPos": {
+          "left": destiny.offsetLeft
+        },
+        "slideIndex": slide.index(),
+        "section": sectionElem,
+        "sectionIndex": section.index(),
+        "anchorLink": section.anchor,
+        "slidesNav": $(SLIDES_NAV_SEL, sectionElem)[0],
+        "slideAnchor": slide.anchor,
+        "prevSlide": section.activeSlide.item,
+        "prevSlideIndex": section.activeSlide.index(),
+        "items": {
+          "section": section,
+          "origin": section.activeSlide,
+          "destination": slide
+        },
+        //caching the value of isResizing at the momment the function is called
+        //because it will be checked later inside a setTimeout and the value might change
+        "localIsResizing": state.isResizing
+      };
+      v.xMovement = getXmovement(v.prevSlideIndex, v.slideIndex);
+      v.direction = v.direction ? v.direction : v.xMovement; //important!! Only do it when not resizing
+
+      if (!v.localIsResizing) {
+        //preventing from scrolling to the next/prev section when using scrollHorizontally
+        setState({
+          canScroll: false
+        });
+      }
+
+      if (getOptions().onSlideLeave) {
+        //if the site is not just resizing and readjusting the slides
+        if (!v.localIsResizing && v.xMovement !== 'none') {
+          if (isFunction(getOptions().onSlideLeave)) {
+            if (fireCallback('onSlideLeave', v) === false) {
+              setState({
+                slideMoving: false
+              });
+              return;
+            }
+          }
+        }
+      }
+
+      addClass(destiny, ACTIVE);
+      removeClass(siblings(destiny), ACTIVE);
+      updateState();
+
+      if (!v.localIsResizing) {
+        stopMedia(v.prevSlide);
+        lazyLoad(destiny);
+      }
+
+      toggleControlArrows(v); //only changing the URL if the slides are in the current section (not for resize re-adjusting)
+
+      if (section.isActive && !v.localIsResizing) {
+        setPageStatus(v.slideIndex, v.slideAnchor, v.anchorLink);
+      }
+
+      EventEmitter.emit(events.onSlideLeave, v);
+      performHorizontalMove(slides, v, true);
+    }
+    /**
+    * Performs the horizontal movement. (CSS3 or jQuery)
+    *
+    * @param fireCallback {Boolean} - determines whether or not to fire the callback
+    */
+
+    function performHorizontalMove(slides, v, fireCallback) {
+      var destinyPos = v.destinyPos;
+      activeSlidesNavigation(v.slidesNav, v.slideIndex);
+      setState({
+        scrollX: Math.round(destinyPos.left)
+      });
+
+      if (getOptions().css3) {
+        var translate3d = 'translate3d(-' + Math.round(destinyPos.left) + 'px, 0px, 0px)';
+        FP.test.translate3dH[v.sectionIndex] = translate3d;
+        css(addAnimation($(SLIDES_CONTAINER_SEL, slides)), getTransforms(translate3d));
+        clearTimeout(g_afterSlideLoadsId);
+        g_afterSlideLoadsId = setTimeout(function () {
+          if (fireCallback) {
+            afterSlideLoads(v);
+          }
+        }, getOptions().scrollingSpeed);
+      } else {
+        FP.test.left[v.sectionIndex] = Math.round(destinyPos.left);
+        scrollTo(slides, Math.round(destinyPos.left), getOptions().scrollingSpeed, function () {
+          if (fireCallback) {
+            afterSlideLoads(v);
+          }
+        });
+      }
+    }
+    /**
+    * Retuns `right` or `left` depending on the scrolling movement to reach its destination
+    * from the current slide.
+    */
+
+
+    function getXmovement(fromIndex, toIndex) {
+      if (fromIndex == toIndex) {
+        return 'none';
+      }
+
+      if (fromIndex > toIndex) {
+        return 'left';
+      }
+
+      return 'right';
+    }
+
+    function onDestroy$6() {
+      clearTimeout(g_afterSlideLoadsId);
+    }
+
+    function afterSlideLoads(v) {
+      //if the site is not just resizing and readjusting the slides
+      if (!v.localIsResizing) {
+        if (isFunction(getOptions().afterSlideLoad)) {
+          fireCallback('afterSlideLoad', v);
+        } //needs to be inside the condition to prevent problems with continuousVertical and scrollHorizontally
+        //and to prevent double scroll right after a windows resize
+
+
+        setState({
+          canScroll: true
+        });
+        playMedia(v.destiny);
+        EventEmitter.emit(events.afterSlideLoads, v);
+      } //letting them slide again
+
+
+      setState({
+        slideMoving: false
+      });
+    }
+
+    /**
+    * Slides silently (with no animation) the active slider to the given slide.
+    * @param noCallback {bool} true or defined -> no callbacks
+    */
+
+    function silentLandscapeScroll(activeSlide, noCallbacks) {
+      setScrollingSpeed(0, 'internal');
+
+      if (typeof noCallbacks !== 'undefined') {
+        //preventing firing callbacks afterSlideLoad etc.
+        setState({
+          isResizing: true
+        });
+      }
+
+      landscapeScroll(closest(activeSlide, SLIDES_WRAPPER_SEL), activeSlide);
+
+      if (typeof noCallbacks !== 'undefined') {
+        setState({
+          isResizing: false
+        });
+      }
+
+      setScrollingSpeed(getOriginals().scrollingSpeed, 'internal');
+    }
 
     var g_prevActiveSectionIndex = null;
     var g_prevActiveSlideIndex = null;
@@ -4233,6 +4277,8 @@
             } else {
               moveSectionUp();
             }
+          } else {
+            scrollOverflowHandler.focusScrollable();
           }
 
           break;
@@ -4258,6 +4304,8 @@
             if (e.keyCode !== 32 || !isMediaFocused) {
               moveSectionDown();
             }
+          } else {
+            scrollOverflowHandler.focusScrollable();
           }
 
           break;
@@ -5325,7 +5373,7 @@
     EventEmitter.on(events.bindEvents, bindEvents);
 
     function bindEvents() {
-      EventEmitter.on(events.onDestroy, onDestroy$7);
+      EventEmitter.on(events.onDestroy, onDestroy$6);
       EventEmitter.on(events.landscapeScroll, function (params) {
         landscapeScroll(params.slides, params.destination);
       });
@@ -5415,7 +5463,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x32\x2d\x31\x30\x2d\x32\x39".split("-"),
+      var n = "\x32\x30\x32\x32\x2d\x31\x31\x2d\x31\x35".split("-"),
           e = new Date(n[0], n[1], n[2]),
           i = ["se", "licen", "-", "v3", "l", "gp"];
 
