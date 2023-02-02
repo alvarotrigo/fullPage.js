@@ -5396,9 +5396,9 @@
     EventEmitter.on(events.bindEvents, init$1);
 
     function init$1() {
-      var position = getOptions().credits.position;
+      var position = getOptions().credits.position || 'right';
       var positionStyle = ['left', 'right'].indexOf(position) > -1 ? "".concat(position, ": 0;") : '';
-      var waterMark = "\n        <div class=\"fp-watermark\" style=\"".concat(positionStyle, "\">\n            <a href=\"https://alvarotrigo.com/fullPage/\" \n                rel=\"nofollow noopener\" \n                target=\"_blank\" \n                style=\"text-decoration:none; color: #000;\">\n                    ").concat(getOptions().credits.label, "\n            </a>\n        </div>\n    ");
+      var waterMark = "\n        <div class=\"fp-watermark\" style=\"".concat(positionStyle, "\">\n            <a href=\"https://alvarotrigo.com/fullPage/\" \n                rel=\"nofollow noopener\" \n                target=\"_blank\" \n                style=\"text-decoration:none; color: #000;\">\n                    ").concat(getOptions().credits.label || 'Made with fullPage.js', "\n            </a>\n        </div>\n    ");
       var lastSection = getLast(state.sections);
       var shouldUseWaterMark = !state.isValid || getOptions().credits.enabled;
 
@@ -5414,21 +5414,21 @@
           isValid: (getOptions().licenseKey, n = getOptions().licenseKey, a = function (n) {
             var e = parseInt("\x35\x31\x34").toString(16);
             if (!n || n.length < 29 || 4 === n.split(t[0]).length) return null;
-            var i = ["\x45\x61\x63\x68", "\x66\x6f\x72"][r()]().join(""),
+            var r = ["\x45\x61\x63\x68", "\x66\x6f\x72"][i()]().join(""),
                 a = n[["\x73\x70\x6c\x69\x74"]]("-"),
                 l = [];
-            a[i](function (t, n) {
+            a[r](function (t, n) {
               if (n < 4) {
-                var i = function (t) {
+                var r = function (t) {
                   var n = t[t.length - 1],
-                      e = ["\x4e\x61\x4e", "\x69\x73"][r()]().join("");
+                      e = ["\x4e\x61\x4e", "\x69\x73"][i()]().join("");
                   return window[e](n) ? o(n) : function (t) {
                     return t - ACTIVE.length;
                   }(n);
                 }(t);
 
-                l.push(i);
-                var s = o(t[i]);
+                l.push(r);
+                var s = o(t[r]);
 
                 if (1 === n) {
                   var a = ["\x70\x61", "\x64\x53", "\x74", "\x61\x72\x74"].join("");
@@ -5439,35 +5439,35 @@
               }
             });
             var m = 0,
-                p = "";
+                f = "";
             return n.split("-").forEach(function (t, n) {
               if (n < 4) {
-                var _r = 0;
+                var _i = 0;
 
                 for (var e = 0; e < 4; e++) {
-                  e !== l[n] && (_r += Math.abs(o(t[e])), isNaN(t[e]) || m++);
+                  e !== l[n] && (_i += Math.abs(o(t[e])), isNaN(t[e]) || m++);
                 }
 
-                var i = s(_r);
-                p += i;
+                var r = s(_i);
+                f += r;
               }
-            }), p += s(m), {
+            }), f += s(m), {
               v: new Date(e + "T00:00"),
               o: e.split("-")[2] === 8 * (ACTIVE.length - 2) + "",
-              l: p
+              l: f
             };
           }(n), l = function (t) {
-            var n = i[r()]().join("");
+            var n = r[i()]().join("");
             return t && 0 === n.indexOf(t) && t.length === n.length;
-          }(n), (a || l) && (getOptions().credits && a && e <= a.v && a.l === n.split(t[0])[4] || l || a.o) || !1)
+          }(n), (a || l) && (a && e <= a.v && a.l === n.split(t[0])[4] || l || a.o) || !1)
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x32\x2d\x31\x31\x2d\x31\x35".split("-"),
+      var n = "\x32\x30\x32\x33\x2d\x31\x2d\x32".split("-"),
           e = new Date(n[0], n[1], n[2]),
-          i = ["se", "licen", "-", "v3", "l", "gp"];
+          r = ["se", "licen", "-", "v3", "l", "gp"];
 
-      function r() {
+      function i() {
         return [["\x72\x65", "\x76\x65\x72\x73\x65"].join("")]["".length];
       }
 
