@@ -16,47 +16,99 @@ import { getSlideOrSection } from './common/utilsFP.js';
 import { getSectionFromPanel } from './sections.js';
 import { events } from './common/events.js';
 
+let g_focusScrollableId;
+
 EventEmitter.on(events.bindEvents, bindEvents);
 
 function bindEvents(){
     // We can't focus scrollOverflow before scrolling
     // to the anchor (if we need to)
     EventEmitter.on(events.onAfterRenderNoAnchor, afterRender);
-    EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterSectionLoads);
+
+    EventEmitter.on(events.onLeave, scrollOverflowHandler.onLeave);
+    EventEmitter.on(events.onSlideLeave, scrollOverflowHandler.onLeave);
+    EventEmitter.on(events.afterSlideLoads, scrollOverflowHandler.afterLoad);
+    EventEmitter.on(events.afterSectionLoads, scrollOverflowHandler.afterLoad);
+    EventEmitter.on(events.onDestroy, onDestroy);
+
+    utils.docAddEvent('keyup', scrollOverflowHandler.keyUpHandler);
 }
 
 function afterRender(){
     if(getOptions().scrollOverflow && !getOptions().scrollBar){
         scrollOverflowHandler.makeScrollable();
-        scrollOverflowHandler.afterSectionLoads();
+        scrollOverflowHandler.focusScrollable();
     }
+}
+
+function onDestroy(){
+    utils.docRemoveEvent('keyup', scrollOverflowHandler.keyUpHandler);
 }
 
 export const scrollOverflowHandler = {
     focusedElem: null,
 
+    shouldFocusScrollable: true,
+
+    isInnerScrollAllowed: true,
+
     timeBeforeReachingLimit: null,
 
     timeLastScroll: null,
 
-    preventScrollWhileMoving: function(e){
+    preventScrollWithMouseWheel: function(e){
         if(!state.canScroll){
             utils.preventDefault(e);
             return false;
         }
     },
 
-    afterSectionLoads: function(){
+    preventScrollWithKeyboard: function(e){
+        if(!scrollOverflowHandler.isInnerScrollAllowed){
+            utils.preventDefault(e);
+            return false;
+        }
+    },
 
-        if(!getOptions().scrollOverflow){
+    keyUpHandler: function(){
+        scrollOverflowHandler.shouldFocusScrollable = state.canScroll;
+    },
+
+    // Leaving sections or slides
+    onLeave: function(){
+        clearTimeout(g_focusScrollableId);
+        scrollOverflowHandler.isInnerScrollAllowed = false;
+    },
+
+    // Loading sections or slides
+    afterLoad: function(){
+        scrollOverflowHandler.isInnerScrollAllowed = false;
+
+        // Delaying it to avoid issues on Safari when focusing elements #4484 & #4493
+        clearTimeout(g_focusScrollableId);
+        g_focusScrollableId = setTimeout(function(){
+            scrollOverflowHandler.shouldFocusScrollable = state.canScroll;
+        }, 200);
+    },
+
+    // Unfocusing the scrollable element from the orgin section/slide
+    unfocusScrollable: function(){
+         if( doc.activeElement === this.focusedElem){
+            // @ts-ignore
+            this.focusedElem.blur();
+
+            scrollOverflowHandler.isInnerScrollAllowed = false;
+        }
+    },
+
+    focusScrollable: function(){
+
+        if(!getOptions().scrollOverflow || !scrollOverflowHandler.shouldFocusScrollable){
             return;
         }
         
-        // Unfocusing the scrollable element from the orgin section/slide
-        if( doc.activeElement === this.focusedElem){
-            // @ts-ignore
-            this.focusedElem.blur();
-        }
+        scrollOverflowHandler.unfocusScrollable();
+       
         var scrollableItem = scrollOverflowHandler.getScrollableItem(getState().activeSection.item);
 
         // On desktop we focus the scrollable to be able to use the mouse wheel
@@ -65,11 +117,14 @@ export const scrollOverflowHandler = {
             this.focusedElem = scrollableItem;
 
             // Forcing the focus on the next paint 
-            // to avoid issue #4484 on Safari
+            // to avoid issue #4484 & #4493 on Safari
             requestAnimationFrame(function(){
                 scrollableItem.focus();
+                scrollOverflowHandler.isInnerScrollAllowed = true;
             });
         }
+
+        scrollOverflowHandler.shouldFocusScrollable = false;
     },
 
     makeScrollable: function(){
@@ -115,8 +170,8 @@ export const scrollOverflowHandler = {
     bindEvents: function(item){
         scrollOverflowHandler.getScrollableItem(item).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
 
-        item.addEventListener('wheel', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
-        item.addEventListener('keydown', scrollOverflowHandler.preventScrollWhileMoving, {passive: false});
+        item.addEventListener('wheel', scrollOverflowHandler.preventScrollWithMouseWheel, {passive: false});
+        item.addEventListener('keydown', scrollOverflowHandler.preventScrollWithKeyboard, {passive: false});
     },
 
     createWrapper: function(item){
@@ -168,6 +223,12 @@ export const scrollOverflowHandler = {
 
         if(!getOptions().scrollOverflow || 
             !utils.hasClass(scrollableItem, OVERFLOW) ||
+
+            // Checking the section first 
+            // In case they apply to both section + slide #4505
+            utils.hasClass(el, 'fp-noscroll') || 
+
+            // Checking the slide (in case it has)
             utils.hasClass(getSlideOrSection(el), 'fp-noscroll')
         ){
             return true;

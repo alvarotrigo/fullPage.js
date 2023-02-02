@@ -19,6 +19,7 @@ import { activeSlidesNavigation } from '../nav/slides.js';
 import { toggleControlArrows } from '../arrows.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { events } from '../common/events.js';
+import { scrollOverflowHandler } from '../scrolloverflow.js';
 
 let g_afterSlideLoadsId;
 FP.landscapeScroll = landscapeScroll;
@@ -107,6 +108,8 @@ export function landscapeScroll(slides, destiny, direction){
     if(section.isActive && !v.localIsResizing){
         setPageStatus(v.slideIndex, v.slideAnchor, v.anchorLink);
     }
+
+    EventEmitter.emit(events.onSlideLeave, v);
 
     performHorizontalMove(slides, v, true);
 }
