@@ -3000,7 +3000,10 @@
 
         var scrollableItem = scrollOverflowHandler.getScrollableItem(el);
 
-        if (!getOptions().scrollOverflow || !hasClass(scrollableItem, OVERFLOW) || hasClass(getSlideOrSection(el), 'fp-noscroll')) {
+        if (!getOptions().scrollOverflow || !hasClass(scrollableItem, OVERFLOW) || // Checking the section first 
+        // In case they apply to both section + slide #4505
+        hasClass(el, 'fp-noscroll') || // Checking the slide (in case it has)
+        hasClass(getSlideOrSection(el), 'fp-noscroll')) {
           return true;
         } // ie11 wrongly calculates scrollHeight when using the CSS style
         // overflow: auto   It adds 1 more pixel compared to offsetHeight

@@ -223,6 +223,12 @@ export const scrollOverflowHandler = {
 
         if(!getOptions().scrollOverflow || 
             !utils.hasClass(scrollableItem, OVERFLOW) ||
+
+            // Checking the section first 
+            // In case they apply to both section + slide #4505
+            utils.hasClass(el, 'fp-noscroll') || 
+
+            // Checking the slide (in case it has)
             utils.hasClass(getSlideOrSection(el), 'fp-noscroll')
         ){
             return true;
