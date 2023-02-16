@@ -19,6 +19,7 @@ import { moveSectionUp } from '../scroll/moveSectionUp.js';
 import { moveSectionDown } from '../scroll/moveSectionDown.js';
 import { moveTo } from '../scroll/moveTo.js';
 import { events } from '../common/events.js';
+import { isInsideInput } from '../common/utils.js';
 
 let g_controlPressed;
 let g_keydownId;
@@ -47,16 +48,6 @@ function onDestroy(){
     clearTimeout(g_keydownId);
     utils.docRemoveEvent('keydown', keydownHandler);
     utils.docRemoveEvent('keyup', keyUpHandler);
-}
-
-function isInsideInput(){
-    var activeElement = doc.activeElement;
-
-    return utils.matches(activeElement, 'textarea') || 
-        utils.matches(activeElement, 'input') || 
-        utils.matches(activeElement, 'select') ||
-        utils.getAttr(activeElement, 'contentEditable') == "true" || 
-        utils.getAttr(activeElement, 'contentEditable') == '';
 }
 
 //Sliding with arrow keys, both, vertical and horizontal
