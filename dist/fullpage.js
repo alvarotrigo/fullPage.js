@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.16
+* fullPage 4.0.17
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -777,6 +777,10 @@
       } while (!matches(item, topParentSelector));
 
       return parents;
+    }
+    function isInsideInput() {
+      var activeElement = doc.activeElement;
+      return matches(activeElement, 'textarea') || matches(activeElement, 'input') || matches(activeElement, 'select') || getAttr(activeElement, 'contentEditable') == "true" || getAttr(activeElement, 'contentEditable') == '';
     } //utils are public, so we can use it wherever we want
     // @ts-ignore
 
@@ -871,7 +875,8 @@
         getLast: getLast,
         getAverage: getAverage,
         setSrc: setSrc,
-        getParentsUntil: getParentsUntil
+        getParentsUntil: getParentsUntil,
+        isInsideInput: isInsideInput
     });
 
     function _typeof(obj) {
@@ -2863,9 +2868,13 @@
         }
       },
       preventScrollWithKeyboard: function preventScrollWithKeyboard(e) {
-        if (!scrollOverflowHandler.isInnerScrollAllowed) {
-          preventDefault(e);
-          return false;
+        if (!isInsideInput() && getOptions().keyboardScrolling) {
+          var directionKeys = [38, 33, 32, 40, 34, 36, 35];
+
+          if (directionKeys.indexOf(e.keyCode) > -1 && !scrollOverflowHandler.isInnerScrollAllowed) {
+            preventDefault(e);
+            return false;
+          }
         }
       },
       keyUpHandler: function keyUpHandler() {
@@ -4221,11 +4230,6 @@
       clearTimeout(g_keydownId);
       docRemoveEvent('keydown', keydownHandler);
       docRemoveEvent('keyup', keyUpHandler);
-    }
-
-    function isInsideInput() {
-      var activeElement = doc.activeElement;
-      return matches(activeElement, 'textarea') || matches(activeElement, 'input') || matches(activeElement, 'select') || getAttr(activeElement, 'contentEditable') == "true" || getAttr(activeElement, 'contentEditable') == '';
     } //Sliding with arrow keys, both, vertical and horizontal
 
 
@@ -5466,7 +5470,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x33\x2d\x31\x2d\x32".split("-"),
+      var n = "\x32\x30\x32\x33\x2d\x31\x2d\x31\x36".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5890,7 +5894,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.16';
+      FP.version = '4.0.17';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

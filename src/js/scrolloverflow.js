@@ -15,6 +15,7 @@ import { EventEmitter } from './common/eventEmitter.js';
 import { getSlideOrSection } from './common/utilsFP.js';
 import { getSectionFromPanel } from './sections.js';
 import { events } from './common/events.js';
+import { isInsideInput } from './common/utils.js';
 
 let g_focusScrollableId;
 
@@ -64,9 +65,12 @@ export const scrollOverflowHandler = {
     },
 
     preventScrollWithKeyboard: function(e){
-        if(!scrollOverflowHandler.isInnerScrollAllowed){
-            utils.preventDefault(e);
-            return false;
+        if( !isInsideInput() && getOptions().keyboardScrolling ){
+            var directionKeys = [38, 33, 32, 40, 34, 36, 35];
+            if( directionKeys.indexOf(e.keyCode) > -1 && !scrollOverflowHandler.isInnerScrollAllowed){
+                utils.preventDefault(e);
+                return false;
+            }
         }
     },
 

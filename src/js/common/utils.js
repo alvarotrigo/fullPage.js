@@ -533,6 +533,16 @@ export function getParentsUntil(item, topParentSelector){
     return parents;
 }
 
+export function isInsideInput(){
+    var activeElement = doc.activeElement;
+
+    return matches(activeElement, 'textarea') || 
+        matches(activeElement, 'input') || 
+        matches(activeElement, 'select') ||
+        getAttr(activeElement, 'contentEditable') == "true" || 
+        getAttr(activeElement, 'contentEditable') == '';
+}
+
 //utils are public, so we can use it wherever we want
 // @ts-ignore
 window["fp_utils"] = {
