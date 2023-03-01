@@ -137,8 +137,8 @@ export function scrollHandler(e){
                     //needed to enter in hashChange event when using the menu with anchor links
                     setState({lastScrolledDestiny: anchorLink});
                 }
-                setPageStatus(slideIndex, slideAnchorLink, anchorLink);
                 updateState();
+                setPageStatus(slideIndex, slideAnchorLink, anchorLink);
             }
 
             //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
