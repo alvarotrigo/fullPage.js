@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.18
+ * fullPage 4.0.19
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -24,10 +24,6 @@ html.fp-enabled,
     box-sizing: border-box;
     height: 100%;
     display: block;
-
-    /* Avoid flicker in Safari #4522 */
-    transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
 }
 .fp-slide {
     float: left;
