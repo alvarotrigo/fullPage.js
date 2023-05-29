@@ -203,6 +203,12 @@ function onTab(e){
         return focusableElements[0] ? focusableElements[0].focus() : null;
     }
 
+    // deactivating tab while scrolling #4550
+    if(!state.canScroll){
+        utils.preventDefault(e);
+        return;
+    }
+
     //outside any section or slide? Let's not hijack the tab!
     if(isFocusOutside(e)){
         return;
