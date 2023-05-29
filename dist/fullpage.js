@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.19
+* fullPage 4.0.20
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1050,6 +1050,8 @@
     var WRAPPER = 'fullpage-wrapper';
     var WRAPPER_SEL = '.' + WRAPPER; // slimscroll
 
+    var SCROLLABLE = 'fp-scrollable';
+
     var RESPONSIVE = 'fp-responsive';
     var NO_TRANSITION = 'fp-notransition';
     var DESTROYED = 'fp-destroyed';
@@ -1195,7 +1197,8 @@
       afterResponsive: null,
       onScrollOverflow: null,
       lazyLoading: true,
-      observer: true
+      observer: true,
+      scrollBeyondFullpage: true
     };
 
     var container = null;
@@ -1930,7 +1933,12 @@
     }
 
     function slideBulletHandler(e) {
-      preventDefault(e);
+      // not all events are cancellable 
+      // https://www.uriports.com/blog/easy-fix-for-intervention-ignored-attempt-to-cancel-a-touchmove-event-with-cancelable-false/
+      if (e.cancelable) {
+        preventDefault(e);
+      }
+
       setState({
         scrollTrigger: 'horizontalNav'
       });
@@ -2852,6 +2860,7 @@
     }
 
     function onDestroy$7() {
+      EventEmitter.removeListener(events.onAfterRenderNoAnchor, afterRender);
       docRemoveEvent('keyup', scrollOverflowHandler.keyUpHandler);
     }
 
@@ -3792,7 +3801,7 @@
     }
 
     function hasContentBeyondFullPage() {
-      return getContainer().scrollHeight < $body.scrollHeight;
+      return getContainer().scrollHeight < $body.scrollHeight && getOptions().scrollBar && getOptions().scrollBeyondFullpage;
     }
 
     FP.moveSectionUp = moveSectionUp;
@@ -4166,7 +4175,7 @@
       if (section == null) return;
       var slideElem = getSlideByAnchor(slideAnchor, section); //we need to scroll to the section and then to the slide
 
-      if (section.anchor !== state.lastScrolledDestiny && !hasClass(section.item, ACTIVE)) {
+      if ((!section.anchor || section.anchor !== state.lastScrolledDestiny) && !hasClass(section.item, ACTIVE)) {
         scrollPage(section, function () {
           scrollSlider(slideElem);
         });
@@ -4386,6 +4395,12 @@
       function preventAndFocusFirst(e) {
         preventDefault(e);
         return focusableElements[0] ? focusableElements[0].focus() : null;
+      } // deactivating tab while scrolling #4550
+
+
+      if (!state.canScroll) {
+        preventDefault(e);
+        return;
       } //outside any section or slide? Let's not hijack the tab!
 
 
@@ -5470,7 +5485,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x33\x2d\x32\x2d\x31\x30".split("-"),
+      var n = "\x32\x30\x32\x33\x2d\x34\x2d\x32\x39".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5553,7 +5568,12 @@
         var section = sections[i];
         var slides = section.allSlidesItems; //caching the original styles to add them back on destroy('all')
 
-        section.item.setAttribute('data-fp-styles', getAttr(section.item, 'style'));
+        var originalStyles = getAttr(section.item, 'style');
+
+        if (originalStyles) {
+          section.item.setAttribute('data-fp-styles', originalStyles);
+        }
+
         styleSection(section);
         styleMenu(section); // if there's any slide
 
@@ -5698,9 +5718,9 @@
         'height': ''
       }); // remove .fp-enabled class
 
-      removeClass($html, ENABLED); // remove .fp-responsive class
+      removeClass($html, ENABLED); // remove .fp-responsive class & .fp-scrollable
 
-      removeClass($body, RESPONSIVE); // remove all of the .fp-viewing- classes
+      removeClass($body, RESPONSIVE + ' ' + SCROLLABLE); // remove all of the .fp-viewing- classes
 
       $body.className.split(/\s+/).forEach(function (className) {
         if (className.indexOf(VIEWING_PREFIX) === 0) {
@@ -5713,11 +5733,11 @@
           scrollOverflowHandler.destroyWrapper(item);
         }
 
-        removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
+        removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW);
         var previousStyles = getAttr(item, 'data-fp-styles');
 
         if (previousStyles) {
-          item.setAttribute('style', getAttr(item, 'data-fp-styles'));
+          item.setAttribute('style', previousStyles);
         } //removing anchors if they were not set using the HTML markup
 
 
@@ -5738,7 +5758,8 @@
       css(getContainer(), {
         '-webkit-transition': 'none',
         'transition': 'none'
-      }); //scrolling the page to the top with no animation
+      });
+      removeClass(getContainer(), WRAPPER); //scrolling the page to the top with no animation
 
       win.scrollTo(0, 0); //removing selectors
 
@@ -5894,7 +5915,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.19';
+      FP.version = '4.0.20';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

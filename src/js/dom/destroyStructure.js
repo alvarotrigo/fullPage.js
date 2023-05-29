@@ -20,7 +20,10 @@ import {
     SLIDES_CONTAINER,
     SLIDES_CONTAINER_SEL,
     SLIDES_WRAPPER_SEL,
-    SLIDES_ARROW_SEL
+    SLIDES_ARROW_SEL,
+    IS_OVERFLOW,
+    SCROLLABLE,
+    WRAPPER
 } from '../common/selectors.js';
 import { win } from '../common/constants.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
@@ -69,8 +72,8 @@ export function destroyStructure(){
     // remove .fp-enabled class
     utils.removeClass($html, ENABLED);
 
-    // remove .fp-responsive class
-    utils.removeClass($body, RESPONSIVE);
+    // remove .fp-responsive class & .fp-scrollable
+    utils.removeClass($body, RESPONSIVE + ' ' + SCROLLABLE);
 
     // remove all of the .fp-viewing- classes
     $body.className.split(/\s+/).forEach(function (className) {
@@ -84,10 +87,11 @@ export function destroyStructure(){
         if(getOptions().scrollOverflow){
             scrollOverflowHandler.destroyWrapper(item);
         }
-        utils.removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY);
+
+        utils.removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW);
         var previousStyles = utils.getAttr(item, 'data-fp-styles');
         if(previousStyles){
-            item.setAttribute('style', utils.getAttr(item, 'data-fp-styles'));
+            item.setAttribute('style', previousStyles);
         }
 
         //removing anchors if they were not set using the HTML markup
@@ -112,6 +116,8 @@ export function destroyStructure(){
         '-webkit-transition': 'none',
         'transition': 'none'
     });
+
+    utils.removeClass(getContainer(), WRAPPER);
 
     //scrolling the page to the top with no animation
     win.scrollTo(0, 0);

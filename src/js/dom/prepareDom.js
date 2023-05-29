@@ -46,7 +46,10 @@ export function prepareDom(){
         var slides = section.allSlidesItems;
 
         //caching the original styles to add them back on destroy('all')
-        section.item.setAttribute('data-fp-styles', utils.getAttr(section.item, 'style'));
+        var originalStyles = utils.getAttr(section.item, 'style');
+        if(originalStyles){
+            section.item.setAttribute('data-fp-styles', originalStyles);
+        }
 
         styleSection(section);
         styleMenu(section);

@@ -17,7 +17,7 @@ export function scrollPageAndSlide(sectionAnchor, slideAnchor){
     var slideElem = getSlideByAnchor(slideAnchor, section);
 
     //we need to scroll to the section and then to the slide
-    if (section.anchor !== state.lastScrolledDestiny && !utils.hasClass(section.item, ACTIVE)){
+    if ((!section.anchor || section.anchor !== state.lastScrolledDestiny) && !utils.hasClass(section.item, ACTIVE)){
         
         scrollPage(section, function(){
             scrollSlider(slideElem);

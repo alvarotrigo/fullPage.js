@@ -29,5 +29,7 @@ export function moveSectionDown(){
 }
 
 function hasContentBeyondFullPage(){
-    return getContainer().scrollHeight < $body.scrollHeight;
+    return getContainer().scrollHeight < $body.scrollHeight && 
+            getOptions().scrollBar &&
+            getOptions().scrollBeyondFullpage;
 }

@@ -17,7 +17,12 @@ import { events } from '../common/events.js';
 
 //Scrolls the slider to the given slide destination for the given section
 export function slideBulletHandler(e){
-    utils.preventDefault(e);
+
+    // not all events are cancellable 
+    // https://www.uriports.com/blog/easy-fix-for-intervention-ignored-attempt-to-cancel-a-touchmove-event-with-cancelable-false/
+    if(e.cancelable){
+        utils.preventDefault(e);
+    }
 
     setState({scrollTrigger: 'horizontalNav'});
 
