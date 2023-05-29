@@ -43,6 +43,7 @@ function afterRender(){
 }
 
 function onDestroy(){
+    EventEmitter.removeListener(events.onAfterRenderNoAnchor, afterRender);
     utils.docRemoveEvent('keyup', scrollOverflowHandler.keyUpHandler);
 }
 
