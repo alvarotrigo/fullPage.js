@@ -97,5 +97,6 @@ export const defaultOptions = {
     onScrollOverflow: null,
 
     lazyLoading: true,
-    observer: true
+    observer: true,
+    scrollBeyondFullpage: true
 };
