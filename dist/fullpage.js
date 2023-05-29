@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.19
+* fullPage 4.0.20
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1195,7 +1195,8 @@
       afterResponsive: null,
       onScrollOverflow: null,
       lazyLoading: true,
-      observer: true
+      observer: true,
+      scrollBeyondFullpage: true
     };
 
     var container = null;
@@ -1930,7 +1931,12 @@
     }
 
     function slideBulletHandler(e) {
-      preventDefault(e);
+      // not all events are cancellable 
+      // https://www.uriports.com/blog/easy-fix-for-intervention-ignored-attempt-to-cancel-a-touchmove-event-with-cancelable-false/
+      if (e.cancelable) {
+        preventDefault(e);
+      }
+
       setState({
         scrollTrigger: 'horizontalNav'
       });
@@ -3792,7 +3798,7 @@
     }
 
     function hasContentBeyondFullPage() {
-      return getContainer().scrollHeight < $body.scrollHeight;
+      return getContainer().scrollHeight < $body.scrollHeight && getOptions().scrollBar && getOptions().scrollBeyondFullpage;
     }
 
     FP.moveSectionUp = moveSectionUp;
@@ -5470,7 +5476,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x33\x2d\x32\x2d\x31\x30".split("-"),
+      var n = "\x32\x30\x32\x33\x2d\x34\x2d\x32\x39".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5894,7 +5900,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.19';
+      FP.version = '4.0.20';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
