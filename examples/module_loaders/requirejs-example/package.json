@@ -9,6 +9,6 @@
   "author": "",
   "license": "GPLv3",
   "dependencies": {
-    "fullpage.js": "^4.0.11"
+    "fullpage.js": "^4.0.20"
   }
 }
