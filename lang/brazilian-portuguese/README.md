@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.20-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.21-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -515,7 +515,7 @@ new fullpage('#fullpage', {
 
 - `slidesNavPosition`: (padrão `bottom`) Define a posição da barra de navegação de paisagem para controles deslizantes. Admite `top` e `bottom` como valores. Você pode querer modificar os estilos CSS para determinar a distância da parte superior ou inferior, bem como qualquer outro estilo, como cor.
 
-- `scrollOverflow`: (padrão `true`) define se deve ou não criar um scroll para a seção/slide caso seu conteúdo seja maior que a altura do mesmo. Para evitar que fullpage.js crie a barra de rolagem em certas seções ou slides, use a classe `fp-noscroll`. Por exemplo: `<div class="section fp-noscroll">` Você também pode impedir que o scrolloverflow seja aplicado no modo responsivo ao usar `fp-auto-height-responsive` no elemento section.
+- `scrollOverflow`: (padrão `true`) define se deve ou não criar um scroll para a seção/slide caso seu conteúdo seja maior que a altura do mesmo. It requires the default value `scrollBar: false`. Para evitar que fullpage.js crie a barra de rolagem em certas seções ou slides, use a classe `fp-noscroll`. Por exemplo: `<div class="section fp-noscroll">` Você também pode impedir que o scrolloverflow seja aplicado no modo responsivo ao usar `fp-auto-height-responsive` no elemento section.
 
 - `scrollOverflowReset`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Os valores possíveis são `true`, `false`, `sections`, `slides`. Quando definido como `true`, ele rola o conteúdo da seção/slide com uma barra de rolagem ao sair para outra seção/slide. Dessa forma, a seção/slide sempre mostrará o início de seu conteúdo, mesmo ao rolar de uma seção abaixo dela. Adicionar a classe `fp-no-scrollOverflowReset` na seção ou slide desativará esse recurso para esse painel específico.
 

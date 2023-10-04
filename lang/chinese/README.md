@@ -17,7 +17,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.20,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.21,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -510,7 +510,7 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 
 - `slidesNavPosition`: （默认`bottom`）定义滑块的横向导航栏的位置。 值为 `top` 和 `bottom` 。 您可能需要修改 CSS 样式以确定从顶部或底部距离以及任何其他样式（如颜色）。
 
-- `scrollOverflow`: （默认为 `true`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`. 在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
+- `scrollOverflow`: （默认为 `true`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 It requires the default value `scrollBar: false`。 为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`. 在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
 
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 

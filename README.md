@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.20-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.21-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -512,7 +512,7 @@ In order to link the elements of the menu with the sections, an HTML 5 data-tag 
 
 - `slidesNavPosition`: (default `bottom`) Defines the position for the landscape navigation bar for sliders. Admits `top` and `bottom` as values. You may want to modify the CSS styles to determine the distance from the top or bottom as well as any other style such as color.
 
-- `scrollOverflow`: (default `true`) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. In order to prevent fullpage.js from creating the scrollbar in certain sections or slides use the class `fp-noscroll`. For example: `<div class="section fp-noscroll">` You can also prevent scrolloverflow from getting applied on responsive mode when using `fp-auto-height-responsive` in the section element.
+- `scrollOverflow`: (default `true`) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. It requires the default value `scrollBar: false`. In order to prevent fullpage.js from creating the scrollbar in certain sections or slides use the class `fp-noscroll`. For example: `<div class="section fp-noscroll">` You can also prevent scrolloverflow from getting applied on responsive mode when using `fp-auto-height-responsive` in the section element.
 
 - `scrollOverflowReset`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Possible values are `true`, `false`, `sections`, `slides`. When set to `true` it scrolls up the content of the section/slide with a scroll bar when leaving to another section/slide. This way the section/slide will always show the start of its content even when scrolling from a section underneath it. Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
