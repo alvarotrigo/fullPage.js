@@ -18,7 +18,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.20-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.21-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -504,7 +504,7 @@ fullpage.js [предоставляет ряд расширений](https://alv
 
 - `slidesNavPosition`: (по умолчанию `bottom`) Определяет местоположение горизонтальной навигационной панели для слайдеров. Возможные значения: `top` и `bottom`. При желании вы можете настроить стили CSS для определения расстояния от верхней до нижней части, так же как и любой другой стиль, например, цвет.
 
-- `scrollOverflow`: (по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
+- `scrollOverflow`: (по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. It requires the default value `scrollBar: false`. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
 
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 

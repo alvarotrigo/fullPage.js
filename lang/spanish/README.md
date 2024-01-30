@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.20-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.21-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -514,7 +514,7 @@ Para relacionar los elementos del menú con las secciones se requiere del uso de
 
 - `slidesNavPosition`: (por defecto `bottom`) Determina la posición que tomará la navegación para las diapositivas horizontales de la página. Admite los valores `top` y `bottom`. Tal vez quieras modificar la distancia inferior o superior usando estilos CSS así como el color de los mismos.
 
-- `scrollOverflow`: (por defecto `true`) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Para evitar que fullPage.js cree la barra de desplazamiento en ciertas secciones o diapositivas, haz uso de la clase `fp-noscroll`. Por ejemplo: `<div class="section fp-noscroll">`. Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clase `fp-auto-height-responsive` en la sección. [Más información](https://github.com/alvarotrigo/fullPage.js#responsive-auto-height-sections).
+- `scrollOverflow`: (por defecto `true`) Determina si crear o no una barra de desplazamiento para las secciones/diapositivas donde el contenido de las mismas sea mayor que la altura de la ventana del navegador. Requiere la opciión por defecto `scrollBar:false`. Para evitar que fullPage.js cree la barra de desplazamiento en ciertas secciones o diapositivas, haz uso de la clase `fp-noscroll`. Por ejemplo: `<div class="section fp-noscroll">`. Puedes evitar que `scrolloverflow` se aplique en modo responsive si usas la clase `fp-auto-height-responsive` en la sección. [Más información](https://github.com/alvarotrigo/fullPage.js#responsive-auto-height-sections).
 
 - `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 

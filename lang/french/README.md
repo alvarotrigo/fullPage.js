@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.20-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.21-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -520,7 +520,7 @@ Afin de lier les éléments du menu avec les sections, un data-tag HTML 5 (`data
 
 - `slidesNavPosition` : (par défaut `bottom`) Définit la position de la barre de navigation en mode paysage pour les curseurs. Admet les valeurs `top` et `bottom`. Vous pouvez modifier les styles CSS pour déterminer la distance du haut ou du bas ainsi que tout autre style tel que la couleur.
 
-- `scrollOverflow` : (par défaut `true`) définit si oui ou non il faut créer un défilement pour la section/glissière dans le cas où son contenu est plus grand que la hauteur de celle-ci. Afin d'éviter que fullpage.js ne crée la barre de défilement dans certaines sections ou diapositives, utilisez la classe `fp-noscroll`. Par exemple : `<div class="section fp-noscroll">`
+- `scrollOverflow` : (par défaut `true`) définit si oui ou non il faut créer un défilement pour la section/glissière dans le cas où son contenu est plus grand que la hauteur de celle-ci. It requires the default value `scrollBar: false`. Afin d'éviter que fullpage.js ne crée la barre de défilement dans certaines sections ou diapositives, utilisez la classe `fp-noscroll`. Par exemple : `<div class="section fp-noscroll">`
 
 Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif lorsque vous utilisez `fp-auto-height-responsive` dans l'élément section.
 

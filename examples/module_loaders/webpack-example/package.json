@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack --config webpack.config.js"
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && npx webpack --mode development --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,6 @@
     "webpack-cli": "^3.1.1"
   },
   "dependencies": {
-    "fullpage.js": "^4.0.11"
+    "fullpage.js": "^4.0.21"
   }
 }
