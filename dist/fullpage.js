@@ -4697,8 +4697,7 @@
           if (isAccelerating && isScrollingVertically) {
             setState({
               scrollTrigger: 'wheel'
-            });
-            e.stopPropagation(); //scrolling down?
+            }); //scrolling down?
 
             if (delta < 0) {
               scrolling('down');
@@ -4709,7 +4708,6 @@
           }
         }
 
-        e.stopPropagation();
         return false;
       }
 
@@ -5488,7 +5486,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x30\x2d\x32\x30".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x30\x2d\x33\x30".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
