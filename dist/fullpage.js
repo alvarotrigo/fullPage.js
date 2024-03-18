@@ -1448,7 +1448,7 @@
       });
     }
     /**
-    * Retuns `up` or `down` depending on the scrolling movement to reach its destination
+    * Returns `up` or `down` depending on the scrolling movement to reach its destination
     * from the current section.
     */
 
@@ -3204,7 +3204,7 @@
       }
     }
     /**
-    * Retuns `right` or `left` depending on the scrolling movement to reach its destination
+    * Returns `right` or `left` depending on the scrolling movement to reach its destination
     * from the current slide.
     */
 
