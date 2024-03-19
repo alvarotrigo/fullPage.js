@@ -91,7 +91,7 @@ export function addAnimation(element){
 }
 
 /**
-* Retuns `up` or `down` depending on the scrolling movement to reach its destination
+* Returns `up` or `down` depending on the scrolling movement to reach its destination
 * from the current section.
 */
 export function getYmovement(activeSection, destiny){

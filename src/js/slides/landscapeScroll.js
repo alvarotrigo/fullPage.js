@@ -151,7 +151,7 @@ function performHorizontalMove(slides, v, fireCallback){
 }
 
 /**
-* Retuns `right` or `left` depending on the scrolling movement to reach its destination
+* Returns `right` or `left` depending on the scrolling movement to reach its destination
 * from the current slide.
 */
 function getXmovement(fromIndex, toIndex){
