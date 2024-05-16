@@ -1064,13 +1064,10 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
 
