@@ -25,6 +25,9 @@ export function styleSection(section){
     if(!getState().activeSection && section.isVisible) {
         utils.addClass(sectionElem, ACTIVE);
         updateState();
+    }
+
+    if(!startingSection && section.isVisible){
         startingSection = getState().activeSection.item;
     }
 
