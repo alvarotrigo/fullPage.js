@@ -389,11 +389,11 @@ Then you will be able to use and configure them as explained in [options](https:
  
 (default `null`) **This option is compulsory.** If you use fullPage in a non open source project, then you should use the license key provided on the purchase of the fullPage Commercial License. If your project is open source and it is compatible with the GPLv3 license you can use the option `gplv3-license`. Please read more about licenses [here](https://github.com/alvarotrigo/fullPage.js#license) and [on the website](https://alvarotrigo.com/fullPage/pricing/). Example of usage:
 
-	```javascript
-	new fullpage('#fullpage', {
-		licenseKey: 'YOUR_KEY_HERE'
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 ### controlArrows
 
@@ -417,11 +417,11 @@ Provides a way to define the HTML structure and the classes that you want to app
 (default `none`) Define the CSS `background-color` property for each section.
 Example:
 
-	```javascript
-	new fullpage('#fullpage', {
-		sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
 
 ### anchors
 
@@ -531,9 +531,9 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 
 (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section. Requires fullPage.js >= 3.0.1.
 To define the percentage of each section the attribute `data-percentage` must be used. The centering of the section in the viewport can be determined by using a boolean value in the attribute `data-centered` (default to `true` if not specified). For example:
-	``` html
-	<div class="section" data-percentage="80" data-centered="true">
-	```
+``` html
+<div class="section" data-percentage="80" data-centered="true">
+```
 
 ### resetSliders
 
@@ -556,22 +556,22 @@ To define the percentage of each section the attribute `data-percentage` must be
 (default `false`) A selector can be used to specify the menu to link with the sections. This way the scrolling of the sections will activate the corresponding element in the menu using the class `active`.
 This won't generate a menu but will just add the `active` class to the element in the given menu with the corresponding anchor links.
 In order to link the elements of the menu with the sections, an HTML 5 data-tag (`data-menuanchor`) will be needed to use with the same anchor links as used within the sections. Example:
-	```html
-	<ul id="myMenu">
-		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-		<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-		<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-		<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
-	</ul>
-	```
-	```javascript
-	new fullpage('#fullpage', {
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-		menu: '#myMenu'
-	});
-	```
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+</ul>
+```
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
+});
+```
 
-	**Note:** the menu element should be placed outside the fullpage wrapper in order to avoid problem when using `css3:true`. Otherwise it will be appended to the `body` by the plugin itself.
+**Note:** the menu element should be placed outside the fullpage wrapper in order to avoid problem when using `css3:true`. Otherwise it will be appended to the `body` by the plugin itself.
 
 ### navigation
 
