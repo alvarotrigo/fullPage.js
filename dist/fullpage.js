@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.22
+* fullPage 4.0.23
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -2797,6 +2797,9 @@
       if (!getState().activeSection && section.isVisible) {
         addClass(sectionElem, ACTIVE);
         updateState();
+      }
+
+      if (!startingSection && section.isVisible) {
         startingSection = getState().activeSection.item;
       }
 
@@ -2926,7 +2929,9 @@
           // to avoid issue #4484 & #4493 on Safari
 
           requestAnimationFrame(function () {
-            scrollableItem.focus();
+            scrollableItem.focus({
+              preventScroll: true
+            });
             scrollOverflowHandler.isInnerScrollAllowed = true;
           });
         }
@@ -4670,11 +4675,9 @@
 
 
         scrollings.push(Math.abs(value)); //preventing to scroll the site on mouse wheel when scrollbar is present
+        //and preventing scroll of parent frames 
 
-        if (getOptions().scrollBar) {
-          preventDefault(e);
-        } //time difference between the last scroll and the current one
-
+        preventDefault(e); //time difference between the last scroll and the current one
 
         var timeDiff = curTime - prevTime;
         prevTime = curTime; //haven't they scrolled in a while?
@@ -5145,7 +5148,7 @@
       var target = params.target;
 
       if (closest(target, getOptions().menu + ' [data-menuanchor]')) {
-        menuItemsHandler.call(target, params);
+        menuItemsHandler.call(target, params.e);
       }
     } //Menu item handler when not using anchors or using lockAnchors:true
 
@@ -5157,10 +5160,11 @@
 
       if ($(getOptions().menu)[0] && (getOptions().lockAnchors || !getOptions().anchors.length)) {
         preventDefault(e);
+        var menuAnchorEl = closest(this, '[data-menuanchor]');
         /*jshint validthis:true */
 
         EventEmitter.emit(events.onMenuClick, {
-          anchor: getAttr(this, 'data-menuanchor')
+          anchor: getAttr(menuAnchorEl, 'data-menuanchor')
         });
       }
     }
@@ -5486,7 +5490,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x30\x2d\x33\x31".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x35\x2d\x32\x30".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5505,10 +5509,16 @@
     }();
 
     //@ts-check
+    EventEmitter.on(events.beforeInit, beforeInit);
     FP.setKeyboardScrolling = setKeyboardScrolling;
+
+    function beforeInit() {
+      setKeyboardScrolling(true);
+    }
     /**
     * Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys
     */
+
 
     function setKeyboardScrolling(value, directions) {
       if (typeof directions !== 'undefined') {
@@ -5916,7 +5926,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.22';
+      FP.version = '4.0.23';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
