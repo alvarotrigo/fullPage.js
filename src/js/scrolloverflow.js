@@ -124,7 +124,7 @@ export const scrollOverflowHandler = {
             // Forcing the focus on the next paint 
             // to avoid issue #4484 & #4493 on Safari
             requestAnimationFrame(function(){
-                scrollableItem.focus();
+                scrollableItem.focus({preventScroll: true});
                 scrollOverflowHandler.isInnerScrollAllowed = true;
             });
         }
