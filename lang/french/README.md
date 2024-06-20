@@ -622,7 +622,8 @@ Vous permet de configurer les paramètres pour l'effet des cartes quand vous uti
 (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
 ### credits
-(default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+(default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`).
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## Méthodes
 Vous pouvez les voir en action [ici](https://alvarotrigo.com/fullPage/examples/methods.html)

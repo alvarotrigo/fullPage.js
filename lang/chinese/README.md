@@ -580,26 +580,30 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 （默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
 ### parallaxOptions
-（默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+（默认：`{type：'reveal'，percent：62，property：'translate'}`）。
+允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
 
 ### dropEffect
 （默认： `false`） [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 ### dropEffectOptions
-（默认： `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`）. Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+（默认： `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`）. 
+Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 ### waterEffect
 （默认： `false`） [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 ### waterEffectOptions
-（默认：: `{ animateContent: true, animateOnMouseMove: true}`）. Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+（默认：: `{ animateContent: true, animateOnMouseMove: true}`）. 
+Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 ### cards
 （默认： `false`） [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/) . 定义是否在 section/slide 上使用卡片效果。[了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 ### cardsOptions
-（默认：: `{ perspective: 100, fadeContent: true, fadeBackground: true}`）. 允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+（默认：: `{ perspective: 100, fadeContent: true, fadeBackground: true}`）. 
+允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 ### lazyLoading
 （默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
@@ -608,7 +612,8 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 （默认： `true`） Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
 ### credits
-（默认： `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）. Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+（默认： `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）. 
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## 公共方法
 你可以在[这里](https://alvarotrigo.com/fullPage/examples/methods.html)看到它们
