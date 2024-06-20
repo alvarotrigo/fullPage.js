@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.22-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.23-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -385,7 +385,8 @@ Então você poderá usá-los e configurá-los conforme explicado em [Opções](
 
 ## Opções
 
-- `licenseKey`: (padrão `null`). **Esta opção é obrigatória.** Se você usar fullPage em um projeto de código não aberto, deverá usar a chave de licença fornecida na compra da licença comercial fullPage. Se o seu projeto for de código aberto e for compatível com a licença GPLv3, você pode usar a opção `gplv3-license`. Leia mais sobre licenças [aqui](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#licença) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
+### licenseKey:
+(padrão `null`). **Esta opção é obrigatória.** Se você usar fullPage em um projeto de código não aberto, deverá usar a chave de licença fornecida na compra da licença comercial fullPage. Se o seu projeto for de código aberto e for compatível com a licença GPLv3, você pode usar a opção `gplv3-license`. Leia mais sobre licenças [aqui](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#licença) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
 
 ```javascript
 new fullpage('#fullpage', {
@@ -393,15 +394,20 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `controlArrows`: (padrão `true`) Determina se as setas de controle devem ser usadas para mover os slides para a direita ou para a esquerda.
+### controlArrows:
+(padrão `true`) Determina se as setas de controle devem ser usadas para mover os slides para a direita ou para a esquerda.
 
-- `controlArrowsHTML`: (padrão `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Fornece uma maneira de definir a estrutura HTML e as classes que você deseja aplicar às setas de controle para seções com slides horizontais. A matriz contém a estrutura para ambas as setas. O primeiro item é a seta para a esquerda e o segundo, a seta para a direita.
+### controlArrowsHTML:
+(padrão `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Fornece uma maneira de definir a estrutura HTML e as classes que você deseja aplicar às setas de controle para seções com slides horizontais. A matriz contém a estrutura para ambas as setas. O primeiro item é a seta para a esquerda e o segundo, a seta para a direita.
 
-- `verticalCentered`: (padrão `true`) Centralização vertical do conteúdo usando flexbox. Você pode querer envolver seu conteúdo em um `div` para evitar possíveis problemas. (Usa `flex-direction: column; display: flex; justify-content: center;`)
+### verticalCentered:
+(padrão `true`) Centralização vertical do conteúdo usando flexbox. Você pode querer envolver seu conteúdo em um `div` para evitar possíveis problemas. (Usa `flex-direction: column; display: flex; justify-content: center;`)
 
-- `scrollingSpeed`: (padrão `700`) Velocidade em milissegundos para as transições de rolagem.
+### scrollingSpeed:
+(padrão `700`) Velocidade em milissegundos para as transições de rolagem.
 
-- `sectionsColor`: (padrão `none`) Defina a propriedade CSS `background-color` para cada seção.
+### sectionsColor:
+(padrão `none`) Defina a propriedade CSS `background-color` para cada seção.
 Example:
 ```javascript
 new fullpage('#fullpage', {
@@ -409,58 +415,82 @@ new fullpage('#fullpage', {
 });
 ```
 
-- `anchors`: (padrão `[]`) Define os links âncora (#example) a serem mostrados na URL de cada seção. O valor das âncoras deve ser único. A posição das âncoras na matriz definirá em quais seções a âncora será aplicada. (segunda posição para a segunda seção e assim por diante). O uso de âncoras de navegação para frente e para trás também será possível através do navegador. Essa opção também permite que os usuários marquem uma seção ou slide específico. **Cuidado!** âncoras não podem ter o mesmo valor que qualquer elemento de ID no site (ou elemento NAME para IE).
+### anchors:
+(padrão `[]`) Define os links âncora (#example) a serem mostrados na URL de cada seção. O valor das âncoras deve ser único. A posição das âncoras na matriz definirá em quais seções a âncora será aplicada. (segunda posição para a segunda seção e assim por diante). O uso de âncoras de navegação para frente e para trás também será possível através do navegador. Essa opção também permite que os usuários marquem uma seção ou slide específico. **Cuidado!** âncoras não podem ter o mesmo valor que qualquer elemento de ID no site (ou elemento NAME para IE).
 Agora as âncoras podem ser definidas diretamente na estrutura HTML usando o atributo `data-anchor` conforme explicado aqui.
 
-- `lockAnchors`: (padrão `false`) Determina se as âncoras na URL terão algum efeito na biblioteca. Você ainda pode usar âncoras internamente para suas próprias funções e retornos de chamada, mas elas não terão nenhum efeito na rolagem do site. Útil se você quiser combinar fullPage.js com outros plugins usando âncora na URL.
+### lockAnchors:
+(padrão `false`) Determina se as âncoras na URL terão algum efeito na biblioteca. Você ainda pode usar âncoras internamente para suas próprias funções e retornos de chamada, mas elas não terão nenhum efeito na rolagem do site. Útil se você quiser combinar fullPage.js com outros plugins usando âncora na URL.
 
 **Importante** É útil entender que os valores no array de opções `anchors` se correlacionam diretamente com o elemento com a classe `.section` por sua posição na marcação.
 
-- `easing`: (padrão `easeInOutCubic`) Define o efeito de transição a ser usado para a rolagem vertical e horizontal.
+### easing:
+(padrão `easeInOutCubic`) Define o efeito de transição a ser usado para a rolagem vertical e horizontal.
 Requer o arquivo `vendors/easings.min.js` ou [jQuery UI](https://jqueryui.com/) para usar algumas de [suas transições](https://api.jqueryui.com/easings/) . Outras bibliotecas podem ser usadas em vez disso.
 
-- `easingcss3`: (padrão `ease`) Define o efeito de transição a ser usado no caso de usar `css3:true`. Você pode usar os [predefinidos](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (como `linear`, `ease-out`...) ou criar seu próprios usando a função `cubic-bezier`. Você pode querer usar [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) para isso.
+### easingcss3:
+(padrão `ease`) Define o efeito de transição a ser usado no caso de usar `css3:true`. Você pode usar os [predefinidos](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (como `linear`, `ease-out`...) ou criar seu próprios usando a função `cubic-bezier`. Você pode querer usar [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) para isso.
 
-- `loopTop`: (padrão `false`) Define se a rolagem para cima na primeira seção deve rolar para a última ou não.
+### loopTop:
+(padrão `false`) Define se a rolagem para cima na primeira seção deve rolar para a última ou não.
 
-- `loopBottom`: (padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira ou não.
+### loopBottom:
+(padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira ou não.
 
-- `loopHorizontal`: (padrão `true`) Define se os controles deslizantes horizontais farão um loop após alcançar o último slide ou o anterior ou não.
+### loopHorizontal`:
+ (padrão `true`) Define se os controles deslizantes horizontais farão um loop após alcançar o último slide ou o anterior ou não.
 
-- `css3`: (padrão `true`). Define se as transformações JavaScript ou CSS3 devem ser usadas para rolar nas seções e slides. Útil para acelerar o movimento em tablets e dispositivos móveis com navegadores que suportem CSS3. Se esta opção estiver definida como `true` e o navegador não suportar CSS3, um substituto será usado.
+### css3`:
+ (padrão `true`). Define se as transformações JavaScript ou CSS3 devem ser usadas para rolar nas seções e slides. Útil para acelerar o movimento em tablets e dispositivos móveis com navegadores que suportem CSS3. Se esta opção estiver definida como `true` e o navegador não suportar CSS3, um substituto será usado.
 
-- `autoScrolling`: (padrão `true`) Define se deve ser usada a rolagem "automática" ou a "normal". Também afeta a maneira como as seções se encaixam na janela do navegador/dispositivo em tablets e telefones celulares.
+### autoScrolling:
+(padrão `true`) Define se deve ser usada a rolagem "automática" ou a "normal". Também afeta a maneira como as seções se encaixam na janela do navegador/dispositivo em tablets e telefones celulares.
 
-- `fitToSection`: (padrão `true`) Determina se as seções devem ou não ser ajustadas à viewport. Quando definido como `true`, a seção ativa atual sempre preencherá toda a janela de visualização. Caso contrário, o usuário estará livre para parar no meio de uma seção.
+### fitToSection:
+(padrão `true`) Determina se as seções devem ou não ser ajustadas à viewport. Quando definido como `true`, a seção ativa atual sempre preencherá toda a janela de visualização. Caso contrário, o usuário estará livre para parar no meio de uma seção.
 
-- `fitToSectionDelay`: (default 1000). If `fitToSection` is set to true, this delays
+### fitToSectionDelay:
+(default 1000). If `fitToSection` is set to true, this delays
 the fitting by the configured milliseconds.
 
-- `scrollBar`: (padrão `false`) Determina se a barra de rolagem deve ser usada para as **seções verticais** no site ou não. No caso de usar a barra de rolagem, a funcionalidade `autoScrolling` ainda funcionará conforme o esperado. O usuário também estará livre para rolar o site com a barra de rolagem e fullPage.js caberá na seção na tela quando a rolagem terminar.
+### scrollBar:
+(padrão `false`) Determina se a barra de rolagem deve ser usada para as **seções verticais** no site ou não. No caso de usar a barra de rolagem, a funcionalidade `autoScrolling` ainda funcionará conforme o esperado. O usuário também estará livre para rolar o site com a barra de rolagem e fullPage.js caberá na seção na tela quando a rolagem terminar.
 
-- `paddingTop`: (padrão `0`) Define o preenchimento superior para cada seção com um valor numérico e sua medida (paddingTop: '10px', paddingTop: '10em'...) Útil no caso de usar um cabeçalho fixo.
+### paddingTop:
+(padrão `0`) Define o preenchimento superior para cada seção com um valor numérico e sua medida (paddingTop: '10px', paddingTop: '10em'...) Útil no caso de usar um cabeçalho fixo.
 
-- `paddingBottom`: (padrão `0`) Define o preenchimento inferior de cada seção com um valor numérico e sua medida (paddingBottom: '10px', paddingBottom: '10em'...). Útil no caso de usar um rodapé fixo.
+### paddingBottom:
+(padrão `0`) Define o preenchimento inferior de cada seção com um valor numérico e sua medida (paddingBottom: '10px', paddingBottom: '10em'...). Útil no caso de usar um rodapé fixo.
 
-- `fixedElements`: (padrão `null`) Define quais elementos serão retirados da estrutura de rolagem do plugin que é necessário ao usar a opção `css3` para mantê-los fixos. Requer uma string com os seletores Javascript para esses elementos. (Por exemplo: `fixedElements: '#element1, .element2'`)
+### fixedElements:
+(padrão `null`) Define quais elementos serão retirados da estrutura de rolagem do plugin que é necessário ao usar a opção `css3` para mantê-los fixos. Requer uma string com os seletores Javascript para esses elementos. (Por exemplo: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/RmVazM) Se você quiser evitar a rolagem automática ao rolar sobre alguns elementos, esta é a opção que você precisa usar. (útil para mapas, divs de rolagem etc.) Requer uma string com os seletores Javascript para esses elementos. (Por exemplo: `normalScrollElements: '#element1, .element2'`). Esta opção não deve ser aplicada a nenhum elemento de seção/slide.
+### normalScrollElements:
+(padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/RmVazM) Se você quiser evitar a rolagem automática ao rolar sobre alguns elementos, esta é a opção que você precisa usar. (útil para mapas, divs de rolagem etc.) Requer uma string com os seletores Javascript para esses elementos. (Por exemplo: `normalScrollElements: '#element1, .element2'`). Esta opção não deve ser aplicada a nenhum elemento de seção/slide.
 
-- `bigSectionsDestination`: (padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/vYLdMrx) Define como rolar para uma seção cuja altura é maior que a viewport e quando não estiver usando `scrollOverflow: verdadeiro`. (Leia [como criar seções menores ou maiores](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#criando-seções-maiores-ou-menores)). Por padrão, fullPage.js rola para o topo se você vier de uma seção acima do destino e para baixo se você vier de uma seção abaixo do destino. Os valores possíveis são `top`, `bottom`, `null`.
+### bigSectionsDestination:
+(padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/vYLdMrx) Define como rolar para uma seção cuja altura é maior que a viewport e quando não estiver usando `scrollOverflow: verdadeiro`. (Leia [como criar seções menores ou maiores](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#criando-seções-maiores-ou-menores)). Por padrão, fullPage.js rola para o topo se você vier de uma seção acima do destino e para baixo se você vier de uma seção abaixo do destino. Os valores possíveis são `top`, `bottom`, `null`.
 
-- `keyboardScrolling`: (padrão `true`) Define se o conteúdo pode ser navegado usando o teclado.
+### keyboardScrolling:
+(padrão `true`) Define se o conteúdo pode ser navegado usando o teclado.
 
-- `touchSensitivity`: (padrão `5`) Define uma porcentagem da largura/altura da janela do navegador e a distância que um deslize deve medir para navegar para a próxima seção/slide
+### touchSensitivity:
+(padrão `5`) Define uma porcentagem da largura/altura da janela do navegador e a distância que um deslize deve medir para navegar para a próxima seção/slide
 
-- `continuousVertical`: (padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira e se a rolagem para cima na primeira seção deve rolar para a última. Não compatível com `loopTop`, `loopBottom` ou qualquer barra de rolagem presente no site (`scrollBar:true` ou `autoScrolling:false`).
+### continuousVertical:
+(padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira e se a rolagem para cima na primeira seção deve rolar para a última. Não compatível com `loopTop`, `loopBottom` ou qualquer barra de rolagem presente no site (`scrollBar:true` ou `autoScrolling:false`).
 
-- `continuousHorizontal`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deslizar para a direita no último slide deve deslizar para a direita para o primeiro ou não, e se rolar para a esquerda no primeiro slide deve deslizar para a esquerda para o último ou não. Não compatível com `loopHorizontal`. Requer fullpage.js >= 3.0.1.
+### continuousHorizontal:
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deslizar para a direita no último slide deve deslizar para a direita para o primeiro ou não, e se rolar para a esquerda no primeiro slide deve deslizar para a esquerda para o último ou não. Não compatível com `loopHorizontal`. Requer fullpage.js >= 3.0.1.
 
-- `scrollHorizontally`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se desliza horizontalmente nos controles deslizantes usando a roda do mouse ou o trackpad. Ele só pode ser usado ao usar: `autoScrolling:true`. Ideal para contar histórias. Requer fullpage.js >= 3.0.1.
+### scrollHorizontally:
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se desliza horizontalmente nos controles deslizantes usando a roda do mouse ou o trackpad. Ele só pode ser usado ao usar: `autoScrolling:true`. Ideal para contar histórias. Requer fullpage.js >= 3.0.1.
 
-- `interlockedSlides`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Determina se mover um controle deslizante horizontal forçará o deslizamento dos controles deslizantes em outra seção na mesma direção. Os valores possíveis são `true`, `false` ou uma matriz com as seções interligadas. Por exemplo, `[1,3,5]` começando por 1. Requer fullpage.js >= 3.0.1.
+### interlockedSlides:
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Determina se mover um controle deslizante horizontal forçará o deslizamento dos controles deslizantes em outra seção na mesma direção. Os valores possíveis são `true`, `false` ou uma matriz com as seções interligadas. Por exemplo, `[1,3,5]` começando por 1. Requer fullpage.js >= 3.0.1.
 
-- `dragAndMove`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Ativa ou desativa o arrastar e deslizar de seções e slides usando o mouse ou os dedos. Requer fullpage.js >= 3.0.1. Os valores possíveis são:
+### dragAndMove:
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Ativa ou desativa o arrastar e deslizar de seções e slides usando o mouse ou os dedos. Requer fullpage.js >= 3.0.1. Os valores possíveis são:
   - `true`: habilita o recurso.
   - `false`: desativa o recurso.
   - `vertical`: habilita o recurso apenas verticalmente.
@@ -468,21 +498,27 @@ the fitting by the configured milliseconds.
   - `fingersonly`: habilita o recurso apenas para dispositivos de toque.
   - `mouseonly`: habilita o recurso apenas para dispositivos desktop (mouse e trackpad).
 
-- `offsetSections`: (padrão `false`)[Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Fornece uma maneira de usar seções que não sejam de tela cheia com base na porcentagem. Ideal para mostrar aos visitantes que há mais conteúdo no site, mostrando parte da seção seguinte ou anterior. Requer fullPage.js >= 3.0.1.
+### offsetSections
+(padrão `false`)[Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Fornece uma maneira de usar seções que não sejam de tela cheia com base na porcentagem. Ideal para mostrar aos visitantes que há mais conteúdo no site, mostrando parte da seção seguinte ou anterior. Requer fullPage.js >= 3.0.1.
 Para definir a porcentagem de cada seção deve-se usar o atributo `data-percentage`. A centralização da seção na janela de visualização pode ser determinada usando um valor booleano no atributo `data-centered` (o padrão é `true` se não for especificado). Por exemplo:
 ``` html
     <div class="section" data-percentage="80" data-centered="true">
 ```
 
-- `resetSliders`: (padrão `false`). [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não redefinir cada controle deslizante após sair de sua seção. Requer fullpage.js >= 3.0.1.
+### resetSliders
+(padrão `false`). [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não redefinir cada controle deslizante após sair de sua seção. Requer fullpage.js >= 3.0.1.
 
-- `fadingEffect`: (padrão `false`). [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve usar um efeito de desvanecimento ou não em vez do efeito de rolagem padrão. Os valores possíveis são `true`, `false`, `sections`, `slides`. Portanto, pode ser aplicado apenas verticalmente ou horizontalmente, ou em ambos ao mesmo tempo. Ele só pode ser usado ao usar: `autoScrolling:true`. Requer fullpage.js >= 3.0.1.
+### fadingEffect
+(padrão `false`). [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve usar um efeito de desvanecimento ou não em vez do efeito de rolagem padrão. Os valores possíveis são `true`, `false`, `sections`, `slides`. Portanto, pode ser aplicado apenas verticalmente ou horizontalmente, ou em ambos ao mesmo tempo. Ele só pode ser usado ao usar: `autoScrolling:true`. Requer fullpage.js >= 3.0.1.
 
-- `animateAnchor`: (padrão `true`) Define se o carregamento do site quando dado uma âncora (#) rolará com a animação até seu destino ou será carregado diretamente na seção dada.
+### animateAnchor
+(padrão `true`) Define se o carregamento do site quando dado uma âncora (#) rolará com a animação até seu destino ou será carregado diretamente na seção dada.
 
-- `recordHistory`: (padrão `true`) Define se o estado do site deve ser enviado para o histórico do navegador. Quando definido como "true", cada seção/slide do site funcionará como uma nova página e os botões voltar e avançar do navegador rolarão as seções/slides para alcançar o estado anterior ou seguinte do site. Quando definido como `false`, o URL continuará mudando, mas não terá efeito no histórico do navegador. Esta opção é desativada automaticamente ao usar `autoScrolling:false`.
+### recordHistory
+(padrão `true`) Define se o estado do site deve ser enviado para o histórico do navegador. Quando definido como "true", cada seção/slide do site funcionará como uma nova página e os botões voltar e avançar do navegador rolarão as seções/slides para alcançar o estado anterior ou seguinte do site. Quando definido como `false`, o URL continuará mudando, mas não terá efeito no histórico do navegador. Esta opção é desativada automaticamente ao usar `autoScrolling:false`.
 
-- `menu`: (padrão `false`) Um seletor pode ser usado para especificar o menu a ser vinculado às seções. Desta forma, a rolagem das seções ativará o elemento correspondente no menu usando a classe `active`.
+### menu
+(padrão `false`) Um seletor pode ser usado para especificar o menu a ser vinculado às seções. Desta forma, a rolagem das seções ativará o elemento correspondente no menu usando a classe `active`.
 Isso não gerará um menu, mas apenas adicionará a classe `active` ao elemento no menu fornecido com os links âncora correspondentes.
 Para vincular os elementos do menu com as seções, será necessária uma tag de dados HTML 5 (`data-menuanchor`) para usar com os mesmos links âncora usados nas seções. Exemplo:
 
@@ -503,55 +539,85 @@ new fullpage('#fullpage', {
 
 **Observação:** o elemento de menu deve ser colocado fora do wrapper de página inteira para evitar problemas ao usar `css3:true`. Caso contrário, ele será anexado ao `body` pelo próprio plugin.
 
-- `navigation`: (padrão `false`) Se definido como `true`, mostrará uma barra de navegação composta por pequenos círculos.
+### navigation
+(padrão `false`) Se definido como `true`, mostrará uma barra de navegação composta por pequenos círculos.
 
-- `navigationPosition`: (padrão `none`) Pode ser definido como `left` ou `right` e define em qual posição a barra de navegação será mostrada (se estiver usando uma).
+### navigationPosition
+(padrão `none`) Pode ser definido como `left` ou `right` e define em qual posição a barra de navegação será mostrada (se estiver usando uma).
 
-- `navigationTooltips`: (padrão []) Define as dicas de ferramentas a serem exibidas para os círculos de navegação caso estejam sendo usadas. Exemplo: `navigationTooltips: ['firstSlide', 'secondSlide']`. Você também pode defini-los usando o atributo `data-tooltip` em cada seção, se preferir.
+### navigationTooltips
+(padrão []) Define as dicas de ferramentas a serem exibidas para os círculos de navegação caso estejam sendo usadas. Exemplo: `navigationTooltips: ['firstSlide', 'secondSlide']`. Você também pode defini-los usando o atributo `data-tooltip` em cada seção, se preferir.
 
-- `showActiveTooltip`: (padrão `false`) Mostra uma dica de ferramenta persistente para a seção visualizada ativamente na navegação vertical.
+### showActiveTooltip
+(padrão `false`) Mostra uma dica de ferramenta persistente para a seção visualizada ativamente na navegação vertical.
 
-- `slidesNavigation`: (padrão `false`) Se definido como `true`, mostrará uma barra de navegação composta de pequenos círculos para cada controle deslizante de paisagem no site.
+### slidesNavigation
+(padrão `false`) Se definido como `true`, mostrará uma barra de navegação composta de pequenos círculos para cada controle deslizante de paisagem no site.
 
-- `slidesNavPosition`: (padrão `bottom`) Define a posição da barra de navegação de paisagem para controles deslizantes. Admite `top` e `bottom` como valores. Você pode querer modificar os estilos CSS para determinar a distância da parte superior ou inferior, bem como qualquer outro estilo, como cor.
+### slidesNavPosition
+(padrão `bottom`) Define a posição da barra de navegação de paisagem para controles deslizantes. Admite `top` e `bottom` como valores. Você pode querer modificar os estilos CSS para determinar a distância da parte superior ou inferior, bem como qualquer outro estilo, como cor.
 
-- `scrollOverflow`: (padrão `true`) define se deve ou não criar um scroll para a seção/slide caso seu conteúdo seja maior que a altura do mesmo. It requires the default value `scrollBar: false`. Para evitar que fullpage.js crie a barra de rolagem em certas seções ou slides, use a classe `fp-noscroll`. Por exemplo: `<div class="section fp-noscroll">` Você também pode impedir que o scrolloverflow seja aplicado no modo responsivo ao usar `fp-auto-height-responsive` no elemento section.
+### scrollOverflow
+(padrão `true`) define se deve ou não criar um scroll para a seção/slide caso seu conteúdo seja maior que a altura do mesmo. It requires the default value `scrollBar: false`. Para evitar que fullpage.js crie a barra de rolagem em certas seções ou slides, use a classe `fp-noscroll`. Por exemplo: `<div class="section fp-noscroll">` Você também pode impedir que o scrolloverflow seja aplicado no modo responsivo ao usar `fp-auto-height-responsive` no elemento section.
 
-- `scrollOverflowReset`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Os valores possíveis são `true`, `false`, `sections`, `slides`. Quando definido como `true`, ele rola o conteúdo da seção/slide com uma barra de rolagem ao sair para outra seção/slide. Dessa forma, a seção/slide sempre mostrará o início de seu conteúdo, mesmo ao rolar de uma seção abaixo dela. Adicionar a classe `fp-no-scrollOverflowReset` na seção ou slide desativará esse recurso para esse painel específico.
+### scrollOverflowReset
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Os valores possíveis são `true`, `false`, `sections`, `slides`. Quando definido como `true`, ele rola o conteúdo da seção/slide com uma barra de rolagem ao sair para outra seção/slide. Dessa forma, a seção/slide sempre mostrará o início de seu conteúdo, mesmo ao rolar de uma seção abaixo dela. Adicionar a classe `fp-no-scrollOverflowReset` na seção ou slide desativará esse recurso para esse painel específico.
 
-- `scrollOverflowMacStyle`: (padrão `false`). Quando ativa, esta opção usará um "estilo mac" para a barra de rolagem em vez do padrão, que será bem diferente em computadores Windows.
+### scrollOverflowMacStyle
+(padrão `false`). Quando ativa, esta opção usará um "estilo mac" para a barra de rolagem em vez do padrão, que será bem diferente em computadores Windows.
 
-- `sectionSelector`: (padrão `.section`) Define o seletor Javascript usado para as seções do plugin. Ele pode precisar ser alterado algumas vezes para evitar problemas com outros plugins usando os mesmos seletores que fullpage.js.
+### sectionSelector
+(padrão `.section`) Define o seletor Javascript usado para as seções do plugin. Ele pode precisar ser alterado algumas vezes para evitar problemas com outros plugins usando os mesmos seletores que fullpage.js.
 
-- `slideSelector`: (padrão `.slide`) Define o seletor Javascript usado para os slides do plugin. Ele pode precisar ser alterado algumas vezes para evitar problemas com outros plugins usando os mesmos seletores que fullpage.js.
+### slideSelector
+(padrão `.slide`) Define o seletor Javascript usado para os slides do plugin. Ele pode precisar ser alterado algumas vezes para evitar problemas com outros plugins usando os mesmos seletores que fullpage.js.
 
-- `responsiveWidth`: (padrão `0`) Uma rolagem normal (`autoScrolling:false`) será usada sob a largura definida em pixels. Uma classe `fp-responsive` é adicionada à tag body caso o usuário queira usá-la para seu próprio CSS responsivo. Por exemplo, se definido como 900, sempre que a largura do navegador for menor que 900, o plug-in rolará como um site normal.
+### responsiveWidth
+(padrão `0`) Uma rolagem normal (`autoScrolling:false`) será usada sob a largura definida em pixels. Uma classe `fp-responsive` é adicionada à tag body caso o usuário queira usá-la para seu próprio CSS responsivo. Por exemplo, se definido como 900, sempre que a largura do navegador for menor que 900, o plug-in rolará como um site normal.
 
-- `responsiveHeight`: (padrão `0`) Um scroll normal (`autoScrolling:false`) será usado sob a altura definida em pixels. Uma classe `fp-responsive` é adicionada à tag body caso o usuário queira usá-la para seu próprio CSS responsivo. Por exemplo, se definido como 900, sempre que a altura do navegador for menor que 900, o plug-in rolará como um site normal.
+### responsiveHeight
+(padrão `0`) Um scroll normal (`autoScrolling:false`) será usado sob a altura definida em pixels. Uma classe `fp-responsive` é adicionada à tag body caso o usuário queira usá-la para seu próprio CSS responsivo. Por exemplo, se definido como 900, sempre que a altura do navegador for menor que 900, o plug-in rolará como um site normal.
 
-- `responsiveSlides`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Quando definido como "true", os slides serão transformados em seções verticais quando o modo responsivo for acionado. (usando as opções `responsiveWidth` ou `responsiveHeight` detalhadas acima). Requer fullpage.js >= 3.0.1.
+### responsiveSlides
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Quando definido como "true", os slides serão transformados em seções verticais quando o modo responsivo for acionado. (usando as opções `responsiveWidth` ou `responsiveHeight` detalhadas acima). Requer fullpage.js >= 3.0.1.
 
-- `parallax`: (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar os efeitos de fundo de paralaxe em seções/slides. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+### parallax
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar os efeitos de fundo de paralaxe em seções/slides. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
-- `parallaxOptions`: (padrão: `{ tipo: 'reveal', porcentagem: 62, propriedade: 'translate'}`). Permite configurar os parâmetros para o efeito de fundo de paralaxe ao usar a opção `parallax:true`. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+### parallaxOptions
+(padrão: `{ type: 'reveal', percentage: 62, property: 'translate'}`). 
+Permite configurar os parâmetros para o efeito de fundo de paralaxe ao usar a opção `parallax:true`. [Leia mais sobre como aplicar a opção de paralaxe](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
-- `dropEffect` (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito de soltar nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffect
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito de soltar nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `dropEffectOptions`: (padrão: `{ velocidade: 2300, cor: '#F82F4D', zIndex: 9999}`). Permite configurar os parâmetros para o efeito de soltar ao usar a opção `dropEffect:true`.[Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffectOptions
+(padrão: `{ speed: 2300, color: '#F82F4D', zindex: 9999}`). 
+Permite configurar os parâmetros para o efeito de soltar ao usar a opção `dropEffect:true`.[Leia mais sobre como aplicar a opção de efeito de soltar](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `waterEffect` (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito água nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffect
+(padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Define se deve ou não usar o efeito água nas seções/slides. [Leia mais sobre como aplicar a opção de efeito de água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `waterEffectOptions`: (padrão: `{ animateContent: true, animateOnMouseMove: true}`). Permite configurar os parâmetros para o efeito água ao usar a opção `waterEffect:true`.[Leia mais sobre como aplicar a opção efeito água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffectOptions
+(padrão: `{ animateContent: true, animateOnMouseMove: true}`). 
+Permite configurar os parâmetros para o efeito água ao usar a opção `waterEffect:true`.[Leia mais sobre como aplicar a opção efeito água](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `cards`: (default `false`) [Extensões do fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cards
+(default `false`) [Extensões do fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cardsOptions
+(default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 
+Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `lazyLoading`: (padrão `true`) O carregamento lento está ativo por padrão, o que significa que carregará lentamente qualquer elemento de mídia contendo o atributo `data-src` conforme detalhado nos [documentos de carregamento lento](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#lazy-loading). Se você quiser usar qualquer outra biblioteca de carregamento lento, você pode desativar esse recurso fullpage.js.
+### lazyLoading
+(padrão `true`) O carregamento lento está ativo por padrão, o que significa que carregará lentamente qualquer elemento de mídia contendo o atributo `data-src` conforme detalhado nos [documentos de carregamento lento](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#lazy-loading). Se você quiser usar qualquer outra biblioteca de carregamento lento, você pode desativar esse recurso fullpage.js.
 
-- `observer`: (padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.
+### observer
+(padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.
 
-- `créditos`. (padrão `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada.
+### créditos
+(padrão `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
+Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada.
 
 ## Métodos
 Você pode vê-los em ação [aqui](https://alvarotrigo.com/fullPage/examples/methods.html)
@@ -1065,13 +1131,10 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
 

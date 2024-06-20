@@ -18,7 +18,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.22-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.23-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -381,167 +381,232 @@ fullpage.js [предоставляет ряд расширений](https://alv
 
 ## Опции
 
-- `licenseKey`: (по умолчанию `null`). **Эта опция является обязательной.** Если вы используете fullPage для проекта с закрытым исходным кодом, то вам следует воспользоваться лицензионным ключом, предоставляемым при приобретении коммерческой лицензии fullPage.если ваш проект открыт с открытым исходным кодом, [свяжитесь со мной](https://alvarotrigo.com/fullPage/extensions/requestKey.html), чтобы получить лицензионный ключ.. Вы можете прочесть подробнее о лицензиях [здесь](https://github.com/alvarotrigo/fullPage.js#license) и [на веб-сайте](https://alvarotrigo.com/fullPage/pricing/). Пример:
+### licenseKey
+(по умолчанию `null`). **Эта опция является обязательной.** Если вы используете fullPage для проекта с закрытым исходным кодом, то вам следует воспользоваться лицензионным ключом, предоставляемым при приобретении коммерческой лицензии fullPage.если ваш проект открыт с открытым исходным кодом, [свяжитесь со мной](https://alvarotrigo.com/fullPage/extensions/requestKey.html), чтобы получить лицензионный ключ.. Вы можете прочесть подробнее о лицензиях [здесь](https://github.com/alvarotrigo/fullPage.js#license) и [на веб-сайте](https://alvarotrigo.com/fullPage/pricing/). Пример:
 
-	```javascript
-	new fullpage('#fullpage', {
-		licenseKey: 'YOUR_KEY_HERE'
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
-- `controlArrows`: (по умолчанию `true`) Определяет использование клавиш-стрелок для передвижения вправо или влево при просмотре слайдов.
+### controlArrows
+(по умолчанию `true`) Определяет использование клавиш-стрелок для передвижения вправо или влево при просмотре слайдов.
 
-- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+### controlArrowsHTML
+(default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (по умолчанию `true`) Вертикальное центрирование контента в разделах. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
+### verticalCentered
+(по умолчанию `true`) Вертикальное центрирование контента в разделах. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
-- `scrollingSpeed`: (по умолчанию `700`) Ускорьте на миллисекунды переходы при скроллинге.
+### scrollingSpeed
+(по умолчанию `700`) Ускорьте на миллисекунды переходы при скроллинге.
 
-- `sectionsColor`: (по умолчанию `none`) Присвойте CSS-свойство `background-color` каждому разделу.
+### sectionsColor
+(по умолчанию `none`) Присвойте CSS-свойство `background-color` каждому разделу.
 Пример:
 
-	```javascript
-	new fullpage('#fullpage', {
-		sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
 
-- `anchors`: (по умолчанию `[]`) Обеспечивает размещение ссылок с привязками (#пример) в URL для каждого раздела. Значения привязок должны быть уникальными. Положение привязок в ряду будет определять то, к какому разделу применяется привязка. (вторая позиция для второго раздела и так далее). Использование привязок также даёт возможность навигации вперёд и назад в браузере. Эта опция также даёт пользователям возможность добавлять в закладки определённый раздел или слайд. **Внимание!** привязки не могут иметь значение, совпадающее с каким-либо элементом ID на сайте (или элементом NAME - для IE).
+### anchors
+(по умолчанию `[]`) Обеспечивает размещение ссылок с привязками (#пример) в URL для каждого раздела. Значения привязок должны быть уникальными. Положение привязок в ряду будет определять то, к какому разделу применяется привязка. (вторая позиция для второго раздела и так далее). Использование привязок также даёт возможность навигации вперёд и назад в браузере. Эта опция также даёт пользователям возможность добавлять в закладки определённый раздел или слайд. **Внимание!** привязки не могут иметь значение, совпадающее с каким-либо элементом ID на сайте (или элементом NAME - для IE).
 Теперь привязки могут добавляться прямо в HTML-структуре с помощью атрибута `data-anchor`, как объясняется здесь.
 
-- `lockAnchors`: (по умолчанию `false`) Определяет, будут ли вообще действовать в библиотеке привязки в URL. Вы по-прежнему сможете использовать привязки в закрытом формате для ваших собственных функций и обратных вызовов, но в скроллинге сайта они участвовать не будут. Это полезная функция, если вы хотите совместить fullPage.js с другими плагинами, использующими привязки в URL.
+### lockAnchors
+(по умолчанию `false`) Определяет, будут ли вообще действовать в библиотеке привязки в URL. Вы по-прежнему сможете использовать привязки в закрытом формате для ваших собственных функций и обратных вызовов, но в скроллинге сайта они участвовать не будут. Это полезная функция, если вы хотите совместить fullPage.js с другими плагинами, использующими привязки в URL.
 
-- `easing`: (по умолчанию `easeInOutCubic`) Определяет эффект перехода, используемый при вертикальном и горизонтальном скроллинге.
+### easing
+(по умолчанию `easeInOutCubic`) Определяет эффект перехода, используемый при вертикальном и горизонтальном скроллинге.
 Необходим файл `vendors/easings.min.js` или [jQuery UI](https://jqueryui.com/) для использования некоторых из [переходов](https://api.jqueryui.com/easings/). Могут использоваться другие библиотеки.
 
-- `easingcss3`: (по умолчанию `ease`) Определяет эффект перехода для применения в случае использования `css3:true`. Вы можете использовать [предустановленные эффекты](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (такие как `linear`, `ease-out`...) или создать свои собственные при помощи функции `cubic-bezier`. Вы также можете использовать для этой цели [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/`).
+### easingcss3
+(по умолчанию `ease`) Определяет эффект перехода для применения в случае использования `css3:true`. Вы можете использовать [предустановленные эффекты](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (такие как `linear`, `ease-out`...) или создать свои собственные при помощи функции `cubic-bezier`. Вы также можете использовать для этой цели [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/`).
 
-- `loopTop`: (по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к последнему разделу при пролистывании первого раздела вверх.
+### loopTop
+(по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к последнему разделу при пролистывании первого раздела вверх.
 
-- `loopBottom`: (по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к первому разделу при пролистывании последнего раздела вниз.
+### loopBottom
+(по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к первому разделу при пролистывании последнего раздела вниз.
 
-- `loopHorizontal`: (по умолчанию `true`) Определяет, будут ли горизонтальные слайдеры работать циклично после перехода к последнему или предыдущему слайду.
+### loopHorizontal
+(по умолчанию `true`) Определяет, будут ли горизонтальные слайдеры работать циклично после перехода к последнему или предыдущему слайду.
 
-- `css3`: (по умолчанию `true`). Определяет использование JavaScript или CSS3-трансформаций для скроллинга в пределах разделов и слайдов. Эта функция помогает ускорить пролистывание для планшетов и мобильных устройств, браузеры которых поддерживают CSS3. Если установлено значение `true` для этой опции и браузер не поддерживает CSS3, будет использована альтернатива.
+### css3
+(по умолчанию `true`). Определяет использование JavaScript или CSS3-трансформаций для скроллинга в пределах разделов и слайдов. Эта функция помогает ускорить пролистывание для планшетов и мобильных устройств, браузеры которых поддерживают CSS3. Если установлено значение `true` для этой опции и браузер не поддерживает CSS3, будет использована альтернатива.
 
-- `autoScrolling`: (по умолчанию `true`) Определяет использование «автоматического» скроллинга или «обычного». Также эта опция влияет на размещение разделов в окне браузера/устройства для планшетов и мобильных устройств.
+### autoScrolling
+(по умолчанию `true`) Определяет использование «автоматического» скроллинга или «обычного». Также эта опция влияет на размещение разделов в окне браузера/устройства для планшетов и мобильных устройств.
 
-- `fitToSection`: (по умолчанию `true`) Определяет, нужна ли подстройка разделов под окно просмотра. При установке значения `true` для данной опции текущий активный раздел всегда будет заполнять окно просмотра. В противном случае пользователь будет иметь возможность остановиться на середине раздела (когда )
+### fitToSection
+(по умолчанию `true`) Определяет, нужна ли подстройка разделов под окно просмотра. При установке значения `true` для данной опции текущий активный раздел всегда будет заполнять окно просмотра. В противном случае пользователь будет иметь возможность остановиться на середине раздела (когда )
 
-- `fitToSectionDelay`: (по умолчанию 1000). Если для опции `fitToSection` установлено значение `true`, данная функция замедлит подстройку на настроенные миллисекунды.
+### fitToSectionDelay
+(по умолчанию 1000). Если для опции `fitToSection` установлено значение `true`, данная функция замедлит подстройку на настроенные миллисекунды.
 
-- `scrollBar`: (по умолчанию `false`) Определяет, будет ли использоваться полоса прокрутки на сайте. При использовании полосы прокрутки функция `autoScrolling` будет работать как обычно. Пользователь по-прежнему сможет пролистывать сайт с помощью полосы прокрутки, и fullPage.js подстроит раздел под экран по окончании скроллинга.
+### scrollBar
+(по умолчанию `false`) Определяет, будет ли использоваться полоса прокрутки на сайте. При использовании полосы прокрутки функция `autoScrolling` будет работать как обычно. Пользователь по-прежнему сможет пролистывать сайт с помощью полосы прокрутки, и fullPage.js подстроит раздел под экран по окончании скроллинга.
 
-- `paddingTop`: (по умолчанию `0`) Определяет верхний отступ для каждого раздела в числовом формате (paddingTop: '10px', paddingTop: '10em'...) Данная функция удобна при использовании фиксированных верхних колонтитулов.
+### paddingTop
+(по умолчанию `0`) Определяет верхний отступ для каждого раздела в числовом формате (paddingTop: '10px', paddingTop: '10em'...) Данная функция удобна при использовании фиксированных верхних колонтитулов.
 
-- `paddingBottom`: (по умолчанию `0`) Определяет нижний отступ для каждого раздела в числовом формате (paddingBottom: '10px', paddingBottom: '10em'...). Данная функция удобна при использовании фиксированных нижних колонтитулов.
+### paddingBottom
+(по умолчанию `0`) Определяет нижний отступ для каждого раздела в числовом формате (paddingBottom: '10px', paddingBottom: '10em'...). Данная функция удобна при использовании фиксированных нижних колонтитулов.
 
-- `fixedElements`: (по умолчанию `null`) Определяет, какие элементы будут исключены из структуры скроллинга плагина, что необходимо при использовании опции `css3` для их фиксации. Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `fixedElements: '#element1, .element2'`)
+### fixedElements
+(по умолчанию `null`) Определяет, какие элементы будут исключены из структуры скроллинга плагина, что необходимо при использовании опции `css3` для их фиксации. Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/RmVazM) Если вы хотите избежать автопрокрутки при скроллинге некоторых элементов, вам нужно использовать эту опцию. (пригодится для карт, прокрутки div-элементов и т.д.) Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `normalScrollElements: '#element1, .element2'`). Данную опцию следует применять к самим разделам/слайдам.
+### normalScrollElements
+(по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/RmVazM) Если вы хотите избежать автопрокрутки при скроллинге некоторых элементов, вам нужно использовать эту опцию. (пригодится для карт, прокрутки div-элементов и т.д.) Для этого необходима строка с селекторами Javascript для данных элементов. (Например: `normalScrollElements: '#element1, .element2'`). Данную опцию следует применять к самим разделам/слайдам.
 
-- `bigSectionsDestination`: (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/vYLdMrx) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
+### bigSectionsDestination
+(по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/vYLdMrx) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
 
-- `keyboardScrolling`: (по умолчанию `true`) Определяет возможность навигации на сайте при помощи клавиатуры.
+### keyboardScrolling
+(по умолчанию `true`) Определяет возможность навигации на сайте при помощи клавиатуры.
 
-- `touchSensitivity`: (по умолчанию `5`) Определяет ширину и высоту браузеров в процентах, а также то, насколько длинным должно быть пролистывание для перехода к следующему разделу/слайду.
+### touchSensitivity
+(по умолчанию `5`) Определяет ширину и высоту браузеров в процентах, а также то, насколько длинным должно быть пролистывание для перехода к следующему разделу/слайду.
 
-- `continuousVertical`: (по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к последнему разделу при пролистывании первого раздела вверх и к первому разделу при пролистывании последнего раздела вниз. Опция несовместима с опциями `loopTop`, `loopBottom` и любыми полосами прокрутки, используемыми на сайте (`scrollBar:true` или `autoScrolling:false`).
+### continuousVertical
+(по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к последнему разделу при пролистывании первого раздела вверх и к первому разделу при пролистывании последнего раздела вниз. Опция несовместима с опциями `loopTop`, `loopBottom` и любыми полосами прокрутки, используемыми на сайте (`scrollBar:true` или `autoScrolling:false`).
 
-- `continuousHorizontal`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будет ли при пролистывании вправо последнего слайда осуществляться прокрутка вправо к первому слайду, а также приведёт ли прокрутка влево первого слайда к прокрутке влево к последнему слайду. Опция несовместима с опцией `loopHorizontal`. Необходима версия fullpage.js >= 3.0.1.
+### continuousHorizontal
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будет ли при пролистывании вправо последнего слайда осуществляться прокрутка вправо к первому слайду, а также приведёт ли прокрутка влево первого слайда к прокрутке влево к последнему слайду. Опция несовместима с опцией `loopHorizontal`. Необходима версия fullpage.js >= 3.0.1.
 
-- `scrollHorizontally`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет осуществление горизонтального пролистывания ползунков при помощи колеса мыши или трекпада. Идеальна для рассказов. It can only be used when using: `autoScrolling:true`. Необходима версия fullpage.js >= 3.0.1.
+### scrollHorizontally
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет осуществление горизонтального пролистывания ползунков при помощи колеса мыши или трекпада. Идеальна для рассказов. It can only be used when using: `autoScrolling:true`. Необходима версия fullpage.js >= 3.0.1.
 
-- `interlockedSlides`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет ,будет ли при передвижении одного горизонтального ползунка осуществляться пролистывание ползунков другого раздела в том же направлении. Возможные значения: `true`, `false` или последовательность взаимосвязанных разделов. Например: `[1,3,5]`, начиная с 1. Необходима версия fullpage.js >= 3.0.1.
+### interlockedSlides
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет ,будет ли при передвижении одного горизонтального ползунка осуществляться пролистывание ползунков другого раздела в том же направлении. Возможные значения: `true`, `false` или последовательность взаимосвязанных разделов. Например: `[1,3,5]`, начиная с 1. Необходима версия fullpage.js >= 3.0.1.
 
-- `dragAndMove`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Активирует или деактивирует протягивание и пролистывание разделов и слайдов при помощи мыши или пальцев. Возможные значения: `true`, `false`, `vertical`, `horizontal`, `fingersonly`, `mouseonly`,. Необходима версия fullPage.js >= 3.0.1.
+### dragAndMove
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Активирует или деактивирует протягивание и пролистывание разделов и слайдов при помощи мыши или пальцев. Возможные значения: `true`, `false`, `vertical`, `horizontal`, `fingersonly`, `mouseonly`,. Необходима версия fullPage.js >= 3.0.1.
 
-- `offsetSections`: (по умолчанию `false`)[Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Обеспечивает возможность использовать неполноэкранные разделы на основании их процентных значений. Опция идеальна для демонстрации пользователю того, что на сайте есть больше контента, показывая часть следующего или предыдущего раздела. Необходима версия fullPage.js >= 3.0.1
+### offsetSections
+(по умолчанию `false`)[Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Обеспечивает возможность использовать неполноэкранные разделы на основании их процентных значений. Опция идеальна для демонстрации пользователю того, что на сайте есть больше контента, показывая часть следующего или предыдущего раздела. Необходима версия fullPage.js >= 3.0.1
 Для определения процентного значения каждого раздела необходимо использовать атрибут `data-percentage`. Центрирование раздела в окне просмотра может определяться при помощи логического значения в атрибуте `data-centered` (по умолчанию `true`, если не определено). Например:
 
-	``` html
-	<div class="section" data-percentage="80" data-centered="true">
-	```
+``` html
+<div class="section" data-percentage="80" data-centered="true">
+```
 
-- `resetSliders`: (по умолчанию `false`). [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, необходимо ли возвращать в исходное положение каждый ползунок после покидания раздела, в котором он размещён. Необходима версия fullpage.js >= 3.0.1.
+### resetSliders
+(по умолчанию `false`). [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, необходимо ли возвращать в исходное положение каждый ползунок после покидания раздела, в котором он размещён. Необходима версия fullpage.js >= 3.0.1.
 
-- `fadingEffect`: (по умолчанию `false`). [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будет ли использоваться эффект затухания вместо используемого по умолчанию эффекта прокрутки. Возможные значения `true`, `false`, `sections`, `slides`. Таким образом, данный параметр может применяться только вертикально или горизонтально, или же одновременно в обоих направлениях. Необходима версия fullpage.js >= 3.0.1.
+### fadingEffect
+(по умолчанию `false`). [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будет ли использоваться эффект затухания вместо используемого по умолчанию эффекта прокрутки. Возможные значения `true`, `false`, `sections`, `slides`. Таким образом, данный параметр может применяться только вертикально или горизонтально, или же одновременно в обоих направлениях. Необходима версия fullpage.js >= 3.0.1.
 
-- `animateAnchor`: (по умолчанию `true`) Определяет, будет ли во время загрузки сайта при использовании привязок (#) осуществляться прокрутка с анимацией к назначенному разделу или же напрямую.
+### animateAnchor
+(по умолчанию `true`) Определяет, будет ли во время загрузки сайта при использовании привязок (#) осуществляться прокрутка с анимацией к назначенному разделу или же напрямую.
 
-- `recordHistory`: (по умолчанию `true`) Определяет, нужно ли отображать состояние сайта в истории браузера. При установке значения `true` каждый раздел/слайд сайта будет действовать как новая страница, и кнопки браузера «назад» и «вперёд» прокрутят разделы/слайды для перехода к предыдущему или следующему состоянию сайта. При установке значения `false` URL будет продолжать меняться, но не отразится на истории браузера. Данная опция отключается автоматически при использовании опции `autoScrolling:false`.
+### recordHistory
+(по умолчанию `true`) Определяет, нужно ли отображать состояние сайта в истории браузера. При установке значения `true` каждый раздел/слайд сайта будет действовать как новая страница, и кнопки браузера «назад» и «вперёд» прокрутят разделы/слайды для перехода к предыдущему или следующему состоянию сайта. При установке значения `false` URL будет продолжать меняться, но не отразится на истории браузера. Данная опция отключается автоматически при использовании опции `autoScrolling:false`.
 
-- `menu`: (по умолчанию `false`) Селектор может использоваться для связи элементов меню с разделами. Таким образом, скроллинг разделов активирует соответствующий элемент меню при помощи класса `active`.
+### menu
+(по умолчанию `false`) Селектор может использоваться для связи элементов меню с разделами. Таким образом, скроллинг разделов активирует соответствующий элемент меню при помощи класса `active`.
 Это не приведёт к созданию нового меню, а лишь добавит класс `active` элементу в имеющемся меню с соответствующими ссылками с привязками.
 Чтобы связать элементы меню с разделами, необходимо будет использовать информационный блок HTML 5 (`data-menuanchor`) с теми же ссылками с привязками, которые используются в разделах. Пример:
 
-	```html
-	<ul id="myMenu">
-		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">Первый раздел</a></li>
-		<li data-menuanchor="secondPage"><a href="#secondPage">Второй раздел</a></li>
-		<li data-menuanchor="thirdPage"><a href="#thirdPage">Третий раздел</a></li>
-		<li data-menuanchor="fourthPage"><a href="#fourthPage">Четвёртый раздел</a></li>
-	</ul>
-	```
-	```javascript
-	new fullpage('#fullpage', {
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-		menu: '#myMenu'
-	});
-	```
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">Первый раздел</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Второй раздел</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Третий раздел</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Четвёртый раздел</a></li>
+</ul>
+```
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
+});
+```
 
-	**Внимание:** элемент меню должен помещаться за пределами обёрточного кода для полного экрана во избежание проблем при использовании `css3:true`. В противном случае он будет присоединён к `body` самим плагином.
+**Внимание:** элемент меню должен помещаться за пределами обёрточного кода для полного экрана во избежание проблем при использовании `css3:true`. В противном случае он будет присоединён к `body` самим плагином.
 
-- `navigation`: (по умолчанию `false`) При установке значения `true` панель навигации будет отображена в виде небольших кружков.
+### navigation
+(по умолчанию `false`) При установке значения `true` панель навигации будет отображена в виде небольших кружков.
 
-- `navigationPosition`: (по умолчанию `none`) Могут быть установлены значения `left` или `right`. Опция определяет, какое положение займет панель навигации (если она используется).
+### navigationPosition
+(по умолчанию `none`) Могут быть установлены значения `left` или `right`. Опция определяет, какое положение займет панель навигации (если она используется).
 
-- `navigationTooltips`: (по умолчанию []) Определяет справочные надписи, которые будут показаны для кружков навигационной панели, если они используются. Например: `navigationTooltips: ['firstSlide', 'secondSlide']`. Вы можете также определить их с помощью атрибута `data-tooltip` в каждом разделе, если хотите.
+### navigationTooltips
+(по умолчанию []) Определяет справочные надписи, которые будут показаны для кружков навигационной панели, если они используются. Например: `navigationTooltips: ['firstSlide', 'secondSlide']`. Вы можете также определить их с помощью атрибута `data-tooltip` в каждом разделе, если хотите.
 
-- `showActiveTooltip`: (по умолчанию `false`) Показывает постоянную справочную надпись для просматриваемого в данный момент раздела в вертикальной навигации.
+### showActiveTooltip
+(по умолчанию `false`) Показывает постоянную справочную надпись для просматриваемого в данный момент раздела в вертикальной навигации.
 
-- `slidesNavigation`: (по умолчанию `false`) При установке значения `true` навигационная панель будет отображаться в виде небольших кружков для каждого горизонтального ползунка сайта.
+### slidesNavigation
+(по умолчанию `false`) При установке значения `true` навигационная панель будет отображаться в виде небольших кружков для каждого горизонтального ползунка сайта.
 
-- `slidesNavPosition`: (по умолчанию `bottom`) Определяет местоположение горизонтальной навигационной панели для слайдеров. Возможные значения: `top` и `bottom`. При желании вы можете настроить стили CSS для определения расстояния от верхней до нижней части, так же как и любой другой стиль, например, цвет.
+### slidesNavPosition
+(по умолчанию `bottom`) Определяет местоположение горизонтальной навигационной панели для слайдеров. Возможные значения: `top` и `bottom`. При желании вы можете настроить стили CSS для определения расстояния от верхней до нижней части, так же как и любой другой стиль, например, цвет.
 
-- `scrollOverflow`: (по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. It requires the default value `scrollBar: false`. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
+### scrollOverflow
+(по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. It requires the default value `scrollBar: false`. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
 
-- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+### scrollOverflowMacStyle
+(default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
-- `scrollOverflowReset`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
+### scrollOverflowReset
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
-- `sectionSelector`: (по умолчанию `.section`) Определяет селектор Javascript, используемый для разделов с плагинами. Иногда требуется изменить его, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и fullpage.js.
+### sectionSelector
+(по умолчанию `.section`) Определяет селектор Javascript, используемый для разделов с плагинами. Иногда требуется изменить его, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и fullpage.js.
 
-- `slideSelector`: (по умолчанию `.slide`)  Определяет селектор Javascript, используемый для слайдов с плагинами.  Иногда требуется изменить его, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и fullpage.js.
+### slideSelector
+(по умолчанию `.slide`)  Определяет селектор Javascript, используемый для слайдов с плагинами.  Иногда требуется изменить его, чтобы избежать проблем с другими плагинами, использующими те же селекторы, что и fullpage.js.
 
-- `responsiveWidth`: (по умолчанию `0`)  Будет использоваться стандартная прокрутка (`autoScrolling:false`), если ширина меньше, чем заданное значение в пикселях. Класс `fp-responsive` добавляется к тегу body, если пользователь желает использовать для собственного отзывчивого CSS. Например, если установлено значение 900, то, если ширина браузера составляет менее 900, плагин будет прокручивать, как обычный сайт.
+### responsiveWidth
+(по умолчанию `0`)  Будет использоваться стандартная прокрутка (`autoScrolling:false`), если ширина меньше, чем заданное значение в пикселях. Класс `fp-responsive` добавляется к тегу body, если пользователь желает использовать для собственного отзывчивого CSS. Например, если установлено значение 900, то, если ширина браузера составляет менее 900, плагин будет прокручивать, как обычный сайт.
 
-- `responsiveHeight`: (по умолчанию `0`) Будет использоваться стандартная прокрутка (`autoScrolling:false`), если высота меньше, чем заданное значение в пикселях. Класс `fp-responsive` добавляется к тегу body, если пользователь желает использовать для собственного отзывчивого CSS. Например, если установлено значение 900, то, если высота браузера составляет менее 900, плагин будет прокручивать, как обычный сайт.
+### responsiveHeight
+(по умолчанию `0`) Будет использоваться стандартная прокрутка (`autoScrolling:false`), если высота меньше, чем заданное значение в пикселях. Класс `fp-responsive` добавляется к тегу body, если пользователь желает использовать для собственного отзывчивого CSS. Например, если установлено значение 900, то, если высота браузера составляет менее 900, плагин будет прокручивать, как обычный сайт.
 
+### responsiveSlides
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). При установке значения `true` слайды будут трансформироваться в вертикальные разделы при активации отзывчивого режима. (с помощью опций `responsiveWidth` или `responsiveHeight`, подробно описанных выше). Необходима версия fullpage.js >= 3.0.1.
 
-- `responsiveSlides`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). При установке значения `true` слайды будут трансформироваться в вертикальные разделы при активации отзывчивого режима. (с помощью опций `responsiveWidth` или `responsiveHeight`, подробно описанных выше). Необходима версия fullpage.js >= 3.0.1.
+### parallax
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будут ли использоваться эффекты параллакс для фона разделов / слайдов. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).
 
-- `parallax`: (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будут ли использоваться эффекты параллакс для фона разделов / слайдов. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).
+### parallaxOptions
+(по умолчанию: `{ type: 'reveal', percentage: 62, property: 'translate'}`). 
+Позволяет настраивать параметры эффекта параллакс для фона при использовании опции parallax:true. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).
 
-- `parallaxOptions`: (по умолчанию: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Позволяет настраивать параметры эффекта параллакс для фона при использовании опции parallax:true. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).
+### dropEffect
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `dropEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffectOptions
+(default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). 
+Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### waterEffect
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `waterEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffectOptions
+(default: `{ animateContent: true, animateOnMouseMove: true}`).
+Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### cards
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `cards`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cardsOptions
+(default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 
+Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### lazyLoading
+(по умолчанию `true`) Отложенная загрузка включена по умолчанию, что означает, что данная опция будет осуществлять отложенную загрузку любого медиа-элемента, содержащего атрибут `data-src`, как описано в [документации отложенной загрузки](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отложенная-загрузка). Если вы желаете использовать любую другую библиотеку отложенной загрузки, вы можете деактивировать данную функцию fullpage.js.
 
-- `lazyLoading`: (по умолчанию `true`) Отложенная загрузка включена по умолчанию, что означает, что данная опция будет осуществлять отложенную загрузку любого медиа-элемента, содержащего атрибут `data-src`, как описано в [документации отложенной загрузки](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отложенная-загрузка). Если вы желаете использовать любую другую библиотеку отложенной загрузки, вы можете деактивировать данную функцию fullpage.js.
+### observer
+(default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
-- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
-
-- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+### credits
+(default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## Функции
 Можете увидеть их в действии [здесь](https://alvarotrigo.com/fullPage/examples/methods.html)
@@ -1047,13 +1112,10 @@ new fullpage('#fullpage', {
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
 
@@ -1075,4 +1137,10 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
 	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+</a>
+
+## Contributors
+
+<a href="https://github.com/alvarotrigo/fullPage.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1" />
 </a>

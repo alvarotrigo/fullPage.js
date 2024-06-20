@@ -17,7 +17,7 @@
 </p>
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.22-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.23-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -372,168 +372,234 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 
 ## 옵션
 
-- `licenseKey`: (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. If your project is open source you can [request a license key](https://alvarotrigo.com/fullPage/extensions/requestKey.html). 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
+### licenseKey
+(기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. If your project is open source you can [request a license key](https://alvarotrigo.com/fullPage/extensions/requestKey.html). 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
 
-	```javascript
-	new fullpage('#fullpage', {
-		licenseKey: 'YOUR_KEY_HERE'
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
-- `controlArrows`: (기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
+### controlArrows
+(기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
 
-- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+### controlArrowsHTML
+(default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`: (기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
+### verticalCentered
+(기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
-- `scrollingSpeed`: (기본값 `700`) 스크롤 이동 속도를 0.001초 단위로 설정합니다.
+### scrollingSpeed
+(기본값 `700`) 스크롤 이동 속도를 0.001초 단위로 설정합니다.
 
-- `sectionsColor`: (기본값 `none`) 각 구역별 CSS `background-color` 속성을 정의합니다. 아래는 예시입니다.
+### sectionsColor
+(기본값 `none`) 각 구역별 CSS `background-color` 속성을 정의합니다. 아래는 예시입니다.
 
-	```javascript
-	new fullpage('#fullpage', {
-		sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
 
-- `anchors`: (기본값 `[]`) 각 구역별 URL에 보여질 앵커 링크(#예시)를 정의합니다. 앵커값이 고유해야 합니다. 배열 내 앵커의 위치가 어느 구역에 앵커가 적용될지를 정의합니다. (두번째 위치는 두번째 구역에 적용 등). 앵커를 쓰시면 브라우저를 통한 앞뒤 이동도 가능해집니다. 이 옵션을 통해 사용자가 특정 구역이나 슬라이드에 책갈피 표시도 할 수 있습니다. **주의하세요!** 앵커는 웹사이트에서 모든 ID 요소(또는 IE용 NAME 요소)와 동일한 값을 지닐 수 없습니다.
+### anchors
+(기본값 `[]`) 각 구역별 URL에 보여질 앵커 링크(#예시)를 정의합니다. 앵커값이 고유해야 합니다. 배열 내 앵커의 위치가 어느 구역에 앵커가 적용될지를 정의합니다. (두번째 위치는 두번째 구역에 적용 등). 앵커를 쓰시면 브라우저를 통한 앞뒤 이동도 가능해집니다. 이 옵션을 통해 사용자가 특정 구역이나 슬라이드에 책갈피 표시도 할 수 있습니다. **주의하세요!** 앵커는 웹사이트에서 모든 ID 요소(또는 IE용 NAME 요소)와 동일한 값을 지닐 수 없습니다.
 여기에 설명된 대로 이제는 `data-anchor` 속성을 써서 HTML 구조에서 직접 앵커를 정의할 수 있습니다.
 
-- `lockAnchors`: (기본값 `false`) URL에 있는 앵커가 라이브러리에서 효과를 지닐지 말지를 결정합니다. 나만의 기능과 콜백을 위해 여전히 내부에서 앵커를 쓸 수는 있지만 웹사이트 스크롤에는 아무런 효과가 없습니다. URL에 있는 앵커를 써서 fullPage.js를 다른 플러그인과 결합할 때 유용합니다.
+### lockAnchors
+(기본값 `false`) URL에 있는 앵커가 라이브러리에서 효과를 지닐지 말지를 결정합니다. 나만의 기능과 콜백을 위해 여전히 내부에서 앵커를 쓸 수는 있지만 웹사이트 스크롤에는 아무런 효과가 없습니다. URL에 있는 앵커를 써서 fullPage.js를 다른 플러그인과 결합할 때 유용합니다.
 
-- `easing`: (기본값 `easeInOutCubic`) 수직 및 수평 스크롤시 전이 효과를 정의합니다.
+### easing
+(기본값 `easeInOutCubic`) 수직 및 수평 스크롤시 전이 효과를 정의합니다.
 [전이](https://api.jqueryui.com/easings/) 효과 중 일부를 사용하기 위해서는  `vendors/easings.min.js` 또는 [jQuery UI](https://jqueryui.com/) 파일이 필요합니다. 대신 다른 라이브러리를 쓸 수도 있습니다.
 
-- `easingcss3`: (기본값 `ease`) `css3:true`를 쓰는 경우 사용할 전이 효과를 정의합니다. (`linear`, `ease-out` 등) [미리 정의된 효과](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)를 쓰시거나 `cubic-bezier` 기능을 쓰셔서 나만의 효과를 만드실 수 있습니다. [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/)도 쓰실 수 있습니다.
+### easingcss3
+(기본값 `ease`) `css3:true`를 쓰는 경우 사용할 전이 효과를 정의합니다. (`linear`, `ease-out` 등) [미리 정의된 효과](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)를 쓰시거나 `cubic-bezier` 기능을 쓰셔서 나만의 효과를 만드실 수 있습니다. [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/)도 쓰실 수 있습니다.
 
-- `loopTop`: (기본값 `false`) 첫번째 구역에서 스크롤을 위로 올릴 때 마지막 구역으로 이동할지 여부를 정의합니다.
+### loopTop
+(기본값 `false`) 첫번째 구역에서 스크롤을 위로 올릴 때 마지막 구역으로 이동할지 여부를 정의합니다.
 
-- `loopBottom`: (기본값 `false`) 마지막 구역에서 스크롤을 아래로 내릴 때 첫번째 구역으로 이동할지 여부를 정의합니다.
+### loopBottom
+(기본값 `false`) 마지막 구역에서 스크롤을 아래로 내릴 때 첫번째 구역으로 이동할지 여부를 정의합니다.
 
-- `loopHorizontal`: (기본값 `true`) 수평 슬라이더가 마지막이나 이전 슬라이드에 다다른 후 다시 반복할지 여부를 정의합니다.
+### loopHorizontal
+(기본값 `true`) 수평 슬라이더가 마지막이나 이전 슬라이드에 다다른 후 다시 반복할지 여부를 정의합니다.
 
-- `css3`: (기본값 `true`). 구역과 슬라이드 안에서 스크롤하기 위해 JavaScript를 쓸지 CSS3을 쓸지를 정의합니다. CSS3 지원 브라우저를 쓰는 태블릿과 스마트폰에서 움직이는 속도를 높이는 데 유용합니다. 이 옵션을 `true`로 설정하고 브라우저가 CSS3을 지원하지 않는다면 폴백(fallback)이 대신 쓰이게 됩니다.
+### css3
+(기본값 `true`). 구역과 슬라이드 안에서 스크롤하기 위해 JavaScript를 쓸지 CSS3을 쓸지를 정의합니다. CSS3 지원 브라우저를 쓰는 태블릿과 스마트폰에서 움직이는 속도를 높이는 데 유용합니다. 이 옵션을 `true`로 설정하고 브라우저가 CSS3을 지원하지 않는다면 폴백(fallback)이 대신 쓰이게 됩니다.
 
-- `autoScrolling`: (기본값 `true`) "automatic" 스크롤을 쓸지 "normal" 스크롤을 쓸지를 정의합니다. 태블릿과 스마트폰 브라우저/기기 창에서 구역이 들어맞는 방법에도 영향을 미칩니다.
+### autoScrolling
+(기본값 `true`) "automatic" 스크롤을 쓸지 "normal" 스크롤을 쓸지를 정의합니다. 태블릿과 스마트폰 브라우저/기기 창에서 구역이 들어맞는 방법에도 영향을 미칩니다.
 
-- `fitToSection`: (기본값 `true`) 구역을 모바일 지원(viewport)에 맞출지 말지를 결정합니다. `true`로 설정하면 현재 활성화된 구역이 항상 모바일 지원(viewport) 전체를 가득 채웁니다. 그렇지 않은 경우에는 사용자는 구역 중간에서 자유롭게 멈출 수 있습니다.
+### fitToSection
+(기본값 `true`) 구역을 모바일 지원(viewport)에 맞출지 말지를 결정합니다. `true`로 설정하면 현재 활성화된 구역이 항상 모바일 지원(viewport) 전체를 가득 채웁니다. 그렇지 않은 경우에는 사용자는 구역 중간에서 자유롭게 멈출 수 있습니다.
 
-- `fitToSectionDelay`: (기본값 1000). `fitToSection`이 true로 설정되면 설정된 1000분의 1초 단위로 맞춤을 지연합니다.
+### fitToSectionDelay
+(기본값 1000). `fitToSection`이 true로 설정되면 설정된 1000분의 1초 단위로 맞춤을 지연합니다.
 
-- `scrollBar`: (기본값 `false`) 웹사이트에 스크롤 막대기를 쓸지 말지를 결정합니다. 스크롤 막대기를 쓰는 경우 `autoScrolling` 기능이 여전히 예상대로 작동할 것입니다. 또한 사용자는 스크롤 막대기로 웹사이트에서 이동할 수도 있으며 스크롤이 끝나면 fullPage.js가 화면 구역에 맞춰집니다.
+### scrollBar
+(기본값 `false`) 웹사이트에 스크롤 막대기를 쓸지 말지를 결정합니다. 스크롤 막대기를 쓰는 경우 `autoScrolling` 기능이 여전히 예상대로 작동할 것입니다. 또한 사용자는 스크롤 막대기로 웹사이트에서 이동할 수도 있으며 스크롤이 끝나면 fullPage.js가 화면 구역에 맞춰집니다.
 
-- `paddingTop`: (기본값 `0`) 구역별 상위에 채우는 부분을 수치와 측정값(`paddingTop: '10px'`, `paddingTop: '10em'`...)으로 정의합니다. 고정된 머리말을 쓰실 때 유용합니다.
+### paddingTop
+(기본값 `0`) 구역별 상위에 채우는 부분을 수치와 측정값(`paddingTop: '10px'`, `paddingTop: '10em'`...)으로 정의합니다. 고정된 머리말을 쓰실 때 유용합니다.
 
-- `paddingBottom`: (기본값 `0`) 구역별 하위에 채우는 부분을 수치와 측정값(`paddingBottom: '10px'`, `paddingBottom: '10em'`...)으로 정의합니다. 고정된 꼬리말을 쓰실 때 유용합니다.
+### paddingBottom
+(기본값 `0`) 구역별 하위에 채우는 부분을 수치와 측정값(`paddingBottom: '10px'`, `paddingBottom: '10em'`...)으로 정의합니다. 고정된 꼬리말을 쓰실 때 유용합니다.
 
-- `fixedElements`: (기본값 `null`) 플러그인의 스크롤 구조에서 어느 요소를 빼낼지를 정의합니다. `css3` 옵션을 쓰실 때 고정하려면 반드시 빼내셔야 합니다. 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `fixedElements: '#element1, .element2'`)
+### fixedElements
+(기본값 `null`) 플러그인의 스크롤 구조에서 어느 요소를 빼낼지를 정의합니다. `css3` 옵션을 쓰실 때 고정하려면 반드시 빼내셔야 합니다. 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `fixedElements: '#element1, .element2'`)
 
-- `normalScrollElements`: (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/RmVazM) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
+### normalScrollElements
+(기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/RmVazM) 일부 요소 위를 스크롤할때 자동 스크롤을 피하고 싶으시다면 이 옵션을 쓰셔야 합니다. (지도, div 스크롤 등에 유용.) 이 요소에는 Javascript 선택자가 들어간 문자열이 필요합니다. (예시: `normalScrollElements: '#element1, .element2'`)
 
-- `bigSectionsDestination`: (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/vYLdMrx) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
+### bigSectionsDestination
+(기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/vYLdMrx) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
 
-- `keyboardScrolling`: (기본값 `true`) 키보드를 써서 컨텐츠 사이를 이동할 수 있는지 정의합니다.
+### keyboardScrolling
+(기본값 `true`) 키보드를 써서 컨텐츠 사이를 이동할 수 있는지 정의합니다.
 
-- `touchSensitivity`: (기본값 `5`) 브라우저 창 너비/폭 퍼센트와 다음 구역 / 슬라이드로 이동하는 데 필요한 스와이프 거리를 정의합니다.
+### touchSensitivity
+(기본값 `5`) 브라우저 창 너비/폭 퍼센트와 다음 구역 / 슬라이드로 이동하는 데 필요한 스와이프 거리를 정의합니다.
 
-- `continuousVertical`: (기본값 `false`) 마지막 구역에서 아래로 스크롤할때 첫번째 구역으로 스크롤이 내려가야 할지를 정의하고, 첫번째 구역에서 위로 스크롤할때 마지막 구역으로 스크롤이 올라가야 할지를 정의합니다. `loopTop`, `loopBottom` 또는 웹사이트에 있는 모든 스크롤 막대기와 호환되지 않습니다. (`scrollBar:true` 또는 `autoScrolling:false`)
+### continuousVertical
+(기본값 `false`) 마지막 구역에서 아래로 스크롤할때 첫번째 구역으로 스크롤이 내려가야 할지를 정의하고, 첫번째 구역에서 위로 스크롤할때 마지막 구역으로 스크롤이 올라가야 할지를 정의합니다. `loopTop`, `loopBottom` 또는 웹사이트에 있는 모든 스크롤 막대기와 호환되지 않습니다. (`scrollBar:true` 또는 `autoScrolling:false`)
 
-- `continuousHorizontal`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 마지막 슬라이드에서 오른쪽으로 미끄러질 때 오른쪽으로 이동하여 첫번째 슬라이드로 이동할지를 정의하고, 첫번째 슬라이드에서 왼쪽으로 스크롤할때 왼쪽으로 이동하면서 마지막 슬라이드로 이동할지를 정의합니다. `loopHorizontal`과 호환되지 않습니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+### continuousHorizontal
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 마지막 슬라이드에서 오른쪽으로 미끄러질 때 오른쪽으로 이동하여 첫번째 슬라이드로 이동할지를 정의하고, 첫번째 슬라이드에서 왼쪽으로 스크롤할때 왼쪽으로 이동하면서 마지막 슬라이드로 이동할지를 정의합니다. `loopHorizontal`과 호환되지 않습니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `scrollHorizontally`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. It can only be used when using: `autoScrolling:true`. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+### scrollHorizontally
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 슬라이더 안에서 마우스 휠 또는 트랙패드를 써서 수평으로 미끄러지듯 움직일지를 정의합니다. 이야기 전달에 적합합니다. It can only be used when using: `autoScrolling:true`. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `interlockedSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 수평 슬라이더 하나를 움직일 때 다른 구역에 있는 슬라이더가 강제로 같은 방향으로 미끄러지도록 할지를 정의합니다. `true`, `false` 또는 서로 잠긴 구역이 있는 배열값이 가능합니다. 예를 들면 1에서 시작하는 `[1,3,5]`가 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+### interlockedSlides
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 수평 슬라이더 하나를 움직일 때 다른 구역에 있는 슬라이더가 강제로 같은 방향으로 미끄러지도록 할지를 정의합니다. `true`, `false` 또는 서로 잠긴 구역이 있는 배열값이 가능합니다. 예를 들면 1에서 시작하는 `[1,3,5]`가 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `dragAndMove`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 마우스나 손가락을 써서 구역과 슬라이드를 끌어오고 튕기는 걸 활성화하거나 비활성화합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다. 아래 값을 쓰실 수 있습니다.
-  - `true`: 기능 활성화.
-  - `false`: 기능 비활성화.
+### dragAndMove
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 마우스나 손가락을 써서 구역과 슬라이드를 끌어오고 튕기는 걸 활성화하거나 비활성화합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다. 아래 값을 쓰실 수 있습니다.
+  - ` true`: 기능 활성화.
+  - ` false`: 기능 비활성화.
   - `vertical`: 수직으로만 기능 구현.
   - `horizontal`: 수평으로만 기능 구현.
   - `fingersonly`: 터치 기기에서만 기능 구현.
   - `mouseonly`: 데스크탑 기기에서만 기능 구현(마우스와 트랙패드).
 
-- `offsetSections`: (기본값 `false`)[fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 전체화면이 아닌 구역을 퍼센트에 기반하여 쓸 수 있는 방법을 지원합니다. 방문객에게 다음이나 이전 구역의 일부를 보여줌으로써 웹사이트에 더 많은 컨텐츠가 있음을 보여주는 데 적합합니다. fullPage.js 버전이 3.0.1 이상이어야 합니다. 각 구역의 퍼센트를 정의하려면 `data-percentage` 속성을 쓰셔야 합니다. `data-centered` 속성에서 불리언(boolean) 값을 써서 모바일 지원(viewport)에서 구역이 중앙에 오도록 정의할 수 있습니다(명시하지 않을 경우 `true`가 기본값). 다음은 예시입니다.
+### offsetSections
+(기본값 `false`)[fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 전체화면이 아닌 구역을 퍼센트에 기반하여 쓸 수 있는 방법을 지원합니다. 방문객에게 다음이나 이전 구역의 일부를 보여줌으로써 웹사이트에 더 많은 컨텐츠가 있음을 보여주는 데 적합합니다. fullPage.js 버전이 3.0.1 이상이어야 합니다. 각 구역의 퍼센트를 정의하려면 `data-percentage` 속성을 쓰셔야 합니다. `data-centered` 속성에서 불리언(boolean) 값을 써서 모바일 지원(viewport)에서 구역이 중앙에 오도록 정의할 수 있습니다(명시하지 않을 경우 `true`가 기본값). 다음은 예시입니다.
 
-	``` html
-	<div class="section" data-percentage="80" data-centered="true">
-	```
+``` html
+<div class="section" data-percentage="80" data-centered="true">
+```
 
-- `resetSliders`: (기본값 `false`). [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+### resetSliders
+(기본값 `false`). [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `fadingEffect`: (기본값 `false`). [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
+### fadingEffect
+(기본값 `false`). [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 기본설정인 스크롤 효과 대신 사라지는 효과를 쓸지를 정의합니다. `true`, `false`, `sections`, `slides` 값이 가능합니다. 그러므로 수직이나 수평 또는 수직 수평이 동시에 적용되는 것만 가능합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `animateAnchor`: (기본값 `true`) 앵커(#)가 주어질 때 웹사이트를 불러오면 애니메이션이 들어간 스크롤 형태로 목적지로 이동할지, 아니면 주어진 구역에서 바로 불러올지를 정의합니다.
+### animateAnchor
+(기본값 `true`) 앵커(#)가 주어질 때 웹사이트를 불러오면 애니메이션이 들어간 스크롤 형태로 목적지로 이동할지, 아니면 주어진 구역에서 바로 불러올지를 정의합니다.
 
-- `recordHistory`: (기본값 `true`) 웹사이트 상태를 브라우저 방문 기록에 맞게 밀지를 정의합니다. `true`로 설정되면 웹사이트의 각 구역/슬라이드가 새로운 페이지가 되어 브라우저의 뒤로 가기/앞으로 가기 버튼을 누르면 구역/슬라이드를 스크롤하여 웹사이트의 이전 방문 페이지나 다음 페이지로 이동합니다. `false`로 설정되면 URL이 계속 바뀌어도 브라우저 방문 기록에 아무런 영향을 미치지 않습니다. `autoScrolling:false`값을 쓰면 이 옵션이 자동으로 꺼집니다.
+### recordHistory
+(기본값 `true`) 웹사이트 상태를 브라우저 방문 기록에 맞게 밀지를 정의합니다. `true`로 설정되면 웹사이트의 각 구역/슬라이드가 새로운 페이지가 되어 브라우저의 뒤로 가기/앞으로 가기 버튼을 누르면 구역/슬라이드를 스크롤하여 웹사이트의 이전 방문 페이지나 다음 페이지로 이동합니다. `false`로 설정되면 URL이 계속 바뀌어도 브라우저 방문 기록에 아무런 영향을 미치지 않습니다. `autoScrolling:false`값을 쓰면 이 옵션이 자동으로 꺼집니다.
 
-- `menu`: (기본값 `false`) 선택자를 써서 구역에 링크할 메뉴를 구체적으로 정할 수 있습니다. 이렇게 하면 `active` 클래스를 써서 구역을 스크롤할때 메뉴에 있는 대응하는 요소가 활성화됩니다. 이렇게 하면 메뉴를 만드는 것이 아니라 `active` 클래스를 대응하는 앵커 링크와 함께 주어진 메뉴에 있는 요소에 추가만 합니다. 구역에 메뉴 요소의 링크를 걸기 위해서는 구역 안에서 사용된 것과 동일한 앵커 링크와 함께 사용하기 위해 HTML 5 데이터-태크(`data-menuanchor`)가 필요합니다. 다음은 예시입니다.
+### menu
+(기본값 `false`) 선택자를 써서 구역에 링크할 메뉴를 구체적으로 정할 수 있습니다. 이렇게 하면 `active` 클래스를 써서 구역을 스크롤할때 메뉴에 있는 대응하는 요소가 활성화됩니다. 이렇게 하면 메뉴를 만드는 것이 아니라 `active` 클래스를 대응하는 앵커 링크와 함께 주어진 메뉴에 있는 요소에 추가만 합니다. 구역에 메뉴 요소의 링크를 걸기 위해서는 구역 안에서 사용된 것과 동일한 앵커 링크와 함께 사용하기 위해 HTML 5 데이터-태크(`data-menuanchor`)가 필요합니다. 다음은 예시입니다.
 
-	```html
-	<ul id="myMenu">
-		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-		<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-		<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-		<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
-	</ul>
-	```
-	```javascript
-	new fullpage('#fullpage', {
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-		menu: '#myMenu'
-	});
-	```
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+</ul>
+```
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
+});
+```
 
-	**주의:** `css3:true`를 쓸 때 문제가 생기지 않도록 하려면 메뉴 요소를 전체 페이지 포장 밖에 두셔야 합니다. 그렇지 않으면 플러그인 자체가 메뉴 요소를 `body`에 덧붙여 버립니다.
+**주의:** `css3:true`를 쓸 때 문제가 생기지 않도록 하려면 메뉴 요소를 전체 페이지 포장 밖에 두셔야 합니다. 그렇지 않으면 플러그인 자체가 메뉴 요소를 `body`에 덧붙여 버립니다.
 
-- `navigation`: (기본값 `false`) `true`로 설정되면 작은 원으로 이루어진 이동 막대기가 나타납니다.
+### navigation
+(기본값 `false`) `true`로 설정되면 작은 원으로 이루어진 이동 막대기가 나타납니다.
 
-- `navigationPosition`: (기본값 `none`) `left`나 `right`로 설정될 수 있습니다. (만약 쓰실 경우) 이동 막대기가 보여지는 위치를 정의합니다.
+### navigationPosition
+(기본값 `none`) `left`나 `right`로 설정될 수 있습니다. (만약 쓰실 경우) 이동 막대기가 보여지는 위치를 정의합니다.
 
-- `navigationTooltips`: (기본값 []) 이동 원을 쓰시는 경우 보여질 말풍선 위젯을 정의합니다. 다음은 예시입니다. `navigationTooltips: ['firstSlide', 'secondSlide']`. 원하신다면 구역마다 `data-tooltip` 속성을 쓰셔서 정의할 수 있습니다.
+### navigationTooltips
+(기본값 []) 이동 원을 쓰시는 경우 보여질 말풍선 위젯을 정의합니다. 다음은 예시입니다. `navigationTooltips: ['firstSlide', 'secondSlide']`. 원하신다면 구역마다 `data-tooltip` 속성을 쓰셔서 정의할 수 있습니다.
 
-- `showActiveTooltip`: (기본값 `false`) 수직으로 이동할때 능동적 구역 보기를 위해 계속 따라다니는 말풍선 위젯을 보여줍니다.
+### showActiveTooltip
+(기본값 `false`) 수직으로 이동할때 능동적 구역 보기를 위해 계속 따라다니는 말풍선 위젯을 보여줍니다.
 
-- `slidesNavigation`: (기본값 `false`) `true`로 설정되면 웹사이트에서 각 수평방향 슬라이더마다 작은 원으로 이루어진 이동 막대기를 보여줍니다.
+### slidesNavigation
+(기본값 `false`) `true`로 설정되면 웹사이트에서 각 수평방향 슬라이더마다 작은 원으로 이루어진 이동 막대기를 보여줍니다.
 
-- `slidesNavPosition`: (기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
+### slidesNavPosition
+(기본값 `bottom`) 수평방향 이동 막대기 슬라이더 위치를 지정합니다. `top`과 `bottom`을 값으로 인정합니다. 상부 또는 하부에서의 거리와 색깔 등 다른 모든 스타일을 정의하려면 CSS 스타일을 수정하시면 됩니다.
 
-- `scrollOverflow`: (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다.It requires the default value `scrollBar: false`. 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`. 구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
+### scrollOverflow
+(기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다.It requires the default value `scrollBar: false`. 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`. 구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
 
-- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+### scrollOverflowMacStyle
+(default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
-- `scrollOverflowReset`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
+### scrollOverflowReset
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
-- `sectionSelector`: (기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
+### sectionSelector
+(기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
-- `slideSelector`: (기본값 `.slide`) 플러그인 슬라이드에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
+### slideSelector
+(기본값 `.slide`) 플러그인 슬라이드에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
 
-- `responsiveWidth`: (기본값 `0`) 픽셀로 정의된 폭 아래에 정상 스크롤(`autoScrolling:false`)을 씁니다. 사용자가 자신만의 반응형 CSS에 쓰고 싶은 경우를 위해 `fp-responsive` 클래스가 바디 태그에 추가됩니다. 예를 들어 900에 설정되는 경우 브라우저의 너비가 900 미만이 될 때마다 플러그인이 정상 웹사이트처럼 스크롤됩니다.
+### responsiveWidth
+(기본값 `0`) 픽셀로 정의된 폭 아래에 정상 스크롤(`autoScrolling:false`)을 씁니다. 사용자가 자신만의 반응형 CSS에 쓰고 싶은 경우를 위해 `fp-responsive` 클래스가 바디 태그에 추가됩니다. 예를 들어 900에 설정되는 경우 브라우저의 너비가 900 미만이 될 때마다 플러그인이 정상 웹사이트처럼 스크롤됩니다.
 
-- `responsiveHeight`: (기본값 `0`) 픽셀로 정의된 높이 아래에 정상 스크롤(`autoScrolling:false`)을 씁니다. 사용자가 자신만의 반응형 CSS에 쓰고 싶은 경우를 위해 `fp-responsive` 클래스가 바디 태그에 추가됩니다. 예를 들어 900에 설정되는 경우 브라우저의 높이가 900 미만이 될 때마다 플러그인이 정상 웹사이트처럼 스크롤됩니다.
+### responsiveHeight
+(기본값 `0`) 픽셀로 정의된 높이 아래에 정상 스크롤(`autoScrolling:false`)을 씁니다. 사용자가 자신만의 반응형 CSS에 쓰고 싶은 경우를 위해 `fp-responsive` 클래스가 바디 태그에 추가됩니다. 예를 들어 900에 설정되는 경우 브라우저의 높이가 900 미만이 될 때마다 플러그인이 정상 웹사이트처럼 스크롤됩니다.
 
-- `responsiveSlides`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정될 경우 반응형 모드가 실행되면 슬라이드가 수직 구역으로 바뀝니다. (위에 상세히 설명된 `responsiveWidth` 또는 `responsiveHeight` 옵션을 써서 구현됩니다). fullpage.js 버전이 3.0.1 이상이어야 합니다.
+### responsiveSlides
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정될 경우 반응형 모드가 실행되면 슬라이드가 수직 구역으로 바뀝니다. (위에 상세히 설명된 `responsiveWidth` 또는 `responsiveHeight` 옵션을 써서 구현됩니다). fullpage.js 버전이 3.0.1 이상이어야 합니다.
 
-- `parallax`: (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에서 패럴랙스 배경 효과를 쓸지 여부를 정의합니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
+### parallax
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역 / 슬라이드에서 패럴랙스 배경 효과를 쓸지 여부를 정의합니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
-- `parallaxOptions`: (기본값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
+### parallaxOptions
+(기본값: `{ type: 'reveal', percentage: 62, property: 'translate'}`). 
+parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
-- `dropEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffect
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffectOptions
+(default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). 
+Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `waterEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffect
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffectOptions
+(default: `{ animateContent: true, animateOnMouseMove: true}`). 
+Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `cards`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cards
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cardsOptions
+(default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 
+Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `lazyLoading`: (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
+### lazyLoading
+(기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
 
-- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+### observer
+(default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
-- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+### credits
+(default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## 방법
 어떻게 작동하는지 [여기](https://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.
@@ -1035,13 +1101,10 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 ![Ubisoft](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/ubisoft-5.png)
 
 - http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
-- http://www.shootinggalleryasia.com/
 - http://medoff.ua/en/
 - http://promo.prestigio.com/grace1/
 - http://torchbrowser.com/
-- http://charlotteaimes.com/
 - http://www.boxreload.com/
-- http://usescribe.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
 
@@ -1064,3 +1127,10 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
 	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
 </a>
+
+## Contributors
+
+<a href="https://github.com/alvarotrigo/fullPage.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1" />
+</a>
+
