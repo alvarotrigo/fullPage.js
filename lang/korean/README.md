@@ -375,11 +375,11 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 ### licenseKey
 (기본값 `null`). **이 옵션은 필수입니다.** fullPage를 비오픈소스 프로젝트에서 쓰신다면 fullPage 상업 라이선스 구매시 받으신 라이선스 키를 쓰셔야 합니다. If your project is open source you can [request a license key](https://alvarotrigo.com/fullPage/extensions/requestKey.html). 라이선스에 관한 더 상세한 정보는 [여기](https://github.com/alvarotrigo/fullPage.js#license)와 [웹사이트에서](https://alvarotrigo.com/fullPage/pricing/) 읽어보실 수 있습니다. 예시:
 
-	```javascript
-	new fullpage('#fullpage', {
-		licenseKey: 'YOUR_KEY_HERE'
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 ### controlArrows
 (기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
@@ -396,11 +396,11 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 ### sectionsColor
 (기본값 `none`) 각 구역별 CSS `background-color` 속성을 정의합니다. 아래는 예시입니다.
 
-	```javascript
-	new fullpage('#fullpage', {
-		sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
 
 ### anchors
 (기본값 `[]`) 각 구역별 URL에 보여질 앵커 링크(#예시)를 정의합니다. 앵커값이 고유해야 합니다. 배열 내 앵커의 위치가 어느 구역에 앵커가 적용될지를 정의합니다. (두번째 위치는 두번째 구역에 적용 등). 앵커를 쓰시면 브라우저를 통한 앞뒤 이동도 가능해집니다. 이 옵션을 통해 사용자가 특정 구역이나 슬라이드에 책갈피 표시도 할 수 있습니다. **주의하세요!** 앵커는 웹사이트에서 모든 ID 요소(또는 IE용 NAME 요소)와 동일한 값을 지닐 수 없습니다.
@@ -485,9 +485,9 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 ### offsetSections
 (기본값 `false`)[fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 전체화면이 아닌 구역을 퍼센트에 기반하여 쓸 수 있는 방법을 지원합니다. 방문객에게 다음이나 이전 구역의 일부를 보여줌으로써 웹사이트에 더 많은 컨텐츠가 있음을 보여주는 데 적합합니다. fullPage.js 버전이 3.0.1 이상이어야 합니다. 각 구역의 퍼센트를 정의하려면 `data-percentage` 속성을 쓰셔야 합니다. `data-centered` 속성에서 불리언(boolean) 값을 써서 모바일 지원(viewport)에서 구역이 중앙에 오도록 정의할 수 있습니다(명시하지 않을 경우 `true`가 기본값). 다음은 예시입니다.
 
-	``` html
-	<div class="section" data-percentage="80" data-centered="true">
-	```
+``` html
+<div class="section" data-percentage="80" data-centered="true">
+```
 
 ### resetSliders
 (기본값 `false`). [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역을 떠난 후 모든 슬라이더가 제자리로 돌아가도록 할지를 정의합니다. fullpage.js 버전이 3.0.1 이상이어야 합니다.
@@ -504,22 +504,22 @@ fullpage.js는 기본 기능을 강화하기 위해 쓸 수 있는 [여러가지
 ### menu
 (기본값 `false`) 선택자를 써서 구역에 링크할 메뉴를 구체적으로 정할 수 있습니다. 이렇게 하면 `active` 클래스를 써서 구역을 스크롤할때 메뉴에 있는 대응하는 요소가 활성화됩니다. 이렇게 하면 메뉴를 만드는 것이 아니라 `active` 클래스를 대응하는 앵커 링크와 함께 주어진 메뉴에 있는 요소에 추가만 합니다. 구역에 메뉴 요소의 링크를 걸기 위해서는 구역 안에서 사용된 것과 동일한 앵커 링크와 함께 사용하기 위해 HTML 5 데이터-태크(`data-menuanchor`)가 필요합니다. 다음은 예시입니다.
 
-	```html
-	<ul id="myMenu">
-		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-		<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-		<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-		<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
-	</ul>
-	```
-	```javascript
-	new fullpage('#fullpage', {
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-		menu: '#myMenu'
-	});
-	```
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+</ul>
+```
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
+});
+```
 
-	**주의:** `css3:true`를 쓸 때 문제가 생기지 않도록 하려면 메뉴 요소를 전체 페이지 포장 밖에 두셔야 합니다. 그렇지 않으면 플러그인 자체가 메뉴 요소를 `body`에 덧붙여 버립니다.
+**주의:** `css3:true`를 쓸 때 문제가 생기지 않도록 하려면 메뉴 요소를 전체 페이지 포장 밖에 두셔야 합니다. 그렇지 않으면 플러그인 자체가 메뉴 요소를 `body`에 덧붙여 버립니다.
 
 ### navigation
 (기본값 `false`) `true`로 설정되면 작은 원으로 이루어진 이동 막대기가 나타납니다.

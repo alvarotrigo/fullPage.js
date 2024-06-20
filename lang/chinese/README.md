@@ -386,11 +386,11 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 ### licenseKey
 （ 默认 `null` ）。 **此选项是强制性的。**如果您在非开源项目中使用 fullPage ，则应使用购买fullPage 商业许可证时提供的许可证密钥。 如果您的项目是开放的，请[与我 [联系](https://alvarotrigo.com/fullPage/extensions/requestKey.html) 并提供指向您的存储库的链接以获取许可证密钥。 请阅读更多关于许可 [这里](https://github.com/alvarotrigo/fullPage.js#license) 和 [在网页上](https://alvarotrigo.com/fullPage/pricing/) 。例如：
 
-	```javascript
-	new fullpage('#fullpage', {
-		licenseKey: 'YOUR_KEY_HERE'
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	licenseKey: 'YOUR_KEY_HERE'
+});
+```
 
 ### controlArrows
 （默认为 `true`）确定是否将 slide 的控制箭头向右或向左移动。
@@ -407,11 +407,11 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 ### sectionsColor
 （默认 `none` ）为每个 section 定义 CSS `background-color ` 属性。
 例：
-	```javascript
-	new fullpage('#fullpage', {
-		sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-	});
-	```
+```javascript
+new fullpage('#fullpage', {
+	sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
 
 ### anchors
 （默认`[]`）定义要在每个 section 的 URL 上显示的锚链接（#example）。 锚点的值应该是独一无二的。 数组中的锚的位置将限定锚被应用于哪些部分。 （第二 section 的第二个位置等等）。 通过浏览器也可以使用锚点向前和向后导航。 该选项还允许用户为特定的 section 或 slide 添加书签。 **注意！**锚点不能与站点上的任何 ID 元素（或 IE 的 NAME 元素）具有相同的值。
@@ -497,9 +497,9 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 （默认 `false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕 section 的方法。 通过显示下 section 或上 section 的内容，适合向访问者显示网站中的更多内容。 需要 fullPage.js> = 3.0.1
 要定义每 section 的百分比，必须使用属性 `data-percentage` 。 可以通过在属性 `data-centered` 中使用布尔值来使视图中 section 居中（如果未指定，则默认为 `true` ）。 例如：
 
-	``` html
-	<div class="section" data-percentage="80" data-centered="true">
-	```
+``` html
+<div class="section" data-percentage="80" data-centered="true">
+```
 
 ### resetSliders
 （默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在离 section 后重置每个滑块。 需要fullpage.js> = 3.0.1。
@@ -517,22 +517,22 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 （默认 `false` ）选择器可以用来指定菜单链接到锚。 这样 section 的滚动将使用 active 状态激活菜单中的相应元素。这不会生成菜单，而只是将 active 状态添加到给定菜单中的元素，并带有相应的锚链接。
 为了将菜单的元素与各个部分相链接，将需要一个HTML 5 数据标签（data-menuanchor）来关联在 section中使用的锚链接。 例：
 
-	```html
-	<ul id="myMenu">
-		<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
-		<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
-		<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
-		<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
-	</ul>
-	```
-	```javascript
-	new fullpage('#fullpage', {
-		anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-		menu: '#myMenu'
-	});
-	```
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">First section</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second section</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">Third section</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">Fourth section</a></li>
+</ul>
+```
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
+});
+```
 
-	**注意：** 菜单元素应放置在 fullpage 包裹对象外，以避免使用 `css3：true` 时出现问题。 否则它会被插件本身附加到 `body` 。
+**注意：** 菜单元素应放置在 fullpage 包裹对象外，以避免使用 `css3：true` 时出现问题。 否则它会被插件本身附加到 `body` 。
 
 ### navigation
 （默认 `false` ）如果设置为 `true` ，则会显示一个由小圆圈组成的导航栏。
