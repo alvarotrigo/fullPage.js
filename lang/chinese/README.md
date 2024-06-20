@@ -383,7 +383,8 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 
 ## 参数
 
--`licenseKey`：（默认 `null` ）。 **此选项是强制性的。**如果您在非开源项目中使用 fullPage ，则应使用购买fullPage 商业许可证时提供的许可证密钥。 如果您的项目是开放的，请[与我 [联系](https://alvarotrigo.com/fullPage/extensions/requestKey.html) 并提供指向您的存储库的链接以获取许可证密钥。 请阅读更多关于许可 [这里](https://github.com/alvarotrigo/fullPage.js#license) 和 [在网页上](https://alvarotrigo.com/fullPage/pricing/) 。例如：
+### licenseKey
+（ 默认 `null` ）。 **此选项是强制性的。**如果您在非开源项目中使用 fullPage ，则应使用购买fullPage 商业许可证时提供的许可证密钥。 如果您的项目是开放的，请[与我 [联系](https://alvarotrigo.com/fullPage/extensions/requestKey.html) 并提供指向您的存储库的链接以获取许可证密钥。 请阅读更多关于许可 [这里](https://github.com/alvarotrigo/fullPage.js#license) 和 [在网页上](https://alvarotrigo.com/fullPage/pricing/) 。例如：
 
 	```javascript
 	new fullpage('#fullpage', {
@@ -391,15 +392,20 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 	});
 	```
 
-- `controlArrows`：（默认为 `true`）确定是否将 slide 的控制箭头向右或向左移动。
+### controlArrows
+（默认为 `true`）确定是否将 slide 的控制箭头向右或向左移动。
 
-- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+### controlArrowsHTML
+（默认为 `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered`：（默认为`true`）在 section 内部垂直居中。(Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
+### verticalCentered
+（默认为`true`）在 section 内部垂直居中。(Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
-- `scrollingSpeed`：（默认 `700` ）滚动转换的速度（以毫秒为单位）。
+### scrollingSpeed
+（默认 `700` ）滚动转换的速度（以毫秒为单位）。
 
-- `sectionsColor`：（默认 `none` ）为每个 section 定义 CSS `background-color ` 属性。
+### sectionsColor
+（默认 `none` ）为每个 section 定义 CSS `background-color ` 属性。
 例：
 	```javascript
 	new fullpage('#fullpage', {
@@ -407,55 +413,79 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 	});
 	```
 
-- `anchors`：（默认`[]`）定义要在每个 section 的 URL 上显示的锚链接（#example）。 锚点的值应该是独一无二的。 数组中的锚的位置将限定锚被应用于哪些部分。 （第二 section 的第二个位置等等）。 通过浏览器也可以使用锚点向前和向后导航。 该选项还允许用户为特定的 section 或 slide 添加书签。 **注意！**锚点不能与站点上的任何 ID 元素（或 IE 的 NAME 元素）具有相同的值。
+### anchors
+（默认`[]`）定义要在每个 section 的 URL 上显示的锚链接（#example）。 锚点的值应该是独一无二的。 数组中的锚的位置将限定锚被应用于哪些部分。 （第二 section 的第二个位置等等）。 通过浏览器也可以使用锚点向前和向后导航。 该选项还允许用户为特定的 section 或 slide 添加书签。 **注意！**锚点不能与站点上的任何 ID 元素（或 IE 的 NAME 元素）具有相同的值。
 现在可以通过使用属性 `data-anchor` 直接在 HTML 结构中定义锚点，如此处所述。
 
-- `lockAnchors`：（默认为 `false` ）确定 URL 中的锚是否在库中完全有效。 您仍然可以在函数和回调内部使用锚，但是它们在滚动网站时不起任何作用。 如果你想在 URL 中使用锚点来将 fullPage.js 和其他插件结合起来，那就很有用。
+### lockAnchors
+（默认为 `false` ）确定 URL 中的锚是否在库中完全有效。 您仍然可以在函数和回调内部使用锚，但是它们在滚动网站时不起任何作用。 如果你想在 URL 中使用锚点来将 fullPage.js 和其他插件结合起来，那就很有用。
 
-- `easing` : (默认 `easeInOutCubic` ）定义用于垂直和水平滚动的过渡效果。
+### easing`
+（默认 `easeInOutCubic` ）定义用于垂直和水平滚动的过渡效果。
 它需要文件 `vendors/easings.min.js` 或 [jQuery UI](https://jqueryui.com/) 来使用 [它的转换](https://api.jqueryui.com/easings/) 。 其他库可以用来代替。
 
-- `easingcss3` : （默认 `ease` ）定义在使用 `css3：true` 的情况下使用的过渡效果。 你可以使用 [预定义的](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)（比如 `linear`，`ease-out` ...）或者使用 `贝塞尔曲线` 功能创建你自己的效果。 你可能想使用 [Matthew Lein CSS缓动动画工具](https://matthewlein.com/ceaser/) 。
+### easingcss3
+（默认 `ease` ）定义在使用 `css3：true` 的情况下使用的过渡效果。 你可以使用 [预定义的](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)（比如 `linear`，`ease-out` ...）或者使用 `贝塞尔曲线` 功能创建你自己的效果。 你可能想使用 [Matthew Lein CSS缓动动画工具](https://matthewlein.com/ceaser/) 。
 
-- `loopTop`:（默认为 `false`）定义首尾链接滚动方式(首向上)。
+### loopTop
+（默认为 `false`）定义首尾链接滚动方式(首向上)。
 
-- `loopBottom`: （默认为 `false`）定义首尾链接滚动方式(尾向下)。
+### loopBottom
+（默认为 `false`）定义首尾链接滚动方式(尾向下)。
 
-- `loopHorizontal`:（默认为 `true` ）定义水平滑块是否在到达上一张或下一张后循环。
+### loopHorizontal
+（默认为 `true` ）定义水平滑块是否在到达上一张或下一张后循环。
 
-- `css3`: （默认 `true` ）。 定义 section 或 slide 转换动画使用 JavaScript 还是 CSS3 。 有助于通过支持 CSS3 的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为 `true` ，并且浏览器不支持 CSS3 ，则将使用后者。
+### css3
+（默认 `true` ）。 定义 section 或 slide 转换动画使用 JavaScript 还是 CSS3 。 有助于通过支持 CSS3 的浏览器加速平板电脑和移动设备的移动。 如果此选项设置为 `true` ，并且浏览器不支持 CSS3 ，则将使用后者。
 
-- `autoScrolling`: （默认为 `true` ）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
+### autoScrolling
+（默认为 `true` ）定义是使用“自动”滚动还是“正常”滚动。 它同时也影响了平板电脑和移动电话中浏览器/设备窗口部分适配的方式。
 
-- `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
+### fitToSection
+（默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
 
-- `fitToSection`: （默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
+### fitToSection
+（默认为 `true` ）确定是否将 section 适应视图。 当设置为 `true` 时，当前激活 section 将始终填充整个视图。 否者，section 可以停留在网页的任何位置。
 
-- `scrollBar`: （默认 `false` ）确定是否使用站点的滚动条。 在使用滚动条的情况下，`autoScrolling` 功能仍将按预期工作。 用户也可以使用滚动条自由滚动网站，当滚动完成时，fullPage.js 将适配屏幕上的部分。
+### scrollBar
+（默认 `false` ）确定是否使用站点的滚动条。 在使用滚动条的情况下，`autoScrolling` 功能仍将按预期工作。 用户也可以使用滚动条自由滚动网站，当滚动完成时，fullPage.js 将适配屏幕上的部分。
 
-- `paddingTop`: （默认 `0` ）用数值和相对长度（paddingTop：'10px'，paddingTop：'10em'...）定义每个 section 的内边距( top )。
+### paddingTop
+（默认 `0` ）用数值和相对长度（paddingTop：'10px'，paddingTop：'10em'...）定义每个 section 的内边距( top )。
 
-- `paddingBottom`: （默认为 `0` ）用数值和相对长度（paddingBottom：'10px'，paddingBottom：'10em'...）定义每个 section 的内边距( bottom )。 有利于有固定页脚的情况。
+### paddingBottom
+（默认为 `0` ）用数值和相对长度（paddingBottom：'10px'，paddingBottom：'10em'...）定义每个 section 的内边距( bottom )。 有利于有固定页脚的情况。
 
-- `fixedElements`: （默认 `null` ）当使用 `css3` 选项保持固定时，定义哪些元素将从插件的滚动结构中移除。 它需要带有 Javascript 选择器的字符来表示这些元素。 （例如：`fixedElements：'＃element1，.element2'`）。
+### fixedElements
+（默认 `null` ）当使用 `css3` 选项保持固定时，定义哪些元素将从插件的滚动结构中移除。 它需要带有 Javascript 选择器的字符来表示这些元素。 （例如：`fixedElements：'＃element1，.element2'`）。
 
-- `normalScrollElements`: （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/RmVazM) 如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动 div 等有用）它需要带有 Javascript 选择器的字符来表示这些元素。（例如：`normalScrollElements：'＃element1，.element2'` ）。 此选项不应该应用于任何 section/slide 元素本身。
+### normalScrollElements
+（默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/RmVazM) 如果你想在滚动某些元素时避免自动滚动，这是你需要使用的选项。 （地图，滚动 div 等有用）它需要带有 Javascript 选择器的字符来表示这些元素。（例如：`normalScrollElements：'＃element1，.element2'` ）。 此选项不应该应用于任何 section/slide 元素本身。
 
-- `bigSectionsDestination`: （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/vYLdMrx) 定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
+### bigSectionsDestination
+（默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/vYLdMrx) 定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
 
-- `keyboardScrolling`: （默认为 `true` ）定义是否可以使用键盘进行内容滑动。
+### keyboardScrolling
+（默认为 `true` ）定义是否可以使用键盘进行内容滑动。
 
-- `touchSensitivity`: （默认 `5`）定义浏览器窗口宽度/高度的百分比，和触发滑动到下一个 section/slide 的距离的灵敏度。
+### touchSensitivity
+（默认 `5`）定义浏览器窗口宽度/高度的百分比，和触发滑动到下一个 section/slide 的距离的灵敏度。
 
-- `continuousVertical`:（默认为 `false`）定义首位链接循环(最后一个 section 向下滚动，滚动到第一个section，或第一个 section 向上滚动时滚动到最后一个 section )。 不兼容 `loopTop` ，`loopBottom` 或站点中存在的任何滚动条（`scrollBar：true` 或 `autoScrolling：false` ）。
+### continuousVertical
+（默认为 `false`）定义首位链接循环(最后一个 section 向下滚动，滚动到第一个section，或第一个 section 向上滚动时滚动到最后一个 section )。 不兼容 `loopTop` ，`loopBottom` 或站点中存在的任何滚动条（`scrollBar：true` 或 `autoScrolling：false` ）。
 
-- `continuousHorizontal`: （默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义首位链接循环(最后一个 section 向下滚动，滚动到第一个 section ，或第一个 section 向上滚动时滚动到最后一个 section)。 不兼容`loopHorizontal`。 需要 fullpage.js> = 3.0.1。
+### continuousHorizontal
+（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义首位链接循环(最后一个 section 向下滚动，滚动到第一个 section ，或第一个 section 向上滚动时滚动到最后一个 section)。 不兼容`loopHorizontal`。 需要 fullpage.js> = 3.0.1。
 
-- `scrollHorizontally`:（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 它是在使用: `autoScrolling:true` 的理想状态. 需要 fullpage.js> = 3.0.1。
+### scrollHorizontally
+（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否使用鼠标滚轮或触控板在滑块内水平滑动。 它是在使用: `autoScrolling:true` 的理想状态. 需要 fullpage.js> = 3.0.1。
 
-- `interlockedSlides`: （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块同方向上滑动到其他区域。 可选的值是 `true`，`false` 或带有互锁部分的数组。 例如 `[1,3,5]` 从 1 开始。需要fullpage.js> = 3.0.1。
+### interlockedSlides
+（默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 确定移动一个水平滑块是否会强制滑块同方向上滑动到其他区域。 可选的值是 `true`，`false` 或带有互锁部分的数组。 例如 `[1,3,5]` 从 1 开始。需要fullpage.js> = 3.0.1。
 
-- `dragAndMove`: （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指 section 或 slide 的触摸拖拽。 需要 fullpage.js> = 3.0.1。 可选的值是：
+### dragAndMove
+（默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 启用或禁用鼠标或手指 section 或 slide 的触摸拖拽。 需要 fullpage.js> = 3.0.1。 可选的值是：
   - `true`: 启用该功能。
   - `false`: 禁用该功能。
   - `vertical`: 只能在垂直情况下启用该功能。
@@ -463,22 +493,28 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
   - `fingersonly`: 仅启用触摸设备的功能。
   - `mouseonly`: 仅启用桌面设备的功能（鼠标和触控板）。
 
-- `offsetSections`: （默认 `false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕 section 的方法。 通过显示下 section 或上 section 的内容，适合向访问者显示网站中的更多内容。 需要 fullPage.js> = 3.0.1
+### offsetSections
+（默认 `false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 提供基于百分比使用非全屏幕 section 的方法。 通过显示下 section 或上 section 的内容，适合向访问者显示网站中的更多内容。 需要 fullPage.js> = 3.0.1
 要定义每 section 的百分比，必须使用属性 `data-percentage` 。 可以通过在属性 `data-centered` 中使用布尔值来使视图中 section 居中（如果未指定，则默认为 `true` ）。 例如：
 
 	``` html
 	<div class="section" data-percentage="80" data-centered="true">
 	```
 
-- `resetSliders`: （默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在离 section 后重置每个滑块。 需要fullpage.js> = 3.0.1。
+### resetSliders
+（默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在离 section 后重置每个滑块。 需要fullpage.js> = 3.0.1。
 
-- `fadingEffect`: （默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可选的值是 `true`，`false`，`sections`，`slides` 。 它可以应用于垂直或水平方向，或者同时应用于两者。 需要 fullpage.js> = 3.0.1。
+### fadingEffect
+（默认 `false` ）。 [fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否使用淡入淡出效果，而不是默认的滚动效果。 可选的值是 `true`，`false`，`sections`，`slides` 。 它可以应用于垂直或水平方向，或者同时应用于两者。 需要 fullpage.js> = 3.0.1。
 
-- `animateAnchor`: （默认`true`）定义锚点（＃）将以动画方式滚动或直接加载到目标 section。
+### animateAnchor
+（默认`true`）定义锚点（＃）将以动画方式滚动或直接加载到目标 section。
 
-- `recordHistory`: （默认为`true`）定义是否将网站的状态记录到浏览器的历史记录。 设置为 `true` 时，网站的每个 section/slide 片将作为新页面，浏览器的后退和前进按钮将滚动 section/slide 以达到网站的上一个或下一个状态。 当设置为 `false` 时，URL 将保持更改，但不会影响浏览器的历史记录。 使用 `autoScrolling：false` 时，该选项会自动关闭。
+### recordHistory
+（默认为`true`）定义是否将网站的状态记录到浏览器的历史记录。 设置为 `true` 时，网站的每个 section/slide 片将作为新页面，浏览器的后退和前进按钮将滚动 section/slide 以达到网站的上一个或下一个状态。 当设置为 `false` 时，URL 将保持更改，但不会影响浏览器的历史记录。 使用 `autoScrolling：false` 时，该选项会自动关闭。
 
-- `menu`: （默认 `false` ）选择器可以用来指定菜单链接到锚。 这样 section 的滚动将使用 active 状态激活菜单中的相应元素。这不会生成菜单，而只是将 active 状态添加到给定菜单中的元素，并带有相应的锚链接。
+### menu
+（默认 `false` ）选择器可以用来指定菜单链接到锚。 这样 section 的滚动将使用 active 状态激活菜单中的相应元素。这不会生成菜单，而只是将 active 状态添加到给定菜单中的元素，并带有相应的锚链接。
 为了将菜单的元素与各个部分相链接，将需要一个HTML 5 数据标签（data-menuanchor）来关联在 section中使用的锚链接。 例：
 
 	```html
@@ -498,56 +534,81 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 
 	**注意：** 菜单元素应放置在 fullpage 包裹对象外，以避免使用 `css3：true` 时出现问题。 否则它会被插件本身附加到 `body` 。
 
-- `navigation`: （默认 `false` ）如果设置为 `true` ，则会显示一个由小圆圈组成的导航栏。
+### navigation
+（默认 `false` ）如果设置为 `true` ，则会显示一个由小圆圈组成的导航栏。
 
-- `navigationPosition`: （默认 `none` ）可以设置为 `left` 或 `right` ，并定义导航栏显示的位置（如果使用的话）。
+### navigationPosition
+（默认 `none` ）可以设置为 `left` 或 `right` ，并定义导航栏显示的位置（如果使用的话）。
 
-- `navigationTooltips`: （默认为[]）定义要使用导航圈的提示。 例如：`navigationTooltips：['firstSlide'，'secondSlide']`。 如果您愿意，也可以在每个部分中使用属性 `data-tooltip` 来定义它们。
+### navigationTooltips
+（默认为[]）定义要使用导航圈的提示。 例如：`navigationTooltips：['firstSlide'，'secondSlide']`。 如果您愿意，也可以在每个部分中使用属性 `data-tooltip` 来定义它们。
 
-- `showActiveTooltip`: （默认为 `false`）在显示垂直导航中主动显提示。
+### showActiveTooltip
+（默认为 `false`）在显示垂直导航中主动显提示。
 
-- `slidesNavigation`: （默认为 `false`）如果设置为 `true` ，则会显示一个导航栏，该导航栏由站点上每个横向滑块的小圆圈组成。
+### slidesNavigation
+（默认为 `false`）如果设置为 `true` ，则会显示一个导航栏，该导航栏由站点上每个横向滑块的小圆圈组成。
 
-- `slidesNavPosition`: （默认`bottom`）定义滑块的横向导航栏的位置。 值为 `top` 和 `bottom` 。 您可能需要修改 CSS 样式以确定从顶部或底部距离以及任何其他样式（如颜色）。
+### slidesNavPosition
+（默认`bottom`）定义滑块的横向导航栏的位置。 值为 `top` 和 `bottom` 。 您可能需要修改 CSS 样式以确定从顶部或底部距离以及任何其他样式（如颜色）。
 
-- `scrollOverflow`: （默认为 `true`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 It requires the default value `scrollBar: false`。 为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`. 在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
+### scrollOverflow
+（默认为 `true`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 It requires the default value `scrollBar: false`。 为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`. 在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
 
-- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+### scrollOverflowMacStyle
+（默认 `false`）. When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
-- `scrollOverflowReset`:（默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。 Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
+### scrollOverflowReset
+（默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。 Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
-- `sectionSelector`: （默认`.section`）定义用于插件部分的 Javascript 选择器。 有时可能需要更改，以避免与使用与 fullpage.js 相同的选择器的其他插件的问题。
+### sectionSelector
+（默认`.section`）定义用于插件部分的 Javascript 选择器。 有时可能需要更改，以避免与使用与 fullpage.js 相同的选择器的其他插件的问题。
 
-- `slideSelector`: （默认`.slide`）定义用于插件 slide 的 Javascript 选择器。 有时可能需要更改，以避免与使用与 fullpage.js 相同的选择器的其他插件的问题。
+### slideSelector
+（默认`.slide`）定义用于插件 slide 的 Javascript 选择器。 有时可能需要更改，以避免与使用与 fullpage.js 相同的选择器的其他插件的问题。
 
-- `responsiveWidth`: （默认`0`）一个正常的滚动（`autoScrolling：false`）将在定义的宽度下以像素为单位使用。 如果用户希望将自己的响应式 CSS 用于 body 标记，则会将 `fp-responsive` 类别添加到 body 标记中。 例如，如果设置为 900，则每当浏览器的宽度小于 900 时，插件将像正常站点一样滚动。
+### responsiveWidth
+（默认`0`）一个正常的滚动（`autoScrolling：false`）将在定义的宽度下以像素为单位使用。 如果用户希望将自己的响应式 CSS 用于 body 标记，则会将 `fp-responsive` 类别添加到 body 标记中。 例如，如果设置为 900，则每当浏览器的宽度小于 900 时，插件将像正常站点一样滚动。
 
-- `responsiveHeight`: （默认 `0` ）一个正常的滚动（`autoScrolling：false`）将在定义的高度下以像素为单位使用。 如果用户希望将自己的响应式 CSS 用于 body 标记，则会将 `fp-responsive` 类添加到 body 标记中。 例如，如果设置为 900 ，则每当浏览器的高度小于 900 时，插件将像正常站点一样滚动。
+### responsiveHeight
+（默认 `0` ）一个正常的滚动（`autoScrolling：false`）将在定义的高度下以像素为单位使用。 如果用户希望将自己的响应式 CSS 用于 body 标记，则会将 `fp-responsive` 类添加到 body 标记中。 例如，如果设置为 900 ，则每当浏览器的高度小于 900 时，插件将像正常站点一样滚动。
 
-- `responsiveSlides`: （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，slide 将变成垂直 section。 （通过使用上面详述的 `responsiveWidth` 或 `responsiveHeight` 选项）。 需要fullpage.js> = 3.0.1。
+### responsiveSlides
+（默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，slide 将变成垂直 section。 （通过使用上面详述的 `responsiveWidth` 或 `responsiveHeight` 选项）。 需要fullpage.js> = 3.0.1。
 
-- `parallax`: （默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+### parallax
+（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
-- `parallaxOptions`: （默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+### parallaxOptions
+（默认：`{type：'reveal'，percent：62，property：'translate'}`）。 允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
 
 
-- `dropEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffect
+（默认： `false`） [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffectOptions
+（默认： `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`）. Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `waterEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffect
+（默认： `false`） [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffectOptions
+（默认：: `{ animateContent: true, animateOnMouseMove: true}`）. Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `cards`: (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/) . 定义是否在 section/slide 上使用卡片效果。[了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cards
+（默认： `false`） [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/) . 定义是否在 section/slide 上使用卡片效果。[了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `cardsOptions`: (default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cardsOptions
+（默认：: `{ perspective: 100, fadeContent: true, fadeBackground: true}`）. 允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `lazyLoading`: （默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
+### lazyLoading
+（默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
 
-- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+### observer
+（默认： `true`） Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
-- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+### credits
+（默认： `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）. Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## 公共方法
 你可以在[这里](https://alvarotrigo.com/fullPage/examples/methods.html)看到它们
