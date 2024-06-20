@@ -392,7 +392,8 @@ Vous pourrez ensuite les utiliser et les configurer comme expliqué dans [option
 
 ## Options
 
-- `licenseKey` : (par défaut `null`).**Cette option est facultltative.** Si vous utilisez fullPage dans un projet non open source, vous devez utiliser la clé de licence fournie lors de l'achat de la Licence Commerciale fullPage. Si votre projet est open source, [contactez-moi](https://alvarotrigo.com/#contact) avec un lien vers son répertoire et je vous fournirai une clé de licence. Pour en savoir plus sur les licences [ici] (https://github.com/alvarotrigo/fullPage.js#license) et [sur le site Web] (https://alvarotrigo.com/fullPage/pricing/). Par exemple :
+### licenseKey
+(défaut `null`).**Cette option est facultltative.** Si vous utilisez fullPage dans un projet non open source, vous devez utiliser la clé de licence fournie lors de l'achat de la Licence Commerciale fullPage. Si votre projet est open source, [contactez-moi](https://alvarotrigo.com/#contact) avec un lien vers son répertoire et je vous fournirai une clé de licence. Pour en savoir plus sur les licences [ici] (https://github.com/alvarotrigo/fullPage.js#license) et [sur le site Web] (https://alvarotrigo.com/fullPage/pricing/). Par exemple :
 
 	```javascript
 	new fullpage('#fullpage', {
@@ -400,15 +401,20 @@ Vous pourrez ensuite les utiliser et les configurer comme expliqué dans [option
 	});
 	```
 
-- `controlArrows` : (par défaut `true`) Détermine s'il faut utiliser les flèches de contrôle pour que les diapositives se déplacent vers la droite ou vers la gauche.
+### controlArrows
+(défaut `true`) Détermine s'il faut utiliser les flèches de contrôle pour que les diapositives se déplacent vers la droite ou vers la gauche.
 
-- `controlArrowsHTML`: (default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+### controlArrowsHTML
+(default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
 
-- `verticalCentered` : (par défaut `true`) Centrer verticalement le contenu à l'intérieur des sections. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
+### verticalCentered
+(défaut `true`) Centrer verticalement le contenu à l'intérieur des sections. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
-- `scrollingSpeed` : (par défaut `700`) Vitesse en millisecondes pour les transitions de défilement.
+### scrollingSpeed
+(défaut `700`) Vitesse en millisecondes pour les transitions de défilement.
 
-- `sectionsColor` : (default `none`) Définissez la propriété CSS `background-color` pour chaque section.
+### sectionsColor
+(default `none`) Définissez la propriété CSS `background-color` pour chaque section.
 Exemple :
 
 	```Javascript
@@ -417,54 +423,78 @@ Exemple :
 	}) ;
 	```
 
-- `anchors` : (default `[]`) Définit les liens d'ancrage (#exemple) à afficher sur l'URL de chaque section. La valeur des ancres doit être unique. La position des ancres dans le tableau définira à quelles sections l'ancre est appliquée. (deuxième position pour la deuxième section et ainsi de suite). L'utilisation des ancres permet également de naviguer vers l'avant et vers l'arrière par le biais du navigateur. Cette option permet également aux utilisateurs de mettre en signet une section ou une diapositive spécifique. **Attention**, les ancres ne peuvent pas avoir la même valeur que n'importe quel élément ID sur le site (ou élément NOM pour IE). Maintenant les ancres peuvent être définies directement dans la structure HTML en utilisant l'attribut `data-anchor` comme expliqué ici.
+### anchors
+(default `[]`) Définit les liens d'ancrage (#exemple) à afficher sur l'URL de chaque section. La valeur des ancres doit être unique. La position des ancres dans le tableau définira à quelles sections l'ancre est appliquée. (deuxième position pour la deuxième section et ainsi de suite). L'utilisation des ancres permet également de naviguer vers l'avant et vers l'arrière par le biais du navigateur. Cette option permet également aux utilisateurs de mettre en signet une section ou une diapositive spécifique. **Attention**, les ancres ne peuvent pas avoir la même valeur que n'importe quel élément ID sur le site (ou élément NOM pour IE). Maintenant les ancres peuvent être définies directement dans la structure HTML en utilisant l'attribut `data-anchor` comme expliqué ici.
 
-- `lockAnchors` : (default `false`) Détermine si les ancres dans l'URL auront un effet dans la bibliothèque. Vous pouvez toujours utiliser les ancres en interne pour vos propres fonctions et rappels, mais elles n'auront aucun effet sur le défilement du site. Utile si vous voulez combiner fullPage.js avec d'autres plugins en utilisant l'ancre dans l'URL.
+### lockAnchors
+(default `false`) Détermine si les ancres dans l'URL auront un effet dans la bibliothèque. Vous pouvez toujours utiliser les ancres en interne pour vos propres fonctions et rappels, mais elles n'auront aucun effet sur le défilement du site. Utile si vous voulez combiner fullPage.js avec d'autres plugins en utilisant l'ancre dans l'URL.
 
-- `easing` : (default `easeInOutCubic`) Définit l'effet de transition à utiliser pour le défilement vertical et horizontal. Il nécessite le fichier `vendors/easings.min.js` ou [jQuery UI](https://jqueryui.com/) pour utiliser certaines de[ses transitions](https://api.jqueryui.com/easings/). D'autres bibliothèques pourraient être utilisées à la place.
+### easing
+(default `easeInOutCubic`) Définit l'effet de transition à utiliser pour le défilement vertical et horizontal. Il nécessite le fichier `vendors/easings.min.js` ou [jQuery UI](https://jqueryui.com/) pour utiliser certaines de[ses transitions](https://api.jqueryui.com/easings/). D'autres bibliothèques pourraient être utilisées à la place.
 
-- `easingcss3` : (default `ease`) Définit l'effet de transition à utiliser en cas d'utilisation de `css3:true`. Vous pouvez utiliser les [prédéfinis](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (tels que `linear`, `ease-out`...) ou créer vos propres en utilisant la fonction `cubic-bezier`. Vous pouvez utiliser [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) pour cela.
+### easingcss3
+(default `ease`) Définit l'effet de transition à utiliser en cas d'utilisation de `css3:true`. Vous pouvez utiliser les [prédéfinis](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp) (tels que `linear`, `ease-out`...) ou créer vos propres en utilisant la fonction `cubic-bezier`. Vous pouvez utiliser [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) pour cela.
 
-- `loopTop` : (défaut `false`) Définit si le défilement vers le haut dans la première section doit défiler jusqu'à la dernière section ou non.
+### loopTop
+(défaut `false`) Définit si le défilement vers le haut dans la première section doit défiler jusqu'à la dernière section ou non.
 
-- ` loopBottom` : (défaut `false`) Définit si le défilement vers le bas dans la dernière section doit défiler vers la première ou non.
+###  loopBottom
+(défaut `false`) Définit si le défilement vers le bas dans la dernière section doit défiler vers la première ou non.
 
-- `loopHorizontal` : (par défaut `true`) Définit si les curseurs horizontaux boucleront après avoir atteint la dernière diapositive ou la précédente ou non.
+### loopHorizontal
+(défaut `true`) Définit si les curseurs horizontaux boucleront après avoir atteint la dernière diapositive ou la précédente ou non.
 
-- `css3` :  (par défaut `true`). Définit s'il faut utiliser des transformations JavaScript ou CSS3 pour faire défiler les sections et les diapositives. Utile pour accélérer le mouvement dans les tablettes et les appareils mobiles avec les navigateurs supportant CSS3. Si cette option est définie sur `true` et que le navigateur ne supporte pas CSS3, un repli sera utilisé à la place.
+### css3
+(défaut `true`). Définit s'il faut utiliser des transformations JavaScript ou CSS3 pour faire défiler les sections et les diapositives. Utile pour accélérer le mouvement dans les tablettes et les appareils mobiles avec les navigateurs supportant CSS3. Si cette option est définie sur `true` et que le navigateur ne supporte pas CSS3, un repli sera utilisé à la place.
 
-- `autoScrolling` : (par défaut `true`) Définit s'il faut utiliser le défilement "automatique" ou "normal". Cela a également une incidence sur la façon dont les sections s'intègrent dans la fenêtre du navigateur/de l'appareil dans les tablettes et les téléphones mobiles.
+### autoScrolling
+(défaut `true`) Définit s'il faut utiliser le défilement "automatique" ou "normal". Cela a également une incidence sur la façon dont les sections s'intègrent dans la fenêtre du navigateur/de l'appareil dans les tablettes et les téléphones mobiles.
 
-- `fitToSection`: (par défaut `true`) Détermine si des sections doivent ou non être ajustées à la fenêtre d'affichage. Lorsqu'elle est réglée sur `true`, la section active courante remplira toujours toute la fenêtre d'affichage. Sinon, l'utilisateur sera libre de s'arrêter au milieu d'une section.
+### fitToSection
+(défaut `true`) Détermine si des sections doivent ou non être ajustées à la fenêtre d'affichage. Lorsqu'elle est réglée sur `true`, la section active courante remplira toujours toute la fenêtre d'affichage. Sinon, l'utilisateur sera libre de s'arrêter au milieu d'une section.
 
-- `fitToSectionDelay` : (par défaut 1000). Si `fitToSection` est mis à true, cela retarde l'adaptation par millisecondes configurées.
+### fitToSectionDelay
+(défaut 1000). Si `fitToSection` est mis à true, cela retarde l'adaptation par millisecondes configurées.
 
-- `scrollBar` : (par défaut `false`) Détermine s'il faut utiliser la barre de défilement pour le site ou non. En cas d'utilisation de la barre de défilement, la fonctionnalité `autoScrolling` fonctionnera toujours comme prévu. L'utilisateur sera également libre de faire défiler le site avec la barre de défilement et fullPage.js s'adaptera à la section à l'écran lorsque le défilement sera terminé.
+### scrollBar
+(défaut `false`) Détermine s'il faut utiliser la barre de défilement pour le site ou non. En cas d'utilisation de la barre de défilement, la fonctionnalité `autoScrolling` fonctionnera toujours comme prévu. L'utilisateur sera également libre de faire défiler le site avec la barre de défilement et fullPage.js s'adaptera à la section à l'écran lorsque le défilement sera terminé.
 
-- `paddingTop` : (par défaut `0`) Définit le remplissage supérieur de chaque section avec une valeur numérique et sa mesure (paddingTop:'10px', paddingTop:'10em'...) Utile en cas d'utilisation d'un en-tête fixe.
+### paddingTop
+(défaut `0`) Définit le remplissage supérieur de chaque section avec une valeur numérique et sa mesure (paddingTop:'10px', paddingTop:'10em'...) Utile en cas d'utilisation d'un en-tête fixe.
 
-- `paddingBottom` : (par défaut `0`) Définit le rembourrage inférieur de chaque section avec une valeur numérique et sa mesure (rembourrageBottom:'10px', rembourrageBottom:'10em'...). Utile en cas d'utilisation d'un pied de page fixe.
+### paddingBottom
+(défaut `0`) Définit le rembourrage inférieur de chaque section avec une valeur numérique et sa mesure (rembourrageBottom:'10px', rembourrageBottom:'10em'...). Utile en cas d'utilisation d'un pied de page fixe.
 
-- `fixedElements` : (default `null`) Définit les éléments qui seront retirés de la structure déroulante du plugin, ce qui est nécessaire lorsque l'option `css3` est utilisée pour les garder fixes. Il faut une chaîne de caractères avec les sélecteurs Javascript pour ces éléments. (Par exemple : `fixedElements:'#element1, .element2'`)
+### fixedElements
+(default `null`) Définit les éléments qui seront retirés de la structure déroulante du plugin, ce qui est nécessaire lorsque l'option `css3` est utilisée pour les garder fixes. Il faut une chaîne de caractères avec les sélecteurs Javascript pour ces éléments. (Par exemple : `fixedElements:'#element1, .element2'`)
 
-- `normalScrollElements`: (défaut `null`) [Demo](https://codepen.io/alvarotrigo/pen/RmVazM) Si vous voulez éviter le défilement automatique lorsque vous faites défiler certains éléments, c'est l'option que vous devez utiliser. (utile pour les cartes, les scrolling divs, etc.) Il faut une chaîne de caractères avec les sélecteurs Javascript pour ces éléments. (Par exemple : `normalScrollElements:'#element1, .element2'`). Cette option ne doit pas être appliquée à une section ou à un élément de diapositive en soi.
+### normalScrollElements
+(défaut `null`) [Demo](https://codepen.io/alvarotrigo/pen/RmVazM) Si vous voulez éviter le défilement automatique lorsque vous faites défiler certains éléments, c'est l'option que vous devez utiliser. (utile pour les cartes, les scrolling divs, etc.) Il faut une chaîne de caractères avec les sélecteurs Javascript pour ces éléments. (Par exemple : `normalScrollElements:'#element1, .element2'`). Cette option ne doit pas être appliquée à une section ou à un élément de diapositive en soi.
 
-- `bigSectionsDestination` : (défaut `null`) Définit comment faire défiler jusqu'à une section dont la taille est supérieure à celle de la fenêtre. Par défaut, fullPage.js fait défiler vers le haut si vous venez d'une section située au-dessus de celle de destination et vers le bas si vous venez d'une section située au-dessous de celle de destination. Les valeurs possibles sont `haut`,`bas` et `null`.
+### bigSectionsDestination
+(défaut `null`) Définit comment faire défiler jusqu'à une section dont la taille est supérieure à celle de la fenêtre. Par défaut, fullPage.js fait défiler vers le haut si vous venez d'une section située au-dessus de celle de destination et vers le bas si vous venez d'une section située au-dessous de celle de destination. Les valeurs possibles sont `haut`,`bas` et `null`.
 
 
-- `KeyboardScrolling` : (par défaut `true`) Définit si le contenu peut être navigué à l'aide du clavier.
+### KeyboardScrolling
+(défaut `true`) Définit si le contenu peut être navigué à l'aide du clavier.
 
-- `touchSensitivity` : (par défaut `5`) Définit un pourcentage de la largeur/hauteur de la fenêtre du navigateur, et la distance que doit mesurer un glissement pour naviguer vers la section / diapositive suivante
+### touchSensitivity
+(défaut `5`) Définit un pourcentage de la largeur/hauteur de la fenêtre du navigateur, et la distance que doit mesurer un glissement pour naviguer vers la section / diapositive suivante
 
-- `continuousVertical` : (par défaut `false`) Définit si le défilement vers le bas dans la dernière section ou doit descendre jusqu'à la première et si le défilement vers le haut dans la première section doit monter jusqu'à la dernière. Non compatible avec `loopTop`, `loopBottom` ou toute barre de défilement présente dans le site (`scrollBar:true` ou `autoScrolling:false`).
+### continuousVertical
+(défaut `false`) Définit si le défilement vers le bas dans la dernière section ou doit descendre jusqu'à la première et si le défilement vers le haut dans la première section doit monter jusqu'à la dernière. Non compatible avec `loopTop`, `loopBottom` ou toute barre de défilement présente dans le site (`scrollBar:true` ou `autoScrolling:false`).
 
-- `continuousHorizontal` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit si le défilement à droite dans la dernière diapositive doit glisser à droite vers la première ou non, et si le défilement à gauche dans la première diapositive doit glisser à gauche vers la dernière ou non. Non compatible avec `loopHorizontal`. Nécessite fullpage.js >= 3.0.1.
+### continuousHorizontal
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit si le défilement à droite dans la dernière diapositive doit glisser à droite vers la première ou non, et si le défilement à gauche dans la première diapositive doit glisser à gauche vers la dernière ou non. Non compatible avec `loopHorizontal`. Nécessite fullpage.js >= 3.0.1.
 
-- `scrollHorizontally` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit si l'on doit glisser horizontalement dans les curseurs en utilisant la molette de la souris ou le pavé tactile. Il ne peut être utilisé que lors de l'utilisation : `autoScrolling:true`. Idéal pour raconter une histoire. Nécessite fullpage.js >= 3.0.1.
+### scrollHorizontally
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit si l'on doit glisser horizontalement dans les curseurs en utilisant la molette de la souris ou le pavé tactile. Il ne peut être utilisé que lors de l'utilisation : `autoScrolling:true`. Idéal pour raconter une histoire. Nécessite fullpage.js >= 3.0.1.
 
-- `interlockedSlides` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Détermine si le déplacement d'un curseur horizontal va forcer le glissement des curseurs de l'autre section dans la même direction. Les valeurs possibles sont `true`, `false` ou un tableau avec les sections imbriquées. Par exemple, `[1,3,5]` commençant par 1. Nécessite fullpage.js >= 3.0.1.
+### interlockedSlides
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Détermine si le déplacement d'un curseur horizontal va forcer le glissement des curseurs de l'autre section dans la même direction. Les valeurs possibles sont `true`, `false` ou un tableau avec les sections imbriquées. Par exemple, `[1,3,5]` commençant par 1. Nécessite fullpage.js >= 3.0.1.
 
-- `dragAndMove` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Active ou désactive le glisser-déposer de sections et de diapositives en utilisant la souris ou les doigts. Nécessite fullpage.js >= 3.0.1. Les valeurs possibles sont :
+### dragAndMove
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Active ou désactive le glisser-déposer de sections et de diapositives en utilisant la souris ou les doigts. Nécessite fullpage.js >= 3.0.1. Les valeurs possibles sont :
   - `true` : active la fonction.
   - `false` : désactive la fonctionnalité.
   - `vertical` : active la fonctionnalité uniquement verticalement.
@@ -472,22 +502,28 @@ Exemple :
   - `fingersonly` : active la fonction pour les périphériques tactiles seulement.
   - `mouseonly` : active la fonctionnalité pour les périphériques de bureau uniquement (souris et trackpad).
 
-- `offsetSections` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Fournit un moyen d'utiliser des sections non plein écran basées sur le pourcentage. Idéal pour montrer aux visiteurs qu'il y a plus de contenu dans le site en affichant une partie de la section suivante ou précédente. Nécessite fullPage.js >= 3.0.1.
-Pour définir le pourcentage de chaque section, l'attribut `data-percentage` doit être utilisé. Le centrage de la section dans le viewport peut être déterminé en utilisant une valeur booléenne dans l'attribut `data-centered` (par défaut à `true` si non spécifié). Par exemple :
+### offsetSections
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Fournit un moyen d'utiliser des sections non plein écran basées sur le pourcentage. Idéal pour montrer aux visiteurs qu'il y a plus de contenu dans le site en affichant une partie de la section suivante ou précédente. Nécessite fullPage.js >= 3.0.1.
+Pour définir le pourcentage de chaque section, l'attribut `data-percentage` doit être utilisé. Le centrage de la section dans le viewport peut être déterminé en utilisant une valeur booléenne dans l'attribut `data-centered` (défaut à `true` si non spécifié). Par exemple :
 
 	``` html
 	<div class="section" data-percentage="80" data-centered="true">
 	```
 
-- `resetSliders` : (par défaut `false`). Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non réinitialiser chaque curseur après avoir quitté sa section. Nécessite fullpage.js >= 3.0.1.
+### resetSliders
+(défaut `false`). Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non réinitialiser chaque curseur après avoir quitté sa section. Nécessite fullpage.js >= 3.0.1.
 
-- `fadingEffect` : (par défaut `false`). [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit si un effet de fondu enchaîné doit être utilisé ou non à la place de l'effet de défilement par défaut. Les valeurs possibles sont `true`, `false`, `sections`, `slides`. Il peut donc être appliqué juste verticalement ou horizontalement, ou aux deux à la fois. Il ne peut être utilisé que lors de l'utilisation : `autoScrolling:true`. Nécessite fullpage.js >= 3.0.1.
+### fadingEffect
+(défaut `false`). [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit si un effet de fondu enchaîné doit être utilisé ou non à la place de l'effet de défilement par défaut. Les valeurs possibles sont `true`, `false`, `sections`, `slides`. Il peut donc être appliqué juste verticalement ou horizontalement, ou aux deux à la fois. Il ne peut être utilisé que lors de l'utilisation : `autoScrolling:true`. Nécessite fullpage.js >= 3.0.1.
 
-- `animateAnchor` : (par défaut `true`) Définit si le chargement du site quand on lui donne une ancre (#) va défiler avec l'animation jusqu'à sa destination ou va se charger directement sur la section donnée.
+### animateAnchor
+(défaut `true`) Définit si le chargement du site quand on lui donne une ancre (#) va défiler avec l'animation jusqu'à sa destination ou va se charger directement sur la section donnée.
 
-- `recordHistory` : (par défaut `true`) Définit si l'état du site doit être poussé dans l'historique du navigateur. Quand il est défini à `true`, chaque section/glissière du site agira comme une nouvelle page et les boutons avant et arrière du navigateur feront défiler les sections/glissières pour atteindre l'état précédent ou suivant du site. Quand il est réglé sur `false`, l'URL continuera à changer mais n'aura aucun effet sur l'historique du navigateur. Cette option est automatiquement désactivée lors de l'utilisation de `autoScrolling:false`.
+### recordHistory
+(défaut `true`) Définit si l'état du site doit être poussé dans l'historique du navigateur. Quand il est défini à `true`, chaque section/glissière du site agira comme une nouvelle page et les boutons avant et arrière du navigateur feront défiler les sections/glissières pour atteindre l'état précédent ou suivant du site. Quand il est réglé sur `false`, l'URL continuera à changer mais n'aura aucun effet sur l'historique du navigateur. Cette option est automatiquement désactivée lors de l'utilisation de `autoScrolling:false`.
 
-- `menu` : (par défaut `false`) Un sélecteur peut être utilisé pour spécifier le menu à lier avec les sections. De cette façon, le défilement des sections activera l'élément correspondant dans le menu en utilisant la classe `active`.
+### menu
+(défaut `false`) Un sélecteur peut être utilisé pour spécifier le menu à lier avec les sections. De cette façon, le défilement des sections activera l'élément correspondant dans le menu en utilisant la classe `active`.
 Cela ne générera pas de menu mais ajoutera simplement la classe `active` à l'élément du menu donné avec les liens d'ancrage correspondants.
 Afin de lier les éléments du menu avec les sections, un data-tag HTML 5 (`data-menuanchor`) sera nécessaire à utiliser avec les mêmes liens d'ancrage que ceux utilisés dans les sections. Exemple :
 
@@ -508,57 +544,85 @@ Afin de lier les éléments du menu avec les sections, un data-tag HTML 5 (`data
 
 	**Note:** l'élément de menu doit être placé en dehors du wrapper de la page entière afin d'éviter tout problème lors de l'utilisation de `css3:true`. Sinon, il sera ajouté au `body` par le plugin lui-même.
 
-- `navigation` : (par défaut `false`) Si elle est définie à `true`, elle affichera une barre de navigation composée de petits cercles.
+### navigation
+(défaut `false`) Si elle est définie à `true`, elle affichera une barre de navigation composée de petits cercles.
 
-- `navigationPosition` : (par défaut `none`) Il peut être mis à `left` ou `right` et définit quelle position la barre de navigation sera affichée (si vous en utilisez une).
+### navigationPosition
+(défaut `none`) Il peut être mis à `left` ou `right` et définit quelle position la barre de navigation sera affichée (si vous en utilisez une).
 
-- `navigationTooltips` : (par défaut []) Définit les info-bulles à afficher pour les cercles de navigation au cas où ils seraient utilisés. Exemple : `navigationTooltips` : 'premierSlide', 'secondSlide']`. Vous pouvez aussi les définir en utilisant l'attribut `data-tooltip` dans chaque section si vous préférez.
+### navigationTooltips
+(défaut []) Définit les info-bulles à afficher pour les cercles de navigation au cas où ils seraient utilisés. Exemple : `navigationTooltips` : 'premierSlide', 'secondSlide']`. Vous pouvez aussi les définir en utilisant l'attribut `data-tooltip` dans chaque section si vous préférez.
 
-- Voir aussi l'attribut `showActiveTooltip` : (par défaut `false`) Affiche une info-bulle persistante pour la section visualisée activement dans la navigation verticale.
+- Voir aussi l'attribut `showActiveTooltip` : (défaut `false`) Affiche une info-bulle persistante pour la section visualisée activement dans la navigation verticale.
 
-- `slidesNavigation` : (par défaut `false`) Si défini à `true`, il affichera une barre de navigation composée de petits cercles pour chaque curseur de paysage sur le site.
+### slidesNavigation
+(défaut `false`) Si défini à `true`, il affichera une barre de navigation composée de petits cercles pour chaque curseur de paysage sur le site.
 
-- `slidesNavPosition` : (par défaut `bottom`) Définit la position de la barre de navigation en mode paysage pour les curseurs. Admet les valeurs `top` et `bottom`. Vous pouvez modifier les styles CSS pour déterminer la distance du haut ou du bas ainsi que tout autre style tel que la couleur.
+### slidesNavPosition
+(défaut `bottom`) Définit la position de la barre de navigation en mode paysage pour les curseurs. Admet les valeurs `top` et `bottom`. Vous pouvez modifier les styles CSS pour déterminer la distance du haut ou du bas ainsi que tout autre style tel que la couleur.
 
-- `scrollOverflow` : (par défaut `true`) définit si oui ou non il faut créer un défilement pour la section/glissière dans le cas où son contenu est plus grand que la hauteur de celle-ci. It requires the default value `scrollBar: false`. Afin d'éviter que fullpage.js ne crée la barre de défilement dans certaines sections ou diapositives, utilisez la classe `fp-noscroll`. Par exemple : `<div class="section fp-noscroll">`
+### scrollOverflow
+(défaut `true`) définit si oui ou non il faut créer un défilement pour la section/glissière dans le cas où son contenu est plus grand que la hauteur de celle-ci. It requires the default value `scrollBar: false`. Afin d'éviter que fullpage.js ne crée la barre de défilement dans certaines sections ou diapositives, utilisez la classe `fp-noscroll`. Par exemple : `<div class="section fp-noscroll">`
 
 Vous pouvez aussi empêcher le scrolloverflow d'être appliqué en mode réactif lorsque vous utilisez `fp-auto-height-responsive` dans l'élément section.
 
-- `scrollOverflowMacStyle`: (default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+### scrollOverflowMacStyle
+(default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
-- Le `scrollOverflowReset` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Quand il est défini à `true`, il fait défiler le contenu de la section/glissière avec la barre de défilement en partant vers une autre section verticale. De cette façon, la section/glissière affichera toujours le début de son contenu, même si elle défile à partir d'une section située en dessous. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
+### scrollOverflowReset
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Quand il est défini à `true`, il fait défiler le contenu de la section/glissière avec la barre de défilement en partant vers une autre section verticale. De cette façon, la section/glissière affichera toujours le début de son contenu, même si elle défile à partir d'une section située en dessous. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
 
-- `sectionSelector` : (par défaut `.section`) Définit le sélecteur Javascript utilisé pour les sections du plugin. Il peut avoir besoin d'être changé parfois pour éviter des problèmes avec d'autres plugins utilisant les mêmes sélecteurs que fullpage.js.
+### sectionSelector
+(défaut `.section`) Définit le sélecteur Javascript utilisé pour les sections du plugin. Il peut avoir besoin d'être changé parfois pour éviter des problèmes avec d'autres plugins utilisant les mêmes sélecteurs que fullpage.js.
 
-- `slideSelector` : (par défaut `.slide`) Définit le sélecteur Javascript utilisé pour les diapositives du plugin.  Il peut avoir besoin d'être changé parfois pour éviter des problèmes avec d'autres plugins utilisant les mêmes sélecteurs que fullpage.js.
+### slideSelector
+(défaut `.slide`) Définit le sélecteur Javascript utilisé pour les diapositives du plugin.  Il peut avoir besoin d'être changé parfois pour éviter des problèmes avec d'autres plugins utilisant les mêmes sélecteurs que fullpage.js.
 
-- `responsiveWidth` : (par défaut `0`) Un défilement normal (`autoScrolling:false`) sera utilisé sous la largeur définie en pixels. Une classe `fp-responsive` est ajoutée à la balise body au cas où l'utilisateur voudrait l'utiliser pour son propre CSS réactif. Par exemple, si elle est définie à 900, chaque fois que la largeur du navigateur est inférieure à 900, le plugin défile comme un site normal.
+### responsiveWidth
+(défaut `0`) Un défilement normal (`autoScrolling:false`) sera utilisé sous la largeur définie en pixels. Une classe `fp-responsive` est ajoutée à la balise body au cas où l'utilisateur voudrait l'utiliser pour son propre CSS réactif. Par exemple, si elle est définie à 900, chaque fois que la largeur du navigateur est inférieure à 900, le plugin défile comme un site normal.
 
-- `responsiveHeight` : (par défaut `0`) Un défilement normal (`autoScrolling:false`) sera utilisé sous la hauteur définie en pixels. Une classe `fp-responsive` est ajoutée à la balise body au cas où l'utilisateur voudrait l'utiliser pour son propre CSS réactif. Par exemple, si elle est définie à 900, chaque fois que la hauteur du navigateur est inférieure à 900, le plugin défile comme un site normal.
+### responsiveHeight
+(défaut `0`) Un défilement normal (`autoScrolling:false`) sera utilisé sous la hauteur définie en pixels. Une classe `fp-responsive` est ajoutée à la balise body au cas où l'utilisateur voudrait l'utiliser pour son propre CSS réactif. Par exemple, si elle est définie à 900, chaque fois que la hauteur du navigateur est inférieure à 900, le plugin défile comme un site normal.
 
-- Les `responsiveSlides` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Quand il est réglé sur `true`, les diapositives seront transformées en sections verticales quand le mode réactif est activé. (en utilisant les options `responsiveWidth` ou `responsiveHeight` détaillées ci-dessus). Nécessite fullpage.js >= 3.0.1.
+### responsiveSlides
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Quand il est réglé sur `true`, les diapositives seront transformées en sections verticales quand le mode réactif est activé. (en utilisant les options `responsiveWidth` ou `responsiveHeight` détaillées ci-dessus). Nécessite fullpage.js >= 3.0.1.
 
-- `parallax:true`. [En savoir plus sur la façon d'appliquer l'option parallax](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/french/parallax-extension.md).
+### parallax:true
+[En savoir plus sur la façon d'appliquer l'option parallax](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/french/parallax-extension.md).
 
-- `parallaxOptions`: (default: `{ type: 'reveal', percentage: 62, property: 'translate'}`). Allows to configure the parameters for the parallax backgrounds effect when using the option `parallax:true`. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+### parallaxOptions
+(default: `{ type: 'reveal', percentage: 62, property: 'translate'}`). 
+Allows to configure the parameters for the parallax backgrounds effect when using the option `parallax:true`. [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
-- `dropEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffect
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `dropEffectOptions`: (default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+### dropEffectOptions
+(default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). 
+Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
-- `waterEffect` (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffect
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `waterEffectOptions`: (default: `{ animateContent: true, animateOnMouseMove: true}`). Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+### waterEffectOptions
+(default: `{ animateContent: true, animateOnMouseMove: true}`). 
+Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
-- `cards` : (par défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non utiliser l'effet des cartes sur les sections/glissières. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cards
+(défaut `false`) [Extension de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Définit s'il faut ou non utiliser l'effet des cartes sur les sections/glissières. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `cardsOptions` : (par défaut : `{ perspective : 100, fadeContent : true, fadeBackground : true}`). Vous permet de configurer les paramètres pour l'effet des cartes quand vous utilisez l'option `cards:true`. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+### cardsOptions
+(défaut : `{ perspective : 100, fadeContent : true, fadeBackground : true}`).
+Vous permet de configurer les paramètres pour l'effet des cartes quand vous utilisez l'option `cards:true`. [Lire plus sur comment appliquer l'option cartes](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
-- `lazyLoading` : (par défaut `true`) Le chargement paresseux est actif par défaut ce qui signifie qu'il chargera paresseusement tout élément média contenant l'attribut `data-src` comme détaillé dans la [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/french/#lazy-loading) . Si vous voulez utiliser une autre bibliothèque de chargement paresseux, vous pouvez désactiver cette fonctionnalité de fullpage.js.
+### lazyLoading
+(défaut `true`) Le chargement paresseux est actif par défaut ce qui signifie qu'il chargera paresseusement tout élément média contenant l'attribut `data-src` comme détaillé dans la [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/french/#lazy-loading) . Si vous voulez utiliser une autre bibliothèque de chargement paresseux, vous pouvez désactiver cette fonctionnalité de fullpage.js.
 
-- `observer`: (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+### observer
+(default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
 
-- `credits`. (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+### credits
+(default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
 
 ## Méthodes
 Vous pouvez les voir en action [ici](https://alvarotrigo.com/fullPage/examples/methods.html)
