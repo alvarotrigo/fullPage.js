@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.23
+* fullPage 4.0.24
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -167,6 +167,12 @@
       shared: {}
     };
     var extensions = ['parallax', 'scrollOverflowReset', 'dragAndMove', 'offsetSections', 'fadingEffect', 'responsiveSlides', 'continuousHorizontal', 'interlockedSlides', 'scrollHorizontally', 'resetSliders', 'cards', 'dropEffect', 'waterEffect'];
+    var isInsideIframe = function () {
+      var inIframe = window.self !== window.top;
+      return function () {
+        return inIframe;
+      };
+    }();
 
     /**
     * forEach polyfill for IE
@@ -2875,7 +2881,9 @@
       timeBeforeReachingLimit: null,
       timeLastScroll: null,
       preventScrollWithMouseWheel: function preventScrollWithMouseWheel(e) {
-        if (!state.canScroll) {
+        var activeSection = getState().activeSection;
+
+        if (!state.canScroll || isInsideIframe() && getOptions().scrollOverflow && scrollOverflowHandler.isScrollable(activeSection) && scrollOverflowHandler.isScrolled(getState().wheelDirection, activeSection.item)) {
           preventDefault(e);
           return false;
         }
@@ -4675,9 +4683,11 @@
 
 
         scrollings.push(Math.abs(value)); //preventing to scroll the site on mouse wheel when scrollbar is present
-        //and preventing scroll of parent frames 
 
-        preventDefault(e); //time difference between the last scroll and the current one
+        if (getOptions().scrollBar) {
+          preventDefault(e);
+        } //time difference between the last scroll and the current one
+
 
         var timeDiff = curTime - prevTime;
         prevTime = curTime; //haven't they scrolled in a while?
@@ -5490,7 +5500,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x35\x2d\x32\x30".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x35\x2d\x32\x31".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5926,7 +5936,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.23';
+      FP.version = '4.0.24';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

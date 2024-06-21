@@ -32,3 +32,10 @@ export const extensions = [
     'dropEffect',
     'waterEffect'
 ];
+
+export const isInsideIframe = (function() {
+    const inIframe = window.self !== window.top;
+    return function() {
+        return inIframe;
+    };
+})();

@@ -3,7 +3,7 @@ import { getOptions } from './common/options.js';
 import { getState, state } from './common/state.js';
 import { fireCallback } from './callbacks/fireCallback.js';
 import { isResponsiveMode } from './responsive.js';
-import { isMacDevice, isTouchDevice, isTouch, win, doc, isIE11 } from './common/constants.js';
+import { isMacDevice, isTouchDevice, isTouch, win, doc, isIE11, isInsideIframe } from './common/constants.js';
 import { $body } from './common/cache.js';
 import { 
     AUTO_HEIGHT_RESPONSIVE,
@@ -59,7 +59,14 @@ export const scrollOverflowHandler = {
     timeLastScroll: null,
 
     preventScrollWithMouseWheel: function(e){
-        if(!state.canScroll){
+        var activeSection = getState().activeSection;
+
+        if(!state.canScroll || (
+            isInsideIframe()
+            && getOptions().scrollOverflow 
+            && scrollOverflowHandler.isScrollable(activeSection)
+            && scrollOverflowHandler.isScrolled(getState().wheelDirection, activeSection.item)
+        )){
             utils.preventDefault(e);
             return false;
         }
