@@ -151,8 +151,9 @@ function MouseWheelHandler(e) {
         scrollings.push(Math.abs(value));
 
         //preventing to scroll the site on mouse wheel when scrollbar is present
-        //and preventing scroll of parent frames 
-        utils.preventDefault(e);
+        if(getOptions().scrollBar){
+            utils.preventDefault(e);
+        }
 
         //time difference between the last scroll and the current one
         var timeDiff = curTime-prevTime;
