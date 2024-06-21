@@ -1135,6 +1135,7 @@ Torne-se um patrocinador e obtenha seu logotipo em nosso README no Github com um
 [![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
 
 ### Pessoas
-<a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
-	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+
+<a href="https://github.com/alvarotrigo/fullPage.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1&v=2" />
 </a>

@@ -1141,5 +1141,5 @@ Conviértete en un sponsor y añade tu logo aquí en Github y en la página prin
 ## Contributors
 
 <a href="https://github.com/alvarotrigo/fullPage.js/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1" />
+  <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1&v=2" />
 </a>
