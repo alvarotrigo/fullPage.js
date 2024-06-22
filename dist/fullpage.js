@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.24
+* fullPage 4.0.25
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -3047,7 +3047,7 @@
         var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY) + ie11offset;
         var isScrolled = isTopReached || isBottomReached;
 
-        if (!isScrolled) {
+        if (!isScrolled && direction !== 'none') {
           this.timeBeforeReachingLimit = new Date().getTime();
         }
 
@@ -5500,7 +5500,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x35\x2d\x32\x31".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x35\x2d\x32\x32".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5936,7 +5936,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.24';
+      FP.version = '4.0.25';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
