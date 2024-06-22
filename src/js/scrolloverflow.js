@@ -255,7 +255,7 @@ export const scrollOverflowHandler = {
         var isBottomReached = direction === 'down' && scrollableItem.scrollHeight <= Math.ceil(scrollableItem.offsetHeight + positionY) + ie11offset;
         var isScrolled = isTopReached || isBottomReached;
 
-        if(!isScrolled){
+        if(!isScrolled && direction !== 'none'){
             this.timeBeforeReachingLimit = new Date().getTime();
         }
         return isScrolled;
