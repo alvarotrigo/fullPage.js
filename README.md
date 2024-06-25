@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.25-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.23-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -174,12 +174,10 @@ $(document).ready(function() {
 		scrollHorizontally: true
 	});
 
-	//methods
+	// Example of how to use fullpage.js methods
 	$.fn.fullpage.setAllowScrolling(false);
 });
 ```
-
-Functions and methods can still be called in the jQuery way, as [in fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7).
 
 #### Vanilla JS example with all options
 A more complex initialization with all options set could look like this:

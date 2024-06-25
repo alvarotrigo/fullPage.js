@@ -18,7 +18,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.25-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.23-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -170,12 +170,10 @@ $(document).ready(function() {
 		scrollHorizontally: true
 	});
 
-	//methods
+	// Example of how to use fullpage.js methods
 	$.fn.fullpage.setAllowScrolling(false);
 });
 ```
-
-Функции и методы можно делать так же, как и с jQuery, как в [fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7).
 
 #### Пример Vanilla JS со всеми опциями
 
