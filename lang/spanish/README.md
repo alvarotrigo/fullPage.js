@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.23-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.25-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -306,7 +306,7 @@ Ten en cuenta que los enlaces de anclaje en la sección también pueden definirs
 **Ten cuidado!**, las etiquetas `data-anchor` no pueden tener el mismo valor que ninguna otra etiqueta ID en la página. (o `name` para Internet Explorer)
 
 ### Crear secciones más pequeñas o más grandes
-[Demostración](https://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provee un modo de eliminar la restricción de pantalla completa para secciones y diapositivas. Es posible crear secciones con una altura menor o mayor que el tamaño de la ventana del navegador. Esto es especialmente útil para pies de página.
+[Demo](https://codepen.io/alvarotrigo/pen/BKjRYm) fullPage.js provee un modo de eliminar la restricción de pantalla completa para secciones y diapositivas. Es posible crear secciones con una altura menor o mayor que el tamaño de la ventana del navegador. Esto es especialmente útil para pies de página.
 
 Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en la sección donde quieres aplicarlo. De este modo fullPage.js ajustará el tamaño al dado por el contenido de dicha sección o diapositiva.
 
@@ -316,7 +316,7 @@ Para crear este tipo de secciones simplemente usa la clase `fp-auto-height` en l
 ```
 
 #### Secciones de tamaño automático y responsive
-[Demostración](https://codepen.io/alvarotrigo/pen/MzByMa) Usando la clase `fp-auto-height-responsive` fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
+[Demo](https://codepen.io/alvarotrigo/pen/MzByMa) Usando la clase `fp-auto-height-responsive` fullPage.js puede eliminar la restricción de pantalla completa únicamente bajo el modo `responsive` si asi lo deseas.
 De este modo la sección pasará a ser una sección de tamaño automático cuando fullPage.js entre en modo responsive. (Usando la opcion `responsiveWidth` o `responsiveHeight`)
 
 ### Classes de estado añadidas por fullpage.js
@@ -330,7 +330,7 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 - `fp-destroyed` es añadido al contenedor usado para iniciar fullPage.js cuando se destruye fullPage.js.
 
 ### Carga pasiva de elementos multimedia
-[Demostración](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo de cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralenticen la carga de la página web y gasten recursos de transferencia innecesarios.
+[Demo](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js provee un modo de cargar pasivamente imágenes, vídeos y audio de manera que dichos elementos no ralenticen la carga de la página web y gasten recursos de transferencia innecesarios.
 Cuando se usa la carga pasiva de elementos, éstos solamente se cargarán cuando entren dentro de la parte visible de la ventana.
 Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data-src` tal y como se muestra a continuación:
 
@@ -345,7 +345,7 @@ Si ya estabas usando otra librería de carga pasiva (lazy loading) que usa el at
 
 ### Autoreproducir elementos multimedia
 
-[Demostración](https://codepen.io/alvarotrigo/pen/pXEaaK) **Nota**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
+[Demo](https://codepen.io/alvarotrigo/pen/pXEaaK) **Nota**: esta funcionalidad puede que no funcione en dispositivos móviles. Ésto dependerá del sistema operativo y del navegador usado.
 
 #### Reproducir al cargar la sección o diapositiva:
 Usando el atributo `autoplay` para videos y audios, o el parámetro `autoplay=1` para iframes de Youtube causará que el elemento empiece a reproducirse al cargar la página web.
@@ -462,7 +462,7 @@ Otras librerías puede ser usadas si se desea.
 (por defecto `null`) Determina qué elementos serán extraídos de la estructura de fullPage.js. Cosa que es necesaria cuando se usa la opción `css3` para mantenerlos fijos (`fixed`). Requiere una cadena de texto con el selector de Javascript para dichos elementos. (Por ejemplo: `fixedElements: '#element1, .element2'`)
 
 ### normalScrollElements
-(por defecto `null`) [Demostración](https://codepen.io/alvarotrigo/pen/RmVazM) Si quieres evitar el auto desplazamiento (o desplazamiento a saltos) cuando se haga scroll encima de ciertos elementos, ésta es la opción a usar. (Útil para mapas, divs con scroll etc.). Requiere una cadena de texto con el selector de Javascript para dichos elementos.(Por ejemplo: `normalScrollElements: '#element1, .element2'`). Esta opción no debe ser aplicada directamente en las mismas secciones o diapositivas en sí, sino a elementos dentro de ellas.
+(por defecto `null`) [Demo](https://codepen.io/alvarotrigo/pen/RmVazM) Si quieres evitar el auto desplazamiento (o desplazamiento a saltos) cuando se haga scroll encima de ciertos elementos, ésta es la opción a usar. (Útil para mapas, divs con scroll etc.). Requiere una cadena de texto con el selector de Javascript para dichos elementos.(Por ejemplo: `normalScrollElements: '#element1, .element2'`). Esta opción no debe ser aplicada directamente en las mismas secciones o diapositivas en sí, sino a elementos dentro de ellas.
 
 ### bigSectionsDestination
 (por defecto `null`) [Demo](https://codepen.io/alvarotrigo/pen/vYLdMrx) Determina cómo desplazarse hacia una sección mayor que la ventana del navegador. Por defecto fullPage.js se desplazará hacia la parte superior de la sección si llegas desde una sección situada por encima y hacia la parte inferior si llegas desde una sección situada por debajo. Los posibles valores para esta opción son:  `top`, `bottom`, `null`.
@@ -643,19 +643,19 @@ fullpage_api.getScrollX();
 ```
 
 ### moveSectionUp()
-[Demostración](https://codepen.io/alvarotrigo/pen/GJXNMN) Desplaza la página hacia arriba una sección:
+[Demo](https://codepen.io/alvarotrigo/pen/GJXNMN) Desplaza la página hacia arriba una sección:
 ```javascript
 fullpage_api.moveSectionUp();
 ```
 ---
 ### moveSectionDown()
-[Demostración](https://codepen.io/alvarotrigo/pen/jPvVZx) Desplaza la página hacia abajo una sección:
+[Demo](https://codepen.io/alvarotrigo/pen/jPvVZx) Desplaza la página hacia abajo una sección:
 ```javascript
 fullpage_api.moveSectionDown();
 ```
 ---
 ### moveTo(section, slide)
-[Demostración](https://codepen.io/alvarotrigo/pen/doqOmY) Desplaza la página hacia la sección o diapositiva que se le indique. La primera diapositiva en una sección, que es la visible por defecto, tendrá índice 0.
+[Demo](https://codepen.io/alvarotrigo/pen/doqOmY) Desplaza la página hacia la sección o diapositiva que se le indique. La primera diapositiva en una sección, que es la visible por defecto, tendrá índice 0.
 ```javascript
 /* Desplazando la página a la sección con el enlace de anclaje `firstSlide` y a la diapositiva número 2*/
 fullpage_api.moveTo('firstSlide', 2);
@@ -671,7 +671,7 @@ fullpage_api.moveTo(3);
 ```
 ---
 ### silentMoveTo(section, slide)
-[Demostración](https://codepen.io/alvarotrigo/pen/doqOeY)
+[Demo](https://codepen.io/alvarotrigo/pen/doqOeY)
 Exactamente lo mismo que [`moveTo`](https://github.com/alvarotrigo/fullPage.js/blob/master/README_SPANISH.md#movetosection-slide) pero en este caso el desplazamiento se hará sin animación. Un salto directo al destino sin transición.
 ```javascript
 /* Desplzando la página a la sección con el link the anclaje `firstSlide` y a la diapositiva numero 2*/
@@ -679,21 +679,21 @@ fullpage_api.silentMoveTo('firstSlide', 2);
 ```
 ---
 ### moveSlideRight()
-[Demostración](https://codepen.io/alvarotrigo/pen/Wvgoyz)
+[Demo](https://codepen.io/alvarotrigo/pen/Wvgoyz)
 Desplaza el carrusel de diapostivas de la sección actual hacia la siguiente diapositiva.
 ```javascript
 fullpage_api.moveSlideRight();
 ```
 ---
 ### moveSlideLeft()
-[Demostración](https://codepen.io/alvarotrigo/pen/gpdLjW)
+[Demo](https://codepen.io/alvarotrigo/pen/gpdLjW)
 Desplaza el carrusel de diapositivas de la sección actual hacia la diapositiva anterior.
 ```javascript
 fullpage_api.moveSlideLeft();
 ```
 ---
 ### setAutoScrolling(boolean)
-[Demostración](https://codepen.io/alvarotrigo/pen/rVZWrR) Permite definir la configuración de la opción `autoScrolling` después de la inicialización.
+[Demo](https://codepen.io/alvarotrigo/pen/rVZWrR) Permite definir la configuración de la opción `autoScrolling` después de la inicialización.
 Determina si usar desplazamiento "automático" o "a saltos" o usar el desplazamiento tradicional de cualquier página.
 
 ```javascript
@@ -701,7 +701,7 @@ fullpage_api.setAutoScrolling(false);
 ```
 ---
 ### setFitToSection(boolean)
-[Demostración](https://codepen.io/alvarotrigo/pen/GJXNYm)
+[Demo](https://codepen.io/alvarotrigo/pen/GJXNYm)
 Determina el valor para la opción `fitToSection` definiendo si ajustar la sección más cercana a la pantalla o no.
 
 ```javascript
@@ -709,7 +709,7 @@ fullpage_api.setFitToSection(false);
 ```
 ---
 ### fitToSection()
-[Demostración](https://codepen.io/alvarotrigo/pen/JWWagj)
+[Demo](https://codepen.io/alvarotrigo/pen/JWWagj)
 Desplaza la página hacia la sección activa más cercana encajándola en la pantalla.
 
 ```javascript
@@ -717,7 +717,7 @@ fullpage_api.fitToSection();
 ```
 ---
 ### setLockAnchors(boolean)
-[Demostración](https://codepen.io/alvarotrigo/pen/yNxVRQ)
+[Demo](https://codepen.io/alvarotrigo/pen/yNxVRQ)
 Define el valor para la opción `lockAnchors` determinando si los enlaces de anclaje tendrán algún efecto en la URL o no.
 
 ```javascript
@@ -725,7 +725,7 @@ fullpage_api.setLockAnchors(false);
 ```
 ---
 ### setAllowScrolling(boolean, [directions])
-[Demostración](https://codepen.io/alvarotrigo/pen/EjeNdq)
+[Demo](https://codepen.io/alvarotrigo/pen/EjeNdq)
 Añade o elimina la posibilidad de desplazarse a través de las secciones o diapositivas usando la ruleta del ratón, el trackpad del portátil o con los dedos en dispositivos táctiles. Ten en cuenta que ésto no deshabilitará el desplazamiento usando el teclado. Para ello necesitarás hacer uso de `setKeyboardScrolling`.
 
 - `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de lo mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o deshabilitado.
@@ -743,7 +743,7 @@ fullpage_api.setAllowScrolling(false, 'down, right');
 ```
 ---
 ### setKeyboardScrolling(boolean, [directions])
-[Demostración](https://codepen.io/alvarotrigo/pen/GJXNwm) Añade o elimina la posibilidad de desplazarse a través de las secciones usando las teclas del teclado (activo por defecto).
+[Demo](https://codepen.io/alvarotrigo/pen/GJXNwm) Añade o elimina la posibilidad de desplazarse a través de las secciones usando las teclas del teclado (activo por defecto).
 
 - `directions`: (parámetro opcional) Los posibles valores son `all`, `up`, `down`, `left`, `right` o una combinación de los mismos usando comas, por ejemplo: `down, right`. Determina la dirección para la que el desplazamiento estará habilitado o deshabilitado.
 
@@ -759,21 +759,21 @@ fullpage_api.setKeyboardScrolling(false, 'down, right');
 ```
 ---
 ### setRecordHistory(boolean)
-[Demostración](https://codepen.io/alvarotrigo/pen/rVZWQb) Determina si fullPage.js modificará la historia del navegador con cada cambio de enlace de anclaje (#) en la URL.
+[Demo](https://codepen.io/alvarotrigo/pen/rVZWQb) Determina si fullPage.js modificará la historia del navegador con cada cambio de enlace de anclaje (#) en la URL.
 
 ```javascript
 fullpage_api.setRecordHistory(false);
 ```
 ---
 ### setScrollingSpeed(milliseconds)
-[Demostración](https://codepen.io/alvarotrigo/pen/NqLbeY) Define la velocidad de desplazamiento en milisegundos.
+[Demo](https://codepen.io/alvarotrigo/pen/NqLbeY) Define la velocidad de desplazamiento en milisegundos.
 
 ```javascript
 fullpage_api.setScrollingSpeed(700);
 ```
 ---
 ### destroy(type)
-[Demostración](https://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo así como cualquier estilo que haya aplicado.
+[Demo](https://codepen.io/alvarotrigo/pen/bdxBzv) Destruye los eventos de fullPage.js y opcionalmente la estructura HTML creada por el mismo así como cualquier estilo que haya aplicado.
 Ideal para usar cuando se usa en páginas AJAX.
 
 - `type`: (parámetro opcional) Si se define como `all` la estructura HTML creada por fullPage.js así como cualquier estilo que haya aplicado serán eliminados. De este modo, se mantendrá el HTMl original, es decir, el usado antes de que fullPage.js se iniciase.
@@ -795,7 +795,7 @@ fullpage_api.reBuild();
 ```
 ---
 ### setResponsive(boolean)
-[Demostración](https://codepen.io/alvarotrigo/pen/WxOyLA) Define el modo "responsive". Cuando se define a `true` la funcionalidad de `autoScrolling` será desactivada tal y como sucedería si se disparasen las opciones `responsiveWidth` o `responsiveHeight`.
+[Demo](https://codepen.io/alvarotrigo/pen/WxOyLA) Define el modo "responsive". Cuando se define a `true` la funcionalidad de `autoScrolling` será desactivada tal y como sucedería si se disparasen las opciones `responsiveWidth` o `responsiveHeight`.
 
 ```javascript
 fullpage_api.setResponsive(true);
@@ -818,7 +818,7 @@ fullpage_api.responsiveSlides.toSlides();
 ```
 
 ## Callbacks
-[Demostración](https://codepen.io/alvarotrigo/pen/XbPNQv) Puedes verlas en acción [aquí](https://alvarotrigo.com/fullPage/examples/callbacks.html).
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) Puedes verlas en acción [aquí](https://alvarotrigo.com/fullPage/examples/callbacks.html).
 
 Algunos eventos de callback, como `onLeave`, contienen Objectos como parámetros. Dichos objetos son de tipo Section o Slide y continen las siguientes propiedades:
 
