@@ -334,7 +334,7 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 Cuando se usa la carga pasiva de elementos, éstos solamente se cargarán cuando entren dentro de la parte visible de la ventana.
 Para activar esta funcionalidad bastará con cambiar el atributo `src` por `data-src` tal y como se muestra a continuación:
 
-```
+```html
 <img data-src="image.png">
 <video>
 	<source data-src="video.webm" type="video/webm" />
@@ -659,7 +659,6 @@ fullpage_api.moveSectionDown();
 ```javascript
 /* Desplazando la página a la sección con el enlace de anclaje `firstSlide` y a la diapositiva número 2*/
 fullpage_api.moveTo('firstSlide', 2);
-
 ```
 
 ```javascript
