@@ -1,4 +1,3 @@
-```markdown
 # fullPage.js
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.png)
@@ -942,4 +941,3 @@ fullpage.jsの配布ファイルをビルドしたいですか？[ビルドタ�
 <a href="https://github.com/alvarotrigo/fullPage.js/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1&v=2" />
 </a>
-```
