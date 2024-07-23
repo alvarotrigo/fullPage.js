@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.25
+ * fullPage 4.0.26
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -95,6 +95,7 @@ html.fp-enabled,
     transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -webkit-transform: translate3d(0,-50%,0);
+    pointer-events: none;
 }
 #fp-nav.fp-right {
     right: 17px;
@@ -112,6 +113,7 @@ html.fp-enabled,
     left: 0 !important;
     right: 0;
     margin: 0 auto !important;
+    pointer-events: none;
 }
 .fp-slidesNav.fp-bottom {
     bottom: 17px;
@@ -144,6 +146,7 @@ html.fp-enabled,
     height: 100%;
     cursor: pointer;
     text-decoration: none;
+    pointer-events: all;
 }
 #fp-nav ul li a.active span,
 .fp-slidesNav ul li a.active span,
