@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 
 const licenseContent = `/*!
-* fullPage 4.0.25
+* fullPage 4.0.26
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -47,6 +47,7 @@ const terserOptions = {
                 'scrollingSpeed',
                 'autoScrolling',
                 'fitToSection',
+                'fitToSectionDelay',
                 'easing',
                 'easingcss3',
                 'loopBottom',
