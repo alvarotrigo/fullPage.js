@@ -23,6 +23,7 @@ import { displayWarnings } from './console.js';
 import { ENABLED } from './common/selectors.js';
 import { EventEmitter } from './common/eventEmitter.js';
 import { events } from './common/events.js';
+import { setState } from './common/state.js';
 
 export default function fullpage(containerSelector, options) {
     setCache();
@@ -49,6 +50,8 @@ export default function fullpage(containerSelector, options) {
         EventEmitter.emit(events.bindEvents);
     }
 
+    setState({isFullpageInitDone: true});
+
     // @ts-ignore
     return win.fullpage_api;
 }
@@ -61,7 +64,7 @@ function setAPI(){
     };
 
     //public functions
-    FP.version = '4.0.25';
+    FP.version = '4.0.26';
 
     FP.test = Object.assign(FP.test, {
         top: '0px',

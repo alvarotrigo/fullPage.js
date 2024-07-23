@@ -27,7 +27,8 @@ export const state = {
     isDoingContinousVertical: false,
     timeouts: {},
     scrollY: 0,
-    scrollX: 0
+    scrollX: 0,
+    isFullpageInitDone: false
 };
 // @ts-ignore
 win.state = state;

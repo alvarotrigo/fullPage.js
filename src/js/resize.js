@@ -49,7 +49,11 @@ function resizeHandler(){
         }
     }
 
-    fitToActiveSection();
+    // we won't trigger fit to section on page load
+    // otherwise it will scroll to the worng section if using anchors #4613
+    if(state.isFullpageInitDone){
+        fitToActiveSection();
+    }
 
     g_isConsecutiveResize = true;
 
