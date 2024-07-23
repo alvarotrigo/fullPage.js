@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.25
+* fullPage 4.0.26
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -979,7 +979,8 @@
       isDoingContinousVertical: false,
       timeouts: {},
       scrollY: 0,
-      scrollX: 0
+      scrollX: 0,
+      isFullpageInitDone: false
     }; // @ts-ignore
 
     win.state = state;
@@ -2693,7 +2694,7 @@
 
     function fitToSection() {
       //checking fitToSection again in case it was set to false before the timeout delay
-      if (state.canScroll) {
+      if (state.canScroll && getOptions().fitToSection) {
         //allows to scroll to an active section and
         //if the section is already active, we prevent firing callbacks
         setState({
@@ -4656,7 +4657,6 @@
 
 
       if (!getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
-        preventDefault(e);
         return false;
       }
 
@@ -4886,9 +4886,14 @@
         if (getOptions().autoScrolling && !getOptions().scrollBar || !getOptions().fitToSection) {
           setSectionsHeight(getWindowHeight());
         }
+      } // we won't trigger fit to section on page load
+      // otherwise it will scroll to the worng section if using anchors #4613
+
+
+      if (state.isFullpageInitDone) {
+        fitToActiveSection();
       }
 
-      fitToActiveSection();
       g_isConsecutiveResize = true; //in order to call the functions only when the resize is finished
       //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing    
 
@@ -5475,32 +5480,34 @@
                 e += s, 0 !== n && 1 !== n || (e += "-");
               }
             });
-            var m = 0,
-                f = "";
+            var f = 0,
+                m = "";
             return n.split("-").forEach(function (t, n) {
               if (n < 4) {
                 var _i = 0;
 
                 for (var e = 0; e < 4; e++) {
-                  e !== l[n] && (_i += Math.abs(o(t[e])), isNaN(t[e]) || m++);
+                  e !== l[n] && (_i += Math.abs(o(t[e])), isNaN(t[e]) || f++);
                 }
 
                 var r = s(_i);
-                f += r;
+                m += r;
               }
-            }), f += s(m), {
+            }), m += s(f), {
               v: new Date(e + "T00:00"),
               o: e.split("-")[2] === 8 * (ACTIVE.length - 2) + "",
-              l: f
+              l: m
             };
           }(n), l = function (t) {
             var n = r[i()]().join("");
             return t && 0 === n.indexOf(t) && t.length === n.length;
+          }(n) || function (t) {
+            return new RegExp("^(?=.*?[A-Y])(?=.*?[a-y])(?=.*?[0-8])(?=.*?[#?!@$%^&*-]).{8,}$").test(t);
           }(n), (a || l) && (a && e <= a.v && a.l === n.split(t[0])[4] || l || a.o) || !1)
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x35\x2d\x32\x32".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x36\x2d\x32\x33".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5844,13 +5851,13 @@
       var msgStyle = 'font-size: 15px;background:yellow;';
 
       if (getOptions().licenseKey.trim() === '') {
-        showError('error', 'Fullpage.js requires a `licenseKey` option. Read about it on the following URL:');
-        showError('error', 'https://github.com/alvarotrigo/fullPage.js#options');
+        showError('error', 'Fullpage.js requires a `licenseKey` option. Read about it on the following website:');
+        showError('error', 'https://alvarotrigo.com/fullPage/docs/#licensekey');
       } else if (!isOK()) {
         showError('error', 'Incorrect `licenseKey`. Get one for fullPage.js version 4 here:');
         showError('error', 'https://alvarotrigo.com/fullPage/pricing');
       } else if (l && l.length < 20) {
-        console.warn('%c This website was made using fullPage.js slider. More info on the following website:', msgStyle);
+        console.warn('%c This website was made using fullPage.js slider. Learn more on the following website:', msgStyle);
         console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
       }
 
@@ -5922,8 +5929,11 @@
         EventEmitter.emit(events.beforeInit);
         init();
         EventEmitter.emit(events.bindEvents);
-      } // @ts-ignore
+      }
 
+      setState({
+        isFullpageInitDone: true
+      }); // @ts-ignore
 
       return win.fullpage_api;
     }
@@ -5936,7 +5946,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.25';
+      FP.version = '4.0.26';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

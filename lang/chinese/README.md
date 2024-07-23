@@ -9,6 +9,7 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <span>中文</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> | 
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese#fullpagejs"> 日本語</a> | 
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese#fullpagejs">Português Brasileiro</a>
 </p>
 <p align="center">
@@ -17,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.25,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -110,7 +111,7 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
-Using Webpack, Browserify or Require.js? Check <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">how to use fullPage.js with module loaders</a> .
+Using Webpack, Browserify or Require.js? Check [how to use fullPage.js with module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)</a> .
 
 ### 可选用 CDN ：
 如果您倾向使用 CDN 载入所需文件，fullPage.js 在 CDNJS：
@@ -171,12 +172,10 @@ $(document).ready(function() {
 		scrollHorizontally: true
 	});
 
-	//methods
+	// Example of how to use fullpage.js methods
 	$.fn.fullpage.setAllowScrolling(false);
 });
 ```
-
-函数和方法仍然可以用 jQuery 方式调用，如在 [fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7) 中一样。
 
 #### 带有所有功能选项的 Vanilla JS 演示
 所有选项的更复杂的初始化如下所示：

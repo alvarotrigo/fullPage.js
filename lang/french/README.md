@@ -3,12 +3,13 @@
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.png)
 
 <p align="center">
-  <a href="https://github.com/MercureTony/fullPage.js">English</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js">English</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
   <span>Français</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese#fullpagejs"> 日本語</a> | 
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese#fullpagejs">Português Brasileiro</a>
 </p>
 
@@ -18,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.25-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -111,7 +112,7 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
 ```
 
 
-Vous utilisez Webpack, Browserify ou Require.js ? Vérifiez <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">comment utiliser fullPage.js avec les chargeurs de modules </a>.
+Vous utilisez Webpack, Browserify ou Require.js ? Vérifiez [comment utiliser fullPage.js avec les chargeurs de modules](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Utilisation facultative du CDN
 Si vous préférez utiliser un CDN pour charger les fichiers nécessaires, fullPage.js est dans CDNJS :
@@ -177,12 +178,10 @@ $(document).ready(function() {
 		scrollHorizontally: true
 	});
 
-	//methods
+	// Example of how to use fullpage.js methods
 	$.fn.fullpage.setAllowScrolling(false);
 });
 ```
-
-Les fonctions et méthodes peuvent toujours être appelées de la manière jQuery, comme [dans  fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7).
 
 #### Exemple de Vanille JS avec toutes les options
 Une initialisation plus complexe avec toutes les options définies pourrait ressembler à ceci :
@@ -393,7 +392,7 @@ Vous pourrez ensuite les utiliser et les configurer comme expliqué dans [option
 ## Options
 
 ### licenseKey
-(défaut `null`).**Cette option est facultltative.** Si vous utilisez fullPage dans un projet non open source, vous devez utiliser la clé de licence fournie lors de l'achat de la Licence Commerciale fullPage. Si votre projet est open source, [contactez-moi](https://alvarotrigo.com/#contact) avec un lien vers son répertoire et je vous fournirai une clé de licence. Pour en savoir plus sur les licences [ici] (https://github.com/alvarotrigo/fullPage.js#license) et [sur le site Web] (https://alvarotrigo.com/fullPage/pricing/). Par exemple :
+(défaut `null`).**Cette option est facultltative.** Si vous utilisez fullPage dans un projet non open source, vous devez utiliser la clé de licence fournie lors de l'achat de la Licence Commerciale fullPage. Si votre projet est open source, [contactez-moi](https://alvarotrigo.com/#contact) avec un lien vers son répertoire et je vous fournirai une clé de licence. Pour en savoir plus sur les licences [ici](https://github.com/alvarotrigo/fullPage.js#license) et [sur le site Web](https://alvarotrigo.com/fullPage/pricing/). Par exemple :
 
 ```javascript
 new fullpage('#fullpage', {

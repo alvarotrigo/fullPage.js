@@ -9,6 +9,7 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs">中文</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese#fullpagejs"> 日本語</a> | 
   <span>Português Brasileiro</span>
 </p>
 
@@ -18,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.25-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -108,7 +109,7 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
-Usando Webpack, Browserify ou Require.js? Confira <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">como usar fullPage.js com module loaders</a>.
+Usando Webpack, Browserify ou Require.js? Confira [como usar fullPage.js com module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Uso opcional de CDN
 Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.js está em CDNJS:
@@ -174,12 +175,10 @@ $(document).ready(function() {
 		scrollHorizontally: true
 	});
 
-	//métodos
+	// Example of how to use fullpage.js methods
 	$.fn.fullpage.setAllowScrolling(false);
 });
 ```
-
-Funções e métodos ainda podem ser chamados no jeito jQuery, como [no fullPage.js v2.X](https://github.com/alvarotrigo/fullPage.js/tree/2.9.7).
 
 #### Exemplo de Vanilla JS com todas as opções
 Uma inicialização mais complexa com todas as opções definidas pode ser assim:
@@ -386,7 +385,7 @@ Então você poderá usá-los e configurá-los conforme explicado em [Opções](
 ## Opções
 
 ### licenseKey:
-(padrão `null`). **Esta opção é obrigatória.** Se você usar fullPage em um projeto de código não aberto, deverá usar a chave de licença fornecida na compra da licença comercial fullPage. Se o seu projeto for de código aberto e for compatível com a licença GPLv3, você pode usar a opção `gplv3-license`. Leia mais sobre licenças [aqui](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#licença) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
+(padrão `null`). **Esta opção é obrigatória.** Se você usar o fullPage em um projeto não open source, deverá utilizar a chave de licença fornecida na compra da Licença Comercial do fullPage. Se o seu projeto for open source e for compatível com a licença GPLv3, você pode [solicitar uma chave de licença](https://alvarotrigo.com/fullPage/extensions/requestKey.html). Por favor, leia mais sobre as licenças [aqui](https://github.com/alvarotrigo/fullPage.js#license) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
 
 ```javascript
 new fullpage('#fullpage', {

@@ -119,7 +119,6 @@ function MouseWheelHandler(e) {
 
     //is scroll allowed?
     if (!getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
-        utils.preventDefault(e);
         return false;
     }
 
