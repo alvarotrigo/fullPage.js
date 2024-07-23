@@ -110,7 +110,7 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
-Using Webpack, Browserify or Require.js? Check <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">how to use fullPage.js with module loaders</a>.
+Using Webpack, Browserify or Require.js? Check [how to use fullPage.js with module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Опциональное использование CDN
 Если вы предпочитаете использовать CDN для загрузки необходимых файлов, fullPage.js есть в CDNJS:

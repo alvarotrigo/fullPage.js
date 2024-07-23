@@ -109,7 +109,7 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
-Usando Webpack, Browserify ou Require.js? Confira <a href="https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js">como usar fullPage.js com module loaders</a>.
+Usando Webpack, Browserify ou Require.js? Confira [como usar fullPage.js com module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Uso opcional de CDN
 Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.js está em CDNJS:
@@ -385,7 +385,7 @@ Então você poderá usá-los e configurá-los conforme explicado em [Opções](
 ## Opções
 
 ### licenseKey:
-(padrão `null`). **Esta opção é obrigatória.** Se você usar fullPage em um projeto de código não aberto, deverá usar a chave de licença fornecida na compra da licença comercial fullPage. Se o seu projeto for de código aberto e for compatível com a licença GPLv3, você pode usar a opção `gplv3-license`. Leia mais sobre licenças [aqui](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#licença) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
+(padrão `null`). **Esta opção é obrigatória.** Se você usar o fullPage em um projeto não open source, deverá utilizar a chave de licença fornecida na compra da Licença Comercial do fullPage. Se o seu projeto for open source e for compatível com a licença GPLv3, você pode [solicitar uma chave de licença](https://alvarotrigo.com/fullPage/extensions/requestKey.html). Por favor, leia mais sobre as licenças [aqui](https://github.com/alvarotrigo/fullPage.js#license) e [no site](https://alvarotrigo.com/fullPage/pricing/). Exemplo de uso:
 
 ```javascript
 new fullpage('#fullpage', {
