@@ -19,15 +19,15 @@ export function displayWarnings(){
     var msgStyle = 'font-size: 15px;background:yellow;';
 
     if(getOptions().licenseKey.trim() === ''){
-        utils.showError('error', 'Fullpage.js requires a `licenseKey` option. Read about it on the following URL:');
-        utils.showError('error', 'https://github.com/alvarotrigo/fullPage.js#options');
+        utils.showError('error', 'Fullpage.js requires a `licenseKey` option. Read about it on the following website:');
+        utils.showError('error', 'https://alvarotrigo.com/fullPage/docs/#licensekey');
     }
     else if(!isOK()){
         utils.showError('error', 'Incorrect `licenseKey`. Get one for fullPage.js version 4 here:');
         utils.showError('error', 'https://alvarotrigo.com/fullPage/pricing');
     }
     else if(l && l.length < 20){
-        console.warn('%c This website was made using fullPage.js slider. More info on the following website:', msgStyle);
+        console.warn('%c This website was made using fullPage.js slider. Learn more on the following website:', msgStyle);
         console.warn('%c https://alvarotrigo.com/fullPage/', msgStyle);
     }
 
