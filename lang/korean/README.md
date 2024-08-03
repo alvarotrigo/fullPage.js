@@ -62,8 +62,7 @@
 이 라이브러리를 멋지게 만들어서 사람들의 삶을 더 편리하게 가꾸어 보아요!
 
 ## 호환성
-fullPage.js is fully functional on all modern browsers and with IE 11. If you need to support IE < 11 consider using [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2).
-It also provides touch support for mobile phones, tablets and touch screen computers.
+fullPage.js는 모든 최신 브라우저와 IE 11에서 완벽하게 동작합니다. IE 11이하 버전을 지원해야 한다면 [fullPage.js v3](https://github.com/alvarotrigo/fullPage.js/tree/3.1.2) 사용을 고려하세요. 또한 모바일 폰, 태블릿, 터치 스크린 컴퓨터에서의 터치 지원도 제공합니다.
 
 fullpage.js를 지원해 주시는 [Browserstack](https://www.browserstack.com/)에게 특별히 감사드립니다.
 
@@ -75,7 +74,7 @@ fullPage를 써서 상업용 웹사이트, 주제, 프로젝트, 앱을 개발�
 ### 오픈소스 라이선스
 [GNU GPL 라이선스 v3](https://www.gnu.org/licenses/gpl-3.0.html)과 호환되는 라이선스 하에서 오픈소스 앱을 만드신다면, GPLv3 조건에서 fullPage를 사용하실 수 있습니다.
 
-**You will have to provide a prominent notice that fullPage.js is in use. 자바스크립트와 CSS 파일에 있는 개발자를 밝히는 말은 (결합이나 최소화 이후에도) 그대로 두셔야 합니다**
+**fullPage.js가 사용되고 있음을 명확히 알려야 합니다. 자바스크립트와 CSS 파일에 있는 개발자를 밝히는 말은 (결합이나 최소화 이후에도) 그대로 두셔야 합니다**
 
 [fullPage의 라이선스에 대해 더 자세히 읽어보기](https://alvarotrigo.com/fullPage/pricing/).
 
@@ -108,7 +107,7 @@ npm install fullpage.js
 <script type="text/javascript" src="fullpage.js"></script>
 ```
 
-Using Webpack, Browserify or Require.js? Check [how to use fullPage.js with module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
+Webpack, Browserify 또는 Require.js를 사용하고 계신가요? [모듈 로더와 함께 fullPage.js를 사용하는 방법을 확인하세요.](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### CDN 사용 가능
 필요한 파일을 불러오실 때 CDN이 더 편하시다면 fullPage.js를 CDNJS 양식(<https://cdnjs.com/libraries/fullPage.js>)으로도 사용하실 수 있습니다.
@@ -385,10 +384,10 @@ new fullpage('#fullpage', {
 (기본값 `true`) 제어 화살표를 눌러서 슬라이드가 오른쪽 또는 왼쪽으로 움직이도록 허용할지 여부를 결정합니다.
 
 ### controlArrowsHTML
-(default `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`). Provides a way to define the HTML structure and the classes that you want to apply to the control arrows for sections with horizontal slides. The array contains the structure for both arrows. The first item is the left arrow and the second, the right one. (translation needed)
+(기본값은 `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>']`입니다. 이는 수평 슬라이드가 있는 구역의 컨트롤 화살표에 적용할 HTML 구조와 클래스를 정의할 수 있는 방법을 제공합니다. 배열은 두 화살표의 구조를 포함하고 있으며, 첫 번째 항목은 왼쪽 화살표이고, 두 번째는 오른쪽 화살표입니다.)
 
 ### verticalCentered
-(기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (Uses flexbox) You might want to wrap your content in a `div` to avoid potential issues. (Uses `flex-direction: column; display: flex; justify-content: center;`)
+(기본값 `true`) 구역 내 컨텐츠가 수직으로 중심에 위치하도록 합니다. (flexbox 사용) 본문을 `div`로 감싸는 것이 잠재적인 문제를 피하는 데 도움이 될 수 있습니다. (Uses `flex-direction: column; display: flex; justify-content: center;`)
 
 ### scrollingSpeed
 (기본값 `700`) 스크롤 이동 속도를 0.001초 단위로 설정합니다.
@@ -543,10 +542,10 @@ new fullpage('#fullpage', {
 (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다.It requires the default value `scrollBar: false`. 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`. 구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
 
 ### scrollOverflowMacStyle
-(default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+(기본값 `false`). 활성화되면 이 옵션은 기본 스크롤바 대신 "맥 스타일"의 스크롤바를 사용하게 되며, 윈도우 컴퓨터에서는 다르게 보일 것입니다.
 
 ### scrollOverflowReset
-(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다. 가능한 값은 `true`, `false`, `sections`, `slides`입니다. 구역 또는 슬라이드에 `fp-no-scrollOverflowReset` 클래스를 추가하면 해당 패널에 대해 이 기능이 비활성화됩니다.
 
 ### sectionSelector
 (기본값 `.section`) 플러그인 구역에 쓰이는 Javascript 선택자를 정의합니다. fullpage.js와 동일한 선택자를 쓰는 다른 플러그인과 문제를 일으키지 않도록 가끔 변경해야 할 수도 있습니다.
@@ -571,35 +570,34 @@ new fullpage('#fullpage', {
 parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 설정하실 수 있습니다. [패럴랙스 옵션을 어떻게 적용하는지 읽어보세요](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/korean/parallax-extension.md).
 
 ### dropEffect
-(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the drop effect on sections / slides. [Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역 또는 슬라이드에 드롭 효과를 사용할지 여부를 정의합니다. [드롭 효과 옵션 적용 방법에 대해 자세히 알아보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 ### dropEffectOptions
-(default: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). 
-Allows to configure the parameters for the drop effect when using the option `dropEffect:true`.[Read more about how to apply the the drop effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
+(기본값: `{ speed: 2300, color: '#F82F4D', zIndex: 9999}`). 
+`dropEffect:true` 옵션을 사용할 때 드롭 효과의 파라미터를 설정할 수 있습니다.[드롭 효과 옵션 적용 방법에 대해 자세히 알아보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect).
 
 ### waterEffect
-(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the water effect on sections / slides. [Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역 또는 슬라이드에 워터 효과를 사용할지 여부를 정의합니다. [워터 효과 옵션 적용 방법에 대해 자세히 알아보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 ### waterEffectOptions
-(default: `{ animateContent: true, animateOnMouseMove: true}`). 
-Allows to configure the parameters for the water effect when using the option `waterEffect:true`.[Read more about how to apply the the water effect option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
+(기본값: `{ animateContent: true, animateOnMouseMove: true}`). 
+`waterEffect:true` 옵션을 사용할 때 워터 효과의 파라미터를 설정할 수 있습니다. [워터 효과 옵션 적용 방법에 대해 자세히 알아보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect).
 
 ### cards
-(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the cards effect on sections/slides. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+(기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). 구역 또는 슬라이드에 카드 효과를 사용할지 여부를 정의합니다. [카드 옵션 적용 방법에 대해 자세히 알아보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 ### cardsOptions
-(default: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 
-Allows you to configure the parameters for the cards effect when using the option `cards:true`. [Read more about how to apply the cards option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
+(기본값: `{ perspective: 100, fadeContent: true, fadeBackground: true}`). 
+`cards:true` 옵션을 사용할 때 카드 효과의 파라미터를 설정할 수 있습니다. [카드 옵션 적용 방법에 대해 자세히 알아보세요](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 ### lazyLoading
 (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
 
 ### observer
-(default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
+(기본값 `true`) 페이지의 HTML 구조 변경을 감지할지 여부를 정의합니다. 활성화되면 fullPage.js는 해당 변경 사항에 자동으로 반응하여 자체를 업데이트합니다. 구역 또는 슬라이드를 추가, 제거하거나 숨길 때 이상적입니다.
 
 ### credits
-(default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+(기본값 `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). fullPage.js 저작권 표시를 사용할지를 정의합니다. GPLv3 라이선스의 조항 0, 4, 5, 7에 따라, GPLv3 하에 fullPage.js를 사용하는 사용자는 fullPage.js 사용 중임을 명확하게 표시해야 합니다. 이 옵션을 활성화하여 저작권 표시를 포함하는 것을 권장합니다.
 
 ## 방법
 어떻게 작동하는지 [여기](https://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.
@@ -619,7 +617,7 @@ fullpage_api.getActiveSlide();
 ```
 
 ### getScrollY() & getScrollX
-[Demo](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` Gets the Y position of the fullPage wrapper. `getScrollX` gets the X position of the active horizontal slide.
+[데모](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` fullPage Wrapper의 Y 축 위치를 가져옵니다. `getScrollX` 는 활성 수평 슬라이드의 X 축 위치를 가져옵니다.
 
 ```javascript
 fullpage_api.getScrollY();
@@ -867,7 +865,7 @@ new fullpage('#fullpage', {
 
 ---
 ### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired right **before** leaving the section, just before the transition takes place.
 
 You can use this callback to prevent and cancel the scroll before it takes place by returning `false`.
 
@@ -894,7 +892,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterRender()
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 페이지 구조가 생성된 직후에 이 콜백이 실행됩니다. (이 플러그인이 DOM을 수정해서 결과 구조를 만들기 때문에) 다른 플러그인을 초기 설정하거나 문서(document)가 있어야 준비되는 모든 코드를 실행하고자 할 때 이 콜백을 쓰시면 됩니다. 더 자세한 정보를 원하신다면 [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)을 참조해 주세요.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) 페이지 구조가 생성된 직후에 이 콜백이 실행됩니다. (이 플러그인이 DOM을 수정해서 결과 구조를 만들기 때문에) 다른 플러그인을 초기 설정하거나 문서(document)가 있어야 준비되는 모든 코드를 실행하고자 할 때 이 콜백을 쓰시면 됩니다. 더 자세한 정보를 원하신다면 [자주 묻는 질문(FAQ)](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)을 참조해 주세요.
 
 예시:
 
@@ -908,7 +906,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResize(`width`, `height`)
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 브라우저 창의 크기가 바뀐 뒤에 이 콜백이 실행됩니다. 구역 크기가 바뀐 직후에 실행됩니다.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) 브라우저 창의 크기가 바뀐 뒤에 이 콜백이 실행됩니다. 구역 크기가 바뀐 직후에 실행됩니다.
 
 매개 변수:
 
@@ -927,7 +925,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterReBuild()
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) This callback is fired after manually re-building fullpage.js by calling `fullpage_api.reBuild()`.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) 이 콜백은 `fullpage_api.reBuild()`를 호출하여 fullpage.js를 수동으로 다시 빌드한 후에 실행됩니다.
 
 예시:
 
@@ -940,7 +938,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterResponsive(`isResponsive`)
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) fullpage.js가 정상 모드에서 반응형 모드로 바뀌거나 반응형 모드에서 정상 모드로 바뀌고 나면 이 콜백이 실행됩니다.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) fullpage.js가 정상 모드에서 반응형 모드로 바뀌거나 반응형 모드에서 정상 모드로 바뀌고 나면 이 콜백이 실행됩니다.
 
 매개 변수:
 
@@ -957,7 +955,7 @@ new fullpage('#fullpage', {
 ```
 ---
 ### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 구역의 슬라이드를 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) 구역의 슬라이드를 불러오고 나서 스크롤이 끝나면 콜백이 실행됩니다.
 매개 변수:
 
 - `section`: *(Object)* 활성화된 수직 구역.
@@ -991,7 +989,7 @@ new fullpage('#fullpage', {
 
 ---
 ### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 사용자가 슬라이드를 떠나서 다른 슬라이드로 이동하는 와중에 콜백이 실행됩니다.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) 사용자가 슬라이드를 떠나서 다른 슬라이드로 이동하는 와중에 콜백이 실행됩니다.
 `false`로 되돌리면 발동하기 전에 취소됩니다.
 
 매개 변수:
@@ -1028,16 +1026,16 @@ new fullpage('#fullpage', {
 
 ---
 ### onScrollOverflow (`section`, `slide`, `position`, `direction`)
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) This callback gets fired when a scrolling inside a scrollable section when using the fullPage.js option `scrollOverflow: true`.
+[데모](https://codepen.io/alvarotrigo/pen/XbPNQv) 이 콜백은 fullPage.js의 `scrollOverflow: true` 옵션을 사용하여 스크롤 가능한 구역 내부에서 스크롤이 발생할 때 실행됩니다.
 
-Parameters:
+매개 변수:
 
-- `section`: *(Object)* active vertical section.
-- `slide`: *(Object)* horizontal slide of origin.
-- `position`: *(Integer)* scrolled amount within the section/slide. Starts on 0.
-- `direction`: *(String)* `up` or `down`
+- `section`: *(Object)* 활성화된 수직 구역.
+- `slide`: *(Object)* 출발 수평 슬라이드.
+- `position`: *(Integer)* section/slide 내에서 스크롤된 범위. 0에서 시작.
+- `direction`: *(String)* `up` 또는 `down`
 
-Example:
+예시:
 
 ```javascript
 new fullpage('#fullpage', {
@@ -1099,7 +1097,7 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 [![기부](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
+후원자가 되어 GitHub의 README에 귀사의 로고와 웹사이트 링크를 게재하세요. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
 
 [![Codeless](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codeless.png)](https://codeless.co)
 [![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
