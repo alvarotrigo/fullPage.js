@@ -83,3 +83,194 @@ fillPage.js 完全支持所有現代瀏覽器和 IE 11。 如果您需要支持 
 **你必須提供一個顯著的標示你有使用 fullPage.js。 JavaScript 和 CSS 檔案中的許可證應保持完整 (即使在合併或壓縮后）**
 
 [閱讀更多關於 fullPage 的許可證](https://alvarotrigo.com/fullPage/pricing/)。
+
+## 用法
+正如範例檔案所示，需要引用：
+ - JavaScript 檔案 `fullpage.js` (或其壓縮版本 `fullpage.min.js`)
+ - CSS 檔案 `fullpage.css`
+
+**可選**，使用 `css3:false` 時，如果您想要使用函式庫的中的動畫曲線功能（ `easeInOutCubic` ），您可以新增 [easings file](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js)。
+
+### 使用 bower 或 npm 進行安裝
+**或者**，如果你想要的話可以使用 bower 或 npm 安裝 fullPage.js：
+
+```shell
+// 使用 bower
+bower install fullpage.js
+
+// 使用 npm
+npm install fullpage.js
+```
+
+### 引用函式庫
+```html
+<link rel="stylesheet" type="text/css" href="fullpage.css" />
+
+<!-- 以下這行是可選的。只有在使用選項 css3:false ，並且您希望使用其他動畫曲獻，而非 linear 、 swing 或 easeInOutCubic 時才有必要。 -->
+<script src="vendors/easings.min.js"></script>
+
+<script type="text/javascript" src="fullpage.js"></script>
+```
+
+使用 Webpack、Browserify 或 Require.js 嗎？請查看 [如何使用模組加載器](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)。
+
+### 使用 CDN 引用
+如果您傾向使用 CDN 載入所需檔案，fullPage.js 在以下連結：
+https://cdnjs.com/libraries/fullPage.js
+
+### HTML 結構規範
+
+HTML 檔案中的首行 HTML 程式碼必須使用 [HTML DOCTYPE 聲明](https://www.corelangs.com/html/introduction/doctype.html)，否則可能會遇到程式碼段高度問題。HTML 5 doctype 中的範例： `<!DOCTYPE html>`.
+
+每個程式碼段定義為包含 `section` 類的元素。
+預設情況下，第一個 section 程式碼段，將被視為主頁。
+程式碼段應進行封裝（即 `<div id="fullpage">` ）。 封裝不能是 `body` 元素。
+
+```html
+<div id="fullpage">
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+	<div class="section">Some section</div>
+</div>
+```
+如果你想定義一個與衆不同的起始頁面，而不是原始第一段或第一個滑動頁，只需將 `active` 類新增到你想首先載入的段或滑動頁。
+```html
+<div class="section active">Some section</div>
+```
+為在程式碼段中建立橫向滑塊，每個滑動頁將預設定義為包含 `slide` 類的元素：
+
+```html
+<div class="section">
+	<div class="slide"> slide 1 </div>
+	<div class="slide"> slide 2 </div>
+	<div class="slide"> slide 3 </div>
+	<div class="slide"> slide 4 </div>
+</div>
+````
+可以在 [simple.html 檔案](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html) 看到完整的 HTML 結構的例子
+
+### 初始化
+
+#### 使用 Javascript 進行初始化
+您只需要在關閉 `</body>` 標籤之前呼叫 fullPage.js 即可。
+
+```javascript
+new fullpage('#fullpage', {
+	//options here
+	autoScrolling:true,
+	scrollHorizontally: true
+});
+```
+
+#### 使用 jQuery 進行初始化
+
+您也可以將 fullpage.js 作為 jQuery 外掛使用！
+
+```javascript
+$(document).ready(function() {
+	$('#fullpage').fullpage({
+		//options here
+		autoScrolling:true,
+		scrollHorizontally: true
+	});
+
+	// Example of how to use fullpage.js methods
+	$.fn.fullpage.setAllowScrolling(false);
+});
+```
+
+#### 帶有所有功能選項的 JavaScript 演示
+
+所有選項的更復雜的初始化如下所示：
+
+```javascript
+var myFullpage = new fullpage('#fullpage', {
+	// 導航
+	menu: '#menu',
+	lockAnchors: false,
+	anchors:['firstPage', 'secondPage'],
+	navigation: false,
+	navigationPosition: 'right',
+	navigationTooltips: ['firstSlide', 'secondSlide'],
+	showActiveTooltip: false,
+	slidesNavigation: false,
+	slidesNavPosition: 'bottom',
+
+	// 滾動
+	css3: true,
+	scrollingSpeed: 700,
+	autoScrolling: true,
+	fitToSection: true,
+	fitToSectionDelay: 600,
+	scrollBar: false,
+	easing: 'easeInOutCubic',
+	easingcss3: 'ease',
+	loopBottom: false,
+	loopTop: false,
+	loopHorizontal: true,
+	continuousVertical: false,
+	continuousHorizontal: false,
+	scrollHorizontally: false,
+	interlockedSlides: false,
+	dragAndMove: false,
+	offsetSections: false,
+	resetSliders: false,
+	fadingEffect: false,
+	normalScrollElements: '#element1, .element2',
+	scrollOverflow: true,
+	scrollOverflowMacStyle: false,
+	scrollOverflowReset: false,
+	touchSensitivity: 15,
+	bigSectionsDestination: null,
+
+	// 可訪問
+	keyboardScrolling: true,
+	animateAnchor: true,
+	recordHistory: true,
+
+	// 佈局
+	controlArrows: true,
+	controlArrowsHTML: [
+		'<div class="fp-arrow"></div>', 
+		'<div class="fp-arrow"></div>'
+	],
+	verticalCentered: true,
+	sectionsColor : ['#ccc', '#fff'],
+	paddingTop: '3em',
+	paddingBottom: '10px',
+	fixedElements: '#header, .footer',
+	responsiveWidth: 0,
+	responsiveHeight: 0,
+	responsiveSlides: false,
+	parallax: false,
+	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
+	dropEffect: false,
+	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
+	waterEffect: false,
+	waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
+	cards: false,
+	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
+
+
+	// 自定義選擇器
+	sectionSelector: '.section',
+	slideSelector: '.slide',
+
+	lazyLoading: true,
+	observer: true,
+	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
+
+	// 事件
+	beforeLeave: function(origin, destination, direction, trigger){},
+	onLeave: function(origin, destination, direction, trigger){},
+	afterLoad: function(origin, destination, direction, trigger){},
+	afterRender: function(){},
+	afterResize: function(width, height){},
+	afterReBuild: function(){},
+	afterResponsive: function(isResponsive){},
+	afterSlideLoad: function(section, origin, destination, direction, trigger){},
+	onSlideLeave: function(section, origin, destination, direction, trigger){},
+	onScrollOverflow: function(section, slide, position, direction){}
+});
+```
