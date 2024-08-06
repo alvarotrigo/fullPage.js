@@ -385,20 +385,20 @@ fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣�
 </audio>
 ```
 
-### 使用擴展
+### 使用擴充功能
 
-fullpage.js 提供了一組擴展，你可以用來增強其默認功能。所有這些擴展都列為 fullpage.js 選項。
+fullpage.js 提供了一組擴充功能，你可以用來增強其默認功能。所有這些擴充功能都列為 fullpage.js 選項。
 
-使用擴展需要你使用縮小版的文件 `fullpage.extensions.min.js`，這個文件在 `dist` 文件夾中，而不是通常的 fullPage.js 文件 (`fullpage.js` 或 `fullpage.min.js`)。
+使用擴充功能需要你使用縮小版的文件 `fullpage.extensions.min.js`，這個文件在 `dist` 文件夾中，而不是通常的 fullPage.js 文件 (`fullpage.js` 或 `fullpage.min.js`)。
 
-一旦你獲得擴展文件，你需要在 fullPage 之前添加它。例如，如果我想使用連續水平擴展，我會包括擴展文件，然後是擴展版本的 fullPage 文件。
+一旦你獲得擴充功能文件，你需要在 fullPage 之前添加它。例如，如果我想使用連續水平擴充功能，我會包括擴充功能文件，然後是擴充功能版本的 fullPage 文件。
 
 ```html
 <script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
 <script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
 ```
 
-每個擴展需要激活密鑰和許可密鑰。請參閱更多詳細信息。
+每個擴充功能需要激活密鑰和許可密鑰。請參閱更多詳細信息。
 
 然後你可以按照選項中解釋的那樣使用和配置它們。
 
@@ -406,7 +406,7 @@ fullpage.js 提供了一組擴展，你可以用來增強其默認功能。所�
 
 ### licenseKey
 
-（默認為 `null`）。**此選項是必須的。** 如果你在非開源項目中使用 fullPage，那麼你應該使用購買 fullPage 商業許可證時提供的許可密鑰。如果你的項目是開源的，並且與 GPLv3 許可證兼容，你可以請求許可密鑰。請閱讀更多關於許可證的信息。用法示例如下：
+（默認為 `null`）。**此選項是必須的。** 如果你在非開源項目中使用 fullPage，那麼你應該使用購買 fullPage 商業許可證時提供的許可密鑰。如果你的項目是開源的，並且與 GPLv3 許可證兼容，你可以請求許可密鑰。請閱讀更多關於許可證的信息。用法範例如下：
 
 ```javascript
 new fullpage('#fullpage', {
@@ -522,19 +522,19 @@ new fullpage('#fullpage', {
 
 ### continuousHorizontal
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。 定義在最後一張幻燈片向右滑動時是否應向右滑動到第一張幻燈片，或者在第一張幻燈片向左滑動時是否應向左滑動到最後一張幻燈片。不與 `loopHorizontal` 兼容。需要 fullpage.js >= 3.0.1。
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。 定義在最後一張幻燈片向右滑動時是否應向右滑動到第一張幻燈片，或者在第一張幻燈片向左滑動時是否應向左滑動到最後一張幻燈片。不與 `loopHorizontal` 兼容。需要 fullpage.js >= 3.0.1。
 
 ### scrollHorizontally
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。 定義是否通過使用鼠標滾輪或觸控板在滑塊內水平滑動。只能在使用 `autoScrolling:true` 時使用。非常適合故事講述。需要 fullpage.js >= 3.0.1。
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。 定義是否通過使用鼠標滾輪或觸控板在滑塊內水平滑動。只能在使用 `autoScrolling:true` 時使用。非常適合故事講述。需要 fullpage.js >= 3.0.1。
 
 ### interlockedSlides
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。確定移動一個水平滑塊是否會強制其他區塊中的滑塊沿相同方向滑動。可能的值為 `true`、`false` 或包含互鎖區塊的數組。例如 `[1,3,5]`，從 1 開始。需要 fullpage.js >= 3.0.1。
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。確定移動一個水平滑塊是否會強制其他區塊中的滑塊沿相同方向滑動。可能的值為 `true`、`false` 或包含互鎖區塊的數組。例如 `[1,3,5]`，從 1 開始。需要 fullpage.js >= 3.0.1。
 
 ### dragAndMove
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。啟用或禁用使用鼠標或手指拖動和滑動區塊和幻燈片。需要 fullpage.js >= 3.0.
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。啟用或禁用使用鼠標或手指拖動和滑動區塊和幻燈片。需要 fullpage.js >= 3.0.
 
 可使用的值包含：
   - `true`：啟用此功能。
@@ -546,7 +546,7 @@ new fullpage('#fullpage', {
 
 ### offsetSections
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。提供一種方法來基於百分比使用非全屏區塊。理想情況下，通過顯示下一個或上一個區塊的一部分來告訴訪問者站點上有更多內容。需要 fullPage.js >= 3.0.1。要定義每個區塊的百分比，必須使用 `data-percentage` 屬性。可以通過使用屬性 `data-centered`（默認為 `true` 如果未指定）中的布爾值來確定區塊在視口中的居中情況。例如：
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。提供一種方法來基於百分比使用非全屏區塊。理想情況下，通過顯示下一個或上一個區塊的一部分來告訴訪問者站點上有更多內容。需要 fullPage.js >= 3.0.1。要定義每個區塊的百分比，必須使用 `data-percentage` 屬性。可以通過使用屬性 `data-centered`（默認為 `true` 如果未指定）中的布爾值來確定區塊在視口中的居中情況。例如：
 
 ```html
 <div class="section" data-percentage="80" data-centered="true">
@@ -554,11 +554,11 @@ new fullpage('#fullpage', {
 
 ### resetSliders
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。定義離開區塊後是否重置每個滑塊。需要 fullPage.js >= 3.0.1。
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。定義離開區塊後是否重置每個滑塊。需要 fullPage.js >= 3.0.1。
 
 ### fadingEffect
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。定義是否使用淡入淡出效果來代替默認滾動效果。可能的值有 `true`、`false`、`sections`、`slides`。因此，它可以垂直或水平應用，或者同時應用於兩者。只能在使用 `autoScrolling:true` 時使用。需要 fullPage.js >= 3.0.1。
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。定義是否使用淡入淡出效果來代替默認滾動效果。可能的值有 `true`、`false`、`sections`、`slides`。因此，它可以垂直或水平應用，或者同時應用於兩者。只能在使用 `autoScrolling:true` 時使用。需要 fullPage.js >= 3.0.1。
 
 ### animateAnchor
 
@@ -622,7 +622,7 @@ new fullpage('#fullpage', {
 
 ### scrollOverflowReset
 
-（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。可能的值有 `true`、`false`、`sections`、`slides`。設置為 `true` 時，當離開到另一個區塊/幻燈片時，帶有滾動條的區塊/幻燈片的內容會向上滾動。這樣，區塊/幻燈片將始終顯示其內容的開頭，即使從其下方的區塊滾動過來。在區塊或幻燈片上添加類 `fp-no-scrollOverflowReset` 將禁用該特定面板的此功能。
+（默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。可能的值有 `true`、`false`、`sections`、`slides`。設置為 `true` 時，當離開到另一個區塊/幻燈片時，帶有滾動條的區塊/幻燈片的內容會向上滾動。這樣，區塊/幻燈片將始終顯示其內容的開頭，即使從其下方的區塊滾動過來。在區塊或幻燈片上添加類 `fp-no-scrollOverflowReset` 將禁用該特定面板的此功能。
 
 ### scrollOverflowMacStyle
 
@@ -643,3 +643,186 @@ new fullpage('#fullpage', {
 ### responsiveHeight
 
 （默認為 `0`）在定義的高度（像素）以下將使用正常滾動（`autoScrolling:false`）。如果用戶希望使用它們自己的響應式 CSS，則會將類 `fp-responsive` 添加到 body 標籤。例如，如果設置為 900，當瀏覽器的高度小於 900 時，插件將像普通站點一樣滾動。
+
+### responsiveSlides
+
+（預設為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。設置為 `true` 時，當觸發響應模式（使用上面詳述的 `responsiveWidth` 或 `responsiveHeight` 選項）時，幻燈片將變成垂直區段。需要 fullpage.js >= 3.0.1。
+
+### parallax
+
+（預設為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。定義是否在區段/幻燈片上使用視差背景效果。[了解更多關於如何應用視差選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax)。
+
+### parallaxOptions
+
+（預設值：`{ type: 'reveal', percentage: 62, property: 'translate'}`）。
+
+允許在使用 `parallax:true` 選項時配置視差背景效果的參數。[了解更多關於如何應用視差選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax)。
+
+### dropEffect
+
+（預設為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。定義是否在區段/幻燈片上使用下落效果。[了解更多關於如何應用下落效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect)。
+
+### dropEffectOptions
+
+（預設值：`{ speed: 2300, color: '#F82F4D', zIndex: 9999}`）。 
+
+允許在使用 `dropEffect:true` 選項時配置下落效果的參數。[了解更多關於如何應用下落效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect)。
+
+### waterEffect
+
+（預設為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。定義是否在區段/幻燈片上使用水波效果。[了解更多關於如何應用水波效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect)。
+
+### waterEffectOptions
+
+（預設值：`{ animateContent: true, animateOnMouseMove: true}`）。 
+
+允許在使用 `waterEffect:true` 選項時配置水波效果的參數。[了解更多關於如何應用水波效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect)。
+
+### cards
+
+（預設為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。定義是否在區段/幻燈片上使用卡片效果。[了解更多關於如何應用卡片效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)。
+
+### cardsOptions
+
+（預設值：`{ perspective: 100, fadeContent: true, fadeBackground: true}`）。
+
+允許在使用 `cards:true` 選項時配置卡片效果的參數。[了解更多關於如何應用卡片效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards)。
+
+### lazyLoading
+
+（預設為 `true`）懶加載默認為啟用狀態，這意味著它會懶加載任何包含 `data-src` 屬性的媒體元素，詳細信息請參閱 [懶加載文檔](https://github.com/alvarotrigo/fullPage.js#lazy-loading)。如果你想使用其他懶加載庫，可以禁用 fullpage.js 的這個功能。
+
+### observer
+
+（預設為 `true`）定義是否監視頁面 HTML 結構的變化。啟用後，fullPage.js 將自動對這些變化做出反應並相應地更新自己。當添加、移除或隱藏區段或幻燈片時，這非常理想。
+
+### credits
+
+（預設值：`{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）。 
+定義是否使用 fullPage.js 的版權聲明。根據 GPLv3 版權許可條款第 0、4、5 和 7 條款，使用 GPLv3 版權下的 fullPage.js 的人需要顯著提示 fullPage.js 的使用。我們建議保留此選項啟用以進行歸屬。
+
+## 方法
+你可以在[這裡](https://alvarotrigo.com/fullPage/examples/methods.html)看到它們的應用。
+
+### getActiveSection()
+[範例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 獲取包含當前活動區段及其屬性的對象（類型為 [Section](https://github.com/alvarotrigo/fullPage.js#callbacks)）。
+
+```javascript
+fullpage_api.getActiveSection();
+```
+
+### getActiveSlide()
+[範例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 獲取包含當前活動幻燈片及其屬性的對象（類型為 [Slide](https://github.com/alvarotrigo/fullPage.js#callbacks)）。
+
+```javascript
+fullpage_api.getActiveSlide();
+```
+
+### getScrollY() 和 getScrollX
+[範例](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` 獲取 fullPage 包裝器的 Y 位置。`getScrollX` 獲取當前橫向幻燈片的 X 位置。
+
+```javascript
+fullpage_api.getScrollY();
+fullpage_api.getScrollX();
+```
+
+### moveSectionUp()
+[範例](https://codepen.io/alvarotrigo/pen/GJXNMN) 向上一個區段滾動：
+```javascript
+fullpage_api.moveSectionUp();
+```
+---
+### moveSectionDown()
+[範例](https://codepen.io/alvarotrigo/pen/jPvVZx) 向下一個區段滾動：
+```javascript
+fullpage_api.moveSectionDown();
+```
+---
+### moveTo(section, slide)
+[範例](https://codepen.io/alvarotrigo/pen/doqOmY) 滾動頁面到給定的區段和幻燈片。第一個區段的索引為 1，而默認可見的第一個幻燈片的索引為 0。
+```javascript
+/*滾動到帶有錨點鏈接 `firstSlide` 的區段和第 2 幻燈片 */
+fullpage_api.moveTo('firstSlide', 2);
+
+```
+
+```javascript
+//滾動到網站的第 3 區段（索引為 3）
+fullpage_api.moveTo(3, 0);
+
+//這與以下相同
+fullpage_api.moveTo(3);
+```
+---
+### silentMoveTo(section, slide)
+[範例](https://codepen.io/alvarotrigo/pen/doqOeY)
+與 [`moveTo`](https://github.com/alvarotrigo/fullPage.js#movetosection-slide) 完全相同，但在這種情況下，它會在沒有動畫的情況下執行滾動。直接跳轉到目的地。
+```javascript
+/*滾動到帶有錨點鏈接 `firstSlide` 的區段和第 2 幻燈片 */
+fullpage_api.silentMoveTo('firstSlide', 2);
+```
+---
+### moveSlideRight()
+[範例](https://codepen.io/alvarotrigo/pen/Wvgoyz)
+滾動當前區段的橫向滑塊到下一個幻燈片：
+```javascript
+fullpage_api.moveSlideRight();
+```
+---
+### moveSlideLeft()
+[範例](https://codepen.io/alvarotrigo/pen/gpdLjW)
+滾動當前區段的橫向滑塊到上一個幻燈片：
+```javascript
+fullpage_api.moveSlideLeft();
+```
+---
+### setAutoScrolling(boolean)
+[範例](https://codepen.io/alvarotrigo/pen/rVZWrR) 設置滾動配置即時生效。
+定義頁面滾動的行為方式。如果設置為 `true`，將使用 "自動" 滾動，否則，將使用站點的 "手動" 或 "正常" 滾動。
+
+```javascript
+fullpage_api.setAutoScrolling(false);
+```
+---
+### setFitToSection(boolean)
+[範例](https://codepen.io/alvarotrigo/pen/GJXNYm)
+設置 `fitToSection` 選項的值，確定是否將區段適應屏幕。
+
+```javascript
+fullpage_api.setFitToSection(false);
+```
+---
+### fitToSection()
+[範例](https://codepen.io/alvarotrigo/pen/JWWagj)
+滾動到最近的活動區段，使其適應視口。
+
+```javascript
+full
+
+page_api.fitToSection();
+```
+---
+### setLockAnchors(boolean)
+[範例](https://codepen.io/alvarotrigo/pen/yNxVRQ)
+設置 `lockAnchors` 選項的值，確定錨點是否會對 URL 產生影響。
+
+```javascript
+fullpage_api.setLockAnchors(false);
+```
+---
+### setAllowScrolling(boolean, [directions])
+[範例](https://codepen.io/alvarotrigo/pen/EjeNdq) 添加或移除使用鼠標滾輪/觸控板或觸摸手勢滾動區段/幻燈片的可能性（默認為啟用）。請注意，這不會禁用鍵盤滾動。你需要使用 `setKeyboardScrolling` 來實現。
+
+- `directions`：（可選參數）接受的值：`all`、`up`、`down`、`left`、`right` 或用逗號分隔的組合，如 `down, right`。它定義了滾動將啟用或禁用的方向。
+
+```javascript
+
+//禁用滾動
+fullpage_api.setAllowScrolling(false);
+
+//禁用向下滾動
+fullpage_api.setAllowScrolling(false, 'down');
+
+//禁用向下和向右滾動
+fullpage_api.setAllowScrolling(false, 'down, right');
+```
