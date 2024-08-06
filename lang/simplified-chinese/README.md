@@ -7,6 +7,7 @@
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs">Español</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/french#fullpagejs">Français</a> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian#fullpagejs">Pусский</a> |
+  <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese#fullpagejs">繁體中文</a> |
   <span>中文</span> |
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#fullpagejs">한국어</a> | 
   <a href="https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese#fullpagejs"> 日本語</a> | 
@@ -36,26 +37,26 @@
 通过调用本库可轻易创建全屏滚动网站(也称为单页网站)。
 本库可创建全屏滚动网站，同时也可在网站中添加横向滚动条。
 
-- [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BB%8B%E7%BB%8D)
-- [兼容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%85%BC%E5%AE%B9%E6%80%A7)
-- [许可证](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%AE%B8%E5%8F%AF%E8%AF%81)
-- [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E7%94%A8%E6%B3%95)
-  - [创建链接到 section 或 slide](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5%E5%88%B0%E6%AE%B5%E8%90%BD%E6%88%96%E5%B9%BB%E7%81%AF%E7%89%87)
-  - [创建更小或更大的 section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%88%9B%E5%BB%BA%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%AE%B5%E8%90%BD)
-  - [fullpage.js 添加的状态类](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E7%94%B1fullpagejs%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB)
-  - [快速加载](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)
-  - [自动播放内嵌媒体](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%9A%82%E5%81%9C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AA%92%E4%BD%93)
-  - [使用扩展](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E4%BD%BF%E7%94%A8%E6%89%A9%E5%B1%95)
-- [参数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9)
-- [公共方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%96%B9%E6%B3%95)
-- [回调函数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#callbacks)
-- [问题反馈](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8A%A5%E5%91%8A%E9%97%AE%E9%A2%98)
-- [贡献到 fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B4%A1%E7%8C%AE%E7%BB%99fullpagejs)
-- [更新日志](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
-- [编译构建](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1)
-- [参考资源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90)
-- [谁在使用 fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%B0%81%E5%9C%A8%E4%BD%BF%E7%94%A8-fullpagejs)
-- [赞助](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E6%8D%90%E7%8C%AE)
+- [介绍](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E4%BB%8B%E7%BB%8D)
+- [兼容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E5%85%BC%E5%AE%B9%E6%80%A7)
+- [许可证](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E8%AE%B8%E5%8F%AF%E8%AF%81)
+- [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E7%94%A8%E6%B3%95)
+  - [创建链接到 section 或 slide](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5%E5%88%B0%E6%AE%B5%E8%90%BD%E6%88%96%E5%B9%BB%E7%81%AF%E7%89%87)
+  - [创建更小或更大的 section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E5%88%9B%E5%BB%BA%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%AE%B5%E8%90%BD)
+  - [fullpage.js 添加的状态类](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E7%94%B1fullpagejs%E6%B7%BB%E5%8A%A0%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB)
+  - [快速加载](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD)
+  - [自动播放内嵌媒体](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%9A%82%E5%81%9C%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AA%92%E4%BD%93)
+  - [使用扩展](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E4%BD%BF%E7%94%A8%E6%89%A9%E5%B1%95)
+- [参数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E9%80%89%E9%A1%B9)
+- [公共方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E6%96%B9%E6%B3%95)
+- [回调函数](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#callbacks)
+- [问题反馈](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E6%8A%A5%E5%91%8A%E9%97%AE%E9%A2%98)
+- [贡献到 fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E8%B4%A1%E7%8C%AE%E7%BB%99fullpagejs)
+- [更新日志](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+- [编译构建](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E6%9E%84%E5%BB%BA%E4%BB%BB%E5%8A%A1)
+- [参考资源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90)
+- [谁在使用 fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E8%B0%81%E5%9C%A8%E4%BD%BF%E7%94%A8-fullpagejs)
+- [赞助](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E6%8D%90%E7%8C%AE)
 
 ## 介绍
 不仅限于提需求，也欢迎提出编码风格改进的建议。
@@ -365,7 +366,7 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 ```
 
 ### 使用扩展
-fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/) 您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9).
+fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/) 您可以使用它来增强其默认功能。 所有这些都被列为 [fullpage.js 选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E9%80%89%E9%A1%B9).
 
 扩展需要使用在 [`dist` 文件夹](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/) 中的压缩文件 [`fullpage.extensions.min.js`](https://github.com/alvarotrigo/fullPage.js/tree/master/dist/fullpage.extensions.min.js)，而不是一贯的使用 fullPage.js 文件 (`fullpage.js` 或 `fullpage.min.js`)。
 
@@ -376,9 +377,9 @@ fullpage.js [提供了一组扩展](https://alvarotrigo.com/fullPage/extensions/
 <script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
 ```
 
-每个扩展都需要激活密钥和许可证密钥。[在这里看到更多细节](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/how-to-activate-fullpage-extension.md).
+每个扩展都需要激活密钥和许可证密钥。[在这里看到更多细节](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/simplified-chinese/how-to-activate-fullpage-extension.md).
 
-然后你就可以按照 [选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E9%80%89%E9%A1%B9) 的说明使用和配置它们。
+然后你就可以按照 [选项](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E9%80%89%E9%A1%B9) 的说明使用和配置它们。
 
 ## 参数
 
@@ -576,11 +577,11 @@ new fullpage('#fullpage', {
 （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，slide 将变成垂直 section。 （通过使用上面详述的 `responsiveWidth` 或 `responsiveHeight` 选项）。 需要fullpage.js> = 3.0.1。
 
 ### parallax
-（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+（默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/simplified-chinese/parallax-extension.md).
 
 ### parallaxOptions
 （默认：`{type：'reveal'，percent：62，property：'translate'}`）。
-允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
+允许在使用选项 parallax:true 时配置视差背景效果的参数。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/simplified-chinese/parallax-extension.md).
 
 
 ### dropEffect
@@ -605,7 +606,7 @@ Allows to configure the parameters for the water effect when using the option `w
 允许您在使用选项 `cards：true` 时配置卡片效果的参数。 [了解有关如何应用卡片选项的更多信息](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Cards).
 
 ### lazyLoading
-（默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
+（默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
 
 ### observer
 （默认： `true`） Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
@@ -618,14 +619,14 @@ Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the G
 你可以在[这里](https://alvarotrigo.com/fullPage/examples/methods.html)看到它们
 
 ### getActiveSection()
-[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 获取包含激活 section 及其属性的对象（键入[ Section ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。
+[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 获取包含激活 section 及其属性的对象（键入[ Section ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese#callbacks））。
 
 ```javascript
 fullpage_api.getActiveSection();
 ```
 
 ### getActiveSlide()
-[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/)  获取包含激活滑块及其属性的对象（键入[ Slide ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#callbacks））。）。
+[示例](https://codepen.io/alvarotrigo/pen/VdpzRN/)  获取包含激活滑块及其属性的对象（键入[ Slide ](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese#callbacks））。）。
 
 ```javascript
 fullpage_api.getActiveSlide();
@@ -671,7 +672,7 @@ fullpage_api.moveTo(3);
 ```
 ---
 ### silentMoveTo(section, slide)
-[示例](https://codepen.io/alvarotrigo/pen/doqOeY) 与 [`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#moveto%E7%AC%AC%E8%8A%82-%E5%B9%BB%E7%81%AF%E7%89%87) 完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
+[示例](https://codepen.io/alvarotrigo/pen/doqOeY) 与 [`moveTo`](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#moveto%E7%AC%AC%E8%8A%82-%E5%B9%BB%E7%81%AF%E7%89%87) 完全相同，但是在这种情况下，它将执行没有动画的滚动。 直接跳到目的地。
 
 ```javascript
 /*滚动到锚链接 firstSlide 和第二个 slide 的部分 */
@@ -1037,7 +1038,7 @@ new fullpage('#fullpage', {
 ```
 
 #### 在发生移动之前取消移动
-[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
+[Demo](https://codepen.io/alvarotrigo/pen/XbPNQv) 您可以通过在 `onSlideLeave` 回调中返回 `false` 来取消移动。 [与使用 `onLeave` 取消动作一样](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/simplified-chinese/#%E8%A7%A6%E5%8F%91%E4%B9%8B%E5%89%8D%E5%8F%96%E6%B6%88%E6%BB%9A%E5%8A%A8)。
 
 
 ---
