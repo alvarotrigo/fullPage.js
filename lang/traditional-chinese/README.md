@@ -826,3 +826,121 @@ fullpage_api.setAllowScrolling(false, 'down');
 //禁用向下和向右滾動
 fullpage_api.setAllowScrolling(false, 'down, right');
 ```
+
+### setKeyboardScrolling(boolean, [directions])
+
+[範例](https://codepen.io/alvarotrigo/pen/GJXNwm) 添加或移除使用鍵盤滾動區段的可能性（默認為啟用）。
+
+- `directions`:（可選參數）接受的值：`all`、`up`、`down`、`left`、`right` 或用逗號分隔的組合，如 `down, right`。它定義了滾動將啟用或禁用的方向。
+
+```javascript
+// 禁用所有鍵盤滾動
+fullpage_api.setKeyboardScrolling(false);
+
+// 禁用向下的鍵盤滾動
+fullpage_api.setKeyboardScrolling(false, 'down');
+
+// 禁用向下和向右的鍵盤滾動
+fullpage_api.setKeyboardScrolling(false, 'down, right');
+```
+---
+### setRecordHistory(boolean)
+[範例](https://codepen.io/alvarotrigo/pen/rVZWQb) 定義是否記錄 URL 中每次哈希變更的歷史記錄。
+
+```javascript
+fullpage_api.setRecordHistory(false);
+```
+---
+### setScrollingSpeed(milliseconds)
+[範例](https://codepen.io/alvarotrigo/pen/NqLbeY) 定義滾動速度（以毫秒為單位）。
+
+```javascript
+fullpage_api.setScrollingSpeed(700);
+```
+---
+### destroy(type)
+[範例](https://codepen.io/alvarotrigo/pen/bdxBzv) 銷毀插件事件，並可選地其 HTML 標記和樣式。理想用於使用 AJAX 加載內容時。
+
+- `type`:（可選參數）可以為空或 `all`。如果傳遞 `all`，則 fullpage.js 使用的 HTML 標記和樣式將被移除。這樣將保持原始 HTML 標記，即在任何插件修改之前使用的 HTML 標記。
+
+```javascript
+// 銷毀 fullPage.js 創建的所有 JavaScript 事件（滾動、URL 中的哈希變更等）
+fullpage_api.destroy();
+
+// 銷毀所有 JavaScript 事件以及 fullPage.js 對原始 HTML 標記所做的任何修改。
+fullpage_api.destroy('all');
+```
+---
+### reBuild()
+更新 DOM 結構以適應新窗口大小或其內容。理想用於與 AJAX 調用或站點 DOM 結構的外部更改結合使用，特別是當使用 `scrollOverflow:true` 時。
+
+```javascript
+fullpage_api.reBuild();
+```
+---
+### setResponsive(boolean)
+[範例](https://codepen.io/alvarotrigo/pen/WxOyLA) 設置頁面的響應模式。設置為 `true` 時，自動滾動將被關閉，結果將與 `responsiveWidth` 或 `responsiveHeight` 選項被觸發時的情況完全相同。
+```javascript
+fullpage_api.setResponsive(true);
+```
+---
+### responsiveSlides.toSections()
+[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。需要 fullpage.js >= 3.0.1。
+將橫向幻燈片轉變為垂直區段。
+
+```javascript
+fullpage_api.responsiveSlides.toSections();
+```
+---
+### responsiveSlides.toSlides()
+[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。需要 fullpage.js >= 3.0.1。
+將原本轉變為垂直區段的幻燈片恢復為橫向幻燈片。
+
+```javascript
+fullpage_api.responsiveSlides.toSlides();
+```
+
+## 回調函數
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 你可以在[這裡](https://alvarotrigo.com/fullPage/examples/callbacks.html)看到它們的應用。
+
+一些回調函數，例如 `onLeave`，將包含包含以下屬性的對象類型的參數：
+
+- `anchor`：*(String)* 項目的錨點。
+- `index`：*(Number)* 項目的索引。
+- `item`：*(DOM element)* 項目元素。
+- `isFirst`：*(Boolean)* 確定該項目是否為第一個子項。
+- `isLast`：*(Boolean)* 確定該項目是否為最後一個子項。
+
+### afterLoad (`origin`, `destination`, `direction`, `trigger`)
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 區段加載完成後、滾動結束後觸發的回調函數。
+參數：
+
+- `origin`：*(Object)* 起始區段。
+- `destination`：*(Object)* 目標區段。
+- `direction`：*(String)* 根據滾動方向，它將取值 `up` 或 `down`。
+- `trigger`：*(String)* 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
+
+範例：
+
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+
+	afterLoad: function(origin, destination, direction, trigger){
+		var origin = this;
+
+		// 使用索引
+		if(origin.index == 2){
+			alert("Section 3 ended loading");
+		}
+
+		// 使用錨點鏈接
+		if(origin.anchor == 'secondSlide'){
+			alert("Section 2 ended loading");
+		}
+	}
+});
+```
+
+---
+
