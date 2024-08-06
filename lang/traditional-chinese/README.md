@@ -536,10 +536,110 @@ new fullpage('#fullpage', {
 
 （默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。啟用或禁用使用鼠標或手指拖動和滑動區塊和幻燈片。需要 fullpage.js >= 3.0.
 
-1. 可使用的值包含：
+可使用的值包含：
   - `true`：啟用此功能。
   - `false`：禁用此功能。
   - `vertical`：僅在垂直方向啟用此功能。
   - `horizontal`：僅在水平方向啟用此功能。
   - `fingersonly`：僅為觸摸設備啟用此功能。
   - `mouseonly`：僅為桌面設備（鼠標和觸控板）啟用此功能。
+
+### offsetSections
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。提供一種方法來基於百分比使用非全屏區塊。理想情況下，通過顯示下一個或上一個區塊的一部分來告訴訪問者站點上有更多內容。需要 fullPage.js >= 3.0.1。要定義每個區塊的百分比，必須使用 `data-percentage` 屬性。可以通過使用屬性 `data-centered`（默認為 `true` 如果未指定）中的布爾值來確定區塊在視口中的居中情況。例如：
+
+```html
+<div class="section" data-percentage="80" data-centered="true">
+```
+
+### resetSliders
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。定義離開區塊後是否重置每個滑塊。需要 fullPage.js >= 3.0.1。
+
+### fadingEffect
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。定義是否使用淡入淡出效果來代替默認滾動效果。可能的值有 `true`、`false`、`sections`、`slides`。因此，它可以垂直或水平應用，或者同時應用於兩者。只能在使用 `autoScrolling:true` 時使用。需要 fullPage.js >= 3.0.1。
+
+### animateAnchor
+
+（默認為 `true`）定義當給定錨點（#）加載站點時，是否會帶有動畫滾動到目標位置，還是直接加載到給定區塊。
+
+### recordHistory
+
+（默認為 `true`）定義是否將站點的狀態推送到瀏覽器的歷史記錄中。設置為 `true` 時，站點的每個區塊/幻燈片都將作為一個新頁面，瀏覽器的前進和後退按鈕將滾動區塊/幻燈片以達到站點的上一個或下一個狀態。設置為 `false` 時，URL 將保持更改但對瀏覽器的歷史記錄沒有影響。使用 `autoScrolling:false` 時，該選項會自動關閉。
+
+### menu
+
+（默認為 `false`）可以使用一個選擇器來指定與區塊鏈接的菜單。這樣，區塊滾動時將激活菜單中的對應元素，並使用類 `active`。
+這不會生成菜單，只會將 `active` 類添加到菜單中具有相應錨點鏈接的元素。
+為了將菜單元素與區塊鏈接，需要使用與區塊中使用的相同錨點鏈接的 HTML5 `data-menuanchor` 屬性。例如：
+
+```html
+<ul id="myMenu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">第一區塊</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">第二區塊</a></li>
+	<li data-menuanchor="thirdPage"><a href="#thirdPage">第三區塊</a></li>
+	<li data-menuanchor="fourthPage"><a href="#fourthPage">第四區塊</a></li>
+</ul>
+```
+
+```javascript
+new fullpage('#fullpage', {
+	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+	menu: '#myMenu'
+});
+```
+
+**注意：** 菜單元素應放置在 fullpage 包裝器外，以避免使用 `css3:true` 時出現問題。否則，插件會將其附加到 `body`。
+
+### navigation
+
+（默認為 `false`）如果設置為 `true`，將顯示由小圓圈組成的導航欄。
+
+### navigationPosition
+
+（默認為 `none`）可以設置為 `left` 或 `right`，定義顯示導航欄的位置（如果使用的話）。
+
+### navigationTooltips
+
+（默認為 `[]`）定義導航圓圈的工具提示（如果使用）。例如：`navigationTooltips: ['第一區塊', '第二區塊']`。如果你更喜歡，也可以使用每個區塊的 `data-tooltip` 屬性來定義它們。
+
+### showActiveTooltip
+
+（默認為 `false`）顯示垂直導航中當前查看區塊的持久工具提示。
+
+### slidesNavigation
+
+（默認為 `false`）如果設置為 `true`，將顯示由小圓圈組成的導航欄，用於站點中的每個橫向滑塊。
+
+### slidesNavPosition
+
+（默認為 `bottom`）定義橫向滑塊導航欄的位置。接受 `top` 和 `bottom` 作為值。你可能需要修改 CSS 樣式來確定與頂部或底部的距離以及其他樣式（例如顏色）。
+
+### scrollOverflow
+
+（默認為 `true`）定義區塊/幻燈片的內容是否大於其高度時是否創建滾動條。需要默認值 `scrollBar: false`。為了防止 fullpage.js 在某些區塊或幻燈片中創建滾動條，請使用類 `fp-noscroll`。例如：`<div class="section fp-noscroll">`。你也可以在響應模式下使用 `fp-auto-height-responsive` 防止應用 scrolloverflow。
+
+### scrollOverflowReset
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。可能的值有 `true`、`false`、`sections`、`slides`。設置為 `true` 時，當離開到另一個區塊/幻燈片時，帶有滾動條的區塊/幻燈片的內容會向上滾動。這樣，區塊/幻燈片將始終顯示其內容的開頭，即使從其下方的區塊滾動過來。在區塊或幻燈片上添加類 `fp-no-scrollOverflowReset` 將禁用該特定面板的此功能。
+
+### scrollOverflowMacStyle
+
+（默認為 `false`）啟用時，該選項將使用“Mac風格”的滾動條，而不是默認的滾動條，在 Windows 計算機上看起來會有所不同。
+
+### sectionSelector
+
+（默認為 `.section`）定義插件區塊使用的 JavaScript 選擇器。有時可能需要更改以避免與其他使用相同選擇器的插件發生衝突。
+
+### slideSelector
+
+（默認為 `.slide`）定義插件幻燈片使用的 JavaScript 選擇器。有時可能需要更改以避免與其他使用相同選擇器的插件發生衝突。
+
+### responsiveWidth
+
+（默認為 `0`）在定義的寬度（像素）以下將使用正常滾動（`autoScrolling:false`）。如果用戶希望使用它們自己的響應式 CSS，則會將類 `fp-responsive` 添加到 body 標籤。例如，如果設置為 900，當瀏覽器的寬度小於 900 時，插件將像普通站點一樣滾動。
+
+### responsiveHeight
+
+（默認為 `0`）在定義的高度（像素）以下將使用正常滾動（`autoScrolling:false`）。如果用戶希望使用它們自己的響應式 CSS，則會將類 `fp-responsive` 添加到 body 標籤。例如，如果設置為 900，當瀏覽器的高度小於 900 時，插件將像普通站點一樣滾動。
