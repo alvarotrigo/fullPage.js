@@ -148,7 +148,7 @@ HTML 檔案中的首行 HTML 程式碼必須使用 [HTML DOCTYPE 聲明](https:/
 	<div class="slide"> slide 4 </div>
 </div>
 ````
-可以在 [simple.html 檔案](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html) 看到完整的 HTML 結構的例子
+可以在 [simple.html 檔案](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html) 看到完整的 HTML 結構的範例
 
 ### 初始化
 
@@ -279,7 +279,7 @@ var myFullpage = new fullpage('#fullpage', {
 
 如果你在 section 中使用 fullPage.js 和錨鏈接（在每個 section 使用 `anchors` 選項或屬性 `data-anchor` ），那麼你將能夠在一個 section 里使用錨鏈接直接導航到某個 slide。
 
-這是一個錨鏈接的例子：
+這是一個錨鏈接的範例：
 https://alvarotrigo.com/fullPage/#secondPage/2 （在你手動訪問該 section/slide 就會看到的 URL ）
 請注意，URL 的最後部分以 `#secondPage/2` 結尾。
 
@@ -367,7 +367,7 @@ fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣�
 
 使用 `autoplay` 屬性來播放影片或音頻，或在 YouTube iframes 使用 `autoplay=1` 參數，將會在頁面加載時自動播放媒體元素。
 
-為了在頁面區塊或幻燈片加載時播放，請使用 `data-autoplay` 屬性。例子如下：
+為了在頁面區塊或幻燈片加載時播放，請使用 `data-autoplay` 屬性。範例如下：
 
 ```html
 <audio data-autoplay>
@@ -377,7 +377,7 @@ fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣�
 
 ### 離開時暫停
 
-嵌入的 HTML5 `<video>` / `<audio>` 和 YouTube iframes 會在你離開區塊或幻燈片時自動暫停。這可以通過使用 `data-keepplaying` 屬性來禁用。例子如下：
+嵌入的 HTML5 `<video>` / `<audio>` 和 YouTube iframes 會在你離開區塊或幻燈片時自動暫停。這可以通過使用 `data-keepplaying` 屬性來禁用。範例如下：
 
 ```html
 <audio data-keepplaying>
@@ -429,3 +429,117 @@ new fullpage('#fullpage', {
 ### scrollingSpeed
 
 （默認為 `700`） 滾動過渡的速度，以毫秒為單位。
+
+### sectionsColor
+
+（默認為 `none`） 定義每個區塊的 CSS `background-color` 屬性。範例如下：
+
+```javascript
+new fullpage('#fullpage', {
+    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+});
+```
+
+### anchors
+
+（默認為 `[]`） 定義 URL 中每個區塊的錨鏈接（#example）。錨點值不可重複。數組中錨點的位置將定義錨點應用於哪個區塊（第二個位置為第二個區塊，以此類推）。使用錨點，通過瀏覽器進行前進和後退導航也將成為可能。此選項還允許用戶書簽特定的區塊或幻燈片。**注意！** 錨點不能與網站上的任何 ID 元素（或 IE 的 NAME 元素）具有相同的值。現在可以直接在 HTML 結構中使用 `data-anchor` 屬性來定義錨點。
+
+### lockAnchors
+
+（默認為 `false`） 確定 URL 中的錨點是否在庫中有任何效果。你仍然可以在內部為你自己的函數和回調使用錨點，但它們對網站的滾動不會有任何影響。當你想將 fullPage.js 與其他使用 URL 中錨點的插件結合使用時，這很有用。
+
+### easing
+
+（默認為 `easeInOutCubic`） 定義垂直和水平滾動使用的過渡效果。它需要 `vendors/easings.min.js` 文件或 [jQuery UI](https://jqueryui.com/) 來使用其中的一些[過渡效果](https://api.jqueryui.com/easings/)。也可以使用其他庫。
+
+### easingcss3
+
+（默認為 `ease`） 在使用 `css3:true` 時，定義過渡效果。你可以使用[預定義的過渡效果](https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp)（例如 `linear`, `ease-out`...）或使用 `cubic-bezier` 函數創建自己的過渡效果。你可能會想使用 [Matthew Lein CSS Easing Animation Tool](https://matthewlein.com/ceaser/) 來幫助設計。
+
+### loopTop
+
+（默認為 `false`） 定義是否在第一個區塊向上滾動時滾動到最後一個區塊。
+
+### loopBottom
+
+（默認為 `false`） 定義是否在最後一個區塊向下滾動時滾動到第一個區塊。
+
+### loopHorizontal
+
+（默認為 `true`） 定義水平滑塊是否在到達最後或上一張幻燈片後循環。
+
+### css3
+
+（默認為 `true`） 定義是否使用 JavaScript 或 CSS3 變換在區塊和幻燈片內滾動。在支持 CSS3 的平板和移動設備上的瀏覽器中使用此選項可以加快移動速度。如果此選項設置為 `true` 而瀏覽器不支持 CSS3，則會使用回退機制。
+
+### autoScrolling
+
+（默認為 `true`） 定義是否使用“自動”滾動或“正常”滾動。它還會影響區塊在平板電腦和手機中的適應方式。
+
+### fitToSection
+
+（默認為 `true`） 確定是否將區塊適應視口。如果設置為 `true`，當前活動區塊將始終填滿整個視口。否則，用戶可以在區塊中間停止。
+
+### fitToSectionDelay
+
+（默認為 1000） 如果 `fitToSection` 設置為 true，則會延遲配置的毫秒數。
+
+### scrollBar
+
+（默認為 `false`） 確定是否為網站的**垂直區塊**使用滾動條。如果使用滾動條，`autoScrolling` 功能將仍然正常工作。用戶還可以自由使用滾動條滾動網站，當滾動結束時 fullPage.js 會將區塊適應到屏幕上。
+
+### paddingTop
+
+（默認為 `0`） 以數值及其單位（例如 `paddingTop: '10px'`, `paddingTop: '10em'`...）定義每個區塊的上填充。在使用固定頭部時很有用。
+
+### paddingBottom
+
+（默認為 `0`） 以數值及其單位（例如 `paddingBottom: '10px'`, `paddingBottom: '10em'`...）定義每個區塊的下填充。在使用固定頁腳時很有用。
+
+### fixedElements
+
+（默認為 `null`） 定義在使用 `css3` 選項時需要從插件的滾動結構中移除的元素。它需要一個包含這些元素的 JavaScript 選擇器字符串。（例如：`fixedElements: '#element1, .element2'`）
+
+### normalScrollElements
+
+（默認為 `null`）[示範](https://codepen.io/alvarotrigo/pen/RmVazM) 如果你想避免在某些元素上滾動時自動滾動，這是你需要使用的選項。（在使用地圖、滾動 div 等情況下很有用）。它需要一個包含這些元素的 JavaScript 選擇器字符串。（例如：`normalScrollElements: '#element1, .element2'`）。此選項不應用於任何區塊/幻燈片元素本身。
+
+### bigSectionsDestination
+
+（默認為 `null`）[示範](https://codepen.io/alvarotrigo/pen/vYLdMrx) 定義在不使用 `scrollOverflow:true` 時如何滾動到比視口更高的區塊。（閱讀[如何創建較小或較大的區塊](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)）。默認情況下，如果你來自目標區塊上方的區塊，fullPage.js 會滾動到頂部；如果你來自目標區塊下方的區塊，則會滾動到底部。可能的值是 `top`、`bottom`、`null`。
+
+### keyboardScrolling
+
+（默認為 `true`） 定義是否可以使用鍵盤導航內容。
+
+### touchSensitivity
+
+（默認為 `5`） 定義瀏覽器窗口寬度/高度的百分比，並確定導航到下一個區塊/幻燈片的滑動距離。
+
+### continuousVertical
+
+（默認為 `false`） 定義在最後一個區塊向下滾動時是否應滾動到第一個區塊，以及在第一個區塊向上滾動時是否應滾動到最後一個區塊。不與 `loopTop`、`loopBottom` 或網站中存在的任何滾動條（`scrollBar:true` 或 `autoScrolling:false`）兼容。
+
+### continuousHorizontal
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。 定義在最後一張幻燈片向右滑動時是否應向右滑動到第一張幻燈片，或者在第一張幻燈片向左滑動時是否應向左滑動到最後一張幻燈片。不與 `loopHorizontal` 兼容。需要 fullpage.js >= 3.0.1。
+
+### scrollHorizontally
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。 定義是否通過使用鼠標滾輪或觸控板在滑塊內水平滑動。只能在使用 `autoScrolling:true` 時使用。非常適合故事講述。需要 fullpage.js >= 3.0.1。
+
+### interlockedSlides
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。確定移動一個水平滑塊是否會強制其他區塊中的滑塊沿相同方向滑動。可能的值為 `true`、`false` 或包含互鎖區塊的數組。例如 `[1,3,5]`，從 1 開始。需要 fullpage.js >= 3.0.1。
+
+### dragAndMove
+
+（默認為 `false`）[fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。啟用或禁用使用鼠標或手指拖動和滑動區塊和幻燈片。需要 fullpage.js >= 3.0.
+
+1. 可使用的值包含：
+  - `true`：啟用此功能。
+  - `false`：禁用此功能。
+  - `vertical`：僅在垂直方向啟用此功能。
+  - `horizontal`：僅在水平方向啟用此功能。
+  - `fingersonly`：僅為觸摸設備啟用此功能。
+  - `mouseonly`：僅為桌面設備（鼠標和觸控板）啟用此功能。
