@@ -1222,3 +1222,144 @@ new fullpage("#fullpage", {
 ```
 
 ---
+
+---
+
+### onSlideLeave (`section`, `origin`, `destination`, `direction`, `trigger`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv)
+
+當用戶從一個幻燈片轉到另一個幻燈片時，會觸發此回調。返回 `false` 將在移動發生之前取消該操作。
+
+參數：
+
+-   `section`：_(Object)_ 當前垂直區段。
+-   `origin`：_(Object)_ 起始的水平幻燈片。
+-   `destination`：_(Object)_ 目標的水平幻燈片。
+-   `direction`：_(String)_ 根據滾動方向，它將取值 `right` 或 `left`。
+-   `trigger`：_(String)_ 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    onSlideLeave: function (section, origin, destination, direction, trigger) {
+        var leavingSlide = this;
+
+        // 從第2區段的第一張幻燈片向右離開
+        if (section.index == 1 && origin.index == 0 && direction == "right") {
+            alert("Leaving the first slide!!");
+        }
+
+        // 從第2區段的第三張幻燈片向左離開
+        if (section.index == 1 && origin.index == 2 && direction == "left") {
+            alert("Going to slide 2!");
+        }
+    },
+});
+```
+
+#### 在移動發生前取消
+
+你可以通過在 `onSlideLeave` 回調中返回 `false` 來取消移動。 [與 `onLeave` 取消移動相同](https://github.com/alvarotrigo/fullPage.js#cancelling-the-scroll-before-it-takes-place)。
+
+---
+
+### onScrollOverflow (`section`, `slide`, `position`, `direction`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 當在使用 `scrollOverflow: true` 選項的可滾動區段內滾動時，會觸發此回調。
+
+參數：
+
+-   `section`：_(Object)_ 當前垂直區段。
+-   `slide`：_(Object)_ 起始的水平幻燈片。
+-   `position`：_(Integer)_ 在區段/幻燈片內的滾動量。從 0 開始。
+-   `direction`：_(String)_ `up` 或 `down`
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    onScrollOverflow: function (section, slide, position, direction) {
+        console.log(section);
+        console.log("position: " + position);
+    },
+});
+```
+
+# 錯誤報告
+
+1. 請在提問前使用 GitHub 的問題搜索功能尋找相關問題。
+2. 確保使用最新版本的 fullpage.js。不支持舊版本。
+3. 使用 [GitHub Issues 論壇](https://github.com/alvarotrigo/fullPage.js/issues) 創建問題。
+4. **需要提供問題的隔離重現範例。** 如果可能，請使用 [jsfiddle](https://jsfiddle.net/alvarotrigo/ea17skjr/) 或 [codepen](https://codepen.io/alvarotrigo/pen/qqabrp) 進行範例展示。
+
+# 參與貢獻
+
+請參見 [貢獻指南](https://github.com/alvarotrigo/fullPage.js/wiki/Contributing-to-fullpage.js)
+
+# 更新日誌
+
+要查看最近的更改，請參閱 [發布部分](https://github.com/alvarotrigo/fullPage.js/releases)。
+
+# 構建任務
+
+想要構建 fullpage.js 發行文件？請參見 [構建任務](https://github.com/alvarotrigo/fullPage.js/wiki/Build-tasks)
+
+# 資源
+
+-   Wordpress 插件 [Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) 和 [Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)。
+-   [Wordpress 主題](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+-   [官方 Vue.js 包裝組件](https://github.com/alvarotrigo/vue-fullpage.js)
+-   [官方 React.js 包裝組件](https://github.com/alvarotrigo/react-fullpage)
+-   [官方 Angular 包裝組件](https://github.com/alvarotrigo/angular-fullpage)
+-   [CSS 緩動動畫工具 - Matthew Lein](https://matthewlein.com/ceaser/)（用於定義 `easingcss3` 值）
+-   [fullPage.js jsDelivr CDN](https://www.jsdelivr.com/package/npm/fullpage.js)
+-   [fullPage.js October CMS 插件](https://github.com/freestream/oc-parallax-plugin)
+-   [fullPage.js Angular2 指令](https://github.com/meiblorn/ng2-fullpage)
+-   [fullPage.js Angular 指令](https://github.com/hellsan631/angular-fullpage.js)
+-   [fullPage.js ember-cli 插件](https://www.npmjs.com/package/ember-cli-fullpagejs)
+-   [fullPage.js Rails Ruby Gem](https://rubygems.org/gems/fullpagejs-rails)
+-   [Angular fullPage.js - 適配 Angular.js v1.x](https://github.com/mmautomatizacion/angular-fullpage.js)
+-   [將 fullPage.js 與 Wordpress 集成（教程）](https://premium.wpmudev.org/blog/build-apple-inspired-full-page-scrolling-pages-for-your-wordpress-site/)
+-   [Wordpress 插件 for Divi](https://alvarotrigo.com/fullPage/wordpress-plugin-divi/)
+-   [Wordpress 插件 for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
+
+## 誰在使用 fullPage.js
+
+![Who is using fullPage.js](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/using-fullpage.png)
+
+-   http://www.bbc.co.uk/news/resources/idt-d88680d1-26f2-4863-be95-83298fd01e02
+-   http://medoff.ua/en/
+-   http://promo.prestigio.com/grace1/
+-   http://torchbrowser.com/
+-   http://www.boxreload.com/
+-   http://boxx.hk/
+-   http://www.villareginateodolinda.it
+
+## 捐款
+
+歡迎捐款 :)
+
+[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
+
+## 贊助商
+
+成為贊助商，並在我們的 GitHub README 上展示您的徽標及網站鏈接。 [[成為贊助商](https://alvarotrigo.com/#contact)] | [[成為 Patreon 贊助者]](https://www.patreon.com/fullpagejs)
+
+[![Codeless](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codeless.png)](https://codeless.co)
+[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](http://www.browserstack.com/)
+[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+
+### 人物
+
+<a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">
+	<img src="http://wallpapers-for-ipad.com/fullpage/imgs3/avatars/donsalvadori.jpg">
+</a>
+
+## 貢獻者
+
+<a href="https://github.com/alvarotrigo/fullPage.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=alvarotrigo/fullPage.js&max=400&columns=25&anon=1&v=2" />
+</a>
