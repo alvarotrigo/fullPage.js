@@ -1,4 +1,7 @@
+<!-- @format -->
+
 # fullPage.js
+
 ![preview](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/intro.png)
 ![compatibility](https://raw.github.com/alvarotrigo/fullPage.js/master/examples/imgs/compatible.png)
 
@@ -24,39 +27,40 @@
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 [![Minzipped Size](https://img.shields.io/bundlephobia/minzip/fullpage.js)](https://bundlephobia.com/package/fullpage.js)
-&nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
+&nbsp;&nbsp;**|**&nbsp;&nbsp; _Created by [@imac2](https://twitter.com/imac2)_
 
-- [範例](https://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/qqabrp)
-- [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
-- [Wordpress 的主題](https://alvarotrigo.com/fullPage/utils/wordpress.html)
-- [fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)
-- [常見問題](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
-- [從 fullPage v3 更新至 fullpage v4](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
+-   [範例](https://alvarotrigo.com/fullPage/) | [Codepen](https://codepen.io/alvarotrigo/pen/qqabrp)
+-   [Wordpress plugin for Gutenberg](https://alvarotrigo.com/fullPage/wordpress-plugin-gutenberg/) and [WordPress pluging fo Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
+-   [Wordpress 的主題](https://alvarotrigo.com/fullPage/utils/wordpress.html)
+-   [fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)
+-   [常見問題](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)
+-   [從 fullPage v3 更新至 fullpage v4](https://alvarotrigo.com/fullPage/help/migration-from-fullpage-3/)
+
 ---
 
 通過此函式庫可讓你輕鬆建立全屏滾動網站 (也稱為一頁式網站)。
 本庫可建立全屏滾動網站，同時也可在網站中新增橫向滾動條。
 
-- [介紹](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#介紹)
-- [相容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#相容性)
-- [許可證](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#許可證)
-- [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#用法)
-  - [建立鏈接到 section 或 slide](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E5%BB%BA%E7%AB%8B%E9%8F%88%E6%8E%A5%E5%88%B0%20section%20%E6%88%96%20slide)
-  - [建立更小或更大的 section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E5%BB%BA%E7%AB%8B%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%20section)
-  - [fullpage.js 新增的狀態類](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#fullpage.js%20%E6%96%B0%E5%A2%9E%E7%9A%84%E7%8B%80%E6%85%8B%E9%A1%9E)
-  - [懶加載](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#懶加載)
-  - [自動播放內嵌媒體](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#自動播放內嵌媒體)
-  - [使用擴充功能](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#使用擴充功能)
-- [參數](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#參數)
-- [全域函式](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#全域函式)
-- [回調函式](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#回調函式)
-- [問題反饋](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#問題反饋)
-- [貢獻](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#貢獻)
-- [更新日誌](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#更新日誌)
-- [編譯構建](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#編譯構建)
-- [參考資源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E8%AA%B0%E5%9C%A8%E4%BD%BF%E7%94%A8%20fullpage.js)
-- [誰在使用 fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E8%AA%B0%E5%9C%A8%E4%BD%BF%E7%94%A8%20fullpage.js)
-- [贊助](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#贊助)
+-   [介紹](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#介紹)
+-   [相容性](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#相容性)
+-   [許可證](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#許可證)
+-   [用法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#用法)
+    -   [建立鏈接到 section 或 slide](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E5%BB%BA%E7%AB%8B%E9%8F%88%E6%8E%A5%E5%88%B0%20section%20%E6%88%96%20slide)
+    -   [建立更小或更大的 section](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E5%BB%BA%E7%AB%8B%E6%9B%B4%E5%B0%8F%E6%88%96%E6%9B%B4%E5%A4%A7%E7%9A%84%20section)
+    -   [fullpage.js 新增的狀態類](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#fullpage.js%20%E6%96%B0%E5%A2%9E%E7%9A%84%E7%8B%80%E6%85%8B%E9%A1%9E)
+    -   [懶加載](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#懶加載)
+    -   [自動播放內嵌媒體](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#自動播放內嵌媒體)
+    -   [使用擴充功能](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#使用擴充功能)
+-   [參數](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#參數)
+-   [全域函式](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#全域函式)
+-   [回調函式](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#回調函式)
+-   [問題反饋](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#問題反饋)
+-   [貢獻](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#貢獻)
+-   [更新日誌](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#更新日誌)
+-   [編譯構建](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#編譯構建)
+-   [參考資源](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E8%AA%B0%E5%9C%A8%E4%BD%BF%E7%94%A8%20fullpage.js)
+-   [誰在使用 fullpage.js](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#%E8%AA%B0%E5%9C%A8%E4%BD%BF%E7%94%A8%20fullpage.js)
+-   [贊助](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/traditional-chinese/#贊助)
 
 ## 介紹
 
@@ -74,7 +78,7 @@ fillPage.js 完全支持所有現代瀏覽器和 IE 11。 如果您需要支持 
 
 ### 商業許可證
 
-如果您想使用 fullPage 開發商業網站、主題、專案和應用程式，商業許可證是您應使用的許可證。使用這個許可證，您的原始碼將保持私有，並且您將不必將其開源。[點選此處購買fullpage 商業許可證](https://alvarotrigo.com/fullPage/pricing/)。
+如果您想使用 fullPage 開發商業網站、主題、專案和應用程式，商業許可證是您應使用的許可證。使用這個許可證，您的原始碼將保持私有，並且您將不必將其開源。[點選此處購買 fullpage 商業許可證](https://alvarotrigo.com/fullPage/pricing/)。
 
 ### 開源許可證
 
@@ -85,13 +89,16 @@ fillPage.js 完全支持所有現代瀏覽器和 IE 11。 如果您需要支持 
 [閱讀更多關於 fullPage 的許可證](https://alvarotrigo.com/fullPage/pricing/)。
 
 ## 用法
+
 正如範例檔案所示，需要引用：
- - JavaScript 檔案 `fullpage.js` (或其壓縮版本 `fullpage.min.js`)
- - CSS 檔案 `fullpage.css`
+
+-   JavaScript 檔案 `fullpage.js` (或其壓縮版本 `fullpage.min.js`)
+-   CSS 檔案 `fullpage.css`
 
 **可選**，使用 `css3:false` 時，如果您想要使用函式庫的中的動畫曲線功能（ `easeInOutCubic` ），您可以新增 [easings file](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js)。
 
 ### 使用 bower 或 npm 進行安裝
+
 **或者**，如果你想要的話可以使用 bower 或 npm 安裝 fullPage.js：
 
 ```shell
@@ -103,6 +110,7 @@ npm install fullpage.js
 ```
 
 ### 引用函式庫
+
 ```html
 <link rel="stylesheet" type="text/css" href="fullpage.css" />
 
@@ -115,6 +123,7 @@ npm install fullpage.js
 使用 Webpack、Browserify 或 Require.js 嗎？請查看 [如何使用模組加載器](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)。
 
 ### 使用 CDN 引用
+
 如果您傾向使用 CDN 載入所需檔案，fullPage.js 在以下連結：
 https://cdnjs.com/libraries/fullPage.js
 
@@ -128,38 +137,43 @@ HTML 檔案中的首行 HTML 程式碼必須使用 [HTML DOCTYPE 聲明](https:/
 
 ```html
 <div id="fullpage">
-	<div class="section">Some section</div>
-	<div class="section">Some section</div>
-	<div class="section">Some section</div>
-	<div class="section">Some section</div>
+    <div class="section">Some section</div>
+    <div class="section">Some section</div>
+    <div class="section">Some section</div>
+    <div class="section">Some section</div>
 </div>
 ```
+
 如果你想定義一個與衆不同的起始頁面，而不是原始第一段或第一個滑動頁，只需將 `active` 類新增到你想首先載入的段或滑動頁。
+
 ```html
 <div class="section active">Some section</div>
 ```
+
 為在程式碼段中建立橫向滑塊，每個滑動頁將預設定義為包含 `slide` 類的元素：
 
 ```html
 <div class="section">
-	<div class="slide"> slide 1 </div>
-	<div class="slide"> slide 2 </div>
-	<div class="slide"> slide 3 </div>
-	<div class="slide"> slide 4 </div>
+    <div class="slide">slide 1</div>
+    <div class="slide">slide 2</div>
+    <div class="slide">slide 3</div>
+    <div class="slide">slide 4</div>
 </div>
-````
+```
+
 可以在 [simple.html 檔案](https://github.com/alvarotrigo/fullPage.js/tree/master/examples/simple.html) 看到完整的 HTML 結構的範例
 
 ### 初始化
 
 #### 使用 Javascript 進行初始化
+
 您只需要在關閉 `</body>` 標籤之前呼叫 fullPage.js 即可。
 
 ```javascript
-new fullpage('#fullpage', {
-	//options here
-	autoScrolling:true,
-	scrollHorizontally: true
+new fullpage("#fullpage", {
+    //options here
+    autoScrolling: true,
+    scrollHorizontally: true,
 });
 ```
 
@@ -168,15 +182,15 @@ new fullpage('#fullpage', {
 您也可以將 fullpage.js 作為 jQuery 外掛使用！
 
 ```javascript
-$(document).ready(function() {
-	$('#fullpage').fullpage({
-		//options here
-		autoScrolling:true,
-		scrollHorizontally: true
-	});
+$(document).ready(function () {
+    $("#fullpage").fullpage({
+        //options here
+        autoScrolling: true,
+        scrollHorizontally: true,
+    });
 
-	// Example of how to use fullpage.js methods
-	$.fn.fullpage.setAllowScrolling(false);
+    // Example of how to use fullpage.js methods
+    $.fn.fullpage.setAllowScrolling(false);
 });
 ```
 
@@ -185,93 +199,108 @@ $(document).ready(function() {
 所有選項的更復雜的初始化如下所示：
 
 ```javascript
-var myFullpage = new fullpage('#fullpage', {
-	// 導航
-	menu: '#menu',
-	lockAnchors: false,
-	anchors:['firstPage', 'secondPage'],
-	navigation: false,
-	navigationPosition: 'right',
-	navigationTooltips: ['firstSlide', 'secondSlide'],
-	showActiveTooltip: false,
-	slidesNavigation: false,
-	slidesNavPosition: 'bottom',
+var myFullpage = new fullpage("#fullpage", {
+    // 導航
+    menu: "#menu",
+    lockAnchors: false,
+    anchors: ["firstPage", "secondPage"],
+    navigation: false,
+    navigationPosition: "right",
+    navigationTooltips: ["firstSlide", "secondSlide"],
+    showActiveTooltip: false,
+    slidesNavigation: false,
+    slidesNavPosition: "bottom",
 
-	// 滾動
-	css3: true,
-	scrollingSpeed: 700,
-	autoScrolling: true,
-	fitToSection: true,
-	fitToSectionDelay: 600,
-	scrollBar: false,
-	easing: 'easeInOutCubic',
-	easingcss3: 'ease',
-	loopBottom: false,
-	loopTop: false,
-	loopHorizontal: true,
-	continuousVertical: false,
-	continuousHorizontal: false,
-	scrollHorizontally: false,
-	interlockedSlides: false,
-	dragAndMove: false,
-	offsetSections: false,
-	resetSliders: false,
-	fadingEffect: false,
-	normalScrollElements: '#element1, .element2',
-	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
-	scrollOverflowReset: false,
-	touchSensitivity: 15,
-	bigSectionsDestination: null,
+    // 滾動
+    css3: true,
+    scrollingSpeed: 700,
+    autoScrolling: true,
+    fitToSection: true,
+    fitToSectionDelay: 600,
+    scrollBar: false,
+    easing: "easeInOutCubic",
+    easingcss3: "ease",
+    loopBottom: false,
+    loopTop: false,
+    loopHorizontal: true,
+    continuousVertical: false,
+    continuousHorizontal: false,
+    scrollHorizontally: false,
+    interlockedSlides: false,
+    dragAndMove: false,
+    offsetSections: false,
+    resetSliders: false,
+    fadingEffect: false,
+    normalScrollElements: "#element1, .element2",
+    scrollOverflow: true,
+    scrollOverflowMacStyle: false,
+    scrollOverflowReset: false,
+    touchSensitivity: 15,
+    bigSectionsDestination: null,
 
-	// 可訪問
-	keyboardScrolling: true,
-	animateAnchor: true,
-	recordHistory: true,
+    // 可訪問
+    keyboardScrolling: true,
+    animateAnchor: true,
+    recordHistory: true,
 
-	// 佈局
-	controlArrows: true,
-	controlArrowsHTML: [
-		'<div class="fp-arrow"></div>', 
-		'<div class="fp-arrow"></div>'
-	],
-	verticalCentered: true,
-	sectionsColor : ['#ccc', '#fff'],
-	paddingTop: '3em',
-	paddingBottom: '10px',
-	fixedElements: '#header, .footer',
-	responsiveWidth: 0,
-	responsiveHeight: 0,
-	responsiveSlides: false,
-	parallax: false,
-	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
-	dropEffect: false,
-	dropEffectOptions: { speed: 2300, color: '#F82F4D', zIndex: 9999},
-	waterEffect: false,
-	waterEffectOptions: { animateContent: true, animateOnMouseMove: true},
-	cards: false,
-	cardsOptions: {perspective: 100, fadeContent: true, fadeBackground: true},
+    // 佈局
+    controlArrows: true,
+    controlArrowsHTML: [
+        '<div class="fp-arrow"></div>',
+        '<div class="fp-arrow"></div>',
+    ],
+    verticalCentered: true,
+    sectionsColor: ["#ccc", "#fff"],
+    paddingTop: "3em",
+    paddingBottom: "10px",
+    fixedElements: "#header, .footer",
+    responsiveWidth: 0,
+    responsiveHeight: 0,
+    responsiveSlides: false,
+    parallax: false,
+    parallaxOptions: { type: "reveal", percentage: 62, property: "translate" },
+    dropEffect: false,
+    dropEffectOptions: { speed: 2300, color: "#F82F4D", zIndex: 9999 },
+    waterEffect: false,
+    waterEffectOptions: { animateContent: true, animateOnMouseMove: true },
+    cards: false,
+    cardsOptions: { perspective: 100, fadeContent: true, fadeBackground: true },
 
+    // 自定義選擇器
+    sectionSelector: ".section",
+    slideSelector: ".slide",
 
-	// 自定義選擇器
-	sectionSelector: '.section',
-	slideSelector: '.slide',
+    lazyLoading: true,
+    observer: true,
+    credits: {
+        enabled: true,
+        label: "Made with fullPage.js",
+        position: "right",
+    },
 
-	lazyLoading: true,
-	observer: true,
-	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
-
-	// 事件
-	beforeLeave: function(origin, destination, direction, trigger){},
-	onLeave: function(origin, destination, direction, trigger){},
-	afterLoad: function(origin, destination, direction, trigger){},
-	afterRender: function(){},
-	afterResize: function(width, height){},
-	afterReBuild: function(){},
-	afterResponsive: function(isResponsive){},
-	afterSlideLoad: function(section, origin, destination, direction, trigger){},
-	onSlideLeave: function(section, origin, destination, direction, trigger){},
-	onScrollOverflow: function(section, slide, position, direction){}
+    // 事件
+    beforeLeave: function (origin, destination, direction, trigger) {},
+    onLeave: function (origin, destination, direction, trigger) {},
+    afterLoad: function (origin, destination, direction, trigger) {},
+    afterRender: function () {},
+    afterResize: function (width, height) {},
+    afterReBuild: function () {},
+    afterResponsive: function (isResponsive) {},
+    afterSlideLoad: function (
+        section,
+        origin,
+        destination,
+        direction,
+        trigger
+    ) {},
+    onSlideLeave: function (
+        section,
+        origin,
+        destination,
+        direction,
+        trigger
+    ) {},
+    onScrollOverflow: function (section, slide, position, direction) {},
 });
 ```
 
@@ -284,24 +313,25 @@ https://alvarotrigo.com/fullPage/#secondPage/2 （在你手動訪問該 section/
 請注意，URL 的最後部分以 `#secondPage/2` 結尾。
 
 ```javascript
-new fullpage('#fullpage', {
-	anchors:['firstPage', 'secondPage', 'thirdPage']
+new fullpage("#fullpage", {
+    anchors: ["firstPage", "secondPage", "thirdPage"],
 });
 ```
 
-URL `#secondPage/2` 結尾處的錨分別定義了目標 section 和 slide 。 在前面的 URL 中，目標 section 是使用錨點  `secondPage`，slide 將會是第 2 張，因為我們使用索引 `2`  。 （一個 section 的第一個 slide 為索引 0 ，在技術上這是一個 section ）。
+URL `#secondPage/2` 結尾處的錨分別定義了目標 section 和 slide 。 在前面的 URL 中，目標 section 是使用錨點 `secondPage`，slide 將會是第 2 張，因為我們使用索引 `2` 。 （一個 section 的第一個 slide 為索引 0 ，在技術上這是一個 section ）。
 
-如果我們在HTML標記中使用屬性 `data-anchor` ，就可以使用自定義錨點來代替它的索引：
+如果我們在 HTML 標記中使用屬性 `data-anchor` ，就可以使用自定義錨點來代替它的索引：
 
 ```html
 <div class="section">
-	<div class="slide" data-anchor="slide1"> slide 1 </div>
-	<div class="slide" data-anchor="slide2"> slide 2 </div>
-	<div class="slide" data-anchor="slide3"> slide 3 </div>
-	<div class="slide" data-anchor="slide4"> slide 4 </div>
+    <div class="slide" data-anchor="slide1">slide 1</div>
+    <div class="slide" data-anchor="slide2">slide 2</div>
+    <div class="slide" data-anchor="slide3">slide 3</div>
+    <div class="slide" data-anchor="slide4">slide 4</div>
 </div>
 ```
-在最後一種情況中，我們使用的URL將是 `#secondPage/slide3` ，這相當於之前的 `#secondPage/2` 。
+
+在最後一種情況中，我們使用的 URL 將是 `#secondPage/slide3` ，這相當於之前的 `#secondPage/2` 。
 
 請注意，如果沒有提供 `anchors` 陣列，則也可以使用 `data-anchor` 屬性以同樣的方式定義節錨點。
 
@@ -315,7 +345,7 @@ fullPage.js 可以移除 section 和 slide 的全屏高度限制來建立高度�
 
 記得在所有 section 使用此功能並沒有意義，這一點很重要。如果網站的初始載入中有多個 section，則 fullPage.js 將不會滾動以檢視下一個 section，因為它已經在畫面中。
 
-如果你想要建立更小的 section，只需添加 `fp-auto-height`  即可自動適應高度。
+如果你想要建立更小的 section，只需添加 `fp-auto-height` 即可自動適應高度。
 
 ```html
 <div class="section">整個檢視</div>
@@ -332,30 +362,30 @@ fullPage.js 可以移除 section 和 slide 的全屏高度限制來建立高度�
 
 Fullpage.js 在不同的元素中新增多個型別來儲存網站狀態的記錄：
 
-- `active` 被新增到目前可見 section 和 slide 。
-- `active` 被新增到目前菜單元素（如果使用 `menu` 選項）。
-- `fp-viewing-SECTION-SLIDE` 形式的型別被新增到網站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分將成為目前 section 和 slide 的錨（或索引，如果沒有提供錨）。
-- 當進入響應模式時，`fp-responsive` 新增到 `body` 元素
-- 當啟用 fullpage.js 時，`fp-enabled` 新增到 `html` 元素。 （並在銷燬時被移除）。
-- 當 fullPage.js 被銷燬時，`fp-destroyed` 被新增到 fullpage.js 容器中。
+-   `active` 被新增到目前可見 section 和 slide 。
+-   `active` 被新增到目前菜單元素（如果使用 `menu` 選項）。
+-   `fp-viewing-SECTION-SLIDE` 形式的型別被新增到網站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分將成為目前 section 和 slide 的錨（或索引，如果沒有提供錨）。
+-   當進入響應模式時，`fp-responsive` 新增到 `body` 元素
+-   當啟用 fullpage.js 時，`fp-enabled` 新增到 `html` 元素。 （並在銷燬時被移除）。
+-   當 fullPage.js 被銷燬時，`fp-destroyed` 被新增到 fullpage.js 容器中。
 
 ### 懶加載
 
-[演示](https://codepen.io/alvarotrigo/pen/eNLBXo) 
+[演示](https://codepen.io/alvarotrigo/pen/eNLBXo)
 
 fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣它們不會減緩網站的載入速度，也不會浪費數據傳輸。
 當使用懶載入時，所有這些元素只有在進入畫面時才會載入。
 要啟用懶加載，您只需將 `src` 屬性更改為 `data-src` ，如下所示：
 
 ```html
-<img data-src="image.png">
+<img data-src="image.png" />
 <video>
-	<source data-src="video.webm" type="video/webm" />
-	<source data-src="video.mp4" type="video/mp4" />
+    <source data-src="video.webm" type="video/webm" />
+    <source data-src="video.mp4" type="video/mp4" />
 </video>
 ```
 
-如果您已經使用另一個使用 `data-src` 的延懶載解決方案，則可以通過設定 `lazyLoading: false` 選項來禁用fullPage.js 懶載入。
+如果您已經使用另一個使用 `data-src` 的延懶載解決方案，則可以通過設定 `lazyLoading: false` 選項來禁用 fullPage.js 懶載入。
 
 ### 自動播放 / 暫停嵌入式媒體
 
@@ -371,7 +401,7 @@ fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣�
 
 ```html
 <audio data-autoplay>
-    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
 </audio>
 ```
 
@@ -381,7 +411,7 @@ fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣�
 
 ```html
 <audio data-keepplaying>
-    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg" />
 </audio>
 ```
 
@@ -394,8 +424,14 @@ fullpage.js 提供了一組擴充功能，你可以用來增強其默認功能�
 一旦你獲得擴充功能文件，你需要在 fullPage 之前添加它。例如，如果我想使用連續水平擴充功能，我會包括擴充功能文件，然後是擴充功能版本的 fullPage 文件。
 
 ```html
-<script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
-<script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
+<script
+    type="text/javascript"
+    src="fullpage.continuousHorizontal.min.js"
+></script>
+<script
+    type="text/javascript"
+    src="fullpage/fullpage.extensions.min.js"
+></script>
 ```
 
 每個擴充功能需要激活密鑰和許可密鑰。請參閱更多詳細信息。
@@ -409,8 +445,8 @@ fullpage.js 提供了一組擴充功能，你可以用來增強其默認功能�
 （默認為 `null`）。**此選項是必須的。** 如果你在非開源項目中使用 fullPage，那麼你應該使用購買 fullPage 商業許可證時提供的許可密鑰。如果你的項目是開源的，並且與 GPLv3 許可證兼容，你可以請求許可密鑰。請閱讀更多關於許可證的信息。用法範例如下：
 
 ```javascript
-new fullpage('#fullpage', {
-    licenseKey: 'YOUR_KEY_HERE'
+new fullpage("#fullpage", {
+    licenseKey: "YOUR_KEY_HERE",
 });
 ```
 
@@ -435,8 +471,8 @@ new fullpage('#fullpage', {
 （默認為 `none`） 定義每個區塊的 CSS `background-color` 屬性。範例如下：
 
 ```javascript
-new fullpage('#fullpage', {
-    sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+new fullpage("#fullpage", {
+    sectionsColor: ["#f2f2f2", "#4BBFC3", "#7BAABE", "whitesmoke", "#000"],
 });
 ```
 
@@ -537,19 +573,20 @@ new fullpage('#fullpage', {
 （默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。啟用或禁用使用鼠標或手指拖動和滑動區塊和幻燈片。需要 fullpage.js >= 3.0.
 
 可使用的值包含：
-  - `true`：啟用此功能。
-  - `false`：禁用此功能。
-  - `vertical`：僅在垂直方向啟用此功能。
-  - `horizontal`：僅在水平方向啟用此功能。
-  - `fingersonly`：僅為觸摸設備啟用此功能。
-  - `mouseonly`：僅為桌面設備（鼠標和觸控板）啟用此功能。
+
+-   `true`：啟用此功能。
+-   `false`：禁用此功能。
+-   `vertical`：僅在垂直方向啟用此功能。
+-   `horizontal`：僅在水平方向啟用此功能。
+-   `fingersonly`：僅為觸摸設備啟用此功能。
+-   `mouseonly`：僅為桌面設備（鼠標和觸控板）啟用此功能。
 
 ### offsetSections
 
 （默認為 `false`）[fullpage.js 擴充功能](https://alvarotrigo.com/fullPage/extensions/)。提供一種方法來基於百分比使用非全屏區塊。理想情況下，通過顯示下一個或上一個區塊的一部分來告訴訪問者站點上有更多內容。需要 fullPage.js >= 3.0.1。要定義每個區塊的百分比，必須使用 `data-percentage` 屬性。可以通過使用屬性 `data-centered`（默認為 `true` 如果未指定）中的布爾值來確定區塊在視口中的居中情況。例如：
 
 ```html
-<div class="section" data-percentage="80" data-centered="true">
+<div class="section" data-percentage="80" data-centered="true"></div>
 ```
 
 ### resetSliders
@@ -576,17 +613,19 @@ new fullpage('#fullpage', {
 
 ```html
 <ul id="myMenu">
-	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">第一區塊</a></li>
-	<li data-menuanchor="secondPage"><a href="#secondPage">第二區塊</a></li>
-	<li data-menuanchor="thirdPage"><a href="#thirdPage">第三區塊</a></li>
-	<li data-menuanchor="fourthPage"><a href="#fourthPage">第四區塊</a></li>
+    <li data-menuanchor="firstPage" class="active">
+        <a href="#firstPage">第一區塊</a>
+    </li>
+    <li data-menuanchor="secondPage"><a href="#secondPage">第二區塊</a></li>
+    <li data-menuanchor="thirdPage"><a href="#thirdPage">第三區塊</a></li>
+    <li data-menuanchor="fourthPage"><a href="#fourthPage">第四區塊</a></li>
 </ul>
 ```
 
 ```javascript
-new fullpage('#fullpage', {
-	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-	menu: '#myMenu'
+new fullpage("#fullpage", {
+    anchors: ["firstPage", "secondPage", "thirdPage", "fourthPage", "lastPage"],
+    menu: "#myMenu",
 });
 ```
 
@@ -626,7 +665,7 @@ new fullpage('#fullpage', {
 
 ### scrollOverflowMacStyle
 
-（默認為 `false`）啟用時，該選項將使用“Mac風格”的滾動條，而不是默認的滾動條，在 Windows 計算機上看起來會有所不同。
+（默認為 `false`）啟用時，該選項將使用“Mac 風格”的滾動條，而不是默認的滾動條，在 Windows 計算機上看起來會有所不同。
 
 ### sectionSelector
 
@@ -664,7 +703,7 @@ new fullpage('#fullpage', {
 
 ### dropEffectOptions
 
-（預設值：`{ speed: 2300, color: '#F82F4D', zIndex: 9999}`）。 
+（預設值：`{ speed: 2300, color: '#F82F4D', zIndex: 9999}`）。
 
 允許在使用 `dropEffect:true` 選項時配置下落效果的參數。[了解更多關於如何應用下落效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Drop-Effect)。
 
@@ -674,7 +713,7 @@ new fullpage('#fullpage', {
 
 ### waterEffectOptions
 
-（預設值：`{ animateContent: true, animateOnMouseMove: true}`）。 
+（預設值：`{ animateContent: true, animateOnMouseMove: true}`）。
 
 允許在使用 `waterEffect:true` 選項時配置水波效果的參數。[了解更多關於如何應用水波效果選項](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-Water-Effect)。
 
@@ -698,13 +737,15 @@ new fullpage('#fullpage', {
 
 ### credits
 
-（預設值：`{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）。 
+（預設值：`{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）。
 定義是否使用 fullPage.js 的版權聲明。根據 GPLv3 版權許可條款第 0、4、5 和 7 條款，使用 GPLv3 版權下的 fullPage.js 的人需要顯著提示 fullPage.js 的使用。我們建議保留此選項啟用以進行歸屬。
 
 ## 方法
+
 你可以在[這裡](https://alvarotrigo.com/fullPage/examples/methods.html)看到它們的應用。
 
 ### getActiveSection()
+
 [範例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 獲取包含當前活動區段及其屬性的對象（類型為 [Section](https://github.com/alvarotrigo/fullPage.js#callbacks)）。
 
 ```javascript
@@ -712,6 +753,7 @@ fullpage_api.getActiveSection();
 ```
 
 ### getActiveSlide()
+
 [範例](https://codepen.io/alvarotrigo/pen/VdpzRN/) 獲取包含當前活動幻燈片及其屬性的對象（類型為 [Slide](https://github.com/alvarotrigo/fullPage.js#callbacks)）。
 
 ```javascript
@@ -719,6 +761,7 @@ fullpage_api.getActiveSlide();
 ```
 
 ### getScrollY() 和 getScrollX
+
 [範例](https://codepen.io/alvarotrigo/pen/GRyGqro) `getScrollY` 獲取 fullPage 包裝器的 Y 位置。`getScrollX` 獲取當前橫向幻燈片的 X 位置。
 
 ```javascript
@@ -727,23 +770,32 @@ fullpage_api.getScrollX();
 ```
 
 ### moveSectionUp()
+
 [範例](https://codepen.io/alvarotrigo/pen/GJXNMN) 向上一個區段滾動：
+
 ```javascript
 fullpage_api.moveSectionUp();
 ```
+
 ---
+
 ### moveSectionDown()
+
 [範例](https://codepen.io/alvarotrigo/pen/jPvVZx) 向下一個區段滾動：
+
 ```javascript
 fullpage_api.moveSectionDown();
 ```
+
 ---
+
 ### moveTo(section, slide)
+
 [範例](https://codepen.io/alvarotrigo/pen/doqOmY) 滾動頁面到給定的區段和幻燈片。第一個區段的索引為 1，而默認可見的第一個幻燈片的索引為 0。
+
 ```javascript
 /*滾動到帶有錨點鏈接 `firstSlide` 的區段和第 2 幻燈片 */
-fullpage_api.moveTo('firstSlide', 2);
-
+fullpage_api.moveTo("firstSlide", 2);
 ```
 
 ```javascript
@@ -753,146 +805,194 @@ fullpage_api.moveTo(3, 0);
 //這與以下相同
 fullpage_api.moveTo(3);
 ```
+
 ---
+
 ### silentMoveTo(section, slide)
+
 [範例](https://codepen.io/alvarotrigo/pen/doqOeY)
 與 [`moveTo`](https://github.com/alvarotrigo/fullPage.js#movetosection-slide) 完全相同，但在這種情況下，它會在沒有動畫的情況下執行滾動。直接跳轉到目的地。
+
 ```javascript
 /*滾動到帶有錨點鏈接 `firstSlide` 的區段和第 2 幻燈片 */
-fullpage_api.silentMoveTo('firstSlide', 2);
+fullpage_api.silentMoveTo("firstSlide", 2);
 ```
+
 ---
+
 ### moveSlideRight()
+
 [範例](https://codepen.io/alvarotrigo/pen/Wvgoyz)
 滾動當前區段的橫向滑塊到下一個幻燈片：
+
 ```javascript
 fullpage_api.moveSlideRight();
 ```
+
 ---
+
 ### moveSlideLeft()
+
 [範例](https://codepen.io/alvarotrigo/pen/gpdLjW)
 滾動當前區段的橫向滑塊到上一個幻燈片：
+
 ```javascript
 fullpage_api.moveSlideLeft();
 ```
+
 ---
+
 ### setAutoScrolling(boolean)
+
 [範例](https://codepen.io/alvarotrigo/pen/rVZWrR) 設置滾動配置即時生效。
 定義頁面滾動的行為方式。如果設置為 `true`，將使用 "自動" 滾動，否則，將使用站點的 "手動" 或 "正常" 滾動。
 
 ```javascript
 fullpage_api.setAutoScrolling(false);
 ```
+
 ---
+
 ### setFitToSection(boolean)
+
 [範例](https://codepen.io/alvarotrigo/pen/GJXNYm)
 設置 `fitToSection` 選項的值，確定是否將區段適應屏幕。
 
 ```javascript
 fullpage_api.setFitToSection(false);
 ```
+
 ---
+
 ### fitToSection()
+
 [範例](https://codepen.io/alvarotrigo/pen/JWWagj)
 滾動到最近的活動區段，使其適應視口。
 
 ```javascript
-full
+full;
 
 page_api.fitToSection();
 ```
+
 ---
+
 ### setLockAnchors(boolean)
+
 [範例](https://codepen.io/alvarotrigo/pen/yNxVRQ)
 設置 `lockAnchors` 選項的值，確定錨點是否會對 URL 產生影響。
 
 ```javascript
 fullpage_api.setLockAnchors(false);
 ```
+
 ---
+
 ### setAllowScrolling(boolean, [directions])
+
 [範例](https://codepen.io/alvarotrigo/pen/EjeNdq) 添加或移除使用鼠標滾輪/觸控板或觸摸手勢滾動區段/幻燈片的可能性（默認為啟用）。請注意，這不會禁用鍵盤滾動。你需要使用 `setKeyboardScrolling` 來實現。
 
-- `directions`：（可選參數）接受的值：`all`、`up`、`down`、`left`、`right` 或用逗號分隔的組合，如 `down, right`。它定義了滾動將啟用或禁用的方向。
+-   `directions`：（可選參數）接受的值：`all`、`up`、`down`、`left`、`right` 或用逗號分隔的組合，如 `down, right`。它定義了滾動將啟用或禁用的方向。
 
 ```javascript
-
 //禁用滾動
 fullpage_api.setAllowScrolling(false);
 
 //禁用向下滾動
-fullpage_api.setAllowScrolling(false, 'down');
+fullpage_api.setAllowScrolling(false, "down");
 
 //禁用向下和向右滾動
-fullpage_api.setAllowScrolling(false, 'down, right');
+fullpage_api.setAllowScrolling(false, "down, right");
 ```
 
 ### setKeyboardScrolling(boolean, [directions])
 
 [範例](https://codepen.io/alvarotrigo/pen/GJXNwm) 添加或移除使用鍵盤滾動區段的可能性（默認為啟用）。
 
-- `directions`:（可選參數）接受的值：`all`、`up`、`down`、`left`、`right` 或用逗號分隔的組合，如 `down, right`。它定義了滾動將啟用或禁用的方向。
+-   `directions`:（可選參數）接受的值：`all`、`up`、`down`、`left`、`right` 或用逗號分隔的組合，如 `down, right`。它定義了滾動將啟用或禁用的方向。
 
 ```javascript
 // 禁用所有鍵盤滾動
 fullpage_api.setKeyboardScrolling(false);
 
 // 禁用向下的鍵盤滾動
-fullpage_api.setKeyboardScrolling(false, 'down');
+fullpage_api.setKeyboardScrolling(false, "down");
 
 // 禁用向下和向右的鍵盤滾動
-fullpage_api.setKeyboardScrolling(false, 'down, right');
+fullpage_api.setKeyboardScrolling(false, "down, right");
 ```
+
 ---
+
 ### setRecordHistory(boolean)
+
 [範例](https://codepen.io/alvarotrigo/pen/rVZWQb) 定義是否記錄 URL 中每次哈希變更的歷史記錄。
 
 ```javascript
 fullpage_api.setRecordHistory(false);
 ```
+
 ---
+
 ### setScrollingSpeed(milliseconds)
+
 [範例](https://codepen.io/alvarotrigo/pen/NqLbeY) 定義滾動速度（以毫秒為單位）。
 
 ```javascript
 fullpage_api.setScrollingSpeed(700);
 ```
+
 ---
+
 ### destroy(type)
+
 [範例](https://codepen.io/alvarotrigo/pen/bdxBzv) 銷毀插件事件，並可選地其 HTML 標記和樣式。理想用於使用 AJAX 加載內容時。
 
-- `type`:（可選參數）可以為空或 `all`。如果傳遞 `all`，則 fullpage.js 使用的 HTML 標記和樣式將被移除。這樣將保持原始 HTML 標記，即在任何插件修改之前使用的 HTML 標記。
+-   `type`:（可選參數）可以為空或 `all`。如果傳遞 `all`，則 fullpage.js 使用的 HTML 標記和樣式將被移除。這樣將保持原始 HTML 標記，即在任何插件修改之前使用的 HTML 標記。
 
 ```javascript
 // 銷毀 fullPage.js 創建的所有 JavaScript 事件（滾動、URL 中的哈希變更等）
 fullpage_api.destroy();
 
 // 銷毀所有 JavaScript 事件以及 fullPage.js 對原始 HTML 標記所做的任何修改。
-fullpage_api.destroy('all');
+fullpage_api.destroy("all");
 ```
+
 ---
+
 ### reBuild()
+
 更新 DOM 結構以適應新窗口大小或其內容。理想用於與 AJAX 調用或站點 DOM 結構的外部更改結合使用，特別是當使用 `scrollOverflow:true` 時。
 
 ```javascript
 fullpage_api.reBuild();
 ```
+
 ---
+
 ### setResponsive(boolean)
+
 [範例](https://codepen.io/alvarotrigo/pen/WxOyLA) 設置頁面的響應模式。設置為 `true` 時，自動滾動將被關閉，結果將與 `responsiveWidth` 或 `responsiveHeight` 選項被觸發時的情況完全相同。
+
 ```javascript
 fullpage_api.setResponsive(true);
 ```
+
 ---
+
 ### responsiveSlides.toSections()
+
 [fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。需要 fullpage.js >= 3.0.1。
 將橫向幻燈片轉變為垂直區段。
 
 ```javascript
 fullpage_api.responsiveSlides.toSections();
 ```
+
 ---
+
 ### responsiveSlides.toSlides()
+
 [fullpage.js 擴展](https://alvarotrigo.com/fullPage/extensions/)。需要 fullpage.js >= 3.0.1。
 將原本轉變為垂直區段的幻燈片恢復為橫向幻燈片。
 
@@ -901,46 +1001,224 @@ fullpage_api.responsiveSlides.toSlides();
 ```
 
 ## 回調函數
+
 [範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 你可以在[這裡](https://alvarotrigo.com/fullPage/examples/callbacks.html)看到它們的應用。
 
 一些回調函數，例如 `onLeave`，將包含包含以下屬性的對象類型的參數：
 
-- `anchor`：*(String)* 項目的錨點。
-- `index`：*(Number)* 項目的索引。
-- `item`：*(DOM element)* 項目元素。
-- `isFirst`：*(Boolean)* 確定該項目是否為第一個子項。
-- `isLast`：*(Boolean)* 確定該項目是否為最後一個子項。
+-   `anchor`：_(String)_ 項目的錨點。
+-   `index`：_(Number)_ 項目的索引。
+-   `item`：_(DOM element)_ 項目元素。
+-   `isFirst`：_(Boolean)_ 確定該項目是否為第一個子項。
+-   `isLast`：_(Boolean)_ 確定該項目是否為最後一個子項。
 
 ### afterLoad (`origin`, `destination`, `direction`, `trigger`)
+
 [範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 區段加載完成後、滾動結束後觸發的回調函數。
 參數：
 
-- `origin`：*(Object)* 起始區段。
-- `destination`：*(Object)* 目標區段。
-- `direction`：*(String)* 根據滾動方向，它將取值 `up` 或 `down`。
-- `trigger`：*(String)* 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
+-   `origin`：_(Object)_ 起始區段。
+-   `destination`：_(Object)_ 目標區段。
+-   `direction`：_(String)_ 根據滾動方向，它將取值 `up` 或 `down`。
+-   `trigger`：_(String)_ 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
 
 範例：
 
 ```javascript
-new fullpage('#fullpage', {
-	anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
+new fullpage("#fullpage", {
+    anchors: ["firstPage", "secondPage", "thirdPage", "fourthPage", "lastPage"],
 
-	afterLoad: function(origin, destination, direction, trigger){
-		var origin = this;
+    afterLoad: function (origin, destination, direction, trigger) {
+        var origin = this;
 
-		// 使用索引
-		if(origin.index == 2){
-			alert("Section 3 ended loading");
-		}
+        // 使用索引
+        if (origin.index == 2) {
+            alert("Section 3 ended loading");
+        }
 
-		// 使用錨點鏈接
-		if(origin.anchor == 'secondSlide'){
-			alert("Section 2 ended loading");
-		}
-	}
+        // 使用錨點鏈接
+        if (origin.anchor == "secondSlide") {
+            alert("Section 2 ended loading");
+        }
+    },
 });
 ```
 
 ---
 
+---
+
+### onLeave (`origin`, `destination`, `direction`, `trigger`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 當用戶離開某個區段，過渡到新區段時觸發此回調。返回 `false` 將取消移動操作。
+
+參數：
+
+-   `origin`：_(Object)_ 起始區段。
+-   `destination`：_(Object)_ 目標區段。
+-   `direction`：_(String)_ 根據滾動方向，它將取值 `up` 或 `down`。
+-   `trigger`：_(String)_ 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    onLeave: function (origin, destination, direction, trigger) {
+        var leavingSection = this;
+
+        // 離開第2區段後
+        if (origin.index == 1 && direction == "down") {
+            alert("Going to section 3!");
+        } else if (origin.index == 1 && direction == "up") {
+            alert("Going to section 1!");
+        }
+    },
+});
+```
+
+---
+
+### beforeLeave (`origin`, `destination`, `direction`, `trigger`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 此回調在離開區段前，即過渡發生前觸發。
+
+你可以使用此回調在滾動發生前取消滾動，通過返回 `false`。
+
+參數：
+
+-   `origin`：_(Object)_ 起始區段。
+-   `destination`：_(Object)_ 目標區段。
+-   `direction`：_(String)_ 根據滾動方向，它將取值 `up` 或 `down`。
+-   `trigger`：_(String)_ 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
+
+範例：
+
+```javascript
+var cont = 0;
+new fullpage("#fullpage", {
+    beforeLeave: function (origin, destination, direction, trigger) {
+        // 防止滾動，直到我們滾動4次
+        cont++;
+        return cont === 4;
+    },
+});
+```
+
+---
+
+### afterRender()
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 此回調在頁面結構生成後立即觸發。這是你希望用於初始化其他插件或觸發任何需要文檔準備就緒的代碼的回調（因為此插件修改 DOM 以創建最終結構）。有關更多信息，請參閱 [FAQs](https://github.com/alvarotrigo/fullPage.js/wiki/FAQ---Frequently-Answered-Questions)。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    afterRender: function () {
+        var pluginContainer = this;
+        alert("The resulting DOM structure is ready");
+    },
+});
+```
+
+---
+
+### afterResize(`width`, `height`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 此回調在調整瀏覽器窗口大小後觸發。區段調整大小後立即觸發。
+
+參數：
+
+-   `width`：_(Number)_ 窗口寬度。
+-   `height`：_(Number)_ 窗口高度。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    afterResize: function (width, height) {
+        var fullpageContainer = this;
+        alert("The sections have finished resizing");
+    },
+});
+```
+
+---
+
+### afterReBuild()
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 此回調在通過調用 `fullpage_api.reBuild()` 手動重建 fullpage.js 後觸發。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    afterReBuild: function () {
+        console.log("fullPage.js has manually being re-builded");
+    },
+});
+```
+
+---
+
+### afterResponsive(`isResponsive`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 此回調在 fullpage.js 從正常模式切換到響應模式或從響應模式切換回正常模式後觸發。
+
+參數：
+
+-   `isResponsive`：_(Boolean)_ 確定它是否進入響應模式（`true`）或返回正常模式（`false`）。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    afterResponsive: function (isResponsive) {
+        alert("Is responsive: " + isResponsive);
+    },
+});
+```
+
+---
+
+### afterSlideLoad (`section`, `origin`, `destination`, `direction`, `trigger`)
+
+[範例](https://codepen.io/alvarotrigo/pen/XbPNQv) 區段的幻燈片加載完成後、滾動結束後觸發的回調函數。
+
+參數：
+
+-   `section`：_(Object)_ 活動的垂直區段。
+-   `origin`：_(Object)_ 起始的水平幻燈片。
+-   `destination`：_(Object)_ 目標的水平幻燈片。
+-   `direction`：_(String)_ 根據滾動方向，它將取值 `right` 或 `left`。
+-   `trigger`：_(String)_ 指示觸發滾動的事件。它可以是：`"wheel"`、`"keydown"`、`"menu"`、`"slideArrow"`、`"verticalNav"`、`"horizontalNav"`。
+
+範例：
+
+```javascript
+new fullpage("#fullpage", {
+    anchors: ["firstPage", "secondPage", "thirdPage", "fourthPage", "lastPage"],
+
+    afterSlideLoad: function (
+        section,
+        origin,
+        destination,
+        direction,
+        trigger
+    ) {
+        var loadedSlide = this;
+
+        // 第二區段的第一張幻燈片
+        if (section.anchor == "secondPage" && destination.index == 1) {
+            alert("First slide loaded");
+        }
+
+        // 第二區段的第二張幻燈片（假設 #secondSlide 是第二張幻燈片的錨點）
+        if (section.index == 1 && destination.anchor == "secondSlide") {
+            alert("Second slide loaded");
+        }
+    },
+});
+```
+
+---
