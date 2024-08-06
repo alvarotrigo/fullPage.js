@@ -274,3 +274,158 @@ var myFullpage = new fullpage('#fullpage', {
 	onScrollOverflow: function(section, slide, position, direction){}
 });
 ```
+
+### 建立鏈接到 section 或 slide
+
+如果你在 section 中使用 fullPage.js 和錨鏈接（在每個 section 使用 `anchors` 選項或屬性 `data-anchor` ），那麼你將能夠在一個 section 里使用錨鏈接直接導航到某個 slide。
+
+這是一個錨鏈接的例子：
+https://alvarotrigo.com/fullPage/#secondPage/2 （在你手動訪問該 section/slide 就會看到的 URL ）
+請注意，URL 的最後部分以 `#secondPage/2` 結尾。
+
+```javascript
+new fullpage('#fullpage', {
+	anchors:['firstPage', 'secondPage', 'thirdPage']
+});
+```
+
+URL `#secondPage/2` 結尾處的錨分別定義了目標 section 和 slide 。 在前面的 URL 中，目標 section 是使用錨點  `secondPage`，slide 將會是第 2 張，因為我們使用索引 `2`  。 （一個 section 的第一個 slide 為索引 0 ，在技術上這是一個 section ）。
+
+如果我們在HTML標記中使用屬性 `data-anchor` ，就可以使用自定義錨點來代替它的索引：
+
+```html
+<div class="section">
+	<div class="slide" data-anchor="slide1"> slide 1 </div>
+	<div class="slide" data-anchor="slide2"> slide 2 </div>
+	<div class="slide" data-anchor="slide3"> slide 3 </div>
+	<div class="slide" data-anchor="slide4"> slide 4 </div>
+</div>
+```
+在最後一種情況中，我們使用的URL將是 `#secondPage/slide3` ，這相當於之前的 `#secondPage/2` 。
+
+請注意，如果沒有提供 `anchors` 陣列，則也可以使用 `data-anchor` 屬性以同樣的方式定義節錨點。
+
+**注意！**`data-anchor` 的 ID 元素（或 IE 的 NAME 元素）不能重複。
+
+### 建立更小或更大的 section
+
+[演示](https://codepen.io/alvarotrigo/pen/BKjRYm)
+
+fullPage.js 可以移除 section 和 slide 的全屏高度限制來建立高度小於或大於檢視的 section，常用於頁尾。
+
+記得在所有 section 使用此功能並沒有意義，這一點很重要。如果網站的初始載入中有多個 section，則 fullPage.js 將不會滾動以檢視下一個 section，因為它已經在畫面中。
+
+如果你想要建立更小的 section，只需添加 `fp-auto-height`  即可自動適應高度。
+
+```html
+<div class="section">整個檢視</div>
+<div class="section fp-auto-height">自動高度</div>
+```
+
+#### section 響應自動高度
+
+[演示](https://codepen.io/alvarotrigo/pen/MzByMa)
+
+響應自動高度可以通過使用 `fp-auto-height-responsive` 類來呼叫。 這種方式 section 將全屏，直到響應模式終止。 根據定義調整大小，可能是大於或小於視口。
+
+### 由 fullpage.js 新增的狀態類
+
+Fullpage.js 在不同的元素中新增多個型別來儲存網站狀態的記錄：
+
+- `active` 被新增到目前可見 section 和 slide 。
+- `active` 被新增到目前菜單元素（如果使用 `menu` 選項）。
+- `fp-viewing-SECTION-SLIDE` 形式的型別被新增到網站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分將成為目前 section 和 slide 的錨（或索引，如果沒有提供錨）。
+- 當進入響應模式時，`fp-responsive` 新增到 `body` 元素
+- 當啟用 fullpage.js 時，`fp-enabled` 新增到 `html` 元素。 （並在銷燬時被移除）。
+- 當 fullPage.js 被銷燬時，`fp-destroyed` 被新增到 fullpage.js 容器中。
+
+### 懶加載
+
+[演示](https://codepen.io/alvarotrigo/pen/eNLBXo) 
+
+fullPage.js 提供了一種懶加載圖片，影片和音訊的方式，這樣它們不會減緩網站的載入速度，也不會浪費數據傳輸。
+當使用懶載入時，所有這些元素只有在進入畫面時才會載入。
+要啟用懶加載，您只需將 `src` 屬性更改為 `data-src` ，如下所示：
+
+```html
+<img data-src="image.png">
+<video>
+	<source data-src="video.webm" type="video/webm" />
+	<source data-src="video.mp4" type="video/mp4" />
+</video>
+```
+
+如果您已經使用另一個使用 `data-src` 的延懶載解決方案，則可以通過設定 `lazyLoading: false` 選項來禁用fullPage.js 懶載入。
+
+### 自動播放 / 暫停嵌入式媒體
+
+[演示](https://codepen.io/alvarotrigo/pen/pXEaaK)
+
+**注意**：根據操作系統和瀏覽器的不同，自動播放功能可能無法在某些移動裝置上使用（即 [IOS 的 Safari](https://webkit.org/blog/6784/new-video-policies-for-ios/) 版本 < 10.0）。
+
+### 當頁面/幻燈片加載時播放：
+
+使用 `autoplay` 屬性來播放影片或音頻，或在 YouTube iframes 使用 `autoplay=1` 參數，將會在頁面加載時自動播放媒體元素。
+
+為了在頁面區塊或幻燈片加載時播放，請使用 `data-autoplay` 屬性。例子如下：
+
+```html
+<audio data-autoplay>
+    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+</audio>
+```
+
+### 離開時暫停
+
+嵌入的 HTML5 `<video>` / `<audio>` 和 YouTube iframes 會在你離開區塊或幻燈片時自動暫停。這可以通過使用 `data-keepplaying` 屬性來禁用。例子如下：
+
+```html
+<audio data-keepplaying>
+    <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+</audio>
+```
+
+### 使用擴展
+
+fullpage.js 提供了一組擴展，你可以用來增強其默認功能。所有這些擴展都列為 fullpage.js 選項。
+
+使用擴展需要你使用縮小版的文件 `fullpage.extensions.min.js`，這個文件在 `dist` 文件夾中，而不是通常的 fullPage.js 文件 (`fullpage.js` 或 `fullpage.min.js`)。
+
+一旦你獲得擴展文件，你需要在 fullPage 之前添加它。例如，如果我想使用連續水平擴展，我會包括擴展文件，然後是擴展版本的 fullPage 文件。
+
+```html
+<script type="text/javascript" src="fullpage.continuousHorizontal.min.js"></script>
+<script type="text/javascript" src="fullpage/fullpage.extensions.min.js"></script>
+```
+
+每個擴展需要激活密鑰和許可密鑰。請參閱更多詳細信息。
+
+然後你可以按照選項中解釋的那樣使用和配置它們。
+
+## 選項
+
+### licenseKey
+
+（默認為 `null`）。**此選項是必須的。** 如果你在非開源項目中使用 fullPage，那麼你應該使用購買 fullPage 商業許可證時提供的許可密鑰。如果你的項目是開源的，並且與 GPLv3 許可證兼容，你可以請求許可密鑰。請閱讀更多關於許可證的信息。用法示例如下：
+
+```javascript
+new fullpage('#fullpage', {
+    licenseKey: 'YOUR_KEY_HERE'
+});
+```
+
+### controlArrows
+
+（默認為 `true`） 確定是否使用控制箭頭來左右移動幻燈片。
+
+### controlArrowsHTML
+
+（默認為 `['<div class="fp-arrow"></div>', '<div class="fp-arrow"></div>'],`）。提供了一種方法來定義控制箭頭的 HTML 結構和你想要應用的類。數組包含兩個箭頭的結構。第一個項是左箭頭，第二個是右箭頭。
+
+### verticalCentered
+
+（默認為 `true`） 使用 flexbox 垂直居中內容。你可能需要將內容包裹在 `div` 中以避免潛在問題。（使用 `flex-direction: column; display: flex; justify-content: center;`）
+
+### scrollingSpeed
+
+（默認為 `700`） 滾動過渡的速度，以毫秒為單位。
