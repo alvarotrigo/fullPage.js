@@ -12,6 +12,7 @@ import './scroll/index.js';
 import './slides/index.js';
 import './mixed/waterMark.js';
 import './mixed/index.min.js';
+import './scroll/skipIntermediateItems.js';
 
 import * as utils from './common/utils.js';
 import { setOptions, setOption, getOptions } from './common/options.js';
@@ -64,7 +65,7 @@ function setAPI(){
     };
 
     //public functions
-    FP.version = '4.0.26';
+    FP.version = '4.0.27';
 
     FP.test = Object.assign(FP.test, {
         top: '0px',
