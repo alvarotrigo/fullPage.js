@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.27-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -475,6 +475,9 @@ the fitting by the configured milliseconds.
 
 ### touchSensitivity:
 (padrão `5`) Define uma porcentagem da largura/altura da janela do navegador e a distância que um deslize deve medir para navegar para a próxima seção/slide
+
+## skipIntermediateItems
+(padrão `false`). Determina se a animação de rolagem deve ser ignorada ao navegar entre seções verticais ou slides horizontais não consecutivos. Os valores possíveis são `true`, `false`, `sections` e `slides`, permitindo aplicar esse comportamento verticalmente, horizontalmente ou em ambas as direções.
 
 ### continuousVertical:
 (padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira e se a rolagem para cima na primeira seção deve rolar para a última. Não compatível com `loopTop`, `loopBottom` ou qualquer barra de rolagem presente no site (`scrollBar:true` ou `autoScrolling:false`).

@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.27-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -220,6 +220,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflow: true,
 	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
+	skipIntermediateItems: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
@@ -499,6 +500,10 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 ### touchSensitivity
 
 (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
+
+## skipIntermediateItems
+
+(default `false`). Determines whether to skip the scroll animation when navigating between non-consecutive vertical sections or horizontal slides. The possible values are `true`, `false`, `sections`, and `slides`, allowing you to apply this behavior vertically, horizontally, or in both directions.
 
 ### continuousVertical
 

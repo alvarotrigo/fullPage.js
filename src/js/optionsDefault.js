@@ -43,6 +43,7 @@ export const defaultOptions = {
     normalScrollElements: null,
     scrollOverflow: true,
     scrollOverflowReset: false,
+    skipIntermediateItems: false,
     touchSensitivity: 5,
     touchWrapper: null,
     bigSectionsDestination: null,

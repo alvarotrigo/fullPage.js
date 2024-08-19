@@ -1,5 +1,5 @@
 import * as utils from '../common/utils.js';
-import { getOptions } from '../common/options.js';
+import { getOptions, getOriginals, setOption, setVariableState } from '../common/options.js';
 import { getState, setState, state } from '../common/state.js';
 import { doc, FP } from '../common/constants.js';
 import { $html, $htmlBody } from '../common/cache.js';
@@ -189,15 +189,16 @@ function getDestinationPosition(element){
 * Performs the vertical movement (by CSS3 or by jQuery)
 */
 function performMovement(v){
-    var isFastSpeed = getOptions().scrollingSpeed < 700;
-    var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed; 
     setState({
         touchDirection: 'none',
         scrollY: Math.round(v.dtop)
     });
 
-    EventEmitter.emit(events.onPerformMovement);
+    EventEmitter.emit(events.onPerformMovement, v);
 
+    var isFastSpeed = getOptions().scrollingSpeed < 700;
+    var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed; 
+    
     // using CSS3 translate functionality
     if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
 
