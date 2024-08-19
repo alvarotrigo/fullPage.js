@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.27-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -473,6 +473,12 @@ Otras librerías puede ser usadas si se desea.
 
 ### touchSensitivity
 (por defecto `5`) Determina cierto porcentaje de la ventana del navegador a partir del cual fullpage.js registra un desplazamiento vertical.
+
+## skipIntermediateItems
+(по умолчанию `false`). Определяет, следует ли пропускать анимацию прокрутки при навигации между неконсеквенционными вертикальными секциями или горизонтальными слайдами. Возможные значения: `true`, `false`, `sections` и `slides`, что позволяет применять это поведение по вертикали, горизонтали или в обоих направлениях.
+
+## skipIntermediateItems
+(por defecto `false`). Determina si se debe omitir la animación de desplazamiento al navegar entre secciones verticales o diapositivas horizontales no consecutivas. Los valores posibles son `true`, `false`, `sections` y `slides`, lo que permite aplicar este comportamiento de manera vertical, horizontal, o en ambas direcciones.
 
 ### continuousVertical
 (por defecto `false`) Determina si hacer scroll hacia abajo en la última sección producirá un desplazamiento hacia abajo hacia la primera sección o no, y si hacer scroll hacia arriba en la primera sección producirá un desplazamiento hacia arriba hacia la última sección. No es compatible con `loopTop`, `loopBottom` y ninguna barra de desplazamiento (usando `scrollBar:true` o `autoScrolling:false`).

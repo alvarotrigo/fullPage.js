@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.27,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -470,6 +470,9 @@ new fullpage('#fullpage', {
 
 ### touchSensitivity
 （默认 `5`）定义浏览器窗口宽度/高度的百分比，和触发滑动到下一个 section/slide 的距离的灵敏度。
+
+## skipIntermediateItems
+(默认值 `false`)。确定在导航非连续的垂直部分或水平幻灯片时是否跳过滚动动画。可能的值包括 `true`、`false`、`sections` 和 `slides`，允许您将此行为应用于垂直方向、 水平方向或两个方向。
 
 ### continuousVertical
 （默认为 `false`）定义首位链接循环(最后一个 section 向下滚动，滚动到第一个section，或第一个 section 向上滚动时滚动到最后一个 section )。 不兼容 `loopTop` ，`loopBottom` 或站点中存在的任何滚动条（`scrollBar：true` 或 `autoScrolling：false` ）。

@@ -503,7 +503,7 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 
 ## skipIntermediateItems
 
-(default `false`). Defines whether to skip intermediate vertical sections and horizontal slides during navigation. Possible values are `true`, `false`, `sections`, and `slides`. It can, therefore, be applied just vertically or horizontally, or to both directions at the time.
+(default `false`). Determines whether to skip the scroll animation when navigating between non-consecutive vertical sections or horizontal slides. The possible values are `true`, `false`, `sections`, and `slides`, allowing you to apply this behavior vertically, horizontally, or in both directions.
 
 ### continuousVertical
 

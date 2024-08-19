@@ -18,7 +18,7 @@
 </p>
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.27-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -459,6 +459,10 @@ new fullpage('#fullpage', {
 
 ### touchSensitivity
 (기본값 `5`) 브라우저 창 너비/폭 퍼센트와 다음 구역 / 슬라이드로 이동하는 데 필요한 스와이프 거리를 정의합니다.
+
+## skipIntermediateItems
+(기본값 `false`). 연속되지 않은 수직 섹션 또는 수평 슬라이드 간에 탐색할 때 스크롤 애니메이션을 건너뛸지 여부를 결정합니다. 가능한 값은 `true`, `false`, `sections`, `slides`이며, 이 동작을 수직, 수평, 또는 두 방향 모두에 적용할 수 있습니다.
+
 
 ### continuousVertical
 (기본값 `false`) 마지막 구역에서 아래로 스크롤할때 첫번째 구역으로 스크롤이 내려가야 할지를 정의하고, 첫번째 구역에서 위로 스크롤할때 마지막 구역으로 스크롤이 올라가야 할지를 정의합니다. `loopTop`, `loopBottom` 또는 웹사이트에 있는 모든 스크롤 막대기와 호환되지 않습니다. (`scrollBar:true` 또는 `autoScrolling:false`)
