@@ -480,7 +480,7 @@ new fullpage('#fullpage', {
 ### touchSensitivity
 (défaut `5`) Définit un pourcentage de la largeur/hauteur de la fenêtre du navigateur, et la distance que doit mesurer un glissement pour naviguer vers la section / diapositive suivante
 
-## skipIntermediateItems
+### skipIntermediateItems
 (valeur par défaut `false`). Détermine s'il faut ignorer l'animation de défilement lors de la navigation entre des sections verticales ou des diapositives horizontales non consécutives. Les valeurs possibles sont `true`, `false`, `sections` et `slides`, permettant d'appliquer ce comportement verticalement, horizontalement ou dans les deux directions.
 
 ### continuousVertical

@@ -501,7 +501,7 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 
 (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
-## skipIntermediateItems
+### skipIntermediateItems
 
 (default `false`). Determines whether to skip the scroll animation when navigating between non-consecutive vertical sections or horizontal slides. The possible values are `true`, `false`, `sections`, and `slides`, allowing you to apply this behavior vertically, horizontally, or in both directions.
 

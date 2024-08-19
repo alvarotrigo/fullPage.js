@@ -476,7 +476,7 @@ the fitting by the configured milliseconds.
 ### touchSensitivity:
 (padrão `5`) Define uma porcentagem da largura/altura da janela do navegador e a distância que um deslize deve medir para navegar para a próxima seção/slide
 
-## skipIntermediateItems
+### skipIntermediateItems
 (padrão `false`). Determina se a animação de rolagem deve ser ignorada ao navegar entre seções verticais ou slides horizontais não consecutivos. Os valores possíveis são `true`, `false`, `sections` e `slides`, permitindo aplicar esse comportamento verticalmente, horizontalmente ou em ambas as direções.
 
 ### continuousVertical:
