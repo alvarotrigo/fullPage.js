@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.26
+* fullPage 4.0.27
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1155,6 +1155,7 @@
       normalScrollElements: null,
       scrollOverflow: true,
       scrollOverflowReset: false,
+      skipIntermediateItems: false,
       touchSensitivity: 5,
       touchWrapper: null,
       bigSectionsDestination: null,
@@ -2583,13 +2584,13 @@
 
 
     function performMovement(v) {
-      var isFastSpeed = getOptions().scrollingSpeed < 700;
-      var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
       setState({
         touchDirection: 'none',
         scrollY: Math.round(v.dtop)
       });
-      EventEmitter.emit(events.onPerformMovement); // using CSS3 translate functionality
+      EventEmitter.emit(events.onPerformMovement, v);
+      var isFastSpeed = getOptions().scrollingSpeed < 700;
+      var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed; // using CSS3 translate functionality
 
       if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
         // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
@@ -5507,7 +5508,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x36\x2d\x32\x33".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x37\x2d\x31\x39".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5524,6 +5525,28 @@
         return n > 90 && n < 97 && (n += 15), String.fromCharCode(n).toUpperCase();
       }
     }();
+
+    EventEmitter.on(events.onPerformMovement, onSlideOrScroll);
+    EventEmitter.on(events.afterSectionLoads, afterPanelLoad);
+    EventEmitter.on(events.onSlideLeave, onSlideOrScroll);
+    EventEmitter.on(events.afterSlideLoads, afterPanelLoad);
+
+    function onSlideOrScroll(params) {
+      var skipValue = getOptions().skipIntermediateItems;
+      var scrollType = params.items.origin.isSection ? 'sections' : 'slides';
+      var areConsecutivePanels = Math.abs(params.items.origin.index() - params.items.destination.index()) > 1;
+      var doesApply = (skipValue === true || skipValue === scrollType) && areConsecutivePanels;
+
+      if (doesApply) {
+        setScrollingSpeed(0, 'internal');
+      }
+    }
+
+    function afterPanelLoad(params) {
+      if (getOptions().skipIntermediateItems) {
+        setVariableState('scrollingSpeed', getOriginals().scrollingSpeed, 'internal');
+      }
+    }
 
     //@ts-check
     EventEmitter.on(events.beforeInit, beforeInit);
@@ -5946,7 +5969,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.26';
+      FP.version = '4.0.27';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

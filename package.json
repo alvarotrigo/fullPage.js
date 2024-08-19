@@ -1,6 +1,6 @@
 {
   "name": "fullpage.js",
-  "version": "4.0.26",
+  "version": "4.0.27",
   "description": "Create beautiful fullscreen snap scrolling websites",
   "main": "dist/fullpage.js",
   "scripts": {
