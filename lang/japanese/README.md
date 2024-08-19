@@ -545,7 +545,7 @@ new fullpage('#fullpage', {
 
 （デフォルト `5`）ブラウザのウィンドウ幅/高さのパーセンテージを定義し、次のセクション/スライドに移動するためにスワイプがどの程度必要かを定義します。
 
-## skipIntermediateItems
+### skipIntermediateItems
 (デフォルト `false`)。非連続の垂直セクションまたは水平スライド間をナビゲートする際にスクロールアニメーションをスキップするかどうかを決定します。可能な値は `true`、`false`、`sections`、`slides` で、この動作を垂直方向、水平方向、または両方向に適用できます。
 
 ### continuousVertical

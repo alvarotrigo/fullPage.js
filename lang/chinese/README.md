@@ -471,7 +471,7 @@ new fullpage('#fullpage', {
 ### touchSensitivity
 （默认 `5`）定义浏览器窗口宽度/高度的百分比，和触发滑动到下一个 section/slide 的距离的灵敏度。
 
-## skipIntermediateItems
+### skipIntermediateItems
 (默认值 `false`)。确定在导航非连续的垂直部分或水平幻灯片时是否跳过滚动动画。可能的值包括 `true`、`false`、`sections` 和 `slides`，允许您将此行为应用于垂直方向、 水平方向或两个方向。
 
 ### continuousVertical

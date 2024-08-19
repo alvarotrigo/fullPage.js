@@ -474,7 +474,7 @@ Otras librerías puede ser usadas si se desea.
 ### touchSensitivity
 (por defecto `5`) Determina cierto porcentaje de la ventana del navegador a partir del cual fullpage.js registra un desplazamiento vertical.
 
-## skipIntermediateItems
+### skipIntermediateItems
 (по умолчанию `false`). Определяет, следует ли пропускать анимацию прокрутки при навигации между неконсеквенционными вертикальными секциями или горизонтальными слайдами. Возможные значения: `true`, `false`, `sections` и `slides`, что позволяет применять это поведение по вертикали, горизонтали или в обоих направлениях.
 
 ## skipIntermediateItems
