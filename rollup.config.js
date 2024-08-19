@@ -65,7 +65,7 @@ const terserOptions = {
                 'scrollOverflow',
                 'scrollOverflowReset',
                 'touchSensitivity',
-                'skipIntermediateItem',
+                'skipIntermediateItems',
                 'touchWrapper',
                 'bigSectionsDestination',
                 'keyboardScrolling',
