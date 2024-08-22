@@ -5,10 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Lazy load - fullPage.js</title>
     <meta name="author" content="Alvaro Trigo Lopez" />
-    <meta name="description" content="fullPage full-screen normal scrolling with autoScrolling." />
+    <meta name="description" content="fullPage Lazy Load Demo." />
     <meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,lazyload,lazy,passive,load,src,data-src,media" />
     <meta name="Resource-type" content="Document" />
-
 
     <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
     <link rel="stylesheet" type="text/css" href="examples.css" />
@@ -126,10 +125,22 @@
             <p>Just use `data-src` or `data-srcset` for media elements.</p>
         </div>
     </div>
-    <div class="section" id="section1">
+    <div class="section "id="section1">
+        <div class="intro">
+            <img data-srcset="imgs/2.png, imgs/2.png"  alt="1"/>
+            <h1>Section 2</h1>
+        </div>
+    </div>
+    <div class="section active" id="section2">
+        <div class="intro">
+            <img data-srcset="imgs/3.png, imgs/2.png"  alt="1"/>
+            <h1>Section 3</h1>
+        </div>
+    </div>
+    <div class="section" id="section4">
         <div class="slide" id="slide1">
             <div class="intro">
-                <h1>Lazy load image</h1>
+                <h1>Section 4</h1>
                 <img data-src="imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
             </div>
         </div>
@@ -145,7 +156,7 @@
         </div>
 
     </div>
-    <div class="section" id="section2">
+    <div class="section" id="section5">
         <div class="intro">
             <h1>Lazy load background </h1>
             <p>Make use of the `onLeave` callback. See the source code here!</p>
@@ -158,14 +169,23 @@
 
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
-        menu: '#menu',
-        anchors: ['firstPage', 'secondPage', '3rdPage'],
-        sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+
+        // Lazyload default values
+        lazyLoading: true,
+        lazyLoadThreshold: 3,
+
+        // To lazy load a background
         onLeave: function(origin, destination, direction){
           if(destination.index === 2){
              destination.item.classList.add('load-background');
           }
-        }
+        },
+
+        // Optional
+        menu: '#menu',
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4page', '5page', '6page', '7page'],
+        sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C','#C63D0F', '#1BBC9B', '#7E8F7C','#C63D0F', '#1BBC9B', '#7E8F7C'],
+        navigation: true       
     });
 </script>
 
