@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 
 const licenseContent = `/*!
-* fullPage 4.0.27
+* fullPage 4.0.28
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -113,6 +113,7 @@ const terserOptions = {
                 'lazyLoading',
                 'lazyLoadThreshold',
                 'observer',
+                'scrollBeyondFullpage',
 
                 // Public API
                 'version',
