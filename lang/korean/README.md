@@ -247,6 +247,7 @@ new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -460,7 +461,7 @@ new fullpage('#fullpage', {
 ### touchSensitivity
 (기본값 `5`) 브라우저 창 너비/폭 퍼센트와 다음 구역 / 슬라이드로 이동하는 데 필요한 스와이프 거리를 정의합니다.
 
-## skipIntermediateItems
+### skipIntermediateItems
 (기본값 `false`). 연속되지 않은 수직 섹션 또는 수평 슬라이드 간에 탐색할 때 스크롤 애니메이션을 건너뛸지 여부를 결정합니다. 가능한 값은 `true`, `false`, `sections`, `slides`이며, 이 동작을 수직, 수평, 또는 두 방향 모두에 적용할 수 있습니다.
 
 
@@ -596,6 +597,9 @@ parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 �
 
 ### lazyLoading
 (기본값 `true`) 기본 설정으로 지연 로딩이 활성화됩니다. [지연 로딩 문서](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/korean#%EC%A7%80%EC%97%B0-%EB%A1%9C%EB%94%A9)에 자세히 설명된 대로 `data-src` 속성을 지닌 모든 미디어 요소를 지연 로딩합니다. 이외 다른 지연 로딩 라이브러리를 쓰고 싶으시다면 이 fullpage.js 기능을 비활성화하실 수 있습니다.
+
+### lazyLoadThreshold
+(기본값 `0`) 현재 섹션 또는 슬라이드와 관련하여 몇 개의 인접한 수직 섹션 및 수평 슬라이드를 사전 로드할지 정의합니다. 이전 및 다음 섹션 또는 슬라이드를 사전 로드할 개수를 지정하려면 숫자를 사용하십시오.
 
 ### observer
 (기본값 `true`) 페이지의 HTML 구조 변경을 감지할지 여부를 정의합니다. 활성화되면 fullPage.js는 해당 변경 사항에 자동으로 반응하여 자체를 업데이트합니다. 구역 또는 슬라이드를 추가, 제거하거나 숨길 때 이상적입니다.

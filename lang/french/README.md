@@ -260,6 +260,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -619,6 +620,9 @@ Vous permet de configurer les paramètres pour l'effet des cartes quand vous uti
 
 ### lazyLoading
 (défaut `true`) Le chargement paresseux est actif par défaut ce qui signifie qu'il chargera paresseusement tout élément média contenant l'attribut `data-src` comme détaillé dans la [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/french/#lazy-loading) . Si vous voulez utiliser une autre bibliothèque de chargement paresseux, vous pouvez désactiver cette fonctionnalité de fullpage.js.
+
+### lazyLoadThreshold
+(par défaut `0`) Définit combien de sections verticales adjacentes et de diapositives horizontales doivent être préchargées par rapport à celle en cours. Utilisez un nombre pour spécifier combien de sections ou diapositives précédentes et suivantes doivent être préchargées.
 
 ### observer
 (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)

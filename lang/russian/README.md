@@ -252,6 +252,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -602,6 +603,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 
 ### lazyLoading
 (по умолчанию `true`) Отложенная загрузка включена по умолчанию, что означает, что данная опция будет осуществлять отложенную загрузку любого медиа-элемента, содержащего атрибут `data-src`, как описано в [документации отложенной загрузки](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отложенная-загрузка). Если вы желаете использовать любую другую библиотеку отложенной загрузки, вы можете деактивировать данную функцию fullpage.js.
+
+### lazyLoadThreshold
+(по умолчанию `0`) Определяет, сколько смежных вертикальных секций и горизонтальных слайдов должно быть предварительно загружено относительно текущего. Используйте число, чтобы указать, сколько предыдущих и следующих секций или слайдов следует предварительно загрузить.
 
 ### observer
 (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
