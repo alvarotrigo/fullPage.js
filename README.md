@@ -257,6 +257,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -507,7 +508,7 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 
 ### continuousVertical
 
-(default `false`) Defines whether scrolling down in the last section should scroll down to the first one and if scrolling up in the first section should scroll up to the last one. Not compatible with `loopTop`, `loopBottom` or any scroll bar present in the site (`scrollBar:true` or `autoScrolling:false`).
+(default `false`) Defines whether scrolling down in the last section should scroll down to the first one and if scrolling1 up in the first section should scroll up to the last one. Not compatible with `loopTop`, `loopBottom` or any scroll bar present in the site (`scrollBar:true` or `autoScrolling:false`).
 
 ### continuousHorizontal
 
@@ -676,6 +677,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 ### lazyLoading
 
 (default `true`) Lazy loading is active by default which means it will lazy load any media element containing the attribute `data-src` as detailed in the [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js#lazy-loading) . If you want to use any other lazy loading library you can disable this fullpage.js feature.
+
+### lazyLoadThreshold
+(default `0`) Defines how many adjacent vertical sections and horizontal slides should be preloaded relative to the current one. Use a number to specify how many previous and next sections or slides should be preloaded.
 
 ### observer
 

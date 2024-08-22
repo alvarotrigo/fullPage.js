@@ -2,9 +2,9 @@ import * as utils from '../common/utils.js';
 import { FP } from '../common/constants.js';
 import { getState, state } from '../common/state.js';
 import { getOptions} from '../common/options.js';
-import {  playMedia } from '../media.js';
+import { playMedia } from '../media.js';
 import { fireCallback } from '../callbacks/fireCallback.js';
-import { lazyLoad } from '../lazyLoad/lazyLoad.js';
+import { lazyLoadPanels } from '../lazyLoad/lazyLoad.js';
 import { lazyLoadOthers } from '../lazyLoad/lazyLoadOthers.js';
 import { 
     COMPLETELY,
@@ -26,7 +26,7 @@ export function afterRenderActions(){
 
     utils.addClass(sectionElem, COMPLETELY);
 
-    lazyLoad(sectionElem);
+    lazyLoadPanels(getState().activeSection);
     lazyLoadOthers();
     playMedia(sectionElem);
 

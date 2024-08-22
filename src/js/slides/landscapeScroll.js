@@ -13,7 +13,7 @@ import {
 import { fireCallback } from '../callbacks/fireCallback.js';
 import { updateState } from '../stateUpdates.js';
 import { playMedia, stopMedia } from '../media.js';
-import { lazyLoad } from '../lazyLoad/lazyLoad.js';
+import { lazyLoadPanels } from '../lazyLoad/lazyLoad.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activeSlidesNavigation } from '../nav/slides.js';
 import { toggleControlArrows } from '../arrows.js';
@@ -99,7 +99,7 @@ export function landscapeScroll(slides, destiny, direction){
 
     if(!v.localIsResizing){
         stopMedia(v.prevSlide);
-        lazyLoad(destiny);
+        lazyLoadPanels(slide);
     }
 
     toggleControlArrows(v);

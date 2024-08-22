@@ -111,6 +111,7 @@ const terserOptions = {
                 'onScrollOverflow',
 
                 'lazyLoading',
+                'lazyLoadThreshold',
                 'observer',
 
                 // Public API

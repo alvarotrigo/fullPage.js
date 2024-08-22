@@ -8,7 +8,8 @@ import {
 } from '../common/selectors.js';
 import { state } from '../common/state.js';
 import { isResponsiveMode } from '../responsive.js';
-import { lazyLoad } from './lazyLoad.js';
+import { lazyLoadPanels } from './lazyLoad.js';
+import { getPanelByElement } from '../common/item.js';
 
 /**
 * Makes sure lazyload is done for other sections in the viewport that are not the
@@ -25,7 +26,7 @@ export function lazyLoadOthers(){
     //making sure to lazy load auto-height sections that are in the viewport
     utils.$(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function(section){
         if(isSectionInViewport(section)){
-            lazyLoad(section);
+            lazyLoadPanels(getPanelByElement(section));
         }
     });
 }

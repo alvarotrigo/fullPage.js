@@ -34,3 +34,22 @@ export function lazyLoad(destiny){
         }
     });
 }
+
+export function lazyLoadPanels(panel){
+    var lazyLoadThresold = getOptions().lazyLoadThreshold;
+
+    lazyLoad(panel.item);
+    if(lazyLoadThresold){
+        lazyLoadDirection(panel, 'prev', lazyLoadThresold);
+        lazyLoadDirection(panel, 'next', lazyLoadThresold);
+    }
+}
+
+// Lazy load "count" number of panels in a specific direction
+function lazyLoadDirection(startPanel, direction, count) {
+    let currentPanel = startPanel;
+    for (let i = 0; i < count && (currentPanel = currentPanel[direction]()); i++) {
+        console.log(currentPanel.item);
+        lazyLoad(currentPanel.item);
+    }
+}
