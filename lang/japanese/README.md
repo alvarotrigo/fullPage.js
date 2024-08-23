@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.28-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -261,6 +261,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right' },
 
@@ -768,6 +769,9 @@ fullpage.js >= 3.0.1が必要です。
 (デフォルト `true`) 遅延読み込みはデフォルトで有効になっており、`data-src`属性を含むすべてのメディア要素が遅延読み込みされます。  
 詳細は遅延読み込みドキュメントをご覧ください。 [遅延読み込み](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese/#遅延読み込み)  
 他の遅延読み込みライブラリを使用したい場合は、このfullpage.js機能を無効にすることができます。
+
+### lazyLoadThreshold
+（デフォルト `0`）現在のセクションに対して、隣接する垂直セクションと水平スライドのメディア要素を遅延読み込みする数を指定します。前後のセクションやスライドを何個プリロードするかを数値で指定してください。
 
 ### cardsOptions
 

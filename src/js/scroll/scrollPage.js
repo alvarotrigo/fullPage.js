@@ -10,7 +10,7 @@ import { createInfiniteSections } from '../infiniteScroll/createInfiniteSections
 import { continuousVerticalFixSectionOrder } from '../infiniteScroll/fixPosition.js';
 import { stopMedia, playMedia} from '../media.js';
 import { updateState } from '../stateUpdates.js';
-import { lazyLoad } from '../lazyLoad/lazyLoad.js';
+import { lazyLoadPanels } from '../lazyLoad/lazyLoad.js';
 import { lazyLoadOthers } from '../lazyLoad/lazyLoadOthers.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
@@ -122,7 +122,7 @@ export function scrollPage(section, callback, isMovementUp){
     utils.addClass(element, ACTIVE);
     utils.removeClass(utils.siblings(element), ACTIVE);
     updateState();
-    lazyLoad(element);
+    lazyLoadPanels(section);
 
     //preventing from activating the MouseWheelHandler event
     //more than once if the page is scrolling

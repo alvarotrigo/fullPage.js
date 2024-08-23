@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.27,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.28,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -253,6 +253,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -609,6 +610,9 @@ Allows to configure the parameters for the water effect when using the option `w
 
 ### lazyLoading
 （默认`true`）懒加载默认是激活的，这意味着它会延迟加载包含属性 `data-src` 的任何媒体元素，详见 [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese/#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD) 。 如果你想使用任何其他的后加载库，你可以禁用这个 fullpage.js 功能。
+
+### lazyLoadThreshold
+（默认值为 `0`）指定相对于当前部分，应该延迟加载的相邻垂直部分和水平幻灯片的媒体元素数量。使用一个数字来指定应该预加载多少前一个和下一个部分或幻灯片。
 
 ### observer
 （默认： `true`） Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)
