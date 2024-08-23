@@ -616,7 +616,7 @@ Allows you to configure the parameters for the cards effect when using the optio
 (padrão `true`) O carregamento lento está ativo por padrão, o que significa que carregará lentamente qualquer elemento de mídia contendo o atributo `data-src` conforme detalhado nos [documentos de carregamento lento](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#lazy-loading). Se você quiser usar qualquer outra biblioteca de carregamento lento, você pode desativar esse recurso fullpage.js.
 
 ### lazyLoadThreshold
-(padrão `0`) Define quantas seções verticais adjacentes e slides horizontais devem ser pré-carregados em relação ao atual. Use um número para especificar quantas seções ou slides anteriores e seguintes devem ser pré-carregados
+(padrão `0`) Especifica o número de seções verticais adjacentes e slides horizontais cujos elementos de mídia devem ser carregados de forma preguiçosa em relação ao atual. Use um número para especificar quantas seções ou slides anteriores e seguintes devem ser pré-carregados
 
 ### observer
 (padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.

@@ -679,7 +679,7 @@ Allows you to configure the parameters for the cards effect when using the optio
 (default `true`) Lazy loading is active by default which means it will lazy load any media element containing the attribute `data-src` as detailed in the [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js#lazy-loading) . If you want to use any other lazy loading library you can disable this fullpage.js feature.
 
 ### lazyLoadThreshold
-(default `0`) Defines how many adjacent vertical sections and horizontal slides should be preloaded relative to the current one. Use a number to specify how many previous and next sections or slides should be preloaded.
+(default `0`) Specifies the number of adjacent vertical sections and horizontal slides whose media elements should be lazy-loaded relative to the current one. Use a number to specify how many previous and next sections or slides should be preloaded.
 
 ### observer
 
