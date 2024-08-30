@@ -1,0 +1,179 @@
+# Page meta data
+title: fullPage.js | 全画面スクロールセクションサイトプラグイン
+description: Alvaro TrigoによるfullPageプラグイン。フルスクリーンページを素早く簡単に作成します。ワンページスクロールセクションのjQueryプラグイン。マウススナップ。
+keywords: fullpage,jquery,alvaro,trigo,plugin,fullscreen,screen,full,iphone5,snap,snapping,apple,scroll,sections
+og-title: fullPage スクロールスナッピング。フルスクリーンページを素早く簡単に作成
+og-description: マウスホイールでセクションを移動します。使いやすく、迅速です。
+twitter-description: フルスクリーンのスクロールウェブサイトを作成するための優れたJavaScriptライブラリ
+
+# Sections content
+Create Beautiful Fullscreen Scrolling Websites: 美しいフルスクリーンスクロールウェブサイトを作成ライブラリ
+Download: ダウンロード
+View on GitHub: GitHubを見る
+Open: Open
+js is actively maintained and community driven: jsは活発にメンテナンスされており、コミュニティ主導です。
+Solving developers' issues since 2013: 2013年から活発に開発され続けています。
+commits: コミット
+closed issues: クローズドイシュー
+contributors: 貢献者
+The best!: 最高峰
+Compatible: 優れた互換性
+Easy!: Easy!
+See in Codepen: Codepenで見る
+Touch me!: Touch me!
+Designed for mobiles and tablets, totally responsive: モバイルとタブレット向けにデザインされており、完全にレスポンシブです。
+Because not only kids like to grab things: 子供だけでなく、大人も物を掴みたくなるからです。
+
+# menu
+Wordpress Theme: Wordpressテーマ
+WordPress: WordPress
+Examples: 例
+Pricing: 価格
+Docs: ドキュメント
+Contact: お問い合わせ
+
+# sections content
+Proud of being the most complete framework of its kind: 最も完全なフレームワークであることを誇りに思っています。
+Trusted by the most innovative companies: 最も革新的な企業に信頼されています。
+Working in modern and old browsers too!: 現代のブラウザだけでなく、古いブラウザでも動作します！
+Make a beautiful site for all! Not just a few!: すべてのユーザーのために美しいサイトを作成！ 
+js is designed to be easy to use and customize: jsは使いやすく、カスタマイズしやすいように設計されています。
+It includes tens of examples, great documentation and both community and personal support: 多彩な例、素晴らしいドキュメント、そしてコミュニティと個別サポートに対応しております。
+
+# sections content
+Navigation: ナビゲーション
+Scroll Bar Enabled: スクロールバーが有効
+Normal scrolling: 通常のスクロール
+Continuous vertical: 縦方向に連続
+Without anchor links (same URL): アンカーリンクなし（同じURL）
+Vertical navigation dots: 縦方向のナビゲーションドット
+Horizontal navigation dots: 横方向のナビゲーションドット
+Extensions: 拡張機能
+Cards 3D: 3Dカード
+Parallax: パララックス
+Continuous Horizontal: 横方向に連続
+Interlocked Slides: 連携スライド
+Reset Sliders: スライダーのリセット
+Responsive Slides: レスポンシブスライド
+Scroll Horizontally: 横方向スクロール
+Fading Effect: フェード効果
+Offset Sections: オフセットセクション
+Drag And Move: ドラッグ＆ムーブ
+ScrollOverflow Reset: スクロールオーバーフローのリセット
+Design: デザイン
+Responsive: レスポンシブ
+Full backgrounds: フル背景
+Full background videos: フル背景動画
+Auto-height sections: 自動高さセクション
+Gradient backgrounds: グラデーション背景
+Scrolling inside sections and slides: セクションとスライド内でのスクロール
+Adding fixed header and footer: 固定ヘッダーとフッターの追加
+One single section: 単一セクション
+Other: その他
+Animations on scrolling: スクロール時のアニメーション
+Callbacks: コールバック
+Functions and methods: 関数とメソッド
+documentation-link: https://alvarotrigo.com/fullPage/docs/ja/
+documentation-link-github: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese
+
+documentation-link: https://github.com/alvarotrigo/fullPage.js/#fullpagejs
+extensions-link: https://alvarotrigo.com/fullPage/extensions/
+lang: ja
+flag-name: flag-japanese
+language-name: 日本語
+canonical-link: https://alvarotrigo.com/fullPage/ja/
+language-menu:
+      <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+      
+# Extensions website
+Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: 追加機能をお探しですか？ fullpage.jsは、モダンで多彩な拡張機能を提供しています！
+Parallax Backgrounds: パララックス背景
+Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding: スクロールやスライド時にセクションとスライドの背景にパララックス効果を作成します。
+Buy: 購入
+Demo: デモ
+# ScrollOverflow Reset: スクロールオーバーフローのリセット
+Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start: セクション/スライドを離れるとスクロールバーでコンテンツを戻し、常に開始位置に保ちます。
+# Drag And Move: ドラッグ＆ムーブ
+Allows to move between sections and slides by clicking and dragging the mouse as well as by swiping with fingers: マウスをクリックしてドラッグすることや指でスワイプすることで、セクションやスライド間を移動できます。
+# Offset Sections: オフセットセクション
+Provides a way to use non full screen sections based on percentage. Ideal to show visitors there's more content in the site by showing part of the next or previous section: パーセンテージに基づいてフルスクリーンでないセクションを使用する方法を提供します。次のセクションや前のセクションの一部を表示することで、サイトにもっとコンテンツがあることを訪問者に示すのに最適です。
+# Fading Effect: フェード効果
+Provides a fading effect for vertical sections and horizontal slides or for any of them separately: 縦方向のセクションや横方向のスライド、またはそれぞれの効果にフェード効果を提供します。
+# Responsive Slides: レスポンシブスライド
+Allows the turn of horizontal slides into vertical sections on responsive or by using external functions: 横方向のスライドをレスポンシブで縦方向のセクションに変えることや外部機能を使用して変えることができます。
+# Continuous Horizontal: 横方向に連続
+Provides the continuous horizontal scrolling feature for all the sliders: すべてのスライダーに対して連続横方向スクロール機能を提供します。
+# Interlocked Slides: 連携スライド
+Provides a way to force the moving of sliders in other sections when sliding the visible one: 表示されているスライドをスライドさせるときに、他のセクションのスライダーも動かす方法を提供します。
+# Scroll Horizontally: 横方向にスクロール
+Provides horizontal scroll within sliders by using the mouse wheel or trackpad. Ideal for story telling!: マウスホイールやトラックパッドを使用してスライダー内で横方向にスクロールします。ストーリーテリングに最適です！
+# Reset Sliders: スライダーのリセット
+Forces fullpage.js to reset every slider after leaving its section. This way when the user goes back it will always be in the first slide of the slider: fullpage.jsがセクションを離れた後にすべてのスライダーをリセットさせます。このように、ユーザーが戻ると常にスライダーの最初のスライドに戻ります。
+Which license should I use?: ライセンスについて
+For up to 1 website: 最大1つのウェブサイト用
+Hobby: ホビー
+1 domain: 1ドメイン
+Minified source code: ミニファイされたソースコード
+Free updates: 無料アップデート
+License agreement: ライセンス契約
+For up to 5 websites: 最大5つのウェブサイト用
+Professional: プロフェッショナル
+Best value!: 一番人気です！
+5 domains: 5ドメイン
+For unlimited websites: 無制限のウェブサイト用
+Business: ビジネス
+Unlimited Domains: 無制限のドメイン
+Common activation key: 共通のアクティベーションキー
+Use in SaaS product: SaaS製品で使用
+Refund: 返金
+Updates: アップデート
+Staging / dev domains: ステージング / 開発環境 ドメイン
+Trusted by the world’s most innovative companies: 世界で最も革新的な企業に信頼されています
+People love fullPage.js!: 人々はfullPage.jsを愛しています！
+Vertical Navigation: 縦方向のナビゲーション
+Add the stylesheet after jquery.fullpage.css and... that's it!: jquery.fullpage.cssの後にスタイルシートを追加するだけで利用できます！
+Available in 2 sizes: 2サイズで利用可能
+Get all navigation styles from Â£9: すべてのナビゲーションスタイルを£9から取得
+30-Day Money Back Guarantee: 30日間の返金保証
+Subscribe: 購読
+Get notified of new extensions or fullpage.js relevant announcements: 新しい拡張機能やfullpage.jsに関する通知を受け取る。
+Activation Key per Domain: ドメインごとのアクティベーションキー
+Only if no activation key was generated: アクティベーションキーが生成されていない場合のみ。
+Read the license refund terms: ライセンスの返金条件を読む
+1 month support: 1ヶ月のサポート
+Isolated reproductions might be required: 独立した症状再現が必要になる場合があります。
+Read the license support terms: ライセンスのサポート条件を読む
+6 months support: 6ヶ月のサポート
+Unlimited support: 優先無制限サポート
+Redistribute: 再配布
+Got questions? Check the: 質問がありますか？チェックしてください
+30-days money back guaranteed for any purchase under the conditions detailed in the License Agreement: ライセンス契約に記載された条件下での購入には30日間の返金保証があります
+fullPage.js Refund Terms: fullPage.js 返金条件
+All licenses include free updates for the purchased license and buyers will be notified by mail of new releases: すべてのライセンスには購入したライセンスの無料アップデートが含まれており、新しいリリースについてはメールで通知されます。
+Upon request: 要請に応じて
+new activation keys can be provided for staging or developing domains to a maximum of 3: ステージングまたは開発環境用ドメインに最大3つの新しいアクティベーションキーが提供可能です。
+No activation key is necessary for `localhost` and `127.0.0.1`: `localhost`および`127.0.0.1`にはアクティベーションキーは必要ありません。
+Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those: 他のステージングドメインには、それ用の新しいキーを生成することを許可するライセンス（プロフェッショナルまたはビジネス）が必要です。
+Your email address: あなたのメールアドレス
+Generate only 1 activation key. No dev/staging domains possible: 1つのアクティベーションキーのみ生成します。開発/ステージング環境用ドメインはありません。
+Price varies depending on the extension: 価格は拡張機能によって異なります
+Generate up to 5 activation keys. Dev/staging domains included: 最大5つのアクティベーションキーを生成します。開発/ステージング環境用ドメインを含む。
+Generate a common activation key: 共通のアクティベーションキーを生成
+Within a product: 製品内で
+Mobile applications: モバイルアプリケーション
+
+#extensions bundle:
+All extensions bundle: すべての拡張機能バンドル
+Get all the extensions starting from $119!: $119から始まるすべての拡張機能を入手！
+Including future ones!: 将来のものも含む！
+Get the extensions pack!: 拡張機能パックを入手！
+
+language-menu-extensions:
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
