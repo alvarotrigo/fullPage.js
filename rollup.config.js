@@ -131,7 +131,6 @@ const terserOptions = {
                 'moveTo',
                 'moveSlideRight',
                 'moveSlideLeft',
-                'fitToSection',
                 'reBuild',
                 'setResponsive',
                 'getFullpageData',
