@@ -11,8 +11,8 @@ Create Beautiful Fullscreen Scrolling Websites: 创建美丽的全屏滚动网�
 Download: 下载
 View on GitHub: 在GitHub上查看
 Open: 打开
-fullPage.js is actively mantained and community driven.: fullPage.js会经常维护更新，适应大众需求
-Solving developers' issues since 2013.: 自2013年起解决开发者问题
+js is actively maintained and community driven: js会经常维护更新，适应大众需求
+Solving developers' issues since 2013: 自2013年起解决开发者问题
 commits: 提交
 closed issues: 不公开的问题
 contributors: 贡献者
@@ -21,8 +21,8 @@ Compatible: 兼容
 Easy!: 简单
 See in Codepen: 在Codepen中查看
 Touch me!: 来吧!
-Designed for mobiles and tablets, totally responsive.: 专为手机和平板电脑设计，完全响应
-Because not only kids like to grab things.: 不仅仅孩子喜欢抓东西
+Designed for mobiles and tablets, totally responsive: 专为手机和平板电脑设计，完全响应
+Because not only kids like to grab things: 不仅仅孩子喜欢抓东西
 
 #MENU
 Wordpress Theme: WordPress的主题
@@ -33,12 +33,12 @@ Docs: 文档
 Contact: 联系
 
 #Sections content
-Proud of being the most complete framework of its kind.: 很荣幸我们的框架是最完整的
-Trusted by the most innovative companies.: 已获全球最创新企业信赖
-Working in modern and old browsers too! Even IE 9!: 兼容现代和旧版浏览器中 包括IE 9
+Proud of being the most complete framework of its kind: 很荣幸我们的框架是最完整的
+Trusted by the most innovative companies: 已获全球最创新企业信赖
+Working in modern and old browsers too!: 兼容现代和旧版浏览器中 
 Make a beautiful site for all! Not just a few!: 为所有人打造一个漂亮的网站 而非少数人
-fullPage.js is designed to be easy to use and customize.: fullPage.js易于使用，可自定义
-It inludes tens of examples, great documentation and both community and personal support.: 包含数十个例子，出色的文档，可社区和个人
+js is designed to be easy to use and customize: js易于使用，可自定义
+It includes tens of examples, great documentation and both community and personal support: 包含数十个例子，出色的文档，可社区和个人
 
 # EXAMPLES
 Navigation: 导航
@@ -74,7 +74,8 @@ Animations on scrolling: 滚动动画
 Callbacks: 回调
 Functions and methods: 功能和方法
 
-documentation-link: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese#fullpagejs
+documentation-link: https://alvarotrigo.com/fullPage/docs/zh/
+documentation-link-github: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/chinese
 extensions-link: https://alvarotrigo.com/fullPage/extensions/zh/
 lang: zh-Hans
 flag-name: flag-chinese
@@ -82,10 +83,10 @@ language-name: 中文
 canonical-link: https://alvarotrigo.com/fullPage/zh/
 language-menu:
       <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
 
 
 # Extensions website
@@ -134,7 +135,7 @@ Staging / dev domains: 测试域名
 Trusted by the world’s most innovative companies: 已获全球最创新企业信赖：
 People love fullPage.js!: 大家都喜爱fullPage.js 插件！
 Vertical Navigation: 垂直导航
-Add the stylesheet after jquery.fullpage.css and... that's it!: 在jquery.fullpage.css之后，添加样式表...大功告成！
+Add the stylesheet after fullpage.css and... that's it!: 在fullpage.css之后，添加样式表...大功告成！
 Available in 2 sizes: 2种大小
 Get all navigation styles from Â£9: 所有导航效果只需Â£9起
 30-Day Money Back Guarrantee: 30天退款保证
@@ -165,9 +166,14 @@ Generate a common activation key: 生成1个共同激活码
 Within a product: 一个产品内
 Mobile applications: 手机软件
 
+#extensions bundle:
+All extensions bundle: All extensions bundle
+Get all the extensions starting from $119!: Get all the extensions starting from $119!
+Including future ones!: Including future ones!
+Get the extensions pack!: Get the extensions pack!
+
 language-menu-extensions:
       <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>

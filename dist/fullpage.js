@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.28
+* fullPage 4.0.29
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -2276,7 +2276,7 @@
 
       $(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function (section) {
         if (isSectionInViewport(section)) {
-          lazyLoadPanels(getPanelByElement(section));
+          lazyLoadPanels(getPanelByElement(getState().sections, section));
         }
       });
     }
@@ -5445,6 +5445,15 @@
       EventEmitter.on(events.moveSlideLeft, function (params) {
         moveSlideLeft(params.section);
       });
+      EventEmitter.on(events.afterSectionLoads, updateScrollX);
+    }
+
+    function updateScrollX(params) {
+      var activeSlide = params.items.destination.activeSlide;
+      var scrollX = activeSlide ? Math.round(activeSlide.offsetLeft) : 0;
+      setState({
+        scrollX: scrollX
+      });
     }
     /**
     * Gets the active slide.
@@ -5527,7 +5536,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x37\x2d\x32\x32".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x38\x2d\x36".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5988,7 +5997,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.28';
+      FP.version = '4.0.29';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

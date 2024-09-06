@@ -1,6 +1,6 @@
 import { nullOrSlide } from '../callbacks/nullOrSlide.js';
 import { EventEmitter } from '../common/eventEmitter.js';
-import { getState, state } from '../common/state.js';
+import { getState, setState, state } from '../common/state.js';
 import { landscapeScroll, onDestroy } from './landscapeScroll.js';
 import { moveSlideLeft, moveSlideRight } from './moveSlide.js';
 import { FP } from '../common/constants.js';
@@ -24,6 +24,16 @@ function bindEvents(){
     });
     EventEmitter.on(events.moveSlideLeft, function(params){
         moveSlideLeft(params.section);
+    });
+    EventEmitter.on(events.afterSectionLoads, updateScrollX);
+}
+
+function updateScrollX(params){
+    var activeSlide = params.items.destination.activeSlide;
+    var scrollX = activeSlide ? Math.round(activeSlide.offsetLeft) : 0;
+    
+    setState({
+        scrollX: scrollX
     });
 }
 

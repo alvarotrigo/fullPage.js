@@ -11,8 +11,8 @@ Create Beautiful Fullscreen Scrolling Websites: Crea increibles páginas web con
 Download: Descargar
 View on GitHub: Ver en GitHub
 Open: Abierto
-fullPage.js is actively mantained and community driven.: Mantenido activamente e impulsado por la comunidad.
-Solving developers' issues since 2013.: Haciendo la vida fácil a desarrolladores desde 2013.
+js is actively maintained and community driven: js está bajo constante mantenimiento y es impulsado por la comunidad.
+Solving developers' issues since 2013: Haciendo la vida fácil a desarrolladores desde 2013.
 commits: commits
 closed issues: dudas resueltas
 contributors: contribuyentes
@@ -21,8 +21,8 @@ Compatible: Compatible
 Easy!: Fácil!
 See in Codepen: Ver en Codepen
 Touch me!: Tócame!
-Designed for mobiles and tablets, totally responsive.: Diseñado para móviles y tablets, totalmente responsive.
-Because not only kids like to grab things.: Porque no sólamente a los niños les gusta tocar cosas.
+Designed for mobiles and tablets, totally responsive: Diseñado para móviles y tablets, totalmente responsive
+Because not only kids like to grab things: Porque no sólamente a los niños les gusta tocar cosas
 
 #MENU
 Wordpress Theme: Plantilla Wordpress
@@ -33,12 +33,12 @@ Docs: Documentación
 Contact: Contacto
 
 #sections content
-Proud of being the most complete framework of its kind.: Orgulloso de ser el framework más completo de su categoría.
-Trusted by the most innovative companies.: Usado por las compañias más innovadoras.
-Working in modern and old browsers too! Even IE 9!: Funcional en todo tipo de navegadores! Incluso IE 9!.
+Proud of being the most complete framework of its kind: Orgulloso de ser el framework más completo de su categoría
+Trusted by the most innovative companies: Usado por las compañias más innovadoras
+Working in modern and old browsers too!: Funcional en todo tipo de navegadores!
 Make a beautiful site for all! Not just a few!: Haz una página bonita para todos no solo para unos pocos!
-fullPage.js is designed to be easy to use and customize.: fullPage.js está diseñado para ser fácil de usar y configurar.
-It inludes tens of examples, great documentation and both community and personal support.: Incluye decenas de ejemplos, una documentación increible y suporte tanto personal como de la comunidad.
+js is designed to be easy to use and customize: js está diseñado para ser fácil de usar y configurar
+It includes tens of examples, great documentation and both community and personal support: Incluye decenas de ejemplos, una documentación increible y suporte tanto personal como de la comunidad
 
 #examples
 Navigation: Navegación
@@ -75,7 +75,8 @@ Callbacks: Callbacks
 Functions and methods: Funciones y métodos
 
 #extras
-documentation-link: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish#fullpagejs
+documentation-link: https://alvarotrigo.com/fullPage/docs/es/
+documentation-link-github: https://github.com/alvarotrigo/fullPage.js/tree/master/lang/spanish
 extensions-link: https://alvarotrigo.com/fullPage/extensions/es/
 lang: es
 flag-name: flag-spanish
@@ -83,10 +84,10 @@ language-name: Español
 canonical-link: https://alvarotrigo.com/fullPage/es/
 language-menu:
       <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
+      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
 
 # Extensions website
 Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Necesitas funcionalidad extra? Fullpage.js provee extensiones que puedes usar para mejorar su ya increible funcionamiento!
@@ -136,7 +137,7 @@ Staging / dev domains: Dominios de desarrollo
 Trusted by the world’s most innovative companies: Usada por las compañías más innovadoras del mundo
 People love fullPage.js!: La gente ama fullPage.js!
 Vertical Navigation: Navegación vertical
-Add the stylesheet after jquery.fullpage.css and... that's it!: Incluye la hoja de estilos después de jquery.fullpage.css y... eso es todo!
+Add the stylesheet after fullpage.css and... that's it!: Incluye la hoja de estilos después de fullpage.css y... eso es todo!
 Available in 2 sizes: Disponible en 2 idiomas
 Get all navigation styles from £9: Consigue todos los estilos de navegación por £9
 Subscribe: Subscríbete
@@ -164,9 +165,15 @@ Upon request: Bajo petición
 new activation keys can be provided for staging or developing domains to a maximum of 3.: Dominios de desarrollo podrán optar a un máximo de 3 claves de activación.
 No activation key is necessary for `localhost` and `127.0.0.1`.: No se necesta clave de activación para `localhost` y `127.0.0.1`.
 Any other staging domains will require a license (Professional or Business) that allows to generate a new key for those.: Cualquier otro dominio de desarrollo requerirá una licencia (Profesional or Business) que permita generar nuevas claves de activación para ellos.
+
+#extensions bundle:
+All extensions bundle: Pack completo
+Get all the extensions starting from $119!: Consigue todas las extensiones desde $119!
+Including future ones!: Incluyendo las que vayan saliendo!
+Get the extensions pack!: Quiero el pack completo!
+
 language-menu-extensions:
       <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
       <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
