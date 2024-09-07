@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.29-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -258,6 +258,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -477,6 +478,9 @@ the fitting by the configured milliseconds.
 ### touchSensitivity:
 (padrão `5`) Define uma porcentagem da largura/altura da janela do navegador e a distância que um deslize deve medir para navegar para a próxima seção/slide
 
+### skipIntermediateItems
+(padrão `false`). Determina se a animação de rolagem deve ser ignorada ao navegar entre seções verticais ou slides horizontais não consecutivos. Os valores possíveis são `true`, `false`, `sections` e `slides`, permitindo aplicar esse comportamento verticalmente, horizontalmente ou em ambas as direções.
+
 ### continuousVertical:
 (padrão `false`) Define se a rolagem para baixo na última seção deve rolar para a primeira e se a rolagem para cima na primeira seção deve rolar para a última. Não compatível com `loopTop`, `loopBottom` ou qualquer barra de rolagem presente no site (`scrollBar:true` ou `autoScrolling:false`).
 
@@ -611,6 +615,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 
 ### lazyLoading
 (padrão `true`) O carregamento lento está ativo por padrão, o que significa que carregará lentamente qualquer elemento de mídia contendo o atributo `data-src` conforme detalhado nos [documentos de carregamento lento](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#lazy-loading). Se você quiser usar qualquer outra biblioteca de carregamento lento, você pode desativar esse recurso fullpage.js.
+
+### lazyLoadThreshold
+(padrão `0`) Especifica o número de seções verticais adjacentes e slides horizontais cujos elementos de mídia devem ser carregados de forma preguiçosa em relação ao atual. Use um número para especificar quantas seções ou slides anteriores e seguintes devem ser pré-carregados
 
 ### observer
 (padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.

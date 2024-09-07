@@ -1,9 +1,0 @@
-{
-    "username": "mrstevejobs",
-    "key": "tLjY2JrxQn3EuKRKwDzf",
-    "test_framework" : "qunit",
-    "test_path": "pepe.html",
-    "browsers": [
-        "firefox_previous"
-    ]
-}

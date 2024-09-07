@@ -3,7 +3,7 @@ import { getOptions } from '../common/options.js';
 import { stopMedia, playMedia} from '../media.js';
 import { updateState } from '../stateUpdates.js';
 import { getState, setState, state } from '../common/state.js';
-import { lazyLoad } from '../lazyLoad/lazyLoad.js';
+import { lazyLoadPanels } from '../lazyLoad/lazyLoad.js';
 import { setPageStatus } from '../anchors/setPageStatus.js';
 import { activateMenuAndNav } from '../menu/activateMenuAndNav.js';
 import { $body } from '../common/cache.js';
@@ -128,7 +128,7 @@ export function scrollHandler(e){
                 }
 
                 stopMedia(leavingSection);
-                lazyLoad(currentSectionElem);
+                lazyLoadPanels(currentSection);
                 playMedia(currentSectionElem);
 
                 activateMenuAndNav(anchorLink, sectionIndex - 1);

@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.26
+* fullPage 4.0.29
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1155,6 +1155,7 @@
       normalScrollElements: null,
       scrollOverflow: true,
       scrollOverflowReset: false,
+      skipIntermediateItems: false,
       touchSensitivity: 5,
       touchWrapper: null,
       bigSectionsDestination: null,
@@ -1205,6 +1206,7 @@
       afterResponsive: null,
       onScrollOverflow: null,
       lazyLoading: true,
+      lazyLoadThreshold: 0,
       observer: true,
       scrollBeyondFullpage: true
     };
@@ -1833,6 +1835,24 @@
         }
       });
     }
+    function lazyLoadPanels(panel) {
+      var lazyLoadThresold = getOptions().lazyLoadThreshold;
+      lazyLoad(panel.item);
+
+      if (lazyLoadThresold) {
+        lazyLoadDirection(panel, 'prev', lazyLoadThresold);
+        lazyLoadDirection(panel, 'next', lazyLoadThresold);
+      }
+    } // Lazy load "count" number of panels in a specific direction
+
+    function lazyLoadDirection(startPanel, direction, count) {
+      var currentPanel = startPanel;
+
+      for (var i = 0; i < count && (currentPanel = currentPanel[direction]()); i++) {
+        console.log(currentPanel.item);
+        lazyLoad(currentPanel.item);
+      }
+    }
 
     /**
     * Sets a class for the body of the page depending on the active section / slide
@@ -2256,7 +2276,7 @@
 
       $(SECTION_SEL + ':not(' + ACTIVE_SEL + ')').forEach(function (section) {
         if (isSectionInViewport(section)) {
-          lazyLoad(section);
+          lazyLoadPanels(getPanelByElement(getState().sections, section));
         }
       });
     }
@@ -2518,7 +2538,7 @@
       addClass(element, ACTIVE);
       removeClass(siblings(element), ACTIVE);
       updateState();
-      lazyLoad(element); //preventing from activating the MouseWheelHandler event
+      lazyLoadPanels(section); //preventing from activating the MouseWheelHandler event
       //more than once if the page is scrolling
 
       setState({
@@ -2583,13 +2603,13 @@
 
 
     function performMovement(v) {
-      var isFastSpeed = getOptions().scrollingSpeed < 700;
-      var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed;
       setState({
         touchDirection: 'none',
         scrollY: Math.round(v.dtop)
       });
-      EventEmitter.emit(events.onPerformMovement); // using CSS3 translate functionality
+      EventEmitter.emit(events.onPerformMovement, v);
+      var isFastSpeed = getOptions().scrollingSpeed < 700;
+      var transitionLapse = isFastSpeed ? 700 : getOptions().scrollingSpeed; // using CSS3 translate functionality
 
       if (getOptions().css3 && getOptions().autoScrolling && !getOptions().scrollBar) {
         // The first section can have a negative value in iOS 10. Not quite sure why: -0.0142822265625
@@ -3173,7 +3193,7 @@
 
       if (!v.localIsResizing) {
         stopMedia(v.prevSlide);
-        lazyLoad(destiny);
+        lazyLoadPanels(slide);
       }
 
       toggleControlArrows(v); //only changing the URL if the slides are in the current section (not for resize re-adjusting)
@@ -5307,7 +5327,7 @@
             }
 
             stopMedia(leavingSection);
-            lazyLoad(currentSectionElem);
+            lazyLoadPanels(currentSection);
             playMedia(currentSectionElem);
             activateMenuAndNav(anchorLink, sectionIndex - 1);
 
@@ -5425,6 +5445,15 @@
       EventEmitter.on(events.moveSlideLeft, function (params) {
         moveSlideLeft(params.section);
       });
+      EventEmitter.on(events.afterSectionLoads, updateScrollX);
+    }
+
+    function updateScrollX(params) {
+      var activeSlide = params.items.destination.activeSlide;
+      var scrollX = activeSlide ? Math.round(activeSlide.offsetLeft) : 0;
+      setState({
+        scrollX: scrollX
+      });
     }
     /**
     * Gets the active slide.
@@ -5507,7 +5536,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x36\x2d\x32\x33".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x38\x2d\x36".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5524,6 +5553,28 @@
         return n > 90 && n < 97 && (n += 15), String.fromCharCode(n).toUpperCase();
       }
     }();
+
+    EventEmitter.on(events.onPerformMovement, onSlideOrScroll);
+    EventEmitter.on(events.afterSectionLoads, afterPanelLoad);
+    EventEmitter.on(events.onSlideLeave, onSlideOrScroll);
+    EventEmitter.on(events.afterSlideLoads, afterPanelLoad);
+
+    function onSlideOrScroll(params) {
+      var skipValue = getOptions().skipIntermediateItems;
+      var scrollType = params.items.origin.isSection ? 'sections' : 'slides';
+      var areConsecutivePanels = Math.abs(params.items.origin.index() - params.items.destination.index()) > 1;
+      var doesApply = (skipValue === true || skipValue === scrollType) && areConsecutivePanels;
+
+      if (doesApply) {
+        setScrollingSpeed(0, 'internal');
+      }
+    }
+
+    function afterPanelLoad(params) {
+      if (getOptions().skipIntermediateItems) {
+        setVariableState('scrollingSpeed', getOriginals().scrollingSpeed, 'internal');
+      }
+    }
 
     //@ts-check
     EventEmitter.on(events.beforeInit, beforeInit);
@@ -5638,7 +5689,7 @@
       var section = getState().activeSection;
       var sectionElem = getState().activeSection.item;
       addClass(sectionElem, COMPLETELY);
-      lazyLoad(sectionElem);
+      lazyLoadPanels(getState().activeSection);
       lazyLoadOthers();
       playMedia(sectionElem);
 
@@ -5946,7 +5997,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.26';
+      FP.version = '4.0.29';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

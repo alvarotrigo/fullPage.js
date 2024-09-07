@@ -20,7 +20,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.29-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -253,6 +253,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -471,6 +472,9 @@ new fullpage('#fullpage', {
 ### touchSensitivity
 (по умолчанию `5`) Определяет ширину и высоту браузеров в процентах, а также то, насколько длинным должно быть пролистывание для перехода к следующему разделу/слайду.
 
+### skipIntermediateItems
+(по умолчанию `false`). Определяет, следует ли пропускать анимацию прокрутки при навигации между неконсеквенционными вертикальными секциями или горизонтальными слайдами. Возможные значения: `true`, `false`, `sections` и `slides`, что позволяет применять это поведение по вертикали, горизонтали или в обоих направлениях.
+
 ### continuousVertical
 (по умолчанию `false`) Определяет, будет ли осуществляться скроллинг к последнему разделу при пролистывании первого раздела вверх и к первому разделу при пролистывании последнего раздела вниз. Опция несовместима с опциями `loopTop`, `loopBottom` и любыми полосами прокрутки, используемыми на сайте (`scrollBar:true` или `autoScrolling:false`).
 
@@ -600,6 +604,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 
 ### lazyLoading
 (по умолчанию `true`) Отложенная загрузка включена по умолчанию, что означает, что данная опция будет осуществлять отложенную загрузку любого медиа-элемента, содержащего атрибут `data-src`, как описано в [документации отложенной загрузки](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/russian/#Отложенная-загрузка). Если вы желаете использовать любую другую библиотеку отложенной загрузки, вы можете деактивировать данную функцию fullpage.js.
+
+### lazyLoadThreshold
+(по умолчанию `0`) Указывает количество соседних вертикальных секций и горизонтальных слайдов, мультимедийные элементы которых должны быть загружены ленивым образом относительно текущей. Используйте число, чтобы указать, сколько предыдущих и следующих секций или слайдов должно быть предварительно загружено.
 
 ### observer
 (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)

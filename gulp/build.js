@@ -43,11 +43,12 @@ gulp.task('update-version', function(done){
         './README.md',
         './lang/traditional-chinese/README.md',
         './lang/simplified-chinese/README.md',
+        './lang/brazilian-portuguese/README.md',
         './lang/french/README.md',
+        './lang/japanese/README.md',
         './lang/korean/README.md',
         './lang/russian/README.md',
-        './lang/spanish/README.md',
-        './lang/brazilian-portuguese/README.md',
+        './lang/spanish/README.md'
     ], { base: "./" })
         .pipe(replace(/(fullPage.js-v)([\d\.]+)/g, "$1" + fpPackage.version))
         .pipe(gulp.dest('.'));

@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.29-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -221,6 +221,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflow: true,
 	scrollOverflowMacStyle: false,
 	scrollOverflowReset: false,
+	skipIntermediateItems: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
 
@@ -257,6 +258,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -501,9 +503,13 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 
 (default `5`) Defines a percentage of the browsers window width/height, and how far a swipe must measure for navigating to the next section / slide
 
+### skipIntermediateItems
+
+(default `false`). Determines whether to skip the scroll animation when navigating between non-consecutive vertical sections or horizontal slides. The possible values are `true`, `false`, `sections`, and `slides`, allowing you to apply this behavior vertically, horizontally, or in both directions.
+
 ### continuousVertical
 
-(default `false`) Defines whether scrolling down in the last section should scroll down to the first one and if scrolling up in the first section should scroll up to the last one. Not compatible with `loopTop`, `loopBottom` or any scroll bar present in the site (`scrollBar:true` or `autoScrolling:false`).
+(default `false`) Defines whether scrolling down in the last section should scroll down to the first one and if scrolling1 up in the first section should scroll up to the last one. Not compatible with `loopTop`, `loopBottom` or any scroll bar present in the site (`scrollBar:true` or `autoScrolling:false`).
 
 ### continuousHorizontal
 
@@ -672,6 +678,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 ### lazyLoading
 
 (default `true`) Lazy loading is active by default which means it will lazy load any media element containing the attribute `data-src` as detailed in the [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js#lazy-loading) . If you want to use any other lazy loading library you can disable this fullpage.js feature.
+
+### lazyLoadThreshold
+(default `0`) Specifies the number of adjacent vertical sections and horizontal slides whose media elements should be lazy-loaded relative to the current one. Use a number to specify how many previous and next sections or slides should be preloaded.
 
 ### observer
 

@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.26-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.29-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -261,6 +261,7 @@ var myFullpage = new fullpage('#fullpage', {
 	slideSelector: '.slide',
 
 	lazyLoading: true,
+	lazyLoadThreshold: 0,
 	observer: true,
 	credits: { enabled: true, label: 'Made with fullPage.js', position: 'right'},
 
@@ -481,6 +482,9 @@ new fullpage('#fullpage', {
 ### touchSensitivity
 (défaut `5`) Définit un pourcentage de la largeur/hauteur de la fenêtre du navigateur, et la distance que doit mesurer un glissement pour naviguer vers la section / diapositive suivante
 
+### skipIntermediateItems
+(valeur par défaut `false`). Détermine s'il faut ignorer l'animation de défilement lors de la navigation entre des sections verticales ou des diapositives horizontales non consécutives. Les valeurs possibles sont `true`, `false`, `sections` et `slides`, permettant d'appliquer ce comportement verticalement, horizontalement ou dans les deux directions.
+
 ### continuousVertical
 (défaut `false`) Définit si le défilement vers le bas dans la dernière section ou doit descendre jusqu'à la première et si le défilement vers le haut dans la première section doit monter jusqu'à la dernière. Non compatible avec `loopTop`, `loopBottom` ou toute barre de défilement présente dans le site (`scrollBar:true` ou `autoScrolling:false`).
 
@@ -617,6 +621,9 @@ Vous permet de configurer les paramètres pour l'effet des cartes quand vous uti
 
 ### lazyLoading
 (défaut `true`) Le chargement paresseux est actif par défaut ce qui signifie qu'il chargera paresseusement tout élément média contenant l'attribut `data-src` comme détaillé dans la [Lazy Loading docs](https://github.com/alvarotrigo/fullPage.js/tree/dev/lang/french/#lazy-loading) . Si vous voulez utiliser une autre bibliothèque de chargement paresseux, vous pouvez désactiver cette fonctionnalité de fullpage.js.
+
+### lazyLoadThreshold
+(par défaut `0`) Spécifie le nombre de sections verticales adjacentes et de diapositives horizontales dont les éléments multimédias doivent être chargés de manière différée par rapport à la section actuelle. Utilisez un nombre pour spécifier combien de sections ou diapositives précédentes et suivantes doivent être préchargées.
 
 ### observer
 (default `true`) Defines whether or not to observe changes in the HTML structure of the page. When enabled, fullPage.js will automatically react to those changes and update itself accordingly. Ideal when adding, removing or hidding sections or slides. (translation needed)

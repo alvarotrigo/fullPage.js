@@ -43,6 +43,7 @@ export const defaultOptions = {
     normalScrollElements: null,
     scrollOverflow: true,
     scrollOverflowReset: false,
+    skipIntermediateItems: false,
     touchSensitivity: 5,
     touchWrapper: null,
     bigSectionsDestination: null,
@@ -97,6 +98,7 @@ export const defaultOptions = {
     onScrollOverflow: null,
 
     lazyLoading: true,
+    lazyLoadThreshold: 0,
     observer: true,
     scrollBeyondFullpage: true
 };
