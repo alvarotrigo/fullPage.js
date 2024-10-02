@@ -1,3 +1,5 @@
+# @format
+
 #page meta data - just translate the 2nd part, the part after the semicolon ":"
 title: fullPage.js | 한 페이지 스크롤 구역 사이트 플러그인
 description: Alvaro 제작 플러그인. 전체화면 페이지를 빠르고 손쉽게 만듭니다. 한 페이지 스크롤 구역. 마우스 스냅.
@@ -27,7 +29,7 @@ Because not only kids like to grab things: 누구나 아이처럼 신나게 만�
 
 #MENU
 Wordpress Theme: 워드프레스 테마
-WordPress: 워드프레스 
+WordPress: 워드프레스
 Examples: 예시
 Pricing: 가격
 Docs: 설명서
@@ -83,13 +85,13 @@ flag-name: flag-korean
 language-name: 한국어
 canonical-link: https://alvarotrigo.com/fullPage/ko/
 language-menu:
-      <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-
-
+    <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hant/"><span class="flag flag-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
 
 # Extensions website
 Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: 추가 기능이 필요하신가요? Fullpage.js가 지원하는 끝내주는 효과를 한층 더 끌어올릴 수 있는 확장 프로그램을 만나보세요!
@@ -175,7 +177,10 @@ Including future ones!: 나중에 사용할 프로그램도 지금 미리 구매
 Get the extensions pack!: 확장 프로그램 패키지 구매하기
 
 language-menu-extensions:
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ja/"><span class="flag flag-japanese"></span>日本語</a></li>

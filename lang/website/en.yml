@@ -1,3 +1,5 @@
+# @format
+
 #Page meta data
 title: fullPage.js | One Page Scroll sections Site Plugin
 description: fullPage plugin by Alvaro Trigo. Create fullscreen pages fast and simple. One page scroll sections jquery plugin. Mouse snap.
@@ -82,12 +84,13 @@ flag-name: flag-english
 language-name: English
 canonical-link: https://alvarotrigo.com/fullPage/
 language-menu:
-      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-
+    <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
 
 # Extensions website
 Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!
@@ -172,9 +175,11 @@ Get all the extensions starting from $119!: Get all the extensions starting from
 Including future ones!: Including future ones!
 Get the extensions pack!: Get the extensions pack!
 
-
 language-menu-extensions:
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ja/"><span class="flag flag-japanese"></span>日本語</a></li>

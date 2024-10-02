@@ -41,8 +41,9 @@ gulp.task('update-version', function(done){
     // updating readme version
     gulp.src([
         './README.md',
+        './lang/traditional-chinese/README.md',
+        './lang/simplified-chinese/README.md',
         './lang/brazilian-portuguese/README.md',
-        './lang/chinese/README.md',
         './lang/french/README.md',
         './lang/japanese/README.md',
         './lang/korean/README.md',

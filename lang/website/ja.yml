@@ -1,3 +1,5 @@
+# @format
+
 # Page meta data
 title: fullPage.js | 全画面スクロールセクションサイトプラグイン
 description: Alvaro TrigoによるfullPageプラグイン。フルスクリーンページを素早く簡単に作成します。ワンページスクロールセクションのjQueryプラグイン。マウススナップ
@@ -36,7 +38,7 @@ Contact: お問い合わせ
 Proud of being the most complete framework of its kind: 最も完全なフレームワークであることを誇りに思っています
 Trusted by the most innovative companies: 最も革新的な企業に信頼されています
 Working in modern and old browsers too!: 現代のブラウザだけでなく、古いブラウザでも動作します！
-Make a beautiful site for all! Not just a few!: すべてのユーザーのために美しいサイトを作成！ 
+Make a beautiful site for all! Not just a few!: すべてのユーザーのために美しいサイトを作成！
 js is designed to be easy to use and customize: jsは使いやすく、カスタマイズしやすいように設計されています
 It includes tens of examples, great documentation and both community and personal support: 多彩な例、素晴らしいドキュメント、そしてコミュニティと個別サポートに対応しております
 
@@ -82,12 +84,14 @@ flag-name: flag-japanese
 language-name: 日本語
 canonical-link: https://alvarotrigo.com/fullPage/ja/
 language-menu:
-      <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-      
+    <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+
 # Extensions website
 Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: 追加機能をお探しですか？ fullpage.jsは、モダンで多彩な拡張機能を提供しています！
 Parallax Backgrounds: パララックス背景
@@ -172,7 +176,10 @@ Including future ones!: 将来のものも含む！
 Get the extensions pack!: 拡張機能パックを入手！
 
 language-menu-extensions:
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ja/"><span class="flag flag-japanese"></span>日本語</a></li>

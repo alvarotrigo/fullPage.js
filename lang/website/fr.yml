@@ -1,3 +1,5 @@
+# @format
+
 #Page meta data
 title: fullPage.js | Plugin pour site web d'une page de défilement des sections
 description: plugin fullPage par Alvaro Trigo. Créez des pages plein écran rapidement et simplement. Plugin jquery de sections de défilement d'une page. Clic souris.
@@ -81,19 +83,19 @@ flag-name: flag-french
 language-name: French
 canonical-link: https://alvarotrigo.com/fullPage/
 language-menu:
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/fr/"><span class="flag flag-french"></span>Français</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
-
+    <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hant/"><span class="flag flag-simplified-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/fr/"><span class="flag flag-french"></span>Français</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
 
 # Extensions website
 Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Besoin d'une fonctionnalité supplémentaire ? Fullpage.js fournit des extensions que vous pouvez utiliser pour améliorer son comportement déjà étonnant !
 Parallax Backgrounds: Fonds d'écran Parallax
 Creates a parallax effect for the backgrounds of sections and slides when scrolling and sliding.: Crée un effet de parallaxe pour les fonds de sections et de diapositives lors du défilement et du glissement.
-Buy : Acheter
+Buy: Acheter
 Demo: Demo
 #ScrollOverflow Reset: ScrollOverflow Reset
 Scrolls back the content of the section/slide with scroll bar when leaving it so it will always be at the start.: Fait défiler le contenu de la section/glissière vers l'arrière avec la barre de défilement lorsque vous la quittez pour qu'elle soit toujours au début.
@@ -167,9 +169,11 @@ Within a product: Dans un produit
 Mobile applications: Applications mobiles
 
 language-menu-extensions:
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/fr/"><span class="flag flag-french"></span>Français</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/es/"><span class="flag flag-spanish"></span>Español</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/fr/"><span class="flag flag-french"></span>Français</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ja/"><span class="flag flag-japanese"></span>日本語</a></li>

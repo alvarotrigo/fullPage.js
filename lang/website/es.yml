@@ -1,3 +1,5 @@
+# @format
+
 #Page meta data
 title: fullPage.js | Crea webs con desplazamiento de secciones a pantalla completa
 description: fullPage plugin por Alvaro Trigo. Crea páginas web con desplazamiento a pantalla completa por secciones. Librería jQuery Javascript.
@@ -83,11 +85,13 @@ flag-name: flag-spanish
 language-name: Español
 canonical-link: https://alvarotrigo.com/fullPage/es/
 language-menu:
-      <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/"><span class="flag flag-english"></span>English</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
 
 # Extensions website
 Need some extra feature? Fullpage.js provides extensions that you can use to enhance its already amazing behavior!: Necesitas funcionalidad extra? Fullpage.js provee extensiones que puedes usar para mejorar su ya increible funcionamiento!
@@ -173,7 +177,10 @@ Including future ones!: Incluyendo las que vayan saliendo!
 Get the extensions pack!: Quiero el pack completo!
 
 language-menu-extensions:
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
-      <li><a href="https://alvarotrigo.com/fullPage/extensions/zh/"><span class="flag flag-chinese"></span>中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/"><span class="flag flag-english"></span>English</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ru/"><span class="flag flag-russian"></span>Pусский</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ko/"><span class="flag flag-korean"></span>한국어</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hant/"><span class="flag flag-traditional-chinese"></span>繁體中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/zh-Hans/"><span class="flag flag-simplified-chinese"></span>简体中文</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/br/"><span class="flag flag-brazilian"></span>Português Brasileiro</a></li>
+    <li><a href="https://alvarotrigo.com/fullPage/extensions/ja/"><span class="flag flag-japanese"></span>日本語</a></li>
