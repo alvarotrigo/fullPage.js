@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.29
+ * fullPage 4.0.30
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -236,6 +236,9 @@ html.fp-enabled,
 /* Disabling vertical centering on scrollable elements */
 .fp-overflow{
     justify-content: flex-start;
+}
+
+body:not(.fp-responsive) .fp-overflow{
     max-height: 100vh;
 }
 
