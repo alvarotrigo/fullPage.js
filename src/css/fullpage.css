@@ -1,5 +1,5 @@
 /*!
- * fullPage 4.0.29
+ * fullPage 4.0.30
  * https://github.com/alvarotrigo/fullPage.js
  *
  * @license GPLv3 for open source use only
@@ -216,6 +216,12 @@ html.fp-enabled,
     height: auto !important;
 }
 
+/* Tries to prevent overwrites #4657 */
+.fp-enabled .fp-scrollable{
+    overflow: visible;
+    height: initial;
+}
+
 /* Used with autoScrolling: false */ 
 .fp-scrollable.fp-responsive .fp-is-overflow.fp-section,
 .fp-scrollable .fp-section,
@@ -236,6 +242,9 @@ html.fp-enabled,
 /* Disabling vertical centering on scrollable elements */
 .fp-overflow{
     justify-content: flex-start;
+}
+
+body:not(.fp-responsive) .fp-overflow{
     max-height: 100vh;
 }
 

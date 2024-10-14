@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.29
+* fullPage 4.0.30
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1721,27 +1721,31 @@
       return paramsPerEvent[eventName]();
     }
 
+    function hasAutoPlay(item) {
+      return item.hasAttribute('data-autoplay') || item.hasAttribute('autoplay');
+    }
     /**
     * Plays video and audio elements.
     */
+
 
     function playMedia(destiny) {
       var panel = getSlideOrSection(destiny); //playing HTML5 media elements
 
       $('video, audio', panel).forEach(function (element) {
-        if (element.hasAttribute('data-autoplay') && typeof element.play === 'function') {
+        if (hasAutoPlay(element) && typeof element.play === 'function') {
           element.play();
         }
       }); //youtube videos
 
       $('iframe[src*="youtube.com/embed/"]', panel).forEach(function (element) {
-        if (element.hasAttribute('data-autoplay')) {
+        if (hasAutoPlay(element)) {
           playYoutube(element);
         } //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
 
 
         element.onload = function () {
-          if (element.hasAttribute('data-autoplay')) {
+          if (hasAutoPlay(element)) {
             playYoutube(element);
           }
         };
@@ -1870,7 +1874,7 @@
       } //changing slash for dash to make it a valid CSS style
 
 
-      text = text.replace('/', '-').replace('#', ''); //removing previous anchor classes
+      text = text.replace('/', '-').replace('#', '').replace(/\s/g, ''); //removing previous anchor classes
 
       var classRe = new RegExp('\\b\\s?' + VIEWING_PREFIX + '-[^\\s]+\\b', "g");
       $body.className = $body.className.replace(classRe, ''); //adding the current anchor
@@ -2145,7 +2149,7 @@
           'overflow': 'hidden',
           'height': '100%'
         });
-        removeClass($body, 'fp-scrollable');
+        removeClass($body, SCROLLABLE);
         setRecordHistory(getOriginals().recordHistory, 'internal'); //for IE touch devices
 
         css(getContainer(), {
@@ -2162,7 +2166,7 @@
           'overflow': 'visible',
           'height': 'initial'
         });
-        addClass($body, 'fp-scrollable');
+        addClass($body, SCROLLABLE);
         var recordHistory = !getOptions().autoScrolling ? false : getOriginals().recordHistory;
         setRecordHistory(recordHistory, 'internal'); //for IE touch devices
 
@@ -5536,7 +5540,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x38\x2d\x36".split("-"),
+      var n = "\x32\x30\x32\x34\x2d\x39\x2d\x31\x34".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5997,7 +6001,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.29';
+      FP.version = '4.0.30';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

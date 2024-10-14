@@ -19,6 +19,9 @@ export function onMediaLoad(section){
 // }
 }
 
+function hasAutoPlay(item){
+    return item.hasAttribute('data-autoplay') || item.hasAttribute('autoplay');
+}
 
 /**
 * Plays video and audio elements.
@@ -28,20 +31,20 @@ export function playMedia(destiny){
 
     //playing HTML5 media elements
     utils.$('video, audio', panel).forEach(function(element){
-        if( element.hasAttribute('data-autoplay') && typeof element.play === 'function' ) {
+        if( hasAutoPlay(element) && typeof element.play === 'function' ) {
             element.play();
         }
     });
 
     //youtube videos
     utils.$('iframe[src*="youtube.com/embed/"]', panel).forEach(function(element){
-        if ( element.hasAttribute('data-autoplay') ){
+        if ( hasAutoPlay(element) ){
             playYoutube(element);
         }
 
         //in case the URL was not loaded yet. On page load we need time for the new URL (with the API string) to load.
         element.onload = function() {
-            if ( element.hasAttribute('data-autoplay') ){
+            if ( hasAutoPlay(element) ){
                 playYoutube(element);
             }
         };
