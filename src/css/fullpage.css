@@ -216,6 +216,11 @@ html.fp-enabled,
     height: auto !important;
 }
 
+.fp-enabled .fp-scrollable{
+    overflow: visible;
+    height: initial;
+}
+
 /* Used with autoScrolling: false */ 
 .fp-scrollable.fp-responsive .fp-is-overflow.fp-section,
 .fp-scrollable .fp-section,

@@ -11,6 +11,7 @@ import { getState } from './common/state.js';
 import { FP } from './common/constants.js';
 import { $body, $htmlBody } from './common/cache.js';
 import { setRecordHistory } from './anchors/setRecordHistory.js';
+import { SCROLLABLE } from './common/selectors.js';
 
 FP.setAutoScrolling = setAutoScrolling;
 FP.test.setAutoScrolling = setAutoScrolling;
@@ -35,7 +36,7 @@ export function setAutoScrolling(value, type){
             'height': '100%'
         });
 
-        utils.removeClass($body, 'fp-scrollable');
+        utils.removeClass($body, SCROLLABLE);
         setRecordHistory(getOriginals().recordHistory, 'internal');
 
         //for IE touch devices
@@ -54,7 +55,7 @@ export function setAutoScrolling(value, type){
             'height' : 'initial'
         });
 
-        utils.addClass($body, 'fp-scrollable');
+        utils.addClass($body, SCROLLABLE);
 
         var recordHistory = !getOptions().autoScrolling ? false : getOriginals().recordHistory;
         setRecordHistory(recordHistory, 'internal');
