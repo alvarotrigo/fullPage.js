@@ -48,7 +48,7 @@ abbr,acronym { border: 0;
 /* Custom CSS
  * --------------------------------------- */
 body{
-	font-family: arial,helvetica;
+	font-family: fabiola-capitals;
 	color: #333;
 	color: rgba(0,0,0,0.5);
 }
@@ -88,7 +88,7 @@ p{
 }
 #menu li a{
 	text-decoration:none;
-	color: #000;
+color: #000;
 }
 #menu li.active a:hover{
 	color: #000;
@@ -275,7 +275,7 @@ p{
 * --------------------------------------- */
 h1{
 	font-size: 5em;
-	font-family: arial,helvetica;
+	font-family: fabiola-capitals;
 	color: #fff;
 	margin:0;
 }
@@ -300,17 +300,70 @@ h1{
 /* Sections backgrounds
 * --------------------------------------- */
 #section0{
-	background-image: linear-gradient(128deg,#40afff,#3f61ff);
+	/* background-image: linear-gradient(128deg,#40afff,#3f61ff); */
+	background-color: #788343;
 }
 
 #section1{
-	background-image: linear-gradient(128deg,#ff9a3f,#ff4b40);
+	/* background-image: linear-gradient(128deg,#ff9a3f,#ff4b40); */
+	background-color: #FBB01B;
 }
 
 #section2{
-	background-image: linear-gradient(128deg,#fc40ff,#543fff);
+	/* background-image: linear-gradient(128deg,#fc40ff,#543fff); */
+	background-color: #E06B83;
 }
 
 #section3{
 	background-image: linear-gradient(128deg,#40fff2,#3fbcff);
+}
+
+/* CSS */
+.button-59 {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: fabiola-capitals;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-59:focus {
+  color: #171e29;
+}
+
+.button-59:hover {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.button-59:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+@media (min-width: 768px) {
+  .button-59 {
+    min-width: 170px;
+  }
 }

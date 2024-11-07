@@ -185,7 +185,7 @@ html.fp-enabled,
     top: -2px;
     color: #fff;
     font-size: 14px;
-    font-family: arial, helvetica, sans-serif;
+    font-family: fabiola-capitals;
     white-space: nowrap;
     max-width: 220px;
     overflow: hidden;
@@ -312,7 +312,7 @@ Not supports in Firefox and IE */
     background: rgba(255,255,255,0.6);
     padding: 5px 8px;
     font-size: 14px;
-    font-family: arial;
+    font-family: fabiola-capitals;
     color: black;
     display: inline-block;
     border-radius: 3px;
