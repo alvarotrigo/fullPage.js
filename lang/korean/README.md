@@ -1105,7 +1105,8 @@ fullpage.js 배포 파일을 구축하고 싶으신가요? [구축 도전](https
 [![기부](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
-후원자가 되어 GitHub의 README에 귀사의 로고와 웹사이트 링크를 게재하세요. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
+스폰서가 되어 GitHub README에 귀하의 로고와 사이트 링크를 추가하세요。[[문의하기](https://alvarotrigo.com/#contact)] | [[Patreon이 되기]](https://www.patreon.com/fullpagejs) | [GitHub 스폰서가 되기](https://github.com/sponsors/alvarotrigo/dashboard)
+
 
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)

@@ -1121,7 +1121,8 @@ new fullpage('#fullpage', {
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
+成为赞助商，您的徽标将出现在我们的 GitHub README 中，并附带到您网站的链接。[[联系我们](https://alvarotrigo.com/#contact)] | [[成为 Patreon]](https://www.patreon.com/fullpagejs) | [成为 GitHub 赞助商](https://github.com/sponsors/alvarotrigo/dashboard)
+
 
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)

@@ -1116,7 +1116,8 @@ new fullpage('#fullpage', {
 [![Перевести деньги](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://alvarotrigo.com/#contact)] | [[Become a patreon](https://www.patreon.com/fullpagejs)]
+Станьте спонсором, и ваш логотип появится в нашем README на GitHub с ссылкой на ваш сайт. [[Связаться с нами](https://alvarotrigo.com/#contact)] | [[Станьте патроном]](https://www.patreon.com/fullpagejs) | [Станьте спонсором на GitHub](https://github.com/sponsors/alvarotrigo/dashboard)
+
 
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)

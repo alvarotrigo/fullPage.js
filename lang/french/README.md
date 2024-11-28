@@ -1140,7 +1140,8 @@ Les dons seraient plus que bienvenus :)
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Les sponsors
-Devenez sponsor et obtenez votre logo sur notre README sur Github avec un lien vers votre site. [[Devenez sponsor](https://alvarotrigo.com/#contact)] | [[Devenez patreon]](https://www.patreon.com/fullpagejs)
+Devenez sponsor et obtenez votre logo dans notre README sur GitHub avec un lien vers votre site. [[Contactez-nous](https://alvarotrigo.com/#contact)] | [[Devenez un Patreon]](https://www.patreon.com/fullpagejs) | [Devenez un sponsor GitHub](https://github.com/sponsors/alvarotrigo/dashboard)
+
 
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)

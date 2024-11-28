@@ -1301,7 +1301,8 @@ fullpage.jsの配布ファイルをビルドしたい場合は、[ビルドタ�
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## スポンサー
-スポンサーになって、GitHubのREADMEにロゴとサイトへのリンクを掲載しませんか？[[スポンサーになる](https://alvarotrigo.com/#contact)] | [[パトロンになる](https://www.patreon.com/fullpagejs)]
+スポンサーになって、GitHub の README にあなたのロゴを掲載し、サイトへのリンクを追加しましょう。[[お問い合わせ](https://alvarotrigo.com/#contact)] | [[Patreon になる]](https://www.patreon.com/fullpagejs) | [GitHub スポンサーになる](https://github.com/sponsors/alvarotrigo/dashboard)
+
 
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
