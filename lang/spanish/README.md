@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.30-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.31-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -1134,12 +1134,14 @@ Sólo disponible en inglés :)
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
-Conviértete en un sponsor y añade tu logo aquí en Github y en la página principal de fullpage.js con un link a tu página. [[Conviértete en un sponsor](https://alvarotrigo.com/#contact)] | [[Dona en Patreon](https://www.patreon.com/fullpagejs)]
+Conviértete en patrocinador y coloca tu logotipo en nuestro README de GitHub con un enlace a tu sitio. [[Contáctanos](https://alvarotrigo.com/#contact)] | [[Hazte Patreon]](https://www.patreon.com/fullpagejs) | [Hazte patrocinador en GitHub](https://github.com/sponsors/alvarotrigo/dashboard)
 
-[![Codeless](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codeless.png)](https://codeless.co)
-[![Stackpath](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/stackpath3.png)](https://www.stackpath.com/)
-[![Browserstack](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/browserstack3.png)](https://www.browserstack.com/)
-[![CodePen](http://wallpapers-for-ipad.com/fullpage/imgs3/logos/codepen3.png)](https://codepen.com)
+
+[![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
+[![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
+[![Stackpath](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/stackpath3.png)](https://www.stackpath.com/)
+[![Browserstack](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/browserstack3.png)](http://www.browserstack.com/)
+[![CodePen](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codepen3.png)](https://codepen.com)
 
 ### People
 <a href="https://github.com/donsalvadori" target="_blank" rel="nofollow">

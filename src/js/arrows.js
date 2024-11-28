@@ -31,7 +31,7 @@ function slideArrowHandler(){
     var section = utils.closest(this, SECTION_SEL);
 
     /*jshint validthis:true */
-    if (utils.hasClass(this, SLIDES_PREV)) {
+    if (utils.closest(this, SLIDES_PREV)) {
         if(getIsScrollAllowed().m.left){
             setState({scrollTrigger: 'slideArrow'});
             EventEmitter.emit(events.moveSlideLeft, {section: section});
