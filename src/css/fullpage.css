@@ -246,6 +246,7 @@ html.fp-enabled,
 
 body:not(.fp-responsive) .fp-overflow{
     max-height: 100vh;
+    max-height: 100dvh; /* fix for new browsers */
 }
 
 /* No scrollable when using auto-height */
