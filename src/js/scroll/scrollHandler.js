@@ -165,7 +165,8 @@ export function scrollHandler(e){
                 if(!fixedSections.length){
 
                     if(isTouchDevice && isFormElementFocused()){
-                        clearTimeout(g_scrollId2);
+                        // Exit early to avoid fixing the section while interacting with form elements
+                        return; 
                     }
                     else{
                         fitToSection();
@@ -177,7 +178,11 @@ export function scrollHandler(e){
 }
 
 function isFormElementFocused() {
-    return ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(doc.activeElement.tagName);
+    var focusedElement = document.activeElement;
+    if (!focusedElement) return false;
+
+    // Include only elements that trigger the keyboard on mobile
+    return focusedElement.matches('input, textarea');
 }
 
 function onDestroy(){
