@@ -5365,7 +5365,8 @@
 
             if (!fixedSections.length) {
               if (isTouchDevice && isFormElementFocused()) {
-                clearTimeout(g_scrollId2);
+                // Exit early to avoid fixing the section while interacting with form elements
+                return;
               } else {
                 fitToSection();
               }
@@ -5376,7 +5377,10 @@
     }
 
     function isFormElementFocused() {
-      return ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(doc.activeElement.tagName);
+      var focusedElement = document.activeElement;
+      if (!focusedElement) return false; // Include only elements that trigger the keyboard on mobile
+
+      return focusedElement.matches('input, textarea');
     }
 
     function onDestroy$1() {
@@ -5548,7 +5552,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x31\x31\x2d\x32".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x30\x2d\x31\x37".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
