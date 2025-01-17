@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.31
+* fullPage 4.0.32
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -5364,11 +5364,23 @@
             }); // No section is fitting the viewport? Let's fix that!
 
             if (!fixedSections.length) {
-              fitToSection();
+              if (isTouchDevice && isFormElementFocused()) {
+                // Exit early to avoid fixing the section while interacting with form elements
+                return;
+              } else {
+                fitToSection();
+              }
             }
           }, getOptions().fitToSectionDelay);
         }
       }
+    }
+
+    function isFormElementFocused() {
+      var focusedElement = document.activeElement;
+      if (!focusedElement) return false; // Include only elements that trigger the keyboard on mobile
+
+      return focusedElement.matches('input, textarea');
     }
 
     function onDestroy$1() {
@@ -5540,7 +5552,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x34\x2d\x31\x30\x2d\x32\x38".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x30\x2d\x31\x37".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -6001,7 +6013,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.31';
+      FP.version = '4.0.32';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

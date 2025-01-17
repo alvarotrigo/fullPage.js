@@ -17,6 +17,7 @@ import { fireCallback } from '../callbacks/fireCallback.js';
 import { EventEmitter } from '../common/eventEmitter.js';
 import { fitToSection } from '../fitToSection.js';
 import { events } from '../common/events.js';
+import { doc, isTouchDevice } from '../common/constants.js';
 
 var lastScroll = 0;
 let g_scrollId;
@@ -149,7 +150,6 @@ export function scrollHandler(e){
 
         }
 
-            
         if(getOptions().fitToSection && state.canScroll){
 
             clearTimeout(g_scrollId2);
@@ -163,11 +163,26 @@ export function scrollHandler(e){
 
                 // No section is fitting the viewport? Let's fix that!
                 if(!fixedSections.length){
-                    fitToSection();
+
+                    if(isTouchDevice && isFormElementFocused()){
+                        // Exit early to avoid fixing the section while interacting with form elements
+                        return; 
+                    }
+                    else{
+                        fitToSection();
+                    }
                 }
             }, getOptions().fitToSectionDelay);   
         }
     }
+}
+
+function isFormElementFocused() {
+    var focusedElement = document.activeElement;
+    if (!focusedElement) return false;
+
+    // Include only elements that trigger the keyboard on mobile
+    return focusedElement.matches('input, textarea');
 }
 
 function onDestroy(){
