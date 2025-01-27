@@ -29,9 +29,10 @@ function onClickOrTouch(params){
 function slideArrowHandler(){
     /*jshint validthis:true */
     var section = utils.closest(this, SECTION_SEL);
+    var isPrevArrow = utils.hasClass(this, SLIDES_PREV) || utils.closest(this, SLIDES_PREV);
 
     /*jshint validthis:true */
-    if (utils.closest(this, SLIDES_PREV)) {
+    if (isPrevArrow) {
         if(getIsScrollAllowed().m.left){
             setState({scrollTrigger: 'slideArrow'});
             EventEmitter.emit(events.moveSlideLeft, {section: section});
