@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.32-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -223,6 +223,7 @@ var myFullpage = new fullpage('#fullpage', {
 	skipIntermediateItems: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// Accessibility
 	keyboardScrolling: true,
@@ -493,6 +494,11 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 ### bigSectionsDestination
 
 (default `null`) [Demo](https://codepen.io/alvarotrigo/pen/vYLdMrx) Defines how to scroll to a section which height is bigger than the viewport and when not using `scrollOverflow:true`. (Read [how to create smaller or bigger sections](https://github.com/alvarotrigo/fullPage.js#creating-smaller-or-bigger-sections)). By default fullPage.js scrolls to the top if you come from a section above the destination one and to the bottom if you come from a section below the destination one. Possible values are `top`, `bottom`, `null`.
+
+### adjustOnNavChange
+(default `true`)
+Defines whether fullPage.js adjusts the height of sections when the mobile navigation or address bar changes size or toggles visibility. If set to `false`, sections will not appear as full-height when the navigation bar shrinks or hides.
+
 
 ### keyboardScrolling
 

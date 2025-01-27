@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.32-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -223,6 +223,7 @@ new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsfDestination: null,
+	adjustOnNavChange: true,
 
 	// Accesibilidad
 	keyboardScrolling: true,
@@ -468,6 +469,10 @@ Otras librerías puede ser usadas si se desea.
 
 ### bigSectionsDestination
 (por defecto `null`) [Demo](https://codepen.io/alvarotrigo/pen/vYLdMrx) Determina cómo desplazarse hacia una sección mayor que la ventana del navegador. Por defecto fullPage.js se desplazará hacia la parte superior de la sección si llegas desde una sección situada por encima y hacia la parte inferior si llegas desde una sección situada por debajo. Los posibles valores para esta opción son:  `top`, `bottom`, `null`.
+
+### adjustOnNavChange
+(por defecto `true`)
+Define si fullPage.js ajusta la altura de las secciones cuando la barra de navegación o la barra de direcciones en móviles cambia de tamaño o alterna su visibilidad. Si se usa  `false`, las secciones no aparecerán con altura completa cuando la barra de navegación se reduzca o se oculte.
 
 ### keyboardScrolling
 (por defecto `true`) Determina si el contenido puede ser navegado usando el teclado.

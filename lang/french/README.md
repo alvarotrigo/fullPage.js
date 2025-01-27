@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.32-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -226,6 +226,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// Accessibilité
 	keyboardScrolling: true,
@@ -474,6 +475,9 @@ new fullpage('#fullpage', {
 ### bigSectionsDestination
 (défaut `null`) Définit comment faire défiler jusqu'à une section dont la taille est supérieure à celle de la fenêtre. Par défaut, fullPage.js fait défiler vers le haut si vous venez d'une section située au-dessus de celle de destination et vers le bas si vous venez d'une section située au-dessous de celle de destination. Les valeurs possibles sont `haut`,`bas` et `null`.
 
+### adjustOnNavChange
+(défaut `true`)
+Définit si fullPage.js ajuste la hauteur des sections lorsque la barre de navigation ou la barre d'adresse mobile change de taille ou alterne sa visibilité. Si défini sur `false`, les sections n’apparaîtront pas en pleine hauteur lorsque la barre de navigation se réduit ou disparaît.
 
 ### KeyboardScrolling
 (défaut `true`) Définit si le contenu peut être navigué à l'aide du clavier.

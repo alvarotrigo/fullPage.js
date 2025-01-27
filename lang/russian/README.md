@@ -19,7 +19,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.32-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -218,6 +218,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// Доступ
 	keyboardScrolling: true,
@@ -464,6 +465,11 @@ new fullpage('#fullpage', {
 
 ### bigSectionsDestination
 (по умолчанию `null`) [Демо](https://codepen.io/alvarotrigo/pen/vYLdMrx) Определяет, как должна осуществляться прокрутка к разделу, размер которого превышает размер окна просмотра. По умолчанию fullPage.js пролистывает вверх, если вы попадаете из раздела над заданным, и вниз, если вы попадаете из раздела под заданным. Возможные значения: `top`, `bottom`, `null`.
+
+### adjustOnNavChange
+(по умолчанию `true`)
+Определяет, будет ли fullPage.js изменять высоту секций при изменении размера или переключении видимости мобильной навигационной панели или адресной строки. Если установить значение `false`, секции не будут отображаться на всю высоту, когда панель навигации уменьшается или скрывается.
+
 
 ### keyboardScrolling
 (по умолчанию `true`) Определяет возможность навигации на сайте при помощи клавиатуры.

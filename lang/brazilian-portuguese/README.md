@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.32-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -223,6 +223,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// Acessibilidade
 	keyboardScrolling: true,
@@ -470,6 +471,10 @@ the fitting by the configured milliseconds.
 
 ### bigSectionsDestination:
 (padrão `null`) [Demonstração](https://codepen.io/alvarotrigo/pen/vYLdMrx) Define como rolar para uma seção cuja altura é maior que a viewport e quando não estiver usando `scrollOverflow: verdadeiro`. (Leia [como criar seções menores ou maiores](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/brazilian-portuguese/#criando-seções-maiores-ou-menores)). Por padrão, fullPage.js rola para o topo se você vier de uma seção acima do destino e para baixo se você vier de uma seção abaixo do destino. Os valores possíveis são `top`, `bottom`, `null`.
+
+### adjustOnNavChange
+(padrão `true`)
+Define se o fullPage.js ajusta a altura das seções quando a barra de navegação ou a barra de endereço no celular muda de tamanho ou alterna sua visibilidade. Se definido como false, as seções não aparecerão com altura total quando a barra de navegação encolher ou desaparecer.
 
 ### keyboardScrolling:
 (padrão `true`) Define se o conteúdo pode ser navegado usando o teclado.

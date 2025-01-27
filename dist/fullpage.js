@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.32
+* fullPage 4.0.33
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1159,6 +1159,7 @@
       touchSensitivity: 5,
       touchWrapper: null,
       bigSectionsDestination: null,
+      adjustOnNavChange: true,
       //Accessibility
       keyboardScrolling: true,
       animateAnchor: true,
@@ -2062,9 +2063,10 @@
     function slideArrowHandler() {
       /*jshint validthis:true */
       var section = closest(this, SECTION_SEL);
+      var isPrevArrow = hasClass(this, SLIDES_PREV) || closest(this, SLIDES_PREV);
       /*jshint validthis:true */
 
-      if (closest(this, SLIDES_PREV)) {
+      if (isPrevArrow) {
         if (getIsScrollAllowed().m.left) {
           setState({
             scrollTrigger: 'slideArrow'
@@ -4889,7 +4891,9 @@
 
     function bindEvents$6() {
       // Setting VH correctly in mobile devices
-      resizeHandler(); //when resizing the site, we adjust the heights of the sections, slimScroll...
+      resizeHandler(); // Initial set of VH units
+
+      setVhUnits(); //when resizing the site, we adjust the heights of the sections, slimScroll...
 
       windowAddEvent('resize', resizeHandler);
       EventEmitter.on(events.onDestroy, onDestroy$3);
@@ -4966,10 +4970,13 @@
       setState({
         isResizing: true
       });
-      setSectionsHeight('');
 
-      if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
-        setVhUnits();
+      if (!isTouchDevice || getOptions().adjustOnNavChange) {
+        setSectionsHeight('');
+
+        if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
+          setVhUnits();
+        }
       }
 
       EventEmitter.emit(events.contentChanged);
@@ -5552,7 +5559,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x35\x2d\x30\x2d\x31\x37".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x30\x2d\x32\x37".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -6013,7 +6020,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.32';
+      FP.version = '4.0.33';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

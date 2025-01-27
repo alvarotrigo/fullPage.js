@@ -28,6 +28,9 @@ function bindEvents(){
     // Setting VH correctly in mobile devices
     resizeHandler();
 
+    // Initial set of VH units
+    setVhUnits();
+
     //when resizing the site, we adjust the heights of the sections, slimScroll...
     utils.windowAddEvent('resize', resizeHandler);
     EventEmitter.on(events.onDestroy, onDestroy);
@@ -104,10 +107,12 @@ function fitToActiveSection(){
 function resizeActions(){
     setState({isResizing: true});
 
-    setSectionsHeight('');
+    if(!isTouchDevice || getOptions().adjustOnNavChange){
+        setSectionsHeight('');
 
-    if(!getOptions().autoScrolling && !state.isBeyondFullpage){
-        setVhUnits();
+        if(!getOptions().autoScrolling && !state.isBeyondFullpage){
+            setVhUnits();
+        }
     }
 
     EventEmitter.emit(events.contentChanged);
