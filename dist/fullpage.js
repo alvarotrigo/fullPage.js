@@ -1159,6 +1159,7 @@
       touchSensitivity: 5,
       touchWrapper: null,
       bigSectionsDestination: null,
+      adjustOnNavChange: true,
       //Accessibility
       keyboardScrolling: true,
       animateAnchor: true,
@@ -4890,7 +4891,9 @@
 
     function bindEvents$6() {
       // Setting VH correctly in mobile devices
-      resizeHandler(); //when resizing the site, we adjust the heights of the sections, slimScroll...
+      resizeHandler(); // Initial set of VH units
+
+      setVhUnits(); //when resizing the site, we adjust the heights of the sections, slimScroll...
 
       windowAddEvent('resize', resizeHandler);
       EventEmitter.on(events.onDestroy, onDestroy$3);
@@ -4967,10 +4970,13 @@
       setState({
         isResizing: true
       });
-      setSectionsHeight('');
 
-      if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
-        setVhUnits();
+      if (!isTouchDevice || getOptions().adjustOnNavChange) {
+        setSectionsHeight('');
+
+        if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
+          setVhUnits();
+        }
       }
 
       EventEmitter.emit(events.contentChanged);
