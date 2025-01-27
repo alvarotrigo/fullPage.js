@@ -47,6 +47,7 @@ export const defaultOptions = {
     touchSensitivity: 5,
     touchWrapper: null,
     bigSectionsDestination: null,
+    adjustOnNavChange: true,
 
     //Accessibility
     keyboardScrolling: true,

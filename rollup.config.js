@@ -68,6 +68,7 @@ const terserOptions = {
                 'skipIntermediateItems',
                 'touchWrapper',
                 'bigSectionsDestination',
+                'adjustOnNavChange',
                 'keyboardScrolling',
                 'animateAnchor',
                 'recordHistory',
