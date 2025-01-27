@@ -213,6 +213,7 @@ new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// 접근성
 	keyboardScrolling: true,
@@ -454,6 +455,10 @@ new fullpage('#fullpage', {
 
 ### bigSectionsDestination
 (기본값 `null`) [데모](https://codepen.io/alvarotrigo/pen/vYLdMrx) 모바일 지원(viewport)보다 더 큰 구역으로 어떻게 스크롤하는지 정의합니다. 기본 설정시 fullPage.js는 목적지 위에 있는 구역에서 내려오는 경우 상위로 스크롤하고 목적지 아래에 있는 구역에서 올라오는 경우 하위로 스크롤합니다. `top`, `bottom`, `null` 값이 가능합니다.
+
+### adjustOnNavChange
+(기본값 `true`)
+fullPage.js가 모바일 네비게이션 또는 주소창의 크기가 변경되거나 표시 여부가 전환될 때 섹션의 높이를 조정할지 여부를 정의합니다. `false` 로 설정하면, 네비게이션 바가 축소되거나 숨겨질 때 섹션이 전체 높이로 나타나지 않습니다.
 
 ### keyboardScrolling
 (기본값 `true`) 키보드를 써서 컨텐츠 사이를 이동할 수 있는지 정의합니다.

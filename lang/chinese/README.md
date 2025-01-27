@@ -218,6 +218,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// 可访问
 	keyboardScrolling: true,
@@ -465,6 +466,10 @@ new fullpage('#fullpage', {
 
 ### bigSectionsDestination
 （默认 `null` ）[示例](https://codepen.io/alvarotrigo/pen/vYLdMrx) 定义如何滚动到超出视图的 section。 默认情况下，如果此section 在目标视图的顶部，fullPage.js 将滚动到顶部，如果此 section 在目标视图的底部，则会滚动到底部。 可选的值是 `top`，`bottom`，`null`。
+
+### adjustOnNavChange
+(（默认 `true`)
+定义当移动设备上的导航栏或地址栏更改大小或切换可见性时，fullPage.js 是否调整部分的高度。如果设置为 `false`，当导航栏缩小或隐藏时，部分将不会显示为全高度。
 
 ### keyboardScrolling
 （默认为 `true` ）定义是否可以使用键盘进行内容滑动。

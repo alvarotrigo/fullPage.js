@@ -227,6 +227,7 @@ var myFullpage = new fullpage('#fullpage', {
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
+	adjustOnNavChange: true,
 
 	// アクセシビリティ
 	keyboardScrolling: true,
@@ -537,6 +538,10 @@ new fullpage('#fullpage', {
 （デフォルト `null`）[デモ](https://codepen.io/alvarotrigo/pen/vYLdMrx) `scrollOverflow:true`を使用していない場合、ビューポートよりも高さが大きいセクションにスクロールする方法を定義します。（[小さなセクションや大きなセクションの作成方法](https://github.com/alvarotrigo/fullPage.js/tree/master/lang/japanese/#小さなセクションや大きなセクションの作成)を参照）  
 デフォルトでは、目的のセクションが上から来る場合は上部にスクロールし、下から来る場合は下部にスクロールします。  
 可能な値は`top`、`bottom`、`null`です。
+
+### adjustOnNavChange
+（デフォルト `true`）
+モバイルのナビゲーションバーやアドレスバーのサイズが変更されたり、表示/非表示が切り替わったときに、fullPage.jsがセクションの高さを調整するかどうかを定義します。`false` に設定すると、ナビゲーションバーが縮小または非表示になった際にセクションが全高で表示されなくなります。
 
 ### keyboardScrolling
 
