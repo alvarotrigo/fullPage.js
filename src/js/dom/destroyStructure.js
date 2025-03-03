@@ -24,7 +24,8 @@ import {
     IS_OVERFLOW,
     SCROLLABLE,
     WRAPPER,
-    WATERMARK_SEL
+    WATERMARK_SEL,
+    LOADED
 } from '../common/selectors.js';
 import { win } from '../common/constants.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
@@ -89,7 +90,7 @@ export function destroyStructure(){
             scrollOverflowHandler.destroyWrapper(item);
         }
 
-        utils.removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW);
+        utils.removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW + ' ' + LOADED);
         var previousStyles = utils.getAttr(item, 'data-fp-styles');
         if(previousStyles){
             item.setAttribute('style', previousStyles);

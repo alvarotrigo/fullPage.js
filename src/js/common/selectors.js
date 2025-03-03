@@ -17,6 +17,8 @@ export const ACTIVE =                'active';
 export const ACTIVE_SEL =            '.' + ACTIVE;
 export const COMPLETELY =            'fp-completely';
 export const COMPLETELY_SEL =        '.' + COMPLETELY;
+export const LOADED =                'fp-loaded';
+export const LOADED_SEL =            '.' + LOADED;
 
 // section
 export const SECTION_DEFAULT_SEL =   '.section';
