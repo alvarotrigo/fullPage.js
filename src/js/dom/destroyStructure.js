@@ -23,7 +23,8 @@ import {
     SLIDES_ARROW_SEL,
     IS_OVERFLOW,
     SCROLLABLE,
-    WRAPPER
+    WRAPPER,
+    WATERMARK_SEL
 } from '../common/selectors.js';
 import { win } from '../common/constants.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
@@ -44,7 +45,7 @@ export function destroyStructure(){
         utils.setSrc(item, 'srcset');
     });
 
-    utils.remove(utils.$(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL));
+    utils.remove(utils.$(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL +  ', ' + SLIDES_ARROW_SEL + ', ' + WATERMARK_SEL));
 
     //removing inline styles
     utils.css(getNodes(getState().sections), {
