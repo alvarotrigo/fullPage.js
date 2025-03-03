@@ -326,6 +326,7 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 
 - `active` es añadido en la sección o diapositiva actual.
 - `active` es añadido en el elemento actual del menú (si se usa la opción `menu`)
+- `fp-loaded` se agrega al elemento de la sección o diapositiva que activa la carga diferida (lazy loading)del contenido multimedia.
 - Una clase con la forma `fp-viewing-SECCION-DIAPOSITIVA` es añadida al elemento `body` de la página. (ej: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) Las partes de `SECCION` Y `DIAPOSITVA` serán los enlaces de anclaje (o los índices) de la sección o diapositiva actual.
 - `fp-responsive` es añadido al elemento `body` cuando se entra en modo "responsive".
 - `fp-enabled` es añadido al elemento `html` cuando fullPage.js está activo (y se elimina cuando se destruye).

@@ -326,6 +326,7 @@ Fullpage.js adiciona várias classes em diferentes elementos para manter um regi
 
 - `active` é adicionado à seção e slide visíveis atuais.
 - `active` é adicionado ao elemento de menu atual (se estiver usando a opção `menu`).
+- `fp-loaded` é adicionado ao elemento da seção ou slide que aciona o carregamento lento do conteúdo de mídia.
 - Uma classe no formato `fp-viewing-SECTION-SLIDE` é adicionada ao elemento `body` do site. (ex: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) As partes `SECTION` e `SLIDE` serão as âncoras (ou índices se nenhuma âncora for fornecida) da seção e slide atuais.
 - `fp-responsive` é adicionado ao elemento `body` ao entrar no modo responsivo
 - `fp-enabled` é adicionado ao elemento `html` quando fullpage.js está habilitado. (e removido quando destruído).

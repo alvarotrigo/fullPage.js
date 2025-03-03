@@ -315,12 +315,13 @@ HTML 교정(마크업)에서 `data-anchor` 속성을 쓴다면 슬라이드에 �
 ### fullpage.js가 추가하는 상태 클래스
 Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소로 다양한 클래스를 추가합니다.
 
-- 현재 보여지는 구역과 슬라이드에 `active`가 추가됩니다.
-- (만약 `menu` 옵션을 쓰신다면) 현 메뉴 요소에 `active`가 추가됩니다.
-- 웹사이트의 `body` 요소에 `fp-viewing-SECTION-SLIDE` 양식의 클래스가 추가됩니다. (예: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION`과 `SLIDE` 부분이 현 구역과 슬라이드의 앵커가 (앵커가 없는 경우 색인이) 됩니다.
-- 반응형 모드로 들어갈 때 `fp-responsive`가 `body` 요소에 추가됩니다.
-- fullpage.js가 활성화될 때  `html` 요소에 `fp-enabled`가 추가됩니다. (그리고 없어지면 제거됩니다.)
-- fullpage.js가 없어질 때 fullpage.js 컨테이너에 `fp-destroyed`가 추가됩니다.
+- 현재 보이는 섹션과 슬라이드에 `active`가 추가됩니다.
+- (`menu` 옵션을 사용할 경우) 현재 메뉴 요소에 `active`가 추가됩니다.
+- 섹션 또는 슬라이드 요소가 미디어 콘텐츠의 지연 로드를 트리거하면 `fp-loaded` 클래스가 추가됩니다.
+- 웹사이트의 `body` 요소에 `fp-viewing-SECTION-SLIDE` 형식의 클래스가 추가됩니다. (예: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION`과 `SLIDE` 부분은 현재 섹션과 슬라이드의 앵커(앵커가 없을 경우 색인)입니다.
+- 반응형 모드로 전환될 때 `fp-responsive`가 `body` 요소에 추가됩니다.
+- fullPage.js가 활성화되면 `html` 요소에 `fp-enabled`가 추가됩니다. (제거될 때 삭제됩니다.)
+- fullPage.js가 삭제되면 fullPage.js 컨테이너에 `fp-destroyed`가 추가됩니다.
 
 ### 지연 로딩
 [데모](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js는 웹사이트가 느려지거나 데이터 전송을 필요 이상으로 낭비하지 않게 그림, 비디오, 소리 요소를 지연 로딩할 수 있는 방법을 지원합니다. 지연 로딩을 쓰면 모바일 지원(viewport) 모드에 들어갈 때에만 이 모든 요소를 불러옵니다. 지연 로딩을 활성화하시려면 아래와 같이 `src` 속성을 `data-src`로 바꾸기만 하시면 됩니다.

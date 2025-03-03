@@ -323,6 +323,7 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 
 - `active` 被添加到当前可见 section 和 slide 。
 - `active` 被添加到当前菜单元素（如果使用 `menu` 选项）。
+- `fp-loaded` 会添加到触发媒体内容懒加载的 section 或 slide 元素上。
 - `fp-viewing-SECTION-SLIDE` 形式的类型被添加到网站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分将成为当前 section 和 slide 的锚（或索引，如果没有提供锚）。
 - 当进入响应模式时，`fp-responsive` 添加到 `body` 元素
 - 当启用 fullpage.js 时，`fp-enabled` 添加到 `html` 元素。 （并在销毁时被移除）。

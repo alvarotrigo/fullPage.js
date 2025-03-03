@@ -331,6 +331,7 @@ Fullpage.js ajoute plusieurs classes dans différents éléments pour garder une
 
 - `active` est ajouté la section visible actuelle et la diapositive.
 - `active` est ajouté à l'élément de menu courant (si vous utilisez l'option "menu").
+- `fp-loaded` est ajouté à l’élément section ou slide qui déclenche le chargement différé du contenu multimédia.
 - Une classe de la forme `fp-viewing-SECTION-SLIDE` est ajoutée à l'élément `body` du site. (ex :[`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage))) Les parties ` SECTION ` et ` SLIDE ` seront les ancres (ou index si aucune ancre n'est fournie) de la section et de la glissière courante.
 - `fp-responsive` est ajouté à l'élément `body` lorsque l'entrée en mode réactif
 - `fp-enabled ` est ajouté à l'élément `html` lorsque fullpage.js est activé. (et enlevés lorsqu'ils sont détruits).

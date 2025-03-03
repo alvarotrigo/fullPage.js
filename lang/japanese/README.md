@@ -341,6 +341,7 @@ fullpage.jsはサイトの表示状態を管理するために異なる要素に
 
 - `active`は現在表示されているセクションとスライドに追加されます。
 - `active`は現在のメニュー要素（`menu`オプションを使用している場合）に追加されます。
+- `fp-loaded` は、メディアコンテンツの遅延読み込みをトリガーするセクションまたはスライドの要素に追加されます。
 - `fp-viewing-SECTION-SLIDE`形式のクラスがサイトの`body`要素に追加されます。（例：[`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)）`SECTION`および`SLIDE`部分は現在のセクションおよびスライドのアンカー（またはアンカーが提供されていない場合はインデックス）です。
 - レスポンシブモードに入ると`fp-responsive`が`body`要素に追加されます
 - fullPage.jsが有効な場合`html`要素に`fp-enabled`が追加されます。（削除するとうまく動きません）。
