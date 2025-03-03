@@ -48,6 +48,7 @@ export function scrollTo(element, to, duration, callback) {
             if(currentTime < duration) {
                 window.requestAnimationFrame(g_animateScroll);
             }else if(typeof callback !== 'undefined' && !isCallbackFired){
+                setScrolling(element, to);
                 callback();
                 setState({activeAnimation: false});
                 isCallbackFired = true;
