@@ -112,8 +112,7 @@ npm install fullpage.js
 Usando Webpack, Browserify ou Require.js? Confira [como usar fullPage.js com module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Uso opcional de CDN
-Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.js está em CDNJS:
-https://cdnjs.com/libraries/fullPage.js
+Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.js está em [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### Estrutura HTML necessária
 Inicie seu documento HTML com a [declaração HTML DOCTYPE](https://www.corelangs.com/html/introduction/doctype.html) obrigatória na primeira linha do seu código HTML. Caso contrário, você pode ter problemas com as alturas das seções. Os exemplos fornecidos usam o tipo de documento HTML5 `<!DOCTYPE html>`.

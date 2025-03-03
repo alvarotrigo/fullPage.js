@@ -113,8 +113,8 @@ npm install fullpage.js
 Webpack、Browserify、またはRequire.jsを使用している場合は、[モジュールローダーを使用したfullPage.jsの使い方](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)を確認してください。
 
 ### オプション CDNの使用
-CDNを使用してfullPageを利用したい場合、CDNJSを利用できます：
-https://cdnjs.com/libraries/fullPage.js
+CDNを使用してfullPage.jsを利用したい場合、[JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js)、[UNPKG](https://unpkg.com/browse/fullpage.js/dist/)、[CDNJS](https://cdnjs.com/libraries/fullPage.js) を利用できます。
+
 
 ### 必須HTML構造
 HTML文書をHTMLの[DOCTYPE宣言](https://www.corelangs.com/html/introduction/doctype.html)で始めます。  

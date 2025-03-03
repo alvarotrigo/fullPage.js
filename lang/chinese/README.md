@@ -114,8 +114,7 @@ npm install fullpage.js
 Using Webpack, Browserify or Require.js? Check [how to use fullPage.js with module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)</a> .
 
 ### 可选用 CDN ：
-如果您倾向使用 CDN 载入所需文件，fullPage.js 在 CDNJS：
-https://cdnjs.com/libraries/fullPage.js
+如果您倾向使用 CDN 载入所需文件，fullPage.js 在 [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### 要求 HTML 结构
 HTML 文件中的首行 HTML 代码必须使用 [HTML DOCTYPE 声明](https://www.corelangs.com/html/introduction/doctype.html)，否则可能会遇到代码段高度问题。HTML 5 doctype 中的示例： `<!DOCTYPE html>`.

@@ -115,8 +115,7 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
 Vous utilisez Webpack, Browserify ou Require.js ? Vérifiez [comment utiliser fullPage.js avec les chargeurs de modules](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Utilisation facultative du CDN
-Si vous préférez utiliser un CDN pour charger les fichiers nécessaires, fullPage.js est dans CDNJS :
-https://cdnjs.com/libraries/fullPage.js
+Si vous préférez utiliser un CDN pour charger les fichiers nécessaires, fullPage.js est dans [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### Structure HTML requise
 Commencez votre document HTML avec la déclaration obligatoire[déclaration DOCTYPE HTML](https://www.corelangs.com/html/introduction/doctype.html) sur la 1ère ligne de votre code HTML. Sinon, vous pourriez avoir des problèmes avec la hauteur des sections. Les exemples fournis utilisent HTML 5 doctype `<!DOCTYPE html>`.
