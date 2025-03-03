@@ -27,10 +27,7 @@ function bindEvents(){
 
     // Setting VH correctly in mobile devices
     resizeHandler();
-
-    // Initial set of VH units
-    setVhUnits();
-
+    
     //when resizing the site, we adjust the heights of the sections, slimScroll...
     utils.windowAddEvent('resize', resizeHandler);
     EventEmitter.on(events.onDestroy, onDestroy);
@@ -100,6 +97,12 @@ function fitToActiveSection(){
     }
 }
 
+/**
+ * Checks if VH units need to be set based on scrolling configuration
+ */
+function shouldSetVhUnits() {
+    return !state.isBeyondFullpage && !getOptions().autoScrolling;
+}
 
 /**
 * When resizing the site, we adjust the heights of the sections, slimScroll...
@@ -110,7 +113,7 @@ function resizeActions(){
     if(!isTouchDevice || getOptions().adjustOnNavChange){
         setSectionsHeight('');
 
-        if(!getOptions().autoScrolling && !state.isBeyondFullpage){
+        if(shouldSetVhUnits()) {
             setVhUnits();
         }
     }
@@ -222,11 +225,10 @@ function setSectionsHeight(value){
  * https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
  */
 function setVhUnits(){
-    if(!getOptions().autoScrolling || getOptions().scrollBar){
-        // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-        let vh = win.innerHeight * 0.01;
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = win.innerHeight * 0.01;
 
-        // Then we set the value in the --vh custom property to the root of the document
-        doc.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
+    // Then we set the value in the --vh custom property to the root of the document
+    doc.documentElement.style.setProperty('--vh', `${vh}px`);
+    
 }
