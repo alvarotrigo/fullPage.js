@@ -618,7 +618,7 @@ Allows you to configure the parameters for the cards effect when using the optio
 
 ### credits
 (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed).  **Примечание:** Для этой опции требуется действительное значение licenseKey.
 
 ## Функции
 Можете увидеть их в действии [здесь](https://alvarotrigo.com/fullPage/examples/methods.html)

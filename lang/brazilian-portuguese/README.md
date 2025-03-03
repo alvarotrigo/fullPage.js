@@ -626,9 +626,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 ### observer
 (padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.
 
-### créditos
+### credits
 (padrão `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
-Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada.
+Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada. **Nota:** Esta opção requer um valor válido para `licenseKey`.
 
 ## Métodos
 Você pode vê-los em ação [aqui](https://alvarotrigo.com/fullPage/examples/methods.html)

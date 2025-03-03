@@ -792,7 +792,7 @@ fullpage.js >= 3.0.1が必要です。
 
 (デフォルト `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`) fullPage.jsのクレジット表記をするかどうかを指定します。  
 GPLv3ライセンスの条項0、4、5、および7に従い、GPLv3の下でfullPage.jsを使用する場合は、fullPage.jsが使用されていることを目立つ形で表記する必要があります。  
-このオプションを有効にして、アトリビューション（帰属表示）を含めることをお勧めします。
+このオプションを有効にして、アトリビューション（帰属表示）を含めることをお勧めします。 **注意:** このオプションには、有効な `licenseKey` 値が必要です。
 
 ## Methods
 各種提供しているメソッドについて説明します。 [メソッドについて](https://alvarotrigo.com/fullPage/examples/methods.html)

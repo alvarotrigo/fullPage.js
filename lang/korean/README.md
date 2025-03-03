@@ -610,7 +610,7 @@ parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 �
 (기본값 `true`) 페이지의 HTML 구조 변경을 감지할지 여부를 정의합니다. 활성화되면 fullPage.js는 해당 변경 사항에 자동으로 반응하여 자체를 업데이트합니다. 구역 또는 슬라이드를 추가, 제거하거나 숨길 때 이상적입니다.
 
 ### credits
-(기본값 `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). fullPage.js 저작권 표시를 사용할지를 정의합니다. GPLv3 라이선스의 조항 0, 4, 5, 7에 따라, GPLv3 하에 fullPage.js를 사용하는 사용자는 fullPage.js 사용 중임을 명확하게 표시해야 합니다. 이 옵션을 활성화하여 저작권 표시를 포함하는 것을 권장합니다.
+(기본값 `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). fullPage.js 저작권 표시를 사용할지를 정의합니다. GPLv3 라이선스의 조항 0, 4, 5, 7에 따라, GPLv3 하에 fullPage.js를 사용하는 사용자는 fullPage.js 사용 중임을 명확하게 표시해야 합니다. 이 옵션을 활성화하여 저작권 표시를 포함하는 것을 권장합니다. **참고:** 이 옵션에는 유효한 `licenseKey` 값이 필요합니다.
 
 ## 방법
 어떻게 작동하는지 [여기](https://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.

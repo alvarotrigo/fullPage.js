@@ -624,7 +624,8 @@ Allows to configure the parameters for the water effect when using the option `w
 
 ### credits
 （默认： `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）. 
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)）. **注意**: 此选项需要一个有效的 `licenseKey` 值。
 
 ## 公共方法
 你可以在[这里](https://alvarotrigo.com/fullPage/examples/methods.html)看到它们
