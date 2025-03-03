@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.33
+* fullPage 4.0.34
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1068,7 +1068,8 @@
     var ACTIVE = 'active';
     var ACTIVE_SEL = '.' + ACTIVE;
     var COMPLETELY = 'fp-completely';
-    var COMPLETELY_SEL = '.' + COMPLETELY; // section
+    var COMPLETELY_SEL = '.' + COMPLETELY;
+    var LOADED = 'fp-loaded';
 
     var SECTION_DEFAULT_SEL = '.section';
     var SECTION = 'fp-section';
@@ -1112,7 +1113,10 @@
     var SLIDES_ARROW_PREV_SEL = SLIDES_ARROW_SEL + SLIDES_PREV_SEL;
     var SLIDES_NEXT = 'fp-next';
     var SLIDES_NEXT_SEL = '.' + SLIDES_NEXT;
-    var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
+    var SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL; // Watermark
+
+    var WATERMARK = 'fp-watermark';
+    var WATERMARK_SEL = '.' + WATERMARK;
 
     var defaultOptions = {
       //navigation
@@ -1605,6 +1609,7 @@
           if (currentTime < duration) {
             window.requestAnimationFrame(_g_animateScroll);
           } else if (typeof callback !== 'undefined' && !isCallbackFired) {
+            setScrolling(element, to);
             callback();
             setState({
               activeAnimation: false
@@ -1838,7 +1843,9 @@
             };
           }
         }
-      });
+      }); // Add fp-loaded class to the panel after lazy loading
+
+      addClass(panel, LOADED);
     }
     function lazyLoadPanels(panel) {
       var lazyLoadThresold = getOptions().lazyLoadThreshold;
@@ -4891,9 +4898,7 @@
 
     function bindEvents$6() {
       // Setting VH correctly in mobile devices
-      resizeHandler(); // Initial set of VH units
-
-      setVhUnits(); //when resizing the site, we adjust the heights of the sections, slimScroll...
+      resizeHandler(); //when resizing the site, we adjust the heights of the sections, slimScroll...
 
       windowAddEvent('resize', resizeHandler);
       EventEmitter.on(events.onDestroy, onDestroy$3);
@@ -4962,6 +4967,14 @@
       }
     }
     /**
+     * Checks if VH units need to be set based on scrolling configuration
+     */
+
+
+    function shouldSetVhUnits() {
+      return !state.isBeyondFullpage && !getOptions().autoScrolling;
+    }
+    /**
     * When resizing the site, we adjust the heights of the sections, slimScroll...
     */
 
@@ -4974,7 +4987,7 @@
       if (!isTouchDevice || getOptions().adjustOnNavChange) {
         setSectionsHeight('');
 
-        if (!getOptions().autoScrolling && !state.isBeyondFullpage) {
+        if (shouldSetVhUnits()) {
           setVhUnits();
         }
       }
@@ -5094,12 +5107,10 @@
 
 
     function setVhUnits() {
-      if (!getOptions().autoScrolling || getOptions().scrollBar) {
-        // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-        var vh = win.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
+      // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+      var vh = win.innerHeight * 0.01; // Then we set the value in the --vh custom property to the root of the document
 
-        doc.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
-      }
+      doc.documentElement.style.setProperty('--vh', "".concat(vh, "px"));
     }
 
     function getAnchorsURL() {
@@ -5492,7 +5503,7 @@
     function init$1() {
       var position = getOptions().credits.position || 'right';
       var positionStyle = ['left', 'right'].indexOf(position) > -1 ? "".concat(position, ": 0;") : '';
-      var waterMark = "\n        <div class=\"fp-watermark\" style=\"".concat(positionStyle, "\">\n            <a href=\"https://alvarotrigo.com/fullPage/\" \n                rel=\"nofollow noopener\" \n                target=\"_blank\" \n                style=\"text-decoration:none; color: #000;\">\n                    ").concat(getOptions().credits.label || 'Made with fullPage.js', "\n            </a>\n        </div>\n    ");
+      var waterMark = "\n        <div class=\"".concat(WATERMARK, "\" style=\"").concat(positionStyle, "\">\n            <a href=\"https://alvarotrigo.com/fullPage/\" \n                rel=\"nofollow noopener\" \n                target=\"_blank\" \n                style=\"text-decoration:none; color: #000;\">\n                    ").concat(getOptions().credits.label || 'Made with fullPage.js', "\n            </a>\n        </div>\n    ");
       var lastSection = getLast(state.sections);
       var shouldUseWaterMark = !state.isValid || getOptions().credits.enabled;
 
@@ -5559,7 +5570,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x35\x2d\x30\x2d\x32\x37".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x32\x2d\x33".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5799,7 +5810,7 @@
       $('img[data-srcset]').forEach(function (item) {
         setSrc(item, 'srcset');
       });
-      remove($(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL + ', ' + SLIDES_ARROW_SEL)); //removing inline styles
+      remove($(SECTION_NAV_SEL + ', ' + SLIDES_NAV_SEL + ', ' + SLIDES_ARROW_SEL + ', ' + WATERMARK_SEL)); //removing inline styles
 
       css(getNodes(getState().sections), {
         'height': '',
@@ -5835,7 +5846,7 @@
           scrollOverflowHandler.destroyWrapper(item);
         }
 
-        removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW);
+        removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW + ' ' + LOADED);
         var previousStyles = getAttr(item, 'data-fp-styles');
 
         if (previousStyles) {
@@ -6020,7 +6031,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.33';
+      FP.version = '4.0.34';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

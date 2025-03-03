@@ -17,6 +17,8 @@ export const ACTIVE =                'active';
 export const ACTIVE_SEL =            '.' + ACTIVE;
 export const COMPLETELY =            'fp-completely';
 export const COMPLETELY_SEL =        '.' + COMPLETELY;
+export const LOADED =                'fp-loaded';
+export const LOADED_SEL =            '.' + LOADED;
 
 // section
 export const SECTION_DEFAULT_SEL =   '.section';
@@ -68,3 +70,7 @@ export const SLIDES_NEXT =           'fp-next';
 export const SLIDES_NEXT_SEL =       '.' + SLIDES_NEXT;
 export const SLIDES_ARROW_NEXT =     SLIDES_ARROW + ' ' + SLIDES_NEXT;
 export const SLIDES_ARROW_NEXT_SEL = SLIDES_ARROW_SEL + SLIDES_NEXT_SEL;
+
+// Watermark
+export const WATERMARK = 'fp-watermark';
+export const WATERMARK_SEL = '.' + WATERMARK;

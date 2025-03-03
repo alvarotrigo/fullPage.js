@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -115,8 +115,7 @@ Comme vous pouvez le voir dans les fichiers d'exemple, vous devrez inclure :
 Vous utilisez Webpack, Browserify ou Require.js ? Vérifiez [comment utiliser fullPage.js avec les chargeurs de modules](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Utilisation facultative du CDN
-Si vous préférez utiliser un CDN pour charger les fichiers nécessaires, fullPage.js est dans CDNJS :
-https://cdnjs.com/libraries/fullPage.js
+Si vous préférez utiliser un CDN pour charger les fichiers nécessaires, fullPage.js est dans [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### Structure HTML requise
 Commencez votre document HTML avec la déclaration obligatoire[déclaration DOCTYPE HTML](https://www.corelangs.com/html/introduction/doctype.html) sur la 1ère ligne de votre code HTML. Sinon, vous pourriez avoir des problèmes avec la hauteur des sections. Les exemples fournis utilisent HTML 5 doctype `<!DOCTYPE html>`.
@@ -332,6 +331,7 @@ Fullpage.js ajoute plusieurs classes dans différents éléments pour garder une
 
 - `active` est ajouté la section visible actuelle et la diapositive.
 - `active` est ajouté à l'élément de menu courant (si vous utilisez l'option "menu").
+- `fp-loaded` est ajouté à l’élément section ou slide qui déclenche le chargement différé du contenu multimédia.
 - Une classe de la forme `fp-viewing-SECTION-SLIDE` est ajoutée à l'élément `body` du site. (ex :[`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage))) Les parties ` SECTION ` et ` SLIDE ` seront les ancres (ou index si aucune ancre n'est fournie) de la section et de la glissière courante.
 - `fp-responsive` est ajouté à l'élément `body` lorsque l'entrée en mode réactif
 - `fp-enabled ` est ajouté à l'élément `html` lorsque fullpage.js est activé. (et enlevés lorsqu'ils sont détruits).
@@ -473,7 +473,7 @@ new fullpage('#fullpage', {
 (défaut `null`) [Demo](https://codepen.io/alvarotrigo/pen/RmVazM) Si vous voulez éviter le défilement automatique lorsque vous faites défiler certains éléments, c'est l'option que vous devez utiliser. (utile pour les cartes, les scrolling divs, etc.) Il faut une chaîne de caractères avec les sélecteurs Javascript pour ces éléments. (Par exemple : `normalScrollElements:'#element1, .element2'`). Cette option ne doit pas être appliquée à une section ou à un élément de diapositive en soi.
 
 ### bigSectionsDestination
-(défaut `null`) Définit comment faire défiler jusqu'à une section dont la taille est supérieure à celle de la fenêtre. Par défaut, fullPage.js fait défiler vers le haut si vous venez d'une section située au-dessus de celle de destination et vers le bas si vous venez d'une section située au-dessous de celle de destination. Les valeurs possibles sont `haut`,`bas` et `null`.
+(défaut `null`) Définit comment faire défiler jusqu'à une section dont la taille est supérieure à celle de la fenêtre. Par défaut, fullPage.js fait défiler vers le haut si vous venez d'une section située au-dessus de celle de destination et vers le bas si vous venez d'une section située au-dessous de celle de destination. Les valeurs possibles sont `haut`,`bas` et `null`. 
 
 ### adjustOnNavChange
 (défaut `true`)
@@ -633,7 +633,7 @@ Vous permet de configurer les paramètres pour l'effet des cartes quand vous uti
 
 ### credits
 (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`).
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed). **Remarque:**Cette option nécessite une valeur valide pour licenseKey.
 
 ## Méthodes
 Vous pouvez les voir en action [ici](https://alvarotrigo.com/fullPage/examples/methods.html)

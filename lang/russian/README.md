@@ -19,7 +19,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -113,8 +113,7 @@ npm install fullpage.js
 Using Webpack, Browserify or Require.js? Check [how to use fullPage.js with module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Опциональное использование CDN
-Если вы предпочитаете использовать CDN для загрузки необходимых файлов, fullPage.js есть в CDNJS:
-https://cdnjs.com/libraries/fullPage.js
+Если вы предпочитаете использовать CDN для загрузки необходимых файлов, fullPage.js есть в [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### Требуемая HTML-структура
 Начиная свой документ HTML, обязательно введите [HTML DOCTYPE declaration](https://www.corelangs.com/html/introduction/doctype.html) в первой строке вашего HTML-кода. Иначе у вас могут возникнуть проблемы с вертикальным размером разделов. В приведённых примерах используется тип документа HTML 5 `<!DOCTYPE html>`.
@@ -322,6 +321,7 @@ Fullpage.js добавляет различные классы к разным �
 
 - `active` добавляется к текущему отображаемому разделу и слайду.
 - `active` добавляется к текущему элементу меню (если используется опция `menu`).
+- `fp-loaded` добавляется к элементу секции или слайда, который инициирует ленивую загрузку медиаконтента.
 - Класс вида `fp-viewing-SECTION-SLIDE` добавляется к элементу `body`. (например: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) Части `SECTION` и `SLIDE` будут являться привязками (или индексами, если привязки не предусмотрены) к текущему разделу и слайду.
 - `fp-responsive` добавляется к элементу `body` при входе в режим подстройки
 - `fp-enabled` добавляется к элементу `html`, когда fullpage.js активирован. (и удаляется при деактивации).
@@ -618,7 +618,7 @@ Allows you to configure the parameters for the cards effect when using the optio
 
 ### credits
 (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed).  **Примечание:** Для этой опции требуется действительное значение licenseKey.
 
 ## Функции
 Можете увидеть их в действии [здесь](https://alvarotrigo.com/fullPage/examples/methods.html)

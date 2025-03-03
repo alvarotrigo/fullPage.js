@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -113,8 +113,8 @@ npm install fullpage.js
 Webpack、Browserify、またはRequire.jsを使用している場合は、[モジュールローダーを使用したfullPage.jsの使い方](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)を確認してください。
 
 ### オプション CDNの使用
-CDNを使用してfullPageを利用したい場合、CDNJSを利用できます：
-https://cdnjs.com/libraries/fullPage.js
+CDNを使用してfullPage.jsを利用したい場合、[JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js)、[UNPKG](https://unpkg.com/browse/fullpage.js/dist/)、[CDNJS](https://cdnjs.com/libraries/fullPage.js) を利用できます。
+
 
 ### 必須HTML構造
 HTML文書をHTMLの[DOCTYPE宣言](https://www.corelangs.com/html/introduction/doctype.html)で始めます。  
@@ -341,6 +341,7 @@ fullpage.jsはサイトの表示状態を管理するために異なる要素に
 
 - `active`は現在表示されているセクションとスライドに追加されます。
 - `active`は現在のメニュー要素（`menu`オプションを使用している場合）に追加されます。
+- `fp-loaded` は、メディアコンテンツの遅延読み込みをトリガーするセクションまたはスライドの要素に追加されます。
 - `fp-viewing-SECTION-SLIDE`形式のクラスがサイトの`body`要素に追加されます。（例：[`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)）`SECTION`および`SLIDE`部分は現在のセクションおよびスライドのアンカー（またはアンカーが提供されていない場合はインデックス）です。
 - レスポンシブモードに入ると`fp-responsive`が`body`要素に追加されます
 - fullPage.jsが有効な場合`html`要素に`fp-enabled`が追加されます。（削除するとうまく動きません）。
@@ -792,7 +793,7 @@ fullpage.js >= 3.0.1が必要です。
 
 (デフォルト `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`) fullPage.jsのクレジット表記をするかどうかを指定します。  
 GPLv3ライセンスの条項0、4、5、および7に従い、GPLv3の下でfullPage.jsを使用する場合は、fullPage.jsが使用されていることを目立つ形で表記する必要があります。  
-このオプションを有効にして、アトリビューション（帰属表示）を含めることをお勧めします。
+このオプションを有効にして、アトリビューション（帰属表示）を含めることをお勧めします。 **注意:** このオプションには、有効な `licenseKey` 値が必要です。
 
 ## Methods
 各種提供しているメソッドについて説明します。 [メソッドについて](https://alvarotrigo.com/fullPage/examples/methods.html)

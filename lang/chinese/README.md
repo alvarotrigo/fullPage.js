@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -114,8 +114,7 @@ npm install fullpage.js
 Using Webpack, Browserify or Require.js? Check [how to use fullPage.js with module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js)</a> .
 
 ### 可选用 CDN ：
-如果您倾向使用 CDN 载入所需文件，fullPage.js 在 CDNJS：
-https://cdnjs.com/libraries/fullPage.js
+如果您倾向使用 CDN 载入所需文件，fullPage.js 在 [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### 要求 HTML 结构
 HTML 文件中的首行 HTML 代码必须使用 [HTML DOCTYPE 声明](https://www.corelangs.com/html/introduction/doctype.html)，否则可能会遇到代码段高度问题。HTML 5 doctype 中的示例： `<!DOCTYPE html>`.
@@ -324,6 +323,7 @@ Fullpage.js 在不同的元素中添加多个类型来保存网站状态的记�
 
 - `active` 被添加到当前可见 section 和 slide 。
 - `active` 被添加到当前菜单元素（如果使用 `menu` 选项）。
+- `fp-loaded` 会添加到触发媒体内容懒加载的 section 或 slide 元素上。
 - `fp-viewing-SECTION-SLIDE` 形式的类型被添加到网站的 `body` 元素中。(例如： [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION` 和 `SLIDE` 部分将成为当前 section 和 slide 的锚（或索引，如果没有提供锚）。
 - 当进入响应模式时，`fp-responsive` 添加到 `body` 元素
 - 当启用 fullpage.js 时，`fp-enabled` 添加到 `html` 元素。 （并在销毁时被移除）。
@@ -624,7 +624,8 @@ Allows to configure the parameters for the water effect when using the option `w
 
 ### credits
 （默认： `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`）. 
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)）. **注意**: 此选项需要一个有效的 `licenseKey` 值。
 
 ## 公共方法
 你可以在[这里](https://alvarotrigo.com/fullPage/examples/methods.html)看到它们

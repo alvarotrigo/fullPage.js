@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -112,8 +112,7 @@ npm install fullpage.js
 Usando Webpack, Browserify ou Require.js? Confira [como usar fullPage.js com module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Uso opcional de CDN
-Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.js está em CDNJS:
-https://cdnjs.com/libraries/fullPage.js
+Se você preferir usar um CDN para carregar os arquivos necessários, fullPage.js está em [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### Estrutura HTML necessária
 Inicie seu documento HTML com a [declaração HTML DOCTYPE](https://www.corelangs.com/html/introduction/doctype.html) obrigatória na primeira linha do seu código HTML. Caso contrário, você pode ter problemas com as alturas das seções. Os exemplos fornecidos usam o tipo de documento HTML5 `<!DOCTYPE html>`.
@@ -327,6 +326,7 @@ Fullpage.js adiciona várias classes em diferentes elementos para manter um regi
 
 - `active` é adicionado à seção e slide visíveis atuais.
 - `active` é adicionado ao elemento de menu atual (se estiver usando a opção `menu`).
+- `fp-loaded` é adicionado ao elemento da seção ou slide que aciona o carregamento lento do conteúdo de mídia.
 - Uma classe no formato `fp-viewing-SECTION-SLIDE` é adicionada ao elemento `body` do site. (ex: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) As partes `SECTION` e `SLIDE` serão as âncoras (ou índices se nenhuma âncora for fornecida) da seção e slide atuais.
 - `fp-responsive` é adicionado ao elemento `body` ao entrar no modo responsivo
 - `fp-enabled` é adicionado ao elemento `html` quando fullpage.js está habilitado. (e removido quando destruído).
@@ -626,9 +626,9 @@ Allows you to configure the parameters for the cards effect when using the optio
 ### observer
 (padrão `true`) Define se deve ou não observar mudanças na estrutura HTML da página. Quando ativado, fullPage.js reagirá automaticamente a essas alterações e se atualizará de acordo. Ideal ao adicionar, remover ou ocultar seções ou slides.
 
-### créditos
+### credits
 (padrão `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
-Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada.
+Define se os créditos fullPage.js devem ser usados. De acordo com as cláusulas 0, 4, 5 e 7 da licença GPLv3, aqueles que usam fullPage.js sob a GPLv3 são obrigados a fornecer um aviso proeminente de que fullPage.js está em uso. Recomendamos incluir a atribuição mantendo essa opção ativada. **Nota:** Esta opção requer um valor válido para `licenseKey`.
 
 ## Métodos
 Você pode vê-los em ação [aqui](https://alvarotrigo.com/fullPage/examples/methods.html)

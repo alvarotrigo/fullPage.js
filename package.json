@@ -1,6 +1,6 @@
 {
   "name": "fullpage.js",
-  "version": "4.0.33",
+  "version": "4.0.34",
   "description": "Create beautiful fullscreen snap scrolling websites",
   "main": "dist/fullpage.js",
   "scripts": {
@@ -52,7 +52,13 @@
   "bugs": {
     "url": "https://github.com/alvarotrigo/fullPage.js/issues"
   },
-  "homepage": "https://github.com/alvarotrigo/fullPage.js",
+  "homepage": "https://alvarotrigo.com/fullPage/",
+  "funding": [
+    {
+      "type": "GitHub Sponsors",
+      "url": "https://github.com/sponsors/alvarotrigo"
+    }
+  ],
   "namespace": "fullpage_api",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",

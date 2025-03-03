@@ -18,7 +18,7 @@
 </p>
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -110,7 +110,8 @@ npm install fullpage.js
 Webpack, Browserify 또는 Require.js를 사용하고 계신가요? [모듈 로더와 함께 fullPage.js를 사용하는 방법을 확인하세요.](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### CDN 사용 가능
-필요한 파일을 불러오실 때 CDN이 더 편하시다면 fullPage.js를 CDNJS 양식(<https://cdnjs.com/libraries/fullPage.js>)으로도 사용하실 수 있습니다.
+필요한 파일을 불러오실 때 CDN이 더 편하시다면 [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)에서도 fullPage.js를 사용할 수 있습니다.
+
 
 ### 필요한 HTML 구조
 HTML 코드의 첫번째 줄에 필수 [HTML DOCTYPE 표기](https://www.corelangs.com/html/introduction/doctype.html)를 넣어주세요. 넣지 않으시면 구역의 높이가 깨질 수 있습니다. 제시된 사례에서는 HTML 5 doctype `<!DOCTYPE html>`을 씁니다.
@@ -314,12 +315,13 @@ HTML 교정(마크업)에서 `data-anchor` 속성을 쓴다면 슬라이드에 �
 ### fullpage.js가 추가하는 상태 클래스
 Fullpage.js는 웹사이트의 상태를 기록하기 위해 여러가지 요소로 다양한 클래스를 추가합니다.
 
-- 현재 보여지는 구역과 슬라이드에 `active`가 추가됩니다.
-- (만약 `menu` 옵션을 쓰신다면) 현 메뉴 요소에 `active`가 추가됩니다.
-- 웹사이트의 `body` 요소에 `fp-viewing-SECTION-SLIDE` 양식의 클래스가 추가됩니다. (예: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION`과 `SLIDE` 부분이 현 구역과 슬라이드의 앵커가 (앵커가 없는 경우 색인이) 됩니다.
-- 반응형 모드로 들어갈 때 `fp-responsive`가 `body` 요소에 추가됩니다.
-- fullpage.js가 활성화될 때  `html` 요소에 `fp-enabled`가 추가됩니다. (그리고 없어지면 제거됩니다.)
-- fullpage.js가 없어질 때 fullpage.js 컨테이너에 `fp-destroyed`가 추가됩니다.
+- 현재 보이는 섹션과 슬라이드에 `active`가 추가됩니다.
+- (`menu` 옵션을 사용할 경우) 현재 메뉴 요소에 `active`가 추가됩니다.
+- 섹션 또는 슬라이드 요소가 미디어 콘텐츠의 지연 로드를 트리거하면 `fp-loaded` 클래스가 추가됩니다.
+- 웹사이트의 `body` 요소에 `fp-viewing-SECTION-SLIDE` 형식의 클래스가 추가됩니다. (예: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) `SECTION`과 `SLIDE` 부분은 현재 섹션과 슬라이드의 앵커(앵커가 없을 경우 색인)입니다.
+- 반응형 모드로 전환될 때 `fp-responsive`가 `body` 요소에 추가됩니다.
+- fullPage.js가 활성화되면 `html` 요소에 `fp-enabled`가 추가됩니다. (제거될 때 삭제됩니다.)
+- fullPage.js가 삭제되면 fullPage.js 컨테이너에 `fp-destroyed`가 추가됩니다.
 
 ### 지연 로딩
 [데모](https://codepen.io/alvarotrigo/pen/eNLBXo) fullPage.js는 웹사이트가 느려지거나 데이터 전송을 필요 이상으로 낭비하지 않게 그림, 비디오, 소리 요소를 지연 로딩할 수 있는 방법을 지원합니다. 지연 로딩을 쓰면 모바일 지원(viewport) 모드에 들어갈 때에만 이 모든 요소를 불러옵니다. 지연 로딩을 활성화하시려면 아래와 같이 `src` 속성을 `data-src`로 바꾸기만 하시면 됩니다.
@@ -610,7 +612,7 @@ parallax:true 옵션을 쓰실 때 패럴랙스 배경 효과 매개변수를 �
 (기본값 `true`) 페이지의 HTML 구조 변경을 감지할지 여부를 정의합니다. 활성화되면 fullPage.js는 해당 변경 사항에 자동으로 반응하여 자체를 업데이트합니다. 구역 또는 슬라이드를 추가, 제거하거나 숨길 때 이상적입니다.
 
 ### credits
-(기본값 `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). fullPage.js 저작권 표시를 사용할지를 정의합니다. GPLv3 라이선스의 조항 0, 4, 5, 7에 따라, GPLv3 하에 fullPage.js를 사용하는 사용자는 fullPage.js 사용 중임을 명확하게 표시해야 합니다. 이 옵션을 활성화하여 저작권 표시를 포함하는 것을 권장합니다.
+(기본값 `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). fullPage.js 저작권 표시를 사용할지를 정의합니다. GPLv3 라이선스의 조항 0, 4, 5, 7에 따라, GPLv3 하에 fullPage.js를 사용하는 사용자는 fullPage.js 사용 중임을 명확하게 표시해야 합니다. 이 옵션을 활성화하여 저작권 표시를 포함하는 것을 권장합니다. **참고:** 이 옵션에는 유효한 `licenseKey` 값이 필요합니다.
 
 ## 방법
 어떻게 작동하는지 [여기](https://alvarotrigo.com/fullPage/examples/methods.html)서 보실 수 있습니다.

@@ -2,6 +2,8 @@ import * as utils from '../common/utils.js';
 import { getSlideOrSection } from '../common/utilsFP.js';
 import { getOptions } from '../common/options.js';
 import { onMediaLoad } from '../media.js'; 
+import { LOADED } from '../common/selectors.js';
+
 /**
 * Lazy loads image, video and audio elements.
 */
@@ -33,6 +35,9 @@ export function lazyLoad(destiny){
             }
         }
     });
+
+    // Add fp-loaded class to the panel after lazy loading
+    utils.addClass(panel, LOADED);
 }
 
 export function lazyLoadPanels(panel){

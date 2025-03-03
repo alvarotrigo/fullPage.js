@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.33-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -114,8 +114,7 @@ npm install fullpage.js
 Usas Webpack, Browserify o Require.js? Mira [como usar fullPage.js con module loaders](https://github.com/alvarotrigo/fullPage.js/wiki/Use-module-loaders-for-fullPage.js).
 
 ### Uso opcional de un CDN
-Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distribución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en CDNJS:
-https://cdnjs.com/libraries/fullPage.js
+Si lo prefieres puedes hacer uso de un CDN (Content Delivery Network o Red de distribución de contenido) para cargar los archivos de fullPage.js. FullPage.js está disponible en [JSDelivr](https://www.jsdelivr.com/package/npm/fullpage.js), [UNPKG](https://unpkg.com/browse/fullpage.js/dist/), [CDNJS](https://cdnjs.com/libraries/fullPage.js)...
 
 ### Estructura HTML requerida
 El documento HTML requerirá comenzar con el [HTML DOCTYPE obligatorio](https://www.corelangs.com/html/introduction/doctype.html) en la primera línea de tu archivo HTML. De lo contrario puedes tener problemas con el tamaño de las secciones y diapositivas. Todos los ejemplos disponibles aquí usan la etiqueta HTML 5 `<!DOCTYPE html>`.
@@ -327,6 +326,7 @@ Fullpage.js añade multiples clases en diferentes elementos para reflejar el est
 
 - `active` es añadido en la sección o diapositiva actual.
 - `active` es añadido en el elemento actual del menú (si se usa la opción `menu`)
+- `fp-loaded` se agrega al elemento de la sección o diapositiva que activa la carga diferida (lazy loading)del contenido multimedia.
 - Una clase con la forma `fp-viewing-SECCION-DIAPOSITIVA` es añadida al elemento `body` de la página. (ej: [`fp-viewing-secondPage-0`](https://alvarotrigo.com/fullPage/#secondPage)) Las partes de `SECCION` Y `DIAPOSITVA` serán los enlaces de anclaje (o los índices) de la sección o diapositiva actual.
 - `fp-responsive` es añadido al elemento `body` cuando se entra en modo "responsive".
 - `fp-enabled` es añadido al elemento `html` cuando fullPage.js está activo (y se elimina cuando se destruye).
@@ -468,7 +468,7 @@ Otras librerías puede ser usadas si se desea.
 (por defecto `null`) [Demo](https://codepen.io/alvarotrigo/pen/RmVazM) Si quieres evitar el auto desplazamiento (o desplazamiento a saltos) cuando se haga scroll encima de ciertos elementos, ésta es la opción a usar. (Útil para mapas, divs con scroll etc.). Requiere una cadena de texto con el selector de Javascript para dichos elementos.(Por ejemplo: `normalScrollElements: '#element1, .element2'`). Esta opción no debe ser aplicada directamente en las mismas secciones o diapositivas en sí, sino a elementos dentro de ellas.
 
 ### bigSectionsDestination
-(por defecto `null`) [Demo](https://codepen.io/alvarotrigo/pen/vYLdMrx) Determina cómo desplazarse hacia una sección mayor que la ventana del navegador. Por defecto fullPage.js se desplazará hacia la parte superior de la sección si llegas desde una sección situada por encima y hacia la parte inferior si llegas desde una sección situada por debajo. Los posibles valores para esta opción son:  `top`, `bottom`, `null`.
+(por defecto `null`) [Demo](https://codepen.io/alvarotrigo/pen/vYLdMrx) Determina cómo desplazarse hacia una sección mayor que la ventana del navegador. Por defecto fullPage.js se desplazará hacia la parte superior de la sección si llegas desde una sección situada por encima y hacia la parte inferior si llegas desde una sección situada por debajo. Los posibles valores para esta opción son:  `top`, `bottom`, `null`. 
 
 ### adjustOnNavChange
 (por defecto `true`)
@@ -630,7 +630,7 @@ Permite configurar los parámetros para el efecto de Cards cuando se usa la opc�
 
 ### credits
 (default `{enabled: true, label: 'Made with fullpage.js', position: 'right'}`). 
-Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed)
+Defines whether to use fullPage.js credits. As per clause 0, 4, 5 and 7 of the GPLv3 licecense, those using fullPage.js under the GPLv3 are required to give prominent notice that fullPage.js is in use. We recommend including attribution by keeping this option enabled. (translation needed). **Nota:** Esta opción requiere un valor válido en `licenseKey`.
 
 ## Métodos
 Puedes verlos en acción [aquí](https://alvarotrigo.com/fullPage/examples/methods.html)
