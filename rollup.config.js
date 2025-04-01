@@ -86,6 +86,8 @@ const terserOptions = {
                 'responsiveWidth',
                 'responsiveHeight',
                 'responsiveSlides',
+                'effects',
+                'effectsOptions',
                 'parallax',
                 'parallaxOptions',
                 'type',
