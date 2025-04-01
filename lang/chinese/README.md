@@ -18,7 +18,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.35,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -238,6 +238,8 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveWidth: 0,
 	responsiveHeight: 0,
 	responsiveSlides: false,
+	effects: false,
+	effectsOptions: [Object],
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 	dropEffect: false,
@@ -583,6 +585,14 @@ new fullpage('#fullpage', {
 
 ### responsiveSlides
 （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 设置为`true`时，在响应模式被触发时，slide 将变成垂直 section。 （通过使用上面详述的 `responsiveWidth` 或 `responsiveHeight` 选项）。 需要fullpage.js> = 3.0.1。
+
+### effects
+（默认值为 `false`）[fullpage.js 扩展功能](https://alvarotrigo.com/fullPage/extensions/slider-effects.html)。启用或禁用 section 的滑动效果。需要 fullpage.js >= 4.0.35
+
+### effectsOptions
+（默认值：`{Object}`，使用 ["focus" 预设](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#available-presets)）。  
+启用 `effects:true` 时，用于配置效果参数。[了解如何应用 effects 选项](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#effects-options-documentation)
+
 
 ### parallax
 （默认 `false` ）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 定义是否在 section/slide 上使用视差背景效果。 [详细了解如何应用视差选项](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/chinese/parallax-extension.md).
