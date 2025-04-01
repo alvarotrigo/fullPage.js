@@ -19,7 +19,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.35-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -238,6 +238,8 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveWidth: 0,
 	responsiveHeight: 0,
 	responsiveSlides: false,
+	effects: false,
+	effectsOptions: [Object],
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 	dropEffect: false,
@@ -578,6 +580,14 @@ new fullpage('#fullpage', {
 
 ### responsiveSlides
 (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). При установке значения `true` слайды будут трансформироваться в вертикальные разделы при активации отзывчивого режима. (с помощью опций `responsiveWidth` или `responsiveHeight`, подробно описанных выше). Необходима версия fullpage.js >= 3.0.1.
+
+### effects
+(по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/slider-effects.html). Включает или отключает эффекты слайдера для секций. Требуется fullpage.js версии >= 4.0.35
+
+### effectsOptions
+(по умолчанию: `{Object}`, конфигурация для пресета ["focus"](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#available-presets)).  
+Позволяет настроить параметры эффектов при использовании опции `effects:true`. [Подробнее об опции effects](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#effects-options-documentation)
+
 
 ### parallax
 (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Определяет, будут ли использоваться эффекты параллакс для фона разделов / слайдов. [Узнайте больше об использовании опции параллакс здесь](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/russian/parallax-extension.md).

@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.35-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -248,6 +248,8 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveWidth: 0,
 	responsiveHeight: 0,
 	responsiveSlides: false,
+	effects: false,
+	effectsOptions: [Object],
 	parallax: false,
 	parallaxOptions: { type: 'reveal', percentage: 62, property: 'translate' },
 	dropEffect: false,
@@ -741,6 +743,14 @@ fullpage.jsと同じセレクターを使用する他のプラグインとの問
 
 (デフォルト `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/) `true`に設定すると、レスポンシブモードが有効になったとき（上記の `responsiveWidth`または`responsiveHeight`オプションを使用）、スライドが縦方向のセクションに変わります。  
 fullpage.js >= 3.0.1が必要です。
+
+### effects
+（デフォルト：`false`）[fullpage.jsの拡張機能](https://alvarotrigo.com/fullPage/extensions/slider-effects.html)。セクションにスライダー効果を有効または無効にします。fullpage.js >= 4.0.35 が必要です。
+
+### effectsOptions
+（デフォルト：`{Object}`、["focus" プリセット](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#available-presets)の設定）。  
+`effects:true` オプションを使うときに、効果のパラメータを設定できます。  
+[effects オプションの適用方法について詳しくはこちら](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#effects-options-documentation)
 
 ### parallax
 

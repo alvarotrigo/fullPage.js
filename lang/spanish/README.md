@@ -20,7 +20,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.35-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -243,6 +243,8 @@ new fullpage('#fullpage', {
 	responsiveWidth: 0,
 	responsiveHeight: 0,
 	responsiveSlides: false,
+	effects: false,
+	effectsOptions: [Object],
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 	dropEffect: false,
@@ -590,6 +592,13 @@ new fullpage('#fullpage', {
 
 ### responsiveSlides
 (por defecto `false`) [Extensión de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Cuando se define a `true` las diapositivas horizontales se convertirán en secciones verticales cuando el modo responsive se active (haciendo uso de las opciones `responsiveWith` o `responsiveHeight` detalladas arriba).
+
+### effects
+(por defecto: `false`) [Extensión de fullpage.js](https://alvarotrigo.com/fullPage/extensions/slider-effects.html). Activa o desactiva los efectos de deslizamiento en las secciones. Requiere fullpage.js >= 4.0.35
+
+### effectsOptions
+(por defecto: `{Object}`, configuración del preset ["focus"](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#available-presets)).  
+Permite configurar los parámetros de los efectos cuando se usa la opción `effects:true`. [Leer más sobre cómo aplicar la opción effects](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#effects-options-documentation)
 
 ### parallax
 (por defecto `false`) [Extensión de fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Determina si usar fondos de sección y diapositiva con efecto parallax o no. [Lee más acerca de la opción parallax aquí](https://github.com/alvarotrigo/fullPage.js/blob/master/lang/spanish/parallax-extension.md).

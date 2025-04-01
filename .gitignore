@@ -8,10 +8,14 @@ node_modules/
 package-lock.json
 src/fullpage.extensions.js
 src/js-extensions/**
+src/js-limited/**
 src/js/mixed/index.js
 dist/fullpage.extensions.js
+dist/fullpage.limited.js
+dist/fullpage.limited.min.js
 examples/bug**
 gulp/secret.js
 build/**
 local/**
 rollup.ext.config.js
+rollup.limited.config.js

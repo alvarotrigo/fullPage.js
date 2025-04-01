@@ -8,7 +8,8 @@ import {
     SLIDES_ARROW_NEXT_SEL,
     SLIDES_ARROW_PREV_SEL,
     SLIDES_ARROW_SEL,
-    SECTION_SEL, 
+    SECTION_SEL,
+    SLIDES_PREV_SEL, 
  } from './common/selectors.js';
 import { getIsScrollAllowed } from './common/isScrollAllowed.js';
 import { setState } from './common/state.js';
@@ -29,7 +30,7 @@ function onClickOrTouch(params){
 function slideArrowHandler(){
     /*jshint validthis:true */
     var section = utils.closest(this, SECTION_SEL);
-    var isPrevArrow = utils.hasClass(this, SLIDES_PREV) || utils.closest(this, SLIDES_PREV);
+    var isPrevArrow = utils.hasClass(this, SLIDES_PREV) || utils.closest(this, SLIDES_PREV_SEL);
 
     /*jshint validthis:true */
     if (isPrevArrow) {

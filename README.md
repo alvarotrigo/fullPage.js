@@ -19,7 +19,7 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.34-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.35-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
@@ -243,6 +243,8 @@ var myFullpage = new fullpage('#fullpage', {
 	responsiveWidth: 0,
 	responsiveHeight: 0,
 	responsiveSlides: false,
+	effects: false,
+	effectsOptions: [Object],
 	parallax: false,
 	parallaxOptions: {type: 'reveal', percentage: 62, property: 'translate'},
 	dropEffect: false,
@@ -640,9 +642,18 @@ new fullpage('#fullpage', {
 
 (default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). When set to `true` slides will be turned into vertical sections when responsive mode is fired. (by using the `responsiveWidth` or `responsiveHeight` options detailed above). Requires fullpage.js >= 3.0.1.
 
+### effects
+
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/slider-effects.html). Enables or disables the slider effects on sections. Requires fullpage.js >= 4.0.35
+
+### effectsOptions
+
+(default: `{Object}` config for the ["focus" preset](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#available-presets)).
+Allows to configure the parameters for the effects when using the option `effects:true`. [Read more about how to apply the effects option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension-%22Effects%22#effects-options-documentation).
+
 ### parallax
 
-(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/). Defines whether or not to use the parallax backgrounds effects on sections / slides. Not compatible with `fp-auto-height` sections, `offsetSerctions` and `dragAndMove`.op [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
+(default `false`) [Extension of fullpage.js](https://alvarotrigo.com/fullPage/extensions/parallax.html). Defines whether or not to use the parallax backgrounds effects on sections / slides. Not compatible with `fp-auto-height` sections, `offsetSerctions` and `dragAndMove`.op [Read more about how to apply the parallax option](https://github.com/alvarotrigo/fullPage.js/wiki/Extension---Parallax).
 
 ### parallaxOptions
 

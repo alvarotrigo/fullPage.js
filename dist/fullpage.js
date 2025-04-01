@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.34
+* fullPage 4.0.35
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -2070,7 +2070,7 @@
     function slideArrowHandler() {
       /*jshint validthis:true */
       var section = closest(this, SECTION_SEL);
-      var isPrevArrow = hasClass(this, SLIDES_PREV) || closest(this, SLIDES_PREV);
+      var isPrevArrow = hasClass(this, SLIDES_PREV) || closest(this, SLIDES_PREV_SEL);
       /*jshint validthis:true */
 
       if (isPrevArrow) {
@@ -5570,7 +5570,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x35\x2d\x32\x2d\x33".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x33\x2d\x31".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -6031,7 +6031,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.34';
+      FP.version = '4.0.35';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
