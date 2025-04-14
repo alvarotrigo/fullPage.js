@@ -1199,6 +1199,11 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 - [Wordpress Plugin for Divi](https://alvarotrigo.com/fullPage/wordpress-plugin-divi/)
 - [Wordpress Plugin for Elementor](https://alvarotrigo.com/fullPage/wordpress-plugin-elementor/)
 
+## Getting help
+For usage help for your particular website, [StackOverflow](http://stackoverflow.com/search?q=fullpage.js) is a better plase to ask.  [The author](http://alvarotrigo.com/) is available for consulting if you need private or advanced help. 
+
+Bugs or suggestions are welcome in [GitHub Issues](https://github.com/alvarotrigo/fullPage.js/issues).
+
 ## Who is using fullPage.js
 
 ![Who is using fullPage.js](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/using-fullpage.png)
