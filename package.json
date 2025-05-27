@@ -1,12 +1,12 @@
 {
   "name": "fullpage.js",
-  "version": "4.0.35",
+  "version": "4.0.36",
   "description": "Create beautiful fullscreen snap scrolling websites",
   "main": "dist/fullpage.js",
   "scripts": {
     "build": "gulp getDistFiles && gulp update-version && gulp css && rollup -c",
     "extensions": "rollup --config rollup.ext.config.js && gulp update-version &&  gulp css && gulp moveExtensions && gulp moveExtensionsSRC && wait",
-    "limited": "rollup --config rollup.limited.config.js && gulp update-version &&  gulp css && gulp moveLite && wait",
+    "limited": "rollup --config rollup.limited.config.js && gulp update-version &&  gulp css-lite && gulp moveLite && wait",
     "dev": "rollup -c --watch",
     "test": "jest",
     "devtest": "jest --watch"
