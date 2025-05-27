@@ -1,7 +1,17 @@
-import { isTouch, isTouchDevice, win } from "../common/constants.js";
+import { isInsideIframe, isTouch, isTouchDevice, win } from "../common/constants.js";
 import { getOptions } from "../common/options.js";
 import { setState } from "../common/state.js";
 import { setBodyClass } from "../stateClasses.js";
+import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
+
+EventEmitter.on(events.onDestroyAll, onDestroyAll);
+
+function onDestroyAll(){
+    if(!isInsideIframe()){
+        setUrlHash('');
+    }
+}
 
 /**
 * Sets the state of the website depending on the active section/slide.

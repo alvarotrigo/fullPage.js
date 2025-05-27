@@ -6,9 +6,18 @@ import { getState, state } from './common/state.js';
 import { silentScroll } from './common/silentScroll.js';
 import { silentLandscapeScroll } from './slides/silentLandscapeScroll.js';
 import { scrollOverflowHandler } from './scrolloverflow.js';
+import { EventEmitter } from './common/eventEmitter.js';
+import { events } from './common/events.js';
 
 let g_prevActiveSectionIndex = null;
 let g_prevActiveSlideIndex = null;
+
+EventEmitter.on(events.onDestroyAll, onDestroyAll);
+
+function onDestroyAll(){
+    g_prevActiveSectionIndex = null;
+    g_prevActiveSlideIndex = null;
+}
 
 /** 
  * Updates the state of the app.

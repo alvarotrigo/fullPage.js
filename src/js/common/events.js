@@ -7,6 +7,7 @@ export const events = {
     beforeInit: 'beforeInit',
     bindEvents: 'bindEvents',
     onDestroy: 'onDestroy',
+    onDestroyAll: 'onDestroyAll',
     contentChanged: 'contentChanged',
     onScrollOverflowScrolled: 'onScrollOverflowScrolled',
     onScrollPageAndSlide: 'onScrollPageAndSlide',
