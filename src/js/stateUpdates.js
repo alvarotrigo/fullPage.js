@@ -97,7 +97,7 @@ function scrollToNewActivePanel(){
     var activeSlide = state.activeSection ? state.activeSection.activeSlide : null;
 
     // Hidding / removing the active section ?
-    if(!activeSection && state.sections.length && !getState().isBeyondFullpage && g_prevActiveSectionIndex){
+    if(!activeSection && state.sections.length && !getState().isBeyondFullpage && g_prevActiveSectionIndex !== null){
         var newActiveSection = getNewActivePanel(g_prevActiveSectionIndex, state.sections);
         if(newActiveSection){
             state.activeSection = newActiveSection;
@@ -108,7 +108,7 @@ function scrollToNewActivePanel(){
             silentScroll(state.activeSection.item.offsetTop);
         }
     }
-    if(activeSectionHasSlides && !activeSlide && g_prevActiveSlideIndex){
+    if(activeSectionHasSlides && !activeSlide && g_prevActiveSlideIndex !== null){
         var newActiveSlide = getNewActivePanel(g_prevActiveSlideIndex, state.activeSection.slides);
         if(newActiveSlide){
             state.activeSection.activeSlide = newActiveSlide;
