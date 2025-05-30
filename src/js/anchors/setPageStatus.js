@@ -8,9 +8,7 @@ import { events } from '../common/events.js';
 EventEmitter.on(events.onDestroyAll, onDestroyAll);
 
 function onDestroyAll(){
-    if(!isInsideIframe()){
-        setUrlHash('');
-    }
+    setUrlHash('');
 }
 
 /**
@@ -59,13 +57,8 @@ export function setPageStatus(slideIndex, slideAnchor, anchorLink){
 function setUrlHash(url){
     if(getOptions().recordHistory){
         location.hash = url;
-    }else{
-        //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
-        if(isTouchDevice || isTouch){
-            win.history.replaceState(undefined, undefined, '#' + url);
-        }else{
-            var baseUrl = win.location.href.split('#')[0];
-            win.location.replace( baseUrl + '#' + url );
-        }
+    }
+    else{
+        win.history.replaceState(undefined, undefined, '#' + url);
     }
 }
