@@ -7,6 +7,7 @@ import {
     SECTION_SEL,
     SLIDE_ACTIVE_SEL
 } from '../common/selectors.js';
+import { getTmpPosition } from './getPositions.js';
 
 /**
 * Maintains the active slides in the viewport
@@ -33,10 +34,10 @@ export function continuousVerticalFixSectionOrder (v) {
         utils.before(utils.$(SECTION_SEL)[0], v.wrapAroundElements);
     }
     else {
-        utils.after(utils.$(SECTION_SEL)[getState().sections.length -1 ], v.wrapAroundElements);
+        utils.after(utils.$(SECTION_SEL)[getState().sections.length - 1], utils.prevAll(v.element, SECTION_SEL).reverse());
     }
 
-    silentScroll(getState().activeSection.item.offsetTop);
+    silentScroll(getTmpPosition(v));
 
     // Maintain the active slides visible in the viewport
     keepSlidesPosition();
