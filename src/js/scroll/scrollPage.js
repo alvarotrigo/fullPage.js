@@ -151,7 +151,7 @@ function onDestroy(){
 * Returns the destination Y position based on the scrolling direction and
 * the height of the section.
 */
-function getDestinationPosition(element){
+export function getDestinationPosition(element){
     var elementHeight = element.offsetHeight;
     var elementTop = element.offsetTop;
 

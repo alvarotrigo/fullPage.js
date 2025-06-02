@@ -1,7 +1,7 @@
 import * as utils from './utils.js';
 import { win } from './constants.js';
 
-export const state = {
+const defaultState = {
     numSections: 0,
     numSlides: 0,
     slides: [],
@@ -28,8 +28,11 @@ export const state = {
     timeouts: {},
     scrollY: 0,
     scrollX: 0,
-    isFullpageInitDone: false
+    isFullpageInitDone: false,
 };
+
+export const state = Object.assign({}, defaultState);
+
 // @ts-ignore
 win.state = state;
 
@@ -52,4 +55,8 @@ export function getActiveDefaultSection(sections){
 
 export function getActivePanel(){
     return state.activeSection && state.activeSection.activeSlide ? state.activeSection.activeSlide : state.activeSection;
+}
+
+export function resetState(){
+    setState(defaultState);
 }

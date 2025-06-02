@@ -2,7 +2,7 @@ import * as utils from '../common/utils.js';
 import { removeAnimation } from '../common/utilsFP.js';
 import { silentScroll } from '../common/silentScroll.js';
 import { $html, $htmlBody, $body } from '../common/cache.js';
-import { getState } from '../common/state.js';
+import { getState, resetState } from '../common/state.js';
 import { getOptions, getContainer, getInitialAnchorsInDom } from '../common/options.js';
 import { getNodes } from '../common/item.js';
 import { 
@@ -29,6 +29,8 @@ import {
 } from '../common/selectors.js';
 import { win } from '../common/constants.js';
 import { scrollOverflowHandler } from '../scrolloverflow.js';
+import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
 
 /*
 * Removes inline styles added by fullpage.js
@@ -129,4 +131,8 @@ export function destroyStructure(){
     usedSelectors.forEach(function(item){
         utils.removeClass(utils.$('.' + item), item);
     });
+
+    resetState();
+
+    EventEmitter.emit(events.onDestroyAll);
 }

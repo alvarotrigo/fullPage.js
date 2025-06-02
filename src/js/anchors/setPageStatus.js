@@ -1,7 +1,15 @@
-import { isTouch, isTouchDevice, win } from "../common/constants.js";
+import { isInsideIframe, isTouch, isTouchDevice, win } from "../common/constants.js";
 import { getOptions } from "../common/options.js";
 import { setState } from "../common/state.js";
 import { setBodyClass } from "../stateClasses.js";
+import { EventEmitter } from '../common/eventEmitter.js';
+import { events } from '../common/events.js';
+
+EventEmitter.on(events.onDestroyAll, onDestroyAll);
+
+function onDestroyAll(){
+    setUrlHash('');
+}
 
 /**
 * Sets the state of the website depending on the active section/slide.
@@ -49,13 +57,8 @@ export function setPageStatus(slideIndex, slideAnchor, anchorLink){
 function setUrlHash(url){
     if(getOptions().recordHistory){
         location.hash = url;
-    }else{
-        //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
-        if(isTouchDevice || isTouch){
-            win.history.replaceState(undefined, undefined, '#' + url);
-        }else{
-            var baseUrl = win.location.href.split('#')[0];
-            win.location.replace( baseUrl + '#' + url );
-        }
+    }
+    else{
+        win.history.replaceState(undefined, undefined, '#' + url);
     }
 }

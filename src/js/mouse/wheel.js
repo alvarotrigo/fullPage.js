@@ -150,7 +150,7 @@ function MouseWheelHandler(e) {
         scrollings.push(Math.abs(value));
 
         //preventing to scroll the site on mouse wheel when scrollbar is present
-        if(getOptions().scrollBar){
+        if(getOptions().scrollBar || !getOptions().scrollOverflow){
             utils.preventDefault(e);
         }
 

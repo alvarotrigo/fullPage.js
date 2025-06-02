@@ -6,9 +6,18 @@ import { getState, state } from './common/state.js';
 import { silentScroll } from './common/silentScroll.js';
 import { silentLandscapeScroll } from './slides/silentLandscapeScroll.js';
 import { scrollOverflowHandler } from './scrolloverflow.js';
+import { EventEmitter } from './common/eventEmitter.js';
+import { events } from './common/events.js';
 
 let g_prevActiveSectionIndex = null;
 let g_prevActiveSlideIndex = null;
+
+EventEmitter.on(events.onDestroyAll, onDestroyAll);
+
+function onDestroyAll(){
+    g_prevActiveSectionIndex = null;
+    g_prevActiveSlideIndex = null;
+}
 
 /** 
  * Updates the state of the app.
@@ -88,7 +97,7 @@ function scrollToNewActivePanel(){
     var activeSlide = state.activeSection ? state.activeSection.activeSlide : null;
 
     // Hidding / removing the active section ?
-    if(!activeSection && state.sections.length && !getState().isBeyondFullpage && g_prevActiveSectionIndex){
+    if(!activeSection && state.sections.length && !getState().isBeyondFullpage && g_prevActiveSectionIndex !== null){
         var newActiveSection = getNewActivePanel(g_prevActiveSectionIndex, state.sections);
         if(newActiveSection){
             state.activeSection = newActiveSection;
@@ -99,7 +108,7 @@ function scrollToNewActivePanel(){
             silentScroll(state.activeSection.item.offsetTop);
         }
     }
-    if(activeSectionHasSlides && !activeSlide && g_prevActiveSlideIndex){
+    if(activeSectionHasSlides && !activeSlide && g_prevActiveSlideIndex !== null){
         var newActiveSlide = getNewActivePanel(g_prevActiveSlideIndex, state.activeSection.slides);
         if(newActiveSlide){
             state.activeSection.activeSlide = newActiveSlide;

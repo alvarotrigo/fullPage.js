@@ -8,7 +8,7 @@ import {
     SLIDE_ACTIVE_SEL
 } from '../common/selectors.js';
 import { getYmovement } from '../common/utilsFP.js';
-
+import { getDestinationPosForInfiniteScroll, getTmpPosition } from './getPositions.js';
 
 /**
 * Adds sections before or after the current one to create the infinite effect.
@@ -20,7 +20,8 @@ export function createInfiniteSections(v){
     // Scrolling down
     if (!v.isMovementUp) {
         // Move all previous sections to after the active section
-        utils.after(activeSectionItem, utils.prevAll(activeSectionItem, SECTION_SEL).reverse());
+        var prevSectionsReversed = utils.prevAll(activeSectionItem, SECTION_SEL).reverse();
+        utils.after(activeSectionItem, prevSectionsReversed[0]);
     }
     else { // Scrolling up
         // Move all next sections to before the active section
@@ -28,7 +29,7 @@ export function createInfiniteSections(v){
     }
 
     // Maintain the displayed position (now that we changed the element order)
-    silentScroll(getState().activeSection.item.offsetTop);
+    silentScroll(getTmpPosition(v));
 
     // Maintain the active slides visible in the viewport
     keepSlidesPosition();
@@ -37,7 +38,7 @@ export function createInfiniteSections(v){
     v.wrapAroundElements = activeSectionItem;
 
     // Recalculate animation variables
-    v.dtop = v.element.offsetTop;
+    v.dtop = getDestinationPosForInfiniteScroll(v);
     v.yMovement = getYmovement(getState().activeSection, v.element);
 
     return v;
@@ -53,5 +54,4 @@ function keepSlidesPosition(){
         silentLandscapeScroll(activeSlides[i], 'internal');
     }
 }
-
 

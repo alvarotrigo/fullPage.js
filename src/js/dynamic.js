@@ -25,6 +25,7 @@ const g_wrapperObserveConfig = {
 };
 
 EventEmitter.on(events.bindEvents, bindEvents);
+EventEmitter.on(events.onDestroy, unbindEvents);
 
 FP["render"] = onContentChange;
 
@@ -35,6 +36,13 @@ function bindEvents(){
         g_wrapperObserver = createObserver(utils.$(WRAPPER_SEL)[0], onContentChange, g_wrapperObserveConfig);
     }
     EventEmitter.on(events.contentChanged, onContentChange);
+}
+
+function unbindEvents(){
+    if(g_wrapperObserver){
+        g_wrapperObserver.disconnect();
+        g_wrapperObserver = null;
+    }
 }
 
 /**

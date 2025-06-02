@@ -2,6 +2,7 @@
 .idea
 .ignore/
 .vscode/*
+.history/
 bower_components/
 node_modules/
 **/node_modules/
@@ -9,10 +10,12 @@ package-lock.json
 src/fullpage.extensions.js
 src/js-extensions/**
 src/js-limited/**
+src/css-limited/**
 src/js/mixed/index.js
 dist/fullpage.extensions.js
 dist/fullpage.limited.js
 dist/fullpage.limited.min.js
+dist/fullpage.limited.min.css
 examples/bug**
 gulp/secret.js
 build/**

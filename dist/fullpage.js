@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.35
+* fullPage 4.0.36
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -953,7 +953,7 @@
       }
     };
 
-    var state = {
+    var defaultState = {
       numSections: 0,
       numSlides: 0,
       slides: [],
@@ -981,7 +981,8 @@
       scrollY: 0,
       scrollX: 0,
       isFullpageInitDone: false
-    }; // @ts-ignore
+    };
+    var state = Object.assign({}, defaultState); // @ts-ignore
 
     win.state = state;
     function setState(props) {
@@ -993,6 +994,9 @@
     function getActivePanel() {
       return state.activeSection && state.activeSection.activeSlide ? state.activeSection.activeSlide : state.activeSection;
     }
+    function resetState() {
+      setState(defaultState);
+    }
 
     var events = {
       onAfterRenderNoAnchor: 'onAfterRenderNoAnchor',
@@ -1003,6 +1007,7 @@
       beforeInit: 'beforeInit',
       bindEvents: 'bindEvents',
       onDestroy: 'onDestroy',
+      onDestroyAll: 'onDestroyAll',
       contentChanged: 'contentChanged',
       onScrollOverflowScrolled: 'onScrollOverflowScrolled',
       onScrollPageAndSlide: 'onScrollPageAndSlide',
@@ -1908,10 +1913,16 @@
       return anchor;
     }
 
+    EventEmitter.on(events.onDestroyAll, onDestroyAll$1);
+
+    function onDestroyAll$1() {
+      setUrlHash('');
+    }
     /**
     * Sets the state of the website depending on the active section/slide.
     * It changes the URL hash when needed and updates the body class.
     */
+
 
     function setPageStatus(slideIndex, slideAnchor, anchorLink) {
       var sectionHash = '';
@@ -1953,13 +1964,7 @@
       if (getOptions().recordHistory) {
         location.hash = url;
       } else {
-        //Mobile Chrome doesn't work the normal way, so... lets use HTML5 for phones :)
-        if (isTouchDevice || isTouch) {
-          win.history.replaceState(undefined, undefined, '#' + url);
-        } else {
-          var baseUrl = win.location.href.split('#')[0];
-          win.location.replace(baseUrl + '#' + url);
-        }
+        win.history.replaceState(undefined, undefined, '#' + url);
       }
     }
 
@@ -2191,6 +2196,18 @@
       }
     }
 
+    function getTmpPosition(v) {
+      return hasClass(getState().activeSection.item, AUTO_HEIGHT) ? getDestinationPosition(getState().activeSection.item) : getState().activeSection.item.offsetTop;
+    }
+    function getDestinationPosForInfiniteScroll(v) {
+      // forcing the scroll to the bottom of the fp-auto-height section when scrolling up
+      if (v.isMovementUp && hasClass(v.element, AUTO_HEIGHT)) {
+        return getDestinationPosition(v.element) - getWindowHeight() + v.element.offsetHeight;
+      }
+
+      return v.element.offsetTop;
+    }
+
     //@ts-check
     /**
     * Adds sections before or after the current one to create the infinite effect.
@@ -2204,7 +2221,8 @@
 
       if (!v.isMovementUp) {
         // Move all previous sections to after the active section
-        after(activeSectionItem, prevAll(activeSectionItem, SECTION_SEL).reverse());
+        var prevSectionsReversed = prevAll(activeSectionItem, SECTION_SEL).reverse();
+        after(activeSectionItem, prevSectionsReversed[0]);
       } else {
         // Scrolling up
         // Move all next sections to before the active section
@@ -2212,13 +2230,13 @@
       } // Maintain the displayed position (now that we changed the element order)
 
 
-      silentScroll(getState().activeSection.item.offsetTop); // Maintain the active slides visible in the viewport
+      silentScroll(getTmpPosition()); // Maintain the active slides visible in the viewport
 
       keepSlidesPosition$1(); // save for later the elements that still need to be reordered
 
       v.wrapAroundElements = activeSectionItem; // Recalculate animation variables
 
-      v.dtop = v.element.offsetTop;
+      v.dtop = getDestinationPosForInfiniteScroll(v);
       v.yMovement = getYmovement(getState().activeSection, v.element);
       return v;
     }
@@ -2263,10 +2281,10 @@
       if (v.isMovementUp) {
         before($(SECTION_SEL)[0], v.wrapAroundElements);
       } else {
-        after($(SECTION_SEL)[getState().sections.length - 1], v.wrapAroundElements);
+        after($(SECTION_SEL)[getState().sections.length - 1], prevAll(v.element, SECTION_SEL).reverse());
       }
 
-      silentScroll(getState().activeSection.item.offsetTop); // Maintain the active slides visible in the viewport
+      silentScroll(getTmpPosition()); // Maintain the active slides visible in the viewport
 
       keepSlidesPosition();
       setState({
@@ -2613,7 +2631,6 @@
     /**
     * Performs the vertical movement (by CSS3 or by jQuery)
     */
-
 
     function performMovement(v) {
       setState({
@@ -3322,9 +3339,16 @@
 
     var g_prevActiveSectionIndex = null;
     var g_prevActiveSlideIndex = null;
+    EventEmitter.on(events.onDestroyAll, onDestroyAll);
+
+    function onDestroyAll() {
+      g_prevActiveSectionIndex = null;
+      g_prevActiveSlideIndex = null;
+    }
     /** 
      * Updates the state of the app.
      */
+
 
     function updateState() {
       state.activeSection = null;
@@ -3404,7 +3428,7 @@
       var activeSectionHasSlides = state.activeSection ? state.activeSection.slides.length : false;
       var activeSlide = state.activeSection ? state.activeSection.activeSlide : null; // Hidding / removing the active section ?
 
-      if (!activeSection && state.sections.length && !getState().isBeyondFullpage && g_prevActiveSectionIndex) {
+      if (!activeSection && state.sections.length && !getState().isBeyondFullpage && g_prevActiveSectionIndex !== null) {
         var newActiveSection = getNewActivePanel(g_prevActiveSectionIndex, state.sections);
 
         if (newActiveSection) {
@@ -3418,7 +3442,7 @@
         }
       }
 
-      if (activeSectionHasSlides && !activeSlide && g_prevActiveSlideIndex) {
+      if (activeSectionHasSlides && !activeSlide && g_prevActiveSlideIndex !== null) {
         var newActiveSlide = getNewActivePanel(g_prevActiveSlideIndex, state.activeSection.slides);
 
         if (newActiveSlide) {
@@ -3559,6 +3583,7 @@
       characterData: true
     };
     EventEmitter.on(events.bindEvents, bindEvents$9);
+    EventEmitter.on(events.onDestroy, unbindEvents);
     FP["render"] = onContentChange;
 
     function bindEvents$9() {
@@ -3567,6 +3592,13 @@
       }
 
       EventEmitter.on(events.contentChanged, onContentChange);
+    }
+
+    function unbindEvents() {
+      if (g_wrapperObserver) {
+        g_wrapperObserver.disconnect();
+        g_wrapperObserver = null;
+      }
     }
     /**
      * Creates a Mutation observer.
@@ -4717,7 +4749,7 @@
 
         scrollings.push(Math.abs(value)); //preventing to scroll the site on mouse wheel when scrollbar is present
 
-        if (getOptions().scrollBar) {
+        if (getOptions().scrollBar || !getOptions().scrollOverflow) {
           preventDefault(e);
         } //time difference between the last scroll and the current one
 
@@ -5570,7 +5602,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x35\x2d\x33\x2d\x31".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x35\x2d\x32".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5880,6 +5912,8 @@
       usedSelectors.forEach(function (item) {
         removeClass($('.' + item), item);
       });
+      resetState();
+      EventEmitter.emit(events.onDestroyAll);
     }
 
     FP.destroy = destroy;
@@ -6031,7 +6065,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.35';
+      FP.version = '4.0.36';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
