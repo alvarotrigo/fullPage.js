@@ -18,9 +18,8 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.37,2-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.38,2-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 [![Minzipped Size](https://img.shields.io/bundlephobia/minzip/fullpage.js)](https://bundlephobia.com/package/fullpage.js)
 &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
@@ -1128,13 +1127,6 @@ new fullpage('#fullpage', {
 - http://www.boxreload.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-
-## 赞助
-非常欢迎您的捐款:)
-
-[Patreon page](https://www.patreon.com/fullpagejs)
-
-[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
 成为赞助商，您的徽标将出现在我们的 GitHub README 中，并附带到您网站的链接。[[联系我们](https://alvarotrigo.com/#contact)] | [[成为 Patreon]](https://www.patreon.com/fullpagejs) | [成为 GitHub 赞助商](https://github.com/sponsors/alvarotrigo/dashboard)

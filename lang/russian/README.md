@@ -19,9 +19,8 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.37-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.38-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![Перечисление на PayPal](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 [![Minzipped Size](https://img.shields.io/bundlephobia/minzip/fullpage.js)](https://bundlephobia.com/package/fullpage.js)
 &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
@@ -1123,13 +1122,6 @@ new fullpage('#fullpage', {
 - http://www.boxreload.com/
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
-
-## Денежные переводы
-Денежные переводы более чем приветствуются :)
-
-[Patreon page](https://www.patreon.com/fullpagejs)
-
-[![Перевести деньги](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
 
 ## Sponsors
 Станьте спонсором, и ваш логотип появится в нашем README на GitHub с ссылкой на ваш сайт. [[Связаться с нами](https://alvarotrigo.com/#contact)] | [[Станьте патроном]](https://www.patreon.com/fullpagejs) | [Станьте спонсором на GitHub](https://github.com/sponsors/alvarotrigo/dashboard)
