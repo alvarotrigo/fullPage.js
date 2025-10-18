@@ -1150,7 +1150,7 @@ Vous voulez créer des fichiers de distribution fullpage.js ? Veuillez consulter
 Devenez sponsor et obtenez votre logo dans notre README sur GitHub avec un lien vers votre site. [[Contactez-nous](https://alvarotrigo.com/#contact)] | [[Devenez un Patreon]](https://www.patreon.com/fullpagejs) | [Devenez un sponsor GitHub](https://github.com/sponsors/alvarotrigo/dashboard)
 
 
-[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp-dev2.png)](https://www.warp.dev/)
+[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp-dev-sm.png)](https://www.warp.dev/)
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
 [![Stackpath](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/stackpath3.png)](https://www.stackpath.com/)
