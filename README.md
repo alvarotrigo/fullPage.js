@@ -1213,7 +1213,7 @@ Want to build fullpage.js distribution files? Please see [Build Tasks](https://g
 ## Sponsors
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Contact Us](https://alvarotrigo.com/#contact)] | [[Become a Patreon]](https://www.patreon.com/fullpagejs) | [Become a GitHub Sponsor](https://github.com/sponsors/alvarotrigo/dashboard)
 
-[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp-dev-sm.png)](https://www.warp.dev/)
+[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp.png)](https://www.warp.dev/)
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
 [![Stackpath](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/stackpath3.png)](https://www.stackpath.com/)
