@@ -412,3 +412,91 @@ QUnit.test('Testing afterReBuild', function(assert) {
     FP.reBuild();
     assert.equal(afterReBuild, true, 'We expect afterReBuild to get fired synchronously');
 });
+
+// Test Case: Testing onScrollOverflow callback
+// Verifies callback fires when scrolling within overflow section
+// ============================================================================
+QUnit.test('Testing onScrollOverflow callback', function(assert) {
+    var id = '#fullpage-scrolloverflow';
+    var onScrollOverflowFired = false;
+    
+    // Initialize with scrollOverflow and callback
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {
+        scrollOverflow: true,
+        scrollingSpeed: 50,
+        // Callback fires when scrolling within overflow section
+        onScrollOverflow: function(section, slide, position, direction) {
+            onScrollOverflowFired = true;
+            // Verify callback parameters
+            assert.ok(section, 'onScrollOverflow: section parameter should be provided');
+            assert.ok(typeof position === 'number', 'onScrollOverflow: position should be a number');
+            assert.ok(direction === 'down' || direction === 'up', 'onScrollOverflow: direction should be up or down');
+        }
+    }));
+    
+    var done = assert.async(1);
+    
+    // Verify callback not fired initially
+    assert.equal(onScrollOverflowFired, false, 
+        'Initial state: onScrollOverflow should not have fired yet');
+    
+    // Simulate scroll within overflow section
+    var scrollableWrapper = $(id).find(SECTION_SEL).eq(0).find(SCROLLABLE_SEL).first();
+    scrollableWrapper.scrollTop(100);
+    
+    // Trigger scroll event
+    scrollableWrapper.trigger('scroll');
+    
+    setTimeout(function() {
+        // Verify callback fired
+        assert.equal(onScrollOverflowFired, true, 
+            'After scrolling within section: onScrollOverflow callback should have fired');
+        
+        done();
+    }, 100);
+});
+
+
+// ============================================================================
+// Test Case: Testing callback execution order
+// Verifies callbacks fire in correct sequence during section transition
+// ============================================================================
+QUnit.test('Testing callback execution order during section transition', function(assert) {
+    var id = '#fullpage';
+    var callbackOrder = [];
+    
+    // Initialize with multiple callbacks to track execution order
+    var FP = initFullpageNew(id, Object.assign({}, allBasicOptions, {
+        scrollingSpeed: 50,
+        // Track callback execution order
+        onLeave: function(origin, destination, direction) {
+            callbackOrder.push('onLeave');
+        },
+        afterLoad: function(origin, destination, direction) {
+            callbackOrder.push('afterLoad');
+        }
+    }));
+    
+    var done = assert.async(1);
+    
+    // Verify no callbacks fired initially
+    assert.equal(callbackOrder.length, 0, 
+        'Initial state: No callbacks should have fired');
+    
+    // Trigger section transition
+    FP.moveSectionDown();
+    
+    setTimeout(function() {
+        // Verify callback execution order
+        assert.equal(callbackOrder.length, 2, 
+            'After transition: Both callbacks should have fired');
+        
+        assert.equal(callbackOrder[0], 'onLeave', 
+            'First callback: onLeave should fire first (before leaving section)');
+        
+        assert.equal(callbackOrder[1], 'afterLoad', 
+            'Second callback: afterLoad should fire second (after arriving at section)');
+        
+        done();
+    }, 150);
+});
