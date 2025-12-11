@@ -1311,10 +1311,11 @@ fullpage.jsの配布ファイルをビルドしたい場合は、[ビルドタ�
 - http://www.villareginateodolinda.it
 
 ## スポンサー
-スポンサーになって、GitHub の README にあなたのロゴを掲載し、サイトへのリンクを追加しましょう。[[お問い合わせ](https://alvarotrigo.com/#contact)] | [[Patreon になる]](https://www.patreon.com/fullpagejs) | [GitHub スポンサーになる](https://github.com/sponsors/alvarotrigo/dashboard)
+スポンサーになって、GitHub の README にあなたのロゴを掲載し、サイトへのリンクを追加しましょう。[[お問い合わせ](https://alvarotrigo.com/#contact)] | [[Patreon になる]](https://www.patreon.com/fullpagejs) | [GitHub スポンサーになる](https://github.com/sponsors/alvarotrigo)
 
 
 [![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp.png)](https://www.warp.dev/)
+[![Crawlbase](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/crawlbase.png)](https://crawlbase.com/?utm_source=github&utm_medium=sponsor&utm_campaign=fullpagejs)
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
 [![Stackpath](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/stackpath3.png)](https://www.stackpath.com/)

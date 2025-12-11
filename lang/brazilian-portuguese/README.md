@@ -1141,9 +1141,10 @@ Quer buildar arquivos de distribuição do fullpage.js? Consulte [Tarefas de Bui
 - http://www.villareginateodolinda.it
 
 ## Patrocinadores
-Torne-se um patrocinador e obtenha seu logotipo em nosso README no Github com um link para seu site. [[Seja um patrocinador](https://alvarotrigo.com/#contact)] | [[Torne-se um patreon]](https://www.patreon.com/fullpagejs)
+Torne-se um patrocinador e obtenha seu logotipo em nosso README no Github com um link para seu site. [[Seja um patrocinador](https://alvarotrigo.com/#contact)] | [[Torne-se um patrocinador]](https://github.com/sponsors/alvarotrigo)
 
 [![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp.png)](https://www.warp.dev/)
+[![Crawlbase](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/crawlbase.png)](https://crawlbase.com/?utm_source=github&utm_medium=sponsor&utm_campaign=fullpagejs)
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
 [![Stackpath](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/stackpath3.png)](https://www.stackpath.com/)
