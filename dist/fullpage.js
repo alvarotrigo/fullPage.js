@@ -1866,7 +1866,6 @@
       var currentPanel = startPanel;
 
       for (var i = 0; i < count && (currentPanel = currentPanel[direction]()); i++) {
-        console.log(currentPanel.item);
         lazyLoad(currentPanel.item);
       }
     }

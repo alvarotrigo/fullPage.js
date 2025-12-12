@@ -54,7 +54,6 @@ export function lazyLoadPanels(panel){
 function lazyLoadDirection(startPanel, direction, count) {
     let currentPanel = startPanel;
     for (let i = 0; i < count && (currentPanel = currentPanel[direction]()); i++) {
-        console.log(currentPanel.item);
         lazyLoad(currentPanel.item);
     }
 }
