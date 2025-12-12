@@ -19,7 +19,7 @@
 
 ---
 
-![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.38-brightgreen.svg)
+![Версия fullPage.js](https://img.shields.io/badge/fullPage.js-v4.0.39-brightgreen.svg)
 [![Лицензия](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 [![Minzipped Size](https://img.shields.io/bundlephobia/minzip/fullpage.js)](https://bundlephobia.com/package/fullpage.js)
