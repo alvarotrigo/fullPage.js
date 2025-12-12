@@ -1,4 +1,4 @@
-import { isInsideIframe, isTouch, isTouchDevice, win } from "../common/constants.js";
+import { win } from "../common/constants.js";
 import { getOptions } from "../common/options.js";
 import { setState } from "../common/state.js";
 import { setBodyClass } from "../stateClasses.js";
@@ -8,7 +8,8 @@ import { events } from '../common/events.js';
 EventEmitter.on(events.onDestroyAll, onDestroyAll);
 
 function onDestroyAll(){
-    setUrlHash('');
+    // removing hash + # symbol from the URL
+    win.history.replaceState(null, '', win.location.pathname + window.location.search);
 }
 
 /**
