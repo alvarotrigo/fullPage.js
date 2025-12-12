@@ -4757,7 +4757,6 @@
 
 
     function isAccelerating(scrollings) {
-      if (scrollings.length < 10) return false;
       var averageEnd = getAverage(scrollings, 10);
       var averageMiddle = getAverage(scrollings, 70);
       return averageEnd >= averageMiddle;

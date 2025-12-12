@@ -106,9 +106,7 @@ function removeMiddleWheelHandler(){
  * @param {Array} scrollings - Array of scroll values
  * @returns {boolean} - True if accelerating
  */
-function isAccelerating(scrollings) {
-    if (scrollings.length < 10) return false;
-    
+function isAccelerating(scrollings) {    
     var averageEnd = utils.getAverage(scrollings, 10);
     var averageMiddle = utils.getAverage(scrollings, 70);
     return averageEnd >= averageMiddle;

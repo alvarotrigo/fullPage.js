@@ -43,6 +43,7 @@
     "dist/fullpage.extensions.min.js",
     "dist/fullpage.min.js",
     "dist/fullpage.js",
+    "LICENSE",
     "package.json",
     "README.md"
   ],
