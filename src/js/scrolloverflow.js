@@ -180,10 +180,21 @@ export const scrollOverflowHandler = {
     },
 
     bindEvents: function(item){
-        scrollOverflowHandler.getScrollableItem(item).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
-
+        var scrollable = scrollOverflowHandler.getScrollableItem(item);
+        if(scrollable){
+            scrollable.addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+        }
         item.addEventListener('wheel', scrollOverflowHandler.preventScrollWithMouseWheel, {passive: false});
         item.addEventListener('keydown', scrollOverflowHandler.preventScrollWithKeyboard, {passive: false});
+    },
+
+    unbindEvents: function(item){
+        var scrollable = scrollOverflowHandler.getScrollableItem(item);
+        if(scrollable){
+            scrollable.removeEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+        }
+        item.removeEventListener('wheel', scrollOverflowHandler.preventScrollWithMouseWheel, {passive: false});
+        item.removeEventListener('keydown', scrollOverflowHandler.preventScrollWithKeyboard, {passive: false});
     },
 
     createWrapper: function(item){
@@ -192,6 +203,19 @@ export const scrollOverflowHandler = {
 
         utils.wrapInner(item, overflowWrapper);
         overflowWrapper.setAttribute('tabindex', '-1');
+    },
+
+    destroyScrollable: function(panel){
+        if(panel.slides && panel.slides.length){
+            return;
+        }
+        
+        if(panel.hasScroll){
+            scrollOverflowHandler.destroyWrapper(panel.item);
+            scrollOverflowHandler.unbindEvents(panel.item);
+            
+            panel.hasScroll = false;
+        }
     },
 
     destroyWrapper: function(item){

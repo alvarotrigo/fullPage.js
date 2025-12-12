@@ -86,12 +86,14 @@ export function destroyStructure(){
         }
     });
 
+    if(getOptions().scrollOverflow){
+        getState().panels.forEach(function(panel){
+            scrollOverflowHandler.destroyScrollable(panel);
+        });
+    }
+
     //removing added classes
     getNodes(getState().panels).forEach(function(item){
-        if(getOptions().scrollOverflow){
-            scrollOverflowHandler.destroyWrapper(item);
-        }
-
         utils.removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW + ' ' + LOADED);
         var previousStyles = utils.getAttr(item, 'data-fp-styles');
         if(previousStyles){
