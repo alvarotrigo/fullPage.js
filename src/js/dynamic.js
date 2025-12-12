@@ -15,6 +15,7 @@ import { EventEmitter } from './common/eventEmitter.js';
 import { FP } from './common/constants.js';
 import { styleSection } from './sections.js';
 import { events } from './common/events.js';
+import { scrollOverflowHandler } from './scrolloverflow.js';
 
 let g_wrapperObserver;
 const g_wrapperObserveConfig = {
@@ -91,6 +92,10 @@ function onContentChange(mutations){
 
         if(getOptions().navigation){
             addVerticalNavigation();
+        }
+        
+        if(getOptions().scrollOverflow){
+            scrollOverflowHandler.makeScrollable();
         }
         
         if(_didSlidesChange){
