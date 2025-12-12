@@ -7,6 +7,7 @@ import { state, setState } from '../common/state.js';
 import { setOldPageY, mouseMoveHandler } from '../mouse/move.js';
 import { addTouchHandler, removeTouchHandler } from '../touch';
 import { scrolling } from '../scroll/scrolling.js';
+import { moveSlideLeft, moveSlideRight } from '../slides/moveSlide.js';
 import { getControlPressed } from '../keyboard/index.js';
 import { doc, FP, win } from '../common/constants.js';
 import {
@@ -15,7 +16,10 @@ import {
 } from '../common/selectors.js';
 
 let prevTime = new Date().getTime();
+let prevHorizontalTime = new Date().getTime();
 let scrollings = [];
+let horizontalScrollings = [];
+
 FP.setMouseWheelScrolling = setMouseWheelScrolling;
 
 /**
@@ -98,6 +102,19 @@ function removeMiddleWheelHandler(){
 }
 
 /**
+ * Determines if the wheel movement should trigger scrolling based on acceleration
+ * @param {Array} scrollings - Array of scroll values
+ * @returns {boolean} - True if accelerating
+ */
+function isAccelerating(scrollings) {
+    if (scrollings.length < 10) return false;
+    
+    var averageEnd = utils.getAverage(scrollings, 10);
+    var averageMiddle = utils.getAverage(scrollings, 70);
+    return averageEnd >= averageMiddle;
+}
+
+/**
  * Detecting mousewheel scrolling
  *
  * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
@@ -117,11 +134,6 @@ function MouseWheelHandler(e) {
         });
     }
 
-    //is scroll allowed?
-    if (!getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
-        return false;
-    }
-
     if(isScrollAllowedBeyondFullPage){
         return true;
     }
@@ -134,20 +146,60 @@ function MouseWheelHandler(e) {
     if(getOptions().autoScrolling && !getControlPressed() && !isNormalScroll){
         // cross-browser wheel delta
         e = e || win.event;
+        // @ts-ignore - cross-browser compatibility
         var value = e.wheelDelta || -e.deltaY || -e.detail;
         var delta = Math.max(-1, Math.min(1, value));
 
-        var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
-        var isScrollingVertically = (Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta)) || (Math.abs(e.deltaX ) < Math.abs(e.deltaY) || !horizontalDetection);
+        // @ts-ignore - cross-browser compatibility
+        var horizontalValue = e.wheelDeltaX || -e.deltaX || 0;
+        // @ts-ignore - cross-browser compatibility
+        var deltaY = e.deltaY || 0;
+        // @ts-ignore - cross-browser compatibility
+        var deltaX = e.deltaX || 0;
+        
+        // Detect horizontal scrolling: SHIFT key pressed OR horizontal delta is larger than vertical
+        // @ts-ignore - cross-browser compatibility
+        var isShiftPressed = e.shiftKey || false;
+        var horizontalDetection = Math.abs(horizontalValue) > 0 || Math.abs(deltaX) > 0;
+        // @ts-ignore - cross-browser compatibility
+        var isScrollingVertically = !isShiftPressed && (Math.abs(deltaX) < Math.abs(deltaY) || !horizontalDetection);
+        var isScrollingHorizontally = isShiftPressed || (!isScrollingVertically && horizontalDetection && Math.abs(deltaX) >= Math.abs(deltaY));
+        
         var direction = delta < 0 ? 'down': delta > 0 ? 'up' : 'none';
+        
+        // Get horizontal delta for horizontal scrolling
+        // For SHIFT+wheel, use the vertical delta as horizontal
+        var horizontalDelta = isShiftPressed ? delta : Math.max(-1, Math.min(1, horizontalValue));
+        var horizontalDirection = isScrollingHorizontally ? (horizontalDelta < 0 ? 'right' : horizontalDelta > 0 ? 'left' : 'none') : 'none';
+        
+        //is scroll allowed for the detected direction?
+        if(isScrollingVertically && !getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
+            return false;
+        }
+        if(isScrollingHorizontally && horizontalDirection === 'left' && !getIsScrollAllowed().m.left) {
+            return false;
+        }
+        if(isScrollingHorizontally && horizontalDirection === 'right' && !getIsScrollAllowed().m.right) {
+            return false;
+        }
 
-        //Limiting the array to 150 (lets not waste memory!)
+        //Limiting the arrays to 150 (lets not waste memory!)
         if(scrollings.length > 149){
             scrollings.shift();
         }
+        if(horizontalScrollings.length > 149){
+            horizontalScrollings.shift();
+        }
 
         //keeping record of the previous scrollings
-        scrollings.push(Math.abs(value));
+        if(isScrollingVertically) {
+            scrollings.push(Math.abs(value));
+        } 
+        else if(isScrollingHorizontally) {
+            // For SHIFT+wheel, use the vertical value as horizontal
+            var horizontalScrollValue = isShiftPressed ? Math.abs(value) : Math.abs(horizontalValue);
+            horizontalScrollings.push(horizontalScrollValue);
+        }
 
         //preventing to scroll the site on mouse wheel when scrollbar is present
         if(getOptions().scrollBar || !getOptions().scrollOverflow){
@@ -156,25 +208,29 @@ function MouseWheelHandler(e) {
 
         //time difference between the last scroll and the current one
         var timeDiff = curTime-prevTime;
-        prevTime = curTime;
+        var horizontalTimeDiff = curTime-prevHorizontalTime;
+        
+        if(isScrollingVertically) {
+            prevTime = curTime;
+        } else if(isScrollingHorizontally) {
+            prevHorizontalTime = curTime;
+        }
 
         //haven't they scrolled in a while?
         //(enough to be consider a different scrolling action to scroll another section)
         if(timeDiff > 200){
-            //emptying the array, we dont care about old scrollings for our averages
+            //emptying the arrays, we dont care about old scrollings for our averages
             scrollings = [];
+        }
+        if(horizontalTimeDiff > 200){
+            horizontalScrollings = [];
         }
 
         setState({wheelDirection: direction});
 
         if(state.canScroll){
-            var averageEnd = utils.getAverage(scrollings, 10);
-            var averageMiddle = utils.getAverage(scrollings, 70);
-            var isAccelerating = averageEnd >= averageMiddle;
-
-            //to avoid double swipes...
-            if(isAccelerating && isScrollingVertically){
-
+            // Handle vertical scrolling
+            if(isScrollingVertically && isAccelerating(scrollings)){
                 setState({scrollTrigger: 'wheel'});
 
                 //scrolling down?
@@ -185,6 +241,17 @@ function MouseWheelHandler(e) {
                 //scrolling up?
                 else {
                     scrolling('up');
+                }
+            }
+            // Handle horizontal scrolling
+            // SHIFT+wheel doesn't require acceleration (intentional gesture)
+            else if(isScrollingHorizontally && (isShiftPressed || isAccelerating(horizontalScrollings))){
+                setState({scrollTrigger: 'wheel'});
+                
+                if(horizontalDirection === 'left'){
+                    moveSlideLeft();
+                } else if(horizontalDirection === 'right'){
+                    moveSlideRight();
                 }
             }
         }
