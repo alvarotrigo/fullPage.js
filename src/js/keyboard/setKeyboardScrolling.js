@@ -10,7 +10,7 @@ EventEmitter.on(events.beforeInit, beforeInit);
 FP.setKeyboardScrolling = setKeyboardScrolling;
 
 function beforeInit(){
-    setKeyboardScrolling(true);
+    setKeyboardScrolling(getOptions().keyboardScrolling);
 }
 
 /**

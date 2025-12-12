@@ -43,6 +43,13 @@ export function updateState(){
                     section.activeSlide = slide;
                 }
             });
+
+            if(!section.slides.find(slide => slide.isActive)){
+                section.activeSlide = section.slides[0];
+                if(section.activeSlide){
+                    section.activeSlide.isActive = true;
+                }
+            }
         }
     });
 
@@ -148,6 +155,10 @@ export let SectionPanel = function(el){
     this.slidesIncludingHidden = Array.from(this.allSlidesItems).map( item => new SlidePanel(item, this));
     this.slides = this.slidesIncludingHidden.filter(slidePanel => slidePanel.isVisible);
     this.activeSlide = this.slides.length ? this.slides.filter(slide => slide.isActive)[0] || this.slides[0]: null;
+
+    if(this.activeSlide){
+        this.activeSlide.isActive = true;
+    }
 };
 SectionPanel.prototype = Item.prototype;
 SectionPanel.prototype.constructor = SectionPanel;

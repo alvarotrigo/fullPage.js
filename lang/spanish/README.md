@@ -20,9 +20,8 @@
 
 ---
 
-![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.37-brightgreen.svg)
+![fullPage.js version](https://img.shields.io/badge/fullPage.js-v4.0.38-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-GPL-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![PayPal Donate](https://img.shields.io/badge/donate-PayPal.me-ff69b4.svg)](https://www.paypal.me/alvarotrigo/9.95)
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/fullpage.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/fullpage.js)
 [![Minzipped Size](https://img.shields.io/bundlephobia/minzip/fullpage.js)](https://bundlephobia.com/package/fullpage.js)
 &nbsp;&nbsp;**|**&nbsp;&nbsp; *Created by [@imac2](https://twitter.com/imac2)*
@@ -1140,17 +1139,12 @@ Sólo disponible en inglés :)
 - http://boxx.hk/
 - http://www.villareginateodolinda.it
 
-## Donaciones
-¡Agradeceré cualquier donación!
-
-[Dona en Patreon](https://www.patreon.com/fullpagejs)
-
-[![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=BEK5JQCQMED4J&lc=GB&item_name=fullPage%2ejs&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-
 ## Sponsors
-Conviértete en patrocinador y coloca tu logotipo en nuestro README de GitHub con un enlace a tu sitio. [[Contáctanos](https://alvarotrigo.com/#contact)] | [[Hazte Patreon]](https://www.patreon.com/fullpagejs) | [Hazte patrocinador en GitHub](https://github.com/sponsors/alvarotrigo/dashboard)
+Conviértete en patrocinador y coloca tu logotipo en nuestro README de GitHub con un enlace a tu sitio. [[Contáctanos](https://alvarotrigo.com/#contact)] | [[Hazte Patreon]](https://www.patreon.com/fullpagejs) | [Hazte patrocinador en GitHub](https://github.com/sponsors/alvarotrigo)
 
 
+[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp.png)](https://www.warp.dev/)
+[![Crawlbase](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/crawlbase.png)](https://crawlbase.com/?utm_source=github&utm_medium=sponsor&utm_campaign=fullpagejs)
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
 [![Stackpath](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/stackpath3.png)](https://www.stackpath.com/)

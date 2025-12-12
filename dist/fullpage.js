@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.37
+* fullPage 4.0.38
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1866,7 +1866,6 @@
       var currentPanel = startPanel;
 
       for (var i = 0; i < count && (currentPanel = currentPanel[direction]()); i++) {
-        console.log(currentPanel.item);
         lazyLoad(currentPanel.item);
       }
     }
@@ -1916,7 +1915,8 @@
     EventEmitter.on(events.onDestroyAll, onDestroyAll$1);
 
     function onDestroyAll$1() {
-      setUrlHash('');
+      // removing hash + # symbol from the URL
+      win.history.replaceState(null, '', win.location.pathname + window.location.search);
     }
     /**
     * Sets the state of the website depending on the active section/slide.
@@ -3035,11 +3035,30 @@
         });
       },
       bindEvents: function bindEvents(item) {
-        scrollOverflowHandler.getScrollableItem(item).addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+        var scrollable = scrollOverflowHandler.getScrollableItem(item);
+
+        if (scrollable) {
+          scrollable.addEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+        }
+
         item.addEventListener('wheel', scrollOverflowHandler.preventScrollWithMouseWheel, {
           passive: false
         });
         item.addEventListener('keydown', scrollOverflowHandler.preventScrollWithKeyboard, {
+          passive: false
+        });
+      },
+      unbindEvents: function unbindEvents(item) {
+        var scrollable = scrollOverflowHandler.getScrollableItem(item);
+
+        if (scrollable) {
+          scrollable.removeEventListener('scroll', scrollOverflowHandler.onPanelScroll);
+        }
+
+        item.removeEventListener('wheel', scrollOverflowHandler.preventScrollWithMouseWheel, {
+          passive: false
+        });
+        item.removeEventListener('keydown', scrollOverflowHandler.preventScrollWithKeyboard, {
           passive: false
         });
       },
@@ -3048,6 +3067,17 @@
         overflowWrapper.className = OVERFLOW;
         wrapInner(item, overflowWrapper);
         overflowWrapper.setAttribute('tabindex', '-1');
+      },
+      destroyScrollable: function destroyScrollable(panel) {
+        if (panel.slides && panel.slides.length) {
+          return;
+        }
+
+        if (panel.hasScroll) {
+          scrollOverflowHandler.destroyWrapper(panel.item);
+          scrollOverflowHandler.unbindEvents(panel.item);
+          panel.hasScroll = false;
+        }
       },
       destroyWrapper: function destroyWrapper(item) {
         var overflowWrapper = $(OVERFLOW_SEL, item)[0];
@@ -3372,6 +3402,16 @@
               section.activeSlide = slide;
             }
           });
+
+          if (!section.slides.find(function (slide) {
+            return slide.isActive;
+          })) {
+            section.activeSlide = section.slides[0];
+
+            if (section.activeSlide) {
+              section.activeSlide.isActive = true;
+            }
+          }
         }
       });
       scrollToNewActivePanel();
@@ -3495,6 +3535,10 @@
       this.activeSlide = this.slides.length ? this.slides.filter(function (slide) {
         return slide.isActive;
       })[0] || this.slides[0] : null;
+
+      if (this.activeSlide) {
+        this.activeSlide.isActive = true;
+      }
     };
     SectionPanel.prototype = Item.prototype;
     SectionPanel.prototype.constructor = SectionPanel;
@@ -3648,6 +3692,10 @@
 
         if (getOptions().navigation) {
           addVerticalNavigation();
+        }
+
+        if (getOptions().scrollOverflow) {
+          scrollOverflowHandler.makeScrollable();
         }
 
         if (_didSlidesChange) {
@@ -4614,7 +4662,9 @@
     }
 
     var prevTime = new Date().getTime();
+    var prevHorizontalTime = new Date().getTime();
     var scrollings = [];
+    var horizontalScrollings = [];
     FP.setMouseWheelScrolling = setMouseWheelScrolling;
     /**
     * Adds or remove the possibility of scrolling through sections by using the mouse wheel or the trackpad.
@@ -4700,6 +4750,19 @@
       getContainer().removeEventListener('mouseup', mouseUpHandler);
     }
     /**
+     * Determines if the wheel movement should trigger scrolling based on acceleration
+     * @param {Array} scrollings - Array of scroll values
+     * @returns {boolean} - True if accelerating
+     */
+
+
+    function isAccelerating(scrollings) {
+      if (scrollings.length < 10) return false;
+      var averageEnd = getAverage(scrollings, 10);
+      var averageMiddle = getAverage(scrollings, 70);
+      return averageEnd >= averageMiddle;
+    }
+    /**
      * Detecting mousewheel scrolling
      *
      * http://blogs.sitepointstatic.com/examples/tech/mouse-wheel/index.html
@@ -4718,11 +4781,6 @@
           isUsingWheel: true,
           touchDirection: 'none'
         });
-      } //is scroll allowed?
-
-
-      if (!getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
-        return false;
       }
 
       if (isScrollAllowedBeyondFullPage) {
@@ -4735,19 +4793,59 @@
 
       if (getOptions().autoScrolling && !getControlPressed() && !isNormalScroll) {
         // cross-browser wheel delta
-        e = e || win.event;
+        e = e || win.event; // @ts-ignore - cross-browser compatibility
+
         var value = e.wheelDelta || -e.deltaY || -e.detail;
-        var delta = Math.max(-1, Math.min(1, value));
-        var horizontalDetection = typeof e.wheelDeltaX !== 'undefined' || typeof e.deltaX !== 'undefined';
-        var isScrollingVertically = Math.abs(e.wheelDeltaX) < Math.abs(e.wheelDelta) || Math.abs(e.deltaX) < Math.abs(e.deltaY) || !horizontalDetection;
-        var direction = delta < 0 ? 'down' : delta > 0 ? 'up' : 'none'; //Limiting the array to 150 (lets not waste memory!)
+        var delta = Math.max(-1, Math.min(1, value)); // @ts-ignore - cross-browser compatibility
+
+        var horizontalValue = e.wheelDeltaX || -e.deltaX || 0; // @ts-ignore - cross-browser compatibility
+
+        var deltaY = e.deltaY || 0; // @ts-ignore - cross-browser compatibility
+
+        var deltaX = e.deltaX || 0; // Detect horizontal scrolling: SHIFT key pressed OR horizontal delta is larger than vertical
+        // @ts-ignore - cross-browser compatibility
+
+        var isShiftPressed = e.shiftKey || false;
+        var horizontalDetection = Math.abs(horizontalValue) > 0 || Math.abs(deltaX) > 0; // @ts-ignore - cross-browser compatibility
+
+        var isScrollingVertically = !isShiftPressed && (Math.abs(deltaX) < Math.abs(deltaY) || !horizontalDetection);
+        var isScrollingHorizontally = isShiftPressed || !isScrollingVertically && horizontalDetection && Math.abs(deltaX) >= Math.abs(deltaY);
+        var direction = delta < 0 ? 'down' : delta > 0 ? 'up' : 'none'; // Get horizontal delta for horizontal scrolling
+        // For SHIFT+wheel, use the vertical delta as horizontal
+
+        var horizontalDelta = isShiftPressed ? delta : Math.max(-1, Math.min(1, horizontalValue));
+        var horizontalDirection = isScrollingHorizontally ? horizontalDelta < 0 ? 'right' : horizontalDelta > 0 ? 'left' : 'none' : 'none'; //is scroll allowed for the detected direction?
+
+        if (isScrollingVertically && !getIsScrollAllowed().m.down && !getIsScrollAllowed().m.up) {
+          return false;
+        }
+
+        if (isScrollingHorizontally && horizontalDirection === 'left' && !getIsScrollAllowed().m.left) {
+          return false;
+        }
+
+        if (isScrollingHorizontally && horizontalDirection === 'right' && !getIsScrollAllowed().m.right) {
+          return false;
+        } //Limiting the arrays to 150 (lets not waste memory!)
+
 
         if (scrollings.length > 149) {
           scrollings.shift();
+        }
+
+        if (horizontalScrollings.length > 149) {
+          horizontalScrollings.shift();
         } //keeping record of the previous scrollings
 
 
-        scrollings.push(Math.abs(value)); //preventing to scroll the site on mouse wheel when scrollbar is present
+        if (isScrollingVertically) {
+          scrollings.push(Math.abs(value));
+        } else if (isScrollingHorizontally) {
+          // For SHIFT+wheel, use the vertical value as horizontal
+          var horizontalScrollValue = isShiftPressed ? Math.abs(value) : Math.abs(horizontalValue);
+          horizontalScrollings.push(horizontalScrollValue);
+        } //preventing to scroll the site on mouse wheel when scrollbar is present
+
 
         if (getOptions().scrollBar || !getOptions().scrollOverflow) {
           preventDefault(e);
@@ -4755,12 +4853,23 @@
 
 
         var timeDiff = curTime - prevTime;
-        prevTime = curTime; //haven't they scrolled in a while?
+        var horizontalTimeDiff = curTime - prevHorizontalTime;
+
+        if (isScrollingVertically) {
+          prevTime = curTime;
+        } else if (isScrollingHorizontally) {
+          prevHorizontalTime = curTime;
+        } //haven't they scrolled in a while?
         //(enough to be consider a different scrolling action to scroll another section)
 
+
         if (timeDiff > 200) {
-          //emptying the array, we dont care about old scrollings for our averages
+          //emptying the arrays, we dont care about old scrollings for our averages
           scrollings = [];
+        }
+
+        if (horizontalTimeDiff > 200) {
+          horizontalScrollings = [];
         }
 
         setState({
@@ -4768,11 +4877,8 @@
         });
 
         if (state.canScroll) {
-          var averageEnd = getAverage(scrollings, 10);
-          var averageMiddle = getAverage(scrollings, 70);
-          var isAccelerating = averageEnd >= averageMiddle; //to avoid double swipes...
-
-          if (isAccelerating && isScrollingVertically) {
+          // Handle vertical scrolling
+          if (isScrollingVertically && isAccelerating(scrollings)) {
             setState({
               scrollTrigger: 'wheel'
             }); //scrolling down?
@@ -4782,6 +4888,18 @@
             } //scrolling up?
             else {
               scrolling('up');
+            }
+          } // Handle horizontal scrolling
+          // SHIFT+wheel doesn't require acceleration (intentional gesture)
+          else if (isScrollingHorizontally && (isShiftPressed || isAccelerating(horizontalScrollings))) {
+            setState({
+              scrollTrigger: 'wheel'
+            });
+
+            if (horizontalDirection === 'left') {
+              moveSlideLeft();
+            } else if (horizontalDirection === 'right') {
+              moveSlideRight();
             }
           }
         }
@@ -5175,12 +5293,15 @@
     function bindEvents$5() {
       //detecting any change on the URL to scroll to the given anchor link
       //(a way to detect back history button as we play with the hashes on the URL)
-      windowAddEvent('hashchange', hashChangeHandler);
+      windowAddEvent('hashchange', hashChangeHandler); // Handle clicks on anchor links that point to elements within sections/slides
+
+      docAddEvent('click', anchorLinkClickHandler);
       EventEmitter.on(events.onDestroy, onDestroy$2);
     }
 
     function onDestroy$2() {
       windowRemoveEvent('hashchange', hashChangeHandler);
+      docRemoveEvent('click', anchorLinkClickHandler);
     }
     /**
     * Sets lockAnchors
@@ -5216,6 +5337,53 @@
             });
           }
         }
+      }
+    }
+    /**
+    * Handles clicks on anchor links (a[href^="#"]) that point to elements within 
+    * sections/slides.
+    * This allows navigation to specific elements within sections/slides.
+    */
+
+
+    function anchorLinkClickHandler(e) {
+      var target = e.target; // Check if the clicked element is an anchor link or is inside one
+
+      var link = closest(target, 'a[href^="#"]');
+      if (!link) return;
+      var href = getAttr(link, 'href');
+      if (!href || href === '#') return; // Get the target element from the href
+
+      var targetElement = $(href)[0];
+      if (!targetElement) return; // Only handle links within the fullPage container
+
+      var container = getContainer();
+
+      if (!container || !container.contains(targetElement)) {
+        return;
+      }
+
+      var sectionEl = closest(targetElement, getOptions().sectionSelector);
+
+      if (!sectionEl) {
+        return;
+      }
+
+      var section = getPanelByElement(state.sections, sectionEl);
+
+      if (!section) {
+        return;
+      }
+
+      var slideEl = closest(targetElement, getOptions().slideSelector);
+      var slide = slideEl && sectionEl.contains(slideEl) ? getPanelByElement(section.slides, slideEl) : null; // Prevent default browser scroll behavior
+
+      preventDefault(e);
+      moveTo$1(section.index() + 1, slide ? slide.index() : null);
+      var scrollable = $(OVERFLOW_SEL, slide ? slide.item : section.item)[0];
+
+      if (scrollable) {
+        scrollable.scrollTo(0, targetElement.offsetTop);
       }
     }
 
@@ -5602,7 +5770,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x35\x2d\x35\x2d\x32\x36".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x31\x31\x2d\x31\x33".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -5647,7 +5815,7 @@
     FP.setKeyboardScrolling = setKeyboardScrolling;
 
     function beforeInit() {
-      setKeyboardScrolling(true);
+      setKeyboardScrolling(getOptions().keyboardScrolling);
     }
     /**
     * Adds or remove the possibility of scrolling through sections by using the keyboard arrow keys
@@ -5871,13 +6039,16 @@
         if (className.indexOf(VIEWING_PREFIX) === 0) {
           removeClass($body, className);
         }
-      }); //removing added classes
+      });
+
+      if (getOptions().scrollOverflow) {
+        getState().panels.forEach(function (panel) {
+          scrollOverflowHandler.destroyScrollable(panel);
+        });
+      } //removing added classes
+
 
       getNodes(getState().panels).forEach(function (item) {
-        if (getOptions().scrollOverflow) {
-          scrollOverflowHandler.destroyWrapper(item);
-        }
-
         removeClass(item, TABLE + ' ' + ACTIVE + ' ' + COMPLETELY + ' ' + IS_OVERFLOW + ' ' + LOADED);
         var previousStyles = getAttr(item, 'data-fp-styles');
 
@@ -5930,11 +6101,12 @@
 
       setBodyClass();
 
-      if (doc.readyState === 'complete') {
+      if (document.readyState !== 'loading') {
         scrollToAnchor();
+      } else {
+        document.addEventListener('DOMContentLoaded', scrollToAnchor);
       }
 
-      windowAddEvent('load', scrollToAnchor);
       afterRenderActions(); // Updating the state again with the new DOM
 
       updateStructuralState();
@@ -6065,7 +6237,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.37';
+      FP.version = '4.0.38';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',

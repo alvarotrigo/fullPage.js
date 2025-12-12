@@ -34,10 +34,12 @@ export function init(){
     //setting the class for the body element
     setBodyClass();
 
-    if(doc.readyState === 'complete'){
+    if (document.readyState !== 'loading') {
         scrollToAnchor();
+    } 
+    else{
+        document.addEventListener('DOMContentLoaded', scrollToAnchor);
     }
-    utils.windowAddEvent('load', scrollToAnchor);
 
     afterRenderActions();
 
