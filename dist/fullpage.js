@@ -1,5 +1,5 @@
 /*!
-* fullPage 4.0.39
+* fullPage 4.0.40
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -1218,7 +1218,8 @@
       lazyLoading: true,
       lazyLoadThreshold: 0,
       observer: true,
-      scrollBeyondFullpage: true
+      scrollBeyondFullpage: true,
+      rtl: false
     };
 
     var container = null;
@@ -3406,7 +3407,9 @@
           if (!section.slides.find(function (slide) {
             return slide.isActive;
           })) {
-            section.activeSlide = section.slides[0];
+            // RTL: start from last slide, otherwise start from first
+            var defaultSlide = getOptions().rtl && section.slides.length > 0 ? section.slides[section.slides.length - 1] : section.slides[0];
+            section.activeSlide = defaultSlide;
 
             if (section.activeSlide) {
               section.activeSlide.isActive = true;
@@ -3531,10 +3534,12 @@
       });
       this.slides = this.slidesIncludingHidden.filter(function (slidePanel) {
         return slidePanel.isVisible;
-      });
+      }); // RTL: start from last slide, otherwise start from first
+
+      var defaultSlide = getOptions().rtl && this.slides.length > 0 ? this.slides[this.slides.length - 1] : this.slides.length > 0 ? this.slides[0] : null;
       this.activeSlide = this.slides.length ? this.slides.filter(function (slide) {
         return slide.isActive;
-      })[0] || this.slides[0] : null;
+      })[0] || defaultSlide : null;
 
       if (this.activeSlide) {
         this.activeSlide.isActive = true;
@@ -3609,13 +3614,15 @@
           addTableClass(slide);
         }
       });
-      var startingSlide = section.activeSlide || null; //if the slide won't be an starting point, the default will be the first one
+      var startingSlide = section.activeSlide || null; //if the slide won't be an starting point, the default will be the first one (or last one for RTL)
       //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
 
       if (startingSlide != null && state.activeSection && (state.activeSection.index() !== 0 || state.activeSection.index() === 0 && startingSlide.index() !== 0)) {
         silentLandscapeScroll(startingSlide.item, 'internal');
       } else {
-        addClass(slidesElems[0], ACTIVE);
+        // RTL: start from last slide, otherwise start from first
+        var defaultSlideIndex = getOptions().rtl && slidesElems.length > 0 ? slidesElems.length - 1 : 0;
+        addClass(slidesElems[defaultSlideIndex], ACTIVE);
       }
     }
 
@@ -4473,7 +4480,11 @@
 
         case 37:
           if (getIsScrollAllowed().k.left) {
-            moveSlideLeft();
+            if (getOptions().rtl) {
+              moveSlideRight();
+            } else {
+              moveSlideLeft();
+            }
           }
 
           break;
@@ -4481,7 +4492,11 @@
 
         case 39:
           if (getIsScrollAllowed().k.right) {
-            moveSlideRight();
+            if (getOptions().rtl) {
+              moveSlideLeft();
+            } else {
+              moveSlideRight();
+            }
           }
 
           break;
@@ -4808,7 +4823,7 @@
         var horizontalDetection = Math.abs(horizontalValue) > 0 || Math.abs(deltaX) > 0; // @ts-ignore - cross-browser compatibility
 
         var isScrollingVertically = !isShiftPressed && (Math.abs(deltaX) < Math.abs(deltaY) || !horizontalDetection);
-        var isScrollingHorizontally = isShiftPressed || !isScrollingVertically && horizontalDetection && Math.abs(deltaX) >= Math.abs(deltaY);
+        var isScrollingHorizontally = isShiftPressed || !isScrollingVertically && horizontalDetection && Math.abs(deltaX) > Math.abs(deltaY);
         var direction = delta < 0 ? 'down' : delta > 0 ? 'up' : 'none'; // Get horizontal delta for horizontal scrolling
         // For SHIFT+wheel, use the vertical delta as horizontal
 
@@ -5769,7 +5784,7 @@
         });
       });
       var t = ["-"];
-      var n = "\x32\x30\x32\x35\x2d\x31\x31\x2d\x31\x33".split("-"),
+      var n = "\x32\x30\x32\x35\x2d\x31\x31\x2d\x31\x36".split("-"),
           e = new Date(n[0], n[1], n[2]),
           r = ["se", "licen", "-", "v3", "l", "gp"];
 
@@ -6236,7 +6251,7 @@
       }; //public functions
 
 
-      FP.version = '4.0.39';
+      FP.version = '4.0.40';
       FP.test = Object.assign(FP.test, {
         top: '0px',
         translate3d: 'translate3d(0px, 0px, 0px)',
