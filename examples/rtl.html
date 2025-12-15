@@ -3,10 +3,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Scroll After Fullpage - fullPage.js</title>
+    <title>RTL Example - fullPage.js</title>
     <meta name="author" content="Alvaro Trigo Lopez" />
     <meta name="description" content="fullPage full-screen navigation and sections control menu." />
-    <meta name="keywords"  content="fullpage,jquery,demo,screen,fullscreen,navigation,control arrows, dots" />
+    <meta name="keywords"  content="fullpage,jquery,demo,scrollbar,scroll,bar,fullscreen,navigation,control arrows, dots" />
     <meta name="Resource-type" content="Document" />
 
     <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
@@ -31,31 +31,21 @@
         text-align:center;
     }
 
+
     /* Bottom menu
     * --------------------------------------- */
     #infoMenu li a {
         color: #fff;
     }
-    .box{
-        margin: 3em auto;
-        max-width: 800px;
-        padding: 4em;
-        width: 90%;
-        background: rgb(245 158 235);
-    }
-    .box h1{
-        margin-bottom: 1em;
-    }
     </style>
+
+    <!--[if IE]>
+        <script type="text/javascript">
+             var console = { log: function() {} };
+        </script>
+    <![endif]-->
 </head>
 <body>
-
-<ul id="menu">
-    <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
-    <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
-    <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
-</ul>
-
 
 <select id="demosMenu">
     <option selected>Choose Demo</option>
@@ -107,72 +97,56 @@
     <option id="scrollOverflow-reset">ScrollOverflow Reset (premium)</option>
     <option id="lazy-load">Lazy load</option>
     <option id="scrolling-speed">Scrolling speed</option>
-    <option id="rtl">RTL</option>
+        <option id="rtl">RTL</option>
     <option id="trigger-animations">Trigger animations</option>
     <option id="vue-fullpage">Vue component</option>
     <option id="react-fullpage">React component</option>
     <option id="angular-fullpage">Angular component</option>
   </select>
 
-<!-- fullPage.js container -->
-<div id="fullpage" >
-    <div class="section hidden" id="section1">
-        <div class="slide">
-            <h1>Section 1.1</h1>
-        </div>
-        <div class="slide desktopOnly">
-            <h1>Section 1.2</h1>
-        </div>
-        <div class="slide">
-            <h1>Section 1.2</h1>
+
+<div id="fullpage">
+    <div class="section " id="section0">
+        <div class="intro">
+            <h1>RTL and LTR Support!</h1>
+            <p>For all languages!</p>
         </div>
     </div>
-    <div class="section desktopOnly" id="section2" data-disable="down">
-        <h1>Section 2</h1>
+    <div class="section" id="section1">
+        <div class="slide" id="slide1">
+            <div class="intro">
+                <h1>Section 2.1</h1>
+            </div>
+        </div>
+
+        <div class="slide" id="slide2">
+            <div class="intro">
+                <h1>Section 2.2</h1>
+            </div>
+        </div>
+
+        <div class="slide" id="slide2">
+            <div class="intro">
+                <h1>Section 2.3</h1>
+            </div>
+        </div>
+
     </div>
-    <div class="section" id="section4">
-        <h1>Section 3</h1>
+    <div class="section" id="section2">
+        <div class="intro">
+            <h1>Section 3</h1>
+        </div>
     </div>
 </div>
 
-<!-- Normal Scroll From Here On -->
-<div class="content">
-    <div class="box">
-        <h1>Normal Scroll After Fullpage.js</h1>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
-
-    <div class="box">
-        <h1>Normal Scroll After Fullpage.js</h1>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
-
-    <div class="box">
-        <h1>Normal Scroll After Fullpage.js</h1>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-    </div>
-
-
-
-</div>
-
-<script type="text/javascript" src="../dist/fullpage.js?v=7"></script>
-<script type="text/javascript" src="../examples/examples.js"></script>
+<script type="text/javascript" src="../dist/fullpage.js"></script>
+<script type="text/javascript" src="examples.js"></script>
 
 <script type="text/javascript">
     var myFullpage = new fullpage('#fullpage', {
-        sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'orange', '#ccddff'],
-        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage', 'more0', 'more1', 'more2', 'more3', 'more4'],
-        slidesNavigation: true, 
-        navigation: true,
-        menu: '#menu',
-        scrollBar: true
+        anchors: ['firstPage', 'secondPage', '3rdPage'],
+        sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+        rtl: true
     });
 </script>
 
