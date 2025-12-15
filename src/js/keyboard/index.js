@@ -155,14 +155,22 @@ function onkeydown(e){
         //left
         case 37:
             if(getIsScrollAllowed().k.left){
-                moveSlideLeft();
+                if(getOptions().rtl){
+                    moveSlideRight();
+                } else {
+                    moveSlideLeft();
+                }
             }
             break;
 
         //right
         case 39:
             if(getIsScrollAllowed().k.right){
-                moveSlideRight();
+                if(getOptions().rtl){
+                    moveSlideLeft();
+                } else {
+                    moveSlideRight();
+                }
             }
             break;
 

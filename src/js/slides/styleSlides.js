@@ -56,11 +56,13 @@ export function styleSlides(section){
 
     var startingSlide = section.activeSlide || null;
 
-    //if the slide won't be an starting point, the default will be the first one
+    //if the slide won't be an starting point, the default will be the first one (or last one for RTL)
     //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
     if( startingSlide != null && state.activeSection && (state.activeSection.index() !== 0 || (state.activeSection.index() === 0 && startingSlide.index() !== 0))){
         silentLandscapeScroll(startingSlide.item, 'internal');
     }else{
-        utils.addClass(slidesElems[0], ACTIVE);
+        // RTL: start from last slide, otherwise start from first
+        var defaultSlideIndex = getOptions().rtl && slidesElems.length > 0 ? slidesElems.length - 1 : 0;
+        utils.addClass(slidesElems[defaultSlideIndex], ACTIVE);
     }
 }
