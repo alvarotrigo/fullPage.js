@@ -101,5 +101,6 @@ export const defaultOptions = {
     lazyLoading: true,
     lazyLoadThreshold: 0,
     observer: true,
-    scrollBeyondFullpage: true
+    scrollBeyondFullpage: true,
+    rtl: false
 };

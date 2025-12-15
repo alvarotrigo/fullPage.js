@@ -45,7 +45,12 @@ export function updateState(){
             });
 
             if(!section.slides.find(slide => slide.isActive)){
-                section.activeSlide = section.slides[0];
+                // RTL: start from last slide, otherwise start from first
+                var defaultSlide = getOptions().rtl && section.slides.length > 0 
+                    ? section.slides[section.slides.length - 1] 
+                    : section.slides[0];
+                    
+                section.activeSlide = defaultSlide;
                 if(section.activeSlide){
                     section.activeSlide.isActive = true;
                 }
@@ -154,7 +159,13 @@ export let SectionPanel = function(el){
     this.allSlidesItems = utils.$(getOptions().slideSelector, el);
     this.slidesIncludingHidden = Array.from(this.allSlidesItems).map( item => new SlidePanel(item, this));
     this.slides = this.slidesIncludingHidden.filter(slidePanel => slidePanel.isVisible);
-    this.activeSlide = this.slides.length ? this.slides.filter(slide => slide.isActive)[0] || this.slides[0]: null;
+    
+    // RTL: start from last slide, otherwise start from first
+    var defaultSlide = getOptions().rtl && this.slides.length > 0 
+        ? this.slides[this.slides.length - 1] 
+        : (this.slides.length > 0 ? this.slides[0] : null);
+    
+    this.activeSlide = this.slides.length ? this.slides.filter(slide => slide.isActive)[0] || defaultSlide: null;
 
     if(this.activeSlide){
         this.activeSlide.isActive = true;

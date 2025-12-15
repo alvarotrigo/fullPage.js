@@ -161,7 +161,7 @@ function MouseWheelHandler(e) {
         var horizontalDetection = Math.abs(horizontalValue) > 0 || Math.abs(deltaX) > 0;
         // @ts-ignore - cross-browser compatibility
         var isScrollingVertically = !isShiftPressed && (Math.abs(deltaX) < Math.abs(deltaY) || !horizontalDetection);
-        var isScrollingHorizontally = isShiftPressed || (!isScrollingVertically && horizontalDetection && Math.abs(deltaX) >= Math.abs(deltaY));
+        var isScrollingHorizontally = isShiftPressed || (!isScrollingVertically && horizontalDetection && Math.abs(deltaX) > Math.abs(deltaY));
         
         var direction = delta < 0 ? 'down': delta > 0 ? 'up' : 'none';
         
