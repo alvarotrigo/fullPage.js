@@ -1127,7 +1127,7 @@ new fullpage('#fullpage', {
 Станьте спонсором, и ваш логотип появится в нашем README на GitHub с ссылкой на ваш сайт. [[Связаться с нами](https://alvarotrigo.com/#contact)] | [[Станьте патроном]](https://www.patreon.com/fullpagejs) | [Станьте спонсором на GitHub](https://github.com/sponsors/alvarotrigo)
 
 
-[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp.png)](https://www.warp.dev/)
+[![Warp](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/warp.png)](http://go.warp.dev/fullPage)
 [![Crawlbase](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/crawlbase.png)](https://crawlbase.com/?utm_source=github&utm_medium=sponsor&utm_campaign=fullpagejs)
 [![LambdaTest](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/lambdatest.png)](https://www.lambdatest.com/)
 [![Codeless](https://cdn.jsdelivr.net/gh/alvarotrigo/fullpage-assets/imgs/sponsors/codeless.png)](https://codeless.co)
