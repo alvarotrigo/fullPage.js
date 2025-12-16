@@ -3,7 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 
 const licenseContent = `/*!
-* fullPage 4.0.40
+* fullPage 4.0.41
 * https://github.com/alvarotrigo/fullPage.js
 *
 * @license GPLv3 for open source use only
@@ -100,6 +100,7 @@ const terserOptions = {
                 'fadeBackground',
                 'sectionSelector',
                 'slideSelector',
+                'rtl',
 
                 // Callbacks
                 'afterLoad',
