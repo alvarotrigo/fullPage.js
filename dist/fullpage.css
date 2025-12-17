@@ -242,7 +242,7 @@ html.fp-enabled,
 /* Disabling vertical centering on scrollable elements */
 .fp-overflow{
     justify-content: flex-start;
-    width: 100dvw; /* In case its necessary #4717 */
+    width: 100%; /* In case its necessary #4717 */
 }
 
 body:not(.fp-responsive) .fp-overflow{
