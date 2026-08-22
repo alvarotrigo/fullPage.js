@@ -2136,7 +2136,7 @@
 
     FP.setRecordHistory = setRecordHistory;
     /**
-    * Defines wheter to record the history for each hash change in the URL.
+    * Defines whether to record the history for each hash change in the URL.
     */
 
     function setRecordHistory(value, type) {
@@ -2578,7 +2578,7 @@
       });
       setPageStatus(slideIndex, slideAnchorLink, v.anchorLink);
       EventEmitter.emit(events.onLeave, v);
-      performMovement(v); //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+      performMovement(v); //flag to avoid calling `scrollPage()` twice in case of using anchor links
 
       setState({
         lastScrolledDestiny: v.anchorLink
