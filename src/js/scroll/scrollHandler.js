@@ -78,7 +78,7 @@ export function scrollHandler(e){
             }
         }
 
-        //geting the last one, the current one on the screen
+        //getting the last one, the current one on the screen
         currentSection = sections[visibleSectionIndex];
         currentSectionElem = currentSection.item;
 
