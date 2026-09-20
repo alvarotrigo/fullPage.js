@@ -472,7 +472,7 @@ It requires the file `vendors/easings.min.js` or [jQuery UI](https://jqueryui.co
 
 ### fitToSectionDelay
 
-(default 1000) If `fitToSection` is set to true, this delays the fitting by the configured milliseconds.
+(default 600) If `fitToSection` is set to true, this delays the fitting by the configured milliseconds.
 
 ### scrollBar
 
