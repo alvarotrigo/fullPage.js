@@ -134,7 +134,7 @@ export function scrollPage(section, callback, isMovementUp){
 
     performMovement(v);
 
-    //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+    //flag to avoid calling `scrollPage()` twice in case of using anchor links
     setState({lastScrolledDestiny: v.anchorLink});
 
     //avoid firing it twice (as it does also on scroll)
@@ -208,7 +208,7 @@ function performMovement(v){
         transformContainer(translate3d, true);
 
         //even when the scrollingSpeed is 0 there's a little delay, which might cause the
-        //scrollingSpeed to change in case of using silentMoveTo();ç
+        //scrollingSpeed to change in case of using silentMoveTo().
         if(getOptions().scrollingSpeed){
             clearTimeout(g_afterSectionLoadsId);
             g_afterSectionLoadsId = setTimeout(function () {

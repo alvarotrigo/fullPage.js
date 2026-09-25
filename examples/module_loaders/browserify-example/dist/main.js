@@ -2090,7 +2090,7 @@
 
     FP.setRecordHistory = setRecordHistory;
     /**
-    * Defines wheter to record the history for each hash change in the URL.
+    * Defines whether to record the history for each hash change in the URL.
     */
 
     function setRecordHistory(value, type) {
@@ -2519,7 +2519,7 @@
       });
       setPageStatus(slideIndex, slideAnchorLink, v.anchorLink);
       EventEmitter.emit(events.onLeave, v);
-      performMovement(v); //flag to avoid callingn `scrollPage()` twice in case of using anchor links
+      performMovement(v); //flag to avoid calling `scrollPage()` twice in case of using anchor links
 
       setState({
         lastScrolledDestiny: v.anchorLink
@@ -2589,7 +2589,7 @@
         // that's why we round it to 0.
         var translate3d = 'translate3d(0px, -' + Math.round(v.dtop) + 'px, 0px)';
         transformContainer(translate3d, true); //even when the scrollingSpeed is 0 there's a little delay, which might cause the
-        //scrollingSpeed to change in case of using silentMoveTo();ç
+        //scrollingSpeed to change in case of using silentMoveTo().
 
         if (getOptions().scrollingSpeed) {
           clearTimeout(g_afterSectionLoadsId);
@@ -5234,7 +5234,7 @@
             addClass(getState().activeSection.item, COMPLETELY);
             removeClass(siblings(getState().activeSection.item), COMPLETELY);
           }
-        } //geting the last one, the current one on the screen
+        } //getting the last one, the current one on the screen
 
 
         currentSection = sections[visibleSectionIndex];
