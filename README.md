@@ -216,7 +216,7 @@ var myFullpage = new fullpage('#fullpage', {
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
 	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
+	scrollOverflowMacStyle: true,
 	scrollOverflowReset: false,
 	skipIntermediateItems: false,
 	touchSensitivity: 15,
@@ -621,7 +621,7 @@ new fullpage('#fullpage', {
 
 ### scrollOverflowMacStyle
 
-(default `false`) When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers.
+(default `true`) When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers.
 
 ### sectionSelector
 
