@@ -212,7 +212,7 @@ var myFullpage = new fullpage('#fullpage', {
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
 	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
+	scrollOverflowMacStyle: true,
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
@@ -567,7 +567,7 @@ new fullpage('#fullpage', {
 （默认为 `true`）定义在内容大于它的高度的情况下是否为 section/slide 创建滚动。 It requires the default value `scrollBar: false`。 为了防止 fullpage.js 在某些 section 或 slide 中创建滚动条，请使用 `fp-noscroll` 类。 例如： `<div class="section fp-noscroll">`. 在 section 元素中使用 `fp-auto-height-responsive` 时，您也可以防止 scrolloverflow 应用于响应模式。
 
 ### scrollOverflowMacStyle
-（默认 `false`）. When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+（默认 `true`）. When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 ### scrollOverflowReset
 （默认`false`）[fullpage.js 的扩展](https://alvarotrigo.com/fullPage/extensions/)。 如果设置为 `true` ，当离开另一个垂直 section时，将使用滚动条向上滚动 section/slide 的内容。 这样，即使从 section 的下方滚动，section/slide 也会始终显示其内容的开头。 Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.

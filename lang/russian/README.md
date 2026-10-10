@@ -212,7 +212,7 @@ var myFullpage = new fullpage('#fullpage', {
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
 	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
+	scrollOverflowMacStyle: true,
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
@@ -562,7 +562,7 @@ new fullpage('#fullpage', {
 (по умолчанию `true`) определяет необходимость создания прокрутки для раздела/слайда, если контент превышает его высоту. It requires the default value `scrollBar: false`. Чтобы предотвратить создание fullpage.js полосы прокрутки в определённых разделах или слайдах, используйте класс `fp-noscroll`. Например: `<div class="section fp-noscroll">`. Вы можете избежать применения scrolloverflow в отзывчивом режиме, используя `fp-auto-height-responsive` в элементе раздела.
 
 ### scrollOverflowMacStyle
-(default `false`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
+(default `true`). When active, this option will use a "mac style" for the scrollbar instead of the default one, which will look quite different in Windows computers. (translation needed)
 
 ### scrollOverflowReset
 (по умолчанию `false`) [Расширение fullpage.js](https://alvarotrigo.com/fullPage/extensions/). При установке значения `true` будет осуществляться прокрутка контента раздела/слайда с помощью полосы прокрутки при покидании другого вертикального раздела. Таким образом, раздел/слайд будет всегда показывать начало контента даже при скроллинге из раздела/слайда, расположенного ниже. Possible values are `true`, `false`, `sections`, `slides`.Adding the class `fp-no-scrollOverflowReset` on the section or slide will disable this feature for that specific panel.

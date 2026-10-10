@@ -209,7 +209,7 @@ new fullpage('#fullpage', {
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
 	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
+	scrollOverflowMacStyle: true,
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
@@ -557,7 +557,7 @@ new fullpage('#fullpage', {
 (기본값 `false`) 컨텐츠가 구역/슬라이드의 높이보다 더 큰 경우 스크롤을 만들지 여부를 정의합니다. `true`로 설정되면 컨텐츠가 플러그인으로 포장됩니다.It requires the default value `scrollBar: false`. 특정 구역이나 슬라이드에서 fullpage.js의 스크롤 막대기를 생성하고 싶지 않으시다면 `fp-noscroll` 클래스를 쓰세요. 예시: `<div class="section fp-noscroll">`. 구역 요소에서 `fp-auto-height-responsive`를 쓰시면 반응형 모드에서는 scrolloverflow가 적용되지 않습니다.
 
 ### scrollOverflowMacStyle
-(기본값 `false`). 활성화되면 이 옵션은 기본 스크롤바 대신 "맥 스타일"의 스크롤바를 사용하게 되며, 윈도우 컴퓨터에서는 다르게 보일 것입니다.
+(기본값 `true`). 활성화되면 이 옵션은 기본 스크롤바 대신 "맥 스타일"의 스크롤바를 사용하게 되며, 윈도우 컴퓨터에서는 다르게 보일 것입니다.
 
 ### scrollOverflowReset
 (기본값 `false`) [fullpage.js 확장 프로그램](https://alvarotrigo.com/fullPage/extensions/). `true`로 설정되면 다른 수직 구역으로 옮겨갈 때 구역/슬라이드의 컨텐츠를 스크롤 막대기와 함께 위로 스크롤합니다. 이렇게 하면 구역/슬라이드 아래에서 스크롤하더라도 언제나 컨텐츠 처음 부분을 볼 수 있습니다. 가능한 값은 `true`, `false`, `sections`, `slides`입니다. 구역 또는 슬라이드에 `fp-no-scrollOverflowReset` 클래스를 추가하면 해당 패널에 대해 이 기능이 비활성화됩니다.

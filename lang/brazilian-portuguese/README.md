@@ -217,7 +217,7 @@ var myFullpage = new fullpage('#fullpage', {
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
 	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
+	scrollOverflowMacStyle: true,
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
@@ -575,7 +575,7 @@ new fullpage('#fullpage', {
 (padrão `false`) [Extensão de fullpage.js](https://alvarotrigo.com/fullPage/extensions/br/). Os valores possíveis são `true`, `false`, `sections`, `slides`. Quando definido como `true`, ele rola o conteúdo da seção/slide com uma barra de rolagem ao sair para outra seção/slide. Dessa forma, a seção/slide sempre mostrará o início de seu conteúdo, mesmo ao rolar de uma seção abaixo dela. Adicionar a classe `fp-no-scrollOverflowReset` na seção ou slide desativará esse recurso para esse painel específico.
 
 ### scrollOverflowMacStyle
-(padrão `false`). Quando ativa, esta opção usará um "estilo mac" para a barra de rolagem em vez do padrão, que será bem diferente em computadores Windows.
+(padrão `true`). Quando ativa, esta opção usará um "estilo mac" para a barra de rolagem em vez do padrão, que será bem diferente em computadores Windows.
 
 ### sectionSelector
 (padrão `.section`) Define o seletor Javascript usado para as seções do plugin. Ele pode precisar ser alterado algumas vezes para evitar problemas com outros plugins usando os mesmos seletores que fullpage.js.

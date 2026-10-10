@@ -222,7 +222,7 @@ var myFullpage = new fullpage('#fullpage', {
 	fadingEffect: false,
 	normalScrollElements: '#element1, .element2',
 	scrollOverflow: true,
-	scrollOverflowMacStyle: false,
+	scrollOverflowMacStyle: true,
 	scrollOverflowReset: false,
 	touchSensitivity: 15,
 	bigSectionsDestination: null,
@@ -716,7 +716,7 @@ new fullpage('#fullpage', {
 
 ### scrollOverflowMacStyle
 
-(デフォルト `false`) 有効にすると、デフォルトのスクロールバーの代わりに「Macスタイル」のスクロールバーを使用します。Windowsではかなり異なって見えます。
+(デフォルト `true`) 有効にすると、デフォルトのスクロールバーの代わりに「Macスタイル」のスクロールバーを使用します。Windowsではかなり異なって見えます。
 
 ### sectionSelector
 
