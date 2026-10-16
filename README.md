@@ -613,7 +613,7 @@ new fullpage('#fullpage', {
 
 ### scrollOverflow
 
-(default `true`) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. It requires the default value `scrollBar: false`. In order to prevent fullpage.js from creating the scrollbar in certain sections or slides use the class `fp-noscroll`. For example: `<div class="section fp-noscroll">` You can also prevent scrolloverflow from getting applied on responsive mode when using `fp-auto-height-responsive` in the section element.
+(default `true`) defines whether or not to create a scroll for the section/slide in case its content is bigger than the height of it. It can be combined with `scrollBar: true`, but `scrollBar` takes precedence and the inner scroll that `scrollOverflow` creates in sections and slides won't work. In order to prevent fullpage.js from creating the scrollbar in certain sections or slides use the class `fp-noscroll`. For example: `<div class="section fp-noscroll">` You can also prevent scrolloverflow from getting applied on responsive mode when using `fp-auto-height-responsive` in the section element.
 
 ### scrollOverflowReset
 
