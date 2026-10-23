@@ -22,8 +22,20 @@ export function getOptions(){
     return g_options || defaultOptions;
 }
 
+function validScrollingSpeed(value){
+    return typeof value === 'number' && isFinite(value) && value >= 0;
+}
+
+function normalizedValue(variable, value){
+    if(variable === 'scrollingSpeed' && !validScrollingSpeed(value)){
+        return defaultOptions.scrollingSpeed;
+    }
+    return value;
+}
+
 export function setOptions(options){
     g_options = utils.deepExtend({}, defaultOptions, options);
+    g_options.scrollingSpeed = normalizedValue('scrollingSpeed', g_options.scrollingSpeed);
     originals = Object.assign({}, g_options);
 }
 
@@ -42,6 +54,7 @@ export function setOption(name, value){
 * If type is not 'internal', then we assume the user is globally changing the variable.
 */
 export function setVariableState(variable, value, type){
+    value = normalizedValue(variable, value);
     g_options[variable] = value;
     if(type !== 'internal'){
         originals[variable] = value;
