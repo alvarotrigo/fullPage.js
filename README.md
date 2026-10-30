@@ -86,6 +86,8 @@ As you can see in the example files, you will need to include:
 
  **Optionally**, when using `css3:false`, you can add the [easings file](https://github.com/alvarotrigo/fullPage.js/tree/master/vendors/easings.min.js) in case you want to use other easing effects apart from the one included in the library (`easeInOutCubic`).
 
+ **Note:** avoid `scroll-behavior: smooth` on `html` or `body`. When the page scrolls natively (`scrollBar:true` or `autoScrolling:false`), fullPage.js animates the scroll itself and the browser's smooth scrolling interferes with it. Some CSS frameworks set it by default (Bootstrap does on `:root`), so override it with `scroll-behavior: auto` if needed.
+
 ### Install using bower or npm
 **Optionally**, you can install fullPage.js with bower or npm if you prefer:
 
